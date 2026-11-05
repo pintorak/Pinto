@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PINTO — Little websites, made with meaning.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+KR:wght@500;600;700&family=Noto+Serif+Thai:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f0eef3;
+      color: #3e3439;
+      font-family: "Noto Sans Thai", "Noto Sans KR", sans-serif;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      width: 100%;
+      padding: 25px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      background: rgba(240, 238, 243, 0.88);
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      color: #3e3439;
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 27px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5d5057;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #cd5782;
+    }
+
+    .language-button {
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .language-button:hover {
+      transform: rotate(15deg) scale(1.08);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 7% 80px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: #dcd3aa;
+      opacity: 0.25;
+      top: 120px;
+      right: -130px;
+      filter: blur(2px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: #c7dad8;
+      opacity: 0.3;
+      bottom: -100px;
+      left: -80px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .small-label {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: #cd5782;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
+      font-size: clamp(72px, 14vw, 150px);
+      line-height: 0.82;
+      font-weight: 600;
+      letter-spacing: 8px;
+      color: #3e3439;
+      margin-bottom: 35px;
+    }
+
+    .tagline {
+      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      max-width: 650px;
+      color: #5b4d55;
+      margin-bottom: 22px;
+    }
+
+    .description {
+      max-width: 540px;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #766a70;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 13px 25px;
+      border-radius: 100px;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #cd5782;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(205, 87, 130, 0.25);
+    }
+
+    .btn-outline {
+      border: 1px solid #b9adb3;
+      color: #5d5057;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: #cd5782;
+      color: #cd5782;
+    }
+
+    /* =========================
+       FEATURED
+    ========================= */
+
+    .featured {
+      padding: 110px 7%;
+      background: #dcd3aa;
+      background: linear-gradient(
+        180deg,
+        #dcd3aa 0%,
+        #e8e2c7 100%
+      );
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #8d586b;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
+      font-size: clamp(42px, 7vw, 78px);
+      font-weight: 600;
+      color: #40353a;
+      margin-bottom: 45px;
+    }
+
+    .website-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .preview-card {
+      min-height: 350px;
+      background: #f0eef3;
+      border-radius: 2px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .preview-card:nth-child(1) {
+      background: #c7dad8;
+    }
+
+    .preview-card:nth-child(2) {
+      background: #cd5782;
+      color: white;
+    }
+
+    .preview-card:nth-child(3) {
+      background: #f0eef3;
+    }
+
+    .preview-number {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      opacity: 0.55;
+    }
+
+    .preview-card h3 {
+      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
+      font-size: 38px;
+      margin-bottom: 7px;
+    }
+
+    .preview-card p {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* =========================
+       LANGUAGE POPUP
+    ========================= */
+
+    .language-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(48, 38, 43, 0.35);
+      backdrop-filter: blur(7px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .language-modal.active {
+      display: flex;
+    }
+
+    .language-box {
+      width: min(400px, 100%);
+      background: #f0eef3;
+      padding: 42px 35px;
+      border-radius: 4px;
+      box-shadow: 0 25px 70px rgba(50, 35, 42, 0.2);
+      position: relative;
+      text-align: center;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      border: none;
+      background: none;
+      font-size: 25px;
+      color: #766a70;
+      cursor: pointer;
+    }
+
+    .language-box h2 {
+      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .language-box p {
+      font-size: 13px;
+      color: #8b7e84;
+      margin-bottom: 28px;
+    }
+
+    .language-option {
+      width: 100%;
+      border: 1px solid #d4ccd0;
+      background: transparent;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      color: #4f4449;
+      transition: 0.3s;
+    }
+
+    .language-option:hover {
+      border-color: #cd5782;
+      background: rgba(205, 87, 130, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .website-preview {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-card {
+        min-height: 280px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 20px 5%;
+      }
+
+      .logo {
+        font-size: 28px;
+      }
+
+      .hero {
+        padding: 130px 7% 70px;
+      }
+
+      .hero h1 {
+        font-size: 80px;
+      }
+
+      .tagline {
+        font-size: 34px;
+      }
+
+      .featured {
+        padding: 80px 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================= -->
+
+  <nav>
+    <a href="#home" class="logo">PINTO</a>
+
+    <div class="nav-right">
+
+      <div class="nav-links">
+        <a href="#home" data-i18n="navHome">หน้าแรก</a>
+        <a href="#websites" data-i18n="navWebsites">เว็บไซต์</a>
+        <a href="#features" data-i18n="navFeatures">ฟีเจอร์</a>
+        <a href="#pricing" data-i18n="navPricing">ราคา</a>
+        <a href="#order" data-i18n="navOrder">วิธีสั่งซื้อ</a>
+        <a href="#about" data-i18n="navAbout">เกี่ยวกับปิ่นโต</a>
+        <a href="#contact" data-i18n="navContact">ติดต่อ</a>
+      </div>
+
+      <button class="language-button" onclick="openLanguage()">
+        🌐
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HOME
+  ========================= -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="small-label" data-i18n="smallLabel">
+        LITTLE DIGITAL MOMENTS
+      </div>
+
+      <h1>PINTO</h1>
+
+      <div class="tagline" data-i18n="tagline">
+        เว็บไซต์เล็ก ๆ ที่สร้างขึ้นเพื่อเก็บช่วงเวลาพิเศษของคุณไว้ ♡
+      </div>
+
+      <p class="description" data-i18n="description">
+        เราเปลี่ยนความทรงจำ ความรู้สึก รูปภาพ เพลง และข้อความของคุณ
+        ให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดดูและสัมผัสได้จริง
+      </p>
+
+      <div class="buttons">
+        <a href="#websites" class="btn btn-primary" data-i18n="viewWork">
+          ดูผลงาน
+        </a>
+
+        <a href="#order" class="btn btn-outline" data-i18n="startOrder">
+          สั่งทำเว็บไซต์
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FEATURED WEBSITES
+  ========================= -->
+
+  <section class="featured" id="websites">
+
+    <div class="section-label" data-i18n="featuredLabel">
+      FEATURED WEBSITES
+    </div>
+
+    <h2 class="section-title" data-i18n="featuredTitle">
+      Made for your moments.
+    </h2>
+
+    <div class="website-preview">
+
+      <div class="preview-card">
+        <span class="preview-number">01</span>
+        <h3 data-i18n="birthdayTitle">Birthday</h3>
+        <p data-i18n="birthdayDesc">
+          เว็บไซต์เซอร์ไพรส์วันเกิด
+        </p>
+      </div>
+
+      <div class="preview-card">
+        <span class="preview-number">02</span>
+        <h3 data-i18n="anniversaryTitle">Anniversary</h3>
+        <p data-i18n="anniversaryDesc">
+          เก็บเรื่องราวของเราสองคนไว้ในเว็บไซต์
+        </p>
+      </div>
+
+      <div class="preview-card">
+        <span class="preview-number">03</span>
+        <h3 data-i18n="apologyTitle">Apology</h3>
+        <p data-i18n="apologyDesc">
+          คำขอโทษที่อยากส่งให้ถึงใจ
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LANGUAGE MODAL
+  ========================= -->
+
+  <div class="language-modal" id="languageModal">
+
+    <div class="language-box">
+
+      <button class="close-button" onclick="closeLanguage()">
+        ×
+      </button>
+
+      <h2 data-i18n="chooseLanguage">
+        เลือกภาษา
+      </h2>
+
+      <p data-i18n="chooseLanguageSub">
+        Choose your language
+      </p>
+
+      <button class="language-option" onclick="setLanguage('th')">
+        🇹🇭 ภาษาไทย
+      </button>
+
+      <button class="language-option" onclick="setLanguage('en')">
+        🇬🇧 English
+      </button>
+
+      <button class="language-option" onclick="setLanguage('ko')">
+        🇰🇷 한국어
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       LANGUAGE SCRIPT
+  ========================= -->
+
+  <script>
+
+    const translations = {
+
+      th: {
+        navHome: "หน้าแรก",
+        navWebsites: "เว็บไซต์",
+        navFeatures: "ฟีเจอร์",
+        navPricing: "ราคา",
+        navOrder: "วิธีสั่งซื้อ",
+        navAbout: "เกี่ยวกับปิ่นโต",
+        navContact: "ติดต่อ",
+
+        smallLabel: "LITTLE DIGITAL MOMENTS",
+
+        tagline: "เว็บไซต์เล็ก ๆ ที่สร้างขึ้นเพื่อเก็บช่วงเวลาพิเศษของคุณไว้ ♡",
+
+        description:
+          "เราเปลี่ยนความทรงจำ ความรู้สึก รูปภาพ เพลง และข้อความของคุณ ให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดดูและสัมผัสได้จริง",
+
+        viewWork: "ดูผลงาน",
+        startOrder: "สั่งทำเว็บไซต์",
+
+        featuredLabel: "FEATURED WEBSITES",
+        featuredTitle: "Made for your moments.",
+
+        birthdayTitle: "Birthday",
+        birthdayDesc: "เว็บไซต์เซอร์ไพรส์วันเกิด",
+
+        anniversaryTitle: "Anniversary",
+        anniversaryDesc: "เก็บเรื่องราวของเราสองคนไว้ในเว็บไซต์",
+
+        apologyTitle: "Apology",
+        apologyDesc: "คำขอโทษที่อยากส่งให้ถึงใจ",
+
+        chooseLanguage: "เลือกภาษา",
+        chooseLanguageSub: "Choose your language"
+      },
+
+
+      en: {
+        navHome: "Home",
+        navWebsites: "Websites",
+        navFeatures: "Features",
+        navPricing: "Pricing",
+        navOrder: "How to Order",
+        navAbout: "About Pinto",
+        navContact: "Contact",
+
+        smallLabel: "LITTLE DIGITAL MOMENTS",
+
+        tagline: "Little websites, made to keep your special moments close. ♡",
+
+        description:
+          "We turn your memories, feelings, photos, music, and words into little websites you can open, explore, and experience.",
+
+        viewWork: "Explore Websites",
+        startOrder: "Start Your Order",
+
+        featuredLabel: "FEATURED WEBSITES",
+        featuredTitle: "Made for your moments.",
+
+        birthdayTitle: "Birthday",
+        birthdayDesc: "A little birthday surprise, made just for them.",
+
+        anniversaryTitle: "Anniversary",
+        anniversaryDesc: "A place to keep your story together.",
+
+        apologyTitle: "Apology",
+        apologyDesc: "A heartfelt way to say what words alone can't.",
+
+        chooseLanguage: "Choose Language",
+        chooseLanguageSub: "Select your preferred language"
+      },
+
+
+      ko: {
+        navHome: "홈",
+        navWebsites: "웹사이트",
+        navFeatures: "기능",
+        navPricing: "가격",
+        navOrder: "주문 방법",
+        navAbout: "PINTO 소개",
+        navContact: "문의하기",
+
+        smallLabel: "LITTLE DIGITAL MOMENTS",
+
+        tagline: "소중한 순간을 간직할 수 있도록 만든 작은 웹사이트 ♡",
+
+        description:
+          "당신의 추억, 마음, 사진, 음악, 그리고 메시지를 하나의 작은 웹사이트에 담아 직접 열어보고 경험할 수 있도록 만들어드려요.",
+
+        viewWork: "작품 보기",
+        startOrder: "주문하기",
+
+        featuredLabel: "FEATURED WEBSITES",
+        featuredTitle: "당신의 순간을 위해 만들어집니다.",
+
+        birthdayTitle: "Birthday",
+        birthdayDesc: "소중한 사람을 위한 특별한 생일 서프라이즈",
+
+        anniversaryTitle: "Anniversary",
+        anniversaryDesc: "우리의 이야기를 한곳에 담아두는 공간",
+
+        apologyTitle: "Apology",
+        apologyDesc: "말로는 다 전하지 못한 마음을 담은 사과",
+
+        chooseLanguage: "언어 선택",
+        chooseLanguageSub: "원하는 언어를 선택해주세요"
+      }
+
+    };
+
+
+    function openLanguage() {
+      document
+        .getElementById("languageModal")
+        .classList.add("active");
+    }
+
+
+    function closeLanguage() {
+      document
+        .getElementById("languageModal")
+        .classList.remove("active");
+    }
+
+
+    function setLanguage(language) {
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+          const key = element.getAttribute("data-i18n");
+
+          if (translations[language][key]) {
+            element.textContent = translations[language][key];
+          }
+
+        });
+
+
+      document.documentElement.lang = language;
+
+      localStorage.setItem("pintoLanguage", language);
+
+      closeLanguage();
+    }
+
+
+    window.addEventListener("click", function(event) {
+
+      const modal = document.getElementById("languageModal");
+
+      if (event.target === modal) {
+        closeLanguage();
+      }
+
+    });
+
+
+    const savedLanguage =
+      localStorage.getItem("pintoLanguage") || "th";
+
+    setLanguage(savedLanguage);
+
+  </script>
+
+</body>
+</html>
