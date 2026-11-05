@@ -4,15 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PINTO — Little websites, made with meaning.</title>
+  <title>ปินโตรัก — PINTO RAK</title>
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+KR:wght@500;600;700&family=Noto+Serif+Thai:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
+    :root {
+      --cream: #F4F0E9;
+      --cream-dark: #E9E1D5;
+      --pink: #BD5B7B;
+      --pink-soft: #E9C7D1;
+      --mint: #C7DAD8;
+      --text: #332E2E;
+      --muted: #817777;
+      --white: #FFFFFF;
+      --border: rgba(51, 46, 46, 0.12);
+
+      --serif-en: "Cormorant Garamond", serif;
+      --serif-th: "Noto Serif Thai", serif;
+      --sans-th: "Noto Sans Thai", sans-serif;
+      --sans-kr: "Noto Sans KR", sans-serif;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -24,72 +42,124 @@
     }
 
     body {
-      background: #f0eef3;
-      color: #3e3439;
-      font-family: "Noto Sans Thai", "Noto Sans KR", sans-serif;
-      min-height: 100vh;
+      background: var(--cream);
+      color: var(--text);
+      font-family: var(--sans-th);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    body.lang-en {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body.lang-ko {
+      font-family: var(--sans-kr);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
     }
 
     /* =========================
-       NAVIGATION
+       HEADER
     ========================= */
 
-    nav {
-      width: 100%;
-      padding: 25px 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    header {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 100;
-      background: rgba(240, 238, 243, 0.88);
-      backdrop-filter: blur(15px);
+      width: 100%;
+      z-index: 1000;
+
+      padding: 22px 5vw;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(244, 240, 233, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(51, 46, 46, 0.06);
     }
 
     .logo {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: 5px;
-      color: #3e3439;
-      text-decoration: none;
+      font-family: var(--serif-th);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
-    .nav-right {
+    .nav {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 7px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 27px;
-      align-items: center;
+    .nav a {
+      position: relative;
+
+      padding: 8px 15px;
+
+      border-radius: 999px;
+
+      font-size: 0.88rem;
+      color: #655D5D;
+
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
     }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #5d5057;
-      font-size: 14px;
-      transition: 0.3s;
+    /* เมนูที่กำลังเลือก */
+    .nav a.active {
+      background: var(--pink);
+      color: white;
+      box-shadow: 0 7px 20px rgba(189, 91, 123, 0.20);
     }
 
-    .nav-links a:hover {
-      color: #cd5782;
+    .nav a:not(.active):hover {
+      background: rgba(189, 91, 123, 0.08);
+      color: var(--pink);
     }
+
+    /* =========================
+       LANGUAGE BUTTON
+    ========================= */
 
     .language-button {
-      border: none;
-      background: transparent;
-      font-size: 22px;
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.55);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 1rem;
+
       cursor: pointer;
-      transition: 0.3s;
+
+      transition: 0.25s ease;
     }
 
     .language-button:hover {
-      transform: rotate(15deg) scale(1.08);
+      background: var(--pink);
+      color: white;
+      transform: translateY(-2px);
     }
 
     /* =========================
@@ -98,641 +168,2060 @@
 
     .hero {
       min-height: 100vh;
-      padding: 150px 7% 80px;
-      display: flex;
+
+      padding: 150px 7vw 90px;
+
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+
       align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      background: #dcd3aa;
-      opacity: 0.25;
-      top: 120px;
-      right: -130px;
-      filter: blur(2px);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: #c7dad8;
-      opacity: 0.3;
-      bottom: -100px;
-      left: -80px;
+      gap: 80px;
     }
 
     .hero-content {
-      max-width: 900px;
-      position: relative;
-      z-index: 2;
+      max-width: 650px;
     }
 
-    .small-label {
-      font-size: 12px;
-      letter-spacing: 4px;
-      color: #cd5782;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      font-family: var(--serif-en);
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+
+      color: var(--pink);
+
       margin-bottom: 22px;
-      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: var(--pink);
     }
 
     .hero h1 {
-      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
-      font-size: clamp(72px, 14vw, 150px);
-      line-height: 0.82;
-      font-weight: 600;
-      letter-spacing: 8px;
-      color: #3e3439;
-      margin-bottom: 35px;
+      font-family: var(--serif-th);
+      font-size: clamp(3.8rem, 9vw, 8rem);
+      font-weight: 500;
+
+      line-height: 0.95;
+
+      color: var(--text);
+
+      margin-bottom: 5px;
     }
 
-    .tagline {
-      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
-      font-size: clamp(28px, 4vw, 48px);
-      line-height: 1.1;
-      max-width: 650px;
-      color: #5b4d55;
-      margin-bottom: 22px;
+    .hero .english-name {
+      font-family: var(--serif-en);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 500;
+
+      line-height: 1;
+
+      color: var(--pink);
+
+      letter-spacing: 0.04em;
+
+      margin-bottom: 30px;
     }
 
-    .description {
+    .hero-description {
       max-width: 540px;
-      font-size: 15px;
-      line-height: 1.9;
-      color: #766a70;
+
+      font-size: 1.05rem;
+
+      color: var(--muted);
+
       margin-bottom: 35px;
     }
 
-    .buttons {
+    .hero-buttons {
       display: flex;
-      gap: 15px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 13px 25px;
-      border-radius: 100px;
-      font-size: 13px;
-      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 48px;
+
+      padding: 0 25px;
+
+      border-radius: 999px;
+
+      font-size: 0.9rem;
+
+      transition: 0.25s ease;
     }
 
     .btn-primary {
-      background: #cd5782;
+      background: var(--pink);
       color: white;
+
+      box-shadow: 0 12px 30px rgba(189, 91, 123, 0.20);
     }
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(205, 87, 130, 0.25);
+      box-shadow: 0 17px 35px rgba(189, 91, 123, 0.27);
     }
 
-    .btn-outline {
-      border: 1px solid #b9adb3;
-      color: #5d5057;
-      background: rgba(255,255,255,0.3);
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.4);
+      color: var(--text);
     }
 
-    .btn-outline:hover {
-      border-color: #cd5782;
-      color: #cd5782;
+    .btn-secondary:hover {
+      background: white;
+      transform: translateY(-3px);
     }
 
     /* =========================
-       FEATURED
+       HERO IMAGE
     ========================= */
 
-    .featured {
-      padding: 110px 7%;
-      background: #dcd3aa;
-      background: linear-gradient(
-        180deg,
-        #dcd3aa 0%,
-        #e8e2c7 100%
-      );
+    .hero-visual {
+      position: relative;
+
+      width: 100%;
+      max-width: 560px;
+
+      margin-left: auto;
+    }
+
+    .hero-image-frame {
+      position: relative;
+
+      width: 100%;
+      aspect-ratio: 4 / 5;
+
+      overflow: hidden;
+
+      border-radius: 220px 220px 25px 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e7d7c7,
+          #f3e8df 45%,
+          #d8e1dc
+        );
+
+      box-shadow:
+        0 30px 80px rgba(70, 53, 53, 0.12);
+
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      transition: transform 0.8s ease;
+    }
+
+    .hero-image-frame:hover img {
+      transform: scale(1.025);
+    }
+
+    /*
+      ถ้ายังไม่มีรูป
+      จะเห็นข้อความนี้แทน
+    */
+    .image-placeholder {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      color: rgba(51,46,46,0.5);
+
+      padding: 30px;
+    }
+
+    .image-placeholder .placeholder-th {
+      font-family: var(--serif-th);
+      font-size: 2rem;
+    }
+
+    .image-placeholder .placeholder-en {
+      font-family: var(--serif-en);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+    }
+
+    .floating-note {
+      position: absolute;
+
+      left: -35px;
+      bottom: 35px;
+
+      padding: 16px 20px;
+
+      background: rgba(255,255,255,0.92);
+
+      border: 1px solid rgba(51,46,46,0.08);
+
+      border-radius: 16px;
+
+      box-shadow: 0 20px 50px rgba(60,45,45,0.12);
+
+      font-family: var(--serif-th);
+
+      color: var(--text);
+
+      transform: rotate(-3deg);
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    .section {
+      padding: 130px 7vw;
+    }
+
+    .intro {
+      background: #EEE8DE;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .section-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #8d586b;
-      margin-bottom: 15px;
-      text-transform: uppercase;
+      font-family: var(--serif-en);
+      color: var(--pink);
+
+      font-size: 0.95rem;
+      letter-spacing: 0.17em;
+
+      margin-bottom: 18px;
     }
 
-    .section-title {
-      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
-      font-size: clamp(42px, 7vw, 78px);
-      font-weight: 600;
-      color: #40353a;
-      margin-bottom: 45px;
+    .section h2 {
+      font-family: var(--serif-th);
+
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+
+      line-height: 1.2;
+
+      font-weight: 500;
+
+      max-width: 780px;
+
+      margin-bottom: 25px;
     }
 
-    .website-preview {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
+    .section p {
+      max-width: 720px;
 
-    .preview-card {
-      min-height: 350px;
-      background: #f0eef3;
-      border-radius: 2px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      position: relative;
-      overflow: hidden;
-      transition: 0.4s;
-    }
+      color: var(--muted);
 
-    .preview-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .preview-card:nth-child(1) {
-      background: #c7dad8;
-    }
-
-    .preview-card:nth-child(2) {
-      background: #cd5782;
-      color: white;
-    }
-
-    .preview-card:nth-child(3) {
-      background: #f0eef3;
-    }
-
-    .preview-number {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 30px;
-      opacity: 0.55;
-    }
-
-    .preview-card h3 {
-      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
-      font-size: 38px;
-      margin-bottom: 7px;
-    }
-
-    .preview-card p {
-      font-size: 13px;
-      opacity: 0.8;
+      font-size: 1rem;
     }
 
     /* =========================
-       LANGUAGE POPUP
+       WORKS
     ========================= */
 
-    .language-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(48, 38, 43, 0.35);
-      backdrop-filter: blur(7px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    .works-grid {
+      margin-top: 60px;
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
     }
 
-    .language-modal.active {
+    .work-card {
+      min-height: 300px;
+
+      padding: 30px;
+
+      border-radius: 24px;
+
+      background: white;
+
+      border: 1px solid rgba(51,46,46,0.07);
+
       display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      transition: 0.3s ease;
     }
 
-    .language-box {
-      width: min(400px, 100%);
-      background: #f0eef3;
-      padding: 42px 35px;
-      border-radius: 4px;
-      box-shadow: 0 25px 70px rgba(50, 35, 42, 0.2);
-      position: relative;
-      text-align: center;
+    .work-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 25px 55px rgba(55,42,42,0.10);
     }
 
-    .close-button {
-      position: absolute;
-      top: 15px;
-      right: 18px;
-      border: none;
-      background: none;
-      font-size: 25px;
-      color: #766a70;
-      cursor: pointer;
+    .work-number {
+      font-family: var(--serif-en);
+      color: var(--pink);
+
+      font-size: 1.2rem;
+
+      margin-bottom: auto;
     }
 
-    .language-box h2 {
-      font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif KR", serif;
-      font-size: 38px;
+    .work-card h3 {
+      font-family: var(--serif-th);
+      font-size: 1.5rem;
+      font-weight: 500;
+
       margin-bottom: 8px;
     }
 
-    .language-box p {
-      font-size: 13px;
-      color: #8b7e84;
-      margin-bottom: 28px;
+    .work-card p {
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      background: #F7F4EE;
+    }
+
+    .feature-list {
+      margin-top: 60px;
+
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 0;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .feature {
+      padding: 28px 10px;
+
+      border-bottom: 1px solid var(--border);
+
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 50%;
+
+      background: var(--pink-soft);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .feature p {
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+
+    /* =========================
+       PRICING
+    ========================= */
+
+    .pricing {
+      text-align: center;
+      background: #E8E1D7;
+    }
+
+    .pricing .section-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .price-card {
+      margin-top: 45px;
+
+      width: min(500px, 100%);
+
+      background: white;
+
+      border-radius: 30px;
+
+      padding: 50px 35px;
+
+      box-shadow: 0 30px 70px rgba(55,42,42,0.10);
+
+      border: 1px solid rgba(51,46,46,0.06);
+    }
+
+    .price-small {
+      font-family: var(--serif-en);
+      color: var(--pink);
+
+      letter-spacing: 0.1em;
+
+      font-size: 0.9rem;
+    }
+
+    .price {
+      font-family: var(--serif-en);
+
+      font-size: 6rem;
+
+      line-height: 1;
+
+      color: var(--text);
+
+      margin: 10px 0;
+    }
+
+    .price-baht {
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .price-description {
+      margin: 20px auto 30px;
+      max-width: 350px;
+    }
+
+    /* =========================
+       HOW TO ORDER
+    ========================= */
+
+    .steps {
+      margin-top: 60px;
+
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 30px;
+    }
+
+    .step {
+      padding: 25px 0;
+    }
+
+    .step-number {
+      font-family: var(--serif-en);
+
+      color: var(--pink);
+
+      font-size: 2rem;
+
+      margin-bottom: 10px;
+    }
+
+    .step h3 {
+      font-family: var(--serif-th);
+
+      font-size: 1.2rem;
+
+      margin-bottom: 5px;
+    }
+
+    .step p {
+      font-size: 0.88rem;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      background: var(--cream);
+    }
+
+    .about-box {
+      margin-top: 50px;
+
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+
+      gap: 70px;
+
+      align-items: center;
+    }
+
+    .about-mark {
+      min-height: 330px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #F8F5EF 0%,
+          #E9DDE0 60%,
+          #D7E1DE 100%
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .about-mark span {
+      font-family: var(--serif-en);
+
+      font-size: 3.2rem;
+
+      color: var(--pink);
+
+      letter-spacing: 0.05em;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 120px 7vw;
+
+      text-align: center;
+
+      background: var(--pink);
+
+      color: white;
+    }
+
+    .cta .section-label {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .cta h2 {
+      margin: 0 auto 25px;
+
+      color: white;
+
+      max-width: 700px;
+    }
+
+    .cta p {
+      margin: 0 auto 30px;
+
+      color: rgba(255,255,255,0.82);
+    }
+
+    .cta .btn-primary {
+      background: white;
+      color: var(--pink);
+      box-shadow: none;
+    }
+
+    .cta .btn-primary:hover {
+      background: #fff8fa;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 30px 7vw;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: #2E2929;
+
+      color: rgba(255,255,255,0.7);
+
+      font-size: 0.8rem;
+    }
+
+    .footer-brand {
+      font-family: var(--serif-th);
+
+      color: white;
+
+      font-size: 1rem;
+    }
+
+    /* =========================
+       LANGUAGE MODAL
+    ========================= */
+
+    .language-overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 2000;
+
+      background: rgba(25,20,20,0.35);
+
+      backdrop-filter: blur(10px);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .language-overlay.show {
+      display: flex;
+    }
+
+    .language-modal {
+      width: min(420px, 100%);
+
+      background: var(--cream);
+
+      border-radius: 28px;
+
+      padding: 35px;
+
+      box-shadow: 0 30px 100px rgba(0,0,0,0.18);
+
+      animation: popup 0.25s ease;
+    }
+
+    @keyframes popup {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .language-modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 25px;
+    }
+
+    .language-modal h3 {
+      font-family: var(--serif-th);
+
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .close-language {
+      border: none;
+      background: transparent;
+
+      font-size: 1.4rem;
+
+      cursor: pointer;
+
+      color: var(--muted);
+    }
+
+    .language-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .language-option {
       width: 100%;
-      border: 1px solid #d4ccd0;
-      background: transparent;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 2px;
+
+      padding: 15px 18px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      background: rgba(255,255,255,0.5);
+
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
       cursor: pointer;
-      font-family: inherit;
-      font-size: 14px;
-      color: #4f4449;
-      transition: 0.3s;
+
+      font-size: 0.95rem;
+
+      transition: 0.2s ease;
     }
 
     .language-option:hover {
-      border-color: #cd5782;
-      background: rgba(205, 87, 130, 0.08);
-      transform: translateY(-2px);
+      background: white;
+
+      border-color: rgba(189,91,123,0.3);
+
+      transform: translateX(3px);
     }
 
     /* =========================
-       RESPONSIVE
+       MOBILE
     ========================= */
 
     @media (max-width: 900px) {
-      .nav-links {
+
+      header {
+        padding: 18px 5vw;
+      }
+
+      .nav {
         display: none;
       }
 
-      .website-preview {
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 130px;
+
+        gap: 55px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-visual {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .floating-note {
+        left: -10px;
+      }
+
+      .works-grid {
         grid-template-columns: 1fr;
       }
 
-      .preview-card {
+      .feature-list {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+      }
+
+      .about-mark {
         min-height: 280px;
       }
     }
 
     @media (max-width: 600px) {
-      nav {
-        padding: 20px 5%;
-      }
-
-      .logo {
-        font-size: 28px;
-      }
 
       .hero {
-        padding: 130px 7% 70px;
+        padding-left: 6vw;
+        padding-right: 6vw;
+      }
+
+      .section {
+        padding: 90px 6vw;
       }
 
       .hero h1 {
-        font-size: 80px;
+        font-size: 4rem;
       }
 
-      .tagline {
-        font-size: 34px;
+      .hero .english-name {
+        font-size: 2.8rem;
       }
 
-      .featured {
-        padding: 80px 7%;
+      .hero-description {
+        font-size: 0.95rem;
+      }
+
+      .hero-image-frame {
+        border-radius: 150px 150px 20px 20px;
+      }
+
+      .floating-note {
+        font-size: 0.85rem;
+        bottom: 20px;
+      }
+
+      .section h2 {
+        font-size: 2.4rem;
+      }
+
+      .price {
+        font-size: 5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
-  <nav>
-    <a href="#home" class="logo">PINTO</a>
+<header>
 
-    <div class="nav-right">
+  <a href="#home" class="logo">
+    ปินโตรัก
+  </a>
 
-      <div class="nav-links">
-        <a href="#home" data-i18n="navHome">หน้าแรก</a>
-        <a href="#websites" data-i18n="navWebsites">เว็บไซต์</a>
-        <a href="#features" data-i18n="navFeatures">ฟีเจอร์</a>
-        <a href="#pricing" data-i18n="navPricing">ราคา</a>
-        <a href="#order" data-i18n="navOrder">วิธีสั่งซื้อ</a>
-        <a href="#about" data-i18n="navAbout">เกี่ยวกับปิ่นโต</a>
-        <a href="#contact" data-i18n="navContact">ติดต่อ</a>
-      </div>
+  <nav class="nav">
 
-      <button class="language-button" onclick="openLanguage()">
-        🌐
-      </button>
+    <a href="#home" data-section="home" class="active">
+      Home
+    </a>
 
-    </div>
+    <a href="#works" data-section="works">
+      Websites
+    </a>
+
+    <a href="#features" data-section="features">
+      Features
+    </a>
+
+    <a href="#pricing" data-section="pricing">
+      Pricing
+    </a>
+
+    <a href="#how" data-section="how">
+      How it works
+    </a>
+
+    <a href="#about" data-section="about">
+      About
+    </a>
+
   </nav>
 
+  <button class="language-button" id="languageButton" aria-label="Change language">
+    🌐
+  </button>
 
-  <!-- =========================
-       HOME
-  ========================= -->
+</header>
 
-  <section class="hero" id="home">
 
-    <div class="hero-content">
+<!-- =========================
+     HERO
+========================= -->
 
-      <div class="small-label" data-i18n="smallLabel">
-        LITTLE DIGITAL MOMENTS
-      </div>
+<main>
 
-      <h1>PINTO</h1>
+<section class="hero" id="home">
 
-      <div class="tagline" data-i18n="tagline">
-        เว็บไซต์เล็ก ๆ ที่สร้างขึ้นเพื่อเก็บช่วงเวลาพิเศษของคุณไว้ ♡
-      </div>
+  <div class="hero-content">
 
-      <p class="description" data-i18n="description">
-        เราเปลี่ยนความทรงจำ ความรู้สึก รูปภาพ เพลง และข้อความของคุณ
-        ให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดดูและสัมผัสได้จริง
-      </p>
-
-      <div class="buttons">
-        <a href="#websites" class="btn btn-primary" data-i18n="viewWork">
-          ดูผลงาน
-        </a>
-
-        <a href="#order" class="btn btn-outline" data-i18n="startOrder">
-          สั่งทำเว็บไซต์
-        </a>
-      </div>
-
+    <div class="eyebrow">
+      LITTLE DIGITAL MOMENTS
     </div>
 
-  </section>
+    <h1 data-i18n="brand_th">
+      ปินโตรัก
+    </h1>
 
-
-  <!-- =========================
-       FEATURED WEBSITES
-  ========================= -->
-
-  <section class="featured" id="websites">
-
-    <div class="section-label" data-i18n="featuredLabel">
-      FEATURED WEBSITES
+    <div class="english-name">
+      PINTO RAK
     </div>
 
-    <h2 class="section-title" data-i18n="featuredTitle">
-      Made for your moments.
-    </h2>
+    <p class="hero-description" data-i18n="hero_desc">
+      เว็บไซต์เล็ก ๆ ที่สร้างขึ้นจากความรู้สึก
+      สำหรับวันเกิด วันครบรอบ คำขอโทษ ความทรงจำ
+      และช่วงเวลาที่มีความหมายสำหรับคุณ
+    </p>
 
-    <div class="website-preview">
+    <div class="hero-buttons">
 
-      <div class="preview-card">
-        <span class="preview-number">01</span>
-        <h3 data-i18n="birthdayTitle">Birthday</h3>
-        <p data-i18n="birthdayDesc">
-          เว็บไซต์เซอร์ไพรส์วันเกิด
-        </p>
-      </div>
+      <a href="#works" class="btn btn-primary" data-i18n="view_work">
+        ดูผลงาน
+      </a>
 
-      <div class="preview-card">
-        <span class="preview-number">02</span>
-        <h3 data-i18n="anniversaryTitle">Anniversary</h3>
-        <p data-i18n="anniversaryDesc">
-          เก็บเรื่องราวของเราสองคนไว้ในเว็บไซต์
-        </p>
-      </div>
-
-      <div class="preview-card">
-        <span class="preview-number">03</span>
-        <h3 data-i18n="apologyTitle">Apology</h3>
-        <p data-i18n="apologyDesc">
-          คำขอโทษที่อยากส่งให้ถึงใจ
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       LANGUAGE MODAL
-  ========================= -->
-
-  <div class="language-modal" id="languageModal">
-
-    <div class="language-box">
-
-      <button class="close-button" onclick="closeLanguage()">
-        ×
-      </button>
-
-      <h2 data-i18n="chooseLanguage">
-        เลือกภาษา
-      </h2>
-
-      <p data-i18n="chooseLanguageSub">
-        Choose your language
-      </p>
-
-      <button class="language-option" onclick="setLanguage('th')">
-        🇹🇭 ภาษาไทย
-      </button>
-
-      <button class="language-option" onclick="setLanguage('en')">
-        🇬🇧 English
-      </button>
-
-      <button class="language-option" onclick="setLanguage('ko')">
-        🇰🇷 한국어
-      </button>
+      <a href="#pricing" class="btn btn-secondary" data-i18n="order">
+        สั่งทำเว็บไซต์
+      </a>
 
     </div>
 
   </div>
 
 
-  <!-- =========================
-       LANGUAGE SCRIPT
-  ========================= -->
+  <!-- HERO IMAGE -->
 
-  <script>
+  <div class="hero-visual">
 
-    const translations = {
+    <div class="hero-image-frame">
 
-      th: {
-        navHome: "หน้าแรก",
-        navWebsites: "เว็บไซต์",
-        navFeatures: "ฟีเจอร์",
-        navPricing: "ราคา",
-        navOrder: "วิธีสั่งซื้อ",
-        navAbout: "เกี่ยวกับปิ่นโต",
-        navContact: "ติดต่อ",
+      <!--
+        ใส่รูปหน้าปกของเธอที่นี่
 
-        smallLabel: "LITTLE DIGITAL MOMENTS",
+        ชื่อไฟล์:
+        hero-cover.jpg
 
-        tagline: "เว็บไซต์เล็ก ๆ ที่สร้างขึ้นเพื่อเก็บช่วงเวลาพิเศษของคุณไว้ ♡",
+        เอารูปไปใส่ใน GitHub repo
+        ไว้ตำแหน่งเดียวกับ index.html
+      -->
 
-        description:
-          "เราเปลี่ยนความทรงจำ ความรู้สึก รูปภาพ เพลง และข้อความของคุณ ให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดดูและสัมผัสได้จริง",
+      <img
+        src="hero-cover.jpg"
+        alt="PINTO RAK"
+        onerror="this.style.display='none'; document.querySelector('.image-placeholder').style.display='flex';"
+      >
 
-        viewWork: "ดูผลงาน",
-        startOrder: "สั่งทำเว็บไซต์",
+      <div class="image-placeholder" style="display:none;">
 
-        featuredLabel: "FEATURED WEBSITES",
-        featuredTitle: "Made for your moments.",
+        <div class="placeholder-th">
+          ปินโตรัก
+        </div>
 
-        birthdayTitle: "Birthday",
-        birthdayDesc: "เว็บไซต์เซอร์ไพรส์วันเกิด",
+        <div class="placeholder-en">
+          PINTO RAK
+        </div>
 
-        anniversaryTitle: "Anniversary",
-        anniversaryDesc: "เก็บเรื่องราวของเราสองคนไว้ในเว็บไซต์",
+      </div>
 
-        apologyTitle: "Apology",
-        apologyDesc: "คำขอโทษที่อยากส่งให้ถึงใจ",
+    </div>
 
-        chooseLanguage: "เลือกภาษา",
-        chooseLanguageSub: "Choose your language"
-      },
+    <div class="floating-note" data-i18n="hero_note">
+      made with feelings ♡
+    </div>
 
+  </div>
 
-      en: {
-        navHome: "Home",
-        navWebsites: "Websites",
-        navFeatures: "Features",
-        navPricing: "Pricing",
-        navOrder: "How to Order",
-        navAbout: "About Pinto",
-        navContact: "Contact",
-
-        smallLabel: "LITTLE DIGITAL MOMENTS",
-
-        tagline: "Little websites, made to keep your special moments close. ♡",
-
-        description:
-          "We turn your memories, feelings, photos, music, and words into little websites you can open, explore, and experience.",
-
-        viewWork: "Explore Websites",
-        startOrder: "Start Your Order",
-
-        featuredLabel: "FEATURED WEBSITES",
-        featuredTitle: "Made for your moments.",
-
-        birthdayTitle: "Birthday",
-        birthdayDesc: "A little birthday surprise, made just for them.",
-
-        anniversaryTitle: "Anniversary",
-        anniversaryDesc: "A place to keep your story together.",
-
-        apologyTitle: "Apology",
-        apologyDesc: "A heartfelt way to say what words alone can't.",
-
-        chooseLanguage: "Choose Language",
-        chooseLanguageSub: "Select your preferred language"
-      },
+</section>
 
 
-      ko: {
-        navHome: "홈",
-        navWebsites: "웹사이트",
-        navFeatures: "기능",
-        navPricing: "가격",
-        navOrder: "주문 방법",
-        navAbout: "PINTO 소개",
-        navContact: "문의하기",
+<!-- =========================
+     ABOUT INTRO
+========================= -->
 
-        smallLabel: "LITTLE DIGITAL MOMENTS",
+<section class="section intro">
 
-        tagline: "소중한 순간을 간직할 수 있도록 만든 작은 웹사이트 ♡",
+  <div class="section-inner">
 
-        description:
-          "당신의 추억, 마음, 사진, 음악, 그리고 메시지를 하나의 작은 웹사이트에 담아 직접 열어보고 경험할 수 있도록 만들어드려요.",
+    <div class="section-label">
+      ABOUT PINTO RAK
+    </div>
 
-        viewWork: "작품 보기",
-        startOrder: "주문하기",
+    <h2 data-i18n="intro_title">
+      เพราะบางความรู้สึก
+      ก็ควรมีที่เก็บไว้
+    </h2>
 
-        featuredLabel: "FEATURED WEBSITES",
-        featuredTitle: "당신의 순간을 위해 만들어집니다.",
+    <p data-i18n="intro_desc">
+      เราเปลี่ยนรูปภาพ เพลง ข้อความ ความทรงจำ
+      และความรู้สึกของคุณให้กลายเป็นเว็บไซต์เล็ก ๆ
+      ที่เปิดขึ้นมาเมื่อไหร่ ก็ยังรู้สึกถึงช่วงเวลานั้นได้
+    </p>
 
-        birthdayTitle: "Birthday",
-        birthdayDesc: "소중한 사람을 위한 특별한 생일 서프라이즈",
+  </div>
 
-        anniversaryTitle: "Anniversary",
-        anniversaryDesc: "우리의 이야기를 한곳에 담아두는 공간",
-
-        apologyTitle: "Apology",
-        apologyDesc: "말로는 다 전하지 못한 마음을 담은 사과",
-
-        chooseLanguage: "언어 선택",
-        chooseLanguageSub: "원하는 언어를 선택해주세요"
-      }
-
-    };
+</section>
 
 
-    function openLanguage() {
-      document
-        .getElementById("languageModal")
-        .classList.add("active");
+<!-- =========================
+     WEBSITES
+========================= -->
+
+<section class="section" id="works">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      WE CREATE
+    </div>
+
+    <h2 data-i18n="works_title">
+      เว็บไซต์สำหรับช่วงเวลาที่มีความหมาย
+    </h2>
+
+    <div class="works-grid">
+
+      <div class="work-card">
+
+        <div class="work-number">
+          01
+        </div>
+
+        <h3 data-i18n="work1_title">
+          Birthday
+        </h3>
+
+        <p data-i18n="work1_desc">
+          เว็บไซต์วันเกิดแบบเฉพาะสำหรับคนพิเศษ
+        </p>
+
+      </div>
+
+
+      <div class="work-card">
+
+        <div class="work-number">
+          02
+        </div>
+
+        <h3 data-i18n="work2_title">
+          Anniversary
+        </h3>
+
+        <p data-i18n="work2_desc">
+          เก็บเรื่องราวของความสัมพันธ์ไว้ในที่เดียว
+        </p>
+
+      </div>
+
+
+      <div class="work-card">
+
+        <div class="work-number">
+          03
+        </div>
+
+        <h3 data-i18n="work3_title">
+          Apology
+        </h3>
+
+        <p data-i18n="work3_desc">
+          คำขอโทษที่อยากพูดให้ใครบางคนได้เห็น
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section features" id="features">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      INTERACTIVE
+    </div>
+
+    <h2 data-i18n="features_title">
+      ไม่ใช่แค่เว็บไซต์
+      แต่เป็นประสบการณ์เล็ก ๆ
+    </h2>
+
+
+    <div class="feature-list">
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🎂
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature1">
+            Interactive Cake
+          </h3>
+
+          <p data-i18n="feature1_desc">
+            เป่าเทียนและดูเซอร์ไพรส์
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          ✉️
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature2">
+            Interactive Letter
+          </h3>
+
+          <p data-i18n="feature2_desc">
+            เปิดจดหมายด้วยตัวเอง
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🎁
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature3">
+            Surprise Box
+          </h3>
+
+          <p data-i18n="feature3_desc">
+            กล่องเซอร์ไพรส์แบบกดเปิด
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🎵
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature4">
+            Music
+          </h3>
+
+          <p data-i18n="feature4_desc">
+            ใส่เพลงที่มีความหมายสำหรับคุณ
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📷
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature5">
+            Photo Gallery
+          </h3>
+
+          <p data-i18n="feature5_desc">
+            ใส่รูปความทรงจำได้หลายรูป
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          ✨
+        </div>
+
+        <div>
+
+          <h3 data-i18n="feature6">
+            Mini Game
+          </h3>
+
+          <p data-i18n="feature6_desc">
+            เกมเล็ก ๆ สำหรับเพิ่มความสนุก
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================= -->
+
+<section class="section pricing" id="pricing">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      SIMPLE PRICING
+    </div>
+
+    <h2 data-i18n="pricing_title">
+      เริ่มต้นที่ 129 บาท
+    </h2>
+
+    <div class="price-card">
+
+      <div class="price-small">
+        PINTO RAK
+      </div>
+
+      <div class="price">
+        129
+      </div>
+
+      <div class="price-baht">
+        THB
+      </div>
+
+      <p class="price-description" data-i18n="pricing_desc">
+        เว็บไซต์เซอร์ไพรส์แบบเฉพาะสำหรับคุณ
+        พร้อมดีไซน์และเนื้อหาที่เลือกได้
+      </p>
+
+      <a href="#how" class="btn btn-primary" data-i18n="start_order">
+        เริ่มต้นสั่งทำ
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="section" id="how">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      HOW IT WORKS
+    </div>
+
+    <h2 data-i18n="how_title">
+      ขั้นตอนง่าย ๆ
+      เพื่อเปลี่ยนความรู้สึกให้เป็นเว็บไซต์
+    </h2>
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">
+          01
+        </div>
+
+        <h3 data-i18n="step1_title">
+          เลือกเว็บไซต์
+        </h3>
+
+        <p data-i18n="step1_desc">
+          เลือกประเภทและสไตล์เว็บไซต์ที่ต้องการ
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          02
+        </div>
+
+        <h3 data-i18n="step2_title">
+          ส่งรายละเอียด
+        </h3>
+
+        <p data-i18n="step2_desc">
+          ส่งรูป ข้อความ เพลง และรายละเอียดต่าง ๆ
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          03
+        </div>
+
+        <h3 data-i18n="step3_title">
+          รับเว็บไซต์
+        </h3>
+
+        <p data-i18n="step3_desc">
+          รอรับลิงก์เว็บไซต์ส่วนตัวของคุณ
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="section about" id="about">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      ABOUT PINTO RAK
+    </div>
+
+    <div class="about-box">
+
+      <div class="about-mark">
+        <span>
+          PINTO<br>RAK
+        </span>
+      </div>
+
+      <div>
+
+        <h2 data-i18n="about_title">
+          เราเชื่อว่า
+          ความทรงจำไม่จำเป็นต้องอยู่แค่ในรูป
+        </h2>
+
+        <p data-i18n="about_desc">
+          ปินโตรักสร้างเว็บไซต์เล็ก ๆ
+          ที่ทำให้เรื่องราวของคุณมีพื้นที่ของตัวเอง
+          ตั้งแต่ข้อความธรรมดา รูปถ่าย เพลง
+          ไปจนถึงสิ่งที่สามารถกด เล่น และค้นพบได้
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+  <div class="section-inner">
+
+    <div class="section-label">
+      PINTO RAK
+    </div>
+
+    <h2 data-i18n="cta_title">
+      มีช่วงเวลาที่อยากเก็บไว้ไหม?
+    </h2>
+
+    <p data-i18n="cta_desc">
+      ให้ปินโตรักช่วยเปลี่ยนมันให้กลายเป็นเว็บไซต์เล็ก ๆ
+    </p>
+
+    <a href="#pricing" class="btn btn-primary" data-i18n="cta_button">
+      สร้างเว็บไซต์ของคุณ
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-brand">
+    ปินโตรัก — PINTO RAK
+  </div>
+
+  <div>
+    © 2026 PINTO RAK
+  </div>
+
+</footer>
+
+
+<!-- =========================
+     LANGUAGE MODAL
+========================= -->
+
+<div class="language-overlay" id="languageOverlay">
+
+  <div class="language-modal">
+
+    <div class="language-modal-top">
+
+      <h3 data-i18n="language_title">
+        เลือกภาษา
+      </h3>
+
+      <button
+        class="close-language"
+        id="closeLanguage"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="language-options">
+
+      <button
+        class="language-option"
+        onclick="changeLanguage('th')"
+      >
+        🇹🇭
+        <span>ภาษาไทย</span>
+      </button>
+
+
+      <button
+        class="language-option"
+        onclick="changeLanguage('en')"
+      >
+        🇬🇧
+        <span>English</span>
+      </button>
+
+
+      <button
+        class="language-option"
+        onclick="changeLanguage('ko')"
+      >
+        🇰🇷
+        <span>한국어</span>
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  /* =========================
+     LANGUAGE
+  ========================= */
+
+  const translations = {
+
+    th: {
+
+      brand_th: "ปินโตรัก",
+
+      hero_desc:
+        "เว็บไซต์เล็ก ๆ ที่สร้างขึ้นจากความรู้สึก สำหรับวันเกิด วันครบรอบ คำขอโทษ ความทรงจำ และช่วงเวลาที่มีความหมายสำหรับคุณ",
+
+      view_work: "ดูผลงาน",
+      order: "สั่งทำเว็บไซต์",
+
+      hero_note:
+        "made with feelings ♡",
+
+      intro_title:
+        "เพราะบางความรู้สึก ก็ควรมีที่เก็บไว้",
+
+      intro_desc:
+        "เราเปลี่ยนรูปภาพ เพลง ข้อความ ความทรงจำ และความรู้สึกของคุณให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดขึ้นมาเมื่อไหร่ ก็ยังรู้สึกถึงช่วงเวลานั้นได้",
+
+      works_title:
+        "เว็บไซต์สำหรับช่วงเวลาที่มีความหมาย",
+
+      work1_title:
+        "Birthday",
+
+      work1_desc:
+        "เว็บไซต์วันเกิดแบบเฉพาะสำหรับคนพิเศษ",
+
+      work2_title:
+        "Anniversary",
+
+      work2_desc:
+        "เก็บเรื่องราวของความสัมพันธ์ไว้ในที่เดียว",
+
+      work3_title:
+        "Apology",
+
+      work3_desc:
+        "คำขอโทษที่อยากพูดให้ใครบางคนได้เห็น",
+
+      features_title:
+        "ไม่ใช่แค่เว็บไซต์ แต่เป็นประสบการณ์เล็ก ๆ",
+
+      feature1:
+        "Interactive Cake",
+
+      feature1_desc:
+        "เป่าเทียนและดูเซอร์ไพรส์",
+
+      feature2:
+        "Interactive Letter",
+
+      feature2_desc:
+        "เปิดจดหมายด้วยตัวเอง",
+
+      feature3:
+        "Surprise Box",
+
+      feature3_desc:
+        "กล่องเซอร์ไพรส์แบบกดเปิด",
+
+      feature4:
+        "Music",
+
+      feature4_desc:
+        "ใส่เพลงที่มีความหมายสำหรับคุณ",
+
+      feature5:
+        "Photo Gallery",
+
+      feature5_desc:
+        "ใส่รูปความทรงจำได้หลายรูป",
+
+      feature6:
+        "Mini Game",
+
+      feature6_desc:
+        "เกมเล็ก ๆ สำหรับเพิ่มความสนุก",
+
+      pricing_title:
+        "เริ่มต้นที่ 129 บาท",
+
+      pricing_desc:
+        "เว็บไซต์เซอร์ไพรส์แบบเฉพาะสำหรับคุณ พร้อมดีไซน์และเนื้อหาที่เลือกได้",
+
+      start_order:
+        "เริ่มต้นสั่งทำ",
+
+      how_title:
+        "ขั้นตอนง่าย ๆ เพื่อเปลี่ยนความรู้สึกให้เป็นเว็บไซต์",
+
+      step1_title:
+        "เลือกเว็บไซต์",
+
+      step1_desc:
+        "เลือกประเภทและสไตล์เว็บไซต์ที่ต้องการ",
+
+      step2_title:
+        "ส่งรายละเอียด",
+
+      step2_desc:
+        "ส่งรูป ข้อความ เพลง และรายละเอียดต่าง ๆ",
+
+      step3_title:
+        "รับเว็บไซต์",
+
+      step3_desc:
+        "รอรับลิงก์เว็บไซต์ส่วนตัวของคุณ",
+
+      about_title:
+        "เราเชื่อว่า ความทรงจำไม่จำเป็นต้องอยู่แค่ในรูป",
+
+      about_desc:
+        "ปินโตรักสร้างเว็บไซต์เล็ก ๆ ที่ทำให้เรื่องราวของคุณมีพื้นที่ของตัวเอง ตั้งแต่ข้อความธรรมดา รูปถ่าย เพลง ไปจนถึงสิ่งที่สามารถกด เล่น และค้นพบได้",
+
+      cta_title:
+        "มีช่วงเวลาที่อยากเก็บไว้ไหม?",
+
+      cta_desc:
+        "ให้ปินโตรักช่วยเปลี่ยนมันให้กลายเป็นเว็บไซต์เล็ก ๆ",
+
+      cta_button:
+        "สร้างเว็บไซต์ของคุณ",
+
+      language_title:
+        "เลือกภาษา"
+
+    },
+
+
+    en: {
+
+      brand_th:
+        "Pinto Rak",
+
+      hero_desc:
+        "Small websites made from feelings — for birthdays, anniversaries, apologies, memories, and moments that matter.",
+
+      view_work:
+        "View our work",
+
+      order:
+        "Order a website",
+
+      hero_note:
+        "made with feelings ♡",
+
+      intro_title:
+        "Because some feelings deserve a place to stay.",
+
+      intro_desc:
+        "We turn photos, music, messages, memories, and feelings into small interactive websites you can return to whenever you want.",
+
+      works_title:
+        "Websites for meaningful moments",
+
+      work1_title:
+        "Birthday",
+
+      work1_desc:
+        "A personal birthday website made for someone special.",
+
+      work2_title:
+        "Anniversary",
+
+      work2_desc:
+        "A little place to keep your story together.",
+
+      work3_title:
+        "Apology",
+
+      work3_desc:
+        "A personal way to say what you want someone to know.",
+
+      features_title:
+        "More than a website. A little experience.",
+
+      feature1:
+        "Interactive Cake",
+
+      feature1_desc:
+        "Blow the candles and reveal the surprise.",
+
+      feature2:
+        "Interactive Letter",
+
+      feature2_desc:
+        "Open a personal letter yourself.",
+
+      feature3:
+        "Surprise Box",
+
+      feature3_desc:
+        "A little box waiting to be opened.",
+
+      feature4:
+        "Music",
+
+      feature4_desc:
+        "Add a song that means something to you.",
+
+      feature5:
+        "Photo Gallery",
+
+      feature5_desc:
+        "Keep your favorite memories together.",
+
+      feature6:
+        "Mini Game",
+
+      feature6_desc:
+        "Small games to make the experience more fun.",
+
+      pricing_title:
+        "Starting at 129 THB",
+
+      pricing_desc:
+        "A personal surprise website with a design and content made around your story.",
+
+      start_order:
+        "Start your order",
+
+      how_title:
+        "Three simple steps to turn a feeling into a website.",
+
+      step1_title:
+        "Choose your website",
+
+      step1_desc:
+        "Choose the type and style you want.",
+
+      step2_title:
+        "Send your details",
+
+      step2_desc:
+        "Send your photos, messages, music, and details.",
+
+      step3_title:
+        "Receive your website",
+
+      step3_desc:
+        "We'll send you your personal website link.",
+
+      about_title:
+        "We believe memories don't have to live only in photos.",
+
+      about_desc:
+        "Pinto Rak creates little websites where your story can have its own space — from simple messages and photos to music, interactions, and tiny discoveries.",
+
+      cta_title:
+        "Have a moment worth keeping?",
+
+      cta_desc:
+        "Let Pinto Rak turn it into a little website.",
+
+      cta_button:
+        "Create your website",
+
+      language_title:
+        "Choose your language"
+
+    },
+
+
+    ko: {
+
+      brand_th:
+        "핀토락",
+
+      hero_desc:
+        "생일, 기념일, 사과의 마음, 추억처럼 소중한 순간을 위해 감정으로 만드는 작은 웹사이트.",
+
+      view_work:
+        "작품 보기",
+
+      order:
+        "웹사이트 주문하기",
+
+      hero_note:
+        "made with feelings ♡",
+
+      intro_title:
+        "어떤 마음은 머물 수 있는 곳이 필요하니까.",
+
+      intro_desc:
+        "사진, 음악, 메시지, 추억과 마음을 작은 인터랙티브 웹사이트로 만들어 언제든 그 순간을 다시 느낄 수 있도록 합니다.",
+
+      works_title:
+        "소중한 순간을 위한 웹사이트",
+
+      work1_title:
+        "Birthday",
+
+      work1_desc:
+        "소중한 사람을 위한 특별한 생일 웹사이트",
+
+      work2_title:
+        "Anniversary",
+
+      work2_desc:
+        "우리의 이야기를 한곳에 담아두는 공간",
+
+      work3_title:
+        "Apology",
+
+      work3_desc:
+        "전하고 싶은 마음을 담은 특별한 사과",
+
+      features_title:
+        "단순한 웹사이트가 아닌 작은 경험",
+
+      feature1:
+        "Interactive Cake",
+
+      feature1_desc:
+        "촛불을 끄고 서프라이즈를 확인해보세요.",
+
+      feature2:
+        "Interactive Letter",
+
+      feature2_desc:
+        "직접 열어보는 특별한 편지",
+
+      feature3:
+        "Surprise Box",
+
+      feature3_desc:
+        "열어보기 전까지 알 수 없는 작은 선물",
+
+      feature4:
+        "Music",
+
+      feature4_desc:
+        "우리에게 의미 있는 음악을 담아보세요.",
+
+      feature5:
+        "Photo Gallery",
+
+      feature5_desc:
+        "소중한 사진과 추억을 한곳에",
+
+      feature6:
+        "Mini Game",
+
+      feature6_desc:
+        "조금 더 재미있는 경험을 위한 작은 게임",
+
+      pricing_title:
+        "129 THB부터 시작",
+
+      pricing_desc:
+        "당신의 이야기에 맞춰 디자인과 내용을 구성하는 특별한 웹사이트",
+
+      start_order:
+        "주문 시작하기",
+
+      how_title:
+        "마음을 작은 웹사이트로 만드는 세 가지 과정",
+
+      step1_title:
+        "웹사이트 선택",
+
+      step1_desc:
+        "원하는 종류와 스타일을 선택해주세요.",
+
+      step2_title:
+        "정보 보내기",
+
+      step2_desc:
+        "사진, 메시지, 음악과 필요한 내용을 보내주세요.",
+
+      step3_title:
+        "웹사이트 받기",
+
+      step3_desc:
+        "완성된 나만의 웹사이트 링크를 받아보세요.",
+
+      about_title:
+        "추억은 사진 속에만 있을 필요가 없다고 생각해요.",
+
+      about_desc:
+        "핀토락은 당신의 이야기를 위한 작은 공간을 만듭니다. 메시지와 사진부터 음악, 인터랙션, 작은 발견까지 당신만의 방식으로 담아낼 수 있습니다.",
+
+      cta_title:
+        "간직하고 싶은 순간이 있나요?",
+
+      cta_desc:
+        "핀토락이 그 순간을 작은 웹사이트로 만들어드릴게요.",
+
+      cta_button:
+        "나만의 웹사이트 만들기",
+
+      language_title:
+        "언어 선택"
+
     }
 
+  };
 
-    function closeLanguage() {
-      document
-        .getElementById("languageModal")
-        .classList.remove("active");
+
+  /* =========================
+     CHANGE LANGUAGE
+  ========================= */
+
+  function changeLanguage(lang) {
+
+    document.documentElement.lang = lang;
+
+    document.body.classList.remove(
+      "lang-th",
+      "lang-en",
+      "lang-ko"
+    );
+
+    document.body.classList.add("lang-" + lang);
+
+    document
+      .querySelectorAll("[data-i18n]")
+      .forEach(function(element) {
+
+        const key = element.getAttribute("data-i18n");
+
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+
+      });
+
+    localStorage.setItem("pintoRakLanguage", lang);
+
+    closeLanguageModal();
+  }
+
+
+  /* =========================
+     LANGUAGE MODAL
+  ========================= */
+
+  const languageButton =
+    document.getElementById("languageButton");
+
+  const languageOverlay =
+    document.getElementById("languageOverlay");
+
+  const closeLanguage =
+    document.getElementById("closeLanguage");
+
+
+  languageButton.addEventListener("click", function() {
+
+    languageOverlay.classList.add("show");
+
+  });
+
+
+  closeLanguage.addEventListener("click", function() {
+
+    closeLanguageModal();
+
+  });
+
+
+  languageOverlay.addEventListener("click", function(event) {
+
+    if (event.target === languageOverlay) {
+
+      closeLanguageModal();
+
     }
 
-
-    function setLanguage(language) {
-
-      document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
-
-          const key = element.getAttribute("data-i18n");
-
-          if (translations[language][key]) {
-            element.textContent = translations[language][key];
-          }
-
-        });
+  });
 
 
-      document.documentElement.lang = language;
+  function closeLanguageModal() {
 
-      localStorage.setItem("pintoLanguage", language);
+    languageOverlay.classList.remove("show");
 
-      closeLanguage();
-    }
+  }
 
 
-    window.addEventListener("click", function(event) {
+  /* =========================
+     LOAD SAVED LANGUAGE
+  ========================= */
 
-      const modal = document.getElementById("languageModal");
+  const savedLanguage =
+    localStorage.getItem("pintoRakLanguage") || "th";
 
-      if (event.target === modal) {
-        closeLanguage();
+  changeLanguage(savedLanguage);
+
+
+  /* =========================
+     ACTIVE NAVIGATION
+  ========================= */
+
+  const navLinks =
+    document.querySelectorAll(".nav a");
+
+  const sections =
+    document.querySelectorAll("section[id]");
+
+
+  function updateActiveNav() {
+
+    let current = "home";
+
+    const scrollPosition =
+      window.scrollY + 180;
+
+
+    sections.forEach(function(section) {
+
+      const sectionTop =
+        section.offsetTop;
+
+      const sectionBottom =
+        sectionTop + section.offsetHeight;
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionBottom
+      ) {
+
+        current =
+          section.getAttribute("id");
+
       }
 
     });
 
 
-    const savedLanguage =
-      localStorage.getItem("pintoLanguage") || "th";
+    navLinks.forEach(function(link) {
 
-    setLanguage(savedLanguage);
+      link.classList.remove("active");
 
-  </script>
+      if (
+        link.getAttribute("data-section") === current
+      ) {
+
+        link.classList.add("active");
+
+      }
+
+    });
+
+  }
+
+
+  window.addEventListener(
+    "scroll",
+    updateActiveNav
+  );
+
+
+  updateActiveNav();
+
+
+</script>
 
 </body>
 </html>
