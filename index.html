@@ -1,1402 +1,1041 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ปิ่นโตรัก — PINTO RAK</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ปิ่นโตรัก | PINTO RAK</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --cream: #F4F0E9;
+  --pink: #BD5B7B;
+  --pink-soft: #E9C7D1;
+  --pink-text: #8F405D;
+  --mint: #C7DAD8;
+  --dark: #332E2E;
+  --muted: #817777;
+  --white: #FFFDF9;
+
+  --eng: "Cormorant Garamond", serif;
+  --thai-title: "Noto Serif Thai", serif;
+  --thai-body: "Noto Sans Thai", sans-serif;
+  --kr: "Noto Sans KR", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--dark);
+  font-family: var(--thai-body);
+  overflow-x: hidden;
+}
+
+body.lang-en {
+  font-family: var(--eng);
+}
+
+body.lang-ko {
+  font-family: var(--kr);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav-wrap {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1180px;
+  z-index: 1000;
+}
+
+.nav {
+  height: 64px;
+  padding: 8px 10px 8px 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255,253,249,0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(51,46,46,0.07);
+  border-radius: 999px;
+}
+
+.logo {
+  font-family: var(--eng);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--dark);
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--pink-text);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
-  <meta
-    name="description"
-    content="ปิ่นโตรัก — Little Digital Moments. เว็บไซต์เล็ก ๆ ที่สร้างขึ้นจากความรู้สึก"
-  >
+.nav-links a {
+  font-family: var(--thai-body);
+  font-size: 13px;
+  color: var(--muted);
+  padding: 10px 17px;
+  border-radius: 999px;
+  transition: 0.3s ease;
+}
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+.nav-links a:hover {
+  color: var(--pink-text);
+}
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
+.nav-links a.active {
+  background: var(--pink-soft);
+  color: var(--pink-text);
+  font-weight: 500;
+}
 
-  <style>
+.lang-btn {
+  width: 42px;
+  height: 42px;
 
-    /* =========================
-       ROOT
-    ========================= */
+  border: 0;
+  border-radius: 50%;
 
-    :root {
-      --cream: #f4f0e9;
-      --cream-dark: #ebe4da;
+  background: var(--dark);
+  color: white;
 
-      --pink: #bd5b7b;
-      --pink-soft: #e9c7d1;
-      --pink-pale: #f4e2e7;
-      --pink-text: #8f405d;
+  font-size: 17px;
+  cursor: pointer;
 
-      --mint: #c7dad8;
+  transition: 0.3s ease;
+}
+
+.lang-btn:hover {
+  transform: rotate(8deg);
+}
+
+/* =========================
+   LANGUAGE MODAL
+========================= */
+
+.language-modal {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(51,46,46,0.25);
+  backdrop-filter: blur(8px);
+
+  z-index: 2000;
+}
+
+.language-modal.show {
+  display: flex;
+}
+
+.language-box {
+  width: min(390px, calc(100% - 40px));
+  background: var(--white);
+
+  border-radius: 28px;
+  padding: 38px 30px 30px;
+
+  text-align: center;
+
+  box-shadow: 0 25px 80px rgba(51,46,46,0.16);
+}
+
+.language-box h3 {
+  font-family: var(--thai-title);
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.language-option {
+  width: 100%;
+  border: 1px solid rgba(51,46,46,0.09);
+
+  background: transparent;
+
+  border-radius: 16px;
+  padding: 15px;
+
+  margin-bottom: 10px;
+
+  font-family: var(--thai-body);
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.language-option:hover {
+  background: var(--pink-soft);
+  border-color: var(--pink-soft);
+  color: var(--pink-text);
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+section {
+  position: relative;
+}
+
+.container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.section {
+  padding: 130px 0;
+}
+
+.section-label {
+  font-family: var(--eng);
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  color: var(--pink-text);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--thai-title);
+  font-size: clamp(34px, 5vw, 65px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
 
-      --dark: #332e2e;
-      --text: #5f5757;
-      --muted: #817777;
+.section-text {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 2;
+}
 
-      --white: #fffdfb;
+/* =========================
+   HERO
+========================= */
 
-      --serif: "Noto Serif Thai", serif;
-      --sans: "Noto Sans Thai", sans-serif;
-      --eng: "Cormorant Garamond", serif;
-      --kr: "Noto Sans KR", sans-serif;
+.hero {
+  min-height: 100vh;
+  padding: 130px 0 90px;
 
-      --radius-lg: 34px;
-      --radius-md: 24px;
-      --radius-sm: 16px;
-    }
+  display: flex;
+  align-items: center;
+}
 
+.hero-grid {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
 
-    /* =========================
-       RESET
-    ========================= */
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 90px;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 100px;
-    }
+  align-items: center;
+}
 
-    body {
-      background: var(--cream);
-      color: var(--dark);
-      font-family: var(--sans);
-      font-weight: 400;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
+.hero-copy {
+  padding-left: 20px;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.hero-kicker {
+  display: block;
+  margin-bottom: 30px;
+
+  font-family: var(--eng);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.30em;
 
-    button {
-      font-family: inherit;
-    }
+  color: var(--pink-text);
+  text-transform: uppercase;
+}
 
+.hero-title {
+  font-family: var(--thai-title);
+  font-size: clamp(62px, 9vw, 130px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
 
-    /* =========================
-       LANGUAGE
-    ========================= */
+  color: var(--dark);
+}
 
-    body.lang-en {
-      font-family: Arial, sans-serif;
-    }
+.hero-brand {
+  margin-top: 24px;
 
-    body.lang-ko {
-      font-family: var(--kr);
-    }
+  font-family: var(--eng);
+  font-size: 18px;
+  letter-spacing: 0.28em;
 
-    body.lang-en .thai-only {
-      display: none !important;
-    }
+  color: var(--pink-text);
+}
 
+.hero-desc {
+  max-width: 430px;
+  margin-top: 35px;
 
-    /* =========================
-       NAVIGATION
-    ========================= */
+  font-size: 15px;
+  line-height: 2;
+  color: var(--muted);
+}
 
-    .nav {
-      position: fixed;
-      z-index: 1000;
+.hero-image {
+  position: relative;
+  width: 100%;
+  max-width: 570px;
+  justify-self: end;
 
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+  aspect-ratio: 4 / 5;
 
-      width: min(94%, 1180px);
+  overflow: hidden;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  border-radius: 180px 180px 24px 24px;
 
-      padding: 10px 12px 10px 22px;
+  background: var(--pink-soft);
+}
 
-      background: rgba(244, 240, 233, 0.82);
-      border: 1px solid rgba(255,255,255,0.65);
+.hero-image img {
+  width: 100%;
+  height: 100%;
 
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+  object-fit: cover;
 
-      border-radius: 999px;
+  display: block;
+}
 
-      box-shadow:
-        0 10px 35px rgba(75, 50, 50, 0.07);
-    }
+.image-placeholder {
+  position: absolute;
+  inset: 0;
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-      min-width: 130px;
-    }
+  display: none;
+  align-items: center;
+  justify-content: center;
 
-    .brand-th {
-      font-family: var(--serif);
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
+  flex-direction: column;
 
-    .brand-en {
-      margin-top: 3px;
-      font-family: var(--eng);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-    }
+  color: var(--pink-text);
+  text-align: center;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
+.image-placeholder .thai {
+  font-family: var(--thai-title);
+  font-size: 42px;
+}
 
-    .nav-links a {
-      position: relative;
+.image-placeholder .eng {
+  font-family: var(--eng);
+  font-size: 18px;
+  letter-spacing: 0.25em;
+}
 
-      padding: 9px 15px;
+/* =========================
+   ABOUT
+========================= */
 
-      border-radius: 999px;
+.about {
+  background: var(--white);
+}
 
-      color: #786f6f;
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
 
-      font-size: 12px;
-      font-weight: 400;
+  align-items: center;
+}
 
-      transition:
-        color 0.25s ease,
-        background 0.25s ease,
-        transform 0.25s ease;
-    }
+/* =========================
+   ABOUT SLIDER
+========================= */
 
-    .nav-links a:hover {
-      color: var(--pink-text);
-    }
+.about-slider {
+  position: relative;
 
-    .nav-links a.active {
-      background: var(--pink-soft);
-      color: var(--pink-text);
-      font-weight: 500;
-    }
+  width: 100%;
+  aspect-ratio: 4 / 3;
 
+  overflow: hidden;
 
-    /* LANGUAGE BUTTON */
+  border-radius: 24px;
 
-    .language-btn {
-      width: 42px;
-      height: 42px;
+  background: var(--pink-soft);
+}
 
-      border: 0;
-      background: transparent;
+.about-track {
+  display: flex;
 
-      border-radius: 50%;
+  width: 600%;
 
-      font-size: 18px;
+  height: 100%;
 
-      cursor: pointer;
+  transition:
+    transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+}
 
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
-    }
+.about-slide {
+  width: calc(100% / 6);
+  height: 100%;
 
-    .language-btn:hover {
-      background: var(--pink-pale);
-      transform: rotate(8deg);
-    }
+  flex: 0 0 calc(100% / 6);
+}
 
+.about-slide img {
+  width: 100%;
+  height: 100%;
 
-    /* =========================
-       LANGUAGE MODAL
-    ========================= */
+  display: block;
 
-    .language-modal {
-      position: fixed;
-      z-index: 3000;
+  object-fit: cover;
+}
 
-      inset: 0;
+.about-copy {
+  max-width: 500px;
+}
 
-      display: none;
-      align-items: center;
-      justify-content: center;
+.about-copy .section-title {
+  margin-bottom: 28px;
+}
 
-      background: rgba(49, 40, 40, 0.28);
+.about-copy .section-text {
+  margin-bottom: 24px;
+}
 
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+.about-small {
+  font-family: var(--eng);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: var(--pink-text);
+}
 
-      padding: 20px;
-    }
+/* =========================
+   WORKS
+========================= */
 
-    .language-modal.show {
-      display: flex;
-    }
+.works {
+  background: var(--cream);
+}
 
-    .language-box {
-      width: min(92%, 380px);
+.works-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
 
-      background: var(--white);
+  margin-bottom: 65px;
+}
 
-      border-radius: 30px;
+.works-intro {
+  max-width: 400px;
+}
 
-      padding: 34px 30px 30px;
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-      box-shadow:
-        0 30px 80px rgba(50, 30, 30, 0.18);
+.work-card {
+  min-height: 430px;
 
-      position: relative;
+  background: var(--white);
 
-      animation: modalIn 0.25s ease;
-    }
+  border-radius: 24px;
 
-    @keyframes modalIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.98);
-      }
+  padding: 34px;
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    .close-language {
-      position: absolute;
+  transition: transform 0.35s ease;
+}
 
-      top: 16px;
-      right: 18px;
+.work-card:hover {
+  transform: translateY(-7px);
+}
 
-      width: 34px;
-      height: 34px;
+.work-number {
+  font-family: var(--eng);
+  font-size: 16px;
+  color: var(--pink-text);
+}
 
-      border: 0;
-      background: transparent;
+.work-card h3 {
+  font-family: var(--thai-title);
+  font-size: 29px;
+  font-weight: 500;
+  margin-bottom: 13px;
+}
 
-      color: var(--muted);
+.work-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
 
-      font-size: 22px;
+.work-link {
+  font-family: var(--eng);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: var(--pink-text);
+}
 
-      cursor: pointer;
-    }
+/* =========================
+   FEATURES
+========================= */
 
-    .language-title {
-      text-align: center;
-      margin-bottom: 24px;
-    }
+.features {
+  background: var(--white);
+}
 
-    .language-title .small {
-      font-family: var(--eng);
-      color: var(--pink-text);
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
 
-      font-size: 13px;
-      letter-spacing: 0.18em;
+  border: 1px solid rgba(51,46,46,0.08);
+}
 
-      margin-bottom: 5px;
-    }
+.feature {
+  min-height: 260px;
 
-    .language-title h3 {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 500;
-    }
+  padding: 35px;
 
-    .language-options {
-      display: grid;
-      gap: 10px;
-    }
+  background: var(--white);
 
-    .language-option {
-      width: 100%;
+  border: 1px solid rgba(51,46,46,0.08);
+}
 
-      padding: 15px 18px;
+.feature-number {
+  font-family: var(--eng);
+  color: var(--pink-text);
+  font-size: 15px;
+}
 
-      border: 1px solid #eee5e1;
+.feature h3 {
+  margin-top: 50px;
 
-      border-radius: 18px;
+  font-family: var(--thai-title);
+  font-size: 25px;
+  font-weight: 500;
+}
 
-      background: #fffaf7;
+.feature p {
+  margin-top: 12px;
 
-      cursor: pointer;
+  color: var(--muted);
 
-      display: flex;
-      align-items: center;
-      gap: 13px;
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-      font-size: 14px;
+/* =========================
+   PRICING
+========================= */
 
-      color: var(--dark);
+.pricing {
+  background: var(--cream);
+}
 
-      transition: 0.25s ease;
-    }
+.price-box {
+  max-width: 900px;
+  margin: 0 auto;
 
-    .language-option:hover {
-      border-color: var(--pink-soft);
-      background: var(--pink-pale);
-      transform: translateY(-1px);
-    }
+  padding: 70px;
 
+  background: var(--white);
 
-    /* =========================
-       HERO
-    ========================= */
+  border-radius: 35px;
 
-    .hero {
-      min-height: 100vh;
+  text-align: center;
+}
 
-      padding:
-        150px 6vw
-        80px;
+.price-label {
+  font-family: var(--eng);
+  color: var(--pink-text);
+  font-size: 13px;
+  letter-spacing: 0.25em;
+}
 
-      display: grid;
+.price {
+  margin-top: 12px;
 
-      grid-template-columns:
-        minmax(0, 0.92fr)
-        minmax(420px, 0.88fr);
+  font-family: var(--eng);
+  font-size: 92px;
+  line-height: 1;
 
-      gap: 8vw;
+  color: var(--dark);
+}
 
-      align-items: center;
+.price small {
+  font-family: var(--thai-body);
+  font-size: 16px;
+  color: var(--muted);
+}
 
-      max-width: 1500px;
+.price-desc {
+  max-width: 520px;
+  margin: 25px auto 0;
 
-      margin: 0 auto;
-    }
+  color: var(--muted);
 
-    .hero-copy {
-      padding-left: 2vw;
-    }
+  font-size: 14px;
+  line-height: 2;
+}
 
-    /*
-      IMPORTANT:
-      Tagline is intentionally separated
-      from the brand name.
-    */
+/* =========================
+   HOW IT WORKS
+========================= */
 
-    .hero-kicker {
-      display: block;
+.how {
+  background: var(--white);
+}
 
-      margin-bottom: 30px;
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
 
-      font-family: var(--eng);
+  margin-top: 70px;
+}
 
-      font-size: 12px;
+.step-number {
+  font-family: var(--eng);
+  font-size: 44px;
+  color: var(--pink-text);
+}
 
-      line-height: 1;
+.step h3 {
+  margin-top: 15px;
 
-      letter-spacing: 0.30em;
+  font-family: var(--thai-title);
+  font-size: 24px;
+  font-weight: 500;
+}
 
-      color: var(--pink-text);
+.step p {
+  margin-top: 12px;
 
-      text-transform: uppercase;
-    }
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
 
-    .hero-title {
-      margin-bottom: 9px;
+/* =========================
+   FINAL ABOUT
+========================= */
 
-      font-family: var(--serif);
+.final-about {
+  background: var(--cream);
+}
 
-      font-size: clamp(46px, 7vw, 88px);
+.final-about-inner {
+  max-width: 850px;
+  margin: 0 auto;
 
-      line-height: 0.95;
+  text-align: center;
+}
 
-      font-weight: 500;
+.final-about-inner .section-text {
+  margin-top: 30px;
+}
 
-      letter-spacing: -0.045em;
+.signature {
+  margin-top: 38px;
 
-      color: var(--dark);
-    }
+  font-family: var(--eng);
+  font-size: 24px;
+  letter-spacing: 0.15em;
 
-    .hero-brand {
-      margin-bottom: 28px;
+  color: var(--pink-text);
+}
 
-      font-family: var(--eng);
+/* =========================
+   CTA
+========================= */
 
-      font-size: clamp(22px, 3vw, 34px);
+.cta {
+  padding: 110px 0;
 
-      line-height: 1;
+  background: var(--pink-soft);
 
-      letter-spacing: 0.18em;
+  text-align: center;
+}
 
-      color: var(--pink-text);
-    }
+.cta h2 {
+  font-family: var(--thai-title);
+  font-size: clamp(35px, 5vw, 65px);
+  font-weight: 400;
+}
 
-    .hero-description {
-      max-width: 500px;
+.cta p {
+  margin: 20px auto 30px;
 
-      color: var(--text);
+  max-width: 500px;
 
-      font-size: 15px;
+  color: var(--pink-text);
 
-      line-height: 2;
+  font-size: 14px;
+  line-height: 2;
+}
 
-      margin-bottom: 36px;
-    }
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+  min-width: 170px;
 
-    .btn {
-      display: inline-flex;
+  padding: 15px 25px;
 
-      align-items: center;
-      justify-content: center;
+  border-radius: 999px;
 
-      min-height: 48px;
+  background: var(--dark);
+  color: white;
 
-      padding: 0 23px;
+  font-family: var(--thai-body);
+  font-size: 13px;
 
-      border-radius: 999px;
+  transition: 0.3s ease;
+}
 
-      font-size: 12px;
+.cta-button:hover {
+  transform: translateY(-3px);
+}
 
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
-    }
+/* =========================
+   FOOTER
+========================= */
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+footer {
+  padding: 40px 0;
 
-    .btn-primary {
-      background: var(--pink);
-      color: white;
+  background: var(--dark);
+  color: rgba(255,255,255,0.65);
+}
 
-      box-shadow:
-        0 10px 28px rgba(189, 91, 123, 0.20);
-    }
+.footer-inner {
+  width: min(1180px, calc(100% - 48px));
+  margin: auto;
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      color: var(--pink-text);
+  gap: 20px;
+}
 
-      border: 1px solid var(--pink-soft);
-    }
+.footer-brand {
+  font-family: var(--eng);
+  font-size: 19px;
+  letter-spacing: 0.2em;
+  color: white;
+}
 
+.footer-copy {
+  font-size: 11px;
+}
 
-    /* HERO IMAGE */
+/* =========================
+   MOBILE
+========================= */
 
-    .hero-visual {
-      width: 100%;
+@media (max-width: 900px) {
 
-      display: flex;
-      justify-content: center;
-    }
+  .nav-wrap {
+    width: calc(100% - 24px);
+    top: 12px;
+  }
 
-    .hero-image-wrap {
-      position: relative;
+  .nav {
+    padding-left: 17px;
+  }
 
-      width: min(100%, 500px);
+  .nav-links {
+    display: none;
+  }
 
-      aspect-ratio: 4 / 5;
+  .hero {
+    padding-top: 120px;
+  }
 
-      overflow: hidden;
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
 
-      border-radius:
-        48% 48% 30px 30px;
+  .hero-copy {
+    padding-left: 0;
+  }
 
-      background:
-        linear-gradient(
-          135deg,
-          #ead7d7,
-          #dfe8e2 100%
-        );
+  .hero-image {
+    justify-self: center;
+    max-width: 600px;
+  }
 
-      box-shadow:
-        0 35px 80px rgba(65, 40, 40, 0.13);
-    }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
 
-    .hero-image-wrap img {
-      width: 100%;
-      height: 100%;
+  .about-copy {
+    max-width: none;
+  }
 
-      object-fit: cover;
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
 
-      display: block;
-    }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .image-placeholder {
-      position: absolute;
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
 
-      inset: 0;
+  .works-header {
+    display: block;
+  }
 
-      display: none;
+  .works-intro {
+    margin-top: 25px;
+  }
 
-      align-items: center;
-      justify-content: center;
+  .price-box {
+    padding: 50px 25px;
+  }
 
-      flex-direction: column;
+  .price {
+    font-size: 72px;
+  }
 
-      text-align: center;
+  .section {
+    padding: 100px 0;
+  }
+}
 
-      padding: 30px;
-    }
+@media (max-width: 520px) {
 
-    .image-placeholder .thai {
-      font-family: var(--serif);
-      font-size: 42px;
-      color: var(--dark);
-    }
+  .container {
+    width: calc(100% - 32px);
+  }
 
-    .image-placeholder .english {
-      font-family: var(--eng);
-      font-size: 18px;
-      letter-spacing: 0.2em;
-      color: var(--pink-text);
-    }
+  .hero-grid {
+    width: calc(100% - 32px);
+  }
 
+  .hero-title {
+    font-size: 70px;
+  }
 
-    /* =========================
-       SECTIONS
-    ========================= */
+  .hero-kicker {
+    margin-bottom: 32px;
+  }
 
-    section {
-      width: 100%;
-    }
+  .hero-image {
+    border-radius: 120px 120px 20px 20px;
+  }
 
-    .section {
-      max-width: 1180px;
+  .about-slider {
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+  }
 
-      margin: 0 auto;
+  .section-title {
+    font-size: 38px;
+  }
 
-      padding: 120px 6vw;
-    }
+  .work-card {
+    min-height: 360px;
+  }
 
-    .section-label {
-      font-family: var(--eng);
+  .feature {
+    min-height: 220px;
+  }
 
-      font-size: 13px;
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
-      letter-spacing: 0.25em;
-
-      color: var(--pink-text);
-
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      max-width: 760px;
-
-      font-family: var(--serif);
-
-      font-size: clamp(31px, 5vw, 54px);
-
-      font-weight: 500;
-
-      line-height: 1.25;
-
-      letter-spacing: -0.03em;
-
-      margin-bottom: 25px;
-    }
-
-    .section-text {
-      max-width: 680px;
-
-      color: var(--text);
-
-      font-size: 15px;
-
-      line-height: 2;
-
-    }
-
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about {
-      background: #efe9e1;
-    }
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        0.8fr
-        1.2fr;
-
-      gap: 9vw;
-
-      align-items: start;
-    }
-
-    .about-mark {
-      font-family: var(--eng);
-
-      font-size: clamp(70px, 12vw, 150px);
-
-      line-height: 0.75;
-
-      color: var(--pink-soft);
-
-      letter-spacing: -0.08em;
-    }
-
-
-    /* =========================
-       WORKS
-    ========================= */
-
-    .works {
-      background: var(--cream);
-    }
-
-    .works-header {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: end;
-
-      gap: 30px;
-
-      margin-bottom: 50px;
-    }
-
-    .works-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 18px;
-    }
-
-    .work-card {
-      min-height: 350px;
-
-      padding: 32px;
-
-      border-radius: var(--radius-lg);
-
-      background: var(--white);
-
-      border: 1px solid rgba(210, 190, 185, 0.38);
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: space-between;
-
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-    .work-card:hover {
-      transform: translateY(-6px);
-
-      box-shadow:
-        0 25px 55px rgba(70, 40, 40, 0.08);
-    }
-
-    .work-number {
-      font-family: var(--eng);
-
-      color: var(--pink-text);
-
-      font-size: 15px;
-
-      letter-spacing: 0.1em;
-    }
-
-    .work-card h3 {
-      font-family: var(--eng);
-
-      font-size: 38px;
-
-      font-weight: 500;
-
-      margin-bottom: 8px;
-    }
-
-    .work-card p {
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.9;
-    }
-
-
-    /* =========================
-       INTERACTIVE
-    ========================= */
-
-    .interactive {
-      background: #eee8df;
-    }
-
-    .feature-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 15px;
-
-      margin-top: 50px;
-    }
-
-    .feature {
-      min-height: 200px;
-
-      padding: 28px;
-
-      background: rgba(255,255,255,0.56);
-
-      border-radius: var(--radius-md);
-
-      border: 1px solid rgba(255,255,255,0.7);
-
-      transition: 0.3s ease;
-    }
-
-    .feature:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,0.78);
-    }
-
-    .feature-icon {
-      font-size: 23px;
-
-      margin-bottom: 20px;
-    }
-
-    .feature h3 {
-      font-family: var(--eng);
-
-      font-size: 25px;
-
-      font-weight: 500;
-
-      margin-bottom: 7px;
-    }
-
-    .feature p {
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.9;
-    }
-
-
-    /* =========================
-       PRICING
-    ========================= */
-
-    .pricing {
-      background: var(--cream);
-    }
-
-    .price-card {
-      max-width: 720px;
-
-      margin: 50px auto 0;
-
-      background: var(--white);
-
-      border-radius: 38px;
-
-      padding: 55px;
-
-      border: 1px solid rgba(220, 195, 195, 0.45);
-
-      text-align: center;
-
-      box-shadow:
-        0 30px 70px rgba(70, 40, 40, 0.06);
-    }
-
-    .price-name {
-      font-family: var(--eng);
-
-      font-size: 22px;
-
-      letter-spacing: 0.18em;
-
-      color: var(--pink-text);
-
-      margin-bottom: 15px;
-    }
-
-    .price {
-      display: flex;
-
-      align-items: baseline;
-
-      justify-content: center;
-
-      gap: 10px;
-
-      margin-bottom: 15px;
-    }
-
-    .price-number {
-      font-family: var(--eng);
-
-      font-size: 88px;
-
-      line-height: 0.8;
-
-      color: var(--dark);
-    }
-
-    .price-currency {
-      font-family: var(--eng);
-
-      color: var(--muted);
-
-      letter-spacing: 0.12em;
-    }
-
-    .price-description {
-      max-width: 450px;
-
-      margin: 0 auto 30px;
-
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.9;
-    }
-
-
-    /* =========================
-       HOW IT WORKS
-    ========================= */
-
-    .how {
-      background: #eee8df;
-    }
-
-    .steps {
-      margin-top: 55px;
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 20px;
-    }
-
-    .step {
-      position: relative;
-
-      padding: 35px 25px;
-
-      border-top: 1px solid #d6c9c2;
-    }
-
-    .step-number {
-      font-family: var(--eng);
-
-      color: var(--pink-text);
-
-      font-size: 17px;
-
-      letter-spacing: 0.1em;
-
-      margin-bottom: 25px;
-    }
-
-    .step h3 {
-      font-family: var(--serif);
-
-      font-size: 22px;
-
-      font-weight: 500;
-
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.9;
-    }
-
-
-    /* =========================
-       FINAL ABOUT
-    ========================= */
-
-    .final-about {
-      background: var(--cream);
-
-      text-align: center;
-    }
-
-    .final-about .section-text {
-      margin: 0 auto;
-
-      max-width: 700px;
-    }
-
-    .final-mark {
-      margin-top: 50px;
-
-      font-family: var(--eng);
-
-      font-size: 70px;
-
-      color: var(--pink-soft);
-
-      letter-spacing: 0.15em;
-    }
-
-
-    /* =========================
-       CTA
-    ========================= */
-
-    .cta {
-      background: var(--pink-pale);
-
-      text-align: center;
-
-      padding:
-        120px 6vw
-        130px;
-    }
-
-    .cta-kicker {
-      font-family: var(--eng);
-
-      color: var(--pink-text);
-
-      font-size: 13px;
-
-      letter-spacing: 0.3em;
-
-      margin-bottom: 18px;
-    }
-
-    .cta h2 {
-      font-family: var(--serif);
-
-      font-size: clamp(35px, 6vw, 64px);
-
-      font-weight: 500;
-
-      line-height: 1.2;
-
-      margin-bottom: 18px;
-    }
-
-    .cta p {
-      color: var(--text);
-
-      font-size: 14px;
-
-      margin-bottom: 30px;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #e8e0d8;
-
-      padding: 45px 6vw;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 30px;
-
-      color: var(--muted);
-
-      font-size: 11px;
-    }
-
-    .footer-brand {
-      display: flex;
-
-      flex-direction: column;
-    }
-
-    .footer-brand strong {
-      font-family: var(--serif);
-
-      color: var(--dark);
-
-      font-size: 18px;
-
-      font-weight: 500;
-    }
-
-    .footer-brand span {
-      font-family: var(--eng);
-
-      letter-spacing: 0.18em;
-
-      color: var(--pink-text);
-    }
-
-    .footer-copy {
-      text-align: right;
-    }
-
-
-    /* =========================
-       ENGLISH
-    ========================= */
-
-    body.lang-en .hero-title,
-    body.lang-en .section-title,
-    body.lang-en .step h3,
-    body.lang-en .cta h2 {
-      font-family: var(--eng);
-
-      letter-spacing: 0.01em;
-    }
-
-    body.lang-en .hero-title {
-      font-size: clamp(58px, 8vw, 100px);
-    }
-
-
-    /* =========================
-       KOREAN
-    ========================= */
-
-    body.lang-ko .hero-title,
-    body.lang-ko .section-title,
-    body.lang-ko .step h3,
-    body.lang-ko .cta h2 {
-      font-family: var(--kr);
-
-      letter-spacing: -0.04em;
-    }
-
-    body.lang-ko .hero-title {
-      font-size: clamp(42px, 7vw, 78px);
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 900px) {
-
-      .nav {
-        width: calc(100% - 24px);
-
-        top: 12px;
-
-        padding-left: 17px;
-      }
-
-      .brand {
-        min-width: 105px;
-      }
-
-      .brand-th {
-        font-size: 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-
-        padding:
-          145px 6vw
-          70px;
-
-        grid-template-columns: 1fr;
-
-        gap: 55px;
-      }
-
-      .hero-copy {
-        padding-left: 0;
-      }
-
-      .hero-kicker {
-        margin-bottom: 25px;
-      }
-
-      .hero-title {
-        font-size: clamp(50px, 15vw, 75px);
-      }
-
-      .hero-description {
-        font-size: 14px;
-      }
-
-      .hero-visual {
-        order: 2;
-      }
-
-      .hero-image-wrap {
-        width: min(100%, 440px);
-      }
-
-      .section {
-        padding:
-          85px 6vw;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
-
-      .about-mark {
-        font-size: 85px;
-      }
-
-      .works-header {
-        display: block;
-      }
-
-      .works-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .feature-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .price-card {
-        padding: 38px 24px;
-      }
-
-      .price-number {
-        font-size: 75px;
-      }
-
-      footer {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      .footer-copy {
-        text-align: left;
-      }
-    }
-
-
-    @media (max-width: 560px) {
-
-      .hero {
-        padding-left: 7vw;
-        padding-right: 7vw;
-      }
-
-      .hero-kicker {
-        font-size: 10px;
-        letter-spacing: 0.25em;
-
-        /*
-          Extra separation on mobile
-          so tagline never visually merges
-          with the brand name.
-        */
-        margin-bottom: 32px;
-      }
-
-      .hero-title {
-        font-size: 54px;
-      }
-
-      .hero-brand {
-        font-size: 23px;
-
-        margin-bottom: 25px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-
-        align-items: stretch;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .section {
-        padding-left: 7vw;
-        padding-right: 7vw;
-      }
-
-      .section-title {
-        font-size: 34px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .feature {
-        min-height: auto;
-      }
-
-      .price-card {
-        border-radius: 28px;
-      }
-
-      .price-number {
-        font-size: 66px;
-      }
-
-      .cta {
-        padding:
-          90px 7vw
-          100px;
-      }
-    }
-
-  </style>
+</style>
 </head>
 
+<body>
 
-<body class="lang-th">
+<!-- =========================
+     NAV
+========================= -->
 
-
-  <!-- =========================
-       NAV
-  ========================= -->
+<div class="nav-wrap">
 
   <nav class="nav">
 
-    <a href="#home" class="brand">
-      <span class="brand-th">ปิ่นโตรัก</span>
-      <span class="brand-en">PINTO RAK</span>
+    <a href="#home" class="logo">
+      PINTO <span>RAK</span>
     </a>
 
     <div class="nav-links">
 
-      <a href="#home" data-nav="home" class="active">
-        <span data-th="หน้าแรก" data-en="Home" data-ko="홈">หน้าแรก</span>
-      </a>
-
-      <a href="#websites" data-nav="websites">
-        <span data-th="เว็บไซต์" data-en="Websites" data-ko="웹사이트">เว็บไซต์</span>
-      </a>
-
-      <a href="#features" data-nav="features">
-        <span data-th="ฟีเจอร์" data-en="Features" data-ko="기능">ฟีเจอร์</span>
-      </a>
-
-      <a href="#pricing" data-nav="pricing">
-        <span data-th="ราคา" data-en="Pricing" data-ko="가격">ราคา</span>
-      </a>
-
-      <a href="#how" data-nav="how">
-        <span data-th="ขั้นตอน" data-en="How it works" data-ko="진행 방법">ขั้นตอน</span>
+      <a href="#home" data-nav="home">
+        หน้าหลัก
       </a>
 
       <a href="#about" data-nav="about">
-        <span data-th="เกี่ยวกับ" data-en="About" data-ko="소개">เกี่ยวกับ</span>
+        เกี่ยวกับ
+      </a>
+
+      <a href="#works" data-nav="works">
+        ผลงาน
+      </a>
+
+      <a href="#features" data-nav="features">
+        ฟีเจอร์
+      </a>
+
+      <a href="#pricing" data-nav="pricing">
+        ราคา
+      </a>
+
+      <a href="#how" data-nav="how">
+        วิธีสั่งทำ
       </a>
 
     </div>
 
-    <button
-      class="language-btn"
-      id="languageBtn"
-      aria-label="Change language"
-    >
+    <button class="lang-btn" id="languageButton">
       🌐
     </button>
 
   </nav>
 
+</div>
 
-  <!-- =========================
-       LANGUAGE MODAL
-  ========================= -->
 
-  <div class="language-modal" id="languageModal">
+<!-- =========================
+     LANGUAGE MODAL
+========================= -->
 
-    <div class="language-box">
+<div class="language-modal" id="languageModal">
 
-      <button
-        class="close-language"
-        id="closeLanguage"
-        aria-label="Close"
-      >
-        ×
-      </button>
+  <div class="language-box">
 
-      <div class="language-title">
+    <h3>เลือกภาษา</h3>
 
-        <div class="small">
-          LANGUAGE
-        </div>
+    <button class="language-option" data-lang="th">
+      🇹🇭 ภาษาไทย
+    </button>
 
-        <h3
-          data-th="เลือกภาษา"
-          data-en="Choose language"
-          data-ko="언어 선택"
-        >
-          เลือกภาษา
-        </h3>
+    <button class="language-option" data-lang="en">
+      🇬🇧 English
+    </button>
 
+    <button class="language-option" data-lang="ko">
+      🇰🇷 한국어
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section class="hero" id="home">
+
+  <div class="hero-grid">
+
+    <div class="hero-copy">
+
+      <span class="hero-kicker">
+        LITTLE DIGITAL MOMENTS
+      </span>
+
+      <h1 class="hero-title">
+        ปิ่นโตรัก
+      </h1>
+
+      <div class="hero-brand">
+        PINTO RAK
       </div>
 
-      <div class="language-options">
+      <p class="hero-desc">
+        เราสร้างเว็บไซต์เล็ก ๆ ที่เก็บความรู้สึก
+        ความทรงจำ และเรื่องราวของคุณ
+        ให้อยู่ในรูปแบบที่เปิดกลับมาดูเมื่อไหร่ก็ยังรู้สึกเหมือนเดิม
+      </p>
 
-        <button class="language-option" data-language="th">
-          <span>🇹🇭</span>
-          <span>ภาษาไทย</span>
-        </button>
+    </div>
 
-        <button class="language-option" data-language="en">
-          <span>🇬🇧</span>
-          <span>English</span>
-        </button>
 
-        <button class="language-option" data-language="ko">
-          <span>🇰🇷</span>
-          <span>한국어</span>
-        </button>
+    <div class="hero-image">
+
+      <img
+        src="hero-cover.jpg"
+        alt="PINTO RAK"
+        onerror="
+          this.style.display='none';
+          document.querySelector('.image-placeholder').style.display='flex';
+        "
+      >
+
+      <div class="image-placeholder">
+
+        <div class="thai">
+          ปิ่นโตรัก
+        </div>
+
+        <div class="eng">
+          PINTO RAK
+        </div>
 
       </div>
 
@@ -1404,911 +1043,733 @@
 
   </div>
 
+</section>
 
-  <!-- =========================
-       HERO
-  ========================= -->
 
-  <main>
+<!-- =========================
+     ABOUT
+========================= -->
 
-    <section class="hero" id="home">
+<section class="section about" id="about">
 
-      <div class="hero-copy">
+  <div class="container">
 
-        <!--
-          Tagline is deliberately separated
-          from the brand name.
-        -->
+    <div class="about-grid">
 
-        <div class="hero-kicker">
-          LITTLE DIGITAL MOMENTS
+
+      <!-- PHOTO SLIDER -->
+
+      <div class="about-slider">
+
+        <div class="about-track" id="aboutTrack">
+
+          <div class="about-slide">
+            <img src="about-1.jpg" alt="PINTO RAK">
+          </div>
+
+          <div class="about-slide">
+            <img src="about-2.jpg" alt="PINTO RAK">
+          </div>
+
+          <div class="about-slide">
+            <img src="about-3.jpg" alt="PINTO RAK">
+          </div>
+
+          <div class="about-slide">
+            <img src="about-4.jpg" alt="PINTO RAK">
+          </div>
+
+          <div class="about-slide">
+            <img src="about-5.jpg" alt="PINTO RAK">
+          </div>
+
+          <div class="about-slide">
+            <img src="about-6.jpg" alt="PINTO RAK">
+          </div>
+
         </div>
 
-        <h1
-          class="hero-title"
-          data-th="ปิ่นโตรัก"
-          data-en="Pinto Rak"
-          data-ko="핀토락"
-        >
-          ปิ่นโตรัก
-        </h1>
+      </div>
 
-        <div class="hero-brand">
-          PINTO RAK
+
+      <!-- TEXT -->
+
+      <div class="about-copy">
+
+        <div class="section-label">
+          ABOUT PINTO RAK
         </div>
 
-        <p
-          class="hero-description"
-          data-th="เว็บไซต์เล็ก ๆ ที่สร้างขึ้นจากความรู้สึก สำหรับวันเกิด วันครบรอบ คำขอโทษ ความทรงจำ และช่วงเวลาที่มีความหมายสำหรับคุณ"
-          data-en="Small websites made from feelings — for birthdays, anniversaries, apologies, memories, and the moments that mean something to you."
-          data-ko="생일, 기념일, 사과, 추억 그리고 소중한 순간을 위한 감성적인 작은 웹사이트를 만듭니다."
-        >
-          เว็บไซต์เล็ก ๆ ที่สร้างขึ้นจากความรู้สึก
-          สำหรับวันเกิด วันครบรอบ คำขอโทษ ความทรงจำ
-          และช่วงเวลาที่มีความหมายสำหรับคุณ
+        <h2 class="section-title">
+          เว็บไซต์เล็ก ๆ<br>
+          สำหรับความรู้สึกที่ใหญ่
+        </h2>
+
+        <p class="section-text">
+          ปิ่นโตรักเชื่อว่า ความรู้สึกดี ๆ
+          ไม่จำเป็นต้องอยู่แค่ในข้อความหรือรูปถ่าย
+          เราจึงสร้างเว็บไซต์ที่ทำให้ความทรงจำ
+          กลายเป็นประสบการณ์ที่กด เปิด เล่น และค้นพบได้
         </p>
 
-        <div class="hero-buttons">
-
-          <a
-            href="#websites"
-            class="btn btn-primary"
-            data-th="ดูผลงาน"
-            data-en="View works"
-            data-ko="작품 보기"
-          >
-            ดูผลงาน
-          </a>
-
-          <a
-            href="#pricing"
-            class="btn btn-secondary"
-            data-th="สั่งทำเว็บไซต์"
-            data-en="Create yours"
-            data-ko="웹사이트 만들기"
-          >
-            สั่งทำเว็บไซต์
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div class="hero-visual">
-
-        <div class="hero-image-wrap">
-
-          <img
-            src="hero-cover.jpg"
-            alt="PINTO RAK"
-            onerror="
-              this.style.display='none';
-              document.querySelector('.image-placeholder').style.display='flex';
-            "
-          >
-
-          <div class="image-placeholder">
-
-            <div class="thai">
-              ปิ่นโตรัก
-            </div>
-
-            <div class="english">
-              PINTO RAK
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         ABOUT INTRO
-    ========================= -->
-
-    <section class="section about" id="about">
-
-      <div class="about-grid">
-
-        <div>
-
-          <div class="section-label">
-            ABOUT PINTO RAK
-          </div>
-
-          <div class="about-mark">
-            ♡
-          </div>
-
-        </div>
-
-        <div>
-
-          <h2
-            class="section-title"
-            data-th="เพราะบางความรู้สึก ก็ควรมีที่เก็บไว้"
-            data-en="Because some feelings deserve a place to stay."
-            data-ko="어떤 감정은 머물 수 있는 공간이 필요하니까요."
-          >
-            เพราะบางความรู้สึก
-            ก็ควรมีที่เก็บไว้
-          </h2>
-
-          <p
-            class="section-text"
-            data-th="เราเปลี่ยนรูปภาพ เพลง ข้อความ ความทรงจำ และความรู้สึกของคุณให้กลายเป็นเว็บไซต์เล็ก ๆ ที่เปิดขึ้นมาเมื่อไหร่ ก็ยังรู้สึกถึงช่วงเวลานั้นได้"
-            data-en="We turn your photos, music, words, memories, and feelings into a little website you can return to whenever you want."
-            data-ko="사진, 음악, 글, 추억과 감정을 작은 웹사이트로 만들어 언제든 다시 그 순간을 느낄 수 있도록 합니다."
-          >
-            เราเปลี่ยนรูปภาพ เพลง ข้อความ ความทรงจำ
-            และความรู้สึกของคุณให้กลายเป็นเว็บไซต์เล็ก ๆ
-            ที่เปิดขึ้นมาเมื่อไหร่ ก็ยังรู้สึกถึงช่วงเวลานั้นได้
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         WEBSITES
-    ========================= -->
-
-    <section class="section works" id="websites">
-
-      <div class="works-header">
-
-        <div>
-
-          <div class="section-label">
-            WE CREATE
-          </div>
-
-          <h2
-            class="section-title"
-            data-th="เว็บไซต์สำหรับช่วงเวลาที่มีความหมาย"
-            data-en="Websites for meaningful moments."
-            data-ko="의미 있는 순간을 위한 웹사이트."
-          >
-            เว็บไซต์สำหรับช่วงเวลาที่มีความหมาย
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="works-grid">
-
-        <article class="work-card">
-
-          <div class="work-number">
-            01
-          </div>
-
-          <div>
-
-            <h3>
-              Birthday
-            </h3>
-
-            <p
-              data-th="เว็บไซต์วันเกิดแบบเฉพาะสำหรับคนพิเศษ"
-              data-en="A personal birthday website made for someone special."
-              data-ko="소중한 사람을 위한 특별한 생일 웹사이트"
-            >
-              เว็บไซต์วันเกิดแบบเฉพาะสำหรับคนพิเศษ
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="work-card">
-
-          <div class="work-number">
-            02
-          </div>
-
-          <div>
-
-            <h3>
-              Anniversary
-            </h3>
-
-            <p
-              data-th="เก็บเรื่องราวของความสัมพันธ์ไว้ในที่เดียว"
-              data-en="A little place to keep your relationship story."
-              data-ko="두 사람의 이야기를 한 곳에 담는 웹사이트"
-            >
-              เก็บเรื่องราวของความสัมพันธ์ไว้ในที่เดียว
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <article class="work-card">
-
-          <div class="work-number">
-            03
-          </div>
-
-          <div>
-
-            <h3>
-              Apology
-            </h3>
-
-            <p
-              data-th="คำขอโทษที่อยากพูดให้ใครบางคนได้เห็น"
-              data-en="A personal way to say the things you want someone to see."
-              data-ko="누군가에게 전하고 싶은 마음을 담는 웹사이트"
-            >
-              คำขอโทษที่อยากพูดให้ใครบางคนได้เห็น
-            </p>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         FEATURES
-    ========================= -->
-
-    <section class="section interactive" id="features">
-
-      <div class="section-label">
-        INTERACTIVE
-      </div>
-
-      <h2
-        class="section-title"
-        data-th="ไม่ใช่แค่เว็บไซต์ แต่เป็นประสบการณ์เล็ก ๆ"
-        data-en="More than a website. A little experience."
-        data-ko="단순한 웹사이트가 아닌, 작은 경험."
-      >
-        ไม่ใช่แค่เว็บไซต์
-        แต่เป็นประสบการณ์เล็ก ๆ
-      </h2>
-
-
-      <div class="feature-grid">
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            🎂
-          </div>
-
-          <h3>
-            Interactive Cake
-          </h3>
-
-          <p
-            data-th="เป่าเทียนและดูเซอร์ไพรส์"
-            data-en="Blow the candles and reveal the surprise."
-            data-ko="촛불을 끄고 서프라이즈를 확인해보세요."
-          >
-            เป่าเทียนและดูเซอร์ไพรส์
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            ✉️
-          </div>
-
-          <h3>
-            Interactive Letter
-          </h3>
-
-          <p
-            data-th="เปิดจดหมายด้วยตัวเอง"
-            data-en="Open a personal letter yourself."
-            data-ko="직접 열어보는 특별한 편지"
-          >
-            เปิดจดหมายด้วยตัวเอง
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            🎁
-          </div>
-
-          <h3>
-            Surprise Box
-          </h3>
-
-          <p
-            data-th="กล่องเซอร์ไพรส์แบบกดเปิด"
-            data-en="A little surprise waiting to be opened."
-            data-ko="클릭해서 여는 작은 서프라이즈 박스"
-          >
-            กล่องเซอร์ไพรส์แบบกดเปิด
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            🎵
-          </div>
-
-          <h3>
-            Music
-          </h3>
-
-          <p
-            data-th="ใส่เพลงที่มีความหมายสำหรับคุณ"
-            data-en="Add a song that means something to you."
-            data-ko="두 사람에게 의미 있는 음악을 담아보세요."
-          >
-            ใส่เพลงที่มีความหมายสำหรับคุณ
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            📷
-          </div>
-
-          <h3>
-            Photo Gallery
-          </h3>
-
-          <p
-            data-th="ใส่รูปความทรงจำได้หลายรูป"
-            data-en="Keep your favorite memories together."
-            data-ko="소중한 사진을 여러 장 담을 수 있어요."
-          >
-            ใส่รูปความทรงจำได้หลายรูป
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-icon">
-            ✨
-          </div>
-
-          <h3>
-            Mini Game
-          </h3>
-
-          <p
-            data-th="เกมเล็ก ๆ สำหรับเพิ่มความสนุก"
-            data-en="A tiny interactive game for extra fun."
-            data-ko="재미를 더해주는 작은 미니 게임"
-          >
-            เกมเล็ก ๆ สำหรับเพิ่มความสนุก
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PRICING
-    ========================= -->
-
-    <section class="section pricing" id="pricing">
-
-      <div class="section-label">
-        SIMPLE PRICING
-      </div>
-
-      <h2
-        class="section-title"
-        data-th="เริ่มต้นที่ 129 บาท"
-        data-en="Starting from 129 THB."
-        data-ko="129바트부터 시작합니다."
-      >
-        เริ่มต้นที่ 129 บาท
-      </h2>
-
-
-      <div class="price-card">
-
-        <div class="price-name">
-          PINTO RAK
-        </div>
-
-        <div class="price">
-
-          <div class="price-number">
-            129
-          </div>
-
-          <div class="price-currency">
-            THB
-          </div>
-
-        </div>
-
-        <p
-          class="price-description"
-          data-th="เว็บไซต์เซอร์ไพรส์แบบเฉพาะสำหรับคุณ พร้อมดีไซน์และเนื้อหาที่เลือกได้"
-          data-en="A personal surprise website with a design and content made around your story."
-          data-ko="당신의 이야기에 맞춰 디자인과 콘텐츠를 구성한 특별한 서프라이즈 웹사이트"
-        >
-          เว็บไซต์เซอร์ไพรส์แบบเฉพาะสำหรับคุณ
-          พร้อมดีไซน์และเนื้อหาที่เลือกได้
+        <p class="section-text">
+          ตั้งแต่วันเกิด วันครบรอบ
+          คำขอโทษ ไปจนถึงข้อความที่อยากบอกใครสักคน
+          ทุกเว็บไซต์ถูกออกแบบให้มีความเป็นตัวของคุณเอง
         </p>
 
-        <a
-          href="#contact"
-          class="btn btn-primary"
-          data-th="เริ่มต้นสั่งทำ"
-          data-en="Start your website"
-          data-ko="웹사이트 시작하기"
-        >
-          เริ่มต้นสั่งทำ
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         HOW IT WORKS
-    ========================= -->
-
-    <section class="section how" id="how">
-
-      <div class="section-label">
-        HOW IT WORKS
-      </div>
-
-      <h2
-        class="section-title"
-        data-th="ขั้นตอนง่าย ๆ เพื่อเปลี่ยนความรู้สึกให้เป็นเว็บไซต์"
-        data-en="Three simple steps to turn feelings into a website."
-        data-ko="마음을 웹사이트로 만드는 세 가지 간단한 과정."
-      >
-        ขั้นตอนง่าย ๆ
-        เพื่อเปลี่ยนความรู้สึกให้เป็นเว็บไซต์
-      </h2>
-
-
-      <div class="steps">
-
-        <div class="step">
-
-          <div class="step-number">
-            01
-          </div>
-
-          <h3
-            data-th="เลือกเว็บไซต์"
-            data-en="Choose your website"
-            data-ko="웹사이트 선택"
-          >
-            เลือกเว็บไซต์
-          </h3>
-
-          <p
-            data-th="เลือกประเภทและสไตล์เว็บไซต์ที่ต้องการ"
-            data-en="Choose the type and style you want."
-            data-ko="원하는 웹사이트의 종류와 스타일을 선택합니다."
-          >
-            เลือกประเภทและสไตล์เว็บไซต์ที่ต้องการ
-          </p>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-number">
-            02
-          </div>
-
-          <h3
-            data-th="ส่งรายละเอียด"
-            data-en="Send your details"
-            data-ko="내용 보내기"
-          >
-            ส่งรายละเอียด
-          </h3>
-
-          <p
-            data-th="ส่งรูป ข้อความ เพลง และรายละเอียดต่าง ๆ"
-            data-en="Send your photos, messages, music, and details."
-            data-ko="사진, 메시지, 음악 등 필요한 내용을 보내주세요."
-          >
-            ส่งรูป ข้อความ เพลง และรายละเอียดต่าง ๆ
-          </p>
-
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-number">
-            03
-          </div>
-
-          <h3
-            data-th="รับเว็บไซต์"
-            data-en="Receive your website"
-            data-ko="웹사이트 받기"
-          >
-            รับเว็บไซต์
-          </h3>
-
-          <p
-            data-th="รอรับลิงก์เว็บไซต์ส่วนตัวของคุณ"
-            data-en="Receive your personal website link."
-            data-ko="완성된 나만의 웹사이트 링크를 받아보세요."
-          >
-            รอรับลิงก์เว็บไซต์ส่วนตัวของคุณ
-          </p>
-
+        <div class="about-small">
+          MADE WITH FEELING ♡
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </div>
+
+</section>
 
 
-    <!-- =========================
-         FINAL ABOUT
-    ========================= -->
+<!-- =========================
+     WORKS
+========================= -->
 
-    <section class="section final-about">
+<section class="section works" id="works">
 
-      <div class="section-label">
-        ABOUT PINTO RAK
+  <div class="container">
+
+    <div class="works-header">
+
+      <div>
+
+        <div class="section-label">
+          SELECTED WORKS
+        </div>
+
+        <h2 class="section-title">
+          เรื่องราวของคุณ<br>
+          ในรูปแบบของคุณ
+        </h2>
+
       </div>
 
-      <h2
-        class="section-title"
-        data-th="เราเชื่อว่า ความทรงจำไม่จำเป็นต้องอยู่แค่ในรูป"
-        data-en="We believe memories don't have to live only in photos."
-        data-ko="추억은 사진 속에만 머물 필요가 없다고 생각합니다."
-      >
-        เราเชื่อว่า
-        ความทรงจำไม่จำเป็นต้องอยู่แค่ในรูป
-      </h2>
+      <div class="works-intro section-text">
+        เลือกช่วงเวลาที่อยากเก็บไว้
+        แล้วเปลี่ยนมันให้กลายเป็นเว็บไซต์เล็ก ๆ
+        ที่มีเพียงคนพิเศษของคุณเท่านั้นที่ได้เห็น
+      </div>
 
-      <p
-        class="section-text"
-        data-th="ปิ่นโตรักสร้างเว็บไซต์เล็ก ๆ ที่ทำให้เรื่องราวของคุณมีพื้นที่ของตัวเอง ตั้งแต่ข้อความธรรมดา รูปถ่าย เพลง ไปจนถึงสิ่งที่สามารถกด เล่น และค้นพบได้"
-        data-en="Pinto Rak creates little websites where your story can have its own space — from simple words and photos to music, interactions, and little things waiting to be discovered."
-        data-ko="핀토락은 당신의 이야기가 머물 수 있는 작은 공간을 만듭니다. 글과 사진부터 음악, 인터랙션, 그리고 직접 발견할 수 있는 작은 요소까지."
-      >
-        ปิ่นโตรักสร้างเว็บไซต์เล็ก ๆ
-        ที่ทำให้เรื่องราวของคุณมีพื้นที่ของตัวเอง
-        ตั้งแต่ข้อความธรรมดา รูปถ่าย เพลง
-        ไปจนถึงสิ่งที่สามารถกด เล่น และค้นพบได้
+    </div>
+
+
+    <div class="work-grid">
+
+      <div class="work-card">
+
+        <div class="work-number">
+          01
+        </div>
+
+        <div>
+
+          <h3>
+            Birthday
+          </h3>
+
+          <p>
+            เว็บไซต์วันเกิดแบบ Interactive
+            ที่มีทั้งเกม เค้ก จดหมาย รูปภาพ
+            และเซอร์ไพรส์ในหน้าเดียว
+          </p>
+
+        </div>
+
+        <div class="work-link">
+          EXPLORE →
+        </div>
+
+      </div>
+
+
+      <div class="work-card">
+
+        <div class="work-number">
+          02
+        </div>
+
+        <div>
+
+          <h3>
+            Anniversary
+          </h3>
+
+          <p>
+            รวมเรื่องราว ความทรงจำ
+            รูปภาพ เพลง และข้อความ
+            ให้กลายเป็นของขวัญในรูปแบบเว็บไซต์
+          </p>
+
+        </div>
+
+        <div class="work-link">
+          EXPLORE →
+        </div>
+
+      </div>
+
+
+      <div class="work-card">
+
+        <div class="work-number">
+          03
+        </div>
+
+        <div>
+
+          <h3>
+            Apology
+          </h3>
+
+          <p>
+            เว็บไซต์สำหรับคำขอโทษ
+            ที่ไม่ได้มีแค่ข้อความ
+            แต่ทำให้คนเปิดได้สัมผัสความตั้งใจของคุณ
+          </p>
+
+        </div>
+
+        <div class="work-link">
+          EXPLORE →
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section features" id="features">
+
+  <div class="container">
+
+    <div class="section-label">
+      INTERACTIVE FEATURES
+    </div>
+
+    <h2 class="section-title">
+      มากกว่าแค่เว็บไซต์
+    </h2>
+
+
+    <div class="features-grid" style="margin-top:60px;">
+
+      <div class="feature">
+
+        <div class="feature-number">
+          01
+        </div>
+
+        <h3>
+          Interactive Cake
+        </h3>
+
+        <p>
+          เป่าเทียนและเปิดเซอร์ไพรส์
+          เหมือนอยู่ตรงหน้ากันจริง ๆ
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          02
+        </div>
+
+        <h3>
+          Interactive Letter
+        </h3>
+
+        <p>
+          เปิดซองจดหมาย
+          แล้วอ่านข้อความที่ตั้งใจเขียนถึงคนพิเศษ
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          03
+        </div>
+
+        <h3>
+          Surprise Box
+        </h3>
+
+        <p>
+          กล่องเซอร์ไพรส์
+          ที่ซ่อนข้อความและความทรงจำไว้ข้างใน
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          04
+        </div>
+
+        <h3>
+          Photo Gallery
+        </h3>
+
+        <p>
+          ใส่รูปคู่หรือรูปความทรงจำ
+          ได้หลายรูปในเว็บไซต์เดียว
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          05
+        </div>
+
+        <h3>
+          Music
+        </h3>
+
+        <p>
+          เพิ่มเพลงที่มีความหมาย
+          เพื่อสร้างบรรยากาศให้กับเรื่องราว
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-number">
+          06
+        </div>
+
+        <h3>
+          Mini Game
+        </h3>
+
+        <p>
+          เพิ่มเกมเล็ก ๆ
+          ให้คนรับได้เล่นและค้นพบเซอร์ไพรส์
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================= -->
+
+<section class="section pricing" id="pricing">
+
+  <div class="container">
+
+    <div class="price-box">
+
+      <div class="price-label">
+        STARTING FROM
+      </div>
+
+      <div class="price">
+        129 <small>THB</small>
+      </div>
+
+      <p class="price-desc">
+        เว็บไซต์เซอร์ไพรส์เริ่มต้นเพียง 129 บาท
+        พร้อมออกแบบให้เข้ากับเรื่องราว
+        และความสัมพันธ์ของคุณ
       </p>
 
-      <div class="final-mark">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="section how" id="how">
+
+  <div class="container">
+
+    <div class="section-label">
+      HOW IT WORKS
+    </div>
+
+    <h2 class="section-title">
+      ทำง่ายกว่าที่คิด
+    </h2>
+
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">
+          01
+        </div>
+
+        <h3>
+          เลือกเว็บไซต์
+        </h3>
+
+        <p>
+          เลือกประเภทเว็บไซต์
+          ที่เหมาะกับโอกาสและเรื่องราวของคุณ
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          02
+        </div>
+
+        <h3>
+          ส่งรายละเอียด
+        </h3>
+
+        <p>
+          ส่งรูป ข้อความ เพลง
+          และรายละเอียดที่อยากให้ใส่ลงในเว็บไซต์
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          03
+        </div>
+
+        <h3>
+          รับลิงก์
+        </h3>
+
+        <p>
+          เมื่อเว็บไซต์เสร็จ
+          คุณจะได้รับลิงก์สำหรับส่งให้คนพิเศษ
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL ABOUT
+========================= -->
+
+<section class="section final-about">
+
+  <div class="container">
+
+    <div class="final-about-inner">
+
+      <div class="section-label">
         PINTO RAK
       </div>
 
-    </section>
-
-
-    <!-- =========================
-         CTA
-    ========================= -->
-
-    <section class="cta" id="contact">
-
-      <div class="cta-kicker">
-        PINTO RAK
-      </div>
-
-      <h2
-        data-th="มีช่วงเวลาที่อยากเก็บไว้ไหม?"
-        data-en="Is there a moment you'd like to keep?"
-        data-ko="간직하고 싶은 순간이 있나요?"
-      >
-        มีช่วงเวลาที่อยากเก็บไว้ไหม?
+      <h2 class="section-title">
+        เพราะบางความรู้สึก<br>
+        ควรถูกเก็บไว้อย่างพิเศษ
       </h2>
 
-      <p
-        data-th="ให้ปิ่นโตรักช่วยเปลี่ยนมันให้กลายเป็นเว็บไซต์เล็ก ๆ"
-        data-en="Let Pinto Rak turn it into a little digital moment."
-        data-ko="핀토락과 함께 그 순간을 작은 디지털 공간으로 만들어보세요."
-      >
-        ให้ปิ่นโตรักช่วยเปลี่ยนมันให้กลายเป็นเว็บไซต์เล็ก ๆ
+      <p class="section-text">
+        ปิ่นโตรักไม่ได้สร้างแค่เว็บไซต์
+        แต่เราสร้างพื้นที่เล็ก ๆ
+        สำหรับความทรงจำที่คุณอยากให้ใครสักคนเปิดกลับมาเจออีกครั้ง
       </p>
 
-      <a
-        href="mailto:"
-        class="btn btn-primary"
-        data-th="สร้างเว็บไซต์ของคุณ"
-        data-en="Create your website"
-        data-ko="나만의 웹사이트 만들기"
-      >
-        สร้างเว็บไซต์ของคุณ
-      </a>
+      <div class="signature">
+        WITH LOVE, PINTO RAK
+      </div>
 
-    </section>
+    </div>
 
-  </main>
+  </div>
+
+</section>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
+<!-- =========================
+     CTA
+========================= -->
 
-  <footer>
+<section class="cta">
+
+  <div class="container">
+
+    <h2>
+      มีเรื่องราวที่อยากเก็บไว้ไหม?
+    </h2>
+
+    <p>
+      ให้ปิ่นโตรักช่วยเปลี่ยนมัน
+      ให้กลายเป็นเว็บไซต์ที่พิเศษสำหรับคุณ
+    </p>
+
+    <a href="#pricing" class="cta-button">
+      เริ่มต้น 129 บาท
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-inner">
 
     <div class="footer-brand">
-
-      <strong>
-        ปิ่นโตรัก
-      </strong>
-
-      <span>
-        PINTO RAK
-      </span>
-
+      PINTO RAK
     </div>
 
-    <div
-      class="footer-copy"
-      data-th="© 2026 PINTO RAK — Little Digital Moments"
-      data-en="© 2026 PINTO RAK — Little Digital Moments"
-      data-ko="© 2026 PINTO RAK — Little Digital Moments"
-    >
-      © 2026 PINTO RAK — Little Digital Moments
+    <div class="footer-copy">
+      © 2026 ปิ่นโตรัก — LITTLE DIGITAL MOMENTS
     </div>
 
-  </footer>
+  </div>
+
+</footer>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+<script>
 
-  <script>
+/* =========================
+   LANGUAGE
+========================= */
 
-    /* =========================
-       LANGUAGE SYSTEM
-    ========================= */
+const languageButton = document.getElementById("languageButton");
+const languageModal = document.getElementById("languageModal");
 
-    const languageBtn =
-      document.getElementById("languageBtn");
+languageButton.addEventListener("click", () => {
+  languageModal.classList.add("show");
+});
 
-    const languageModal =
-      document.getElementById("languageModal");
-
-    const closeLanguage =
-      document.getElementById("closeLanguage");
-
-    const languageOptions =
-      document.querySelectorAll(".language-option");
+languageModal.addEventListener("click", (e) => {
+  if (e.target === languageModal) {
+    languageModal.classList.remove("show");
+  }
+});
 
 
-    function applyLanguage(lang) {
+const translations = {
 
-      document.body.classList.remove(
-        "lang-th",
-        "lang-en",
-        "lang-ko"
-      );
+  th: {
+    navHome: "หน้าหลัก",
+    navAbout: "เกี่ยวกับ",
+    navWorks: "ผลงาน",
+    navFeatures: "ฟีเจอร์",
+    navPricing: "ราคา",
+    navHow: "วิธีสั่งทำ"
+  },
 
-      document.body.classList.add(
-        `lang-${lang}`
-      );
+  en: {
+    navHome: "Home",
+    navAbout: "About",
+    navWorks: "Works",
+    navFeatures: "Features",
+    navPricing: "Pricing",
+    navHow: "How It Works"
+  },
 
+  ko: {
+    navHome: "홈",
+    navAbout: "소개",
+    navWorks: "작품",
+    navFeatures: "기능",
+    navPricing: "가격",
+    navHow: "주문 방법"
+  }
 
-      document.querySelectorAll("[data-th]")
-        .forEach(element => {
-
-          const value =
-            element.getAttribute(`data-${lang}`);
-
-          if (value) {
-            element.textContent = value;
-          }
-
-        });
-
-
-      localStorage.setItem(
-        "pintoRakLanguage",
-        lang
-      );
-
-
-      document.documentElement.lang =
-        lang === "th"
-          ? "th"
-          : lang === "en"
-            ? "en"
-            : "ko";
+};
 
 
-      languageModal.classList.remove("show");
+function setLanguage(lang) {
 
+  document.documentElement.lang = lang;
+
+  if (lang === "en") {
+    document.body.classList.add("lang-en");
+    document.body.classList.remove("lang-ko");
+  }
+
+  else if (lang === "ko") {
+    document.body.classList.add("lang-ko");
+    document.body.classList.remove("lang-en");
+  }
+
+  else {
+    document.body.classList.remove("lang-en");
+    document.body.classList.remove("lang-ko");
+  }
+
+
+  const t = translations[lang];
+
+  document.querySelector('[data-nav="home"]').textContent = t.navHome;
+  document.querySelector('[data-nav="about"]').textContent = t.navAbout;
+  document.querySelector('[data-nav="works"]').textContent = t.navWorks;
+  document.querySelector('[data-nav="features"]').textContent = t.navFeatures;
+  document.querySelector('[data-nav="pricing"]').textContent = t.navPricing;
+  document.querySelector('[data-nav="how"]').textContent = t.navHow;
+
+
+  languageModal.classList.remove("show");
+
+  localStorage.setItem("pintorak-language", lang);
+}
+
+
+document.querySelectorAll(".language-option").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    setLanguage(button.dataset.lang);
+
+  });
+
+});
+
+
+const savedLanguage =
+  localStorage.getItem("pintorak-language") || "th";
+
+setLanguage(savedLanguage);
+
+
+/* =========================
+   ACTIVE NAV
+========================= */
+
+const navLinks = document.querySelectorAll(".nav-links a");
+
+const sections = [
+  document.getElementById("home"),
+  document.getElementById("about"),
+  document.getElementById("works"),
+  document.getElementById("features"),
+  document.getElementById("pricing"),
+  document.getElementById("how")
+];
+
+
+function updateActiveNav() {
+
+  let current = "home";
+
+  const scrollPosition =
+    window.scrollY + window.innerHeight * 0.35;
+
+
+  sections.forEach(section => {
+
+    if (scrollPosition >= section.offsetTop) {
+      current = section.id;
     }
 
-
-    languageBtn.addEventListener(
-      "click",
-      () => {
-        languageModal.classList.add("show");
-      }
-    );
+  });
 
 
-    closeLanguage.addEventListener(
-      "click",
-      () => {
-        languageModal.classList.remove("show");
-      }
-    );
+  navLinks.forEach(link => {
 
+    link.classList.remove("active");
 
-    languageModal.addEventListener(
-      "click",
-      event => {
-
-        if (event.target === languageModal) {
-          languageModal.classList.remove("show");
-        }
-
-      }
-    );
-
-
-    languageOptions.forEach(option => {
-
-      option.addEventListener(
-        "click",
-        () => {
-
-          const language =
-            option.dataset.language;
-
-          applyLanguage(language);
-
-        }
-      );
-
-    });
-
-
-    const savedLanguage =
-      localStorage.getItem(
-        "pintoRakLanguage"
-      );
-
-    if (savedLanguage) {
-      applyLanguage(savedLanguage);
+    if (link.dataset.nav === current) {
+      link.classList.add("active");
     }
 
+  });
 
-    /* =========================
-       ACTIVE NAV
-    ========================= */
-
-    const navLinks =
-      document.querySelectorAll(
-        ".nav-links a"
-      );
+}
 
 
-    const sections =
-      document.querySelectorAll(
-        "section[id]"
-      );
+window.addEventListener("scroll", updateActiveNav);
+
+updateActiveNav();
 
 
-    function updateActiveNav() {
+/* =========================
+   ABOUT SLIDER
+========================= */
 
-      let current =
-        "home";
+const aboutTrack =
+  document.getElementById("aboutTrack");
 
+const totalSlides = 6;
 
-      sections.forEach(section => {
+let currentSlide = 0;
 
-        const top =
-          section.offsetTop - 180;
+function nextAboutSlide() {
 
-        const bottom =
-          top + section.offsetHeight;
+  currentSlide++;
 
-        if (
-          window.scrollY >= top &&
-          window.scrollY < bottom
-        ) {
-          current =
-            section.id;
-        }
+  if (currentSlide >= totalSlides) {
+    currentSlide = 0;
+  }
 
-      });
+  const percentage =
+    currentSlide * (100 / totalSlides);
 
+  aboutTrack.style.transform =
+    `translateX(-${percentage}%)`;
 
-      navLinks.forEach(link => {
-
-        link.classList.remove(
-          "active"
-        );
-
-        if (
-          link.dataset.nav === current
-        ) {
-          link.classList.add(
-            "active"
-          );
-        }
-
-      });
-
-    }
+}
 
 
-    window.addEventListener(
-      "scroll",
-      updateActiveNav,
-      { passive: true }
-    );
+/*
+  รูปละ 1.5 วินาที
+  transition ใน CSS = 0.7 วินาที
+*/
 
+setInterval(nextAboutSlide, 1500);
 
-    navLinks.forEach(link => {
-
-      link.addEventListener(
-        "click",
-        () => {
-
-          navLinks.forEach(item => {
-            item.classList.remove(
-              "active"
-            );
-          });
-
-          link.classList.add(
-            "active"
-          );
-
-        }
-      );
-
-    });
-
-
-    updateActiveNav();
-
-  </script>
+</script>
 
 </body>
 </html>
