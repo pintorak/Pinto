@@ -750,6 +750,7 @@ img{
 
     </div>
 
+    <!-- BIRTHDAY SEE ALL -->
     <a href="birthday.html" class="see-all">
       SEE ALL →
     </a>
@@ -761,7 +762,7 @@ img{
   <div class="template-grid">
 
 
-    <!-- TEMPLATE 01 -->
+    <!-- BIRTHDAY TEMPLATE 01 -->
 
     <a href="birthday-template-01.html" class="template-card">
 
@@ -833,7 +834,7 @@ img{
 
 
 
-    <!-- TEMPLATE 02 -->
+    <!-- BIRTHDAY TEMPLATE 02 -->
 
     <a href="birthday-template-02.html" class="template-card">
 
@@ -879,7 +880,7 @@ img{
 
 
 
-    <!-- TEMPLATE 03 -->
+    <!-- BIRTHDAY TEMPLATE 03 -->
 
     <a href="birthday-template-03.html" class="template-card">
 
@@ -949,6 +950,7 @@ img{
 
     </div>
 
+    <!-- MAKE UP SEE ALL -->
     <a href="make-up.html" class="see-all">
       SEE ALL →
     </a>
@@ -960,11 +962,7 @@ img{
   <div class="template-grid">
 
 
-    <!-- ==================================
-         MAKE UP TEMPLATE 01
-         รูป 5 รูปอยู่ในกล่องนี้เท่านั้น
-         และเปลี่ยนทุก 3 วินาที
-    ================================== -->
+    <!-- MAKE UP TEMPLATE 01 -->
 
     <a
       href="make-up-template-01.html"
@@ -1040,10 +1038,7 @@ img{
 
 
 
-    <!-- ==================================
-         MAKE UP TEMPLATE 02
-         ยังไม่ใช้รูปของ TEMPLATE 01
-    ================================== -->
+    <!-- MAKE UP TEMPLATE 02 -->
 
     <a
       href="make-up-template-02.html"
@@ -1093,10 +1088,7 @@ img{
 
 
 
-    <!-- ==================================
-         MAKE UP TEMPLATE 03
-         ยังไม่ใช้รูปของ TEMPLATE 01
-    ================================== -->
+    <!-- MAKE UP TEMPLATE 03 -->
 
     <a
       href="make-up-template-03.html"
@@ -1352,24 +1344,17 @@ img{
 <script>
 
 /* ==================================
-   ANNIVERSARY SLIDER
+   ALL SLIDERS
 ================================== */
 
-function setupSlider(
-  selector,
-  counterId
-){
-
-  const slider =
-    document.querySelector(selector);
+function setupSlider(slider, counterId){
 
   if(!slider) return;
 
-  const images =
-    slider.querySelectorAll("img");
+  const images = slider.querySelectorAll("img");
+  const counter = document.getElementById(counterId);
 
-  const counter =
-    document.getElementById(counterId);
+  if(images.length === 0) return;
 
   let current = 0;
 
@@ -1386,8 +1371,7 @@ function setupSlider(
     images[current].classList.add("active");
 
     if(counter){
-      counter.textContent =
-        current + 1;
+      counter.textContent = current + 1;
     }
 
   },3000);
@@ -1396,120 +1380,35 @@ function setupSlider(
 
 
 /* ==================================
-   START ALL SLIDERS
+   START SLIDERS
 ================================== */
-
-setupSlider(
-  ".template-image.slider:nth-of-type(1)",
-  "anniversaryCount"
-);
-
-
-/*
-  ใช้ลำดับของ slider จริงในหน้า
-*/
 
 const sliders =
   document.querySelectorAll(".template-image.slider");
 
 
-// Anniversary
-if(sliders[0]){
+/* Anniversary */
 
-  const images =
-    sliders[0].querySelectorAll("img");
-
-  let current = 0;
-
-  setInterval(function(){
-
-    images[current].classList.remove("active");
-
-    current++;
-
-    if(current >= images.length){
-      current = 0;
-    }
-
-    images[current].classList.add("active");
-
-    const counter =
-      document.getElementById("anniversaryCount");
-
-    if(counter){
-      counter.textContent =
-        current + 1;
-    }
-
-  },3000);
-
-}
+setupSlider(
+  sliders[0],
+  "anniversaryCount"
+);
 
 
-// Birthday
-if(sliders[1]){
+/* Birthday */
 
-  const images =
-    sliders[1].querySelectorAll("img");
-
-  let current = 0;
-
-  setInterval(function(){
-
-    images[current].classList.remove("active");
-
-    current++;
-
-    if(current >= images.length){
-      current = 0;
-    }
-
-    images[current].classList.add("active");
-
-    const counter =
-      document.getElementById("birthdayCount");
-
-    if(counter){
-      counter.textContent =
-        current + 1;
-    }
-
-  },3000);
-
-}
+setupSlider(
+  sliders[1],
+  "birthdayCount"
+);
 
 
-// Make Up
-if(sliders[2]){
+/* Make Up */
 
-  const images =
-    sliders[2].querySelectorAll("img");
-
-  let current = 0;
-
-  setInterval(function(){
-
-    images[current].classList.remove("active");
-
-    current++;
-
-    if(current >= images.length){
-      current = 0;
-    }
-
-    images[current].classList.add("active");
-
-    const counter =
-      document.getElementById("makeupCount");
-
-    if(counter){
-      counter.textContent =
-        current + 1;
-    }
-
-  },3000);
-
-}
+setupSlider(
+  sliders[2],
+  "makeupCount"
+);
 
 </script>
 
