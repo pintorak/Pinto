@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Templates | PINTO LOVE</title>
+<title>Birthday | PINTO LOVE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -38,7 +38,6 @@ body{
   background:var(--cream);
   color:var(--dark);
   font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
-  font-weight:300;
   line-height:1.8;
 }
 
@@ -52,47 +51,38 @@ img{
   width:100%;
 }
 
+
 /* =========================
    HEADER
 ========================= */
 
 header{
-  padding:28px 55px;
-  border-bottom:1px solid var(--line);
-
+  width:100%;
+  padding:25px 55px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  background:rgba(244,239,234,.92);
-  backdrop-filter:blur(10px);
-
-  position:sticky;
-  top:0;
-  z-index:20;
+  border-bottom:1px solid var(--line);
+  background:rgba(251,248,245,.94);
 }
 
 .logo{
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
-  letter-spacing:3px;
-  font-weight:500;
+  letter-spacing:2px;
 }
 
-.logo span{
-  color:var(--taupe);
-}
-
-.back{
-  font-family:"Cormorant Garamond",serif;
-  font-size:18px;
+.back-link{
+  font-size:12px;
+  letter-spacing:1px;
   color:var(--muted);
-  transition:.3s ease;
+  transition:.3s;
 }
 
-.back:hover{
+.back-link:hover{
   color:var(--dark);
 }
+
 
 /* =========================
    HERO
@@ -100,39 +90,32 @@ header{
 
 .hero{
   max-width:1200px;
-  margin:auto;
-
-  padding:95px 55px 75px;
-
-  text-align:center;
+  margin:0 auto;
+  padding:100px 55px 85px;
 }
 
-.hero-eyebrow{
-  font-family:"Cormorant Garamond",serif;
-  font-size:15px;
+.hero-label{
+  font-size:10px;
   letter-spacing:3px;
   color:var(--taupe);
-
-  margin-bottom:18px;
+  margin-bottom:22px;
 }
 
 .hero h1{
   font-family:"Cormorant Garamond",serif;
   font-size:72px;
-  font-weight:500;
   line-height:1;
-
+  font-weight:500;
   margin-bottom:25px;
 }
 
 .hero p{
-  max-width:580px;
-  margin:auto;
-
+  max-width:650px;
   color:var(--muted);
   font-size:14px;
   line-height:2;
 }
+
 
 /* =========================
    BREADCRUMB
@@ -140,156 +123,164 @@ header{
 
 .breadcrumb{
   max-width:1200px;
-  margin:auto;
-
+  margin:0 auto;
   padding:0 55px 35px;
-
+  font-size:11px;
+  letter-spacing:1px;
   color:var(--muted);
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:17px;
 }
 
 .breadcrumb span{
-  margin:0 10px;
-  color:var(--warm);
+  margin:0 7px;
+  opacity:.5;
 }
 
+
 /* =========================
-   TEMPLATES
+   TEMPLATE GRID
 ========================= */
 
 .templates{
   max-width:1200px;
-  margin:auto;
-
+  margin:0 auto;
   padding:0 55px 110px;
+}
 
+.template-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-
-  gap:25px;
+  gap:28px;
 }
 
-.template-card{
-  display:block;
 
-  background:var(--white);
+/* =========================
+   CARD
+========================= */
 
+.card{
   border:1px solid var(--line);
-
-  transition:.35s ease;
+  background:var(--white);
+  transition:.4s ease;
 }
 
-.template-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 45px rgba(64,57,52,.08);
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 45px rgba(64,57,52,.08);
 }
 
-.preview{
-  width:100%;
+.card-image{
   aspect-ratio:4 / 5;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--beige),
-      var(--cream)
-    );
-
+  overflow:hidden;
+  background:var(--beige);
   display:flex;
   align-items:center;
   justify-content:center;
-
-  position:relative;
-  overflow:hidden;
 }
 
-.preview-content{
+.card-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.placeholder{
   text-align:center;
-  color:var(--taupe);
-}
-
-.preview-number{
-  font-family:"Cormorant Garamond",serif;
-  font-size:58px;
-  line-height:1;
-}
-
-.preview-label{
-  font-family:"Cormorant Garamond",serif;
-  font-size:20px;
   color:var(--muted);
+}
 
-  margin-top:10px;
+.placeholder-small{
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+.placeholder-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
 }
 
 .card-info{
-  padding:25px 25px 28px;
+  padding:28px 25px 30px;
 }
 
 .card-category{
-  font-family:"Cormorant Garamond",serif;
-  font-size:14px;
+  font-size:9px;
   letter-spacing:2px;
   color:var(--taupe);
-
-  margin-bottom:8px;
+  margin-bottom:10px;
 }
 
 .card-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:27px;
-  font-weight:500;
-
-  margin-bottom:7px;
+  font-size:30px;
+  margin-bottom:10px;
 }
 
 .card-description{
-  color:var(--muted);
-  font-size:13px;
+  font-size:12px;
   line-height:1.9;
-
-  margin-bottom:18px;
+  color:var(--muted);
+  min-height:68px;
+  margin-bottom:22px;
 }
 
 .card-bottom{
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  padding-top:15px;
-
-  border-top:1px solid var(--line);
+  gap:15px;
 }
 
-.price{
+.card-price{
   font-family:"Cormorant Garamond",serif;
-  font-size:21px;
+  font-size:22px;
 }
 
-.view{
-  font-family:"Cormorant Garamond",serif;
-  font-size:16px;
+.view-link{
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:var(--dark);
+  border-bottom:1px solid var(--dark);
+  padding-bottom:2px;
+  transition:.3s;
+}
+
+.view-link:hover{
   color:var(--taupe);
+  border-color:var(--taupe);
 }
+
 
 /* =========================
    NOTE
 ========================= */
 
 .note{
-  max-width:760px;
+  max-width:1200px;
   margin:0 auto;
-
-  padding:0 30px 100px;
-
-  text-align:center;
-
-  color:var(--muted);
-  font-size:13px;
-  line-height:2;
+  padding:0 55px 110px;
 }
+
+.note-box{
+  border-top:1px solid var(--line);
+  padding-top:35px;
+  text-align:center;
+}
+
+.note-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:25px;
+  margin-bottom:15px;
+}
+
+.note-text{
+  max-width:650px;
+  margin:0 auto;
+  font-size:12px;
+  line-height:2;
+  color:var(--muted);
+}
+
 
 /* =========================
    FOOTER
@@ -297,114 +288,61 @@ header{
 
 footer{
   border-top:1px solid var(--line);
-
   padding:35px 55px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
+  font-size:10px;
+  letter-spacing:1px;
   color:var(--muted);
-  font-size:12px;
 }
 
 .footer-logo{
   font-family:"Cormorant Garamond",serif;
   font-size:20px;
-  letter-spacing:2px;
   color:var(--dark);
 }
+
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:800px){
 
   header{
-    padding:24px 30px;
+    padding:22px 25px;
   }
 
   .hero{
-    padding:75px 30px 60px;
+    padding:75px 25px 60px;
   }
 
   .hero h1{
-    font-size:60px;
+    font-size:55px;
   }
 
   .breadcrumb{
-    padding-left:30px;
-    padding-right:30px;
+    padding:0 25px 30px;
   }
 
   .templates{
-    padding-left:30px;
-    padding-right:30px;
-
-    grid-template-columns:1fr 1fr;
+    padding:0 25px 80px;
   }
 
-  footer{
-    padding:30px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  header{
-    padding:20px;
-  }
-
-  .logo{
-    font-size:22px;
-  }
-
-  .back{
-    font-size:16px;
-  }
-
-  .hero{
-    padding:60px 20px 50px;
-  }
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .hero p{
-    font-size:13px;
-  }
-
-  .breadcrumb{
-    padding:0 20px 30px;
-    font-size:15px;
-  }
-
-  .templates{
-    padding:0 20px 75px;
-
+  .template-grid{
     grid-template-columns:1fr;
-
-    gap:20px;
-  }
-
-  .card-info{
-    padding:22px 20px 25px;
+    gap:25px;
   }
 
   .note{
-    padding-bottom:70px;
+    padding:0 25px 80px;
   }
 
   footer{
-    padding:25px 20px;
-
+    padding:30px 25px;
     flex-direction:column;
-
-    gap:8px;
-
+    gap:10px;
     text-align:center;
   }
 
@@ -415,6 +353,7 @@ footer{
 
 <body>
 
+
 <!-- =========================
      HEADER
 ========================= -->
@@ -422,11 +361,11 @@ footer{
 <header>
 
   <a href="love.html" class="logo">
-    PINTO <span>LOVE</span>
+    PINTO LOVE
   </a>
 
-  <a href="love.html" class="back">
-    ← Back to PINTO LOVE
+  <a href="love.html" class="back-link">
+    ← BACK TO PINTO LOVE
   </a>
 
 </header>
@@ -438,7 +377,7 @@ footer{
 
 <section class="hero">
 
-  <div class="hero-eyebrow">
+  <div class="hero-label">
     PINTO LOVE · BIRTHDAY
   </div>
 
@@ -447,9 +386,8 @@ footer{
   </h1>
 
   <p>
-    เว็บไซต์เล็ก ๆ สำหรับเก็บคำอวยพร
-    ความทรงจำ และช่วงเวลาพิเศษ
-    ในวันเกิดของคนที่คุณรัก
+    เว็บไซต์เล็ก ๆ สำหรับเก็บคำอวยพร ความทรงจำ
+    และช่วงเวลาพิเศษ ในวันเกิดของคนที่คุณรัก
   </p>
 
 </section>
@@ -467,9 +405,7 @@ footer{
 
   <span>/</span>
 
-  <span>
-    Birthday
-  </span>
+  Birthday
 
 </div>
 
@@ -480,177 +416,168 @@ footer{
 
 <section class="templates">
 
+  <div class="template-grid">
 
-  <!-- =====================
-       TEMPLATE 01
-  ====================== -->
 
-  <a
-    href="birthday-template-01.html"
-    class="template-card"
-  >
+    <!-- =========================
+         TEMPLATE 01
+    ========================= -->
 
-    <div class="preview">
+    <a href="birthday-template-01.html" class="card">
 
-      <div class="preview-content">
+      <div class="card-image">
 
-        <div class="preview-number">
-          01
+        <img
+          src="birthday-01.jpg"
+          alt="Birthday Template 01"
+        >
+
+      </div>
+
+      <div class="card-info">
+
+        <div class="card-category">
+          BIRTHDAY · TEMPLATE 01
         </div>
 
-        <div class="preview-label">
-          Birthday
+        <div class="card-title">
+          วันเกิด
         </div>
 
-      </div>
-
-    </div>
-
-    <div class="card-info">
-
-      <div class="card-category">
-        BIRTHDAY · TEMPLATE 01
-      </div>
-
-      <div class="card-title">
-        แบบที่หนึ่ง
-      </div>
-
-      <div class="card-description">
-        เว็บไซต์วันเกิดสำหรับเก็บคำอวยพร
-        และความทรงจำในวันพิเศษ
-      </div>
-
-      <div class="card-bottom">
-
-        <div class="price">
-          129 THB
+        <div class="card-description">
+          เว็บไซต์เซอร์ไพรส์วันเกิด
+          ที่ค่อย ๆ เปิดของขวัญและค้นพบ
+          คำอวยพรทีละขั้น
+          ตั้งแต่กล่องของขวัญไปจนถึงเซอร์ไพรส์สุดท้าย
         </div>
 
-        <div class="view">
-          View Template →
+        <div class="card-bottom">
+
+          <div class="card-price">
+            129 THB
+          </div>
+
+          <div class="view-link">
+            VIEW TEMPLATE →
+          </div>
+
         </div>
 
       </div>
 
-    </div>
-
-  </a>
+    </a>
 
 
-  <!-- =====================
-       TEMPLATE 02
-  ====================== -->
+    <!-- =========================
+         TEMPLATE 02
+    ========================= -->
 
-  <a
-    href="birthday-template-02.html"
-    class="template-card"
-  >
+    <a href="birthday-template-02.html" class="card">
 
-    <div class="preview">
+      <div class="card-image">
 
-      <div class="preview-content">
+        <div class="placeholder">
 
-        <div class="preview-number">
-          02
-        </div>
+          <div class="placeholder-small">
+            BIRTHDAY
+          </div>
 
-        <div class="preview-label">
-          Birthday
+          <div class="placeholder-title">
+            Template 02
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+      <div class="card-info">
 
-    <div class="card-info">
-
-      <div class="card-category">
-        BIRTHDAY · TEMPLATE 02
-      </div>
-
-      <div class="card-title">
-        แบบที่สอง
-      </div>
-
-      <div class="card-description">
-        อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราว
-        และส่งข้อความพิเศษให้คนสำคัญ
-      </div>
-
-      <div class="card-bottom">
-
-        <div class="price">
-          129 THB
+        <div class="card-category">
+          BIRTHDAY · TEMPLATE 02
         </div>
 
-        <div class="view">
-          View Template →
+        <div class="card-title">
+          Template 02
         </div>
 
-      </div>
-
-    </div>
-
-  </a>
-
-
-  <!-- =====================
-       TEMPLATE 03
-  ====================== -->
-
-  <a
-    href="birthday-template-03.html"
-    class="template-card"
-  >
-
-    <div class="preview">
-
-      <div class="preview-content">
-
-        <div class="preview-number">
-          03
+        <div class="card-description">
+          Birthday template สำหรับอีกหนึ่งรูปแบบ
+          ของการส่งต่อความรู้สึกในวันพิเศษ
         </div>
 
-        <div class="preview-label">
-          Birthday
+        <div class="card-bottom">
+
+          <div class="card-price">
+            129 THB
+          </div>
+
+          <div class="view-link">
+            VIEW TEMPLATE →
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+    </a>
 
-    <div class="card-info">
 
-      <div class="card-category">
-        BIRTHDAY · TEMPLATE 03
-      </div>
+    <!-- =========================
+         TEMPLATE 03
+    ========================= -->
 
-      <div class="card-title">
-        แบบที่สาม
-      </div>
+    <a href="birthday-template-03.html" class="card">
 
-      <div class="card-description">
-        พื้นที่เล็ก ๆ สำหรับข้อความ
-        ความทรงจำ และคำอวยพรของคุณ
-      </div>
+      <div class="card-image">
 
-      <div class="card-bottom">
+        <div class="placeholder">
 
-        <div class="price">
-          129 THB
-        </div>
+          <div class="placeholder-small">
+            BIRTHDAY
+          </div>
 
-        <div class="view">
-          View Template →
+          <div class="placeholder-title">
+            Template 03
+          </div>
+
         </div>
 
       </div>
 
-    </div>
+      <div class="card-info">
 
-  </a>
+        <div class="card-category">
+          BIRTHDAY · TEMPLATE 03
+        </div>
 
+        <div class="card-title">
+          Template 03
+        </div>
+
+        <div class="card-description">
+          Birthday template
+          สำหรับอีกหนึ่งวิธีในการเก็บ
+          ความทรงจำและคำอวยพร
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="card-price">
+            129 THB
+          </div>
+
+          <div class="view-link">
+            VIEW TEMPLATE →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+  </div>
 
 </section>
 
@@ -659,17 +586,33 @@ footer{
      NOTE
 ========================= -->
 
-<div class="note">
+<section class="note">
 
-  สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ
-  <br>
+  <div class="note-box">
 
-  สามารถปรับโทนสีให้เข้ากับเรื่องราวของคุณได้
-  <br>
+    <div class="note-title">
+      Customize Your Story
+    </div>
 
-  เพิ่มฟังก์ชันพิเศษได้ในราคา +29 THB / function
+    <p class="note-text">
 
-</div>
+      สามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของคุณ
+      และสามารถปรับโทนข้อความและสีให้เข้ากับสไตล์ที่ต้องการได้
+
+      <br>
+
+      เพิ่มฟังก์ชันพิเศษ
+      +29 THB / function
+
+      <br>
+
+      ใช้เวลาในการจัดทำประมาณ 1–2 วัน
+
+    </p>
+
+  </div>
+
+</section>
 
 
 <!-- =========================
@@ -687,6 +630,7 @@ footer{
   </div>
 
 </footer>
+
 
 </body>
 </html>
