@@ -19,7 +19,6 @@
   --text:#262220;
   --muted:#8a817c;
   --line:#e9e2de;
-  --soft:#f4efec;
   --accent:#b88d88;
   --accent-dark:#936c67;
 }
@@ -52,11 +51,6 @@ img{
   width:100%;
 }
 
-.container{
-  width:min(1180px, calc(100% - 48px));
-  margin:auto;
-}
-
 /* HEADER */
 
 header{
@@ -72,7 +66,7 @@ header{
 }
 
 .header-inner{
-  width:min(1180px, calc(100% - 48px));
+  width:min(1180px,calc(100% - 48px));
   margin:auto;
   display:flex;
   justify-content:space-between;
@@ -97,62 +91,17 @@ header{
   color:var(--text);
 }
 
-/* HERO */
-
-.hero{
-  padding:110px 0 95px;
-  text-align:center;
-}
-
-.eyebrow{
-  font-size:11px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:var(--accent-dark);
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:78px;
-  line-height:1;
-  font-weight:500;
-  margin-bottom:22px;
-}
-
-.hero p{
-  max-width:650px;
-  margin:auto;
-  color:var(--muted);
-  font-size:14px;
-  line-height:2;
-}
-
-/* BREADCRUMB */
-
-.breadcrumb{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:17px 0;
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
-.breadcrumb span{
-  margin:0 8px;
-}
-
 /* PRODUCT */
 
 .product{
-  padding:100px 0 120px;
+  width:min(1180px,calc(100% - 48px));
+  margin:auto;
+  padding:90px 0 120px;
 }
 
 .product-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:90px;
   align-items:start;
 }
@@ -160,13 +109,12 @@ header{
 /* GALLERY */
 
 .gallery{
-  position:sticky;
-  top:110px;
+  min-width:0;
 }
 
 .main-image{
   position:relative;
-  aspect-ratio:4/5;
+  aspect-ratio:4 / 5;
   overflow:hidden;
   background:#eee9e6;
 }
@@ -175,39 +123,40 @@ header{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:opacity .45s ease;
+  transition:opacity .35s ease;
 }
 
 .gallery-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:42px;
-  height:42px;
-  border:1px solid rgba(255,255,255,.7);
-  background:rgba(255,255,255,.8);
+  width:44px;
+  height:44px;
+  border:0;
   border-radius:50%;
+  background:rgba(255,255,255,.9);
+  color:#262220;
   cursor:pointer;
-  font-size:18px;
+  font-size:25px;
+  line-height:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:2;
 }
 
 .gallery-arrow.prev{
-  left:16px;
+  left:18px;
 }
 
 .gallery-arrow.next{
-  right:16px;
+  right:18px;
 }
 
 .counter{
   position:absolute;
   right:18px;
   bottom:18px;
-  background:rgba(255,255,255,.9);
+  background:rgba(255,255,255,.92);
   padding:7px 12px;
   font-size:10px;
   letter-spacing:1px;
@@ -224,14 +173,12 @@ header{
   aspect-ratio:4/5;
   overflow:hidden;
   cursor:pointer;
-  opacity:.5;
-  border:1px solid transparent;
+  opacity:.45;
   transition:.3s;
 }
 
 .thumb.active{
   opacity:1;
-  border-color:var(--accent);
 }
 
 .thumb img{
@@ -251,7 +198,7 @@ header{
   letter-spacing:2.5px;
   color:var(--accent-dark);
   text-transform:uppercase;
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
 .product-title{
@@ -259,7 +206,7 @@ header{
   font-size:56px;
   line-height:1.2;
   font-weight:500;
-  margin-bottom:18px;
+  margin-bottom:12px;
 }
 
 .product-subtitle{
@@ -267,20 +214,20 @@ header{
   font-size:23px;
   line-height:1.5;
   color:var(--muted);
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
 .price{
   font-size:13px;
   letter-spacing:2px;
-  margin-bottom:32px;
+  margin-bottom:28px;
 }
 
 .description{
   color:#665e5a;
   font-size:14px;
   line-height:2;
-  margin-bottom:40px;
+  margin-bottom:35px;
 }
 
 /* FUNCTIONS */
@@ -289,50 +236,59 @@ header{
   font-size:10px;
   letter-spacing:2px;
   text-transform:uppercase;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 
 .function-list{
   list-style:none;
   border-top:1px solid var(--line);
-  margin-bottom:38px;
+  margin-bottom:32px;
 }
 
 .function-list li{
-  padding:12px 0;
+  padding:10px 0;
   border-bottom:1px solid var(--line);
   font-size:13px;
   color:#625b57;
-  display:flex;
-  gap:12px;
-}
-
-.function-list li::before{
-  content:"♡";
-  color:var(--accent);
 }
 
 /* CUSTOMIZE */
 
 .customize{
-  background:var(--soft);
-  padding:27px 30px;
-  margin-bottom:38px;
+  margin-bottom:30px;
 }
 
 .customize p{
-  color:#716964;
+  color:#706863;
   font-size:13px;
   line-height:2;
 }
 
-.customize strong{
-  display:block;
-  color:var(--text);
+.extra{
+  margin-top:18px;
+}
+
+.extra-title,
+.delivery-title{
   font-size:10px;
   letter-spacing:2px;
   text-transform:uppercase;
-  margin-bottom:10px;
+  margin-bottom:5px;
+}
+
+.extra-text{
+  font-size:13px;
+  color:#706863;
+}
+
+.delivery{
+  margin-top:18px;
+  margin-bottom:34px;
+}
+
+.delivery-text{
+  font-size:13px;
+  color:#706863;
 }
 
 /* BUTTONS */
@@ -340,7 +296,7 @@ header{
 .buttons{
   display:flex;
   flex-direction:column;
-  gap:11px;
+  gap:10px;
 }
 
 .primary-button,
@@ -376,22 +332,20 @@ header{
 /* STORY */
 
 .story{
-  background:#f3eeeb;
-  padding:120px 0;
+  border-top:1px solid var(--line);
+  padding:110px 0 120px;
 }
 
 .story-inner{
-  width:min(820px,calc(100% - 48px));
+  width:min(760px,calc(100% - 48px));
   margin:auto;
-  text-align:center;
 }
 
 .story-label{
   font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
+  letter-spacing:2.5px;
   color:var(--accent-dark);
-  margin-bottom:24px;
+  margin-bottom:18px;
 }
 
 .story h2{
@@ -399,60 +353,25 @@ header{
   font-size:54px;
   line-height:1.15;
   font-weight:500;
-  margin-bottom:28px;
+  margin-bottom:30px;
 }
 
 .story p{
   color:#706863;
   font-size:14px;
   line-height:2.2;
+  margin-bottom:22px;
 }
 
-/* ORDER */
-
-.order{
-  padding:110px 0;
-  text-align:center;
-  border-bottom:1px solid var(--line);
-}
-
-.order h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:48px;
-  font-weight:500;
-  margin-bottom:20px;
-}
-
-.order p{
-  color:var(--muted);
-  font-size:13px;
-  max-width:560px;
-  margin:0 auto 35px;
-  line-height:2;
-}
-
-.order-button{
-  display:inline-flex;
-  min-width:220px;
-  min-height:52px;
-  align-items:center;
-  justify-content:center;
-  background:var(--text);
-  color:#fff;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  transition:.3s;
-}
-
-.order-button:hover{
-  background:var(--accent-dark);
+.story p:last-child{
+  margin-bottom:0;
 }
 
 /* FOOTER */
 
 footer{
-  padding:45px 0;
+  border-top:1px solid var(--line);
+  padding:42px 0;
   text-align:center;
 }
 
@@ -460,7 +379,7 @@ footer{
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
   letter-spacing:2px;
-  margin-bottom:8px;
+  margin-bottom:5px;
 }
 
 .footer-sub{
@@ -478,21 +397,13 @@ footer{
     height:70px;
   }
 
-  .container,
   .header-inner{
     width:calc(100% - 32px);
   }
 
-  .hero{
-    padding:80px 0 70px;
-  }
-
-  .hero h1{
-    font-size:58px;
-  }
-
   .product{
-    padding:70px 0 90px;
+    width:calc(100% - 32px);
+    padding:55px 0 80px;
   }
 
   .product-grid{
@@ -500,62 +411,43 @@ footer{
     gap:55px;
   }
 
-  .gallery{
-    position:relative;
-    top:auto;
-  }
-
   .product-title{
-    font-size:42px;
+    font-size:44px;
     line-height:1.25;
-    margin-bottom:16px;
   }
 
   .product-subtitle{
     font-size:20px;
-    line-height:1.5;
-    margin-bottom:28px;
   }
 
   .story{
-    padding:85px 0;
+    padding:80px 0 90px;
+  }
+
+  .story-inner{
+    width:calc(100% - 32px);
   }
 
   .story h2{
     font-size:42px;
   }
 
-  .order{
-    padding:85px 0;
-  }
-
-  .order h2{
-    font-size:40px;
-  }
-
 }
 
 @media(max-width:480px){
 
-  .hero h1{
-    font-size:48px;
-  }
-
-  .hero p{
-    font-size:13px;
-  }
-
   .product-title{
-    font-size:38px;
-  }
-
-  .gallery-arrow{
-    width:36px;
-    height:36px;
+    font-size:39px;
   }
 
   .thumbs{
     gap:5px;
+  }
+
+  .gallery-arrow{
+    width:38px;
+    height:38px;
+    font-size:21px;
   }
 
 }
@@ -575,250 +467,204 @@ footer{
     </a>
 
     <a href="make-up.html" class="back">
-      BACK TO TEMPLATES
+      ← BACK TO TEMPLATES
     </a>
 
   </div>
 </header>
 
 
-<!-- HERO -->
-
-<section class="hero">
-
-  <div class="container">
-
-    <div class="eyebrow">
-      PINTO LOVE · MAKE UP
-    </div>
-
-    <h1>Make Up</h1>
-
-    <p>
-      เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ ความรู้สึกที่อยากพูด
-      และโอกาสเล็ก ๆ ที่อยากขอให้เราเริ่มต้นกันใหม่อีกครั้ง
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- BREADCRUMB -->
-
-<div class="breadcrumb">
-
-  <div class="container">
-
-    <a href="love.html">PINTO LOVE</a>
-
-    <span>/</span>
-
-    <a href="make-up.html">MAKE UP</a>
-
-    <span>/</span>
-
-    TEMPLATE 01
-
-  </div>
-
-</div>
-
-
 <!-- PRODUCT -->
 
 <section class="product">
 
-<div class="container">
-
-<div class="product-grid">
+  <div class="product-grid">
 
 
-<!-- GALLERY -->
+    <!-- GALLERY -->
 
-<div class="gallery">
+    <div class="gallery">
 
-  <div class="main-image">
+      <div class="main-image">
 
-    <img
-      id="mainImage"
-      src="make-up-01.jpg"
-      alt="Make Up Template 01"
-    >
+        <img
+          id="mainImage"
+          src="make-up-01.jpg"
+          alt="Make Up Template 01 - Image 1"
+        >
 
-    <button
-      class="gallery-arrow prev"
-      onclick="prevImage()"
-      aria-label="Previous image">
-      ‹
-    </button>
+        <button
+          class="gallery-arrow prev"
+          onclick="prevImage()"
+          aria-label="Previous image">
+          ‹
+        </button>
 
-    <button
-      class="gallery-arrow next"
-      onclick="nextImage()"
-      aria-label="Next image">
-      ›
-    </button>
+        <button
+          class="gallery-arrow next"
+          onclick="nextImage()"
+          aria-label="Next image">
+          ›
+        </button>
 
-    <div class="counter">
-      <span id="currentNumber">1</span> / 5
+        <div class="counter">
+          <span id="currentNumber">1</span> / 5
+        </div>
+
+      </div>
+
+
+      <div class="thumbs">
+
+        <div class="thumb active" onclick="showImage(0)">
+          <img src="make-up-01.jpg" alt="Make Up Template 01 - Image 1">
+        </div>
+
+        <div class="thumb" onclick="showImage(1)">
+          <img src="make-up-02.jpg" alt="Make Up Template 01 - Image 2">
+        </div>
+
+        <div class="thumb" onclick="showImage(2)">
+          <img src="make-up-03.jpg" alt="Make Up Template 01 - Image 3">
+        </div>
+
+        <div class="thumb" onclick="showImage(3)">
+          <img src="make-up-04.jpg" alt="Make Up Template 01 - Image 4">
+        </div>
+
+        <div class="thumb" onclick="showImage(4)">
+          <img src="make-up-05.jpg" alt="Make Up Template 01 - Image 5">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRODUCT INFO -->
+
+    <div class="product-info">
+
+      <div class="product-label">
+        MAKE UP · TEMPLATE 01
+      </div>
+
+      <h1 class="product-title">
+        ขอโทษและคืนดี
+      </h1>
+
+      <div class="product-subtitle">
+        แบบที่หนึ่ง · Make Up Template
+      </div>
+
+      <div class="price">
+        129 THB
+      </div>
+
+      <p class="description">
+        เว็บไซต์เซอร์ไพรส์สำหรับการขอโทษและคืนดี
+        ที่ค่อย ๆ เล่าความรู้สึก สิ่งที่อยากพูด
+        ความทรงจำที่มีร่วมกัน และคำขอเริ่มต้นใหม่อีกครั้ง
+      </p>
+
+
+      <!-- INCLUDED FUNCTIONS -->
+
+      <div class="info-title">
+        Included Functions
+      </div>
+
+      <ul class="function-list">
+
+        <li>A Little Apology</li>
+
+        <li>I'm Sorry</li>
+
+        <li>What I Really Mean</li>
+
+        <li>Our Little Story</li>
+
+        <li>A Letter For You</li>
+
+        <li>Can We Start Again?</li>
+
+        <li>One Last Message</li>
+
+        <li>Music Player</li>
+
+      </ul>
+
+
+      <!-- CUSTOMIZE -->
+
+      <div class="customize">
+
+        <div class="info-title">
+          Customize
+        </div>
+
+        <p>
+          สามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของลูกค้า
+          รวมถึงปรับโทนของข้อความและสีของเว็บไซต์
+          ให้เข้ากับความรู้สึกที่ต้องการ
+        </p>
+
+      </div>
+
+
+      <!-- EXTRA FUNCTION -->
+
+      <div class="extra">
+
+        <div class="extra-title">
+          Extra Function
+        </div>
+
+        <div class="extra-text">
+          +29 THB / function
+        </div>
+
+      </div>
+
+
+      <!-- DELIVERY -->
+
+      <div class="delivery">
+
+        <div class="delivery-title">
+          Delivery
+        </div>
+
+        <div class="delivery-text">
+          1–2 days
+        </div>
+
+      </div>
+
+
+      <!-- BUTTONS -->
+
+      <div class="buttons">
+
+        <a
+          href="https://pintorak.github.io/Template-1-Scratch-Coin/"
+          class="primary-button"
+          target="_blank"
+          rel="noopener">
+          VIEW LIVE DEMO
+        </a>
+
+        <a
+          href="#order"
+          class="secondary-button">
+          ORDER THIS TEMPLATE
+        </a>
+
+      </div>
+
     </div>
 
   </div>
-
-
-  <div class="thumbs">
-
-    <div class="thumb active" onclick="showImage(0)">
-      <img src="make-up-01.jpg" alt="">
-    </div>
-
-    <div class="thumb" onclick="showImage(1)">
-      <img src="make-up-02.jpg" alt="">
-    </div>
-
-    <div class="thumb" onclick="showImage(2)">
-      <img src="make-up-03.jpg" alt="">
-    </div>
-
-    <div class="thumb" onclick="showImage(3)">
-      <img src="make-up-04.jpg" alt="">
-    </div>
-
-    <div class="thumb" onclick="showImage(4)">
-      <img src="make-up-05.jpg" alt="">
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- PRODUCT INFO -->
-
-<div class="product-info">
-
-  <div class="product-label">
-    MAKE UP · TEMPLATE 01
-  </div>
-
-  <h2 class="product-title">
-    ขอโทษและคืนดี
-  </h2>
-
-  <div class="product-subtitle">
-    แบบที่หนึ่ง · Make Up Template
-  </div>
-
-  <div class="price">
-    129 THB
-  </div>
-
-  <p class="description">
-
-    เว็บไซต์เซอร์ไพรส์สำหรับการขอโทษ
-    ที่ค่อย ๆ พาคนที่คุณรักเปิดอ่านข้อความ
-    และความรู้สึกที่บางครั้งพูดออกมาตรง ๆ ได้ยาก
-
-  </p>
-
-
-  <!-- FUNCTIONS -->
-
-  <div class="info-title">
-    INCLUDED FUNCTIONS
-  </div>
-
-  <ul class="function-list">
-
-    <li>
-      A Little Apology
-    </li>
-
-    <li>
-      I'm Sorry
-    </li>
-
-    <li>
-      What I Really Mean
-    </li>
-
-    <li>
-      Our Little Story
-    </li>
-
-    <li>
-      A Letter For You
-    </li>
-
-    <li>
-      Can We Start Again?
-    </li>
-
-    <li>
-      One Last Message
-    </li>
-
-    <li>
-      Music Player
-    </li>
-
-  </ul>
-
-
-  <!-- CUSTOMIZE -->
-
-  <div class="customize">
-
-    <strong>
-      CUSTOMIZE
-    </strong>
-
-    <p>
-      สามารถเปลี่ยนข้อความในแต่ละหน้า
-      ปรับเรื่องราว น้ำเสียง และข้อความให้เป็นเรื่องของคุณได้
-      รวมถึงปรับโทนสีให้เข้ากับความสัมพันธ์ของคุณ
-    </p>
-
-    <p style="margin-top:14px;">
-      เพิ่มฟังก์ชันพิเศษ
-      <strong style="display:inline;font-size:13px;letter-spacing:0;text-transform:none;">
-        +29 THB / function
-      </strong>
-    </p>
-
-    <p style="margin-top:8px;">
-      ระยะเวลาจัดทำประมาณ 1–2 วัน
-    </p>
-
-  </div>
-
-
-  <!-- BUTTONS -->
-
-  <div class="buttons">
-
-    <a
-      href="https://pintorak.github.io/Template-1-Scratch-Coin/"
-      class="primary-button"
-      target="_blank"
-      rel="noopener">
-      VIEW LIVE DEMO
-    </a>
-
-    <a
-      href="#order"
-      class="secondary-button">
-      ORDER THIS TEMPLATE
-    </a>
-
-  </div>
-
-</div>
-
-</div>
-
-</div>
 
 </section>
 
@@ -834,29 +680,36 @@ footer{
     </div>
 
     <h2>
-      Sometimes Sorry<br>
-      Needs a Little More.
+      A Little Apology.
     </h2>
 
     <p>
+      บางครั้งคำว่า “ขอโทษ” อาจพูดออกมาได้ไม่หมดว่ารู้สึกอะไร
+    </p>
 
-      บางครั้งคำว่า “ขอโทษ”
-      อาจไม่เพียงพอสำหรับความรู้สึกทั้งหมดที่เราอยากอธิบาย
+    <p>
+      Template นี้จึงถูกออกแบบให้คำขอโทษ
+      ค่อย ๆ เล่าเรื่องผ่านแต่ละหน้า
+      ตั้งแต่สิ่งที่อยากพูด สิ่งที่เข้าใจ
+      ความทรงจำดี ๆ ไปจนถึงคำขอเล็ก ๆ
+      ว่าเรายังสามารถกลับมาเริ่มต้นกันใหม่ได้ไหม
+    </p>
 
-      <br><br>
+    <p>
+      เพราะบางความสัมพันธ์ ไม่ได้ต้องการคำพูดที่สมบูรณ์แบบ
+      แต่อาจต้องการเพียงใครสักคน
+      ที่ยอมเปิดใจและพูดความรู้สึกออกมา
+    </p>
 
-      Template นี้จึงถูกออกแบบมาให้คำขอโทษ
-      ค่อย ๆ ถูกเปิดออกทีละข้อความ
-      เหมือนการเล่าเรื่องราวของความสัมพันธ์
-      ตั้งแต่สิ่งที่เกิดขึ้น สิ่งที่อยากบอก
-      ไปจนถึงคำถามสุดท้ายว่า
+    <p>
+      Made to say what is hard to say.
+    </p>
 
-      <br><br>
-
-      <em>
-        Can we start again?
-      </em>
-
+    <p>
+      ข้อความ รูปภาพ และรายละเอียดภายในเว็บไซต์
+      สามารถปรับเปลี่ยนให้เป็นเรื่องราวของคุณได้
+      PINTO LOVE จะจัดวางทุกอย่างให้อยู่ในโครงสร้างของ Template
+      เพื่อให้เรื่องราวของคุณยังคงความรู้สึกและบรรยากาศของเว็บไซต์ไว้
     </p>
 
   </div>
@@ -866,23 +719,22 @@ footer{
 
 <!-- ORDER -->
 
-<section class="order" id="order">
+<section class="story" id="order">
 
-  <div class="container">
+  <div class="story-inner">
+
+    <div class="story-label">
+      PINTO LOVE
+    </div>
 
     <h2>
       Make It Yours.
     </h2>
 
     <p>
-      Template นี้สามารถปรับข้อความ เรื่องราว
-      และรายละเอียดต่าง ๆ ให้กลายเป็นเว็บไซต์
-      ที่สร้างขึ้นมาเพื่อคนของคุณโดยเฉพาะ
+      Template นี้สามารถปรับข้อความ รูปภาพ
+      และรายละเอียดภายในเว็บไซต์ให้เป็นเรื่องราวของคุณได้
     </p>
-
-    <a href="#" class="order-button">
-      ORDER THIS TEMPLATE
-    </a>
 
   </div>
 
@@ -898,7 +750,7 @@ footer{
   </div>
 
   <div class="footer-sub">
-    Digital Love Experiences
+    Digital Experiences · PINTO STUDIO
   </div>
 
 </footer>
@@ -938,15 +790,16 @@ function showImage(index){
 
     mainImage.style.opacity = "1";
 
-  },180);
+  },150);
 
-  currentNumber.textContent = current + 1;
+  currentNumber.textContent =
+    current + 1;
 
-  thumbs.forEach((thumb,i)=>{
+  thumbs.forEach((thumb,index) => {
 
     thumb.classList.toggle(
       "active",
-      i === current
+      index === current
     );
 
   });
@@ -980,12 +833,10 @@ function prevImage(){
 }
 
 
-/* AUTO CHANGE EVERY 3 SECONDS */
+/* AUTO SLIDE */
 
 setInterval(() => {
-
   nextImage();
-
 },3000);
 
 
@@ -994,10 +845,11 @@ setInterval(() => {
 let touchStartX = 0;
 let touchEndX = 0;
 
-const galleryImage =
+const gallery =
   document.querySelector(".main-image");
 
-galleryImage.addEventListener(
+
+gallery.addEventListener(
   "touchstart",
   function(e){
 
@@ -1009,36 +861,29 @@ galleryImage.addEventListener(
 );
 
 
-galleryImage.addEventListener(
+gallery.addEventListener(
   "touchend",
   function(e){
 
     touchEndX =
       e.changedTouches[0].screenX;
 
-    handleSwipe();
+    const difference =
+      touchEndX - touchStartX;
+
+    if(Math.abs(difference) < 50){
+      return;
+    }
+
+    if(difference < 0){
+      nextImage();
+    }else{
+      prevImage();
+    }
 
   },
   {passive:true}
 );
-
-
-function handleSwipe(){
-
-  const difference =
-    touchEndX - touchStartX;
-
-  if(Math.abs(difference) < 50){
-    return;
-  }
-
-  if(difference < 0){
-    nextImage();
-  }else{
-    prevImage();
-  }
-
-}
 
 </script>
 
