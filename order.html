@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -1317,12 +1318,6 @@ document.getElementById("applyCouponBtn")
     applyCoupon
   );
 
-/*
-  If the customer changes LINE ID after
-  applying the coupon, remove the discount.
-  They must Apply again so the new LINE ID
-  can be checked.
-*/
 document.getElementById("lineId")
   .addEventListener("input",function(){
 
@@ -1631,13 +1626,6 @@ async function submitOrder(){
     return;
   }
 
-  /*
-    Extra safety:
-    The coupon must belong to the current LINE ID.
-    If the LINE ID changed after Apply,
-    the discount is removed and the customer
-    must Apply again.
-  */
   if(
     couponApplied &&
     normalizeLineId(lineId) !== couponLineIdApplied
@@ -1799,11 +1787,6 @@ async function submitOrder(){
       orderData
     );
 
-    /*
-      Coupon is recorded ONLY after
-      the order has been created.
-    */
-
     if(couponApplied){
 
       showStatus(
@@ -1842,27 +1825,24 @@ async function submitOrder(){
       }
     }
 
-    showStatus(
-      "Order submitted successfully. Order No. " +
-      createdOrderNumber,
-      "success"
-    );
+    /*
+      ================================
+      ORDER SUCCESS
+      ================================
 
-    alert(
-      "Order submitted successfully!\n\n" +
-      "Order No.: " +
-      createdOrderNumber
-    );
+      เมื่อสร้างออเดอร์และตรวจสอบคูปอง
+      สำเร็จแล้ว ให้ไปหน้า
+      order-success.html
 
-    document.getElementById(
-      "submitBtn"
-    ).textContent =
-      "Order Submitted ✓";
+      พร้อมส่งเลขออเดอร์ไปด้วย
+      เพื่อให้หน้าตู้พิมพ์เอาไปแสดงบนกระดาษ
+    */
 
-    document.getElementById(
-      "submitBtn"
-    ).disabled =
-      true;
+    window.location.href =
+      "order-success.html?order=" +
+      encodeURIComponent(
+        createdOrderNumber
+      );
 
   }catch(error){
 
@@ -1886,11 +1866,6 @@ async function submitOrder(){
       "error"
     );
 
-    /*
-      IMPORTANT:
-      After an error, the button is enabled again.
-      The customer can fix the problem and submit again.
-    */
     setButtonLoading(false);
   }
 }
@@ -1932,3 +1907,4 @@ calculatePrices();
 
 </body>
 </html>
+```
