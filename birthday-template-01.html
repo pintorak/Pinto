@@ -128,36 +128,91 @@ header{
   align-self:start;
 }
 
-.gallery-placeholder{
+.gallery-main{
+  position:relative;
   aspect-ratio:4 / 5;
-  border:1px solid var(--line);
+  overflow:hidden;
   background:var(--beige);
+}
+
+.gallery-main img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:opacity .45s ease;
+}
+
+.gallery-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.7);
+  background:rgba(64,57,52,.28);
+  color:white;
+  border-radius:50%;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  padding:30px;
+  font-size:20px;
+  cursor:pointer;
+  z-index:3;
+  transition:.3s;
 }
 
-.gallery-placeholder .number{
-  font-family:"Cormorant Garamond",serif;
-  font-size:42px;
-  color:var(--taupe);
-  margin-bottom:5px;
+.gallery-arrow:hover{
+  background:rgba(64,57,52,.65);
 }
 
-.gallery-placeholder .label{
-  font-family:"Cormorant Garamond",serif;
-  font-size:24px;
-  color:var(--dark);
+.gallery-arrow.left{
+  left:18px;
 }
 
-.gallery-placeholder .small{
-  margin-top:15px;
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:.5px;
+.gallery-arrow.right{
+  right:18px;
+}
+
+.gallery-counter{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  padding:5px 10px;
+  background:rgba(64,57,52,.65);
+  color:white;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.gallery-thumbs{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.gallery-thumb{
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+  cursor:pointer;
+  border:1px solid transparent;
+  opacity:.55;
+  transition:.3s;
+}
+
+.gallery-thumb:hover{
+  opacity:1;
+}
+
+.gallery-thumb.active{
+  opacity:1;
+  border-color:var(--dark);
+}
+
+.gallery-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 
@@ -516,18 +571,57 @@ footer{
 
   <div class="gallery">
 
-    <div class="gallery-placeholder">
+    <div class="gallery-main">
 
-      <div class="number">
-        Template 01
+      <img
+        id="galleryImage"
+        src="birthday-01.jpg"
+        alt="Birthday Template 01"
+      >
+
+      <button
+        class="gallery-arrow left"
+        onclick="prevImage()"
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+
+      <button
+        class="gallery-arrow right"
+        onclick="nextImage()"
+        aria-label="Next image"
+      >
+        ›
+      </button>
+
+      <div class="gallery-counter">
+        <span id="currentImage">1</span> / 5
       </div>
 
-      <div class="label">
-        Birthday
+    </div>
+
+
+    <div class="gallery-thumbs">
+
+      <div class="gallery-thumb active" onclick="showImage(0)">
+        <img src="birthday-01.jpg" alt="">
       </div>
 
-      <div class="small">
-        Preview images will be added soon.
+      <div class="gallery-thumb" onclick="showImage(1)">
+        <img src="birthday-02.jpg" alt="">
+      </div>
+
+      <div class="gallery-thumb" onclick="showImage(2)">
+        <img src="birthday-03.jpg" alt="">
+      </div>
+
+      <div class="gallery-thumb" onclick="showImage(3)">
+        <img src="birthday-04.jpg" alt="">
+      </div>
+
+      <div class="gallery-thumb" onclick="showImage(4)">
+        <img src="birthday-05.jpg" alt="">
       </div>
 
     </div>
@@ -667,7 +761,12 @@ footer{
 
     <div class="buttons">
 
-      <a href="#" class="btn secondary">
+      <a
+        href="https://pintorak.github.io/Birthday-Surprise/"
+        class="btn secondary"
+        target="_blank"
+        rel="noopener"
+      >
         VIEW LIVE DEMO
       </a>
 
@@ -703,8 +802,8 @@ footer{
 
     <br><br>
 
-    เราออกแบบ Birthday Template นี้ให้ทุกการกด
-    ทุกการเปิด และทุกเซอร์ไพรส์
+    เราออกแบบ Birthday Template นี้ให้ทุกการเปิด
+    ทุกการกด และทุกเซอร์ไพรส์
     ค่อย ๆ เล่าเรื่องราวแทนความรู้สึกของคุณ
 
   </p>
@@ -728,6 +827,108 @@ footer{
 
 </footer>
 
+
+<script>
+
+const images = [
+  "birthday-01.jpg",
+  "birthday-02.jpg",
+  "birthday-03.jpg",
+  "birthday-04.jpg",
+  "birthday-05.jpg"
+];
+
+let current = 0;
+
+const galleryImage = document.getElementById("galleryImage");
+const currentImage = document.getElementById("currentImage");
+const thumbnails = document.querySelectorAll(".gallery-thumb");
+
+
+function showImage(index){
+
+  if(index === current) return;
+
+  galleryImage.style.opacity = "0";
+
+  setTimeout(() => {
+
+    current = index;
+
+    galleryImage.src = images[current];
+    currentImage.textContent = current + 1;
+
+    thumbnails.forEach((thumb, i) => {
+      thumb.classList.toggle("active", i === current);
+    });
+
+    galleryImage.style.opacity = "1";
+
+  }, 180);
+
+}
+
+
+function nextImage(){
+
+  const next = (current + 1) % images.length;
+
+  showImage(next);
+
+}
+
+
+function prevImage(){
+
+  const prev = (current - 1 + images.length) % images.length;
+
+  showImage(prev);
+
+}
+
+
+/* =========================
+   SWIPE MOBILE
+========================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+galleryImage.addEventListener("touchstart", function(e){
+
+  touchStartX = e.changedTouches[0].screenX;
+
+}, {passive:true});
+
+
+galleryImage.addEventListener("touchend", function(e){
+
+  touchEndX = e.changedTouches[0].screenX;
+
+  const distance = touchEndX - touchStartX;
+
+  if(Math.abs(distance) < 50) return;
+
+  if(distance < 0){
+    nextImage();
+  }else{
+    prevImage();
+  }
+
+}, {passive:true});
+
+
+/* =========================
+   AUTO SLIDE
+========================= */
+
+setInterval(() => {
+
+  nextImage();
+
+}, 3000);
+
+</script>
 
 </body>
 </html>
