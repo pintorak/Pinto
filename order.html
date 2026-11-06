@@ -11,8 +11,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<style>
 :root{
   --cream:#f7f2ec;
   --cream2:#eee5dc;
@@ -26,21 +27,22 @@
 
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
-  background:
-    radial-gradient(circle at top left,#fffaf6 0%,transparent 35%),
-    var(--cream);
-  color:var(--brown-dark);
   font-family:"DM Sans","Noto Sans Thai",sans-serif;
+  color:var(--brown-dark);
+  background:
+    radial-gradient(circle at top left,rgba(255,255,255,.8),transparent 35%),
+    linear-gradient(135deg,var(--cream),#f3ece5 55%,var(--cream2));
+  min-height:100vh;
 }
 
 button,
 input,
-textarea,
-select{
+textarea{
   font-family:inherit;
 }
 
@@ -48,284 +50,359 @@ button{
   cursor:pointer;
 }
 
-.container{
-  width:min(1100px,92%);
-  margin:auto;
-}
-
-nav{
-  padding:25px 0 10px;
-}
-
-.nav-inner{
-  background:rgba(255,253,251,.82);
-  border:1px solid rgba(140,126,116,.18);
-  backdrop-filter:blur(15px);
+.navbar{
+  width:min(1100px,calc(100% - 32px));
+  margin:22px auto 0;
+  padding:13px 18px;
+  background:rgba(255,253,251,.72);
+  border:1px solid rgba(217,206,196,.8);
   border-radius:999px;
-  padding:13px 22px;
+  backdrop-filter:blur(14px);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  box-shadow:0 10px 35px rgba(93,81,73,.06);
+  position:relative;
+  z-index:10;
 }
 
 .logo{
-  text-decoration:none;
   color:var(--brown-dark);
+  text-decoration:none;
+  font-size:18px;
   font-weight:700;
   letter-spacing:2px;
-  font-size:15px;
 }
 
-.nav-back{
+.back-home{
   text-decoration:none;
   color:var(--brown);
   font-size:13px;
+  font-weight:600;
+}
+
+.back-home:hover{
+  color:var(--brown-dark);
 }
 
 .hero{
+  width:min(900px,calc(100% - 32px));
+  margin:70px auto 45px;
   text-align:center;
-  padding:55px 15px 35px;
 }
 
 .eyebrow{
-  font-size:11px;
-  letter-spacing:3px;
+  font-size:12px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
   color:var(--brown);
-  margin-bottom:14px;
-}
-
-h1{
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(38px,7vw,68px);
-  font-weight:400;
-  color:var(--brown-dark);
-}
-
-.hero p{
-  max-width:580px;
-  margin:18px auto 0;
-  line-height:1.8;
-  color:#81766e;
-  font-size:14px;
-}
-
-.card{
-  background:rgba(255,253,251,.9);
-  border:1px solid rgba(140,126,116,.18);
-  border-radius:26px;
-  padding:30px;
-  margin-bottom:22px;
-  box-shadow:0 15px 50px rgba(93,81,73,.06);
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:24px;
-}
-
-.section-number{
-  width:32px;
-  height:32px;
-  border-radius:50%;
-  background:var(--brown);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  flex:none;
-}
-
-.section-title h2{
-  margin:0;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:25px;
-  font-weight:400;
-}
-
-label{
-  display:block;
-  font-size:12px;
   font-weight:600;
-  margin:0 0 8px;
-  color:#675b53;
+  margin-bottom:16px;
 }
 
-input,
-textarea,
-select{
-  width:100%;
-  border:1px solid var(--line);
-  background:#fffdfa;
-  border-radius:13px;
-  padding:13px 14px;
-  outline:none;
+.hero h1{
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(38px,7vw,64px);
+  line-height:1;
+  font-weight:600;
+  letter-spacing:-2px;
   color:var(--brown-dark);
-  font-size:14px;
-  transition:.2s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:var(--brown);
-  box-shadow:0 0 0 4px rgba(140,126,116,.08);
-}
-
-textarea{
-  min-height:125px;
-  resize:vertical;
-}
-
-.field{
   margin-bottom:20px;
 }
 
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+.hero p{
+  max-width:620px;
+  margin:auto;
+  font-size:15px;
+  line-height:1.9;
+  color:var(--brown);
+}
+
+.container{
+  width:min(900px,calc(100% - 32px));
+  margin:0 auto 80px;
+}
+
+.card{
+  background:rgba(255,253,251,.86);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  margin-bottom:18px;
+  box-shadow:0 15px 45px rgba(93,81,73,.06);
+}
+
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  gap:17px;
+  margin-bottom:25px;
+}
+
+.section-number{
+  font-size:12px;
+  color:var(--brown);
+  font-weight:700;
+  letter-spacing:1px;
+  min-width:28px;
+  padding-top:4px;
+}
+
+.section-title h2{
+  font-size:20px;
+  font-weight:600;
+  color:var(--brown-dark);
+  margin-bottom:5px;
+}
+
+.section-title p{
+  font-size:13px;
+  color:var(--brown);
+  line-height:1.7;
 }
 
 .template-box{
   border:1px solid var(--line);
   border-radius:18px;
   padding:20px;
-  background:#fffdfa;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  background:rgba(247,242,236,.55);
+}
+
+.template-info{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.template-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:var(--cream2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
 }
 
 .template-name{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:25px;
-  margin-bottom:5px;
+  font-weight:600;
+  color:var(--brown-dark);
+  font-size:15px;
+  margin-bottom:4px;
 }
 
-.template-price{
-  font-size:14px;
+.template-desc{
+  font-size:12px;
   color:var(--brown);
+}
+
+.price{
+  font-weight:700;
+  color:var(--brown-dark);
+  white-space:nowrap;
+}
+
+.field{
+  margin-bottom:20px;
+}
+
+.field:last-child{
+  margin-bottom:0;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
+  margin-bottom:8px;
+}
+
+.required{
+  color:var(--red);
+}
+
+input[type="text"],
+textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.75);
+  border-radius:13px;
+  padding:13px 15px;
+  outline:none;
+  color:var(--brown-dark);
+  font-size:14px;
+  transition:.2s;
+}
+
+input[type="text"]:focus,
+textarea:focus{
+  border-color:var(--brown);
+  box-shadow:0 0 0 3px rgba(140,126,116,.08);
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+  line-height:1.8;
+}
+
+.helper{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:7px;
+  line-height:1.6;
 }
 
 .extra-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
 
-.extra{
-  position:relative;
-}
-
-.extra input{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
-}
-
-.extra-label{
-  min-height:72px;
+.extra-item{
   border:1px solid var(--line);
   border-radius:16px;
-  padding:15px;
+  padding:16px;
   display:flex;
   align-items:center;
   gap:12px;
-  cursor:pointer;
-  background:#fffdfa;
+  background:rgba(255,253,251,.6);
   transition:.2s;
 }
 
-.extra-label:hover{
+.extra-item:hover{
+  border-color:var(--brown);
   transform:translateY(-1px);
-  border-color:var(--brown);
 }
 
-.extra input:checked + .extra-label{
-  border-color:var(--brown);
-  background:#f1ebe5;
-  box-shadow:0 7px 20px rgba(93,81,73,.08);
+.extra-item input{
+  display:none;
 }
 
-.extra-icon{
-  font-size:24px;
+.extra-check{
+  width:20px;
+  height:20px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  transition:.2s;
+}
+
+.extra-item input:checked + .extra-check{
+  background:var(--brown);
+  border-color:var(--brown);
+  color:white;
+}
+
+.extra-content{
+  flex:1;
+  min-width:0;
 }
 
 .extra-name{
   font-size:13px;
   font-weight:600;
+  color:var(--brown-dark);
+}
+
+.extra-desc{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:3px;
 }
 
 .extra-price{
-  display:block;
-  font-size:11px;
-  color:#958980;
-  margin-top:3px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--brown);
+  white-space:nowrap;
 }
 
 .color-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:14px;
 }
 
 .color-item{
   border:1px solid var(--line);
   border-radius:15px;
-  padding:12px;
-  background:#fffdfa;
+  padding:15px;
+  background:rgba(255,255,255,.55);
 }
 
 .color-item label{
-  margin-bottom:7px;
+  font-size:12px;
+  margin-bottom:10px;
 }
 
-input[type="color"]{
-  height:45px;
-  padding:4px;
-  cursor:pointer;
-}
-
-.coupon-box{
-  border:1px dashed #c8b9ad;
-  border-radius:18px;
-  padding:20px;
-  background:#faf5ef;
-}
-
-.coupon-row{
-  display:grid;
-  grid-template-columns:1fr auto;
+.color-row{
+  display:flex;
+  align-items:center;
   gap:10px;
 }
 
-.apply-btn{
-  border:0;
-  background:var(--brown-dark);
+input[type="color"]{
+  width:44px;
+  height:36px;
+  padding:3px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:white;
+  cursor:pointer;
+}
+
+.color-code{
+  font-size:11px;
+  color:var(--brown);
+  text-transform:uppercase;
+}
+
+.coupon-box{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:18px;
+  background:rgba(247,242,236,.5);
+}
+
+.coupon-row{
+  display:flex;
+  gap:10px;
+}
+
+.coupon-row input{
+  flex:1;
+}
+
+.btn-small{
+  border:1px solid var(--brown);
+  background:var(--brown);
   color:white;
   border-radius:12px;
-  padding:0 25px;
+  padding:0 20px;
+  font-size:13px;
   font-weight:600;
-  transition:.2s;
+  min-width:80px;
 }
 
-.apply-btn:hover{
-  background:#443a34;
-  transform:translateY(-1px);
-}
-
-.apply-btn:active{
-  transform:translateY(0);
+.btn-small:hover{
+  background:var(--brown-dark);
 }
 
 .coupon-message{
-  min-height:20px;
   margin-top:10px;
   font-size:12px;
-  font-weight:600;
+  line-height:1.6;
+  min-height:18px;
 }
 
 .coupon-message.success{
@@ -336,97 +413,143 @@ input[type="color"]{
   color:var(--red);
 }
 
-.helper{
-  color:#93877f;
-  font-size:11px;
-  line-height:1.7;
-  margin-top:7px;
-}
-
-.payment{
+.payment-box{
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:17px;
   padding:20px;
-  background:#fffdfa;
+  background:rgba(247,242,236,.5);
 }
 
-.bank{
-  background:#f4eee8;
-  border-radius:14px;
+.bank-info{
   padding:15px;
-  margin-bottom:18px;
-  font-size:13px;
+  border-radius:12px;
+  background:var(--white);
+  border:1px dashed var(--line);
+  margin-bottom:20px;
+}
+
+.bank-info p{
+  font-size:12px;
+  color:var(--brown);
   line-height:1.9;
 }
 
-.upload{
-  border:1px dashed #c9bbb0;
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  background:#faf7f3;
+.bank-info strong{
+  color:var(--brown-dark);
 }
 
-.upload input{
-  border:0;
-  background:transparent;
-  padding:5px;
+.file-label{
+  border:1px dashed var(--brown);
+  border-radius:14px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  display:block;
+  background:rgba(255,255,255,.45);
+}
+
+.file-label:hover{
+  background:rgba(255,255,255,.75);
+}
+
+.file-label input{
+  display:none;
+}
+
+.file-icon{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.file-title{
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
+}
+
+.file-name{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:5px;
+  word-break:break-word;
 }
 
 .summary{
   position:sticky;
-  bottom:15px;
+  bottom:18px;
   z-index:5;
-}
-
-.summary-inner{
-  background:rgba(255,253,251,.96);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(140,126,116,.25);
+  background:rgba(255,253,251,.95);
+  border:1px solid var(--line);
   border-radius:22px;
-  padding:23px;
-  box-shadow:0 15px 50px rgba(60,50,43,.13);
+  padding:22px 24px;
+  box-shadow:0 18px 50px rgba(93,81,73,.14);
+  backdrop-filter:blur(15px);
 }
 
 .summary-row{
   display:flex;
   justify-content:space-between;
-  gap:15px;
+  align-items:center;
+  gap:20px;
   font-size:13px;
-  margin-bottom:10px;
+  color:var(--brown);
+  margin-bottom:9px;
+}
+
+.summary-row strong{
+  color:var(--brown-dark);
 }
 
 .summary-row.discount{
   color:var(--green);
 }
 
-.summary-row.total{
-  border-top:1px solid var(--line);
-  margin-top:15px;
-  padding-top:16px;
-  font-size:18px;
-  font-weight:700;
+.summary-row.discount strong{
+  color:var(--green);
 }
 
-.summary-row.deposit{
+.summary-total{
+  border-top:1px solid var(--line);
+  margin-top:13px;
+  padding-top:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+.total-label{
+  font-size:12px;
   color:var(--brown);
+}
+
+.total-main{
+  font-size:26px;
+  font-weight:700;
+  color:var(--brown-dark);
+}
+
+.deposit-info{
+  margin-top:9px;
+  font-size:11px;
+  color:var(--brown);
+  line-height:1.7;
 }
 
 .submit-btn{
   width:100%;
+  margin-top:18px;
   border:0;
-  border-radius:15px;
-  padding:16px;
+  border-radius:14px;
+  padding:15px;
   background:var(--brown-dark);
   color:white;
-  font-size:15px;
-  font-weight:700;
-  margin-top:18px;
+  font-size:14px;
+  font-weight:600;
   transition:.2s;
 }
 
 .submit-btn:hover{
-  background:#443a34;
+  background:#493f39;
   transform:translateY(-1px);
 }
 
@@ -436,1868 +559,1046 @@ input[type="color"]{
   transform:none;
 }
 
-.status{
+.status-message{
   margin-top:12px;
-  text-align:center;
+  padding:12px 14px;
+  border-radius:11px;
+  display:none;
   font-size:12px;
-  min-height:20px;
+  line-height:1.6;
 }
 
-.status.success{
+.status-message.show{
+  display:block;
+}
+
+.status-message.success{
   color:var(--green);
+  background:#edf4ef;
+  border:1px solid #cfded4;
 }
 
-.status.error{
+.status-message.error{
   color:var(--red);
+  background:#faf0f0;
+  border:1px solid #ead1d1;
 }
 
 footer{
   text-align:center;
-  padding:50px 20px;
-  color:#9c9189;
+  padding:0 20px 45px;
+  color:var(--brown);
   font-size:11px;
-  letter-spacing:1px;
 }
 
 @media(max-width:700px){
+  .navbar{
+    width:calc(100% - 22px);
+    margin-top:12px;
+  }
+
+  .hero{
+    margin-top:50px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
 
   .card{
     padding:22px 18px;
-    border-radius:20px;
+    border-radius:19px;
   }
 
-  .grid-2,
-  .extra-grid,
+  .extra-grid{
+    grid-template-columns:1fr;
+  }
+
   .color-grid{
     grid-template-columns:1fr;
   }
 
-  .coupon-row{
-    grid-template-columns:1fr;
+  .template-box{
+    align-items:flex-start;
   }
 
-  .apply-btn{
-    min-height:46px;
+  .coupon-row{
+    flex-direction:column;
+  }
+
+  .btn-small{
+    min-height:44px;
   }
 
   .summary{
-    position:static;
+    bottom:8px;
+    padding:18px;
+    border-radius:18px;
   }
-
-  .hero{
-    padding-top:40px;
-  }
-
-  .nav-inner{
-    padding:12px 16px;
-  }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="container">
-    <div class="nav-inner">
-
-      <a class="logo" href="index.html">
-        PINTO LOVE
-      </a>
-
-      <a class="nav-back" href="index.html">
-        ← Back to Home
-      </a>
-
-    </div>
-  </div>
+<nav class="navbar">
+  <a href="index.html" class="logo">PINTO LOVE</a>
+  <a href="index.html" class="back-home">← Back to Home</a>
 </nav>
 
+<section class="hero">
+  <div class="eyebrow">Create Your Digital Love Story</div>
+  <h1>Order Your Template</h1>
+  <p>
+    Create a little digital moment made especially for someone you love.
+    Fill in your details, choose your extras, and make it yours.
+  </p>
+</section>
 
 <main class="container">
 
-
-<section class="hero">
-
-  <div class="eyebrow">
-    Create Your Digital Love Story
-  </div>
-
-  <h1>
-    Order Your Template
-  </h1>
-
-  <p>
-    Fill in your details, choose your favorite features,
-    and send your order to PINTO LOVE.
-  </p>
-
-</section>
-
-
-<!-- TEMPLATE -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      01
+  <!-- 01 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">01</div>
+      <div class="section-title">
+        <h2>Your Template</h2>
+        <p>Choose the template you want to create.</p>
+      </div>
     </div>
 
-    <h2>
-      Your Template
-    </h2>
+    <div class="template-box">
+      <div class="template-info">
+        <div class="template-icon">💌</div>
 
-  </div>
+        <div>
+          <div class="template-name" id="templateName">
+            Anniversary Template 01
+          </div>
 
-
-  <div class="template-box">
-
-    <div
-      class="template-name"
-      id="templateName"
-    >
-      Anniversary Template 01
-    </div>
-
-    <div class="template-price">
-      Base price:
-      <strong>
-        129 THB
-      </strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CUSTOMER -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      02
-    </div>
-
-    <h2>
-      Your Information
-    </h2>
-
-  </div>
-
-
-  <div class="grid-2">
-
-    <div class="field">
-
-      <label for="customerName">
-        Your Name
-      </label>
-
-      <input
-        id="customerName"
-        type="text"
-        placeholder="Enter your name"
-      >
-
-    </div>
-
-
-    <div class="field">
-
-      <label for="lineId">
-        LINE ID
-      </label>
-
-      <input
-        id="lineId"
-        type="text"
-        placeholder="Enter your LINE ID"
-      >
-
-      <div class="helper">
-        Your LINE ID is used to contact you about your order
-        and to verify one-time discount usage.
+          <div class="template-desc" id="templateDesc">
+            A little digital love story for your special person.
+          </div>
+        </div>
       </div>
 
+      <div class="price">
+        <span id="templatePrice">129</span> THB
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">02</div>
+
+      <div class="section-title">
+        <h2>Your Information</h2>
+        <p>Tell us the details we need to create your page.</p>
+      </div>
     </div>
 
-  </div>
-
-
-  <div class="field">
-
-    <label for="message">
-      Message / Details
-    </label>
-
-    <textarea
-      id="message"
-      placeholder="Tell us anything you want to include in your website..."
-    ></textarea>
-
-  </div>
-
-</section>
-
-
-<!-- EXTRAS -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      03
-    </div>
-
-    <h2>
-      Extra Menu
-    </h2>
-
-  </div>
-
-
-  <div
-    class="helper"
-    style="margin-bottom:18px;"
-  >
-    Add extra features to make your digital page more special.
-    Each feature is +29 THB.
-  </div>
-
-
-  <div class="extra-grid">
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraMusic"
-        data-name="Music Player"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraMusic"
-      >
-
-        <span class="extra-icon">
-          🎵
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Music Player
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraGallery"
-        data-name="Photo Gallery"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraGallery"
-      >
-
-        <span class="extra-icon">
-          📸
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Photo Gallery
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraLetter"
-        data-name="Love Letter"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraLetter"
-      >
-
-        <span class="extra-icon">
-          💌
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Love Letter
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraCountdown"
-        data-name="Countdown"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraCountdown"
-      >
-
-        <span class="extra-icon">
-          ⏳
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Countdown
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraScratch"
-        data-name="Scratch Card"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraScratch"
-      >
-
-        <span class="extra-icon">
-          🎟️
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Scratch Card
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraQuiz"
-        data-name="เกมคำถาม 5 ข้อ"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraQuiz"
-      >
-
-        <span class="extra-icon">
-          💕
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            เกมคำถาม 5 ข้อ
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraPassword"
-        data-name="เมนูใส่รหัส"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraPassword"
-      >
-
-        <span class="extra-icon">
-          🔐
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            เมนูใส่รหัส
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraMind"
-        data-name="เกมทายใจ"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraMind"
-      >
-
-        <span class="extra-icon">
-          🔮
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            เกมทายใจ
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraPuzzle"
-        data-name="Puzzle"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraPuzzle"
-      >
-
-        <span class="extra-icon">
-          🧩
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Puzzle
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraMap"
-        data-name="Memory Map"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraMap"
-      >
-
-        <span class="extra-icon">
-          📍
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Memory Map
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraPolaroid"
-        data-name="Polaroid Memory"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraPolaroid"
-      >
-
-        <span class="extra-icon">
-          📷
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            Polaroid Memory
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-    <div class="extra">
-
-      <input
-        type="checkbox"
-        id="extraGacha"
-        data-name="ตู้กาชาปอง"
-        data-price="29"
-      >
-
-      <label
-        class="extra-label"
-        for="extraGacha"
-      >
-
-        <span class="extra-icon">
-          🎁
-        </span>
-
-        <span>
-
-          <span class="extra-name">
-            ตู้กาชาปอง
-          </span>
-
-          <span class="extra-price">
-            +29 THB
-          </span>
-
-        </span>
-
-      </label>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- COLORS -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      04
-    </div>
-
-    <h2>
-      Color Theme
-    </h2>
-
-  </div>
-
-
-  <div class="color-grid">
-
-
-    <div class="color-item">
-
-      <label for="primaryColor">
-        Primary Color
+    <div class="field">
+      <label for="customerName">
+        Your Name <span class="required">*</span>
       </label>
 
       <input
-        type="color"
-        id="primaryColor"
-        value="#8C7E74"
-      >
-
-    </div>
-
-
-    <div class="color-item">
-
-      <label for="secondaryColor">
-        Secondary Color
-      </label>
-
-      <input
-        type="color"
-        id="secondaryColor"
-        value="#C8BCB1"
-      >
-
-    </div>
-
-
-    <div class="color-item">
-
-      <label for="backgroundColor">
-        Background Color
-      </label>
-
-      <input
-        type="color"
-        id="backgroundColor"
-        value="#F4EFEA"
-      >
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- COUPON -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      05
-    </div>
-
-    <h2>
-      Referral / Discount Code
-    </h2>
-
-  </div>
-
-
-  <div class="coupon-box">
-
-    <label for="couponCode">
-      Discount Code
-    </label>
-
-
-    <div class="coupon-row">
-
-      <input
-        id="couponCode"
         type="text"
-        placeholder="Enter your discount code"
+        id="customerName"
+        placeholder="Enter your name"
+        autocomplete="name"
+      >
+    </div>
+
+    <div class="field">
+      <label for="lineId">
+        LINE ID <span class="required">*</span>
+      </label>
+
+      <input
+        type="text"
+        id="lineId"
+        placeholder="Enter your LINE ID"
         autocomplete="off"
       >
 
-
-      <button
-        type="button"
-        class="apply-btn"
-        id="applyCouponBtn"
-      >
-        Apply
-      </button>
-
+      <div class="helper">
+        We will use your LINE ID to contact you and verify one-time discount usage.
+      </div>
     </div>
 
-
-    <div
-      id="couponMessage"
-      class="coupon-message"
-    ></div>
-
-
-    <div class="helper">
-      Enter your LINE ID above before applying a discount code.
-      Each person can use the discount code only once.
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PAYMENT -->
-
-<section class="card">
-
-  <div class="section-title">
-
-    <div class="section-number">
-      06
-    </div>
-
-    <h2>
-      Payment
-    </h2>
-
-  </div>
-
-
-  <div class="payment">
-
-    <div class="bank">
-
-      <strong>
-        PINTO LOVE
-      </strong>
-
-      <br>
-
-      Please transfer the deposit amount shown below.
-
-      <br>
-
-      Account information will be provided after
-      confirming your order.
-
-    </div>
-
-
-    <div class="upload">
-
-      <label for="paymentSlip">
-        Payment Slip
+    <div class="field">
+      <label for="message">
+        Message / Notes
       </label>
 
+      <textarea
+        id="message"
+        placeholder="Tell us anything you'd like us to know about your order..."
+      ></textarea>
+    </div>
+  </section>
 
-      <input
-        type="file"
-        id="paymentSlip"
-        accept="image/*,.pdf"
-      >
+  <!-- 03 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">03</div>
 
+      <div class="section-title">
+        <h2>Extra Menu</h2>
+        <p>Add more little moments to your template. +29 THB each.</p>
+      </div>
+    </div>
 
-      <div class="helper">
-        Upload your payment slip after making the payment.
+    <div class="extra-grid">
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Music Player" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🎵 Music Player</span>
+          <span class="extra-desc">Add your special song</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Photo Gallery" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">📸 Photo Gallery</span>
+          <span class="extra-desc">A collection of your memories</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Love Letter" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">💌 Love Letter</span>
+          <span class="extra-desc">A private letter from your heart</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Countdown" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">⏳ Countdown</span>
+          <span class="extra-desc">Count down to your special day</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Scratch Card" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🎟️ Scratch Card</span>
+          <span class="extra-desc">Scratch to reveal a secret</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="เกมคำถาม 5 ข้อ" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">💕 เกมคำถาม 5 ข้อ</span>
+          <span class="extra-desc">A cute little love quiz</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="เมนูใส่รหัส" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🔐 เมนูใส่รหัส</span>
+          <span class="extra-desc">Unlock your private message</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="เกมทายใจ" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🔮 เกมทายใจ</span>
+          <span class="extra-desc">A playful guessing game</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Puzzle" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🧩 Puzzle</span>
+          <span class="extra-desc">Put the pieces of your memory together</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Memory Map" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">📍 Memory Map</span>
+          <span class="extra-desc">Mark the places that mean something</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="Polaroid Memory" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">📷 Polaroid Memory</span>
+          <span class="extra-desc">Turn your memories into polaroids</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+      <label class="extra-item">
+        <input type="checkbox" class="extra-checkbox"
+          data-name="ตู้กาชาปอง" data-price="29">
+        <span class="extra-check">✓</span>
+
+        <span class="extra-content">
+          <span class="extra-name">🎁 ตู้กาชาปอง</span>
+          <span class="extra-desc">Little surprises waiting inside</span>
+        </span>
+
+        <span class="extra-price">+29 THB</span>
+      </label>
+
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">04</div>
+
+      <div class="section-title">
+        <h2>Color Theme</h2>
+        <p>Choose the colors you'd like for your digital page.</p>
+      </div>
+    </div>
+
+    <div class="color-grid">
+
+      <div class="color-item">
+        <label for="primaryColor">Primary Color</label>
+
+        <div class="color-row">
+          <input type="color" id="primaryColor" value="#8C7E74">
+          <span class="color-code" id="primaryColorCode">#8C7E74</span>
+        </div>
+      </div>
+
+      <div class="color-item">
+        <label for="secondaryColor">Secondary Color</label>
+
+        <div class="color-row">
+          <input type="color" id="secondaryColor" value="#C8BCB1">
+          <span class="color-code" id="secondaryColorCode">#C8BCB1</span>
+        </div>
+      </div>
+
+      <div class="color-item">
+        <label for="backgroundColor">Background Color</label>
+
+        <div class="color-row">
+          <input type="color" id="backgroundColor" value="#F4EFEA">
+          <span class="color-code" id="backgroundColorCode">#F4EFEA</span>
+        </div>
       </div>
 
     </div>
+  </section>
 
-  </div>
+  <!-- 05 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">05</div>
 
-</section>
+      <div class="section-title">
+        <h2>Referral / Discount Code</h2>
+        <p>Have a discount code? Enter it below.</p>
+      </div>
+    </div>
 
+    <div class="coupon-box">
 
-<!-- SUMMARY -->
+      <div class="coupon-row">
+        <input
+          type="text"
+          id="couponCode"
+          placeholder="Enter your discount code"
+          autocomplete="off"
+        >
 
-<section class="summary">
+        <button type="button" class="btn-small" id="applyCouponBtn">
+          Apply
+        </button>
+      </div>
 
-  <div class="summary-inner">
+      <div class="coupon-message" id="couponMessage"></div>
 
+      <div class="helper">
+        Each person can use the discount code only once.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="card">
+    <div class="section-head">
+      <div class="section-number">06</div>
+
+      <div class="section-title">
+        <h2>Payment</h2>
+        <p>Complete the payment and upload your payment slip.</p>
+      </div>
+    </div>
+
+    <div class="payment-box">
+
+      <div class="bank-info">
+        <p>
+          <strong>Bank Transfer</strong><br>
+          Bank: Your Bank Name<br>
+          Account Name: PINTO LOVE<br>
+          Account Number: 000-0-00000-0
+        </p>
+      </div>
+
+      <label class="file-label" for="paymentSlip">
+        <input
+          type="file"
+          id="paymentSlip"
+          accept="image/png,image/jpeg,image/webp,application/pdf"
+        >
+
+        <div class="file-icon">🧾</div>
+
+        <div class="file-title">
+          Click to upload your payment slip
+        </div>
+
+        <div class="file-name" id="fileName">
+          No file selected
+        </div>
+      </label>
+
+      <div class="helper">
+        Accepted: JPG, PNG, WEBP or PDF
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <div class="summary">
 
     <div class="summary-row">
-
-      <span>
-        Template
-      </span>
-
-      <strong id="templatePrice">
-        129.00 THB
+      <span>Template</span>
+      <strong>
+        <span id="summaryTemplatePrice">129</span> THB
       </strong>
-
     </div>
-
 
     <div class="summary-row">
-
-      <span>
-        Extra Menu
-      </span>
-
-      <strong id="extrasPrice">
-        0.00 THB
+      <span>Extra Menu</span>
+      <strong>
+        <span id="extrasPrice">0</span> THB
       </strong>
-
     </div>
 
-
-    <div
-      class="summary-row discount"
-      id="discountRow"
-      style="display:none;"
-    >
-
-      <span>
-        Discount (5%)
-      </span>
-
-      <strong id="discountPrice">
-        -0.00 THB
+    <div class="summary-row discount" id="discountRow" style="display:none;">
+      <span>Discount (5%)</span>
+      <strong>
+        -<span id="discountPrice">0</span> THB
       </strong>
-
     </div>
 
+    <div class="summary-total">
+      <div>
+        <div class="total-label">Total</div>
 
-    <div class="summary-row total">
+        <div class="deposit-info">
+          Deposit 30% · Remaining 70%
+        </div>
+      </div>
 
-      <span>
-        Total
-      </span>
-
-      <strong id="totalPrice">
-        129.00 THB
-      </strong>
-
+      <div class="total-main">
+        <span id="totalPrice">129</span> THB
+      </div>
     </div>
 
-
-    <div class="summary-row deposit">
-
-      <span>
-        Deposit (30%)
-      </span>
-
-      <strong id="depositPrice">
-        38.70 THB
+    <div class="summary-row" style="margin-top:14px;">
+      <span>Deposit 30%</span>
+      <strong>
+        <span id="depositPrice">38.70</span> THB
       </strong>
-
     </div>
-
 
     <div class="summary-row">
-
-      <span>
-        Remaining (70%)
-      </span>
-
-      <strong id="remainingPrice">
-        90.30 THB
+      <span>Remaining 70%</span>
+      <strong>
+        <span id="remainingPrice">90.30</span> THB
       </strong>
-
     </div>
 
-
-    <button
-      type="button"
-      id="submitBtn"
-      class="submit-btn"
-    >
-      Submit Order
+    <button type="button" class="submit-btn" id="submitBtn">
+      Place Order
     </button>
 
-
-    <div
-      id="statusMessage"
-      class="status"
-    ></div>
-
+    <div class="status-message" id="statusMessage"></div>
 
   </div>
-
-</section>
-
 
 </main>
 
-
 <footer>
-  PINTO LOVE · Digital Love Stories
+  © 2026 PINTO LOVE · Little digital moments, made with love.
 </footer>
 
-
 <script>
+const SUPABASE_URL = "https://keybykrpnpgsnyxtpfqj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
 
-"use strict";
-
-
-/* =====================================================
-   SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-  "https://keybykrpnpgsnyxtpfqj.supabase.co";
-
-
-const SUPABASE_ANON_KEY =
-  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
+const STORAGE_BUCKET = "payment-slips";
 
 const BASE_PRICE = 129;
-
 const EXTRA_PRICE = 29;
-
 const DISCOUNT_CODE = "PINT05-STANG";
-
 const DISCOUNT_PERCENT = 5;
-
 const DEPOSIT_PERCENT = 30;
 
-
-/* =====================================================
-   STATE
-===================================================== */
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
 let couponApplied = false;
-
 let couponCodeApplied = "";
+let createdOrderNumber = "";
+let uploadedSlipPath = "";
 
-let createdOrderNumber = null;
+/* =========================
+   HELPERS
+========================= */
 
-let uploadedSlipPath = null;
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const couponCodeInput =
-  document.getElementById(
-    "couponCode"
-  );
-
-const applyCouponBtn =
-  document.getElementById(
-    "applyCouponBtn"
-  );
-
-const couponMessage =
-  document.getElementById(
-    "couponMessage"
-  );
-
-const lineIdInput =
-  document.getElementById(
-    "lineId"
-  );
-
-const statusMessage =
-  document.getElementById(
-    "statusMessage"
-  );
-
-const submitBtn =
-  document.getElementById(
-    "submitBtn"
-  );
-
-
-/* =====================================================
-   MONEY
-===================================================== */
-
-function money(value){
-
-  return Number(value)
-    .toFixed(2);
-
+function formatMoney(value){
+  return Number(value).toFixed(2);
 }
 
-
-/* =====================================================
-   NORMALIZE LINE ID
-===================================================== */
-
 function normalizeLineId(value){
-
   return String(value || "")
     .trim()
     .toLowerCase()
-    .replace(/\s+/g,"");
-
+    .replace(/\s+/g, "");
 }
 
+function showStatus(message, type){
+  const el = document.getElementById("statusMessage");
 
-/* =====================================================
-   SHOW COUPON MESSAGE
-===================================================== */
-
-function showCouponMessage(
-  message,
-  type
-){
-
-  couponMessage.textContent =
-    message;
-
-  couponMessage.className =
-    "coupon-message " +
-    type;
-
+  el.textContent = message;
+  el.className = "status-message show " + type;
 }
 
+function hideStatus(){
+  const el = document.getElementById("statusMessage");
 
-/* =====================================================
-   SHOW STATUS
-===================================================== */
-
-function showStatus(
-  message,
-  type = ""
-){
-
-  statusMessage.textContent =
-    message;
-
-  statusMessage.className =
-    "status " + type;
-
+  el.textContent = "";
+  el.className = "status-message";
 }
 
+function setButtonLoading(loading){
+  const btn = document.getElementById("submitBtn");
 
-/* =====================================================
-   CALCULATE PRICE
-===================================================== */
+  btn.disabled = loading;
+  btn.textContent = loading
+    ? "Submitting..."
+    : "Place Order";
+}
+
+function generateOrderNumber(){
+  const now = new Date();
+
+  const date =
+    now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2,"0") +
+    String(now.getDate()).padStart(2,"0");
+
+  const random =
+    Math.random()
+      .toString(36)
+      .substring(2,7)
+      .toUpperCase();
+
+  return "PR-" + date + "-" + random;
+}
+
+/* =========================
+   PRICE CALCULATION
+========================= */
+
+function getSelectedExtras(){
+  const selected = [];
+
+  document
+    .querySelectorAll(".extra-checkbox:checked")
+    .forEach(item => {
+      selected.push({
+        name: item.dataset.name,
+        price: Number(item.dataset.price)
+      });
+    });
+
+  return selected;
+}
 
 function calculatePrices(){
 
-  let extrasTotal = 0;
+  const extras = getSelectedExtras();
 
-  const selectedExtras = [];
+  const templatePrice = BASE_PRICE;
 
-
-  document
-    .querySelectorAll(
-      '.extra input[type="checkbox"]:checked'
-    )
-    .forEach(function(input){
-
-      extrasTotal +=
-        Number(
-          input.dataset.price ||
-          EXTRA_PRICE
-        );
-
-      selectedExtras.push(
-        input.dataset.name
-      );
-
-    });
-
+  const extrasTotal =
+    extras.reduce(
+      (sum,item) => sum + item.price,
+      0
+    );
 
   const subtotal =
-    BASE_PRICE +
-    extrasTotal;
-
+    templatePrice + extrasTotal;
 
   let discountAmount = 0;
 
-
   if(couponApplied){
-
     discountAmount =
-      subtotal *
-      DISCOUNT_PERCENT /
-      100;
-
+      subtotal * (DISCOUNT_PERCENT / 100);
   }
-
 
   const total =
-    subtotal -
-    discountAmount;
-
+    subtotal - discountAmount;
 
   const deposit =
-    total *
-    DEPOSIT_PERCENT /
-    100;
-
+    total * (DEPOSIT_PERCENT / 100);
 
   const remaining =
-    total -
-    deposit;
+    total - deposit;
 
+  document.getElementById("templatePrice").textContent =
+    templatePrice;
 
-  document.getElementById(
-    "templatePrice"
-  ).textContent =
-    money(BASE_PRICE) +
-    " THB";
+  document.getElementById("summaryTemplatePrice").textContent =
+    templatePrice;
 
+  document.getElementById("extrasPrice").textContent =
+    extrasTotal;
 
-  document.getElementById(
-    "extrasPrice"
-  ).textContent =
-    money(extrasTotal) +
-    " THB";
+  document.getElementById("discountPrice").textContent =
+    formatMoney(discountAmount);
 
+  document.getElementById("totalPrice").textContent =
+    formatMoney(total);
 
-  const discountRow =
-    document.getElementById(
-      "discountRow"
-    );
+  document.getElementById("depositPrice").textContent =
+    formatMoney(deposit);
 
+  document.getElementById("remainingPrice").textContent =
+    formatMoney(remaining);
 
-  if(couponApplied){
-
-    discountRow.style.display =
-      "flex";
-
-
-    document.getElementById(
-      "discountPrice"
-    ).textContent =
-      "-" +
-      money(discountAmount) +
-      " THB";
-
-  }else{
-
-    discountRow.style.display =
-      "none";
-
-  }
-
-
-  document.getElementById(
-    "totalPrice"
-  ).textContent =
-    money(total) +
-    " THB";
-
-
-  document.getElementById(
-    "depositPrice"
-  ).textContent =
-    money(deposit) +
-    " THB";
-
-
-  document.getElementById(
-    "remainingPrice"
-  ).textContent =
-    money(remaining) +
-    " THB";
-
+  document.getElementById("discountRow").style.display =
+    couponApplied
+      ? "flex"
+      : "none";
 
   return {
-
+    extras,
+    templatePrice,
     extrasTotal,
-
-    selectedExtras,
-
     subtotal,
-
     discountAmount,
-
     total,
-
     deposit,
-
     remaining
-
   };
-
 }
 
+/* =========================
+   COLOR PICKERS
+========================= */
 
-/* =====================================================
-   APPLY COUPON
-===================================================== */
+function updateColorCode(inputId, codeId){
+
+  const input =
+    document.getElementById(inputId);
+
+  const code =
+    document.getElementById(codeId);
+
+  code.textContent =
+    input.value.toUpperCase();
+}
+
+document
+  .getElementById("primaryColor")
+  .addEventListener("input", () => {
+    updateColorCode(
+      "primaryColor",
+      "primaryColorCode"
+    );
+  });
+
+document
+  .getElementById("secondaryColor")
+  .addEventListener("input", () => {
+    updateColorCode(
+      "secondaryColor",
+      "secondaryColorCode"
+    );
+  });
+
+document
+  .getElementById("backgroundColor")
+  .addEventListener("input", () => {
+    updateColorCode(
+      "backgroundColor",
+      "backgroundColorCode"
+    );
+  });
+
+/* =========================
+   EXTRA MENU
+========================= */
+
+document
+  .querySelectorAll(".extra-checkbox")
+  .forEach(item => {
+    item.addEventListener("change", calculatePrices);
+  });
+
+/* =========================
+   FILE INPUT
+========================= */
+
+document
+  .getElementById("paymentSlip")
+  .addEventListener("change", function(){
+
+    const fileName =
+      document.getElementById("fileName");
+
+    if(this.files && this.files.length > 0){
+      fileName.textContent =
+        this.files[0].name;
+    }else{
+      fileName.textContent =
+        "No file selected";
+    }
+  });
+
+/* =========================
+   COUPON
+========================= */
 
 function applyCoupon(){
 
+  const input =
+    document.getElementById("couponCode");
+
+  const message =
+    document.getElementById("couponMessage");
+
   const code =
-    couponCodeInput.value.trim();
+    input.value.trim();
 
-
-  const lineId =
-    normalizeLineId(
-      lineIdInput.value
-    );
-
-
-  if(!lineId){
-
-    couponApplied =
-      false;
-
-    couponCodeApplied =
-      "";
-
-    calculatePrices();
-
-
-    showCouponMessage(
-      "Please enter your LINE ID first.",
-      "error"
-    );
-
-
-    lineIdInput.focus();
-
-    return;
-
-  }
-
+  couponApplied = false;
+  couponCodeApplied = "";
 
   if(!code){
+    message.textContent =
+      "Please enter a discount code.";
 
-    couponApplied =
-      false;
-
-    couponCodeApplied =
-      "";
-
-    calculatePrices();
-
-
-    showCouponMessage(
-      "Please enter your discount code.",
-      "error"
-    );
-
-
-    couponCodeInput.focus();
-
-    return;
-
-  }
-
-
-  if(
-    code.toUpperCase() !==
-    DISCOUNT_CODE
-  ){
-
-    couponApplied =
-      false;
-
-    couponCodeApplied =
-      "";
+    message.className =
+      "coupon-message error";
 
     calculatePrices();
-
-
-    showCouponMessage(
-      "Invalid discount code.",
-      "error"
-    );
-
     return;
-
   }
 
+  if(code.toLowerCase() !== DISCOUNT_CODE.toLowerCase()){
+    message.textContent =
+      "Invalid discount code.";
 
-  couponApplied =
-    true;
+    message.className =
+      "coupon-message error";
 
+    calculatePrices();
+    return;
+  }
 
-  couponCodeApplied =
-    DISCOUNT_CODE;
+  couponApplied = true;
+  couponCodeApplied = DISCOUNT_CODE;
 
+  message.textContent =
+    "Discount applied successfully — 5% off your order.";
+
+  message.className =
+    "coupon-message success";
 
   calculatePrices();
-
-
-  showCouponMessage(
-    "✓ 5% discount applied successfully.",
-    "success"
-  );
-
 }
-
-
-/* =====================================================
-   APPLY BUTTON
-===================================================== */
-
-applyCouponBtn.addEventListener(
-  "click",
-  applyCoupon
-);
-
-
-couponCodeInput.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      event.preventDefault();
-
-      applyCoupon();
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   EXTRAS
-===================================================== */
 
 document
-  .querySelectorAll(
-    '.extra input[type="checkbox"]'
-  )
-  .forEach(function(input){
+  .getElementById("applyCouponBtn")
+  .addEventListener("click", applyCoupon);
 
-    input.addEventListener(
-      "change",
-      function(){
+/* =========================
+   SUPABASE STORAGE
+========================= */
 
-        calculatePrices();
+async function uploadPaymentSlip(file, orderNumber){
 
-      }
-    );
+  if(!file){
+    throw new Error("Payment slip is required.");
+  }
 
-  });
+  const extension =
+    file.name.includes(".")
+      ? file.name.split(".").pop().toLowerCase()
+      : "jpg";
 
+  const safeExtension =
+    extension.replace(/[^a-z0-9]/gi,"");
 
-/* =====================================================
-   ORDER NUMBER
-===================================================== */
-
-function generateOrderNumber(){
-
-  const now =
-    new Date();
-
-
-  const date =
-    now.getFullYear() +
-
-    String(
-      now.getMonth() + 1
-    ).padStart(2,"0") +
-
-    String(
-      now.getDate()
-    ).padStart(2,"0");
-
-
-  const random =
-    Math.floor(
-      1000 +
-      Math.random() *
-      9000
-    );
-
-
-  return (
-    "PINTO-" +
-    date +
+  const filePath =
+    orderNumber +
+    "/" +
+    Date.now() +
     "-" +
-    random
-  );
+    Math.random().toString(36).substring(2,8) +
+    "." +
+    safeExtension;
 
+  const { data, error } =
+    await supabaseClient
+      .storage
+      .from(STORAGE_BUCKET)
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: file.type || "application/octet-stream"
+      });
+
+  if(error){
+    throw new Error(
+      "Payment slip upload failed: " +
+      error.message
+    );
+  }
+
+  uploadedSlipPath =
+    data.path;
+
+  return data.path;
 }
 
+async function deleteUploadedSlip(){
 
-/* =====================================================
-   SUPABASE REQUEST
-===================================================== */
+  if(!uploadedSlipPath){
+    return;
+  }
+
+  const { error } =
+    await supabaseClient
+      .storage
+      .from(STORAGE_BUCKET)
+      .remove([
+        uploadedSlipPath
+      ]);
+
+  if(error){
+    console.warn(
+      "Could not delete uploaded slip:",
+      error.message
+    );
+  }
+
+  uploadedSlipPath = "";
+}
+
+/* =========================
+   SUPABASE REST
+========================= */
 
 async function supabaseRequest(
   endpoint,
   options = {}
 ){
 
-  const headers = {
-
-    "apikey":
-      SUPABASE_ANON_KEY,
-
-    "Authorization":
-      "Bearer " +
-      SUPABASE_ANON_KEY,
-
-    ...(options.headers || {})
-
-  };
-
-
-  let response;
-
-
-  try{
-
-    response =
-      await fetch(
-        SUPABASE_URL +
-        endpoint,
-        {
-          ...options,
-          headers
-        }
-      );
-
-  }catch(error){
-
-    throw new Error(
-      "Cannot connect to Supabase.\n" +
-      "Please check the Supabase URL, key, or browser connection."
-    );
-
-  }
-
-
-  let responseText = "";
-
-
-  try{
-
-    responseText =
-      await response.text();
-
-  }catch(error){
-
-    responseText = "";
-
-  }
-
-
-  if(!response.ok){
-
-    throw new Error(
-      "Supabase Error " +
-      response.status +
-      ":\n" +
-      (
-        responseText ||
-        "No error details returned."
-      )
-    );
-
-  }
-
-
-  return responseText;
-
-}
-
-
-/* =====================================================
-   UPLOAD PAYMENT SLIP
-===================================================== */
-
-async function uploadPaymentSlip(
-  file,
-  orderNumber
-){
-
-  const originalName =
-    file.name || "";
-
-
-  const extension =
-    originalName
-      .split(".")
-      .pop()
-      .toLowerCase();
-
-
-  const safeExtension =
-    /^[a-z0-9]+$/.test(
-      extension
-    )
-      ? extension
-      : "jpg";
-
-
-  const filePath =
-    orderNumber +
-    "-" +
-    Date.now() +
-    "." +
-    safeExtension;
-
-
-  let response;
-
-
-  try{
-
-    response =
-      await fetch(
-
-        SUPABASE_URL +
-        "/storage/v1/object/payment-slips/" +
-        filePath,
-
-        {
-
-          method:"POST",
-
-          headers:{
-
-            "apikey":
-              SUPABASE_ANON_KEY,
-
-            "Authorization":
-              "Bearer " +
-              SUPABASE_ANON_KEY,
-
-            "Content-Type":
-              file.type ||
-              "application/octet-stream",
-
-            "x-upsert":
-              "false"
-
-          },
-
-          body:file
-
-        }
-
-      );
-
-  }catch(error){
-
-    throw new Error(
-      "Payment slip upload failed: Failed to fetch.\n" +
-      "The browser could not connect to Supabase Storage."
-    );
-
-  }
-
-
-  let responseText = "";
-
-
-  try{
-
-    responseText =
-      await response.text();
-
-  }catch(error){
-
-    responseText = "";
-
-  }
-
-
-  if(!response.ok){
-
-    throw new Error(
-      "Payment slip upload failed.\n\n" +
-      "Supabase Error " +
-      response.status +
-      ":\n" +
-      (
-        responseText ||
-        "No error details returned."
-      )
-    );
-
-  }
-
-
-  return filePath;
-
-}
-
-
-/* =====================================================
-   DELETE PAYMENT SLIP
-===================================================== */
-
-async function deleteUploadedSlip(
-  filePath
-){
-
-  if(!filePath){
-    return;
-  }
-
-
-  try{
-
-    await supabaseRequest(
-      "/storage/v1/object/payment-slips/" +
-      encodeURIComponent(
-        filePath
-      ),
+  const response =
+    await fetch(
+      SUPABASE_URL + endpoint,
       {
-        method:"DELETE"
+        ...options,
+
+        headers:{
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            "application/json",
+
+          ...(options.headers || {})
+        }
       }
     );
 
-  }catch(error){
+  const text =
+    await response.text();
 
-    console.warn(
-      "Could not delete payment slip:",
-      error
-    );
+  let data = null;
 
+  try{
+    data = text
+      ? JSON.parse(text)
+      : null;
+  }catch{
+    data = text;
   }
 
+  if(!response.ok){
+
+    let message =
+      "Supabase request failed.";
+
+    if(data && data.message){
+      message = data.message;
+    }else if(
+      data &&
+      data.error_description
+    ){
+      message =
+        data.error_description;
+    }else if(
+      data &&
+      data.error
+    ){
+      message = data.error;
+    }else if(typeof data === "string"){
+      message = data;
+    }
+
+    throw new Error(message);
+  }
+
+  return data;
 }
 
-
-/* =====================================================
+/* =========================
    CREATE ORDER
-===================================================== */
+========================= */
 
-async function createOrder(
-  orderNumber,
-  customerName,
-  lineId,
-  message,
-  selectedExtras,
-  prices,
-  paymentSlipPath
-){
+async function createOrder(order){
 
-  const payload = {
+  return await supabaseRequest(
+    "/rest/v1/orders",
+    {
+      method:"POST",
 
-    order_number:
-      orderNumber,
+      headers:{
+        "Prefer":"return=minimal"
+      },
 
-    customer_name:
-      customerName,
-
-    contact:
-      lineId,
-
-    template:
-      document.getElementById(
-        "templateName"
-      ).textContent.trim(),
-
-    message:
-      message,
-
-    primary_color:
-      document.getElementById(
-        "primaryColor"
-      ).value,
-
-    secondary_color:
-      document.getElementById(
-        "secondaryColor"
-      ).value,
-
-    background_color:
-      document.getElementById(
-        "backgroundColor"
-      ).value,
-
-    extra_functions:
-      selectedExtras,
-
-    total_price:
-      prices.total,
-
-    deposit_amount:
-      prices.deposit,
-
-    remaining_amount:
-      prices.remaining,
-
-    payment_slip:
-      paymentSlipPath,
-
-    payment_status:
-      "pending",
-
-    status:
-      "new"
-
-  };
-
-
-  let responseText;
-
-
-  try{
-
-    responseText =
-      await supabaseRequest(
-        "/rest/v1/orders",
-        {
-
-          method:"POST",
-
-          headers:{
-
-            "Content-Type":
-              "application/json",
-
-            "Prefer":
-              "return=minimal"
-
-          },
-
-          body:
-            JSON.stringify(
-              payload
-            )
-
-        }
-      );
-
-  }catch(error){
-
-    throw new Error(
-      "Create Order Failed.\n\n" +
-      error.message
-    );
-
-  }
-
-
-  return responseText;
-
+      body:JSON.stringify(order)
+    }
+  );
 }
 
+/* =========================
+   DELETE ORDER
+========================= */
 
-/* =====================================================
-   DELETE CREATED ORDER
-===================================================== */
+async function deleteCreatedOrder(){
 
-async function deleteCreatedOrder(
-  orderNumber
-){
-
-  if(!orderNumber){
+  if(!createdOrderNumber){
     return;
   }
-
 
   try{
 
     await supabaseRequest(
-
       "/rest/v1/orders?order_number=eq." +
-      encodeURIComponent(
-        orderNumber
-      ),
-
+      encodeURIComponent(createdOrderNumber),
       {
         method:"DELETE"
       }
-
     );
 
   }catch(error){
 
     console.warn(
       "Could not delete order:",
-      error
+      error.message
     );
-
   }
 
+  createdOrderNumber = "";
 }
 
-
-/* =====================================================
-   USE COUPON RPC
-===================================================== */
+/* =========================
+   USE COUPON
+========================= */
 
 async function useCouponOnSupabase(
   couponCode,
@@ -2306,104 +1607,95 @@ async function useCouponOnSupabase(
   customerName
 ){
 
-  let responseText;
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/rpc/use_coupon",
+      {
+        method:"POST",
 
+        headers:{
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            "application/json"
+        },
+
+        body:JSON.stringify({
+          p_coupon_code:
+            couponCode,
+
+          p_contact:
+            normalizeLineId(lineId),
+
+          p_order_number:
+            orderNumber,
+
+          p_customer_name:
+            customerName
+        })
+      }
+    );
+
+  const text =
+    await response.text();
+
+  let data = null;
 
   try{
-
-    responseText =
-      await supabaseRequest(
-        "/rest/v1/rpc/use_coupon",
-        {
-
-          method:"POST",
-
-          headers:{
-
-            "Content-Type":
-              "application/json"
-
-          },
-
-          body:
-            JSON.stringify({
-
-              p_coupon_code:
-                couponCode,
-
-              p_contact:
-                lineId,
-
-              p_order_number:
-                orderNumber,
-
-              p_customer_name:
-                customerName
-
-            })
-
-        }
-      );
-
-  }catch(error){
-
-    throw new Error(
-      "Coupon verification failed.\n\n" +
-      error.message
-    );
-
+    data =
+      text
+        ? JSON.parse(text)
+        : null;
+  }catch{
+    data = null;
   }
 
-
-  try{
-
-    return JSON.parse(
-      responseText
-    );
-
-  }catch(error){
+  if(!response.ok){
 
     throw new Error(
-      "Coupon verification failed.\n\n" +
-      "Supabase returned an invalid response."
+      "Unable to verify the coupon right now."
     );
-
   }
 
+  return data;
 }
 
-
-/* =====================================================
+/* =========================
    SUBMIT ORDER
-===================================================== */
+========================= */
 
 async function submitOrder(){
 
-  const customerName =
-    document.getElementById(
-      "customerName"
-    ).value.trim();
+  hideStatus();
 
+  const customerName =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
 
   const lineId =
-    normalizeLineId(
-      document.getElementById(
-        "lineId"
-      ).value
-    );
-
+    document
+      .getElementById("lineId")
+      .value
+      .trim();
 
   const message =
-    document.getElementById(
-      "message"
-    ).value.trim();
+    document
+      .getElementById("message")
+      .value
+      .trim();
 
-
-  const paymentFile =
-    document.getElementById(
-      "paymentSlip"
-    ).files[0];
-
+  const paymentSlip =
+    document
+      .getElementById("paymentSlip")
+      .files[0];
 
   if(!customerName){
 
@@ -2412,14 +1704,12 @@ async function submitOrder(){
       "error"
     );
 
-    document.getElementById(
-      "customerName"
-    ).focus();
+    document
+      .getElementById("customerName")
+      .focus();
 
     return;
-
   }
-
 
   if(!lineId){
 
@@ -2428,232 +1718,253 @@ async function submitOrder(){
       "error"
     );
 
-    document.getElementById(
-      "lineId"
-    ).focus();
+    document
+      .getElementById("lineId")
+      .focus();
 
     return;
-
   }
 
-
-  if(!paymentFile){
+  if(!paymentSlip){
 
     showStatus(
       "Please upload your payment slip.",
       "error"
     );
 
-    document.getElementById(
-      "paymentSlip"
-    ).focus();
-
     return;
-
   }
 
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "application/pdf"
+  ];
+
+  if(
+    paymentSlip.type &&
+    !allowedTypes.includes(paymentSlip.type)
+  ){
+
+    showStatus(
+      "Please upload JPG, PNG, WEBP or PDF only.",
+      "error"
+    );
+
+    return;
+  }
+
+  if(
+    paymentSlip.size >
+    10 * 1024 * 1024
+  ){
+
+    showStatus(
+      "Payment slip must be smaller than 10 MB.",
+      "error"
+    );
+
+    return;
+  }
 
   const prices =
     calculatePrices();
 
-
-  const orderNumber =
+  createdOrderNumber =
     generateOrderNumber();
 
-
-  submitBtn.disabled =
-    true;
-
-
-  submitBtn.textContent =
-    "Submitting Order...";
-
-
-  showStatus(
-    "Uploading payment slip..."
-  );
-
+  setButtonLoading(true);
 
   try{
 
-    /*
-     ================================================
-     STEP 1
-     Upload payment slip
-     ================================================
-    */
+    showStatus(
+      "Uploading your payment slip...",
+      "success"
+    );
 
-    uploadedSlipPath =
+    /* 1. Upload slip first */
+    const slipPath =
       await uploadPaymentSlip(
-        paymentFile,
-        orderNumber
+        paymentSlip,
+        createdOrderNumber
       );
 
-
-    /*
-     ================================================
-     STEP 2
-     Create order
-     ================================================
-    */
-
+    /* 2. Create order */
     showStatus(
-      "Saving your order..."
+      "Creating your order...",
+      "success"
     );
 
+    const orderData = {
 
-    createdOrderNumber =
-      orderNumber;
+      order_number:
+        createdOrderNumber,
 
+      customer_name:
+        customerName,
 
-    await createOrder(
-      orderNumber,
-      customerName,
-      lineId,
-      message,
-      prices.selectedExtras,
-      prices,
-      uploadedSlipPath
-    );
+      contact:
+        normalizeLineId(lineId),
 
+      template:
+        new URLSearchParams(
+          window.location.search
+        ).get("template") ||
+        "anniversary-01",
 
-    /*
-     ================================================
-     STEP 3
-     Record coupon usage
-     ================================================
-    */
+      message:
+        message,
 
+      primary_color:
+        document
+          .getElementById("primaryColor")
+          .value
+          .toUpperCase(),
+
+      secondary_color:
+        document
+          .getElementById("secondaryColor")
+          .value
+          .toUpperCase(),
+
+      background_color:
+        document
+          .getElementById("backgroundColor")
+          .value
+          .toUpperCase(),
+
+      extra_functions:
+        prices.extras
+          .map(item => item.name)
+          .join(", "),
+
+      total_price:
+        Number(
+          prices.total.toFixed(2)
+        ),
+
+      deposit_amount:
+        Number(
+          prices.deposit.toFixed(2)
+        ),
+
+      remaining_amount:
+        Number(
+          prices.remaining.toFixed(2)
+        ),
+
+      payment_slip:
+        slipPath,
+
+      payment_status:
+        "pending",
+
+      status:
+        "pending"
+    };
+
+    await createOrder(orderData);
+
+    /* 3. Record coupon ONLY after order exists */
     if(couponApplied){
 
       showStatus(
-        "Verifying discount..."
+        "Verifying your discount...",
+        "success"
       );
-
 
       const couponResult =
         await useCouponOnSupabase(
           couponCodeApplied,
           lineId,
-          orderNumber,
+          createdOrderNumber,
           customerName
         );
-
 
       if(
         !couponResult ||
         couponResult.success !== true
       ){
 
-        await deleteCreatedOrder(
-          orderNumber
-        );
+        await deleteCreatedOrder();
+        await deleteUploadedSlip();
 
-
-        await deleteUploadedSlip(
-          uploadedSlipPath
-        );
-
-
-        createdOrderNumber =
-          null;
-
-        uploadedSlipPath =
-          null;
-
-
-        couponApplied =
-          false;
-
-        couponCodeApplied =
-          "";
-
+        couponApplied = false;
+        couponCodeApplied = "";
 
         calculatePrices();
-
 
         throw new Error(
           couponResult &&
           couponResult.message
             ? couponResult.message
-            : "This discount code could not be verified."
+            : "This discount code could not be applied."
         );
-
       }
-
     }
 
-
-    /*
-     ================================================
-     SUCCESS
-     ================================================
-    */
-
     showStatus(
-      "✓ Order submitted successfully! Order: " +
-      orderNumber,
+      "Order submitted successfully. Order No. " +
+      createdOrderNumber,
       "success"
     );
 
-
-    submitBtn.textContent =
-      "Order Submitted ✓";
-
-
-    submitBtn.disabled =
-      true;
-
-
     alert(
       "Order submitted successfully!\n\n" +
-      "Order Number: " +
-      orderNumber +
-      "\n\n" +
-      "Please keep this order number for your records."
+      "Order No.: " +
+      createdOrderNumber
     );
 
+    document
+      .getElementById("submitBtn")
+      .textContent =
+      "Order Submitted ✓";
+
+    document
+      .getElementById("submitBtn")
+      .disabled =
+      true;
 
   }catch(error){
 
     console.error(
-      "ORDER SUBMISSION ERROR:",
+      "ORDER SUBMIT ERROR:",
       error
     );
 
+    /*
+      If anything fails after the order/slip was created,
+      clean up so we don't leave an incomplete order behind.
+    */
+
+    if(createdOrderNumber){
+
+      await deleteCreatedOrder();
+    }
+
+    if(uploadedSlipPath){
+
+      await deleteUploadedSlip();
+    }
+
+    let message =
+      error && error.message
+        ? error.message
+        : "Failed to submit your order.";
 
     showStatus(
-      error.message ||
-      "Failed to submit order.",
+      message,
       "error"
     );
 
-
-    submitBtn.disabled =
-      false;
-
-
-    submitBtn.textContent =
-      "Submit Order";
-
+    setButtonLoading(false);
   }
-
 }
 
-
-/* =====================================================
-   SUBMIT BUTTON
-===================================================== */
-
-submitBtn.addEventListener(
-  "click",
-  submitOrder
-);
-
-
-/* =====================================================
-   LOAD TEMPLATE
-===================================================== */
+/* =========================
+   TEMPLATE
+========================= */
 
 function loadTemplate(){
 
@@ -2662,36 +1973,36 @@ function loadTemplate(){
       window.location.search
     );
 
-
   const template =
-    params.get(
-      "template"
-    );
+    params.get("template");
 
+  if(template === "anniversary-01"){
 
-  if(
-    template ===
-    "anniversary-01"
-  ){
-
-    document.getElementById(
-      "templateName"
-    ).textContent =
+    document
+      .getElementById("templateName")
+      .textContent =
       "Anniversary Template 01";
 
+    document
+      .getElementById("templateDesc")
+      .textContent =
+      "A little digital love story for your special person.";
   }
-
 }
 
+/* =========================
+   INIT
+========================= */
 
-/* =====================================================
-   START
-===================================================== */
+document
+  .getElementById("submitBtn")
+  .addEventListener(
+    "click",
+    submitOrder
+  );
 
 loadTemplate();
-
 calculatePrices();
-
 </script>
 
 </body>
