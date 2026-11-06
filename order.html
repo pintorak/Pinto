@@ -30,6 +30,10 @@
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   background:var(--cream);
   color:var(--dark);
@@ -40,6 +44,13 @@ body{
 a{
   color:inherit;
   text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
 }
 
 header{
@@ -129,7 +140,6 @@ textarea{
   border:1px solid var(--line);
   background:var(--white);
   padding:14px 15px;
-  font-family:inherit;
   font-size:13px;
   color:var(--dark);
   outline:none;
@@ -150,10 +160,7 @@ textarea{
   margin-bottom:22px;
 }
 
-
-/* =========================
-   COLORS
-========================= */
+/* COLORS */
 
 .color-row{
   display:grid;
@@ -217,10 +224,7 @@ input[type="color"]{
   font-size:12px;
 }
 
-
-/* =========================
-   EXTRA FUNCTIONS
-========================= */
+/* EXTRA FUNCTIONS */
 
 .extra-box{
   border:1px solid var(--line);
@@ -276,10 +280,7 @@ input[type="color"]{
   line-height:1.8;
 }
 
-
-/* =========================
-   PRICE
-========================= */
+/* PRICE */
 
 .price-box{
   background:var(--white);
@@ -325,10 +326,7 @@ input[type="color"]{
   margin-top:15px;
 }
 
-
-/* =========================
-   PAYMENT
-========================= */
+/* PAYMENT */
 
 .payment-note{
   background:#EDE5DF;
@@ -342,22 +340,17 @@ input[type="color"]{
   padding:10px;
 }
 
-
-/* =========================
-   BUTTON
-========================= */
-
 .submit-btn{
   width:100%;
   border:none;
   background:var(--dark);
   color:white;
   padding:17px;
-  font-family:inherit;
   font-size:11px;
   letter-spacing:3px;
   cursor:pointer;
   margin-top:10px;
+  transition:.2s;
 }
 
 .submit-btn:hover{
@@ -369,85 +362,437 @@ input[type="color"]{
   cursor:not-allowed;
 }
 
-
-/* =========================
-   SUCCESS
-========================= */
+/* =====================================================
+   PRINT SUCCESS AREA
+===================================================== */
 
 .success{
   display:none;
-  max-width:700px;
-  margin:80px auto;
-  background:var(--white);
-  border:1px solid var(--line);
-  padding:60px 45px;
+  min-height:calc(100vh - 130px);
+  padding:70px 25px 100px;
   text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
 .success.show{
   display:block;
 }
 
+.success::before,
+.success::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border:1px solid rgba(140,126,116,.12);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.success::before{
+  top:40px;
+  left:-130px;
+}
+
+.success::after{
+  bottom:30px;
+  right:-130px;
+}
+
 .success-eyebrow{
   font-family:"Cormorant Garamond",serif;
   font-size:20px;
-  letter-spacing:4px;
+  letter-spacing:5px;
   color:var(--taupe);
 }
 
 .success h2{
   font-family:"Cormorant Garamond",serif;
-  font-size:45px;
+  font-size:46px;
   font-weight:500;
-  margin:10px 0 20px;
+  margin:5px 0 8px;
 }
 
-.order-number{
+.success-subtitle{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.9;
+}
+
+/* PRINTER */
+
+.printer-wrap{
+  width:340px;
+  max-width:90vw;
+  margin:45px auto 0;
+  position:relative;
+  z-index:2;
+}
+
+.printer{
+  position:relative;
+  background:linear-gradient(145deg,#5A514C,#403934);
+  border-radius:18px 18px 8px 8px;
+  padding:22px 22px 30px;
+  box-shadow:
+    0 22px 45px rgba(64,57,52,.20),
+    inset 0 1px rgba(255,255,255,.15);
+}
+
+.printer-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.printer-brand{
+  color:#F4EFEA;
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  letter-spacing:3px;
+}
+
+.printer-light{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#D7C9BF;
+  box-shadow:0 0 12px rgba(255,255,255,.7);
+  animation:blink 1.2s infinite;
+}
+
+@keyframes blink{
+  0%,100%{opacity:.3}
+  50%{opacity:1}
+}
+
+.printer-slot{
+  height:15px;
+  background:#26211F;
+  border-radius:4px;
+  box-shadow:inset 0 3px 6px rgba(0,0,0,.6);
+  position:relative;
+  overflow:hidden;
+}
+
+.slot-light{
+  position:absolute;
+  left:-100%;
+  top:0;
+  width:45%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  animation:scan 1.6s infinite;
+}
+
+@keyframes scan{
+  0%{left:-50%}
+  100%{left:110%}
+}
+
+.print-status{
+  margin-top:17px;
+  color:#E6DED8;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.progress{
+  width:100%;
+  height:3px;
+  background:rgba(255,255,255,.15);
+  margin-top:11px;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:#E6DED8;
+  transition:width .3s ease;
+}
+
+/* PAPER */
+
+.paper-area{
+  height:0;
+  position:relative;
+  z-index:3;
+}
+
+.polaroid{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%) translateY(-8px) rotate(-2deg);
+  width:265px;
+  min-height:330px;
+  background:#FBF8F5;
+  padding:14px 14px 26px;
+  box-shadow:0 17px 35px rgba(64,57,52,.22);
+  opacity:0;
+  visibility:hidden;
+  transition:
+    top 1.2s cubic-bezier(.18,.75,.25,1),
+    opacity .5s ease,
+    transform .8s ease;
+}
+
+.polaroid.printed{
+  top:35px;
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) rotate(-2deg);
+}
+
+.polaroid-inner{
+  border:1px solid rgba(64,57,52,.1);
+  min-height:290px;
+  padding:22px 15px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.polaroid-inner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 20%),
+    linear-gradient(135deg,rgba(255,255,255,.3),transparent 50%);
+  pointer-events:none;
+}
+
+.polaroid-logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:15px;
+  letter-spacing:4px;
+  margin-bottom:20px;
+}
+
+.polaroid-heart{
+  font-size:40px;
+  margin-bottom:14px;
+  animation:heartPop 1s ease infinite alternate;
+}
+
+@keyframes heartPop{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+
+.polaroid-title{
   font-family:"Cormorant Garamond",serif;
   font-size:30px;
-  margin:25px 0;
+  line-height:1;
 }
 
-.success p{
-  font-size:13px;
-  line-height:2;
+.polaroid-order{
+  margin-top:14px;
+  font-size:9px;
+  letter-spacing:1.8px;
+  color:var(--muted);
+  text-align:center;
+}
+
+.polaroid-date{
+  margin-top:auto;
+  padding-top:20px;
+  font-size:9px;
+  letter-spacing:2px;
   color:var(--muted);
 }
 
-.confirm-box{
-  margin:30px 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  padding:20px 0;
+.printed-note{
+  margin-top:420px;
+  color:var(--muted);
+  font-size:11px;
+  opacity:0;
+  transition:opacity .6s ease;
 }
 
-.confirm-row{
+.printed-note.show{
+  opacity:1;
+}
+
+/* RECEIPT */
+
+.receipt{
+  max-width:640px;
+  margin:40px auto 0;
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:34px;
+  text-align:left;
+  box-shadow:0 15px 35px rgba(64,57,52,.07);
+  position:relative;
+}
+
+.receipt::before,
+.receipt::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:8px;
+  background:
+    linear-gradient(-45deg,transparent 5px,var(--white) 0) 0 0/10px 10px repeat-x;
+}
+
+.receipt::before{
+  top:-7px;
+}
+
+.receipt::after{
+  bottom:-7px;
+  transform:rotate(180deg);
+}
+
+.receipt-head{
+  text-align:center;
+  padding-bottom:25px;
+  border-bottom:1px dashed rgba(64,57,52,.22);
+}
+
+.receipt-brand{
+  font-family:"Cormorant Garamond",serif;
+  font-size:25px;
+  letter-spacing:4px;
+}
+
+.receipt-caption{
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--muted);
+  margin-top:4px;
+}
+
+.receipt-order{
+  font-family:"Cormorant Garamond",serif;
+  font-size:24px;
+  margin-top:16px;
+}
+
+.receipt-body{
+  padding:18px 0;
+}
+
+.receipt-row{
   display:flex;
   justify-content:space-between;
-  padding:9px 0;
-  font-size:13px;
-  gap:20px;
+  gap:25px;
+  padding:10px 0;
+  font-size:12px;
+  border-bottom:1px solid rgba(64,57,52,.07);
 }
 
-.confirm-row span:last-child{
+.receipt-row:last-child{
+  border-bottom:none;
+}
+
+.receipt-row span:last-child{
   text-align:right;
+  max-width:60%;
 }
 
-.print-btn{
+.receipt-total{
+  margin-top:10px;
+  padding-top:18px;
+  border-top:1px dashed rgba(64,57,52,.22);
+}
+
+.receipt-total .receipt-row{
+  font-size:14px;
+}
+
+.receipt-total .grand{
+  font-family:"Cormorant Garamond",serif;
+  font-size:24px;
+}
+
+.receipt-foot{
+  border-top:1px dashed rgba(64,57,52,.22);
+  padding-top:20px;
+  text-align:center;
+  font-size:10px;
+  color:var(--muted);
+  line-height:2;
+}
+
+/* ACTION BUTTONS */
+
+.success-actions{
+  max-width:640px;
+  margin:28px auto 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.action-btn{
   border:1px solid var(--dark);
   background:transparent;
-  padding:13px 25px;
-  font-family:inherit;
-  font-size:11px;
-  letter-spacing:2px;
+  color:var(--dark);
+  padding:14px 10px;
+  font-size:10px;
+  letter-spacing:1.7px;
   cursor:pointer;
-  margin-top:20px;
+  transition:.2s;
 }
 
+.action-btn:hover{
+  background:var(--dark);
+  color:white;
+}
 
-/* =========================
-   FOOTER
-========================= */
+.action-btn.primary{
+  background:var(--dark);
+  color:white;
+}
+
+.action-btn.primary:hover{
+  opacity:.9;
+}
+
+.back-order-btn{
+  display:inline-block;
+  margin-top:25px;
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  cursor:pointer;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(20px);
+  background:var(--dark);
+  color:white;
+  padding:13px 20px;
+  font-size:11px;
+  letter-spacing:1px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:1000;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* FOOTER */
 
 footer{
   border-top:1px solid var(--line);
@@ -459,10 +804,7 @@ footer{
   color:var(--muted);
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -487,6 +829,30 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .success{
+    padding:55px 15px 80px;
+  }
+
+  .success h2{
+    font-size:40px;
+  }
+
+  .printer-wrap{
+    width:300px;
+  }
+
+  .polaroid{
+    width:235px;
+  }
+
+  .receipt{
+    padding:25px 20px;
+  }
+
+  .success-actions{
+    grid-template-columns:1fr;
+  }
+
   footer{
     padding:30px 25px;
     flex-direction:column;
@@ -495,37 +861,87 @@ footer{
 
 }
 
-
-/* =========================
+/* =====================================================
    PRINT
-========================= */
+===================================================== */
 
 @media print{
 
-  header,
-  footer,
-  .print-btn{
-    display:none;
+  @page{
+    margin:10mm;
   }
 
   body{
-    background:white;
+    background:white !important;
   }
 
-  .success{
+  body *{
+    visibility:hidden !important;
+  }
+
+  #successPage,
+  #successPage *{
+    visibility:visible !important;
+  }
+
+  #successPage{
     display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    min-height:auto;
+    padding:0;
     margin:0;
-    border:none;
+    background:white;
+    overflow:visible;
   }
 
+  #successPage::before,
+  #successPage::after,
+  .printer-wrap,
+  .printed-note,
+  .success-eyebrow,
+  .success > h2,
+  .success-subtitle,
+  .success-actions,
+  .back-order-btn,
+  .toast{
+    display:none !important;
+  }
+
+  .paper-area{
+    height:auto !important;
+  }
+
+  .polaroid{
+    position:relative !important;
+    left:auto !important;
+    top:auto !important;
+    transform:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    margin:0 auto 25mm !important;
+    box-shadow:none !important;
+  }
+
+  .receipt{
+    margin:0 auto !important;
+    box-shadow:none !important;
+    border:1px solid #ddd !important;
+    max-width:90mm;
+  }
+
+  .receipt::before,
+  .receipt::after{
+    display:none !important;
+  }
 }
 
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -539,12 +955,9 @@ footer{
 
 </header>
 
-
-
 <main id="orderPage">
 
 <section class="page">
-
 
 <div class="page-title">
 
@@ -563,26 +976,15 @@ footer{
 
 </div>
 
-
-
 <div class="order-layout">
 
-
-<!-- =====================================
-     LEFT
-===================================== -->
-
 <div>
-
-
-<!-- CUSTOMER -->
 
 <div class="section">
 
   <div class="section-title">
     Your Information
   </div>
-
 
   <div class="form-group">
 
@@ -598,7 +1000,6 @@ footer{
     >
 
   </div>
-
 
   <div class="form-group">
 
@@ -617,10 +1018,6 @@ footer{
 
 </div>
 
-
-
-<!-- TEMPLATE -->
-
 <div class="section">
 
   <div class="section-title">
@@ -635,52 +1032,31 @@ footer{
 
     <select id="template">
 
-      <option
-        value="make-up-01"
-        data-price="129"
-      >
+      <option value="make-up-01" data-price="129">
         Make Up · Template 01 — 129 THB
       </option>
 
-      <option
-        value="make-up-02"
-        data-price="129"
-      >
+      <option value="make-up-02" data-price="129">
         Make Up · Template 02 — 129 THB
       </option>
 
-      <option
-        value="make-up-03"
-        data-price="129"
-      >
+      <option value="make-up-03" data-price="129">
         Make Up · Template 03 — 129 THB
       </option>
 
-      <option
-        value="birthday-01"
-        data-price="129"
-      >
+      <option value="birthday-01" data-price="129">
         Birthday · Template 01 — 129 THB
       </option>
 
-      <option
-        value="anniversary-01"
-        data-price="129"
-      >
+      <option value="anniversary-01" data-price="129">
         Anniversary · Template 01 — 129 THB
       </option>
 
-      <option
-        value="anniversary-02"
-        data-price="129"
-      >
+      <option value="anniversary-02" data-price="129">
         Anniversary · Template 02 — 129 THB
       </option>
 
-      <option
-        value="anniversary-03"
-        data-price="129"
-      >
+      <option value="anniversary-03" data-price="129">
         Anniversary · Template 03 — 129 THB
       </option>
 
@@ -689,10 +1065,6 @@ footer{
   </div>
 
 </div>
-
-
-
-<!-- MESSAGE -->
 
 <div class="section">
 
@@ -715,19 +1087,13 @@ footer{
 
 </div>
 
-
-
-<!-- COLORS -->
-
 <div class="section">
 
   <div class="section-title">
     Choose Your Colors
   </div>
 
-
   <div class="color-row">
-
 
     <div class="color-box">
 
@@ -743,18 +1109,13 @@ footer{
           value="#8C7E74"
         >
 
-        <span
-          class="hex"
-          id="primaryHex"
-        >
+        <span class="hex" id="primaryHex">
           #8C7E74
         </span>
 
       </div>
 
     </div>
-
-
 
     <div class="color-box">
 
@@ -770,10 +1131,7 @@ footer{
           value="#C8BCB1"
         >
 
-        <span
-          class="hex"
-          id="secondaryHex"
-        >
+        <span class="hex" id="secondaryHex">
           #C8BCB1
         </span>
 
@@ -783,12 +1141,7 @@ footer{
 
   </div>
 
-
-
-  <div
-    class="color-box"
-    style="margin-top:15px;"
-  >
+  <div class="color-box" style="margin-top:15px;">
 
     <label>
       Background Color
@@ -802,10 +1155,7 @@ footer{
         value="#F4EFEA"
       >
 
-      <span
-        class="hex"
-        id="backgroundHex"
-      >
+      <span class="hex" id="backgroundHex">
         #F4EFEA
       </span>
 
@@ -813,14 +1163,9 @@ footer{
 
   </div>
 
-
-
   <div class="color-preview">
 
-    <div
-      class="preview-card"
-      id="previewCard"
-    >
+    <div class="preview-card" id="previewCard">
 
       <div class="preview-inner">
 
@@ -840,23 +1185,13 @@ footer{
 
 </div>
 
-
-
-<!-- =====================================
-     EXTRA FUNCTION
-===================================== -->
-
 <div class="section">
 
   <div class="section-title">
     Extra Function
   </div>
 
-
   <div class="extra-box">
-
-
-    <!-- NONE -->
 
     <label class="extra-option extra-none">
 
@@ -877,10 +1212,6 @@ footer{
 
     </label>
 
-
-
-    <!-- FUNCTIONS -->
-
     <label class="extra-option">
 
       <input
@@ -899,8 +1230,6 @@ footer{
       </span>
 
     </label>
-
-
 
     <label class="extra-option">
 
@@ -921,8 +1250,6 @@ footer{
 
     </label>
 
-
-
     <label class="extra-option">
 
       <input
@@ -941,8 +1268,6 @@ footer{
       </span>
 
     </label>
-
-
 
     <label class="extra-option">
 
@@ -963,8 +1288,6 @@ footer{
 
     </label>
 
-
-
     <label class="extra-option">
 
       <input
@@ -983,8 +1306,6 @@ footer{
       </span>
 
     </label>
-
-
 
     <label class="extra-option">
 
@@ -1005,8 +1326,6 @@ footer{
 
     </label>
 
-
-
     <label class="extra-option">
 
       <input
@@ -1026,9 +1345,7 @@ footer{
 
     </label>
 
-
   </div>
-
 
   <div class="extra-help">
     เลือกได้มากกว่า 1 ฟังก์ชัน · เพิ่ม 29 THB ต่อ 1 ฟังก์ชัน
@@ -1036,19 +1353,9 @@ footer{
 
 </div>
 
-
 </div>
 
-
-
-<!-- =====================================
-     RIGHT
-===================================== -->
-
 <div>
-
-
-<!-- PRICE -->
 
 <div class="section">
 
@@ -1056,9 +1363,7 @@ footer{
     Order Summary
   </div>
 
-
   <div class="price-box">
-
 
     <div class="price-row">
 
@@ -1072,8 +1377,6 @@ footer{
 
     </div>
 
-
-
     <div class="price-row">
 
       <span>
@@ -1086,16 +1389,9 @@ footer{
 
     </div>
 
-
-
-    <div
-      class="selected-functions"
-      id="selectedFunctions"
-    >
+    <div class="selected-functions" id="selectedFunctions">
       ไม่เพิ่มฟังก์ชัน
     </div>
-
-
 
     <div class="price-row total">
 
@@ -1103,16 +1399,11 @@ footer{
         Total
       </span>
 
-      <span
-        class="amount"
-        id="totalPrice"
-      >
+      <span class="amount" id="totalPrice">
         129.00 THB
       </span>
 
     </div>
-
-
 
     <div class="price-row deposit">
 
@@ -1120,16 +1411,11 @@ footer{
         Deposit 30%
       </span>
 
-      <span
-        class="amount"
-        id="depositPrice"
-      >
+      <span class="amount" id="depositPrice">
         38.70 THB
       </span>
 
     </div>
-
-
 
     <div class="price-row remaining">
 
@@ -1137,30 +1423,21 @@ footer{
         Remaining 70%
       </span>
 
-      <span
-        class="amount"
-        id="remainingPrice"
-      >
+      <span class="amount" id="remainingPrice">
         90.30 THB
       </span>
 
     </div>
 
-
   </div>
 
 </div>
-
-
-
-<!-- PAYMENT -->
 
 <div class="section">
 
   <div class="section-title">
     Deposit Payment
   </div>
-
 
   <div class="payment-note">
 
@@ -1173,8 +1450,6 @@ footer{
     กรุณาแนบสลิปการโอนเงินด้านล่าง
 
   </div>
-
-
 
   <div class="form-group">
 
@@ -1192,8 +1467,6 @@ footer{
 
   </div>
 
-
-
   <button
     type="button"
     class="submit-btn"
@@ -1205,7 +1478,6 @@ footer{
 
 </div>
 
-
 </div>
 
 </div>
@@ -1215,125 +1487,291 @@ footer{
 </main>
 
 
+<!-- =====================================================
+     PRINT SUCCESS
+===================================================== -->
 
-<!-- =====================================
-     SUCCESS
-===================================== -->
-
-<section
-  class="success"
-  id="successPage"
->
+<section class="success" id="successPage">
 
   <div class="success-eyebrow">
     PINTO LOVE
   </div>
 
-
   <h2>
-    Order Received
+    Order Printed
   </h2>
 
+  <div class="success-subtitle">
+    คำสั่งซื้อของคุณถูกส่งเรียบร้อยแล้ว ♡<br>
+    กำลังเตรียมใบยืนยันออเดอร์ของคุณ
+  </div>
 
-  <p>
-    ได้รับคำสั่งซื้อของคุณแล้ว
-  </p>
+
+  <!-- PRINTER -->
+
+  <div class="printer-wrap" id="printerWrap">
+
+    <div class="printer">
+
+      <div class="printer-top">
+
+        <div class="printer-brand">
+          PINTO
+        </div>
+
+        <div class="printer-light"></div>
+
+      </div>
+
+      <div class="printer-slot">
+
+        <div class="slot-light"></div>
+
+      </div>
+
+      <div class="print-status" id="printStatus">
+        PREPARING YOUR ORDER...
+      </div>
+
+      <div class="progress">
+
+        <div
+          class="progress-bar"
+          id="progressBar"
+        ></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- POLAROID -->
+
+  <div class="paper-area">
+
+    <div class="polaroid" id="polaroid">
+
+      <div
+        class="polaroid-inner"
+        id="polaroidInner"
+      >
+
+        <div class="polaroid-logo">
+          PINTO LOVE
+        </div>
+
+        <div class="polaroid-heart">
+          ♡
+        </div>
+
+        <div class="polaroid-title">
+          Thank You
+        </div>
+
+        <div
+          class="polaroid-order"
+          id="polaroidOrder"
+        >
+          PL-00000000-000
+        </div>
+
+        <div
+          class="polaroid-date"
+          id="polaroidDate"
+        >
+          06 · NOV · 2026
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 
   <div
-    class="order-number"
-    id="successOrderNumber"
+    class="printed-note"
+    id="printedNote"
   >
-    PL-00000000-000
+    Your order receipt is ready ♡
   </div>
 
 
-  <div class="confirm-box">
+  <!-- RECEIPT -->
 
+  <div class="receipt" id="receipt">
 
-    <div class="confirm-row">
+    <div class="receipt-head">
 
-      <span>
-        Template
-      </span>
+      <div class="receipt-brand">
+        PINTO LOVE
+      </div>
 
-      <span id="successTemplate">
-        —
-      </span>
+      <div class="receipt-caption">
+        ORDER RECEIPT
+      </div>
 
-    </div>
-
-
-    <div class="confirm-row">
-
-      <span>
-        Extra Function
-      </span>
-
-      <span id="successFunctions">
-        ไม่เพิ่มฟังก์ชัน
-      </span>
+      <div
+        class="receipt-order"
+        id="receiptOrder"
+      >
+        PL-00000000-000
+      </div>
 
     </div>
 
+    <div class="receipt-body">
 
-    <div class="confirm-row">
+      <div class="receipt-row">
 
-      <span>
-        Total
-      </span>
+        <span>
+          Customer
+        </span>
 
-      <span id="successTotal">
-        —
-      </span>
+        <span id="receiptCustomer">
+          —
+        </span>
+
+      </div>
+
+      <div class="receipt-row">
+
+        <span>
+          Template
+        </span>
+
+        <span id="receiptTemplate">
+          —
+        </span>
+
+      </div>
+
+      <div class="receipt-row">
+
+        <span>
+          Extra Function
+        </span>
+
+        <span id="receiptFunctions">
+          ไม่เพิ่มฟังก์ชัน
+        </span>
+
+      </div>
+
+      <div class="receipt-row">
+
+        <span>
+          Contact
+        </span>
+
+        <span id="receiptContact">
+          —
+        </span>
+
+      </div>
+
+      <div class="receipt-total">
+
+        <div class="receipt-row">
+
+          <span>
+            TOTAL
+          </span>
+
+          <span
+            class="grand"
+            id="receiptTotal"
+          >
+            0.00 THB
+          </span>
+
+        </div>
+
+        <div class="receipt-row">
+
+          <span>
+            DEPOSIT 30%
+          </span>
+
+          <span id="receiptDeposit">
+            0.00 THB
+          </span>
+
+        </div>
+
+        <div class="receipt-row">
+
+          <span>
+            REMAINING 70%
+          </span>
+
+          <span id="receiptRemaining">
+            0.00 THB
+          </span>
+
+        </div>
+
+      </div>
 
     </div>
 
+    <div class="receipt-foot">
 
-    <div class="confirm-row">
+      <div>
+        PAYMENT STATUS
+      </div>
 
-      <span>
-        Deposit
-      </span>
+      <strong id="receiptStatus">
+        รอตรวจสอบมัดจำ
+      </strong>
 
-      <span id="successDeposit">
-        —
-      </span>
+      <br>
 
-    </div>
-
-
-    <div class="confirm-row">
-
-      <span>
-        Remaining
-      </span>
-
-      <span id="successRemaining">
-        —
-      </span>
+      ขอบคุณที่เลือก PINTO LOVE ♡
 
     </div>
 
   </div>
 
 
-  <p>
-    สถานะคำสั่งซื้อ: รอตรวจสอบมัดจำ<br>
-    เมื่อทาง PINTO LOVE ตรวจสอบยอดเรียบร้อยแล้ว
-    จะดำเนินการตามขั้นตอนต่อไป
-  </p>
+  <!-- ACTIONS -->
+
+  <div class="success-actions">
+
+    <button
+      class="action-btn primary"
+      onclick="printReceipt()"
+    >
+      PRINT RECEIPT
+    </button>
+
+    <button
+      class="action-btn"
+      onclick="saveReceipt()"
+    >
+      SAVE / PDF
+    </button>
+
+    <button
+      class="action-btn"
+      onclick="shareReceipt()"
+    >
+      SHARE
+    </button>
+
+  </div>
 
 
-  <button
-    class="print-btn"
-    onclick="window.print()"
+  <a
+    href="love.html"
+    class="back-order-btn"
   >
-    PRINT / SAVE AS PDF
-  </button>
+    ← BACK TO PINTO LOVE
+  </a>
 
 </section>
-
 
 
 <footer>
@@ -1349,12 +1787,16 @@ footer{
 </footer>
 
 
+<div class="toast" id="toast">
+  Saved
+</div>
+
 
 <script>
 
-/* ==========================================
+/* =====================================================
    SUPABASE
-========================================== */
+===================================================== */
 
 const SUPABASE_URL =
 "https://keybykrpnpgsnyxtpfqj.supabase.co";
@@ -1363,9 +1805,9 @@ const SUPABASE_ANON_KEY =
 "ใส่ Publishable Key ของ Supabase ตรงนี้";
 
 
-/* ==========================================
+/* =====================================================
    ELEMENTS
-========================================== */
+===================================================== */
 
 const templateSelect =
 document.getElementById("template");
@@ -1390,9 +1832,9 @@ document.querySelectorAll(
 );
 
 
-/* ==========================================
+/* =====================================================
    TEMPLATE FROM URL
-========================================== */
+===================================================== */
 
 function selectTemplateFromURL(){
 
@@ -1426,9 +1868,9 @@ function selectTemplateFromURL(){
 }
 
 
-/* ==========================================
+/* =====================================================
    COLOR
-========================================== */
+===================================================== */
 
 function updateColors(){
 
@@ -1437,30 +1879,25 @@ function updateColors(){
   ).textContent =
     primaryColor.value.toUpperCase();
 
-
   document.getElementById(
     "secondaryHex"
   ).textContent =
     secondaryColor.value.toUpperCase();
-
 
   document.getElementById(
     "backgroundHex"
   ).textContent =
     backgroundColor.value.toUpperCase();
 
-
   document.getElementById(
     "previewCard"
   ).style.background =
     backgroundColor.value;
 
-
   document.getElementById(
     "previewTitle"
   ).style.color =
     primaryColor.value;
-
 
   document.getElementById(
     "previewText"
@@ -1470,9 +1907,9 @@ function updateColors(){
 }
 
 
-/* ==========================================
+/* =====================================================
    EXTRA FUNCTION
-========================================== */
+===================================================== */
 
 function getSelectedFunctions(){
 
@@ -1491,13 +1928,11 @@ function updateExtraFunctions(){
   const selected =
     getSelectedFunctions();
 
-
   const selectedNames =
     selected.map(
       checkbox =>
         checkbox.value
     );
-
 
   const selectedPrice =
     selected.reduce(
@@ -1509,19 +1944,16 @@ function updateExtraFunctions(){
       0
     );
 
-
   document.getElementById(
     "extraPrice"
   ).textContent =
     selectedPrice.toFixed(2) +
     " THB";
 
-
   const selectedFunctions =
     document.getElementById(
       "selectedFunctions"
     );
-
 
   if(selectedNames.length === 0){
 
@@ -1542,15 +1974,14 @@ function updateExtraFunctions(){
 
   }
 
-
   updatePrice();
 
 }
 
 
-/* ==========================================
+/* =====================================================
    NONE
-========================================== */
+===================================================== */
 
 noneRadio.addEventListener(
   "change",
@@ -1572,9 +2003,9 @@ noneRadio.addEventListener(
 );
 
 
-/* ==========================================
+/* =====================================================
    CHECKBOX
-========================================== */
+===================================================== */
 
 functionCheckboxes.forEach(
   checkbox => {
@@ -1599,9 +2030,9 @@ functionCheckboxes.forEach(
 );
 
 
-/* ==========================================
+/* =====================================================
    PRICE
-========================================== */
+===================================================== */
 
 function updatePrice(){
 
@@ -1610,17 +2041,14 @@ function updatePrice(){
       templateSelect.selectedIndex
     ];
 
-
   const templatePrice =
     Number(
       selectedTemplate.dataset.price ||
       0
     );
 
-
   const selectedFunctions =
     getSelectedFunctions();
-
 
   const extraPrice =
     selectedFunctions.reduce(
@@ -1632,11 +2060,9 @@ function updatePrice(){
       0
     );
 
-
   const total =
     templatePrice +
     extraPrice;
-
 
   const deposit =
     Number(
@@ -1644,13 +2070,11 @@ function updatePrice(){
       .toFixed(2)
     );
 
-
   const remaining =
     Number(
       (total - deposit)
       .toFixed(2)
     );
-
 
   document.getElementById(
     "templatePrice"
@@ -1658,13 +2082,11 @@ function updatePrice(){
     templatePrice.toFixed(2) +
     " THB";
 
-
   document.getElementById(
     "extraPrice"
   ).textContent =
     extraPrice.toFixed(2) +
     " THB";
-
 
   document.getElementById(
     "totalPrice"
@@ -1672,13 +2094,11 @@ function updatePrice(){
     total.toFixed(2) +
     " THB";
 
-
   document.getElementById(
     "depositPrice"
   ).textContent =
     deposit.toFixed(2) +
     " THB";
-
 
   document.getElementById(
     "remainingPrice"
@@ -1689,27 +2109,24 @@ function updatePrice(){
 }
 
 
-/* ==========================================
+/* =====================================================
    EVENTS
-========================================== */
+===================================================== */
 
 templateSelect.addEventListener(
   "change",
   updatePrice
 );
 
-
 primaryColor.addEventListener(
   "input",
   updateColors
 );
 
-
 secondaryColor.addEventListener(
   "input",
   updateColors
 );
-
 
 backgroundColor.addEventListener(
   "input",
@@ -1717,15 +2134,14 @@ backgroundColor.addEventListener(
 );
 
 
-/* ==========================================
+/* =====================================================
    ORDER NUMBER
-========================================== */
+===================================================== */
 
 function createOrderNumber(){
 
   const now =
     new Date();
-
 
   const date =
     now.getFullYear() +
@@ -1736,12 +2152,10 @@ function createOrderNumber(){
       now.getDate()
     ).padStart(2,"0");
 
-
   const random =
     Math.floor(
       Math.random() * 900
     ) + 100;
-
 
   return (
     `PL-${date}-${random}`
@@ -1750,9 +2164,9 @@ function createOrderNumber(){
 }
 
 
-/* ==========================================
+/* =====================================================
    UPLOAD SLIP
-========================================== */
+===================================================== */
 
 async function uploadPaymentSlip(file){
 
@@ -1761,16 +2175,13 @@ async function uploadPaymentSlip(file){
       .split(".")
       .pop();
 
-
   const fileName =
     `${Date.now()}-${Math.random()
       .toString(36)
       .substring(2)}.${extension}`;
 
-
   const uploadUrl =
     `${SUPABASE_URL}/storage/v1/object/payment-slips/${fileName}`;
-
 
   const response =
     await fetch(
@@ -1798,12 +2209,10 @@ async function uploadPaymentSlip(file){
       }
     );
 
-
   if(!response.ok){
 
     const errorText =
       await response.text();
-
 
     throw new Error(
       "อัปโหลดสลิปไม่สำเร็จ: " +
@@ -1812,15 +2221,388 @@ async function uploadPaymentSlip(file){
 
   }
 
-
   return fileName;
 
 }
 
 
-/* ==========================================
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatOrderDate(){
+
+  const months = [
+    "JAN","FEB","MAR","APR","MAY","JUN",
+    "JUL","AUG","SEP","OCT","NOV","DEC"
+  ];
+
+  const date =
+    new Date();
+
+  return (
+    String(date.getDate()).padStart(2,"0") +
+    " · " +
+    months[date.getMonth()] +
+    " · " +
+    date.getFullYear()
+  );
+
+}
+
+
+/* =====================================================
+   SHOW SUCCESS
+===================================================== */
+
+function showSuccess(data){
+
+  document.getElementById(
+    "successOrderNumber"
+  );
+
+  document.getElementById(
+    "polaroidOrder"
+  ).textContent =
+    data.orderNumber;
+
+  document.getElementById(
+    "polaroidDate"
+  ).textContent =
+    formatOrderDate();
+
+  document.getElementById(
+    "receiptOrder"
+  ).textContent =
+    data.orderNumber;
+
+  document.getElementById(
+    "receiptCustomer"
+  ).textContent =
+    data.customerName;
+
+  document.getElementById(
+    "receiptTemplate"
+  ).textContent =
+    data.templateName;
+
+  document.getElementById(
+    "receiptFunctions"
+  ).textContent =
+    data.functionText;
+
+  document.getElementById(
+    "receiptContact"
+  ).textContent =
+    data.contact;
+
+  document.getElementById(
+    "receiptTotal"
+  ).textContent =
+    data.total.toFixed(2) +
+    " THB";
+
+  document.getElementById(
+    "receiptDeposit"
+  ).textContent =
+    data.deposit.toFixed(2) +
+    " THB";
+
+  document.getElementById(
+    "receiptRemaining"
+  ).textContent =
+    data.remaining.toFixed(2) +
+    " THB";
+
+  document.getElementById(
+    "receiptStatus"
+  ).textContent =
+    "รอตรวจสอบมัดจำ";
+
+  document.getElementById(
+    "orderPage"
+  ).style.display =
+    "none";
+
+  document.querySelector(
+    "footer"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "successPage"
+  ).classList.add(
+    "show"
+  );
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+  startPrinterAnimation();
+
+}
+
+
+/* =====================================================
+   PRINTER ANIMATION
+===================================================== */
+
+function startPrinterAnimation(){
+
+  const progress =
+    document.getElementById(
+      "progressBar"
+    );
+
+  const status =
+    document.getElementById(
+      "printStatus"
+    );
+
+  const polaroid =
+    document.getElementById(
+      "polaroid"
+    );
+
+  const note =
+    document.getElementById(
+      "printedNote"
+    );
+
+  progress.style.width =
+    "0%";
+
+  polaroid.classList.remove(
+    "printed"
+  );
+
+  note.classList.remove(
+    "show"
+  );
+
+  const steps = [
+    {
+      percent:20,
+      text:"CONNECTING TO PINTO..."
+    },
+    {
+      percent:42,
+      text:"PREPARING YOUR ORDER..."
+    },
+    {
+      percent:68,
+      text:"PRINTING POLAROID..."
+    },
+    {
+      percent:86,
+      text:"ALMOST READY..."
+    },
+    {
+      percent:100,
+      text:"PRINT COMPLETE ♡"
+    }
+  ];
+
+  steps.forEach(
+    (step,index) => {
+
+      setTimeout(
+        () => {
+
+          progress.style.width =
+            step.percent + "%";
+
+          status.textContent =
+            step.text;
+
+        },
+        550 + index * 650
+      );
+
+    }
+  );
+
+  setTimeout(
+    () => {
+
+      polaroid.classList.add(
+        "printed"
+      );
+
+    },
+    3550
+  );
+
+  setTimeout(
+    () => {
+
+      note.classList.add(
+        "show"
+      );
+
+    },
+    4650
+  );
+
+}
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+function printReceipt(){
+
+  window.print();
+
+}
+
+
+/* =====================================================
+   SAVE AS PDF
+===================================================== */
+
+function saveReceipt(){
+
+  showToast(
+    "เลือก Save as PDF ในหน้าต่าง Print ได้เลย"
+  );
+
+  setTimeout(
+    () => {
+
+      window.print();
+
+    },
+    450
+  );
+
+}
+
+
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function shareReceipt(){
+
+  const orderNumber =
+    document.getElementById(
+      "receiptOrder"
+    ).textContent;
+
+  const total =
+    document.getElementById(
+      "receiptTotal"
+    ).textContent;
+
+  const text =
+    `PINTO LOVE\n` +
+    `Order: ${orderNumber}\n` +
+    `Total: ${total}\n` +
+    `สถานะ: รอตรวจสอบมัดจำ\n\n` +
+    `ขอบคุณที่เลือก PINTO LOVE ♡`;
+
+  try{
+
+    if(
+      navigator.share
+    ){
+
+      await navigator.share({
+
+        title:
+          "PINTO LOVE · Order Receipt",
+
+        text:
+          text,
+
+        url:
+          window.location.href
+
+      });
+
+    }else{
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+      showToast(
+        "คัดลอกใบยืนยันออเดอร์แล้ว"
+      );
+
+    }
+
+  }catch(error){
+
+    if(
+      error.name !==
+      "AbortError"
+    ){
+
+      try{
+
+        await navigator.clipboard.writeText(
+          text
+        );
+
+        showToast(
+          "คัดลอกข้อมูลออเดอร์แล้ว"
+        );
+
+      }catch(copyError){
+
+        showToast(
+          "ไม่สามารถแชร์ได้บนอุปกรณ์นี้"
+        );
+
+      }
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  setTimeout(
+    () => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    2500
+  );
+
+}
+
+
+/* =====================================================
    SUBMIT
-========================================== */
+===================================================== */
 
 async function submitOrder(){
 
@@ -1829,30 +2611,25 @@ async function submitOrder(){
       "submitBtn"
     );
 
-
   const name =
     document.getElementById(
       "customerName"
     ).value.trim();
-
 
   const contact =
     document.getElementById(
       "contact"
     ).value.trim();
 
-
   const message =
     document.getElementById(
       "message"
     ).value.trim();
 
-
   const slip =
     document.getElementById(
       "paymentSlip"
     ).files[0];
-
 
   if(!name){
 
@@ -1864,7 +2641,6 @@ async function submitOrder(){
 
   }
 
-
   if(!contact){
 
     alert(
@@ -1874,7 +2650,6 @@ async function submitOrder(){
     return;
 
   }
-
 
   if(!slip){
 
@@ -1886,14 +2661,24 @@ async function submitOrder(){
 
   }
 
+  if(
+    SUPABASE_ANON_KEY ===
+    "ใส่ Publishable Key ของ Supabase ตรงนี้"
+  ){
+
+    alert(
+      "ยังไม่ได้ใส่ Publishable Key ของ Supabase ใน order.html"
+    );
+
+    return;
+
+  }
 
   button.disabled =
     true;
 
-
   button.textContent =
     "SUBMITTING...";
-
 
   try{
 
@@ -1902,15 +2687,12 @@ async function submitOrder(){
         templateSelect.selectedIndex
       ];
 
-
     const template =
       selectedTemplate.value;
-
 
     const templateName =
       selectedTemplate.textContent
         .trim();
-
 
     const templatePrice =
       Number(
@@ -1918,10 +2700,8 @@ async function submitOrder(){
         0
       );
 
-
     const selectedFunctions =
       getSelectedFunctions();
-
 
     const functionNames =
       selectedFunctions.map(
@@ -1929,12 +2709,10 @@ async function submitOrder(){
           checkbox.value
       );
 
-
     const functionText =
       functionNames.length
       ? functionNames.join(", ")
       : "ไม่เพิ่มฟังก์ชัน";
-
 
     const extraPrice =
       selectedFunctions.reduce(
@@ -1946,11 +2724,9 @@ async function submitOrder(){
         0
       );
 
-
     const total =
       templatePrice +
       extraPrice;
-
 
     const deposit =
       Number(
@@ -1958,13 +2734,11 @@ async function submitOrder(){
         .toFixed(2)
       );
 
-
     const remaining =
       Number(
         (total - deposit)
         .toFixed(2)
       );
-
 
     const orderNumber =
       createOrderNumber();
@@ -2048,7 +2822,7 @@ async function submitOrder(){
               SUPABASE_ANON_KEY,
 
             Authorization:
-              `Bearer ${SUPABASE_ANON_KEY}`,
+              `Bearer ${SUPABASE_ANON_KEY`,
 
             "Content-Type":
               "application/json",
@@ -2072,7 +2846,6 @@ async function submitOrder(){
       const errorText =
         await response.text();
 
-
       throw new Error(
         "บันทึก Order ไม่สำเร็จ: " +
         errorText
@@ -2081,65 +2854,34 @@ async function submitOrder(){
     }
 
 
-    /* ==================================
-       SUCCESS
-    ================================== */
+    /* SUCCESS DATA */
 
-    document.getElementById(
-      "successOrderNumber"
-    ).textContent =
-      orderNumber;
+    showSuccess({
 
+      orderNumber:
+        orderNumber,
 
-    document.getElementById(
-      "successTemplate"
-    ).textContent =
-      templateName;
+      customerName:
+        name,
 
+      contact:
+        contact,
 
-    document.getElementById(
-      "successFunctions"
-    ).textContent =
-      functionText;
+      templateName:
+        templateName,
 
+      functionText:
+        functionText,
 
-    document.getElementById(
-      "successTotal"
-    ).textContent =
-      total.toFixed(2) +
-      " THB";
+      total:
+        total,
 
+      deposit:
+        deposit,
 
-    document.getElementById(
-      "successDeposit"
-    ).textContent =
-      deposit.toFixed(2) +
-      " THB";
+      remaining:
+        remaining
 
-
-    document.getElementById(
-      "successRemaining"
-    ).textContent =
-      remaining.toFixed(2) +
-      " THB";
-
-
-    document.getElementById(
-      "orderPage"
-    ).style.display =
-      "none";
-
-
-    document.getElementById(
-      "successPage"
-    ).classList.add(
-      "show"
-    );
-
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
     });
 
 
@@ -2149,16 +2891,13 @@ async function submitOrder(){
       error
     );
 
-
     alert(
       "เกิดข้อผิดพลาด\n\n" +
       error.message
     );
 
-
     button.disabled =
       false;
-
 
     button.textContent =
       "SUBMIT ORDER";
@@ -2168,9 +2907,9 @@ async function submitOrder(){
 }
 
 
-/* ==========================================
+/* =====================================================
    START
-========================================== */
+===================================================== */
 
 selectTemplateFromURL();
 
