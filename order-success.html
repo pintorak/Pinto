@@ -1,0 +1,979 @@
+```html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Complete | PINTO LOVE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brown:#8C7E74;
+  --dark:#5f5148;
+  --beige:#C8BCB1;
+  --light:#E6DED8;
+  --cream:#F4EFEA;
+  --white:#fffdfb;
+  --line:rgba(95,81,72,.18);
+  --shadow:0 25px 70px rgba(95,81,72,.15);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(200,188,177,.25), transparent 35%),
+    var(--cream);
+  color:var(--dark);
+  font-family:"DM Sans","Noto Sans Thai",sans-serif;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.page{
+  width:min(100%, 1100px);
+  margin:auto;
+  padding:55px 22px 80px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.top{
+  text-align:center;
+  margin-bottom:45px;
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  font-weight:600;
+  letter-spacing:4px;
+}
+
+.logo span{
+  font-size:13px;
+  letter-spacing:4px;
+  display:block;
+  margin-top:-4px;
+  opacity:.65;
+}
+
+.success-title{
+  margin-top:30px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:52px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+.success-text{
+  margin-top:8px;
+  font-family:"Noto Sans Thai",sans-serif;
+  font-size:14px;
+  color:#8b7e75;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:start;
+}
+
+/* =========================
+   POLAROID
+========================= */
+
+.photo-section{
+  display:flex;
+  justify-content:center;
+}
+
+.polaroid-wrap{
+  position:relative;
+  width:100%;
+  max-width:450px;
+}
+
+.polaroid{
+  position:relative;
+  background:#fff;
+  padding:16px 16px 30px;
+  box-shadow:0 28px 60px rgba(95,81,72,.22);
+  transform:rotate(-2.2deg);
+  animation:photoIn 1s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.polaroid::before{
+  content:"";
+  position:absolute;
+  top:-14px;
+  left:50%;
+  width:100px;
+  height:28px;
+  background:rgba(200,188,177,.55);
+  transform:translateX(-50%) rotate(-1deg);
+}
+
+.photo{
+  width:100%;
+  aspect-ratio:1 / 1;
+  background:
+    linear-gradient(135deg, #e6ded8 0%, #f4efea 48%, #c8bcb1 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+
+.photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    125deg,
+    rgba(255,255,255,.45),
+    transparent 35%,
+    transparent 65%,
+    rgba(95,81,72,.08)
+  );
+}
+
+.photo-placeholder{
+  text-align:center;
+  position:relative;
+  z-index:2;
+  padding:25px;
+}
+
+.photo-placeholder .heart{
+  font-size:42px;
+  display:block;
+  margin-bottom:12px;
+  opacity:.75;
+}
+
+.photo-placeholder h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:38px;
+  font-weight:600;
+}
+
+.photo-placeholder p{
+  margin-top:4px;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.55;
+}
+
+.polaroid-caption{
+  text-align:center;
+  padding-top:20px;
+}
+
+.polaroid-caption .small{
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  opacity:.5;
+}
+
+.polaroid-caption .moment{
+  margin-top:3px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  font-style:italic;
+}
+
+/* =========================
+   RECEIPT
+========================= */
+
+.receipt-card{
+  background:rgba(255,255,255,.76);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+
+.receipt-card::before,
+.receipt-card::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:10px;
+  background:
+    radial-gradient(circle at 5px 0, transparent 5px, var(--white) 5.5px)
+    repeat-x;
+  background-size:10px 10px;
+}
+
+.receipt-card::before{
+  top:-10px;
+}
+
+.receipt-card::after{
+  bottom:-10px;
+  transform:rotate(180deg);
+}
+
+.receipt-head{
+  text-align:center;
+  padding-bottom:22px;
+  border-bottom:1px dashed rgba(95,81,72,.3);
+}
+
+.receipt-brand{
+  font-family:"Cormorant Garamond",serif;
+  font-size:28px;
+  letter-spacing:3px;
+}
+
+.receipt-label{
+  font-size:10px;
+  letter-spacing:3px;
+  margin-top:2px;
+  opacity:.55;
+}
+
+.order-number{
+  margin-top:15px;
+  font-size:12px;
+  letter-spacing:1px;
+  font-weight:600;
+}
+
+.receipt-body{
+  padding:23px 0;
+  border-bottom:1px dashed rgba(95,81,72,.3);
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:13px;
+  font-size:13px;
+}
+
+.row:last-child{
+  margin-bottom:0;
+}
+
+.row .label{
+  color:#93877e;
+}
+
+.row .value{
+  text-align:right;
+  font-weight:500;
+  max-width:60%;
+}
+
+.extras{
+  margin-top:17px;
+}
+
+.extra{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:5px 0;
+  font-size:12px;
+}
+
+.extra-name{
+  color:#8c7e74;
+}
+
+.extra-price{
+  font-weight:500;
+}
+
+.money{
+  padding:23px 0;
+  border-bottom:1px dashed rgba(95,81,72,.3);
+}
+
+.money .row{
+  align-items:center;
+}
+
+.money .total{
+  font-size:18px;
+  margin-top:10px;
+  padding-top:15px;
+  border-top:1px solid rgba(95,81,72,.12);
+}
+
+.money .deposit .value{
+  font-weight:700;
+}
+
+.money .remaining .value{
+  color:#8c7e74;
+}
+
+.payment-status{
+  margin-top:23px;
+  text-align:center;
+  background:rgba(200,188,177,.22);
+  border:1px solid rgba(140,126,116,.18);
+  border-radius:14px;
+  padding:13px;
+}
+
+.payment-status .status-label{
+  font-size:9px;
+  letter-spacing:2px;
+  opacity:.55;
+  text-transform:uppercase;
+}
+
+.payment-status .status{
+  margin-top:5px;
+  font-size:13px;
+  font-weight:600;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.actions{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.btn{
+  border:1px solid rgba(95,81,72,.22);
+  background:rgba(255,255,255,.8);
+  color:var(--dark);
+  min-height:48px;
+  border-radius:999px;
+  padding:0 18px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.4px;
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(95,81,72,.12);
+}
+
+.btn.primary{
+  background:var(--brown);
+  color:white;
+  border-color:var(--brown);
+}
+
+.btn.full{
+  grid-column:1 / -1;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+  margin-top:55px;
+  color:#9a8e85;
+  font-size:11px;
+}
+
+.footer .brand{
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  letter-spacing:3px;
+  color:#7d7067;
+  margin-bottom:5px;
+}
+
+/* =========================
+   PRINT
+========================= */
+
+@media print{
+  body{
+    background:white;
+  }
+
+  .page{
+    padding:0;
+    width:100%;
+  }
+
+  .top{
+    margin-bottom:25px;
+  }
+
+  .success-title{
+    font-size:40px;
+  }
+
+  .content{
+    display:block;
+  }
+
+  .photo-section{
+    margin-bottom:35px;
+  }
+
+  .polaroid{
+    box-shadow:none;
+  }
+
+  .receipt-card{
+    box-shadow:none;
+    border:1px solid #ddd;
+  }
+
+  .actions,
+  .footer{
+    display:none !important;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:760px){
+  .page{
+    padding:35px 15px 60px;
+  }
+
+  .success-title{
+    font-size:42px;
+  }
+
+  .content{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .photo-section{
+    order:1;
+  }
+
+  .receipt-card{
+    order:2;
+    padding:25px 20px;
+  }
+
+  .polaroid{
+    max-width:370px;
+  }
+
+  .actions{
+    grid-template-columns:1fr;
+  }
+
+  .btn.full{
+    grid-column:auto;
+  }
+}
+
+@keyframes photoIn{
+  0%{
+    opacity:0;
+    transform:translateY(-80px) rotate(-8deg);
+  }
+
+  70%{
+    opacity:1;
+    transform:translateY(8px) rotate(-1deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:rotate(-2.2deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <div class="logo">
+      PINTO LOVE
+      <span>little digital moment</span>
+    </div>
+
+    <h1 class="success-title">Order Complete ♡</h1>
+
+    <p class="success-text">
+      ขอบคุณสำหรับออเดอร์ของคุณ
+      เราได้รับข้อมูลเรียบร้อยแล้ว
+    </p>
+  </header>
+
+
+  <main class="content">
+
+    <!-- POLAROID -->
+    <section class="photo-section">
+
+      <div class="polaroid-wrap">
+
+        <div class="polaroid">
+
+          <div class="photo">
+            <div class="photo-placeholder">
+              <span class="heart">♡</span>
+
+              <h2>Your Moment</h2>
+
+              <p>PINTO LOVE</p>
+            </div>
+          </div>
+
+          <div class="polaroid-caption">
+            <div class="small">a little digital moment</div>
+
+            <div class="moment">
+              made especially for you
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RECEIPT -->
+    <section>
+
+      <div class="receipt-card">
+
+        <div class="receipt-head">
+
+          <div class="receipt-brand">
+            PINTO LOVE
+          </div>
+
+          <div class="receipt-label">
+            ORDER RECEIPT
+          </div>
+
+          <div class="order-number" id="orderNumber">
+            ORDER #—
+          </div>
+
+        </div>
+
+
+        <div class="receipt-body">
+
+          <div class="row">
+            <span class="label">Template</span>
+            <span class="value" id="templateName">
+              Anniversary Template
+            </span>
+          </div>
+
+          <div class="row">
+            <span class="label">Customer</span>
+            <span class="value" id="customerName">
+              —
+            </span>
+          </div>
+
+          <div class="row">
+            <span class="label">Order Date</span>
+            <span class="value" id="orderDate">
+              —
+            </span>
+          </div>
+
+          <div class="extras" id="extrasList"></div>
+
+        </div>
+
+
+        <div class="money">
+
+          <div class="row">
+            <span class="label">Subtotal</span>
+            <span class="value" id="subtotal">
+              ฿129.00
+            </span>
+          </div>
+
+          <div class="row total">
+            <span class="label">Total</span>
+            <span class="value" id="total">
+              ฿129.00
+            </span>
+          </div>
+
+          <div class="row deposit">
+            <span class="label">Deposit 30%</span>
+            <span class="value" id="deposit">
+              ฿38.70
+            </span>
+          </div>
+
+          <div class="row remaining">
+            <span class="label">Remaining 70%</span>
+            <span class="value" id="remaining">
+              ฿90.30
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="payment-status">
+
+          <div class="status-label">
+            Payment Status
+          </div>
+
+          <div class="status" id="paymentStatus">
+            รอตรวจสอบมัดจำ
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="btn primary"
+            onclick="printPhoto()">
+            PRINT PHOTO
+          </button>
+
+          <button
+            class="btn"
+            onclick="printReceipt()">
+            PRINT RECEIPT
+          </button>
+
+          <button
+            class="btn full"
+            onclick="savePDF()">
+            SAVE AS PDF
+          </button>
+
+          <button
+            class="btn full"
+            onclick="goHome()">
+            BACK TO PINTO LOVE
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+
+    <div class="brand">
+      PINTO LOVE
+    </div>
+
+    <div>
+      little digital moments, made with love.
+    </div>
+
+  </footer>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+   GET ORDER NUMBER
+========================================================== */
+
+const params = new URLSearchParams(window.location.search);
+
+const orderNumber =
+  params.get("order") ||
+  params.get("order_number") ||
+  "";
+
+document.getElementById("orderNumber").textContent =
+  orderNumber
+    ? `ORDER #${orderNumber}`
+    : "ORDER #—";
+
+
+/* ==========================================================
+   DEMO DATA
+   จะถูกแทนด้วยข้อมูล Order จริงในขั้นต่อไป
+========================================================== */
+
+const demoOrder = {
+  template: "Anniversary Template",
+  customer: "Your Name",
+  date: new Date().toLocaleDateString("th-TH", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }),
+  extras: [
+    {
+      name: "Music Player",
+      price: 29
+    },
+    {
+      name: "Photo Gallery",
+      price: 29
+    }
+  ],
+  subtotal: 187,
+  total: 187,
+  deposit: 56.10,
+  remaining: 130.90,
+  paymentStatus: "รอตรวจสอบมัดจำ"
+};
+
+
+/* ==========================================================
+   RENDER DEMO
+========================================================== */
+
+function renderOrder(order){
+
+  document.getElementById("templateName").textContent =
+    order.template || "—";
+
+  document.getElementById("customerName").textContent =
+    order.customer || "—";
+
+  document.getElementById("orderDate").textContent =
+    order.date || "—";
+
+  document.getElementById("subtotal").textContent =
+    formatTHB(order.subtotal);
+
+  document.getElementById("total").textContent =
+    formatTHB(order.total);
+
+  document.getElementById("deposit").textContent =
+    formatTHB(order.deposit);
+
+  document.getElementById("remaining").textContent =
+    formatTHB(order.remaining);
+
+  document.getElementById("paymentStatus").textContent =
+    order.paymentStatus || "รอตรวจสอบมัดจำ";
+
+
+  const extrasList =
+    document.getElementById("extrasList");
+
+  extrasList.innerHTML = "";
+
+  if(
+    !order.extras ||
+    order.extras.length === 0
+  ){
+    return;
+  }
+
+  order.extras.forEach(extra => {
+
+    const div =
+      document.createElement("div");
+
+    div.className = "extra";
+
+    div.innerHTML = `
+      <span class="extra-name">
+        + ${escapeHTML(extra.name)}
+      </span>
+
+      <span class="extra-price">
+        ${formatTHB(extra.price)}
+      </span>
+    `;
+
+    extrasList.appendChild(div);
+
+  });
+
+}
+
+
+/* ==========================================================
+   FORMAT
+========================================================== */
+
+function formatTHB(value){
+
+  const number =
+    Number(value || 0);
+
+  return (
+    "฿" +
+    number.toLocaleString("th-TH", {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    })
+  );
+}
+
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==========================================================
+   PRINT PHOTO
+========================================================== */
+
+function printPhoto(){
+
+  const original =
+    document.body.innerHTML;
+
+  const photo =
+    document.querySelector(".photo-section").outerHTML;
+
+  document.body.innerHTML = `
+    <div style="
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      background:white;
+    ">
+      ${photo}
+    </div>
+  `;
+
+  window.print();
+
+  document.body.innerHTML =
+    original;
+
+  location.reload();
+
+}
+
+
+/* ==========================================================
+   PRINT RECEIPT
+========================================================== */
+
+function printReceipt(){
+
+  const receipt =
+    document.querySelector(".receipt-card");
+
+  const original =
+    document.body.innerHTML;
+
+  document.body.innerHTML = `
+    <div style="
+      max-width:500px;
+      margin:40px auto;
+      padding:20px;
+      background:white;
+    ">
+      ${receipt.outerHTML}
+    </div>
+  `;
+
+  window.print();
+
+  document.body.innerHTML =
+    original;
+
+  location.reload();
+
+}
+
+
+/* ==========================================================
+   SAVE PDF
+========================================================== */
+
+function savePDF(){
+
+  alert(
+    "เลือกเครื่องพิมพ์เป็น “Save as PDF” หรือ “บันทึกเป็น PDF” แล้วกด Save ได้เลยค่ะ"
+  );
+
+  window.print();
+
+}
+
+
+/* ==========================================================
+   BACK
+========================================================== */
+
+function goHome(){
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+/* ==========================================================
+   INITIAL RENDER
+========================================================== */
+
+renderOrder(demoOrder);
+
+</script>
+
+</body>
+</html>
+```
