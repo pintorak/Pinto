@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -38,7 +38,6 @@ body{
   background:var(--cream);
   color:var(--dark);
   font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
-  font-weight:300;
   line-height:1.8;
 }
 
@@ -48,51 +47,43 @@ a{
 }
 
 img{
+  max-width:100%;
   display:block;
-  width:100%;
 }
+
 
 /* =========================
    HEADER
 ========================= */
 
 header{
-  padding:28px 55px;
-  border-bottom:1px solid var(--line);
-
+  width:100%;
+  padding:25px 55px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  background:rgba(244,239,234,.92);
-  backdrop-filter:blur(10px);
-
-  position:sticky;
-  top:0;
-  z-index:20;
+  border-bottom:1px solid var(--line);
+  background:rgba(251,248,245,.94);
 }
 
 .logo{
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
-  letter-spacing:3px;
-  font-weight:500;
-}
-
-.logo span{
-  color:var(--taupe);
-}
-
-.back{
-  font-family:"Cormorant Garamond",serif;
-  font-size:18px;
-  color:var(--muted);
-  transition:.3s ease;
-}
-
-.back:hover{
+  letter-spacing:2px;
   color:var(--dark);
 }
+
+.back-link{
+  font-size:12px;
+  letter-spacing:1px;
+  color:var(--muted);
+  transition:.3s;
+}
+
+.back-link:hover{
+  color:var(--dark);
+}
+
 
 /* =========================
    BREADCRUMB
@@ -100,20 +91,18 @@ header{
 
 .breadcrumb{
   max-width:1200px;
-  margin:auto;
-
-  padding:42px 55px 0;
-
+  margin:0 auto;
+  padding:35px 55px 0;
+  font-size:11px;
+  letter-spacing:1px;
   color:var(--muted);
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:17px;
 }
 
 .breadcrumb span{
-  margin:0 10px;
-  color:var(--warm);
+  margin:0 7px;
+  opacity:.5;
 }
+
 
 /* =========================
    PRODUCT
@@ -121,17 +110,13 @@ header{
 
 .product{
   max-width:1200px;
-  margin:auto;
-
-  padding:45px 55px 110px;
-
+  margin:0 auto;
+  padding:55px 55px 100px;
   display:grid;
-  grid-template-columns:1.05fr .95fr;
-
-  gap:75px;
-
-  align-items:start;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
 }
+
 
 /* =========================
    GALLERY
@@ -139,66 +124,56 @@ header{
 
 .gallery{
   position:sticky;
-  top:105px;
+  top:35px;
+  align-self:start;
 }
 
-.main-preview{
-  width:100%;
+.gallery-placeholder{
   aspect-ratio:4 / 5;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--beige),
-      var(--cream)
-    );
-
+  border:1px solid var(--line);
+  background:var(--beige);
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
-
-  position:relative;
-  overflow:hidden;
+  align-items:center;
+  text-align:center;
+  padding:30px;
 }
 
-.placeholder{
-  text-align:center;
+.gallery-placeholder .number{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;
   color:var(--taupe);
+  margin-bottom:5px;
 }
 
-.placeholder-title{
+.gallery-placeholder .label{
   font-family:"Cormorant Garamond",serif;
-  font-size:52px;
-  line-height:1;
-  margin-bottom:12px;
+  font-size:24px;
+  color:var(--dark);
 }
 
-.placeholder-subtitle{
-  font-family:"Cormorant Garamond",serif;
-  font-size:20px;
-  color:var(--muted);
-}
-
-.gallery-note{
-  text-align:center;
+.gallery-placeholder .small{
   margin-top:15px;
-
+  font-size:11px;
   color:var(--muted);
-  font-family:"Cormorant Garamond",serif;
-  font-size:16px;
+  letter-spacing:.5px;
 }
+
 
 /* =========================
    PRODUCT INFO
 ========================= */
 
-.product-category{
-  font-family:"Cormorant Garamond",serif;
-  font-size:15px;
-  letter-spacing:3px;
-  color:var(--taupe);
+.product-info{
+  padding-top:5px;
+}
 
-  margin-bottom:15px;
+.product-category{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--taupe);
+  margin-bottom:25px;
 }
 
 .product-title{
@@ -206,82 +181,137 @@ header{
   font-size:56px;
   line-height:1.2;
   font-weight:500;
-
-  margin-bottom:16px;
+  margin-bottom:18px;
 }
 
 .product-subtitle{
   font-family:"Cormorant Garamond",serif;
   font-size:23px;
   line-height:1.5;
-
   color:var(--muted);
-
   margin-bottom:30px;
 }
 
 .price{
   font-family:"Cormorant Garamond",serif;
-  font-size:35px;
-
-  margin-bottom:30px;
+  font-size:30px;
+  margin-bottom:35px;
 }
 
 .description{
-  color:var(--muted);
   font-size:14px;
   line-height:2;
-
-  padding-bottom:30px;
-
-  border-bottom:1px solid var(--line);
+  color:var(--muted);
+  margin-bottom:45px;
 }
+
 
 /* =========================
-   DETAILS
+   INFO BLOCK
 ========================= */
 
-.detail-section{
-  padding:27px 0;
-
-  border-bottom:1px solid var(--line);
+.info-block{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
 }
 
-.detail-section h3{
+.info-title{
   font-family:"Cormorant Garamond",serif;
   font-size:23px;
-  font-weight:500;
-
-  margin-bottom:15px;
+  margin-bottom:20px;
 }
 
-.detail-section ul{
+.info-list{
   list-style:none;
 }
 
-.detail-section li{
-  color:var(--muted);
+.info-list li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:10px;
   font-size:13px;
-
-  margin-bottom:7px;
+  color:var(--muted);
 }
 
-.detail-section li::before{
-  content:"—";
-  color:var(--taupe);
-  margin-right:10px;
+.info-list li::before{
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--taupe);
+  position:absolute;
+  left:0;
+  top:12px;
 }
 
-.extra{
-  color:var(--muted);
+
+/* =========================
+   CUSTOMIZE
+========================= */
+
+.customize{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
+}
+
+.customize-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.customize p{
   font-size:13px;
+  color:var(--muted);
   line-height:2;
 }
 
-.extra strong{
-  color:var(--dark);
-  font-weight:400;
+
+/* =========================
+   EXTRA
+========================= */
+
+.extra{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
 }
+
+.extra-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.extra-price{
+  font-size:13px;
+  color:var(--muted);
+}
+
+
+/* =========================
+   DELIVERY
+========================= */
+
+.delivery{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:40px;
+}
+
+.delivery-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.delivery p{
+  font-size:13px;
+  color:var(--muted);
+}
+
 
 /* =========================
    BUTTONS
@@ -289,24 +319,18 @@ header{
 
 .buttons{
   display:flex;
+  flex-direction:column;
   gap:12px;
-
-  margin-top:32px;
 }
 
 .btn{
-  flex:1;
-
-  padding:15px 20px;
-
+  width:100%;
+  padding:16px 25px;
   text-align:center;
-
   border:1px solid var(--dark);
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:17px;
-
-  transition:.3s ease;
+  font-size:11px;
+  letter-spacing:1.5px;
+  transition:.3s;
 }
 
 .btn.primary{
@@ -321,56 +345,48 @@ header{
 
 .btn.secondary{
   background:transparent;
+  color:var(--dark);
 }
 
 .btn.secondary:hover{
-  background:var(--white);
+  background:var(--beige);
 }
 
+
 /* =========================
-   LOWER SECTION
+   STORY
 ========================= */
 
 .story{
-  background:var(--white);
-
   border-top:1px solid var(--line);
-
-  padding:95px 55px;
-}
-
-.story-inner{
   max-width:1200px;
-  margin:auto;
-
+  margin:0 auto;
+  padding:90px 55px 110px;
   text-align:center;
 }
 
-.story-eyebrow{
-  font-family:"Cormorant Garamond",serif;
+.story-label{
+  font-size:10px;
   letter-spacing:3px;
-  font-size:15px;
   color:var(--taupe);
-
-  margin-bottom:15px;
-}
-
-.story h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:50px;
-  font-weight:500;
-
   margin-bottom:20px;
 }
 
-.story p{
-  max-width:620px;
-  margin:auto;
-
-  color:var(--muted);
-  font-size:14px;
-  line-height:2;
+.story-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  font-weight:500;
+  margin-bottom:25px;
 }
+
+.story-text{
+  max-width:650px;
+  margin:0 auto;
+  font-size:13px;
+  line-height:2.1;
+  color:var(--muted);
+}
+
 
 /* =========================
    FOOTER
@@ -378,45 +394,40 @@ header{
 
 footer{
   border-top:1px solid var(--line);
-
   padding:35px 55px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
+  font-size:10px;
+  letter-spacing:1px;
   color:var(--muted);
-  font-size:12px;
 }
 
 .footer-logo{
   font-family:"Cormorant Garamond",serif;
   font-size:20px;
-  letter-spacing:2px;
   color:var(--dark);
 }
+
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:800px){
 
   header{
-    padding:24px 30px;
+    padding:22px 25px;
   }
 
   .breadcrumb{
-    padding-left:30px;
-    padding-right:30px;
+    padding:28px 25px 0;
   }
 
   .product{
-    padding:40px 30px 85px;
-
     grid-template-columns:1fr;
-
-    gap:45px;
+    gap:50px;
+    padding:45px 25px 75px;
   }
 
   .gallery{
@@ -425,107 +436,38 @@ footer{
   }
 
   .product-title{
-    font-size:50px;
-  }
-
-  .story{
-    padding:75px 30px;
-  }
-
-  footer{
-    padding:30px;
-  }
-
-}
-
-@media(max-width:600px){
-
-  header{
-    padding:20px;
-  }
-
-  .logo{
-    font-size:22px;
-  }
-
-  .back{
-    font-size:16px;
-  }
-
-  .breadcrumb{
-    padding:30px 20px 0;
-    font-size:15px;
-  }
-
-  .product{
-    padding:30px 20px 75px;
-
-    gap:35px;
-  }
-
-  .product-category{
-    font-size:13px;
-    letter-spacing:2px;
-  }
-
-  .product-title{
     font-size:42px;
     line-height:1.25;
-
     margin-bottom:16px;
   }
 
   .product-subtitle{
     font-size:20px;
     line-height:1.5;
-
-    margin-bottom:25px;
-  }
-
-  .price{
-    font-size:31px;
-  }
-
-  .description{
-    font-size:13px;
-  }
-
-  .buttons{
-    flex-direction:column;
-  }
-
-  .btn{
-    width:100%;
-  }
-
-  .placeholder-title{
-    font-size:40px;
+    margin-bottom:28px;
   }
 
   .story{
-    padding:65px 20px;
+    padding:70px 25px 85px;
   }
 
-  .story h2{
+  .story-title{
     font-size:40px;
   }
 
   footer{
-    padding:25px 20px;
-
+    padding:30px 25px;
     flex-direction:column;
-
-    gap:8px;
-
+    gap:10px;
     text-align:center;
   }
-
 }
 
 </style>
 </head>
 
 <body>
+
 
 <!-- =========================
      HEADER
@@ -534,11 +476,11 @@ footer{
 <header>
 
   <a href="love.html" class="logo">
-    PINTO <span>LOVE</span>
+    PINTO LOVE
   </a>
 
-  <a href="birthday.html" class="back">
-    ← Back to Templates
+  <a href="birthday.html" class="back-link">
+    ← BACK TO TEMPLATES
   </a>
 
 </header>
@@ -550,21 +492,15 @@ footer{
 
 <div class="breadcrumb">
 
-  <a href="love.html">
-    PINTO LOVE
-  </a>
+  <a href="love.html">PINTO LOVE</a>
 
   <span>/</span>
 
-  <a href="birthday.html">
-    Birthday
-  </a>
+  <a href="birthday.html">Birthday</a>
 
   <span>/</span>
 
-  <span>
-    Template 01
-  </span>
+  Template 01
 
 </div>
 
@@ -576,38 +512,30 @@ footer{
 <section class="product">
 
 
-  <!-- =====================
-       LEFT
-  ====================== -->
+  <!-- GALLERY -->
 
   <div class="gallery">
 
-    <div class="main-preview">
+    <div class="gallery-placeholder">
 
-      <div class="placeholder">
-
-        <div class="placeholder-title">
-          Template 01
-        </div>
-
-        <div class="placeholder-subtitle">
-          Birthday
-        </div>
-
+      <div class="number">
+        Template 01
       </div>
 
-    </div>
+      <div class="label">
+        Birthday
+      </div>
 
-    <div class="gallery-note">
-      Preview images will be added soon.
+      <div class="small">
+        Preview images will be added soon.
+      </div>
+
     </div>
 
   </div>
 
 
-  <!-- =====================
-       RIGHT
-  ====================== -->
+  <!-- PRODUCT INFO -->
 
   <div class="product-info">
 
@@ -630,51 +558,58 @@ footer{
 
     <div class="description">
 
-      เว็บไซต์บอกความรู้สึกสำหรับวันเกิด
-      ที่ออกแบบมาให้เก็บคำอวยพร ความทรงจำ
-      และข้อความเล็ก ๆ ที่มีความหมายสำหรับคนที่คุณรัก
+      เว็บไซต์เซอร์ไพรส์วันเกิดที่ออกแบบมาให้ผู้รับ
+      ได้ค่อย ๆ เปิดของขวัญและค้นพบคำอวยพรทีละขั้น
+      ตั้งแต่กล่องของขวัญใบแรก ไปจนถึงจดหมายวันเกิด
+      และเซอร์ไพรส์สุดท้าย
 
     </div>
 
 
-    <!-- =====================
-         INCLUDED
-    ====================== -->
+    <!-- INCLUDED FUNCTIONS -->
 
-    <div class="detail-section">
+    <div class="info-block">
 
-      <h3>
+      <div class="info-title">
         Included Functions
-      </h3>
+      </div>
 
-      <ul>
+      <ul class="info-list">
 
         <li>
-          Birthday Countdown
+          Open the Gift
         </li>
 
         <li>
-          Birthday Message
+          Birthday Surprise Card
         </li>
 
         <li>
-          Our Story
+          Little Moments
         </li>
 
         <li>
-          Memories
+          Let’s Celebrate Together
         </li>
 
         <li>
-          Love Letter
+          Make a Wish
         </li>
 
         <li>
-          Music
+          Birthday Wishes
         </li>
 
         <li>
-          Other template features
+          Birthday Letter
+        </li>
+
+        <li>
+          Final Birthday Surprise
+        </li>
+
+        <li>
+          Music Player
         </li>
 
       </ul>
@@ -682,92 +617,61 @@ footer{
     </div>
 
 
-    <!-- =====================
-         CUSTOMIZE
-    ====================== -->
+    <!-- CUSTOMIZE -->
 
-    <div class="detail-section">
+    <div class="customize">
 
-      <h3>
+      <div class="customize-title">
         Customize
-      </h3>
-
-      <div class="extra">
-
-        สามารถปรับเปลี่ยนข้อความในแต่ละหน้า
-        ได้ตามที่ลูกค้าต้องการ
-
-        <br>
-
-        สามารถปรับโทนสีให้เข้ากับเรื่องราวของคุณได้
-
       </div>
+
+      <p>
+        ลูกค้าสามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของตัวเอง
+        และสามารถปรับโทนข้อความและสีให้เข้ากับคนที่ต้องการมอบให้ได้
+      </p>
 
     </div>
 
 
-    <!-- =====================
-         EXTRA
-    ====================== -->
+    <!-- EXTRA -->
 
-    <div class="detail-section">
+    <div class="extra">
 
-      <h3>
+      <div class="extra-title">
         Extra Function
-      </h3>
+      </div>
 
-      <div class="extra">
-
-        เพิ่มฟังก์ชันพิเศษได้ในราคา
-
-        <strong>
-          +29 THB / function
-        </strong>
-
+      <div class="extra-price">
+        +29 THB / function
       </div>
 
     </div>
 
 
-    <!-- =====================
-         DELIVERY
-    ====================== -->
+    <!-- DELIVERY -->
 
-    <div class="detail-section">
+    <div class="delivery">
 
-      <h3>
+      <div class="delivery-title">
         Delivery
-      </h3>
-
-      <div class="extra">
-
-        ระยะเวลาจัดทำประมาณ
-        <strong>
-          1–2 วัน
-        </strong>
-
       </div>
+
+      <p>
+        1–2 days
+      </p>
 
     </div>
 
 
-    <!-- =====================
-         BUTTONS
-    ====================== -->
+    <!-- BUTTONS -->
 
     <div class="buttons">
 
-      <a
-        href="#"
-        class="btn secondary"
-      >
+      <a href="#" class="btn secondary">
         VIEW LIVE DEMO
       </a>
 
-      <a
-        href="#order"
-        class="btn primary"
-      >
+      <a href="#order" class="btn primary">
         ORDER THIS TEMPLATE
       </a>
 
@@ -784,24 +688,26 @@ footer{
 
 <section class="story">
 
-  <div class="story-inner">
-
-    <div class="story-eyebrow">
-      PINTO LOVE
-    </div>
-
-    <h2>
-      Made for Your Story.
-    </h2>
-
-    <p>
-      ทุกวันเกิดมีเรื่องราวของตัวเอง
-      เติมข้อความ คำอวยพร และความทรงจำของคุณลงไป
-      ให้เว็บไซต์นี้กลายเป็นของขวัญเล็ก ๆ
-      ที่มีความหมายสำหรับคนพิเศษ
-    </p>
-
+  <div class="story-label">
+    PINTO LOVE
   </div>
+
+  <h2 class="story-title">
+    Made for Your Birthday.
+  </h2>
+
+  <p class="story-text">
+
+    เพราะวันเกิดของคนพิเศษไม่ควรมีแค่คำว่า
+    Happy Birthday
+
+    <br><br>
+
+    เราออกแบบ Birthday Template นี้ให้ทุกการกด
+    ทุกการเปิด และทุกเซอร์ไพรส์
+    ค่อย ๆ เล่าเรื่องราวแทนความรู้สึกของคุณ
+
+  </p>
 
 </section>
 
@@ -821,6 +727,7 @@ footer{
   </div>
 
 </footer>
+
 
 </body>
 </html>
