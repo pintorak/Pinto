@@ -2840,6 +2840,22 @@ async function submitOrder(){
 
   try{
 
+    /* CHECK SUPABASE KEY */
+
+    if(
+      !SUPABASE_URL ||
+      !SUPABASE_ANON_KEY ||
+      SUPABASE_ANON_KEY.startsWith(
+        "ใส่ Publishable Key"
+      )
+    ){
+
+      throw new Error(
+        "ยังไม่ได้ตั้งค่า Supabase Publishable Key"
+      );
+
+    }
+
     const selectedTemplate =
       templateSelect.options[
         templateSelect.selectedIndex
@@ -2901,12 +2917,17 @@ async function submitOrder(){
     const orderNumber =
       createOrderNumber();
 
+
     /* UPLOAD SLIP */
+
+    button.textContent =
+      "UPLOADING SLIP...";
 
     const slipPath =
       await uploadPaymentSlip(
         slip
       );
+
 
     /* ORDER DATA */
 
@@ -2962,7 +2983,11 @@ async function submitOrder(){
 
     };
 
+
     /* INSERT SUPABASE */
+
+    button.textContent =
+      "SAVING ORDER...";
 
     const response =
       await fetch(
@@ -2977,7 +3002,7 @@ async function submitOrder(){
               SUPABASE_ANON_KEY,
 
             Authorization:
-              `Bearer ${SUPABASE_ANON_KEY`,
+              `Bearer ${SUPABASE_ANON_KEY}`,
 
             "Content-Type":
               "application/json",
@@ -2995,17 +3020,21 @@ async function submitOrder(){
         }
       );
 
+
     if(!response.ok){
 
       const errorText =
         await response.text();
 
       throw new Error(
-        "บันทึก Order ไม่สำเร็จ: " +
+        "บันทึก Order ไม่สำเร็จ:\n" +
         errorText
       );
 
     }
+
+
+    /* SUCCESS */
 
     showSuccess({
 
@@ -3038,11 +3067,12 @@ async function submitOrder(){
   }catch(error){
 
     console.error(
+      "SUBMIT ERROR:",
       error
     );
 
     alert(
-      "เกิดข้อผิดพลาด\n\n" +
+      "ส่งคำสั่งซื้อไม่สำเร็จ\n\n" +
       error.message
     );
 
