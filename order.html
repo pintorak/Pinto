@@ -33,10 +33,7 @@
 body{
   background:var(--cream);
   color:var(--dark);
-  font-family:
-    "Noto Sans Thai",
-    "Noto Sans KR",
-    sans-serif;
+  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
   font-weight:300;
 }
 
@@ -45,14 +42,9 @@ a{
   text-decoration:none;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 header{
   padding:25px 55px;
   border-bottom:1px solid var(--line);
-
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -68,10 +60,6 @@ header{
   font-size:11px;
   letter-spacing:2px;
 }
-
-/* =========================
-   PAGE
-========================= */
 
 .page{
   max-width:1200px;
@@ -105,10 +93,6 @@ header{
   line-height:2;
 }
 
-/* =========================
-   FORM
-========================= */
-
 .order-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -135,7 +119,6 @@ header{
 label{
   display:block;
   font-size:12px;
-  letter-spacing:.5px;
   margin-bottom:8px;
 }
 
@@ -166,6 +149,7 @@ textarea{
 .form-group{
   margin-bottom:22px;
 }
+
 
 /* =========================
    COLORS
@@ -233,6 +217,66 @@ input[type="color"]{
   font-size:12px;
 }
 
+
+/* =========================
+   EXTRA FUNCTIONS
+========================= */
+
+.extra-box{
+  border:1px solid var(--line);
+  background:var(--white);
+}
+
+.extra-option{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:15px 17px;
+  border-bottom:1px solid var(--line);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.extra-option:last-child{
+  border-bottom:none;
+}
+
+.extra-option:hover{
+  background:#F7F2EE;
+}
+
+.extra-option input{
+  width:18px;
+  height:18px;
+  margin:0;
+  padding:0;
+  accent-color:var(--dark);
+  cursor:pointer;
+}
+
+.extra-name{
+  flex:1;
+  font-size:13px;
+}
+
+.extra-price{
+  font-size:12px;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.extra-none{
+  background:#F0E9E4;
+}
+
+.extra-help{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:10px;
+  line-height:1.8;
+}
+
+
 /* =========================
    PRICE
 ========================= */
@@ -274,6 +318,14 @@ input[type="color"]{
   font-size:24px;
 }
 
+.selected-functions{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:15px;
+}
+
+
 /* =========================
    PAYMENT
 ========================= */
@@ -289,6 +341,7 @@ input[type="color"]{
 .file-input{
   padding:10px;
 }
+
 
 /* =========================
    BUTTON
@@ -315,6 +368,7 @@ input[type="color"]{
   opacity:.5;
   cursor:not-allowed;
 }
+
 
 /* =========================
    SUCCESS
@@ -372,6 +426,11 @@ input[type="color"]{
   justify-content:space-between;
   padding:9px 0;
   font-size:13px;
+  gap:20px;
+}
+
+.confirm-row span:last-child{
+  text-align:right;
 }
 
 .print-btn{
@@ -385,6 +444,7 @@ input[type="color"]{
   margin-top:20px;
 }
 
+
 /* =========================
    FOOTER
 ========================= */
@@ -392,14 +452,13 @@ input[type="color"]{
 footer{
   border-top:1px solid var(--line);
   padding:35px 55px;
-
   display:flex;
   justify-content:space-between;
-
   font-size:10px;
   letter-spacing:2px;
   color:var(--muted);
 }
+
 
 /* =========================
    MOBILE
@@ -436,6 +495,11 @@ footer{
 
 }
 
+
+/* =========================
+   PRINT
+========================= */
+
 @media print{
 
   header,
@@ -452,7 +516,6 @@ footer{
     display:block !important;
     margin:0;
     border:none;
-    box-shadow:none;
   }
 
 }
@@ -460,7 +523,9 @@ footer{
 </style>
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -475,507 +540,685 @@ footer{
 </header>
 
 
-<!-- =========================
-     ORDER FORM
-========================= -->
 
 <main id="orderPage">
 
 <section class="page">
 
-  <div class="page-title">
 
-    <div class="eyebrow">
-      PINTO LOVE · ORDER
-    </div>
+<div class="page-title">
 
-    <h1>
-      Order Your Template
-    </h1>
+  <div class="eyebrow">
+    PINTO LOVE · ORDER
+  </div>
 
-    <p>
-      กรุณากรอกข้อมูลสำหรับจัดทำเว็บไซต์ของคุณ<br>
-      หลังจากส่งคำสั่งซื้อ กรุณาชำระมัดจำ 30%
-    </p>
+  <h1>
+    Order Your Template
+  </h1>
+
+  <p>
+    กรุณากรอกข้อมูลสำหรับจัดทำเว็บไซต์ของคุณ<br>
+    หลังจากส่งคำสั่งซื้อ กรุณาชำระมัดจำ 30%
+  </p>
+
+</div>
+
+
+
+<div class="order-layout">
+
+
+<!-- =====================================
+     LEFT
+===================================== -->
+
+<div>
+
+
+<!-- CUSTOMER -->
+
+<div class="section">
+
+  <div class="section-title">
+    Your Information
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ชื่อ
+    </label>
+
+    <input
+      type="text"
+      id="customerName"
+      placeholder="ชื่อของคุณ"
+      required
+    >
 
   </div>
 
 
-  <div class="order-layout">
+  <div class="form-group">
 
+    <label>
+      ช่องทางติดต่อ
+    </label>
 
-    <!-- LEFT -->
+    <input
+      type="text"
+      id="contact"
+      placeholder="LINE / Instagram / เบอร์โทร"
+      required
+    >
 
-    <div>
+  </div>
 
+</div>
 
-      <!-- CUSTOMER -->
 
-      <div class="section">
 
-        <div class="section-title">
-          Your Information
-        </div>
+<!-- TEMPLATE -->
 
-        <div class="form-group">
+<div class="section">
 
-          <label>
-            ชื่อ
-          </label>
+  <div class="section-title">
+    Template
+  </div>
 
-          <input
-            type="text"
-            id="customerName"
-            placeholder="ชื่อของคุณ"
-            required
-          >
+  <div class="form-group">
 
-        </div>
+    <label>
+      เลือก Template
+    </label>
 
+    <select id="template">
 
-        <div class="form-group">
+      <option
+        value="make-up-01"
+        data-price="129"
+      >
+        Make Up · Template 01 — 129 THB
+      </option>
 
-          <label>
-            ช่องทางติดต่อ
-          </label>
+      <option
+        value="make-up-02"
+        data-price="129"
+      >
+        Make Up · Template 02 — 129 THB
+      </option>
 
-          <input
-            type="text"
-            id="contact"
-            placeholder="LINE / Instagram / เบอร์โทร"
-            required
-          >
+      <option
+        value="make-up-03"
+        data-price="129"
+      >
+        Make Up · Template 03 — 129 THB
+      </option>
 
-        </div>
+      <option
+        value="birthday-01"
+        data-price="129"
+      >
+        Birthday · Template 01 — 129 THB
+      </option>
 
-      </div>
+      <option
+        value="anniversary-01"
+        data-price="129"
+      >
+        Anniversary · Template 01 — 129 THB
+      </option>
 
+      <option
+        value="anniversary-02"
+        data-price="129"
+      >
+        Anniversary · Template 02 — 129 THB
+      </option>
 
-      <!-- TEMPLATE -->
+      <option
+        value="anniversary-03"
+        data-price="129"
+      >
+        Anniversary · Template 03 — 129 THB
+      </option>
 
-      <div class="section">
+    </select>
 
-        <div class="section-title">
-          Template
-        </div>
+  </div>
 
-        <div class="form-group">
+</div>
 
-          <label>
-            เลือก Template
-          </label>
 
-          <select id="template">
 
-            <option
-              value="make-up-01"
-              data-price="129"
-            >
-              Make Up · Template 01 — 129 THB
-            </option>
+<!-- MESSAGE -->
 
-            <option
-              value="make-up-02"
-              data-price="129"
-            >
-              Make Up · Template 02 — 129 THB
-            </option>
+<div class="section">
 
-            <option
-              value="make-up-03"
-              data-price="129"
-            >
-              Make Up · Template 03 — 129 THB
-            </option>
+  <div class="section-title">
+    Your Message
+  </div>
 
-            <option
-              value="birthday-01"
-              data-price="129"
-            >
-              Birthday · Template 01 — 129 THB
-            </option>
+  <div class="form-group">
 
-            <option
-              value="anniversary-01"
-              data-price="129"
-            >
-              Anniversary · Template 01 — 129 THB
-            </option>
+    <label>
+      ข้อความ / รายละเอียดที่ต้องการใส่ในเว็บไซต์
+    </label>
 
-            <option
-              value="anniversary-02"
-              data-price="129"
-            >
-              Anniversary · Template 02 — 129 THB
-            </option>
+    <textarea
+      id="message"
+      placeholder="พิมพ์ข้อความที่ต้องการให้ใส่ในเว็บไซต์ได้เลย..."
+    ></textarea>
 
-            <option
-              value="anniversary-03"
-              data-price="129"
-            >
-              Anniversary · Template 03 — 129 THB
-            </option>
+  </div>
 
-          </select>
+</div>
 
-        </div>
 
-      </div>
 
+<!-- COLORS -->
 
-      <!-- MESSAGE -->
+<div class="section">
 
-      <div class="section">
+  <div class="section-title">
+    Choose Your Colors
+  </div>
 
-        <div class="section-title">
-          Your Message
-        </div>
 
-        <div class="form-group">
+  <div class="color-row">
 
-          <label>
-            ข้อความ / รายละเอียดที่ต้องการใส่ในเว็บไซต์
-          </label>
 
-          <textarea
-            id="message"
-            placeholder="พิมพ์ข้อความที่ต้องการให้ใส่ในเว็บไซต์ได้เลย..."
-          ></textarea>
+    <div class="color-box">
 
-        </div>
+      <label>
+        Primary Color
+      </label>
 
-      </div>
+      <div class="color-picker-line">
 
-
-      <!-- COLORS -->
-
-      <div class="section">
-
-        <div class="section-title">
-          Choose Your Colors
-        </div>
-
-        <div class="color-row">
-
-          <div class="color-box">
-
-            <label>
-              Primary Color
-            </label>
-
-            <div class="color-picker-line">
-
-              <input
-                type="color"
-                id="primaryColor"
-                value="#8C7E74"
-              >
-
-              <span
-                class="hex"
-                id="primaryHex"
-              >
-                #8C7E74
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <div class="color-box">
-
-            <label>
-              Secondary Color
-            </label>
-
-            <div class="color-picker-line">
-
-              <input
-                type="color"
-                id="secondaryColor"
-                value="#C8BCB1"
-              >
-
-              <span
-                class="hex"
-                id="secondaryHex"
-              >
-                #C8BCB1
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="color-box" style="margin-top:15px;">
-
-          <label>
-            Background Color
-          </label>
-
-          <div class="color-picker-line">
-
-            <input
-              type="color"
-              id="backgroundColor"
-              value="#F4EFEA"
-            >
-
-            <span
-              class="hex"
-              id="backgroundHex"
-            >
-              #F4EFEA
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="color-preview">
-
-          <div
-            class="preview-card"
-            id="previewCard"
-          >
-
-            <div class="preview-inner">
-
-              <h3 id="previewTitle">
-                For You ♡
-              </h3>
-
-              <p id="previewText">
-                A little website made just for someone special.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- EXTRA -->
-
-      <div class="section">
-
-        <div class="section-title">
-          Extra Function
-        </div>
-
-        <div class="form-group">
-
-          <label>
-            เพิ่มฟังก์ชันพิเศษ
-          </label>
-
-          <select id="extraFunction">
-
-            <option
-              value="ไม่มี"
-              data-price="0"
-            >
-              ไม่มี — 0 THB
-            </option>
-
-            <option
-              value="เพิ่ม 1 ฟังก์ชัน"
-              data-price="29"
-            >
-              เพิ่ม 1 ฟังก์ชัน — +29 THB
-            </option>
-
-            <option
-              value="เพิ่ม 2 ฟังก์ชัน"
-              data-price="58"
-            >
-              เพิ่ม 2 ฟังก์ชัน — +58 THB
-            </option>
-
-            <option
-              value="เพิ่ม 3 ฟังก์ชัน"
-              data-price="87"
-            >
-              เพิ่ม 3 ฟังก์ชัน — +87 THB
-            </option>
-
-          </select>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- RIGHT -->
-
-    <div>
-
-
-      <!-- PRICE -->
-
-      <div class="section">
-
-        <div class="section-title">
-          Order Summary
-        </div>
-
-        <div class="price-box">
-
-          <div class="price-row">
-
-            <span>
-              Template
-            </span>
-
-            <span
-              id="templatePrice"
-            >
-              129.00 THB
-            </span>
-
-          </div>
-
-
-          <div class="price-row">
-
-            <span>
-              Extra Function
-            </span>
-
-            <span
-              id="extraPrice"
-            >
-              0.00 THB
-            </span>
-
-          </div>
-
-
-          <div class="price-row total">
-
-            <span>
-              Total
-            </span>
-
-            <span
-              class="amount"
-              id="totalPrice"
-            >
-              129.00 THB
-            </span>
-
-          </div>
-
-
-          <div class="price-row deposit">
-
-            <span>
-              Deposit 30%
-            </span>
-
-            <span
-              class="amount"
-              id="depositPrice"
-            >
-              38.70 THB
-            </span>
-
-          </div>
-
-
-          <div class="price-row remaining">
-
-            <span>
-              Remaining 70%
-            </span>
-
-            <span
-              class="amount"
-              id="remainingPrice"
-            >
-              90.30 THB
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PAYMENT -->
-
-      <div class="section">
-
-        <div class="section-title">
-          Deposit Payment
-        </div>
-
-        <div class="payment-note">
-
-          กรุณาชำระมัดจำ <strong>30%</strong>
-          ของยอดทั้งหมดก่อนเริ่มจัดทำเว็บไซต์
-
-          <br><br>
-
-          หลังชำระเงินแล้ว
-          กรุณาแนบสลิปการโอนเงินด้านล่าง
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Payment Slip
-          </label>
-
-          <input
-            type="file"
-            id="paymentSlip"
-            class="file-input"
-            accept="image/*,.pdf"
-            required
-          >
-
-        </div>
-
-
-        <button
-          type="button"
-          class="submit-btn"
-          id="submitBtn"
-          onclick="submitOrder()"
+        <input
+          type="color"
+          id="primaryColor"
+          value="#8C7E74"
         >
-          SUBMIT ORDER
-        </button>
+
+        <span
+          class="hex"
+          id="primaryHex"
+        >
+          #8C7E74
+        </span>
 
       </div>
 
+    </div>
+
+
+
+    <div class="color-box">
+
+      <label>
+        Secondary Color
+      </label>
+
+      <div class="color-picker-line">
+
+        <input
+          type="color"
+          id="secondaryColor"
+          value="#C8BCB1"
+        >
+
+        <span
+          class="hex"
+          id="secondaryHex"
+        >
+          #C8BCB1
+        </span>
+
+      </div>
 
     </div>
 
   </div>
+
+
+
+  <div
+    class="color-box"
+    style="margin-top:15px;"
+  >
+
+    <label>
+      Background Color
+    </label>
+
+    <div class="color-picker-line">
+
+      <input
+        type="color"
+        id="backgroundColor"
+        value="#F4EFEA"
+      >
+
+      <span
+        class="hex"
+        id="backgroundHex"
+      >
+        #F4EFEA
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="color-preview">
+
+    <div
+      class="preview-card"
+      id="previewCard"
+    >
+
+      <div class="preview-inner">
+
+        <h3 id="previewTitle">
+          For You ♡
+        </h3>
+
+        <p id="previewText">
+          A little website made just for someone special.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================
+     EXTRA FUNCTION
+===================================== -->
+
+<div class="section">
+
+  <div class="section-title">
+    Extra Function
+  </div>
+
+
+  <div class="extra-box">
+
+
+    <!-- NONE -->
+
+    <label class="extra-option extra-none">
+
+      <input
+        type="radio"
+        name="extraMode"
+        value="none"
+        checked
+      >
+
+      <span class="extra-name">
+        ไม่เพิ่มฟังก์ชัน
+      </span>
+
+      <span class="extra-price">
+        0 THB
+      </span>
+
+    </label>
+
+
+
+    <!-- FUNCTIONS -->
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Music Player"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Music Player
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Countdown"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Countdown
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Photo Gallery"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Photo Gallery
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Love Letter"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Love Letter
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Surprise Box"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Surprise Box
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Scratch Card"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Scratch Card
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+
+    <label class="extra-option">
+
+      <input
+        type="checkbox"
+        name="extraFunction"
+        value="Custom Animation"
+        data-price="29"
+      >
+
+      <span class="extra-name">
+        Custom Animation
+      </span>
+
+      <span class="extra-price">
+        +29 THB
+      </span>
+
+    </label>
+
+
+  </div>
+
+
+  <div class="extra-help">
+    เลือกได้มากกว่า 1 ฟังก์ชัน · เพิ่ม 29 THB ต่อ 1 ฟังก์ชัน
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================
+     RIGHT
+===================================== -->
+
+<div>
+
+
+<!-- PRICE -->
+
+<div class="section">
+
+  <div class="section-title">
+    Order Summary
+  </div>
+
+
+  <div class="price-box">
+
+
+    <div class="price-row">
+
+      <span>
+        Template
+      </span>
+
+      <span id="templatePrice">
+        129.00 THB
+      </span>
+
+    </div>
+
+
+
+    <div class="price-row">
+
+      <span>
+        Extra Function
+      </span>
+
+      <span id="extraPrice">
+        0.00 THB
+      </span>
+
+    </div>
+
+
+
+    <div
+      class="selected-functions"
+      id="selectedFunctions"
+    >
+      ไม่เพิ่มฟังก์ชัน
+    </div>
+
+
+
+    <div class="price-row total">
+
+      <span>
+        Total
+      </span>
+
+      <span
+        class="amount"
+        id="totalPrice"
+      >
+        129.00 THB
+      </span>
+
+    </div>
+
+
+
+    <div class="price-row deposit">
+
+      <span>
+        Deposit 30%
+      </span>
+
+      <span
+        class="amount"
+        id="depositPrice"
+      >
+        38.70 THB
+      </span>
+
+    </div>
+
+
+
+    <div class="price-row remaining">
+
+      <span>
+        Remaining 70%
+      </span>
+
+      <span
+        class="amount"
+        id="remainingPrice"
+      >
+        90.30 THB
+      </span>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- PAYMENT -->
+
+<div class="section">
+
+  <div class="section-title">
+    Deposit Payment
+  </div>
+
+
+  <div class="payment-note">
+
+    กรุณาชำระมัดจำ <strong>30%</strong>
+    ของยอดทั้งหมดก่อนเริ่มจัดทำเว็บไซต์
+
+    <br><br>
+
+    หลังชำระเงินแล้ว
+    กรุณาแนบสลิปการโอนเงินด้านล่าง
+
+  </div>
+
+
+
+  <div class="form-group">
+
+    <label>
+      Payment Slip
+    </label>
+
+    <input
+      type="file"
+      id="paymentSlip"
+      class="file-input"
+      accept="image/*,.pdf"
+      required
+    >
+
+  </div>
+
+
+
+  <button
+    type="button"
+    class="submit-btn"
+    id="submitBtn"
+    onclick="submitOrder()"
+  >
+    SUBMIT ORDER
+  </button>
+
+</div>
+
+
+</div>
+
+</div>
 
 </section>
 
 </main>
 
 
-<!-- =========================
+
+<!-- =====================================
      SUCCESS
-========================= -->
+===================================== -->
 
 <section
   class="success"
@@ -986,9 +1229,11 @@ footer{
     PINTO LOVE
   </div>
 
+
   <h2>
     Order Received
   </h2>
+
 
   <p>
     ได้รับคำสั่งซื้อของคุณแล้ว
@@ -1005,6 +1250,7 @@ footer{
 
   <div class="confirm-box">
 
+
     <div class="confirm-row">
 
       <span>
@@ -1013,6 +1259,19 @@ footer{
 
       <span id="successTemplate">
         —
+      </span>
+
+    </div>
+
+
+    <div class="confirm-row">
+
+      <span>
+        Extra Function
+      </span>
+
+      <span id="successFunctions">
+        ไม่เพิ่มฟังก์ชัน
       </span>
 
     </div>
@@ -1076,6 +1335,7 @@ footer{
 </section>
 
 
+
 <footer>
 
   <div>
@@ -1087,6 +1347,7 @@ footer{
   </div>
 
 </footer>
+
 
 
 <script>
@@ -1109,9 +1370,6 @@ const SUPABASE_ANON_KEY =
 const templateSelect =
 document.getElementById("template");
 
-const extraFunction =
-document.getElementById("extraFunction");
-
 const primaryColor =
 document.getElementById("primaryColor");
 
@@ -1121,6 +1379,16 @@ document.getElementById("secondaryColor");
 const backgroundColor =
 document.getElementById("backgroundColor");
 
+const noneRadio =
+document.querySelector(
+  'input[name="extraMode"][value="none"]'
+);
+
+const functionCheckboxes =
+document.querySelectorAll(
+  'input[name="extraFunction"]'
+);
+
 
 /* ==========================================
    TEMPLATE FROM URL
@@ -1129,66 +1397,206 @@ document.getElementById("backgroundColor");
 function selectTemplateFromURL(){
 
   const params =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+      window.location.search
+    );
 
   const template =
     params.get("template");
 
-  if(!template){
-    updatePrice();
-    return;
-  }
+  if(template){
 
-  const option =
-    [...templateSelect.options]
-    .find(option =>
-      option.value === template
-    );
+    const option =
+      [...templateSelect.options]
+      .find(option =>
+        option.value === template
+      );
 
-  if(option){
+    if(option){
 
-    templateSelect.value =
-      template;
+      templateSelect.value =
+        template;
+
+    }
 
   }
 
   updatePrice();
+
 }
 
 
 /* ==========================================
-   COLOR HEX
+   COLOR
 ========================================== */
 
 function updateColors(){
 
-  document.getElementById("primaryHex").textContent =
+  document.getElementById(
+    "primaryHex"
+  ).textContent =
     primaryColor.value.toUpperCase();
 
-  document.getElementById("secondaryHex").textContent =
+
+  document.getElementById(
+    "secondaryHex"
+  ).textContent =
     secondaryColor.value.toUpperCase();
 
-  document.getElementById("backgroundHex").textContent =
+
+  document.getElementById(
+    "backgroundHex"
+  ).textContent =
     backgroundColor.value.toUpperCase();
 
 
-  const card =
-    document.getElementById("previewCard");
-
-  card.style.background =
+  document.getElementById(
+    "previewCard"
+  ).style.background =
     backgroundColor.value;
 
 
-  document.getElementById("previewTitle")
-    .style.color =
+  document.getElementById(
+    "previewTitle"
+  ).style.color =
     primaryColor.value;
 
 
-  document.getElementById("previewText")
-    .style.color =
+  document.getElementById(
+    "previewText"
+  ).style.color =
     secondaryColor.value;
 
 }
+
+
+/* ==========================================
+   EXTRA FUNCTION
+========================================== */
+
+function getSelectedFunctions(){
+
+  return [
+    ...functionCheckboxes
+  ].filter(
+    checkbox =>
+      checkbox.checked
+  );
+
+}
+
+
+function updateExtraFunctions(){
+
+  const selected =
+    getSelectedFunctions();
+
+
+  const selectedNames =
+    selected.map(
+      checkbox =>
+        checkbox.value
+    );
+
+
+  const selectedPrice =
+    selected.reduce(
+      (sum, checkbox) =>
+        sum +
+        Number(
+          checkbox.dataset.price
+        ),
+      0
+    );
+
+
+  document.getElementById(
+    "extraPrice"
+  ).textContent =
+    selectedPrice.toFixed(2) +
+    " THB";
+
+
+  const selectedFunctions =
+    document.getElementById(
+      "selectedFunctions"
+    );
+
+
+  if(selectedNames.length === 0){
+
+    selectedFunctions.textContent =
+      "ไม่เพิ่มฟังก์ชัน";
+
+    noneRadio.checked =
+      true;
+
+  }else{
+
+    selectedFunctions.textContent =
+      "เลือก: " +
+      selectedNames.join(" · ");
+
+    noneRadio.checked =
+      false;
+
+  }
+
+
+  updatePrice();
+
+}
+
+
+/* ==========================================
+   NONE
+========================================== */
+
+noneRadio.addEventListener(
+  "change",
+  function(){
+
+    if(this.checked){
+
+      functionCheckboxes.forEach(
+        checkbox =>
+          checkbox.checked =
+          false
+      );
+
+      updateExtraFunctions();
+
+    }
+
+  }
+);
+
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+functionCheckboxes.forEach(
+  checkbox => {
+
+    checkbox.addEventListener(
+      "change",
+      function(){
+
+        if(this.checked){
+
+          noneRadio.checked =
+            false;
+
+        }
+
+        updateExtraFunctions();
+
+      }
+    );
+
+  }
+);
 
 
 /* ==========================================
@@ -1202,54 +1610,81 @@ function updatePrice(){
       templateSelect.selectedIndex
     ];
 
+
   const templatePrice =
     Number(
-      selectedTemplate.dataset.price || 0
+      selectedTemplate.dataset.price ||
+      0
     );
 
-  const selectedExtra =
-    extraFunction.options[
-      extraFunction.selectedIndex
-    ];
+
+  const selectedFunctions =
+    getSelectedFunctions();
+
 
   const extraPrice =
-    Number(
-      selectedExtra.dataset.price || 0
+    selectedFunctions.reduce(
+      (sum, checkbox) =>
+        sum +
+        Number(
+          checkbox.dataset.price
+        ),
+      0
     );
 
+
   const total =
-    templatePrice + extraPrice;
+    templatePrice +
+    extraPrice;
+
 
   const deposit =
-    total * 0.30;
+    Number(
+      (total * 0.30)
+      .toFixed(2)
+    );
+
 
   const remaining =
-    total - deposit;
+    Number(
+      (total - deposit)
+      .toFixed(2)
+    );
 
 
-  document.getElementById("templatePrice")
-    .textContent =
-    templatePrice.toFixed(2) + " THB";
+  document.getElementById(
+    "templatePrice"
+  ).textContent =
+    templatePrice.toFixed(2) +
+    " THB";
 
 
-  document.getElementById("extraPrice")
-    .textContent =
-    extraPrice.toFixed(2) + " THB";
+  document.getElementById(
+    "extraPrice"
+  ).textContent =
+    extraPrice.toFixed(2) +
+    " THB";
 
 
-  document.getElementById("totalPrice")
-    .textContent =
-    total.toFixed(2) + " THB";
+  document.getElementById(
+    "totalPrice"
+  ).textContent =
+    total.toFixed(2) +
+    " THB";
 
 
-  document.getElementById("depositPrice")
-    .textContent =
-    deposit.toFixed(2) + " THB";
+  document.getElementById(
+    "depositPrice"
+  ).textContent =
+    deposit.toFixed(2) +
+    " THB";
 
 
-  document.getElementById("remainingPrice")
-    .textContent =
-    remaining.toFixed(2) + " THB";
+  document.getElementById(
+    "remainingPrice"
+  ).textContent =
+    remaining.toFixed(2) +
+    " THB";
 
 }
 
@@ -1263,20 +1698,18 @@ templateSelect.addEventListener(
   updatePrice
 );
 
-extraFunction.addEventListener(
-  "change",
-  updatePrice
-);
 
 primaryColor.addEventListener(
   "input",
   updateColors
 );
 
+
 secondaryColor.addEventListener(
   "input",
   updateColors
 );
+
 
 backgroundColor.addEventListener(
   "input",
@@ -1285,7 +1718,7 @@ backgroundColor.addEventListener(
 
 
 /* ==========================================
-   CREATE ORDER NUMBER
+   ORDER NUMBER
 ========================================== */
 
 function createOrderNumber(){
@@ -1293,25 +1726,32 @@ function createOrderNumber(){
   const now =
     new Date();
 
+
   const date =
     now.getFullYear() +
-    String(now.getMonth()+1)
-      .padStart(2,"0") +
-    String(now.getDate())
-      .padStart(2,"0");
+    String(
+      now.getMonth() + 1
+    ).padStart(2,"0") +
+    String(
+      now.getDate()
+    ).padStart(2,"0");
+
 
   const random =
     Math.floor(
       Math.random() * 900
     ) + 100;
 
-  return `PL-${date}-${random}`;
+
+  return (
+    `PL-${date}-${random}`
+  );
 
 }
 
 
 /* ==========================================
-   UPLOAD PAYMENT SLIP
+   UPLOAD SLIP
 ========================================== */
 
 async function uploadPaymentSlip(file){
@@ -1321,10 +1761,12 @@ async function uploadPaymentSlip(file){
       .split(".")
       .pop();
 
+
   const fileName =
     `${Date.now()}-${Math.random()
       .toString(36)
       .substring(2)}.${extension}`;
+
 
   const uploadUrl =
     `${SUPABASE_URL}/storage/v1/object/payment-slips/${fileName}`;
@@ -1334,9 +1776,11 @@ async function uploadPaymentSlip(file){
     await fetch(
       uploadUrl,
       {
+
         method:"POST",
 
         headers:{
+
           apikey:
             SUPABASE_ANON_KEY,
 
@@ -1344,10 +1788,13 @@ async function uploadPaymentSlip(file){
             `Bearer ${SUPABASE_ANON_KEY}`,
 
           "Content-Type":
-            file.type || "application/octet-stream"
+            file.type ||
+            "application/octet-stream"
+
         },
 
         body:file
+
       }
     );
 
@@ -1356,6 +1803,7 @@ async function uploadPaymentSlip(file){
 
     const errorText =
       await response.text();
+
 
     throw new Error(
       "อัปโหลดสลิปไม่สำเร็จ: " +
@@ -1371,34 +1819,46 @@ async function uploadPaymentSlip(file){
 
 
 /* ==========================================
-   SUBMIT ORDER
+   SUBMIT
 ========================================== */
 
 async function submitOrder(){
 
   const button =
-    document.getElementById("submitBtn");
+    document.getElementById(
+      "submitBtn"
+    );
+
 
   const name =
-    document.getElementById("customerName")
-      .value.trim();
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
 
   const contact =
-    document.getElementById("contact")
-      .value.trim();
+    document.getElementById(
+      "contact"
+    ).value.trim();
+
 
   const message =
-    document.getElementById("message")
-      .value.trim();
+    document.getElementById(
+      "message"
+    ).value.trim();
+
 
   const slip =
-    document.getElementById("paymentSlip")
-      .files[0];
+    document.getElementById(
+      "paymentSlip"
+    ).files[0];
 
 
   if(!name){
 
-    alert("กรุณากรอกชื่อ");
+    alert(
+      "กรุณากรอกชื่อ"
+    );
 
     return;
 
@@ -1407,7 +1867,9 @@ async function submitOrder(){
 
   if(!contact){
 
-    alert("กรุณากรอกช่องทางติดต่อ");
+    alert(
+      "กรุณากรอกช่องทางติดต่อ"
+    );
 
     return;
 
@@ -1416,7 +1878,9 @@ async function submitOrder(){
 
   if(!slip){
 
-    alert("กรุณาแนบสลิปมัดจำ");
+    alert(
+      "กรุณาแนบสลิปมัดจำ"
+    );
 
     return;
 
@@ -1425,6 +1889,7 @@ async function submitOrder(){
 
   button.disabled =
     true;
+
 
   button.textContent =
     "SUBMITTING...";
@@ -1441,25 +1906,44 @@ async function submitOrder(){
     const template =
       selectedTemplate.value;
 
+
     const templateName =
-      selectedTemplate.textContent.trim();
+      selectedTemplate.textContent
+        .trim();
 
 
     const templatePrice =
       Number(
-        selectedTemplate.dataset.price || 0
+        selectedTemplate.dataset.price ||
+        0
       );
 
 
-    const selectedExtra =
-      extraFunction.options[
-        extraFunction.selectedIndex
-      ];
+    const selectedFunctions =
+      getSelectedFunctions();
+
+
+    const functionNames =
+      selectedFunctions.map(
+        checkbox =>
+          checkbox.value
+      );
+
+
+    const functionText =
+      functionNames.length
+      ? functionNames.join(", ")
+      : "ไม่เพิ่มฟังก์ชัน";
 
 
     const extraPrice =
-      Number(
-        selectedExtra.dataset.price || 0
+      selectedFunctions.reduce(
+        (sum, checkbox) =>
+          sum +
+          Number(
+            checkbox.dataset.price
+          ),
+        0
       );
 
 
@@ -1471,14 +1955,14 @@ async function submitOrder(){
     const deposit =
       Number(
         (total * 0.30)
-          .toFixed(2)
+        .toFixed(2)
       );
 
 
     const remaining =
       Number(
         (total - deposit)
-          .toFixed(2)
+        .toFixed(2)
       );
 
 
@@ -1486,13 +1970,15 @@ async function submitOrder(){
       createOrderNumber();
 
 
-    /* Upload slip */
+    /* UPLOAD SLIP */
 
     const slipPath =
-      await uploadPaymentSlip(slip);
+      await uploadPaymentSlip(
+        slip
+      );
 
 
-    /* Create order */
+    /* ORDER DATA */
 
     const orderData = {
 
@@ -1512,16 +1998,19 @@ async function submitOrder(){
         message,
 
       primary_color:
-        primaryColor.value.toUpperCase(),
+        primaryColor.value
+          .toUpperCase(),
 
       secondary_color:
-        secondaryColor.value.toUpperCase(),
+        secondaryColor.value
+          .toUpperCase(),
 
       background_color:
-        backgroundColor.value.toUpperCase(),
+        backgroundColor.value
+          .toUpperCase(),
 
       extra_functions:
-        selectedExtra.value,
+        functionText,
 
       total_price:
         total,
@@ -1543,6 +2032,8 @@ async function submitOrder(){
 
     };
 
+
+    /* INSERT SUPABASE */
 
     const response =
       await fetch(
@@ -1568,7 +2059,9 @@ async function submitOrder(){
           },
 
           body:
-            JSON.stringify(orderData)
+            JSON.stringify(
+              orderData
+            )
 
         }
       );
@@ -1578,6 +2071,7 @@ async function submitOrder(){
 
       const errorText =
         await response.text();
+
 
       throw new Error(
         "บันทึก Order ไม่สำเร็จ: " +
@@ -1601,6 +2095,12 @@ async function submitOrder(){
       "successTemplate"
     ).textContent =
       templateName;
+
+
+    document.getElementById(
+      "successFunctions"
+    ).textContent =
+      functionText;
 
 
     document.getElementById(
@@ -1632,7 +2132,9 @@ async function submitOrder(){
 
     document.getElementById(
       "successPage"
-    ).classList.add("show");
+    ).classList.add(
+      "show"
+    );
 
 
     window.scrollTo({
@@ -1643,7 +2145,10 @@ async function submitOrder(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     alert(
       "เกิดข้อผิดพลาด\n\n" +
@@ -1653,6 +2158,7 @@ async function submitOrder(){
 
     button.disabled =
       false;
+
 
     button.textContent =
       "SUBMIT ORDER";
