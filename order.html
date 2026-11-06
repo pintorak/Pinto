@@ -954,6 +954,7 @@ const supabaseClient =
 
 let couponApplied = false;
 let couponCodeApplied = "";
+let couponLineIdApplied = "";
 let createdOrderNumber = "";
 let uploadedSlipPath = "";
 
@@ -1098,50 +1099,254 @@ document.getElementById("paymentSlip")
   });
 
 /* =========================
+   COUPON CHECK
+========================= */
+
+async function checkCouponAvailability(
+  couponCode,
+  lineId
+){
+
+  const cleanCouponCode =
+    String(couponCode || "")
+      .trim()
+      .toLowerCase();
+
+  const cleanContact =
+    normalizeLineId(lineId);
+
+  if(!cleanCouponCode){
+    throw new Error("Discount code is missing.");
+  }
+
+  if(!cleanContact){
+    throw new Error("LINE ID is required to verify the discount.");
+  }
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "check_coupon",
+      {
+        p_coupon_code:cleanCouponCode,
+        p_contact:cleanContact
+      }
+    );
+
+  console.log(
+    "CHECK COUPON DATA:",
+    data
+  );
+
+  console.log(
+    "CHECK COUPON ERROR:",
+    error
+  );
+
+  if(error){
+    throw new Error(
+      "Unable to verify the discount right now: " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
+    );
+  }
+
+  if(!data){
+    throw new Error(
+      "The coupon verification returned no result."
+    );
+  }
+
+  let result = data;
+
+  if(Array.isArray(data)){
+    result = data[0];
+  }
+
+  if(!result){
+    throw new Error(
+      "The coupon verification returned an empty result."
+    );
+  }
+
+  return result;
+}
+
+/* =========================
    COUPON APPLY
 ========================= */
 
-function applyCoupon(){
+async function applyCoupon(){
 
   const input =
     document.getElementById("couponCode");
 
+  const lineInput =
+    document.getElementById("lineId");
+
   const message =
     document.getElementById("couponMessage");
+
+  const button =
+    document.getElementById("applyCouponBtn");
 
   const code =
     input.value.trim();
 
+  const lineId =
+    lineInput.value.trim();
+
   couponApplied = false;
   couponCodeApplied = "";
+  couponLineIdApplied = "";
+
+  calculatePrices();
 
   if(!code){
-    message.textContent = "Please enter a discount code.";
-    message.className = "coupon-message error";
-    calculatePrices();
+    message.textContent =
+      "Please enter a discount code.";
+
+    message.className =
+      "coupon-message error";
+
     return;
   }
 
   if(code.toLowerCase() !== DISCOUNT_CODE.toLowerCase()){
-    message.textContent = "Invalid discount code.";
-    message.className = "coupon-message error";
-    calculatePrices();
+    message.textContent =
+      "Invalid discount code.";
+
+    message.className =
+      "coupon-message error";
+
     return;
   }
 
-  couponApplied = true;
-  couponCodeApplied = DISCOUNT_CODE;
+  if(!lineId){
+    message.textContent =
+      "Please enter your LINE ID before applying the discount.";
+
+    message.className =
+      "coupon-message error";
+
+    lineInput.focus();
+
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Checking...";
 
   message.textContent =
-    "Discount applied successfully — 5% off your order.";
+    "Checking your discount...";
 
-  message.className = "coupon-message success";
+  message.className =
+    "coupon-message success";
 
-  calculatePrices();
+  try{
+
+    const result =
+      await checkCouponAvailability(
+        code,
+        lineId
+      );
+
+    if(result.success !== true){
+
+      couponApplied = false;
+      couponCodeApplied = "";
+      couponLineIdApplied = "";
+
+      calculatePrices();
+
+      message.textContent =
+        result.message ||
+        "This discount code cannot be used.";
+
+      message.className =
+        "coupon-message error";
+
+      return;
+    }
+
+    couponApplied = true;
+    couponCodeApplied = DISCOUNT_CODE;
+    couponLineIdApplied =
+      normalizeLineId(lineId);
+
+    message.textContent =
+      "Discount applied successfully — 5% off your order.";
+
+    message.className =
+      "coupon-message success";
+
+    calculatePrices();
+
+  }catch(error){
+
+    console.error(
+      "CHECK COUPON ERROR:",
+      error
+    );
+
+    couponApplied = false;
+    couponCodeApplied = "";
+    couponLineIdApplied = "";
+
+    calculatePrices();
+
+    message.textContent =
+      error && error.message
+        ? error.message
+        : "Unable to verify the discount.";
+
+    message.className =
+      "coupon-message error";
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "Apply";
+  }
 }
 
 document.getElementById("applyCouponBtn")
-  .addEventListener("click",applyCoupon);
+  .addEventListener(
+    "click",
+    applyCoupon
+  );
+
+/*
+  If the customer changes LINE ID after
+  applying the coupon, remove the discount.
+  They must Apply again so the new LINE ID
+  can be checked.
+*/
+document.getElementById("lineId")
+  .addEventListener("input",function(){
+
+    const currentLineId =
+      normalizeLineId(this.value);
+
+    if(
+      couponApplied &&
+      currentLineId !== couponLineIdApplied
+    ){
+
+      couponApplied = false;
+      couponCodeApplied = "";
+      couponLineIdApplied = "";
+
+      document.getElementById("couponMessage").textContent =
+        "LINE ID changed. Please apply the discount code again.";
+
+      document.getElementById("couponMessage").className =
+        "coupon-message error";
+
+      calculatePrices();
+    }
+  });
 
 /* =========================
    STORAGE
@@ -1208,7 +1413,9 @@ async function deleteUploadedSlip(){
     await supabaseClient
       .storage
       .from(STORAGE_BUCKET)
-      .remove([uploadedSlipPath]);
+      .remove([
+        uploadedSlipPath
+      ]);
 
   if(error){
     console.warn(
@@ -1232,7 +1439,9 @@ async function createOrder(order){
       .insert(order);
 
   if(error){
-    throw new Error(error.message);
+    throw new Error(
+      error.message
+    );
   }
 }
 
@@ -1246,7 +1455,10 @@ async function deleteCreatedOrder(){
     await supabaseClient
       .from("orders")
       .delete()
-      .eq("order_number",createdOrderNumber);
+      .eq(
+        "order_number",
+        createdOrderNumber
+      );
 
   if(error){
     console.warn(
@@ -1286,44 +1498,52 @@ async function useCouponOnSupabase(
       .trim();
 
   if(!cleanCouponCode){
-    throw new Error("Discount code is missing.");
+    throw new Error(
+      "Discount code is missing."
+    );
   }
 
   if(!cleanContact){
-    throw new Error("LINE ID is missing.");
+    throw new Error(
+      "LINE ID is missing."
+    );
   }
 
   if(!cleanOrderNumber){
-    throw new Error("Order number is missing.");
+    throw new Error(
+      "Order number is missing."
+    );
   }
-
-  console.log("VERIFYING COUPON:", {
-    coupon_code: cleanCouponCode,
-    contact: cleanContact,
-    order_number: cleanOrderNumber
-  });
 
   const {data,error} =
     await supabaseClient.rpc(
       "use_coupon",
       {
-        p_coupon_code: cleanCouponCode,
-        p_contact: cleanContact,
-        p_order_number: cleanOrderNumber,
-        p_customer_name: cleanCustomerName
+        p_coupon_code:
+          cleanCouponCode,
+
+        p_contact:
+          cleanContact,
+
+        p_order_number:
+          cleanOrderNumber,
+
+        p_customer_name:
+          cleanCustomerName
       }
     );
 
-  console.log("USE COUPON RPC DATA:", data);
-  console.log("USE COUPON RPC ERROR:", error);
+  console.log(
+    "USE COUPON RPC DATA:",
+    data
+  );
+
+  console.log(
+    "USE COUPON RPC ERROR:",
+    error
+  );
 
   if(error){
-
-    console.error(
-      "USE COUPON RPC ERROR:",
-      error
-    );
-
     throw new Error(
       "Unable to verify the coupon right now: " +
       (
@@ -1334,16 +1554,10 @@ async function useCouponOnSupabase(
   }
 
   if(!data){
-
     throw new Error(
       "The coupon verification returned no result."
     );
   }
-
-  /*
-    Supabase can return the JSON result either as an object
-    or as an array depending on the RPC response shape.
-  */
 
   let result = data;
 
@@ -1352,7 +1566,6 @@ async function useCouponOnSupabase(
   }
 
   if(!result){
-
     throw new Error(
       "The coupon verification returned an empty result."
     );
@@ -1370,31 +1583,86 @@ async function submitOrder(){
   hideStatus();
 
   const customerName =
-    document.getElementById("customerName").value.trim();
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
 
   const lineId =
-    document.getElementById("lineId").value.trim();
+    document
+      .getElementById("lineId")
+      .value
+      .trim();
 
   const message =
-    document.getElementById("message").value.trim();
+    document
+      .getElementById("message")
+      .value
+      .trim();
 
   const paymentSlip =
-    document.getElementById("paymentSlip").files[0];
+    document
+      .getElementById("paymentSlip")
+      .files[0];
 
   if(!customerName){
-    showStatus("Please enter your name.","error");
-    document.getElementById("customerName").focus();
+    showStatus(
+      "Please enter your name.",
+      "error"
+    );
+
+    document
+      .getElementById("customerName")
+      .focus();
+
     return;
   }
 
   if(!lineId){
-    showStatus("Please enter your LINE ID.","error");
-    document.getElementById("lineId").focus();
+    showStatus(
+      "Please enter your LINE ID.",
+      "error"
+    );
+
+    document
+      .getElementById("lineId")
+      .focus();
+
+    return;
+  }
+
+  /*
+    Extra safety:
+    The coupon must belong to the current LINE ID.
+    If the LINE ID changed after Apply,
+    the discount is removed and the customer
+    must Apply again.
+  */
+  if(
+    couponApplied &&
+    normalizeLineId(lineId) !== couponLineIdApplied
+  ){
+
+    couponApplied = false;
+    couponCodeApplied = "";
+    couponLineIdApplied = "";
+
+    calculatePrices();
+
+    showStatus(
+      "LINE ID changed. Please apply the discount code again.",
+      "error"
+    );
+
     return;
   }
 
   if(!paymentSlip){
-    showStatus("Please upload your payment slip.","error");
+    showStatus(
+      "Please upload your payment slip.",
+      "error"
+    );
+
     return;
   }
 
@@ -1407,26 +1675,37 @@ async function submitOrder(){
 
   if(
     paymentSlip.type &&
-    !allowedTypes.includes(paymentSlip.type)
+    !allowedTypes.includes(
+      paymentSlip.type
+    )
   ){
+
     showStatus(
       "Please upload JPG, PNG, WEBP or PDF only.",
       "error"
     );
+
     return;
   }
 
-  if(paymentSlip.size > 10 * 1024 * 1024){
+  if(
+    paymentSlip.size >
+    10 * 1024 * 1024
+  ){
+
     showStatus(
       "Payment slip must be smaller than 10 MB.",
       "error"
     );
+
     return;
   }
 
-  const prices = calculatePrices();
+  const prices =
+    calculatePrices();
 
-  createdOrderNumber = generateOrderNumber();
+  createdOrderNumber =
+    generateOrderNumber();
 
   setButtonLoading(true);
 
@@ -1450,11 +1729,14 @@ async function submitOrder(){
 
     const orderData = {
 
-      order_number:createdOrderNumber,
+      order_number:
+        createdOrderNumber,
 
-      customer_name:customerName,
+      customer_name:
+        customerName,
 
-      contact:normalizeLineId(lineId),
+      contact:
+        normalizeLineId(lineId),
 
       template:
         new URLSearchParams(
@@ -1462,7 +1744,8 @@ async function submitOrder(){
         ).get("template") ||
         "anniversary-01",
 
-      message:message,
+      message:
+        message,
 
       primary_color:
         document
@@ -1488,28 +1771,37 @@ async function submitOrder(){
           .join(", "),
 
       total_price:
-        Number(prices.total.toFixed(2)),
+        Number(
+          prices.total.toFixed(2)
+        ),
 
       deposit_amount:
-        Number(prices.deposit.toFixed(2)),
+        Number(
+          prices.deposit.toFixed(2)
+        ),
 
       remaining_amount:
-        Number(prices.remaining.toFixed(2)),
+        Number(
+          prices.remaining.toFixed(2)
+        ),
 
-      payment_slip:slipPath,
+      payment_slip:
+        slipPath,
 
-      payment_status:"pending",
+      payment_status:
+        "pending",
 
-      status:"pending"
+      status:
+        "pending"
     };
 
-    await createOrder(orderData);
+    await createOrder(
+      orderData
+    );
 
     /*
-      IMPORTANT:
-      The coupon is consumed only after the order exists.
-      If use_coupon says that this LINE ID has already used
-      the coupon, the temporary order and slip are removed.
+      Coupon is recorded ONLY after
+      the order has been created.
     */
 
     if(couponApplied){
@@ -1540,10 +1832,13 @@ async function submitOrder(){
 
         couponApplied = false;
         couponCodeApplied = "";
+        couponLineIdApplied = "";
 
         calculatePrices();
 
-        throw new Error(couponMessage);
+        throw new Error(
+          couponMessage
+        );
       }
     }
 
@@ -1559,10 +1854,14 @@ async function submitOrder(){
       createdOrderNumber
     );
 
-    document.getElementById("submitBtn").textContent =
+    document.getElementById(
+      "submitBtn"
+    ).textContent =
       "Order Submitted ✓";
 
-    document.getElementById("submitBtn").disabled =
+    document.getElementById(
+      "submitBtn"
+    ).disabled =
       true;
 
   }catch(error){
@@ -1587,6 +1886,11 @@ async function submitOrder(){
       "error"
     );
 
+    /*
+      IMPORTANT:
+      After an error, the button is enabled again.
+      The customer can fix the problem and submit again.
+    */
     setButtonLoading(false);
   }
 }
@@ -1603,16 +1907,24 @@ function loadTemplate(){
 
   if(template === "anniversary-01"){
 
-    document.getElementById("templateName").textContent =
+    document.getElementById(
+      "templateName"
+    ).textContent =
       "Anniversary Template 01";
 
-    document.getElementById("templateDesc").textContent =
+    document.getElementById(
+      "templateDesc"
+    ).textContent =
       "A little digital love story for your special person.";
   }
 }
 
-document.getElementById("submitBtn")
-  .addEventListener("click",submitOrder);
+document.getElementById(
+  "submitBtn"
+).addEventListener(
+  "click",
+  submitOrder
+);
 
 loadTemplate();
 calculatePrices();
