@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
   --cream:#F4F0E8;
   --cream-light:#FAF8F3;
@@ -24,12 +23,14 @@
   --accent-dark:#674B39;
   --soft:#EDE5D9;
   --white:#FFFFFF;
+  --success:#60745B;
+  --danger:#9A5C50;
+  --shadow:0 18px 50px rgba(75,56,43,.10);
+  --radius:24px;
 }
 
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 html{
@@ -37,10 +38,12 @@ html{
 }
 
 body{
-  background:var(--cream);
+  margin:0;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,.85), transparent 35%),
+    linear-gradient(180deg,var(--cream-light),var(--cream));
   color:var(--brown);
   font-family:"DM Sans",sans-serif;
-  line-height:1.6;
 }
 
 button,
@@ -58,343 +61,288 @@ a{
   text-decoration:none;
 }
 
-/* =========================
-   NAV
-========================= */
-
-.nav{
-  position:sticky;
-  top:0;
-  z-index:20;
-  border-bottom:1px solid var(--line);
-  background:rgba(244,240,232,.94);
-  backdrop-filter:blur(14px);
+.container{
+  width:min(1120px,92%);
+  margin:auto;
 }
 
-.nav-inner{
-  max-width:1280px;
-  min-height:76px;
-  margin:auto;
-  padding:0 34px;
+header{
+  padding:26px 0 10px;
+}
 
+.nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:20px;
 }
 
-.brand{
-  font-size:18px;
-  font-weight:700;
-  letter-spacing:4px;
-  color:var(--brown);
-}
-
-.brand span{
-  color:var(--accent);
-}
-
-.nav-right{
-  display:flex;
-  gap:25px;
-
-  color:var(--brown-light);
-  font-size:10px;
+.logo{
+  font-family:"Playfair Display",serif;
+  font-size:25px;
+  font-weight:600;
   letter-spacing:2px;
-  text-transform:uppercase;
 }
 
-/* =========================
-   PAGE
-========================= */
+.logo span{
+  font-size:12px;
+  letter-spacing:4px;
+  display:block;
+  margin-top:-2px;
+  color:var(--brown-light);
+}
 
-.page{
-  max-width:1280px;
-  margin:auto;
-  padding:70px 34px 100px;
+.back{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.55);
+  padding:10px 16px;
+  border-radius:999px;
+  color:var(--brown-light);
+  font-size:13px;
 }
 
 .hero{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:80px;
-
-  padding-bottom:55px;
-
-  border-bottom:1px solid var(--line);
+  text-align:center;
+  padding:50px 0 35px;
 }
 
 .eyebrow{
-  margin-bottom:20px;
-
-  color:var(--accent);
-
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:3px;
+  font-size:11px;
+  letter-spacing:4px;
+  color:var(--brown-light);
   text-transform:uppercase;
+  margin-bottom:14px;
 }
 
 h1{
   font-family:"Playfair Display",serif;
-  font-size:clamp(54px,7vw,94px);
+  font-size:clamp(38px,7vw,64px);
   font-weight:500;
-  line-height:.92;
-
-  letter-spacing:-3px;
-  color:var(--brown);
+  line-height:1;
+  margin:0 0 16px;
 }
 
-.hero-copy{
-  max-width:430px;
-  align-self:end;
-
+.hero p{
   color:var(--brown-light);
-  font-size:13px;
+  margin:0 auto;
+  max-width:600px;
+  line-height:1.8;
+  font-size:14px;
 }
 
-.hero-copy strong{
-  display:block;
-
-  margin-bottom:10px;
-
-  color:var(--brown);
-  font-size:15px;
-}
-
-/* =========================
-   SELECTED TEMPLATE
-========================= */
-
-.selected-template{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-top:42px;
-  padding:27px 30px;
-
-  border:1px solid var(--line);
-  background:var(--paper);
-}
-
-.selected-left{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.template-number{
-  width:45px;
-  height:45px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border:1px solid var(--taupe);
-
-  color:var(--accent);
-
-  font-size:10px;
-  font-weight:700;
-}
-
-.template-label{
-  margin-bottom:2px;
-
-  color:var(--brown-light);
-
-  font-size:9px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.template-name{
-  font-family:"Playfair Display",serif;
-  font-size:28px;
-}
-
-.template-price{
-  text-align:right;
-}
-
-.template-price strong{
-  display:block;
-  font-size:27px;
-  font-weight:600;
-}
-
-.template-price span{
-  color:var(--brown-light);
-  font-size:10px;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main{
+.layout{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 370px;
-  gap:70px;
-
-  margin-top:55px;
+  grid-template-columns:minmax(0,1.5fr) minmax(300px,.7fr);
+  gap:24px;
+  align-items:start;
+  padding-bottom:70px;
 }
 
-section{
-  margin-bottom:60px;
+.card{
+  background:rgba(255,253,249,.82);
+  border:1px solid rgba(222,213,200,.9);
+  border-radius:26px;
+  box-shadow:none;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
+.section{
+  padding:28px;
+}
 
-  margin-bottom:23px;
-  padding-bottom:13px;
-
-  border-bottom:1px solid var(--line);
+.section + .section{
+  border-top:1px solid var(--line);
 }
 
 .section-title{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:22px;
+}
+
+.number{
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:var(--brown);
+  color:white;
+  display:grid;
+  place-items:center;
   font-size:12px;
   font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
 }
 
-.section-note{
+.section-title h2{
+  margin:0;
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  font-weight:600;
+}
+
+.section-title p{
+  margin:3px 0 0;
+  font-size:12px;
   color:var(--brown-light);
-  font-size:10px;
 }
 
-/* =========================
-   EXTRA MENU
-========================= */
+.template-box{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:20px;
+  background:var(--cream-light);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.template-info{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.template-icon{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  background:var(--brown);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+.template-name{
+  font-weight:700;
+  font-size:16px;
+}
+
+.template-price{
+  font-size:13px;
+  color:var(--brown-light);
+  margin-top:4px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 11px;
+  border-radius:999px;
+  background:var(--soft);
+  color:var(--brown);
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap;
+}
 
 .extra-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
 }
 
-.extra-card{
+.extra-item{
   position:relative;
-
-  min-height:158px;
-
-  padding:24px 22px;
-
-  border:1px solid var(--line);
-  background:var(--paper);
-
-  transition:.2s ease;
 }
 
-.extra-card:hover{
-  border-color:var(--taupe);
-  transform:translateY(-2px);
-}
-
-.extra-card.selected{
-  border:1.5px solid var(--accent);
-  background:#F7F2EA;
-}
-
-.extra-card input{
+.extra-item input{
   position:absolute;
   opacity:0;
+  pointer-events:none;
 }
 
-.check{
-  position:absolute;
-  top:18px;
-  right:18px;
+.extra-label{
+  display:block;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px;
+  min-height:108px;
+  background:var(--paper);
+  transition:border-color .2s ease, background .2s ease, transform .2s ease;
+  cursor:pointer;
+}
 
-  width:19px;
-  height:19px;
+.extra-label:hover{
+  transform:translateY(-1px);
+  border-color:var(--taupe);
+}
 
-  border:1px solid var(--taupe);
+.extra-item input:checked + .extra-label{
+  border-color:var(--accent);
+  background:#F3EDE4;
+}
 
+.extra-top{
   display:flex;
   align-items:center;
-  justify-content:center;
-
-  color:transparent;
-  font-size:10px;
-}
-
-.extra-card.selected .check{
-  border-color:var(--accent);
-  background:var(--accent);
-  color:white;
-}
-
-.extra-icon{
-  margin-bottom:13px;
-
-  color:var(--accent);
-
-  font-size:19px;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .extra-name{
-  margin-bottom:5px;
+  font-size:14px;
+  font-weight:700;
+}
 
-  color:var(--brown);
-
-  font-size:13px;
+.extra-price{
+  font-size:12px;
+  color:var(--accent-dark);
   font-weight:700;
 }
 
 .extra-desc{
-  max-width:270px;
-
   color:var(--brown-light);
-
-  font-size:10px;
+  font-size:11px;
   line-height:1.55;
+  margin-top:7px;
+  padding-right:8px;
 }
 
-.extra-price{
-  margin-top:13px;
+.check{
+  width:19px;
+  height:19px;
+  border:1px solid var(--taupe);
+  border-radius:7px;
+  display:grid;
+  place-items:center;
+  margin-top:10px;
+}
 
-  color:var(--accent);
+.extra-item input:checked + .extra-label .check{
+  background:var(--brown);
+  border-color:var(--brown);
+}
 
-  font-size:10px;
+.extra-item input:checked + .extra-label .check::after{
+  content:"✓";
+  color:#fff;
+  font-size:12px;
   font-weight:700;
 }
-
-/* =========================
-   COLORS
-========================= */
 
 .color-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:14px;
 }
 
-.color-card{
-  padding:17px;
-
+.color-field{
   border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
   background:var(--paper);
 }
 
-.color-card label{
+.color-field label{
   display:block;
-
-  margin-bottom:10px;
-
+  font-size:11px;
   color:var(--brown-light);
-
-  font-size:9px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+  margin-bottom:10px;
 }
 
-.color-row{
+.color-wrap{
   display:flex;
   align-items:center;
   gap:10px;
@@ -402,234 +350,181 @@ section{
 
 input[type="color"]{
   width:43px;
-  height:35px;
-
-  padding:3px;
-
-  border:1px solid var(--line);
-  background:white;
-
+  height:38px;
+  border:0;
+  padding:0;
+  background:none;
   cursor:pointer;
 }
 
-.color-value{
+.color-code{
+  font-size:12px;
   color:var(--brown-light);
-  font-size:10px;
+  text-transform:uppercase;
 }
-
-/* =========================
-   FORM
-========================= */
 
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:15px;
 }
 
 .field{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
+  margin-bottom:15px;
 }
 
 .field.full{
   grid-column:1/-1;
 }
 
-.field label{
-  color:var(--brown-light);
-
-  font-size:9px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:8px;
 }
 
 input[type="text"],
 input[type="tel"],
 textarea{
   width:100%;
-
-  padding:14px 15px;
-
   border:1px solid var(--line);
-
-  outline:none;
-
-  border-radius:0;
-
   background:var(--paper);
+  border-radius:15px;
+  padding:13px 15px;
+  outline:none;
   color:var(--brown);
-
-  font-size:12px;
+  transition:border-color .2s, box-shadow .2s;
 }
 
-input:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
 textarea:focus{
   border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(138,103,80,.08);
 }
 
 textarea{
-  min-height:130px;
+  min-height:115px;
   resize:vertical;
 }
 
-/* =========================
-   COUPON
-========================= */
-
-.coupon{
-  display:flex;
-  gap:10px;
+.help{
+  color:var(--brown-light);
+  font-size:10px;
+  margin-top:6px;
 }
 
-.coupon input{
+.coupon-row{
+  display:flex;
+  gap:9px;
+}
+
+.coupon-row input{
   flex:1;
 }
 
-.coupon button{
-  min-width:100px;
-
-  border:1px solid var(--brown);
-
+.btn-small{
+  border:0;
   background:var(--brown);
-  color:white;
-
-  font-size:10px;
+  color:#fff;
+  border-radius:14px;
+  padding:0 17px;
   font-weight:700;
-  letter-spacing:1px;
+  font-size:12px;
 }
 
 .coupon-message{
-  min-height:20px;
-  margin-top:8px;
-
-  font-size:10px;
+  margin-top:9px;
+  font-size:11px;
+  min-height:16px;
 }
 
-.success{
-  color:#5A725C;
+.coupon-success{
+  color:var(--success);
 }
 
-.error{
-  color:#8B5147;
+.coupon-error{
+  color:var(--danger);
 }
-
-/* =========================
-   UPLOAD
-========================= */
 
 .upload{
-  padding:30px;
-
-  border:1px dashed #B9AD9E;
-
-  background:var(--paper);
-
+  border:1.5px dashed var(--taupe);
+  border-radius:20px;
+  padding:26px;
   text-align:center;
+  background:#FCFAF6;
+  transition:border-color .2s, background .2s;
+}
+
+.upload:hover{
+  border-color:var(--accent);
+  background:#F8F3EB;
 }
 
 .upload-icon{
-  margin-bottom:10px;
-
-  color:var(--accent);
-
-  font-size:23px;
+  font-size:28px;
+  margin-bottom:8px;
 }
 
-.upload-title{
-  font-size:12px;
-  font-weight:700;
+.upload strong{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
 }
 
-.upload-sub{
-  margin:5px 0 18px;
-
+.upload span{
+  display:block;
   color:var(--brown-light);
-
-  font-size:10px;
+  font-size:11px;
+  margin-bottom:15px;
 }
 
-.file-label{
+.file-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
-  min-height:42px;
-  padding:0 23px;
-
-  background:var(--brown);
-  color:white;
-
-  font-size:9px;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:999px;
+  padding:9px 17px;
+  font-size:11px;
   font-weight:700;
-  letter-spacing:1.5px;
-
-  cursor:pointer;
 }
 
-.file-label input{
+#slip{
   display:none;
 }
 
 .file-name{
   margin-top:12px;
-
-  color:var(--brown-light);
-
-  font-size:10px;
-}
-
-/* =========================
-   SUMMARY
-========================= */
-
-.summary-wrap{
-  position:relative;
+  font-size:11px;
+  color:var(--success);
+  word-break:break-word;
 }
 
 .summary{
   position:sticky;
-  top:105px;
-
-  padding:30px;
-
-  border:1px solid var(--line);
-
-  background:var(--paper);
+  top:20px;
 }
 
-.summary-top{
-  padding-bottom:20px;
-  margin-bottom:20px;
-
-  border-bottom:1px solid var(--line);
-}
-
-.summary-eyebrow{
-  color:var(--accent);
-
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
+.summary-inner{
+  padding:27px;
 }
 
 .summary-title{
-  margin-top:5px;
-
   font-family:"Playfair Display",serif;
-  font-size:30px;
+  font-size:25px;
+  margin-bottom:22px;
 }
 
 .summary-row{
   display:flex;
   justify-content:space-between;
-  gap:15px;
-
-  padding:7px 0;
-
-  font-size:11px;
+  gap:20px;
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
 }
 
 .summary-row span:first-child{
@@ -641,1800 +536,2471 @@ textarea{
   text-align:right;
 }
 
-.discount{
-  color:var(--accent);
+.extra-summary{
+  font-size:11px;
+  line-height:1.6;
+  color:var(--brown-light);
+  margin-top:4px;
 }
 
-.summary-divider{
-  margin:15px 0;
-
-  border-top:1px solid var(--line);
+.discount-row{
+  color:var(--success)!important;
 }
 
 .total{
+  padding-top:20px;
   display:flex;
-  align-items:end;
   justify-content:space-between;
+  align-items:end;
+  gap:15px;
 }
 
 .total-label{
-  color:var(--brown-light);
-
-  font-size:9px;
-  letter-spacing:1px;
-  text-transform:uppercase;
+  font-family:"Playfair Display",serif;
+  font-size:19px;
 }
 
 .total-price{
-  font-size:34px;
-  font-weight:700;
+  font-family:"Playfair Display",serif;
+  font-size:30px;
 }
 
-.deposit-box{
+.payment-box{
   margin-top:20px;
-  padding:16px;
-
+  padding:17px;
+  border-radius:18px;
   background:var(--soft);
 }
 
-.deposit-row{
+.payment-line{
   display:flex;
   justify-content:space-between;
-
-  padding:3px 0;
-
-  font-size:10px;
+  gap:15px;
+  font-size:12px;
+  margin:6px 0;
 }
 
-.deposit-row span{
-  color:var(--brown-light);
+.payment-line strong{
+  color:var(--accent-dark);
 }
 
 .submit{
   width:100%;
-  min-height:53px;
-
-  margin-top:20px;
-
+  margin-top:18px;
   border:0;
-
-  background:var(--accent);
+  border-radius:999px;
+  background:var(--brown);
   color:white;
-
-  font-size:10px;
+  padding:15px 20px;
   font-weight:700;
-  letter-spacing:1.5px;
-
-  transition:.2s;
+  font-size:13px;
+  letter-spacing:.3px;
+  transition:background .2s, transform .2s;
 }
 
 .submit:hover{
   background:var(--accent-dark);
+  transform:translateY(-1px);
 }
 
-.notice{
-  margin-top:15px;
+.submit:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
 
-  color:var(--brown-light);
-
-  font-size:9px;
-  line-height:1.7;
-
+.note{
+  margin-top:12px;
   text-align:center;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer{
-  max-width:1280px;
-
-  margin:auto;
-
-  padding:28px 34px 45px;
-
-  border-top:1px solid var(--line);
-
-  display:flex;
-  justify-content:space-between;
-
+  font-size:10px;
+  line-height:1.6;
   color:var(--brown-light);
-
-  font-size:9px;
-  letter-spacing:1px;
 }
 
-.footer-brand{
-  color:var(--brown);
+.status-box{
+  display:none;
+  margin-top:18px;
+  padding:18px;
+  border-radius:18px;
+  font-size:12px;
+  line-height:1.7;
+}
 
+.status-box.success{
+  display:block;
+  background:#EEF2EB;
+  border:1px solid #D7E0D1;
+  color:#4E6049;
+}
+
+.status-box.error{
+  display:block;
+  background:#F7ECE9;
+  border:1px solid #E7D0CA;
+  color:#8B5147;
+}
+
+.status-title{
   font-weight:700;
-  letter-spacing:3px;
+  font-size:14px;
+  margin-bottom:5px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.success-order{
+  margin-top:10px;
+  padding:10px 12px;
+  background:rgba(255,255,255,.6);
+  border-radius:12px;
+}
 
-@media(max-width:900px){
+footer{
+  padding:25px 0 45px;
+  text-align:center;
+  color:var(--brown-light);
+  font-size:10px;
+  letter-spacing:.5px;
+}
 
-  .hero{
+@media(max-width:850px){
+  .layout{
     grid-template-columns:1fr;
-    gap:30px;
-  }
-
-  .main{
-    grid-template-columns:1fr;
-    gap:20px;
   }
 
   .summary{
     position:static;
   }
-
-  .summary-wrap{
-    order:-1;
-  }
 }
 
-@media(max-width:650px){
-
-  .nav-inner{
-    min-height:65px;
-    padding:0 20px;
-  }
-
-  .nav-right{
-    display:none;
-  }
-
-  .page{
-    padding:45px 20px 70px;
+@media(max-width:620px){
+  .container{
+    width:min(94%,560px);
   }
 
   .hero{
-    padding-bottom:40px;
+    padding:38px 0 28px;
   }
 
-  h1{
-    font-size:57px;
-  }
-
-  .selected-template{
+  .section{
     padding:21px;
   }
 
-  .selected-left{
-    gap:13px;
-  }
-
-  .template-name{
-    font-size:22px;
-  }
-
-  .template-price strong{
-    font-size:22px;
-  }
-
-  .extra-grid{
-    grid-template-columns:1fr;
-  }
-
-  .color-grid{
-    grid-template-columns:1fr;
-  }
-
+  .extra-grid,
+  .color-grid,
   .form-grid{
     grid-template-columns:1fr;
   }
 
-  .field.full{
-    grid-column:auto;
+  .template-box{
+    align-items:flex-start;
   }
 
-  .coupon{
+  .coupon-row{
     flex-direction:column;
   }
 
-  .coupon button{
-    min-height:45px;
+  .btn-small{
+    height:43px;
   }
 
-  .footer{
-    flex-direction:column;
-    gap:10px;
-    padding:25px 20px 35px;
+  .total-price{
+    font-size:26px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAV
-========================= -->
+<header>
+<div class="container">
+<div class="nav">
 
-<header class="nav">
+<a class="logo" href="index.html">
+PINTO LOVE
+<span>CREATE YOUR STORY</span>
+</a>
 
-  <div class="nav-inner">
+<a class="back" href="index.html">← Back</a>
 
-    <a class="brand" href="index.html">
-      PINTO <span>LOVE</span>
-    </a>
-
-    <div class="nav-right">
-      <span>Digital Experiences</span>
-      <span>Order</span>
-    </div>
-
-  </div>
-
+</div>
+</div>
 </header>
 
 
-<!-- =========================
-     PAGE
-========================= -->
+<main>
 
-<main class="page">
+<section class="hero">
+<div class="container">
 
-  <div class="hero">
+<div class="eyebrow">
+ORDER YOUR LOVE STORY
+</div>
 
-    <div>
+<h1>
+สร้าง เรื่องราวของเรา
+</h1>
 
-      <div class="eyebrow">
-        PINTO LOVE / ORDER
-      </div>
+<p>
+เลือกฟังก์ชันที่อยากใส่ในเว็บไซต์ของคุณ
+แล้วส่งรายละเอียดพร้อมสลิปมัดจำให้ PINTO LOVE
+</p>
 
-      <h1>
-        สร้าง<br>
-        เรื่องราวของเรา
-      </h1>
+</div>
+</section>
 
-    </div>
 
-    <div class="hero-copy">
+<div class="container">
 
-      <strong>
-        เว็บไซต์เล็ก ๆ สำหรับช่วงเวลาที่มีความหมาย
-      </strong>
+<div class="layout">
 
-      กรอกรายละเอียดของคุณ และเลือกฟังก์ชันเพิ่มเติม
-      ที่อยากให้มีในเว็บไซต์ จากนั้น PINTO จะนำข้อมูลเหล่านี้
-      ไปสร้างเป็น Digital Experience สำหรับคนพิเศษของคุณ
+<div class="card">
 
-    </div>
 
-  </div>
+<!-- TEMPLATE -->
 
+<section class="section">
 
-  <!-- =========================
-       AUTO TEMPLATE
-  ========================= -->
+<div class="section-title">
 
-  <div class="selected-template">
+<div class="number">
+01
+</div>
 
-    <div class="selected-left">
+<div>
+<h2>Template</h2>
+<p>Template ที่คุณเลือกไว้</p>
+</div>
 
-      <div class="template-number">
-        01
-      </div>
+</div>
 
-      <div>
 
-        <div class="template-label">
-          Selected Template
-        </div>
+<div class="template-box">
 
-        <div class="template-name" id="templateName">
-          PINTO LOVE
-        </div>
+<div class="template-info">
 
-      </div>
+<div class="template-icon">
+♡
+</div>
 
-    </div>
+<div>
 
+<div class="template-name" id="templateName">
+Anniversary
+</div>
 
-    <div class="template-price">
+<div class="template-price">
+Base Template — 129 THB
+</div>
 
-      <strong>
-        129 THB
-      </strong>
+</div>
 
-      <span>
-        Template price
-      </span>
+</div>
 
-    </div>
+<div class="badge">
+Selected
+</div>
 
-  </div>
+</div>
 
+</section>
 
-  <div class="main">
 
+<!-- EXTRA MENU -->
 
-    <!-- =========================
-         LEFT
-    ========================= -->
+<section class="section">
 
-    <div class="left-column">
+<div class="section-title">
 
+<div class="number">
+02
+</div>
 
-      <!-- EXTRA MENU -->
+<div>
+<h2>Extra Menu</h2>
+<p>เพิ่มลูกเล่นให้เว็บไซต์ของคุณ</p>
+</div>
 
-      <section>
+</div>
 
-        <div class="section-head">
 
-          <div class="section-title">
-            Extra Menu
-          </div>
+<div class="extra-grid">
 
-          <div class="section-note">
-            +29 THB / function
-          </div>
 
-        </div>
+<div class="extra-item">
 
+<input
+type="checkbox"
+id="music"
+data-name="Music Player"
+data-price="29"
+>
 
-        <div class="extra-grid">
+<label class="extra-label" for="music">
 
+<div class="extra-top">
 
-          <label class="extra-card">
+<span class="extra-name">
+🎵 Music Player
+</span>
 
-            <input type="checkbox"
-                   data-name="Music Player"
-                   data-price="29">
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="check">
-              ✓
-            </div>
+</div>
 
-            <div class="extra-icon">
-              ♫
-            </div>
+<div class="extra-desc">
+เครื่องเล่นเพลงสำหรับเปิดเพลงพิเศษของคุณ
+</div>
 
-            <div class="extra-name">
-              Music Player
-            </div>
+<div class="check"></div>
 
-            <div class="extra-desc">
-              เพิ่มเพลงที่อยากให้คนพิเศษได้ฟัง
-            </div>
+</label>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+</div>
 
-          </label>
 
+<div class="extra-item">
 
-          <label class="extra-card">
+<input
+type="checkbox"
+id="gallery"
+data-name="Photo Gallery"
+data-price="29"
+>
 
-            <input type="checkbox"
-                   data-name="Photo Gallery"
-                   data-price="29">
+<label class="extra-label" for="gallery">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-top">
 
-            <div class="extra-icon">
-              ▧
-            </div>
+<span class="extra-name">
+📸 Photo Gallery
+</span>
 
-            <div class="extra-name">
-              Photo Gallery
-            </div>
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="extra-desc">
-              รวมรูปภาพและความทรงจำของคุณ
-            </div>
+</div>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<div class="extra-desc">
+แกลเลอรีรูปภาพสำหรับเก็บความทรงจำ
+</div>
 
-          </label>
+<div class="check"></div>
 
+</label>
 
-          <label class="extra-card">
+</div>
 
-            <input type="checkbox"
-                   data-name="Love Letter"
-                   data-price="29">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-item">
 
-            <div class="extra-icon">
-              ♡
-            </div>
+<input
+type="checkbox"
+id="letter"
+data-name="Love Letter"
+data-price="29"
+>
 
-            <div class="extra-name">
-              Love Letter
-            </div>
+<label class="extra-label" for="letter">
 
-            <div class="extra-desc">
-              จดหมายรักสำหรับคนพิเศษ
-            </div>
+<div class="extra-top">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<span class="extra-name">
+💌 Love Letter
+</span>
 
-          </label>
+<span class="extra-price">
++29 THB
+</span>
 
+</div>
 
-          <label class="extra-card">
+<div class="extra-desc">
+จดหมายรักแบบเปิดอ่านได้ภายในเว็บไซต์
+</div>
 
-            <input type="checkbox"
-                   data-name="Countdown"
-                   data-price="29">
+<div class="check"></div>
 
-            <div class="check">
-              ✓
-            </div>
+</label>
 
-            <div class="extra-icon">
-              ◷
-            </div>
+</div>
 
-            <div class="extra-name">
-              Countdown
-            </div>
 
-            <div class="extra-desc">
-              นับถอยหลังสู่วันสำคัญของคุณ
-            </div>
+<div class="extra-item">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<input
+type="checkbox"
+id="countdown"
+data-name="Countdown"
+data-price="29"
+>
 
-          </label>
+<label class="extra-label" for="countdown">
 
+<div class="extra-top">
 
-          <label class="extra-card">
+<span class="extra-name">
+⏳ Countdown
+</span>
 
-            <input type="checkbox"
-                   data-name="Scratch Card"
-                   data-price="29">
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="check">
-              ✓
-            </div>
+</div>
 
-            <div class="extra-icon">
-              ▱
-            </div>
+<div class="extra-desc">
+นับถอยหลังสู่วันสำคัญของคุณ
+</div>
 
-            <div class="extra-name">
-              Scratch Card
-            </div>
+<div class="check"></div>
 
-            <div class="extra-desc">
-              การ์ดขูดเพื่อเปิดข้อความหรือความลับ
-            </div>
+</label>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+</div>
 
-          </label>
 
+<div class="extra-item">
 
-          <label class="extra-card">
+<input
+type="checkbox"
+id="scratch"
+data-name="Scratch Card"
+data-price="29"
+>
 
-            <input type="checkbox"
-                   data-name="Quiz 5 Questions"
-                   data-price="29">
+<label class="extra-label" for="scratch">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-top">
 
-            <div class="extra-icon">
-              ?
-            </div>
+<span class="extra-name">
+🎟️ Scratch Card
+</span>
 
-            <div class="extra-name">
-              เกมคำถาม 5 ข้อ
-            </div>
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="extra-desc">
-              เกมตอบคำถามเกี่ยวกับคู่รัก 5 ข้อ
-            </div>
+</div>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<div class="extra-desc">
+การ์ดขูดเพื่อเปิดข้อความหรือความลับ
+</div>
 
-          </label>
+<div class="check"></div>
 
+</label>
 
-          <label class="extra-card">
+</div>
 
-            <input type="checkbox"
-                   data-name="Password Menu"
-                   data-price="29">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-item">
 
-            <div class="extra-icon">
-              ⌑
-            </div>
+<input
+type="checkbox"
+id="quiz"
+data-name="เกมคำถาม 5 ข้อ"
+data-price="29"
+>
 
-            <div class="extra-name">
-              เมนูใส่รหัส
-            </div>
+<label class="extra-label" for="quiz">
 
-            <div class="extra-desc">
-              ใส่รหัสเพื่อปลดล็อกข้อความหรือหน้าที่ซ่อนอยู่
-            </div>
+<div class="extra-top">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<span class="extra-name">
+💕 เกมคำถาม 5 ข้อ
+</span>
 
-          </label>
+<span class="extra-price">
++29 THB
+</span>
 
+</div>
 
-          <label class="extra-card">
+<div class="extra-desc">
+เกมตอบคำถามเกี่ยวกับคู่รัก 5 ข้อ
+</div>
 
-            <input type="checkbox"
-                   data-name="Love Personality Quiz"
-                   data-price="29">
+<div class="check"></div>
 
-            <div class="check">
-              ✓
-            </div>
+</label>
 
-            <div class="extra-icon">
-              ◎
-            </div>
+</div>
 
-            <div class="extra-name">
-              เกมทายใจ
-            </div>
 
-            <div class="extra-desc">
-              เกมทายใจสำหรับดูว่ารู้จักกันมากแค่ไหน
-            </div>
+<div class="extra-item">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<input
+type="checkbox"
+id="password"
+data-name="เมนูใส่รหัส"
+data-price="29"
+>
 
-          </label>
+<label class="extra-label" for="password">
 
+<div class="extra-top">
 
-          <label class="extra-card">
+<span class="extra-name">
+🔐 เมนูใส่รหัส
+</span>
 
-            <input type="checkbox"
-                   data-name="Puzzle"
-                   data-price="29">
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="check">
-              ✓
-            </div>
+</div>
 
-            <div class="extra-icon">
-              ⌘
-            </div>
+<div class="extra-desc">
+ใส่รหัสเพื่อปลดล็อกข้อความหรือหน้าที่ซ่อนอยู่
+</div>
 
-            <div class="extra-name">
-              Puzzle
-            </div>
+<div class="check"></div>
 
-            <div class="extra-desc">
-              เกมต่อภาพหรือแก้ปริศนาเพื่อปลดล็อกสิ่งที่ซ่อนอยู่
-            </div>
+</label>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+</div>
 
-          </label>
 
+<div class="extra-item">
 
-          <label class="extra-card">
+<input
+type="checkbox"
+id="mind"
+data-name="เกมทายใจ"
+data-price="29"
+>
 
-            <input type="checkbox"
-                   data-name="Memory Map"
-                   data-price="29">
+<label class="extra-label" for="mind">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-top">
 
-            <div class="extra-icon">
-              ⌖
-            </div>
+<span class="extra-name">
+🔮 เกมทายใจ
+</span>
 
-            <div class="extra-name">
-              Memory Map
-            </div>
+<span class="extra-price">
++29 THB
+</span>
 
-            <div class="extra-desc">
-              แผนที่ความทรงจำแบบปักจุดสำคัญของคุณ
-            </div>
+</div>
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<div class="extra-desc">
+เกมทายใจสำหรับดูว่ารู้จักกันมากแค่ไหน
+</div>
 
-          </label>
+<div class="check"></div>
 
+</label>
 
-          <label class="extra-card">
+</div>
 
-            <input type="checkbox"
-                   data-name="Polaroid Memory"
-                   data-price="29">
 
-            <div class="check">
-              ✓
-            </div>
+<div class="extra-item">
 
-            <div class="extra-icon">
-              ▣
-            </div>
+<input
+type="checkbox"
+id="puzzle"
+data-name="Puzzle"
+data-price="29"
+>
 
-            <div class="extra-name">
-              Polaroid Memory
-            </div>
+<label class="extra-label" for="puzzle">
 
-            <div class="extra-desc">
-              รูปโพลารอยด์พลิกดูข้อความความทรงจำด้านหลัง
-            </div>
+<div class="extra-top">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<span class="extra-name">
+🧩 Puzzle
+</span>
 
-          </label>
+<span class="extra-price">
++29 THB
+</span>
 
+</div>
 
-          <label class="extra-card">
+<div class="extra-desc">
+เกมต่อภาพหรือแก้ปริศนาเพื่อปลดล็อกสิ่งที่ซ่อนอยู่
+</div>
 
-            <input type="checkbox"
-                   data-name="Gachapon"
-                   data-price="29">
+<div class="check"></div>
 
-            <div class="check">
-              ✓
-            </div>
+</label>
 
-            <div class="extra-icon">
-              ●
-            </div>
+</div>
 
-            <div class="extra-name">
-              ตู้กาชาปอง
-            </div>
 
-            <div class="extra-desc">
-              5 ลูก ใส่ข้อความหรือเซอร์ไพรส์ให้คนพิเศษเปิด
-            </div>
+<div class="extra-item">
 
-            <div class="extra-price">
-              +29 THB
-            </div>
+<input
+type="checkbox"
+id="map"
+data-name="Memory Map"
+data-price="29"
+>
 
-          </label>
+<label class="extra-label" for="map">
 
+<div class="extra-top">
 
-        </div>
+<span class="extra-name">
+📍 Memory Map
+</span>
 
-      </section>
+<span class="extra-price">
++29 THB
+</span>
 
+</div>
 
-      <!-- =========================
-           COLOR
-      ========================= -->
+<div class="extra-desc">
+แผนที่ความทรงจำแบบปักจุด เช่น เจอกันครั้งแรก คอลกันครั้งแรก เริ่มคบกัน
+</div>
 
-      <section>
+<div class="check"></div>
 
-        <div class="section-head">
+</label>
 
-          <div class="section-title">
-            Color Theme
-          </div>
+</div>
 
-          <div class="section-note">
-            ปรับสีเว็บไซต์ได้
-          </div>
 
-        </div>
+<div class="extra-item">
 
+<input
+type="checkbox"
+id="polaroid"
+data-name="Polaroid Memory"
+data-price="29"
+>
 
-        <div class="color-grid">
+<label class="extra-label" for="polaroid">
 
-          <div class="color-card">
+<div class="extra-top">
 
-            <label>
-              Primary Color
-            </label>
+<span class="extra-name">
+📷 Polaroid Memory
+</span>
 
-            <div class="color-row">
+<span class="extra-price">
++29 THB
+</span>
 
-              <input
-                type="color"
-                id="primaryColor"
-                value="#8A6750">
+</div>
 
-              <span
-                class="color-value"
-                id="primaryValue">
-                #8A6750
-              </span>
+<div class="extra-desc">
+รูปโพลารอยด์พลิกดูข้อความความทรงจำด้านหลัง
+</div>
 
-            </div>
+<div class="check"></div>
 
-          </div>
+</label>
 
+</div>
 
-          <div class="color-card">
 
-            <label>
-              Secondary Color
-            </label>
+<div class="extra-item">
 
-            <div class="color-row">
+<input
+type="checkbox"
+id="gacha"
+data-name="ตู้กาชาปอง"
+data-price="29"
+>
 
-              <input
-                type="color"
-                id="secondaryColor"
-                value="#4B382B">
+<label class="extra-label" for="gacha">
 
-              <span
-                class="color-value"
-                id="secondaryValue">
-                #4B382B
-              </span>
+<div class="extra-top">
 
-            </div>
+<span class="extra-name">
+🎁 ตู้กาชาปอง
+</span>
 
-          </div>
+<span class="extra-price">
++29 THB
+</span>
 
+</div>
 
-          <div class="color-card">
+<div class="extra-desc">
+5 ลูก ใส่ข้อความหรือเซอร์ไพรส์ให้เปิดทีละลูก
+</div>
 
-            <label>
-              Background
-            </label>
+<div class="check"></div>
 
-            <div class="color-row">
+</label>
 
-              <input
-                type="color"
-                id="backgroundColor"
-                value="#F4F0E8">
+</div>
 
-              <span
-                class="color-value"
-                id="backgroundValue">
-                #F4F0E8
-              </span>
 
-            </div>
+</div>
 
-          </div>
+</section>
 
-        </div>
 
-      </section>
+<!-- COLOR -->
 
+<section class="section">
 
-      <!-- =========================
-           CUSTOMER
-      ========================= -->
+<div class="section-title">
 
-      <section>
+<div class="number">
+03
+</div>
 
-        <div class="section-head">
+<div>
+<h2>Color Theme</h2>
+<p>เลือกสีหลักของเว็บไซต์</p>
+</div>
 
-          <div class="section-title">
-            Your Information
-          </div>
+</div>
 
-          <div class="section-note">
-            ข้อมูลสำหรับติดต่อกลับ
-          </div>
 
-        </div>
+<div class="color-grid">
 
+<div class="color-field">
 
-        <div class="form-grid">
+<label for="primaryColor">
+Primary Color
+</label>
 
-          <div class="field">
+<div class="color-wrap">
 
-            <label>
-              ชื่อ
-            </label>
+<input
+type="color"
+id="primaryColor"
+value="#4B382B"
+>
 
-            <input
-              type="text"
-              id="customerName"
-              placeholder="ชื่อของคุณ">
+<span
+class="color-code"
+id="primaryCode"
+>
+#4B382B
+</span>
 
-          </div>
+</div>
 
+</div>
 
-          <div class="field">
 
-            <label>
-              ช่องทางติดต่อ
-            </label>
+<div class="color-field">
 
-            <input
-              type="text"
-              id="contact"
-              placeholder="LINE / IG / เบอร์โทร">
+<label for="secondaryColor">
+Secondary Color
+</label>
 
-          </div>
+<div class="color-wrap">
 
+<input
+type="color"
+id="secondaryColor"
+value="#806C59"
+>
 
-          <div class="field full">
+<span
+class="color-code"
+id="secondaryCode"
+>
+#806C59
+</span>
 
-            <label>
-              ข้อความ / รายละเอียดเพิ่มเติม
-            </label>
+</div>
 
-            <textarea
-              id="message"
-              placeholder="บอก PINTO ได้เลยว่าต้องการให้เว็บไซต์มีรายละเอียดอะไรบ้าง"></textarea>
+</div>
 
-          </div>
 
-        </div>
+<div class="color-field">
 
-      </section>
+<label for="backgroundColor">
+Background
+</label>
 
+<div class="color-wrap">
 
-      <!-- =========================
-           COUPON
-      ========================= -->
+<input
+type="color"
+id="backgroundColor"
+value="#F4F0E8"
+>
 
-      <section>
+<span
+class="color-code"
+id="backgroundCode"
+>
+#F4F0E8
+</span>
 
-        <div class="section-head">
+</div>
 
-          <div class="section-title">
-            Referral / Discount Code
-          </div>
+</div>
 
-          <div class="section-note">
-            ใช้โค้ดได้ 1 ครั้ง / คน
-          </div>
+</div>
 
-        </div>
+</section>
 
 
-        <div class="coupon">
+<!-- CUSTOMER -->
 
-          <input
-            type="text"
-            id="discountCode"
-            placeholder="Enter your discount code"
-            autocomplete="off">
+<section class="section">
 
-          <button
-            type="button"
-            onclick="applyCoupon()">
-            APPLY
-          </button>
+<div class="section-title">
 
-        </div>
+<div class="number">
+04
+</div>
 
+<div>
+<h2>Your Information</h2>
+<p>กรอกข้อมูลสำหรับติดต่อกลับ</p>
+</div>
 
-        <div
-          id="couponMessage"
-          class="coupon-message">
-        </div>
+</div>
 
-      </section>
 
+<div class="form-grid">
 
-      <!-- =========================
-           PAYMENT
-      ========================= -->
+<div class="field">
 
-      <section>
+<label for="customerName">
+ชื่อ
+</label>
 
-        <div class="section-head">
+<input
+type="text"
+id="customerName"
+placeholder="ชื่อของคุณ"
+autocomplete="name"
+>
 
-          <div class="section-title">
-            Payment Slip
-          </div>
+</div>
 
-          <div class="section-note">
-            มัดจำ 30%
-          </div>
 
-        </div>
+<div class="field">
 
+<label for="contact">
+Contact
+</label>
 
-        <div class="upload">
+<input
+type="text"
+id="contact"
+placeholder="Line / Instagram / Email"
+>
 
-          <div class="upload-icon">
-            ↑
-          </div>
+</div>
 
-          <div class="upload-title">
-            อัปโหลดสลิปการโอนเงิน
-          </div>
 
-          <div class="upload-sub">
-            รองรับ JPG, JPEG, PNG และ WEBP
-          </div>
+<div class="field full">
 
+<label for="message">
+รายละเอียดเพิ่มเติม
+</label>
 
-          <label class="file-label">
+<textarea
+id="message"
+placeholder="เช่น ชื่อคู่รัก วันครบรอบ ข้อความ หรือรายละเอียดที่อยากให้ใส่ในเว็บไซต์"
+></textarea>
 
-            CHOOSE FILE
+</div>
 
-            <input
-              type="file"
-              id="paymentSlip"
-              accept="image/jpeg,image/png,image/webp">
+</div>
 
-          </label>
+</section>
 
 
-          <div
-            class="file-name"
-            id="fileName">
-            ยังไม่ได้เลือกไฟล์
-          </div>
+<!-- DISCOUNT -->
 
-        </div>
+<section class="section">
 
-      </section>
+<div class="section-title">
 
-    </div>
+<div class="number">
+05
+</div>
 
+<div>
+<h2>Referral / Discount Code</h2>
+<p>มีโค้ดส่วนลดจากผู้แนะนำหรือไม่?</p>
+</div>
 
-    <!-- =========================
-         SUMMARY
-    ========================= -->
+</div>
 
-    <aside class="summary-wrap">
 
-      <div class="summary">
+<div class="coupon-row">
 
-        <div class="summary-top">
+<input
+type="text"
+id="discountCode"
+placeholder="Enter your discount code"
+autocomplete="off"
+>
 
-          <div class="summary-eyebrow">
-            Order Summary
-          </div>
+<button
+type="button"
+class="btn-small"
+id="applyCoupon"
+>
+Apply
+</button>
 
-          <div class="summary-title">
-            PINTO LOVE
-          </div>
+</div>
 
-        </div>
+<div
+class="coupon-message"
+id="couponMessage"
+></div>
 
+</section>
 
-        <div class="summary-row">
 
-          <span id="summaryTemplateName">
-            Template
-          </span>
+<!-- PAYMENT -->
 
-          <span>
-            129 THB
-          </span>
+<section class="section">
 
-        </div>
+<div class="section-title">
 
+<div class="number">
+06
+</div>
 
-        <div id="extraSummary">
-        </div>
+<div>
+<h2>Payment Slip</h2>
+<p>อัปโหลดสลิปมัดจำ 30%</p>
+</div>
 
+</div>
 
-        <div class="summary-divider">
-        </div>
 
+<div class="upload">
 
-        <div class="summary-row">
+<div class="upload-icon">
+⌁
+</div>
 
-          <span>
-            Subtotal
-          </span>
+<strong>
+Upload your payment slip
+</strong>
 
-          <span id="subtotal">
-            129.00 THB
-          </span>
+<span>
+รองรับ JPG, PNG หรือ WEBP
+</span>
 
-        </div>
+<label class="file-btn" for="slip">
+Choose File
+</label>
 
+<input
+type="file"
+id="slip"
+accept="image/jpeg,image/png,image/webp"
+>
 
-        <div
-          class="summary-row discount"
-          id="discountRow"
-          style="display:none;">
+<div
+class="file-name"
+id="fileName"
+>
+ยังไม่ได้เลือกไฟล์
+</div>
 
-          <span>
-            Discount 5%
-          </span>
+</div>
 
-          <span id="discountAmount">
-            -0.00 THB
-          </span>
+</section>
 
-        </div>
+</div>
 
 
-        <div class="summary-divider">
-        </div>
+<!-- SUMMARY -->
 
+<aside class="card summary">
 
-        <div class="total">
+<div class="summary-inner">
 
-          <div class="total-label">
-            Total
-          </div>
+<div class="summary-title">
+Order Summary
+</div>
 
-          <div
-            class="total-price"
-            id="total">
-            129.00 THB
-          </div>
 
-        </div>
+<div class="summary-row">
 
+<span>
+Template
+</span>
 
-        <div class="deposit-box">
+<span id="summaryTemplate">
+Anniversary
+</span>
 
-          <div class="deposit-row">
+</div>
 
-            <span>
-              Deposit 30%
-            </span>
 
-            <strong id="deposit">
-              38.70 THB
-            </strong>
+<div class="summary-row">
 
-          </div>
+<span>
+Base Price
+</span>
 
+<span id="basePrice">
+129.00 THB
+</span>
 
-          <div class="deposit-row">
+</div>
 
-            <span>
-              Remaining 70%
-            </span>
 
-            <strong id="remaining">
-              90.30 THB
-            </strong>
+<div class="summary-row">
 
-          </div>
+<span>
+Extra Menu
+</span>
 
-        </div>
+<span id="extraPrice">
+0.00 THB
+</span>
 
+</div>
 
-        <button
-          class="submit"
-          id="submitButton"
-          type="button"
-          onclick="submitOrder()">
 
-          SUBMIT ORDER
+<div class="summary-row">
 
-        </button>
+<span>
+Selected
+</span>
 
+<span
+id="extraList"
+class="extra-summary"
+>
+ไม่มี
+</span>
 
-        <div class="notice">
+</div>
 
-          หลังส่งคำสั่งซื้อ กรุณารอ PINTO
-          ติดต่อกลับเพื่อยืนยันรายละเอียดและการชำระเงิน
 
-        </div>
+<div class="summary-row">
 
-      </div>
+<span>
+Discount
+</span>
 
-    </aside>
+<span
+id="discountAmount"
+class="discount-row"
+>
+0.00 THB
+</span>
 
-  </div>
+</div>
+
+
+<div class="total">
+
+<div class="total-label">
+Total
+</div>
+
+<div
+class="total-price"
+id="totalPrice"
+>
+129.00 THB
+</div>
+
+</div>
+
+
+<div class="payment-box">
+
+<div class="payment-line">
+
+<span>
+Deposit 30%
+</span>
+
+<strong id="depositPrice">
+38.70 THB
+</strong>
+
+</div>
+
+
+<div class="payment-line">
+
+<span>
+Remaining 70%
+</span>
+
+<strong id="remainingPrice">
+90.30 THB
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="submit"
+id="submitButton"
+>
+Submit Order
+</button>
+
+
+<div class="note">
+หลังส่งคำสั่งซื้อ ระบบจะอัปโหลดสลิปและบันทึกข้อมูลลงระบบอัตโนมัติ
+</div>
+
+
+<div
+id="statusBox"
+class="status-box"
+></div>
+
+</div>
+
+</aside>
+
+</div>
+</div>
 
 </main>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer class="footer">
-
-  <div class="footer-brand">
-    PINTO STUDIO
-  </div>
-
-  <div>
-    LOVE · WEDDING · MOMENT
-  </div>
-
-  <div>
-    © 2026 PINTO STUDIO
-  </div>
-
+<footer>
+© 2026 PINTO LOVE — CREATE YOUR STORY
 </footer>
 
 
 <script>
 
-/* =====================================
-   PINTO LOVE ORDER
-===================================== */
+const SUPABASE_URL =
+"https://keybykrpnpgsnyxtpfqj.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+
+const STORAGE_BUCKET =
+"payment-slips";
+
 
 const BASE_PRICE = 129;
 const EXTRA_PRICE = 29;
 
-const DISCOUNT_CODE = "PINT05-STANG";
+const DISCOUNT_CODE =
+"PINT05-STANG";
+
 const DISCOUNT_PERCENT = 5;
 
+let couponApplied = false;
 
-/* =====================================
-   TEMPLATE FROM URL
-===================================== */
 
 const params =
-  new URLSearchParams(window.location.search);
+new URLSearchParams(
+window.location.search
+);
 
-const templateId =
-  params.get("template") || "love-01";
+const templateParam =
+params.get("template") ||
+"anniversary-01";
 
 
 const templateNames = {
 
-  "anniversary-01":
-    "Anniversary",
+"anniversary-01":
+"Anniversary",
 
-  "birthday-01":
-    "Birthday",
+"birthday-01":
+"Birthday",
 
-  "love-01":
-    "PINTO LOVE",
+"love-01":
+"Love",
 
-  "apology-01":
-    "Apology",
+"valentine-01":
+"Valentine",
 
-  "valentine-01":
-    "Valentine",
-
-  "special-01":
-    "Special Moment"
+"story-01":
+"Our Story"
 
 };
 
 
 const templateName =
-  templateNames[templateId] ||
-  templateId
-    .replace(/[-_]+/g," ")
-    .replace(/\b\w/g,char =>
-      char.toUpperCase()
-    );
+templateNames[templateParam] ||
+"Anniversary";
 
 
+const templateNameEl =
 document.getElementById(
-  "templateName"
-).textContent = templateName;
+"templateName"
+);
 
-
+const summaryTemplateEl =
 document.getElementById(
-  "summaryTemplateName"
-).textContent = templateName;
+"summaryTemplate"
+);
+
+const basePriceEl =
+document.getElementById(
+"basePrice"
+);
+
+const extraPriceEl =
+document.getElementById(
+"extraPrice"
+);
+
+const extraListEl =
+document.getElementById(
+"extraList"
+);
+
+const discountAmountEl =
+document.getElementById(
+"discountAmount"
+);
+
+const totalPriceEl =
+document.getElementById(
+"totalPrice"
+);
+
+const depositPriceEl =
+document.getElementById(
+"depositPrice"
+);
+
+const remainingPriceEl =
+document.getElementById(
+"remainingPrice"
+);
+
+const discountCodeEl =
+document.getElementById(
+"discountCode"
+);
+
+const couponMessageEl =
+document.getElementById(
+"couponMessage"
+);
+
+const applyCouponBtn =
+document.getElementById(
+"applyCoupon"
+);
+
+const slipInput =
+document.getElementById(
+"slip"
+);
+
+const fileNameEl =
+document.getElementById(
+"fileName"
+);
+
+const submitButton =
+document.getElementById(
+"submitButton"
+);
+
+const statusBox =
+document.getElementById(
+"statusBox"
+);
 
 
-/* =====================================
-   ELEMENTS
-===================================== */
+templateNameEl.textContent =
+templateName;
 
-const extraCards =
-  document.querySelectorAll(".extra-card");
-
-
-const primaryColor =
-  document.getElementById("primaryColor");
-
-const secondaryColor =
-  document.getElementById("secondaryColor");
-
-const backgroundColor =
-  document.getElementById("backgroundColor");
+summaryTemplateEl.textContent =
+templateName;
 
 
-const discountCode =
-  document.getElementById("discountCode");
+function setupColorPicker(
+inputId,
+codeId
+){
+
+const input =
+document.getElementById(
+inputId
+);
+
+const code =
+document.getElementById(
+codeId
+);
+
+function update(){
+
+code.textContent =
+input.value.toUpperCase();
+
+}
+
+input.addEventListener(
+"input",
+update
+);
+
+update();
+
+}
 
 
-const couponMessage =
-  document.getElementById("couponMessage");
+setupColorPicker(
+"primaryColor",
+"primaryCode"
+);
+
+setupColorPicker(
+"secondaryColor",
+"secondaryCode"
+);
+
+setupColorPicker(
+"backgroundColor",
+"backgroundCode"
+);
 
 
-const fileInput =
-  document.getElementById("paymentSlip");
+const extraInputs =
+document.querySelectorAll(
+".extra-item input"
+);
 
 
-const fileName =
-  document.getElementById("fileName");
+extraInputs.forEach(
+input => {
+
+input.addEventListener(
+"change",
+calculatePrices
+);
+
+}
+);
 
 
-let couponApplied = false;
+slipInput.addEventListener(
+"change",
+function(){
+
+if(
+!this.files ||
+!this.files[0]
+){
+
+fileNameEl.textContent =
+"ยังไม่ได้เลือกไฟล์";
+
+return;
+
+}
 
 
-/* =====================================
-   EXTRA MENU
-===================================== */
+const file =
+this.files[0];
 
-extraCards.forEach(card => {
 
-  const checkbox =
-    card.querySelector("input");
+const allowed = [
+"image/jpeg",
+"image/png",
+"image/webp"
+];
 
-  checkbox.addEventListener(
-    "change",
-    function(){
 
-      if(this.checked){
+if(
+!allowed.includes(
+file.type
+)
+){
 
-        card.classList.add("selected");
+this.value = "";
 
-      }else{
+fileNameEl.textContent =
+"ไฟล์ไม่ถูกต้อง กรุณาเลือก JPG, PNG หรือ WEBP";
 
-        card.classList.remove("selected");
+return;
 
-      }
+}
 
-      calculatePrices();
 
-    }
-  );
+if(
+file.size >
+8 * 1024 * 1024
+){
+
+this.value = "";
+
+fileNameEl.textContent =
+"ไฟล์ใหญ่เกิน 8MB";
+
+return;
+
+}
+
+
+fileNameEl.textContent =
+"✓ " + file.name;
+
+}
+);
+
+
+function getSelectedExtras(){
+
+const selected = [];
+
+
+extraInputs.forEach(
+input => {
+
+if(
+input.checked
+){
+
+selected.push({
+
+name:
+input.dataset.name,
+
+price:
+Number(
+input.dataset.price
+)
+
+});
+
+}
 
 });
 
 
-/* =====================================
-   COLOR
-===================================== */
-
-function updateColors(){
-
-  document.documentElement
-    .style.setProperty(
-      "--accent",
-      primaryColor.value
-    );
-
-  document.documentElement
-    .style.setProperty(
-      "--brown",
-      secondaryColor.value
-    );
-
-  document.documentElement
-    .style.setProperty(
-      "--cream",
-      backgroundColor.value
-    );
-
-
-  document.getElementById(
-    "primaryValue"
-  ).textContent =
-    primaryColor.value.toUpperCase();
-
-
-  document.getElementById(
-    "secondaryValue"
-  ).textContent =
-    secondaryColor.value.toUpperCase();
-
-
-  document.getElementById(
-    "backgroundValue"
-  ).textContent =
-    backgroundColor.value.toUpperCase();
+return selected;
 
 }
 
-
-primaryColor.addEventListener(
-  "input",
-  updateColors
-);
-
-
-secondaryColor.addEventListener(
-  "input",
-  updateColors
-);
-
-
-backgroundColor.addEventListener(
-  "input",
-  updateColors
-);
-
-
-/* =====================================
-   FILE
-===================================== */
-
-fileInput.addEventListener(
-  "change",
-  function(){
-
-    if(this.files.length > 0){
-
-      fileName.textContent =
-        this.files[0].name;
-
-    }else{
-
-      fileName.textContent =
-        "ยังไม่ได้เลือกไฟล์";
-
-    }
-
-  }
-);
-
-
-/* =====================================
-   COUPON
-===================================== */
-
-function applyCoupon(){
-
-  const code =
-    discountCode.value
-      .trim()
-      .toUpperCase();
-
-
-  couponApplied = false;
-
-
-  couponMessage.className =
-    "coupon-message";
-
-
-  if(!code){
-
-    couponMessage.textContent =
-      "กรุณาใส่โค้ดส่วนลด";
-
-    calculatePrices();
-
-    return;
-
-  }
-
-
-  if(code === DISCOUNT_CODE){
-
-    couponApplied = true;
-
-    couponMessage.classList.add(
-      "success"
-    );
-
-    couponMessage.textContent =
-      "Coupon applied! 5% OFF";
-
-  }else{
-
-    couponMessage.classList.add(
-      "error"
-    );
-
-    couponMessage.textContent =
-      "ไม่พบโค้ดส่วนลดนี้";
-
-  }
-
-
-  calculatePrices();
-
-}
-
-
-/* =====================================
-   CALCULATE
-===================================== */
 
 function calculatePrices(){
 
-  let extrasTotal = 0;
-
-  const selectedExtras = [];
-
-
-  extraCards.forEach(card => {
-
-    const checkbox =
-      card.querySelector("input");
+const extras =
+getSelectedExtras();
 
 
-    if(checkbox.checked){
-
-      const price =
-        Number(checkbox.dataset.price);
-
-      extrasTotal += price;
-
-
-      selectedExtras.push({
-
-        name:
-          checkbox.dataset.name,
-
-        price:
-          price
-
-      });
-
-    }
-
-  });
+const extraTotal =
+extras.reduce(
+(sum,item) =>
+sum + item.price,
+0
+);
 
 
-  const subtotal =
-    BASE_PRICE +
-    extrasTotal;
+const subtotal =
+BASE_PRICE +
+extraTotal;
 
 
-  let discount = 0;
+let discountAmount =
+0;
 
 
-  if(couponApplied){
+if(couponApplied){
 
-    discount =
-      subtotal *
-      (DISCOUNT_PERCENT / 100);
-
-  }
-
-
-  const total =
-    subtotal -
-    discount;
-
-
-  const deposit =
-    total * 0.30;
-
-
-  const remaining =
-    total * 0.70;
-
-
-  document.getElementById(
-    "subtotal"
-  ).textContent =
-    formatTHB(subtotal);
-
-
-  document.getElementById(
-    "total"
-  ).textContent =
-    formatTHB(total);
-
-
-  document.getElementById(
-    "deposit"
-  ).textContent =
-    formatTHB(deposit);
-
-
-  document.getElementById(
-    "remaining"
-  ).textContent =
-    formatTHB(remaining);
-
-
-  const discountRow =
-    document.getElementById(
-      "discountRow"
-    );
-
-
-  if(couponApplied){
-
-    discountRow.style.display =
-      "flex";
-
-
-    document.getElementById(
-      "discountAmount"
-    ).textContent =
-      "-" +
-      formatTHB(discount);
-
-  }else{
-
-    discountRow.style.display =
-      "none";
-
-  }
-
-
-  const extraSummary =
-    document.getElementById(
-      "extraSummary"
-    );
-
-
-  extraSummary.innerHTML =
-    "";
-
-
-  selectedExtras.forEach(item => {
-
-    const row =
-      document.createElement(
-        "div"
-      );
-
-
-    row.className =
-      "summary-row";
-
-
-    row.innerHTML = `
-      <span>${escapeHTML(item.name)}</span>
-      <span>${formatTHB(item.price)}</span>
-    `;
-
-
-    extraSummary.appendChild(row);
-
-  });
+discountAmount =
+subtotal *
+(
+DISCOUNT_PERCENT /
+100
+);
 
 }
 
 
-/* =====================================
-   MONEY
-===================================== */
+const total =
+subtotal -
+discountAmount;
 
-function formatTHB(number){
 
-  return (
-    Number(number)
-      .toFixed(2)
-    + " THB"
-  );
+const deposit =
+total *
+0.30;
+
+
+const remaining =
+total -
+deposit;
+
+
+basePriceEl.textContent =
+formatTHB(
+BASE_PRICE
+);
+
+
+extraPriceEl.textContent =
+formatTHB(
+extraTotal
+);
+
+
+discountAmountEl.textContent =
+discountAmount > 0
+?
+"-" +
+formatTHB(
+discountAmount
+)
+:
+"0.00 THB";
+
+
+totalPriceEl.textContent =
+formatTHB(
+total
+);
+
+
+depositPriceEl.textContent =
+formatTHB(
+deposit
+);
+
+
+remainingPriceEl.textContent =
+formatTHB(
+remaining
+);
+
+
+if(
+extras.length === 0
+){
+
+extraListEl.textContent =
+"ไม่มี";
+
+}else{
+
+extraListEl.innerHTML =
+extras
+.map(
+item =>
+escapeHTML(
+item.name
+)
+)
+.join("<br>");
+
+}
 
 }
 
 
-/* =====================================
-   HTML SAFE
-===================================== */
+function formatTHB(value){
 
-function escapeHTML(text){
-
-  return text
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return Number(value)
+.toFixed(2)
+.replace(
+ /\B(?=(\d{3})+(?!\d))/g,
+ ","
+)
++
+" THB";
 
 }
 
 
-/* =====================================
-   SUBMIT
-===================================== */
-
-function submitOrder(){
-
-  const customerName =
-    document.getElementById(
-      "customerName"
-    ).value.trim();
-
-
-  const contact =
-    document.getElementById(
-      "contact"
-    ).value.trim();
-
-
-  const message =
-    document.getElementById(
-      "message"
-    ).value.trim();
-
-
-  const file =
-    fileInput.files[0];
-
-
-  if(!customerName){
-
-    alert(
-      "กรุณากรอกชื่อ"
-    );
-
-    document.getElementById(
-      "customerName"
-    ).focus();
-
-    return;
-
-  }
-
-
-  if(!contact){
-
-    alert(
-      "กรุณากรอกช่องทางติดต่อ"
-    );
-
-    document.getElementById(
-      "contact"
-    ).focus();
-
-    return;
-
-  }
-
-
-  if(!file){
-
-    alert(
-      "กรุณาอัปโหลดสลิปการโอนเงิน"
-    );
-
-    return;
-
-  }
-
-
-  const selectedExtras = [];
-
-
-  extraCards.forEach(card => {
-
-    const checkbox =
-      card.querySelector("input");
-
-
-    if(checkbox.checked){
-
-      selectedExtras.push(
-        checkbox.dataset.name
-      );
-
-    }
-
-  });
-
-
-  const extrasTotal =
-    selectedExtras.length *
-    EXTRA_PRICE;
-
-
-  const subtotal =
-    BASE_PRICE +
-    extrasTotal;
-
-
-  const discount =
-    couponApplied
-      ? subtotal *
-        (DISCOUNT_PERCENT / 100)
-      : 0;
-
-
-  const total =
-    subtotal -
-    discount;
-
-
-  const deposit =
-    total * 0.30;
-
-
-  const remaining =
-    total * 0.70;
-
-
-  const orderData = {
-
-    order_number:
-      "PINTO-" +
-      Date.now(),
-
-    customer_name:
-      customerName,
-
-    contact:
-      contact,
-
-    template:
-      templateId,
-
-    message:
-      message,
-
-    primary_color:
-      primaryColor.value,
-
-    secondary_color:
-      secondaryColor.value,
-
-    background_color:
-      backgroundColor.value,
-
-    extra_functions:
-      selectedExtras.join(", "),
-
-    total_price:
-      Number(
-        total.toFixed(2)
-      ),
-
-    deposit_amount:
-      Number(
-        deposit.toFixed(2)
-      ),
-
-    remaining_amount:
-      Number(
-        remaining.toFixed(2)
-      ),
-
-    payment_slip:
-      file.name,
-
-    payment_status:
-      "รอตรวจสอบมัดจำ",
-
-    status:
-      "รอตรวจสอบมัดจำ"
-
-  };
-
-
-  console.log(
-    "PINTO LOVE ORDER:",
-    orderData
-  );
-
-
-  alert(
-    "เตรียมส่งคำสั่งซื้อเรียบร้อยแล้ว\n\n" +
-    "Template: " +
-    templateName +
-    "\n" +
-    "ยอดรวม: " +
-    formatTHB(total) +
-    "\n" +
-    "มัดจำ 30%: " +
-    formatTHB(deposit)
-  );
+function escapeHTML(str){
+
+return String(str)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================
-   INITIAL
-===================================== */
+applyCouponBtn.addEventListener(
+"click",
+applyCoupon
+);
+
+
+function applyCoupon(){
+
+const code =
+discountCodeEl.value
+.trim()
+.toUpperCase();
+
+
+couponApplied = false;
+
+couponMessageEl.textContent =
+"";
+
+couponMessageEl.className =
+"coupon-message";
+
+
+if(!code){
+
+couponMessageEl.textContent =
+"กรุณาใส่โค้ดส่วนลด";
+
+couponMessageEl.classList.add(
+"coupon-error"
+);
+
+calculatePrices();
+
+return;
+
+}
+
+
+if(
+code === DISCOUNT_CODE
+){
+
+couponApplied = true;
+
+couponMessageEl.textContent =
+"Coupon applied! 5% OFF";
+
+couponMessageEl.classList.add(
+"coupon-success"
+);
+
+}else{
+
+couponMessageEl.textContent =
+"Invalid discount code";
+
+couponMessageEl.classList.add(
+"coupon-error"
+);
+
+}
+
+
+calculatePrices();
+
+}
+
+
+function getSafeContentType(file){
+
+const type =
+String(
+file &&
+file.type ||
+""
+)
+.toLowerCase();
+
+
+if(
+type === "image/jpeg"
+){
+return "image/jpeg";
+}
+
+
+if(
+type === "image/png"
+){
+return "image/png";
+}
+
+
+if(
+type === "image/webp"
+){
+return "image/webp";
+}
+
+
+return "application/octet-stream";
+
+}
+
+
+function supabaseHeaders(
+extra = {}
+){
+
+return {
+
+"apikey":
+SUPABASE_ANON_KEY,
+
+"Authorization":
+"Bearer " +
+SUPABASE_ANON_KEY,
+
+...extra
+
+};
+
+}
+
+
+function generateOrderNumber(){
+
+const now =
+new Date();
+
+
+const date =
+now.getFullYear()
+.toString()
++
+String(
+now.getMonth()+1
+)
+.padStart(
+2,
+"0"
+)
++
+String(
+now.getDate()
+)
+.padStart(
+2,
+"0"
+);
+
+
+const random =
+Math.random()
+.toString(36)
+.substring(
+2,
+8
+)
+.toUpperCase();
+
+
+return (
+"PINTO-" +
+date +
+"-" +
+random
+);
+
+}
+
+
+function safeFileName(
+name
+){
+
+return String(name)
+.replace(
+ /[^a-zA-Z0-9._-]/g,
+ "_"
+);
+
+}
+
+
+async function uploadPaymentSlip(
+file,
+orderNumber
+){
+
+const fileName =
+safeFileName(
+file.name
+);
+
+
+const extension =
+fileName.includes(".")
+?
+fileName.substring(
+fileName.lastIndexOf(".")
+)
+:
+".jpg";
+
+
+const storagePath =
+orderNumber +
+"-" +
+Date.now() +
+extension;
+
+
+const uploadUrl =
+SUPABASE_URL +
+"/storage/v1/object/" +
+STORAGE_BUCKET +
+"/" +
+storagePath;
+
+
+const response =
+await fetch(
+uploadUrl,
+{
+
+method:
+"POST",
+
+headers:
+supabaseHeaders({
+
+"Content-Type":
+getSafeContentType(
+file
+),
+
+"x-upsert":
+"false"
+
+}),
+
+body:
+file
+
+}
+);
+
+
+if(
+!response.ok
+){
+
+let message =
+"ไม่สามารถอัปโหลดสลิปได้";
+
+
+try{
+
+const errorData =
+await response.json();
+
+
+if(
+errorData.message
+){
+
+message =
+errorData.message;
+
+}else if(
+errorData.error
+){
+
+message =
+errorData.error;
+
+}
+
+}catch(e){}
+
+
+throw new Error(
+"Upload failed: " +
+message
+);
+
+}
+
+
+return storagePath;
+
+}
+
+
+async function deletePaymentSlip(
+storagePath
+){
+
+if(!storagePath){
+return;
+}
+
+
+try{
+
+const deleteUrl =
+SUPABASE_URL +
+"/storage/v1/object/" +
+STORAGE_BUCKET +
+"/" +
+storagePath;
+
+
+await fetch(
+deleteUrl,
+{
+
+method:
+"DELETE",
+
+headers:
+supabaseHeaders()
+
+}
+);
+
+}catch(e){
+
+console.warn(
+"Cleanup failed:",
+e
+);
+
+}
+
+}
+
+
+async function createOrder(
+orderData
+){
+
+const response =
+await fetch(
+SUPABASE_URL +
+"/rest/v1/orders",
+{
+
+method:
+"POST",
+
+headers:
+supabaseHeaders({
+
+"Content-Type":
+"application/json",
+
+"Prefer":
+"return=representation"
+
+}),
+
+body:
+JSON.stringify(
+orderData
+)
+
+}
+);
+
+
+if(
+!response.ok
+){
+
+let message =
+"ไม่สามารถบันทึกคำสั่งซื้อได้";
+
+
+try{
+
+const errorData =
+await response.json();
+
+
+if(
+errorData.message
+){
+
+message =
+errorData.message;
+
+}else if(
+errorData.details
+){
+
+message =
+errorData.details;
+
+}else if(
+errorData.hint
+){
+
+message =
+errorData.hint;
+
+}else if(
+errorData.error
+){
+
+message =
+errorData.error;
+
+}
+
+}catch(e){}
+
+
+throw new Error(
+"Order failed: " +
+message
+);
+
+}
+
+
+return await response.json();
+
+}
+
+
+function showStatus(
+type,
+title,
+message
+){
+
+statusBox.className =
+"status-box " +
+type;
+
+
+statusBox.innerHTML =
+`
+<div class="status-title">
+${escapeHTML(title)}
+</div>
+
+<div>
+${escapeHTML(message)}
+</div>
+`;
+
+
+statusBox.scrollIntoView({
+behavior:"smooth",
+block:"nearest"
+});
+
+}
+
+
+function hideStatus(){
+
+statusBox.className =
+"status-box";
+
+statusBox.innerHTML =
+"";
+
+}
+
+
+submitButton.addEventListener(
+"click",
+submitOrder
+);
+
+
+async function submitOrder(){
+
+hideStatus();
+
+
+const customerName =
+document.getElementById(
+"customerName"
+)
+.value
+.trim();
+
+
+const contact =
+document.getElementById(
+"contact"
+)
+.value
+.trim();
+
+
+const message =
+document.getElementById(
+"message"
+)
+.value
+.trim();
+
+
+const slip =
+slipInput.files &&
+slipInput.files[0];
+
+
+if(!customerName){
+
+showStatus(
+"error",
+"กรุณากรอกชื่อ",
+"กรุณากรอกชื่อก่อนส่งคำสั่งซื้อ"
+);
+
+document
+.getElementById(
+"customerName"
+)
+.focus();
+
+return;
+
+}
+
+
+if(!contact){
+
+showStatus(
+"error",
+"กรุณากรอกช่องทางติดต่อ",
+"กรุณาใส่ Line, Instagram หรือ Email สำหรับติดต่อกลับ"
+);
+
+document
+.getElementById(
+"contact"
+)
+.focus();
+
+return;
+
+}
+
+
+if(!slip){
+
+showStatus(
+"error",
+"ยังไม่ได้แนบสลิป",
+"กรุณาอัปโหลดสลิปมัดจำ 30% ก่อนส่งคำสั่งซื้อ"
+);
+
+return;
+
+}
+
+
+const allowedTypes = [
+"image/jpeg",
+"image/png",
+"image/webp"
+];
+
+
+if(
+!allowedTypes.includes(
+slip.type
+)
+){
+
+showStatus(
+"error",
+"ไฟล์ไม่ถูกต้อง",
+"กรุณาใช้ไฟล์ JPG, PNG หรือ WEBP"
+);
+
+return;
+
+}
+
+
+if(
+slip.size >
+8 * 1024 * 1024
+){
+
+showStatus(
+"error",
+"ไฟล์ใหญ่เกินไป",
+"กรุณาใช้สลิปที่มีขนาดไม่เกิน 8MB"
+);
+
+return;
+
+}
+
+
+const extras =
+getSelectedExtras();
+
+
+const extraTotal =
+extras.reduce(
+(sum,item) =>
+sum + item.price,
+0
+);
+
+
+const subtotal =
+BASE_PRICE +
+extraTotal;
+
+
+const discountAmount =
+couponApplied
+?
+subtotal *
+(
+DISCOUNT_PERCENT /
+100
+)
+:
+0;
+
+
+const total =
+Number(
+(
+subtotal -
+discountAmount
+)
+.toFixed(2)
+);
+
+
+const deposit =
+Number(
+(
+total *
+0.30
+)
+.toFixed(2)
+);
+
+
+const remaining =
+Number(
+(
+total -
+deposit
+)
+.toFixed(2)
+);
+
+
+const orderNumber =
+generateOrderNumber();
+
+
+submitButton.disabled =
+true;
+
+submitButton.textContent =
+"SENDING...";
+
+
+let uploadedSlipPath =
+"";
+
+
+try{
+
+showStatus(
+"success",
+"กำลังอัปโหลดสลิป...",
+"กรุณารอสักครู่ ระบบกำลังบันทึกไฟล์ของคุณ"
+);
+
+
+uploadedSlipPath =
+await uploadPaymentSlip(
+slip,
+orderNumber
+);
+
+
+const extraFunctions =
+extras
+.map(
+item =>
+item.name
+)
+.join(", ");
+
+
+const orderData = {
+
+order_number:
+orderNumber,
+
+customer_name:
+customerName,
+
+contact:
+contact,
+
+template:
+templateName,
+
+message:
+message,
+
+primary_color:
+document.getElementById(
+"primaryColor"
+).value,
+
+secondary_color:
+document.getElementById(
+"secondaryColor"
+).value,
+
+background_color:
+document.getElementById(
+"backgroundColor"
+).value,
+
+extra_functions:
+extraFunctions,
+
+total_price:
+total,
+
+deposit_amount:
+deposit,
+
+remaining_amount:
+remaining,
+
+payment_slip:
+uploadedSlipPath,
+
+payment_status:
+"รอตรวจสอบมัดจำ",
+
+status:
+"รอตรวจสอบมัดจำ"
+
+};
+
+
+showStatus(
+"success",
+"กำลังบันทึกคำสั่งซื้อ...",
+"กำลังส่งข้อมูลเข้า PINTO LOVE"
+);
+
+
+await createOrder(
+orderData
+);
+
+
+submitButton.textContent =
+"ORDER SUBMITTED ✓";
+
+
+showStatus(
+"success",
+"ส่งคำสั่งซื้อสำเร็จ ✓",
+"ระบบได้รับข้อมูลและสลิปของคุณเรียบร้อยแล้ว"
+);
+
+
+statusBox.innerHTML +=
+`
+<div class="success-order">
+
+<strong>
+Order Number
+</strong>
+
+<br>
+
+${escapeHTML(
+orderNumber
+)}
+
+<br><br>
+
+<strong>
+Template
+</strong>
+
+<br>
+
+${escapeHTML(
+templateName
+)}
+
+<br><br>
+
+<strong>
+Total
+</strong>
+
+<br>
+
+${formatTHB(
+total
+)}
+
+<br><br>
+
+<strong>
+Deposit 30%
+</strong>
+
+<br>
+
+${formatTHB(
+deposit
+)}
+
+</div>
+`;
+
+
+}catch(error){
+
+console.error(
+"Submit order error:",
+error
+);
+
+
+if(
+uploadedSlipPath
+){
+
+await deletePaymentSlip(
+uploadedSlipPath
+);
+
+}
+
+
+submitButton.disabled =
+false;
+
+submitButton.textContent =
+"Submit Order";
+
+
+showStatus(
+"error",
+"ส่งคำสั่งซื้อไม่สำเร็จ",
+error.message ||
+"เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง"
+);
+
+}
+
+}
+
 
 calculatePrices();
 
