@@ -647,62 +647,271 @@ section{
   background:var(--cream);
 }
 
-.price-box{
+.pricing-brand{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 48px;
+}
+
+.pricing-brand.wedding-brand{
+  margin-top:115px;
+}
+
+.pricing-brand-line{
+  width:42px;
+  height:1px;
+  background:var(--taupe);
+  margin:0 auto 22px;
+}
+
+.pricing-brand-title{
+  color:var(--dark);
+  font-family:var(--eng);
+  font-size:34px;
+  line-height:1;
+  letter-spacing:.12em;
+}
+
+.pricing-brand-title small{
+  display:block;
+  margin-top:10px;
+  font-family:var(--thai-body);
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--muted);
+}
+
+.pricing-brand-desc{
+  max-width:590px;
+  margin:20px auto 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+
+
+/* =========================
+   PINTO LOVE
+========================= */
+
+.love-price-card{
   max-width:900px;
-
   margin:auto;
-
-  padding:70px;
-
+  padding:60px 55px;
   background:var(--white);
-
   border-radius:35px;
-
   border:1px solid rgba(140,126,116,.10);
-
   text-align:center;
 }
 
-.price-label{
-  font-family:var(--eng);
-
+.love-price-label{
+  font-family:var(--thai-body);
   color:var(--taupe);
-
   font-size:13px;
-
-  letter-spacing:.25em;
+  letter-spacing:.12em;
 }
 
-.price{
-  margin-top:12px;
-
+.love-price{
+  margin-top:10px;
   font-family:var(--eng);
-
   font-size:92px;
-
   line-height:1;
-
   color:var(--dark);
 }
 
-.price small{
+.love-price small{
   font-family:var(--thai-body);
-
   font-size:16px;
-
   color:var(--muted);
 }
 
-.price-desc{
+.love-price-desc{
   max-width:650px;
-
-  margin:25px auto 0;
-
+  margin:23px auto 0;
   color:var(--muted);
-
   font-size:14px;
-
   line-height:2;
+}
+
+.love-occasion{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+  margin-top:28px;
+}
+
+.love-occasion span{
+  padding:8px 14px;
+  border:1px solid rgba(140,126,116,.20);
+  color:var(--muted);
+  font-size:12px;
+}
+
+.love-extra{
+  margin-top:40px;
+  padding-top:30px;
+  border-top:1px solid rgba(140,126,116,.16);
+}
+
+.extra-title{
+  font-size:14px;
+  color:var(--dark);
+}
+
+.extra-price{
+  margin-top:5px;
+  font-family:var(--eng);
+  font-size:38px;
+  color:var(--taupe);
+}
+
+.extra-price small{
+  font-family:var(--thai-body);
+  font-size:11px;
+  color:var(--muted);
+}
+
+.love-extra p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.function-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin-top:18px;
+}
+
+.function-list span{
+  padding:7px 13px;
+  border:1px solid rgba(140,126,116,.20);
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* =========================
+   PINTO WEDDING
+========================= */
+
+.wedding-packages{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.wedding-card{
+  min-height:440px;
+  padding:30px 25px;
+  background:var(--white);
+  border:1px solid rgba(140,126,116,.12);
+  display:flex;
+  flex-direction:column;
+}
+
+.wedding-card.featured{
+  border-color:var(--taupe);
+}
+
+.wedding-card-top{
+  padding-bottom:23px;
+  border-bottom:1px solid rgba(140,126,116,.16);
+}
+
+.wedding-name{
+  font-family:var(--eng);
+  font-size:31px;
+  letter-spacing:.08em;
+  color:var(--dark);
+}
+
+.wedding-price{
+  margin-top:6px;
+  font-family:var(--eng);
+  font-size:46px;
+  line-height:1;
+  color:var(--taupe);
+}
+
+.wedding-price small{
+  font-family:var(--thai-body);
+  font-size:12px;
+  color:var(--muted);
+}
+
+.wedding-feature-title{
+  min-height:55px;
+  margin-top:22px;
+  color:var(--dark);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.wedding-features{
+  margin:12px 0 0;
+  padding:0;
+  list-style:none;
+}
+
+.wedding-features li{
+  position:relative;
+  padding-left:17px;
+  margin-bottom:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.wedding-features li::before{
+  content:"—";
+  position:absolute;
+  left:0;
+  color:var(--taupe);
+}
+
+.special-note{
+  margin-top:auto;
+  padding-top:20px;
+  color:var(--taupe);
+  font-size:11px;
+  line-height:1.8;
+}
+
+
+/* =========================
+   PRICING NOTES
+========================= */
+
+.pricing-notes{
+  max-width:900px;
+  margin:60px auto 0;
+  padding-top:32px;
+  border-top:1px solid rgba(140,126,116,.20);
+}
+
+.pricing-note-title{
+  margin-bottom:18px;
+  font-size:13px;
+  letter-spacing:.12em;
+  color:var(--dark);
+}
+
+.pricing-note-list p{
+  margin:8px 0;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+}
+
+.pricing-note-list p::before{
+  content:"— ";
+  color:var(--taupe);
 }
 
 
@@ -957,12 +1166,20 @@ footer{
     margin-top:25px;
   }
 
-  .price-box{
+  .love-price-card{
     padding:50px 25px;
   }
 
-  .price{
+  .love-price{
     font-size:72px;
+  }
+
+  .wedding-packages{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .wedding-card{
+    min-height:420px;
   }
 
   .section{
@@ -1007,6 +1224,34 @@ footer{
 
   .feature{
     min-height:220px;
+  }
+
+  .love-price-card{
+    padding:40px 18px;
+  }
+
+  .love-price{
+    font-size:60px;
+  }
+
+  .love-occasion span{
+    font-size:11px;
+  }
+
+  .wedding-packages{
+    grid-template-columns:1fr;
+  }
+
+  .wedding-card{
+    min-height:auto;
+  }
+
+  .pricing-brand.wedding-brand{
+    margin-top:90px;
+  }
+
+  .pricing-brand-title{
+    font-size:29px;
   }
 
   .footer-inner{
@@ -1477,23 +1722,341 @@ id="pricing">
 
 <div class="container">
 
-<div class="price-box">
 
-<div
-class="price-label"
-id="priceLabel">
+<!-- PINTO LOVE -->
+
+<div class="pricing-brand">
+
+<div class="pricing-brand-line"></div>
+
+<div class="pricing-brand-title">
+PINTO LOVE
+<small id="loveBrandThai">
+ปิ่นโตรัก
+</small>
 </div>
 
-<div class="price">
+<p
+class="pricing-brand-desc"
+id="loveIntro">
+เว็บไซต์สำหรับบอกรักและเก็บช่วงเวลาสำคัญ
+สำหรับแฟน ครอบครัว และคนพิเศษ
+</p>
+
+</div>
+
+
+<div class="love-price-card">
+
+<div
+class="love-price-label"
+id="loveStartLabel">
+เริ่มต้น
+</div>
+
+<div class="love-price">
 129 <small>THB</small>
 </div>
 
 <p
-class="price-desc"
-id="priceDesc">
+class="love-price-desc"
+id="lovePriceDesc">
+เว็บไซต์บอกรักสำหรับวันสำคัญและช่วงเวลาพิเศษ
+</p>
+
+
+<div class="love-occasion">
+
+<span id="loveOccasion1">บอกรัก</span>
+<span id="loveOccasion2">วันครบรอบ</span>
+<span id="loveOccasion3">วันเกิด</span>
+<span id="loveOccasion4">ง้อ / ขอโทษ</span>
+<span id="loveOccasion5">ขอเป็นแฟน</span>
+<span id="loveOccasion6">วันสำคัญต่าง ๆ</span>
+
+</div>
+
+
+<div class="love-extra">
+
+<div
+class="extra-title"
+id="loveExtraTitle">
+ฟังก์ชันเพิ่มเติม
+</div>
+
+<div class="extra-price">
++29 <small>THB / function</small>
+</div>
+
+<p
+id="loveExtraDesc">
+เลือกเพิ่มฟังก์ชันที่ต้องการได้ตามสไตล์ของคุณ
+</p>
+
+<div class="function-list">
+
+<span id="loveFunction1">Game</span>
+<span id="loveFunction2">Letter</span>
+<span id="loveFunction3">Gallery</span>
+<span id="loveFunction4">Music</span>
+<span id="loveFunction5">Cake</span>
+<span id="loveFunction6">Surprise</span>
+<span id="loveFunction7">Countdown</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PINTO WEDDING -->
+
+<div class="pricing-brand wedding-brand">
+
+<div class="pricing-brand-line"></div>
+
+<div class="pricing-brand-title">
+PINTO WEDDING
+</div>
+
+<p
+class="pricing-brand-desc"
+id="weddingIntro">
+เว็บไซต์แต่งงานสำหรับเก็บรายละเอียด
+และเรื่องราวสำคัญของวันพิเศษ
 </p>
 
 </div>
+
+
+<!-- WEDDING PACKAGES -->
+
+<div class="wedding-packages">
+
+
+<!-- STANDARD -->
+
+<div class="wedding-card">
+
+<div class="wedding-card-top">
+
+<div
+class="wedding-name"
+id="standardTitle">
+Standard
+</div>
+
+<div class="wedding-price">
+299 <small>THB</small>
+</div>
+
+</div>
+
+<div
+class="wedding-feature-title"
+id="standardFeatureTitle">
+ฟังก์ชันพื้นฐาน
+</div>
+
+<ul class="wedding-features">
+
+<li id="standardFeature1">
+Music
+</li>
+
+<li id="standardFeature2">
+Photos
+</li>
+
+<li id="standardFeature3">
+Google Maps
+</li>
+
+<li id="standardFeature4">
+Wedding Countdown
+</li>
+
+<li id="standardFeature5">
+Schedule
+</li>
+
+<li id="standardFeature6">
+Couple's Message
+</li>
+
+<li id="standardFeature7">
+Dress Code
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- PLUS -->
+
+<div class="wedding-card featured">
+
+<div class="wedding-card-top">
+
+<div
+class="wedding-name"
+id="plusTitle">
+Plus
+</div>
+
+<div class="wedding-price">
+349 <small>THB</small>
+</div>
+
+</div>
+
+<div
+class="wedding-feature-title"
+id="plusFeatureTitle">
+ฟังก์ชันพื้นฐาน + เลือก 1 ฟังก์ชันพิเศษ
+</div>
+
+<ul class="wedding-features">
+
+<li>RSVP</li>
+<li>QR Code รับซอง</li>
+<li>Guest Wishes</li>
+
+</ul>
+
+<div
+class="special-note"
+id="plusNote">
+เลือกได้ 1 อย่าง จาก 3 ฟังก์ชันพิเศษ
+</div>
+
+</div>
+
+
+<!-- PREMIUM -->
+
+<div class="wedding-card">
+
+<div class="wedding-card-top">
+
+<div
+class="wedding-name"
+id="premiumTitle">
+Premium
+</div>
+
+<div class="wedding-price">
+399 <small>THB</small>
+</div>
+
+</div>
+
+<div
+class="wedding-feature-title"
+id="premiumFeatureTitle">
+ฟังก์ชันพื้นฐาน + ฟังก์ชันพิเศษครบทั้ง 3
+</div>
+
+<ul class="wedding-features">
+
+<li>RSVP</li>
+<li>QR Code รับซอง</li>
+<li>Guest Wishes</li>
+
+</ul>
+
+</div>
+
+
+<!-- LUXURY -->
+
+<div class="wedding-card">
+
+<div class="wedding-card-top">
+
+<div
+class="wedding-name"
+id="luxuryTitle">
+Luxury
+</div>
+
+<div class="wedding-price">
+499 <small>THB</small>
+</div>
+
+</div>
+
+<div
+class="wedding-feature-title"
+id="luxuryFeatureTitle">
+ฟังก์ชันทั้งหมด + 2 ภาษา
+</div>
+
+<ul class="wedding-features">
+
+<li id="luxuryFeature1">
+ฟังก์ชัน Wedding ทั้งหมด
+</li>
+
+<li id="luxuryFeature2">
+2 ภาษา
+</li>
+
+<li id="luxuryFeature3">
+เพิ่มภาษาอื่นได้ตามต้องการ
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<!-- PRICING NOTES -->
+
+<div class="pricing-notes">
+
+<div
+class="pricing-note-title"
+id="pricingNotesTitle">
+หมายเหตุ
+</div>
+
+<div class="pricing-note-list">
+
+<p id="pricingNote1">
+PINTO LOVE ใช้เวลาจัดทำประมาณ 1–2 วัน
+</p>
+
+<p id="pricingNote2">
+PINTO WEDDING ใช้เวลาจัดทำประมาณ 4–5 วัน แล้วแต่กรณี
+</p>
+
+<p id="pricingNote3">
+มัดจำ 30%
+</p>
+
+<p id="pricingNote4">
+แก้ไขฟรี 1 ครั้งหลังส่งงาน
+</p>
+
+<p id="pricingNote5">
+แก้ไขเพิ่มเติมครั้งละ 50 บาท
+</p>
+
+<p id="pricingNote6">
+เว็บไซต์ใช้งานได้ 1 ปี
+</p>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -1789,11 +2352,146 @@ feature6Text:
    PRICING — THAI
 ========================= */
 
-priceLabel:
-"PINTO LOVE • PINTO WEDDING",
+loveBrandThai:
+"ปิ่นโตรัก",
 
-priceDesc:
-"PINTO LOVE เริ่มต้น 129 บาทต่อเทมเพลต และสามารถเพิ่มฟังก์ชันได้ในราคา 29 บาทต่อฟังก์ชัน เช่น เกม จดหมาย แกลเลอรี เพลง หรือฟังก์ชันเพิ่มเติมอื่น ๆ • PINTO WEDDING มี 4 แพ็กเกจ Standard 299 บาท / Plus 349 บาท / Premium 399 บาท / Luxury 499 บาท • มัดจำ 30% • แก้ไขฟรี 1 ครั้งหลังส่งงาน และแก้ไขเพิ่มเติมครั้งละ 50 บาท • Love ใช้เวลาประมาณ 1–2 วัน / Wedding ประมาณ 4–5 วัน แล้วแต่กรณี • เว็บไซต์ใช้งานได้ 1 ปี",
+loveIntro:
+"เว็บไซต์สำหรับบอกรักและเก็บช่วงเวลาสำคัญ สำหรับแฟน ครอบครัว และคนพิเศษ",
+
+loveStartLabel:
+"เริ่มต้น",
+
+lovePriceDesc:
+"เว็บไซต์บอกรักสำหรับวันสำคัญและช่วงเวลาพิเศษ",
+
+loveOccasion1:
+"บอกรัก",
+
+loveOccasion2:
+"วันครบรอบ",
+
+loveOccasion3:
+"วันเกิด",
+
+loveOccasion4:
+"ง้อ / ขอโทษ",
+
+loveOccasion5:
+"ขอเป็นแฟน",
+
+loveOccasion6:
+"วันสำคัญต่าง ๆ",
+
+loveExtraTitle:
+"ฟังก์ชันเพิ่มเติม",
+
+loveExtraDesc:
+"เลือกเพิ่มฟังก์ชันที่ต้องการได้ตามสไตล์ของคุณ",
+
+loveFunction1:
+"Game",
+
+loveFunction2:
+"Letter",
+
+loveFunction3:
+"Gallery",
+
+loveFunction4:
+"Music",
+
+loveFunction5:
+"Cake",
+
+loveFunction6:
+"Surprise",
+
+loveFunction7:
+"Countdown",
+
+
+weddingIntro:
+"เว็บไซต์แต่งงานสำหรับเก็บรายละเอียด และเรื่องราวสำคัญของวันพิเศษ",
+
+standardTitle:
+"Standard",
+
+standardFeatureTitle:
+"ฟังก์ชันพื้นฐาน",
+
+standardFeature1:
+"Music",
+
+standardFeature2:
+"Photos",
+
+standardFeature3:
+"Google Maps",
+
+standardFeature4:
+"Wedding Countdown",
+
+standardFeature5:
+"Schedule",
+
+standardFeature6:
+"Couple's Message",
+
+standardFeature7:
+"Dress Code",
+
+
+plusTitle:
+"Plus",
+
+plusFeatureTitle:
+"ฟังก์ชันพื้นฐาน + เลือก 1 ฟังก์ชันพิเศษ",
+
+plusNote:
+"เลือกได้ 1 อย่าง จาก 3 ฟังก์ชันพิเศษ",
+
+premiumTitle:
+"Premium",
+
+premiumFeatureTitle:
+"ฟังก์ชันพื้นฐาน + ฟังก์ชันพิเศษครบทั้ง 3",
+
+luxuryTitle:
+"Luxury",
+
+luxuryFeatureTitle:
+"ฟังก์ชันทั้งหมด + 2 ภาษา",
+
+luxuryFeature1:
+"ฟังก์ชัน Wedding ทั้งหมด",
+
+luxuryFeature2:
+"2 ภาษา",
+
+luxuryFeature3:
+"เพิ่มภาษาอื่นได้ตามต้องการ",
+
+
+pricingNotesTitle:
+"หมายเหตุ",
+
+pricingNote1:
+"PINTO LOVE ใช้เวลาจัดทำประมาณ 1–2 วัน",
+
+pricingNote2:
+"PINTO WEDDING ใช้เวลาจัดทำประมาณ 4–5 วัน แล้วแต่กรณี",
+
+pricingNote3:
+"มัดจำ 30%",
+
+pricingNote4:
+"แก้ไขฟรี 1 ครั้งหลังส่งงาน",
+
+pricingNote5:
+"แก้ไขเพิ่มเติมครั้งละ 50 บาท",
+
+pricingNote6:
+"เว็บไซต์ใช้งานได้ 1 ปี",
 
 
 howLabel:
@@ -1981,11 +2679,146 @@ feature6Text:
    PRICING — ENGLISH
 ========================= */
 
-priceLabel:
-"PINTO LOVE • PINTO WEDDING",
+loveBrandThai:
+"PINTO LOVE",
 
-priceDesc:
-"PINTO LOVE starts at 129 THB per template, with additional functions at +29 THB per function, such as games, letters, galleries, music, or other add-ons. PINTO WEDDING offers Standard 299 THB / Plus 349 THB / Premium 399 THB / Luxury 499 THB. 30% deposit required. 1 free revision after delivery, then +50 THB per additional revision. Love: approximately 1–2 days / Wedding: approximately 4–5 days depending on the case. Website usage: 1 year.",
+loveIntro:
+"A personal website for expressing love and celebrating meaningful moments with your partner, family, or someone special.",
+
+loveStartLabel:
+"Starting from",
+
+lovePriceDesc:
+"A personal love website for special days and meaningful moments.",
+
+loveOccasion1:
+"Love",
+
+loveOccasion2:
+"Anniversary",
+
+loveOccasion3:
+"Birthday",
+
+loveOccasion4:
+"Apology",
+
+loveOccasion5:
+"Confession",
+
+loveOccasion6:
+"Special Moments",
+
+loveExtraTitle:
+"Additional Functions",
+
+loveExtraDesc:
+"Add the functions you want and make the website your own.",
+
+loveFunction1:
+"Game",
+
+loveFunction2:
+"Letter",
+
+loveFunction3:
+"Gallery",
+
+loveFunction4:
+"Music",
+
+loveFunction5:
+"Cake",
+
+loveFunction6:
+"Surprise",
+
+loveFunction7:
+"Countdown",
+
+
+weddingIntro:
+"A wedding website designed to collect the important details and stories of your special day.",
+
+standardTitle:
+"Standard",
+
+standardFeatureTitle:
+"Basic Features",
+
+standardFeature1:
+"Music",
+
+standardFeature2:
+"Photos",
+
+standardFeature3:
+"Google Maps",
+
+standardFeature4:
+"Wedding Countdown",
+
+standardFeature5:
+"Schedule",
+
+standardFeature6:
+"Couple's Message",
+
+standardFeature7:
+"Dress Code",
+
+
+plusTitle:
+"Plus",
+
+plusFeatureTitle:
+"Basic Features + Choose 1 Special Function",
+
+plusNote:
+"Choose 1 from 3 special functions",
+
+premiumTitle:
+"Premium",
+
+premiumFeatureTitle:
+"Basic Features + All 3 Special Functions",
+
+luxuryTitle:
+"Luxury",
+
+luxuryFeatureTitle:
+"All Features + 2 Languages",
+
+luxuryFeature1:
+"All Wedding Features",
+
+luxuryFeature2:
+"2 Languages",
+
+luxuryFeature3:
+"Additional languages available",
+
+
+pricingNotesTitle:
+"Notes",
+
+pricingNote1:
+"PINTO LOVE: approximately 1–2 days",
+
+pricingNote2:
+"PINTO WEDDING: approximately 4–5 days, depending on the case",
+
+pricingNote3:
+"30% deposit",
+
+pricingNote4:
+"1 free revision after delivery",
+
+pricingNote5:
+"Additional revisions: 50 THB each",
+
+pricingNote6:
+"Website usage period: 1 year",
 
 
 howLabel:
@@ -2173,11 +3006,146 @@ feature6Text:
    PRICING — KOREAN
 ========================= */
 
-priceLabel:
-"PINTO LOVE • PINTO WEDDING",
+loveBrandThai:
+"핀토 러브",
 
-priceDesc:
-"PINTO LOVE는 템플릿당 129 THB부터 시작하며, 게임·편지·갤러리·음악 등 원하는 기능을 +29 THB씩 추가할 수 있습니다. PINTO WEDDING은 Standard 299 THB / Plus 349 THB / Premium 399 THB / Luxury 499 THB로 구성됩니다. 계약금 30%가 필요하며, 완성 후 1회 무료 수정이 제공됩니다. 추가 수정은 1회당 +50 THB입니다. Love는 약 1–2일, Wedding은 경우에 따라 약 4–5일이 소요됩니다. 웹사이트 사용 기간은 1년입니다.",
+loveIntro:
+"연인, 가족, 소중한 사람에게 마음을 전하고 특별한 순간을 기록하는 개인 웹사이트입니다.",
+
+loveStartLabel:
+"시작 가격",
+
+lovePriceDesc:
+"특별한 날과 소중한 순간을 위한 사랑의 웹사이트",
+
+loveOccasion1:
+"사랑 고백",
+
+loveOccasion2:
+"기념일",
+
+loveOccasion3:
+"생일",
+
+loveOccasion4:
+"화해 / 사과",
+
+loveOccasion5:
+"고백",
+
+loveOccasion6:
+"특별한 날",
+
+loveExtraTitle:
+"추가 기능",
+
+loveExtraDesc:
+"원하는 기능을 추가하여 나만의 웹사이트를 만들어보세요.",
+
+loveFunction1:
+"Game",
+
+loveFunction2:
+"Letter",
+
+loveFunction3:
+"Gallery",
+
+loveFunction4:
+"Music",
+
+loveFunction5:
+"Cake",
+
+loveFunction6:
+"Surprise",
+
+loveFunction7:
+"Countdown",
+
+
+weddingIntro:
+"결혼식의 중요한 정보와 특별한 이야기를 담을 수 있는 웨딩 웹사이트입니다.",
+
+standardTitle:
+"Standard",
+
+standardFeatureTitle:
+"기본 기능",
+
+standardFeature1:
+"Music",
+
+standardFeature2:
+"Photos",
+
+standardFeature3:
+"Google Maps",
+
+standardFeature4:
+"Wedding Countdown",
+
+standardFeature5:
+"Schedule",
+
+standardFeature6:
+"Couple's Message",
+
+standardFeature7:
+"Dress Code",
+
+
+plusTitle:
+"Plus",
+
+plusFeatureTitle:
+"기본 기능 + 특별 기능 1개 선택",
+
+plusNote:
+"3가지 특별 기능 중 1개 선택",
+
+premiumTitle:
+"Premium",
+
+premiumFeatureTitle:
+"기본 기능 + 특별 기능 3가지 모두 포함",
+
+luxuryTitle:
+"Luxury",
+
+luxuryFeatureTitle:
+"전체 기능 + 2개 언어",
+
+luxuryFeature1:
+"모든 Wedding 기능",
+
+luxuryFeature2:
+"2개 언어",
+
+luxuryFeature3:
+"추가 언어 선택 가능",
+
+
+pricingNotesTitle:
+"안내사항",
+
+pricingNote1:
+"PINTO LOVE: 약 1–2일 소요",
+
+pricingNote2:
+"PINTO WEDDING: 경우에 따라 약 4–5일 소요",
+
+pricingNote3:
+"예약금 30%",
+
+pricingNote4:
+"제작 완료 후 1회 무료 수정",
+
+pricingNote5:
+"추가 수정은 1회당 50 THB",
+
+pricingNote6:
+"웹사이트 이용 기간: 1년",
 
 
 howLabel:
@@ -2440,12 +3408,123 @@ t[`feature${i}Text`];
 /* PRICING */
 
 document.getElementById(
-"priceLabel"
-).textContent=t.priceLabel;
+"loveBrandThai"
+).textContent=t.loveBrandThai;
 
 document.getElementById(
-"priceDesc"
-).textContent=t.priceDesc;
+"loveIntro"
+).textContent=t.loveIntro;
+
+document.getElementById(
+"loveStartLabel"
+).textContent=t.loveStartLabel;
+
+document.getElementById(
+"lovePriceDesc"
+).textContent=t.lovePriceDesc;
+
+for(let i=1;i<=6;i++){
+
+document.getElementById(
+`loveOccasion${i}`
+).textContent=
+t[`loveOccasion${i}`];
+
+}
+
+document.getElementById(
+"loveExtraTitle"
+).textContent=t.loveExtraTitle;
+
+document.getElementById(
+"loveExtraDesc"
+).textContent=t.loveExtraDesc;
+
+for(let i=1;i<=7;i++){
+
+document.getElementById(
+`loveFunction${i}`
+).textContent=
+t[`loveFunction${i}`];
+
+}
+
+
+document.getElementById(
+"weddingIntro"
+).textContent=t.weddingIntro;
+
+
+document.getElementById(
+"standardTitle"
+).textContent=t.standardTitle;
+
+document.getElementById(
+"standardFeatureTitle"
+).textContent=t.standardFeatureTitle;
+
+for(let i=1;i<=7;i++){
+
+document.getElementById(
+`standardFeature${i}`
+).textContent=
+t[`standardFeature${i}`];
+
+}
+
+
+document.getElementById(
+"plusTitle"
+).textContent=t.plusTitle;
+
+document.getElementById(
+"plusFeatureTitle"
+).textContent=t.plusFeatureTitle;
+
+document.getElementById(
+"plusNote"
+).textContent=t.plusNote;
+
+
+document.getElementById(
+"premiumTitle"
+).textContent=t.premiumTitle;
+
+document.getElementById(
+"premiumFeatureTitle"
+).textContent=t.premiumFeatureTitle;
+
+
+document.getElementById(
+"luxuryTitle"
+).textContent=t.luxuryTitle;
+
+document.getElementById(
+"luxuryFeatureTitle"
+).textContent=t.luxuryFeatureTitle;
+
+for(let i=1;i<=3;i++){
+
+document.getElementById(
+`luxuryFeature${i}`
+).textContent=
+t[`luxuryFeature${i}`];
+
+}
+
+
+document.getElementById(
+"pricingNotesTitle"
+).textContent=t.pricingNotesTitle;
+
+for(let i=1;i<=6;i++){
+
+document.getElementById(
+`pricingNote${i}`
+).textContent=
+t[`pricingNote${i}`];
+
+}
 
 
 /* HOW */
