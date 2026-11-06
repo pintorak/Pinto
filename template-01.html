@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -37,12 +38,10 @@ html{
 body{
   background:var(--cream);
   color:var(--dark);
-
   font-family:
     'Noto Sans Thai',
     'Noto Sans KR',
     sans-serif;
-
   font-weight:300;
 }
 
@@ -52,13 +51,12 @@ a{
 }
 
 
-/* =========================
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 header{
   width:100%;
-
   padding:28px 7%;
 
   display:flex;
@@ -71,19 +69,15 @@ header{
 
   position:sticky;
   top:0;
-
-  z-index:20;
+  z-index:50;
 
   backdrop-filter:blur(12px);
 }
 
 .logo{
   font-family:'Cormorant Garamond',serif;
-
   font-size:28px;
-
   letter-spacing:3px;
-
   font-weight:500;
 }
 
@@ -96,19 +90,15 @@ header{
     sans-serif;
 
   font-size:9px;
-
   letter-spacing:2.5px;
 
   color:var(--muted);
-
   margin-top:2px;
 }
 
 .back-link{
   font-family:'Cormorant Garamond',serif;
-
   font-size:16px;
-
   letter-spacing:1px;
 
   color:var(--muted);
@@ -121,13 +111,12 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    PRODUCT
-========================= */
+================================================== */
 
 .product{
   max-width:1200px;
-
   margin:auto;
 
   padding:80px 7% 100px;
@@ -145,60 +134,246 @@ header{
 }
 
 
-/* =========================
-   PREVIEW
-========================= */
+/* ==================================================
+   GALLERY
+================================================== */
 
 .preview-wrap{
   position:sticky;
-
   top:110px;
 }
 
-.preview-main{
+.gallery{
   width:100%;
+}
+
+
+/* ==================================================
+   MAIN IMAGE
+================================================== */
+
+.main-image{
+  width:100%;
+
+  aspect-ratio:4 / 5;
 
   background:var(--beige);
 
   border:1px solid var(--line);
 
   overflow:hidden;
+
+  position:relative;
+
+  touch-action:pan-y;
+
+  cursor:grab;
 }
 
-.preview-main img{
+.main-image:active{
+  cursor:grabbing;
+}
+
+.image-track{
   width:100%;
+  height:100%;
+
+  display:flex;
+
+  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+
+  will-change:transform;
+}
+
+.slide{
+  min-width:100%;
+  width:100%;
+  height:100%;
+
+  flex:0 0 100%;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
 
   display:block;
 
-  aspect-ratio:4 / 5;
+  pointer-events:none;
+
+  user-select:none;
+}
+
+
+/* ==================================================
+   ARROWS
+================================================== */
+
+.gallery-arrow{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:44px;
+  height:44px;
+
+  border:1px solid rgba(251,248,245,.75);
+
+  background:rgba(64,57,52,.45);
+
+  color:var(--white);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:25px;
+
+  z-index:5;
+
+  transition:
+    background .25s,
+    transform .25s;
+}
+
+.gallery-arrow:hover{
+  background:rgba(64,57,52,.78);
+}
+
+.gallery-arrow.prev{
+  left:18px;
+}
+
+.gallery-arrow.next{
+  right:18px;
+}
+
+
+/* ==================================================
+   COUNTER
+================================================== */
+
+.image-counter{
+  position:absolute;
+
+  bottom:16px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  min-width:58px;
+
+  padding:5px 13px;
+
+  background:rgba(64,57,52,.58);
+
+  color:var(--white);
+
+  text-align:center;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:15px;
+
+  letter-spacing:1px;
+
+  z-index:5;
+}
+
+
+/* ==================================================
+   THUMBNAILS
+================================================== */
+
+.thumbnails{
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,1fr);
+
+  gap:10px;
+
+  margin-top:12px;
+}
+
+.thumbnail{
+  width:100%;
+
+  aspect-ratio:1 / 1;
+
+  padding:0;
+
+  border:1px solid var(--line);
+
+  background:var(--beige);
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  opacity:.48;
+
+  transition:
+    opacity .3s,
+    border-color .3s,
+    transform .3s;
+}
+
+.thumbnail:hover{
+  opacity:.8;
+}
+
+.thumbnail.active{
+  opacity:1;
+
+  border-color:var(--taupe);
+
+  transform:translateY(-2px);
+}
+
+.thumbnail img{
+  width:100%;
+  height:100%;
 
   object-fit:cover;
+
+  display:block;
 }
+
+
+/* ==================================================
+   PREVIEW NOTE
+================================================== */
 
 .preview-note{
   margin-top:12px;
 
   display:flex;
-
   justify-content:space-between;
 
   font-size:9px;
-
   letter-spacing:1px;
 
   color:var(--muted);
 }
 
 
-/* =========================
-   INFO
-========================= */
+/* ==================================================
+   PRODUCT INFO
+================================================== */
 
 .product-label{
   font-family:'Cormorant Garamond',serif;
 
   font-size:14px;
-
   letter-spacing:3px;
 
   color:var(--taupe);
@@ -210,7 +385,6 @@ header{
   font-family:'Cormorant Garamond',serif;
 
   font-size:57px;
-
   font-weight:500;
 
   line-height:.95;
@@ -248,15 +422,14 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    DESCRIPTION
-========================= */
+================================================== */
 
 .description{
   padding:24px 0;
 
   border-top:1px solid var(--line);
-
   border-bottom:1px solid var(--line);
 
   margin-bottom:28px;
@@ -271,9 +444,9 @@ header{
 }
 
 
-/* =========================
-   DETAILS
-========================= */
+/* ==================================================
+   DETAIL
+================================================== */
 
 .detail-section{
   margin-bottom:32px;
@@ -283,7 +456,6 @@ header{
   font-family:'Cormorant Garamond',serif;
 
   font-size:25px;
-
   font-weight:500;
 
   margin-bottom:15px;
@@ -318,9 +490,9 @@ header{
 }
 
 
-/* =========================
-   EXTRA
-========================= */
+/* ==================================================
+   EXTRA FUNCTION
+================================================== */
 
 .extra-box{
   background:var(--white);
@@ -338,7 +510,6 @@ header{
   font-family:'Cormorant Garamond',serif;
 
   font-size:22px;
-
   font-weight:500;
 
   margin-bottom:6px;
@@ -353,9 +524,9 @@ header{
 }
 
 
-/* =========================
-   CTA
-========================= */
+/* ==================================================
+   BUTTONS
+================================================== */
 
 .actions{
   display:flex;
@@ -365,7 +536,8 @@ header{
   margin-top:35px;
 }
 
-.demo-btn{
+.demo-btn,
+.order-btn{
   flex:1;
 
   min-height:54px;
@@ -373,12 +545,7 @@ header{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
-
-  background:var(--dark);
-
-  color:var(--white);
 
   font-family:'Cormorant Garamond',serif;
 
@@ -389,28 +556,18 @@ header{
   transition:.3s;
 }
 
+.demo-btn{
+  background:var(--dark);
+
+  color:var(--white);
+}
+
 .demo-btn:hover{
   background:var(--taupe);
 }
 
 .order-btn{
-  flex:1;
-
-  min-height:54px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
   border:1px solid var(--dark);
-
-  font-family:'Cormorant Garamond',serif;
-
-  font-size:17px;
-
-  transition:.3s;
 }
 
 .order-btn:hover{
@@ -420,9 +577,9 @@ header{
 }
 
 
-/* =========================
-   NOTE
-========================= */
+/* ==================================================
+   ORDER NOTE
+================================================== */
 
 .order-note{
   margin-top:18px;
@@ -437,13 +594,12 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    BOTTOM
-========================= */
+================================================== */
 
 .bottom{
   max-width:1200px;
-
   margin:auto;
 
   padding:0 7% 90px;
@@ -458,9 +614,9 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 footer{
   padding:55px 7%;
@@ -470,7 +626,6 @@ footer{
   display:flex;
 
   justify-content:space-between;
-
   align-items:center;
 
   color:var(--muted);
@@ -491,9 +646,9 @@ footer{
 }
 
 
-/* =========================
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media(max-width:850px){
 
@@ -517,6 +672,29 @@ footer{
 
   .product-title{
     font-size:48px;
+  }
+
+  .main-image{
+    aspect-ratio:4 / 5;
+  }
+
+  .gallery-arrow{
+    width:38px;
+    height:38px;
+
+    font-size:22px;
+  }
+
+  .gallery-arrow.prev{
+    left:12px;
+  }
+
+  .gallery-arrow.next{
+    right:12px;
+  }
+
+  .thumbnails{
+    gap:7px;
   }
 
   .actions{
@@ -544,9 +722,9 @@ footer{
 <body>
 
 
-<!-- =========================
+<!-- ==================================================
      HEADER
-========================= -->
+================================================== -->
 
 <header>
 
@@ -569,40 +747,190 @@ footer{
 
 
 
-<!-- =========================
+<!-- ==================================================
      PRODUCT
-========================= -->
+================================================== -->
 
 <main class="product">
 
   <div class="product-layout">
 
 
-    <!-- =========================
-         LEFT : PREVIEW
-    ========================= -->
+    <!-- ==================================================
+         LEFT : GALLERY
+    ================================================== -->
 
     <div class="preview-wrap">
 
-      <div class="preview-main">
+      <div class="gallery">
 
-        <img
-          src="images/anniversary-01.jpg"
-          alt="PINTO LOVE Anniversary Template 01"
+
+        <!-- MAIN IMAGE -->
+
+        <div
+          class="main-image"
+          id="gallery"
         >
 
-      </div>
+          <div
+            class="image-track"
+            id="imageTrack"
+          >
+
+            <div class="slide">
+              <img
+                src="images/anniversary-01.jpg"
+                alt="Anniversary Template 01 - Preview 1"
+              >
+            </div>
+
+            <div class="slide">
+              <img
+                src="images/anniversary-02.jpg"
+                alt="Anniversary Template 01 - Preview 2"
+              >
+            </div>
+
+            <div class="slide">
+              <img
+                src="images/anniversary-03.jpg"
+                alt="Anniversary Template 01 - Preview 3"
+              >
+            </div>
+
+            <div class="slide">
+              <img
+                src="images/anniversary-04.jpg"
+                alt="Anniversary Template 01 - Preview 4"
+              >
+            </div>
+
+            <div class="slide">
+              <img
+                src="images/anniversary-05.jpg"
+                alt="Anniversary Template 01 - Preview 5"
+              >
+            </div>
+
+          </div>
 
 
-      <div class="preview-note">
+          <!-- LEFT -->
 
-        <span>
-          PINTO LOVE
-        </span>
+          <button
+            type="button"
+            class="gallery-arrow prev"
+            id="prevBtn"
+            aria-label="Previous image"
+          >
+            ←
+          </button>
 
-        <span>
-          TEMPLATE 01
-        </span>
+
+          <!-- RIGHT -->
+
+          <button
+            type="button"
+            class="gallery-arrow next"
+            id="nextBtn"
+            aria-label="Next image"
+          >
+            →
+          </button>
+
+
+          <!-- NUMBER -->
+
+          <div
+            class="image-counter"
+            id="counter"
+          >
+            1 / 5
+          </div>
+
+        </div>
+
+
+
+        <!-- THUMBNAILS -->
+
+        <div class="thumbnails">
+
+          <button
+            type="button"
+            class="thumbnail active"
+            data-index="0"
+          >
+            <img
+              src="images/anniversary-01.jpg"
+              alt="Preview 1"
+            >
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            data-index="1"
+          >
+            <img
+              src="images/anniversary-02.jpg"
+              alt="Preview 2"
+            >
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            data-index="2"
+          >
+            <img
+              src="images/anniversary-03.jpg"
+              alt="Preview 3"
+            >
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            data-index="3"
+          >
+            <img
+              src="images/anniversary-04.jpg"
+              alt="Preview 4"
+            >
+          </button>
+
+
+          <button
+            type="button"
+            class="thumbnail"
+            data-index="4"
+          >
+            <img
+              src="images/anniversary-05.jpg"
+              alt="Preview 5"
+            >
+          </button>
+
+        </div>
+
+
+        <!-- NOTE -->
+
+        <div class="preview-note">
+
+          <span>
+            PINTO LOVE
+          </span>
+
+          <span>
+            TEMPLATE 01
+          </span>
+
+        </div>
 
       </div>
 
@@ -610,12 +938,11 @@ footer{
 
 
 
-    <!-- =========================
-         RIGHT : INFO
-    ========================= -->
+    <!-- ==================================================
+         RIGHT : PRODUCT INFO
+    ================================================== -->
 
     <div class="product-info">
-
 
       <div class="product-label">
         ANNIVERSARY · TEMPLATE 01
@@ -654,14 +981,13 @@ footer{
 
 
 
-      <!-- SUITABLE FOR -->
+      <!-- SUITABLE -->
 
       <div class="detail-section">
 
         <h2>
           เหมาะสำหรับ
         </h2>
-
 
         <ul class="detail-list">
 
@@ -694,7 +1020,6 @@ footer{
         <h2>
           ฟังก์ชันภายใน Template
         </h2>
-
 
         <ul class="detail-list">
 
@@ -740,7 +1065,6 @@ footer{
           ปรับแต่งได้
         </h2>
 
-
         <ul class="detail-list">
 
           <li>
@@ -780,7 +1104,6 @@ footer{
           ระยะเวลาจัดทำ
         </h2>
 
-
         <ul class="detail-list">
 
           <li>
@@ -797,7 +1120,7 @@ footer{
 
 
 
-      <!-- ACTIONS -->
+      <!-- BUTTONS -->
 
       <div class="actions">
 
@@ -835,9 +1158,9 @@ footer{
 
 
 
-<!-- =========================
+<!-- ==================================================
      BACK
-========================= -->
+================================================== -->
 
 <div class="bottom">
 
@@ -849,9 +1172,9 @@ footer{
 
 
 
-<!-- =========================
+<!-- ==================================================
      FOOTER
-========================= -->
+================================================== -->
 
 <footer>
 
@@ -859,12 +1182,214 @@ footer{
     PINTO LOVE
   </div>
 
-
   <div class="footer-copy">
     DIGITAL EXPERIENCES · PINTO STUDIO
   </div>
 
 </footer>
+
+
+
+<script>
+
+/* ==================================================
+   GALLERY
+================================================== */
+
+const track =
+  document.getElementById("imageTrack");
+
+const prevBtn =
+  document.getElementById("prevBtn");
+
+const nextBtn =
+  document.getElementById("nextBtn");
+
+const counter =
+  document.getElementById("counter");
+
+const thumbnails =
+  document.querySelectorAll(".thumbnail");
+
+const total =
+  thumbnails.length;
+
+let currentIndex = 0;
+
+
+/* ==================================================
+   SHOW IMAGE
+================================================== */
+
+function showImage(index){
+
+  if(index < 0){
+    index = total - 1;
+  }
+
+  if(index >= total){
+    index = 0;
+  }
+
+  currentIndex = index;
+
+  track.style.transform =
+    `translateX(-${currentIndex * 100}%)`;
+
+  counter.textContent =
+    `${currentIndex + 1} / ${total}`;
+
+
+  thumbnails.forEach((thumbnail, i) => {
+
+    thumbnail.classList.toggle(
+      "active",
+      i === currentIndex
+    );
+
+  });
+
+}
+
+
+/* ==================================================
+   NEXT
+================================================== */
+
+nextBtn.addEventListener("click", () => {
+
+  showImage(currentIndex + 1);
+
+});
+
+
+/* ==================================================
+   PREVIOUS
+================================================== */
+
+prevBtn.addEventListener("click", () => {
+
+  showImage(currentIndex - 1);
+
+});
+
+
+/* ==================================================
+   THUMBNAILS
+================================================== */
+
+thumbnails.forEach(thumbnail => {
+
+  thumbnail.addEventListener("click", () => {
+
+    const index =
+      Number(thumbnail.dataset.index);
+
+    showImage(index);
+
+  });
+
+});
+
+
+/* ==================================================
+   KEYBOARD
+================================================== */
+
+document.addEventListener("keydown", event => {
+
+  if(event.key === "ArrowRight"){
+    showImage(currentIndex + 1);
+  }
+
+  if(event.key === "ArrowLeft"){
+    showImage(currentIndex - 1);
+  }
+
+});
+
+
+/* ==================================================
+   TOUCH / SWIPE
+================================================== */
+
+const gallery =
+  document.getElementById("gallery");
+
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
+
+
+gallery.addEventListener(
+  "touchstart",
+  event => {
+
+    startX =
+      event.touches[0].clientX;
+
+    isDragging = true;
+
+  },
+  { passive:true }
+);
+
+
+gallery.addEventListener(
+  "touchmove",
+  event => {
+
+    if(!isDragging){
+      return;
+    }
+
+    currentX =
+      event.touches[0].clientX;
+
+  },
+  { passive:true }
+);
+
+
+gallery.addEventListener(
+  "touchend",
+  () => {
+
+    if(!isDragging){
+      return;
+    }
+
+    const difference =
+      currentX - startX;
+
+    const threshold = 50;
+
+    if(Math.abs(difference) > threshold){
+
+      if(difference < 0){
+        showImage(currentIndex + 1);
+      }else{
+        showImage(currentIndex - 1);
+      }
+
+    }
+
+    startX = 0;
+    currentX = 0;
+
+    isDragging = false;
+
+  }
+);
+
+
+/* ==================================================
+   INITIAL
+================================================== */
+
+showImage(0);
+
+</script>
 
 
 </body>
