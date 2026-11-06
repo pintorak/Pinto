@@ -11,6 +11,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 
+
 <style>
 
 :root{
@@ -56,27 +57,34 @@ img{
    HEADER
 ========================= */
 
-header{
-  width:100%;
-  padding:25px 55px;
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
+
+  padding:22px 6vw;
+
+  background:rgba(244,239,234,.92);
+  backdrop-filter:blur(12px);
+
   border-bottom:1px solid var(--line);
-  background:rgba(251,248,245,.94);
 }
 
-.logo{
+.brand{
   font-family:"Cormorant Garamond",serif;
-  font-size:25px;
+  font-size:28px;
   letter-spacing:2px;
 }
 
 .back-link{
   font-size:11px;
-  letter-spacing:1.5px;
+  letter-spacing:1.8px;
   color:var(--muted);
-  transition:.3s;
+  transition:.3s ease;
 }
 
 .back-link:hover{
@@ -89,79 +97,108 @@ header{
 ========================= */
 
 .hero{
-  max-width:1200px;
-  margin:0 auto;
-  padding:100px 55px 90px;
+  max-width:1400px;
+  margin:auto;
+
+  padding:110px 6vw 95px;
 }
 
 .hero-label{
-  font-size:10px;
+  font-size:11px;
   letter-spacing:3px;
   color:var(--taupe);
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
-.hero h1{
+.hero-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:76px;
-  line-height:1;
+  font-size:clamp(64px,10vw,145px);
+  line-height:.82;
   font-weight:500;
-  margin-bottom:25px;
+  letter-spacing:-3px;
+  margin-bottom:34px;
 }
 
-.hero p{
-  max-width:650px;
+.hero-description{
+  max-width:620px;
+
+  color:var(--muted);
+
   font-size:14px;
   line-height:2;
-  color:var(--muted);
 }
 
 
 /* =========================
-   CATEGORY
+   BREADCRUMB
 ========================= */
 
-.category{
-  max-width:1200px;
-  margin:0 auto;
-  padding:0 55px 95px;
+.breadcrumb{
+  max-width:1400px;
+  margin:auto;
+
+  padding:0 6vw 45px;
+
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:var(--muted);
 }
 
-.category-header{
+.breadcrumb span{
+  margin:0 8px;
+  color:var(--warm);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.love-section{
+  max-width:1400px;
+  margin:auto;
+
+  padding:0 6vw 110px;
+}
+
+.section-head{
   display:flex;
   justify-content:space-between;
-  align-items:end;
-  margin-bottom:35px;
-  border-bottom:1px solid var(--line);
-  padding-bottom:18px;
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:42px;
 }
 
-.category-label{
+.section-label{
   font-size:10px;
   letter-spacing:2.5px;
   color:var(--taupe);
-  margin-bottom:8px;
+
+  margin-bottom:10px;
 }
 
-.category-title{
+.section-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:42px;
+
+  font-size:52px;
+  line-height:1;
+
   font-weight:500;
-  line-height:1.1;
 }
 
 .see-all{
   font-size:10px;
-  letter-spacing:1.5px;
+  letter-spacing:1.8px;
+
   color:var(--muted);
-  border-bottom:1px solid var(--muted);
-  padding-bottom:2px;
-  transition:.3s;
+
+  transition:.3s ease;
 }
 
 .see-all:hover{
   color:var(--dark);
-  border-color:var(--dark);
 }
 
 
@@ -171,40 +208,55 @@ header{
 
 .template-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
   gap:28px;
 }
 
 
 /* =========================
-   TEMPLATE CARD
+   CARD
 ========================= */
 
 .template-card{
   display:block;
+
   background:var(--white);
+
   border:1px solid var(--line);
-  transition:.4s ease;
+
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease;
+
+  overflow:hidden;
 }
 
 .template-card:hover{
   transform:translateY(-5px);
-  box-shadow:0 18px 45px rgba(64,57,52,.08);
+
+  box-shadow:
+    0 20px 55px rgba(64,57,52,.10);
 }
 
 
 /* =========================
-   TEMPLATE IMAGE
+   CARD IMAGE
 ========================= */
 
-.template-image{
+.card-image{
   position:relative;
+
   aspect-ratio:4 / 5;
-  overflow:hidden;
+
   background:var(--beige);
+
+  overflow:hidden;
 }
 
-.template-image > img{
+.card-image > img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -212,171 +264,292 @@ header{
 
 
 /* =========================
-   ANNIVERSARY SLIDES
+   SLIDER
 ========================= */
 
-.anniversary-gallery{
-  position:relative;
+.slider{
+  position:absolute;
+  inset:0;
+
   overflow:hidden;
 }
 
-.anniversary-slides{
-  width:100%;
-  height:100%;
-  position:relative;
-}
-
-.anniversary-slide{
+.slider img{
   position:absolute;
+
   inset:0;
+
   width:100%;
   height:100%;
+
   object-fit:cover;
+
   opacity:0;
-  transition:opacity .6s ease;
+
+  transition:
+    opacity .8s ease;
 }
 
-.anniversary-slide.active{
+.slider img.active{
   opacity:1;
 }
 
 
 /* =========================
-   BIRTHDAY SLIDES
+   CARD OVERLAY
 ========================= */
 
-.birthday-gallery{
-  position:relative;
-  overflow:hidden;
-}
-
-.birthday-slides{
-  width:100%;
-  height:100%;
-  position:relative;
-}
-
-.birthday-slide{
+.card-overlay{
   position:absolute;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0;
-  transition:opacity .6s ease;
+
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-end;
+
+  padding:20px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.12),
+      transparent 30%
+    );
+
+  pointer-events:none;
 }
 
-.birthday-slide.active{
-  opacity:1;
-}
+.card-number{
+  width:38px;
+  height:38px;
 
-
-/* =========================
-   COUNTER
-========================= */
-
-.template-counter{
-  position:absolute;
-  right:16px;
-  bottom:16px;
-  padding:5px 10px;
-  background:rgba(64,57,52,.65);
-  color:#fff;
-  font-size:10px;
-  letter-spacing:1px;
-  z-index:5;
-}
-
-
-/* =========================
-   PLACEHOLDER
-========================= */
-
-.placeholder{
-  width:100%;
-  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-}
 
-.placeholder-inner{
-  color:var(--muted);
-}
+  border-radius:50%;
 
-.placeholder-small{
-  font-size:9px;
-  letter-spacing:2px;
-  margin-bottom:8px;
-}
+  background:rgba(251,248,245,.88);
 
-.placeholder-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:32px;
+
+  font-size:18px;
+
+  color:var(--dark);
 }
 
 
 /* =========================
-   TEMPLATE CONTENT
+   SLIDER COUNTER
 ========================= */
 
-.template-content{
-  padding:27px 25px 30px;
+.slider-counter{
+  position:absolute;
+
+  right:16px;
+  bottom:16px;
+
+  z-index:5;
+
+  padding:5px 10px;
+
+  background:rgba(255,255,255,.85);
+
+  font-size:10px;
+
+  letter-spacing:1px;
+
+  color:var(--dark);
 }
 
-.template-number{
+
+/* =========================
+   CARD BODY
+========================= */
+
+.card-body{
+  padding:28px 28px 30px;
+}
+
+.card-label{
   font-size:9px;
   letter-spacing:2px;
+
   color:var(--taupe);
-  margin-bottom:10px;
+
+  margin-bottom:9px;
 }
 
-.template-content h3{
+.card-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:30px;
-  font-weight:500;
+
+  font-size:29px;
+
   line-height:1.2;
-  margin-bottom:12px;
+
+  margin-bottom:13px;
 }
 
-.template-content p{
+.card-description{
   font-size:12px;
-  line-height:1.9;
+
   color:var(--muted);
-  min-height:50px;
-  margin-bottom:22px;
+
+  line-height:1.9;
+
+  min-height:68px;
 }
 
-.template-bottom{
+.card-bottom{
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   gap:15px;
+
+  margin-top:25px;
+
+  padding-top:18px;
+
+  border-top:1px solid var(--line);
 }
 
 .price{
   font-family:"Cormorant Garamond",serif;
+
   font-size:22px;
+
+  color:var(--dark);
 }
 
-.view-template{
-  font-size:10px;
-  letter-spacing:1.3px;
-  border-bottom:1px solid var(--dark);
-  padding-bottom:2px;
+.view{
+  font-size:9px;
+
+  letter-spacing:1.4px;
+
+  color:var(--muted);
 }
 
 
 /* =========================
-   DIVIDER
+   BIRTHDAY
 ========================= */
 
-.section-divider{
-  max-width:1090px;
-  margin:0 auto 95px;
-  height:1px;
-  background:var(--line);
+.birthday-section{
+  max-width:1400px;
+  margin:auto;
+
+  padding:0 6vw 110px;
+}
+
+
+/* =========================
+   MAKE UP
+========================= */
+
+.makeup-section{
+  max-width:1400px;
+  margin:auto;
+
+  padding:0 6vw 110px;
+}
+
+
+/* =========================
+   SPECIAL MOMENT
+========================= */
+
+.special-section{
+  max-width:1400px;
+  margin:auto;
+
+  padding:0 6vw 130px;
+}
+
+.special-card{
+  min-height:420px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--beige);
+
+  border:1px solid var(--line);
+
+  text-align:center;
+}
+
+.special-card-inner{
+  padding:40px;
+}
+
+.special-label{
+  font-size:10px;
+  letter-spacing:2px;
+
+  color:var(--taupe);
+
+  margin-bottom:15px;
+}
+
+.special-title{
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:42px;
+
+  margin-bottom:12px;
+}
+
+.special-description{
+  max-width:500px;
+
+  margin:auto;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:2;
+}
+
+
+/* =========================
+   NOTE
+========================= */
+
+.love-note{
+  max-width:1400px;
+
+  margin:auto;
+
+  padding:0 6vw 110px;
+}
+
+.note-box{
+  padding:48px 50px;
+
+  border:1px solid var(--line);
+
+  background:rgba(251,248,245,.55);
+}
+
+.note-title{
+  font-family:"Cormorant Garamond",serif;
+
+  font-size:28px;
+
+  margin-bottom:18px;
+}
+
+.note-text{
+  max-width:760px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:2;
 }
 
 
@@ -384,21 +557,31 @@ header{
    FOOTER
 ========================= */
 
-footer{
+.site-footer{
+  padding:45px 6vw;
+
   border-top:1px solid var(--line);
-  padding:38px 55px;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-size:10px;
-  letter-spacing:1px;
+
+  gap:30px;
+
   color:var(--muted);
+
+  font-size:10px;
+  letter-spacing:1.2px;
 }
 
-.footer-logo{
+.footer-brand{
   font-family:"Cormorant Garamond",serif;
-  font-size:21px;
+
+  font-size:23px;
+
   color:var(--dark);
+
+  letter-spacing:1.5px;
 }
 
 
@@ -406,52 +589,127 @@ footer{
    MOBILE
 ========================= */
 
-@media(max-width:800px){
+@media(max-width:900px){
 
-  header{
-    padding:22px 25px;
+  .template-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
   }
 
   .hero{
-    padding:75px 25px 65px;
-  }
-
-  .hero h1{
-    font-size:58px;
-  }
-
-  .category{
-    padding:0 25px 75px;
-  }
-
-  .category-header{
-    align-items:flex-end;
-  }
-
-  .category-title{
-    font-size:36px;
-  }
-
-  .template-grid{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
-  .section-divider{
-    margin:0 25px 75px;
-  }
-
-  footer{
-    padding:30px 25px;
-    flex-direction:column;
-    gap:10px;
-    text-align:center;
+    padding-top:85px;
   }
 
 }
 
+@media(max-width:600px){
+
+  .site-header{
+    padding:18px 5vw;
+  }
+
+  .brand{
+    font-size:24px;
+  }
+
+  .back-link{
+    font-size:9px;
+  }
+
+  .hero{
+    padding:
+      75px 5vw
+      70px;
+  }
+
+  .hero-title{
+    font-size:72px;
+
+    letter-spacing:-2px;
+  }
+
+  .hero-description{
+    font-size:13px;
+  }
+
+  .breadcrumb{
+    padding:
+      0 5vw
+      35px;
+  }
+
+  .love-section,
+  .birthday-section,
+  .makeup-section,
+  .special-section,
+  .love-note{
+    padding-left:5vw;
+    padding-right:5vw;
+  }
+
+  .section-head{
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    gap:15px;
+  }
+
+  .section-title{
+    font-size:44px;
+  }
+
+  .template-grid{
+    grid-template-columns:1fr;
+
+    gap:22px;
+  }
+
+  .card-body{
+    padding:24px;
+  }
+
+  .card-title{
+    font-size:27px;
+  }
+
+  .card-description{
+    min-height:auto;
+  }
+
+  .note-box{
+    padding:32px 26px;
+  }
+
+  .site-footer{
+    padding:
+      35px 5vw;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+  }
+
+}
+
+
+/* =========================
+   SLIDER FADE
+========================= */
+
+@keyframes sliderFade{
+  from{
+    opacity:0;
+  }
+
+  to{
+    opacity:1;
+  }
+}
+
 </style>
 </head>
+
 
 <body>
 
@@ -460,17 +718,18 @@ footer{
      HEADER
 ========================= -->
 
-<header>
+<header class="site-header">
 
-  <a href="index.html" class="logo">
+  <a href="index.html" class="brand">
     PINTO LOVE
   </a>
 
   <a href="index.html" class="back-link">
-    ← BACK TO PINTO STUDIO
+    BACK TO PINTO STUDIO
   </a>
 
 </header>
+
 
 
 <!-- =========================
@@ -480,37 +739,57 @@ footer{
 <section class="hero">
 
   <div class="hero-label">
-    PINTO LOVE
+    PINTO LOVE · DIGITAL EXPERIENCES
   </div>
 
-  <h1>
+  <h1 class="hero-title">
     Little things,<br>
     made to remember.
   </h1>
 
-  <p>
-    Digital experiences designed for the moments
-    you want to keep close.
+  <p class="hero-description">
+    เว็บไซต์เล็ก ๆ ที่ออกแบบมาเพื่อเก็บความรู้สึก
+    ความทรงจำ และช่วงเวลาสำคัญ
+    ให้คนพิเศษของคุณได้เปิดอ่านและค้นพบทีละหน้า
   </p>
 
 </section>
+
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+
+  <a href="index.html">
+    PINTO STUDIO
+  </a>
+
+  <span>/</span>
+
+  <span>PINTO LOVE</span>
+
+</div>
+
 
 
 <!-- =========================
      ANNIVERSARY
 ========================= -->
 
-<section class="category">
+<section class="love-section">
 
-  <div class="category-header">
+  <div class="section-head">
 
     <div>
 
-      <div class="category-label">
+      <div class="section-label">
         PINTO LOVE · ANNIVERSARY
       </div>
 
-      <h2 class="category-title">
+      <h2 class="section-title">
         วันครบรอบ
       </h2>
 
@@ -526,75 +805,79 @@ footer{
   <div class="template-grid">
 
 
-    <!-- ANNIVERSARY 01 -->
+    <!-- TEMPLATE 01 -->
 
-    <a href="template-01.html" class="template-card">
+    <a href="template-01.html"
+       class="template-card">
 
-      <div class="template-image anniversary-gallery">
+      <div class="card-image">
 
-        <div class="anniversary-slides">
+        <div class="slider"
+             data-slider="anniversary-01">
 
           <img
             src="anniversary-01.jpg"
-            class="anniversary-slide active"
-            alt="Anniversary Template 01"
-          >
+            class="active"
+            alt="Anniversary Template 01">
 
           <img
             src="anniversary-02.jpg"
-            class="anniversary-slide"
-            alt="Anniversary Template 01"
-          >
+            alt="Anniversary Template 01">
 
           <img
             src="anniversary-03.jpg"
-            class="anniversary-slide"
-            alt="Anniversary Template 01"
-          >
+            alt="Anniversary Template 01">
 
           <img
             src="anniversary-04.jpg"
-            class="anniversary-slide"
-            alt="Anniversary Template 01"
-          >
+            alt="Anniversary Template 01">
 
           <img
             src="anniversary-05.jpg"
-            class="anniversary-slide"
-            alt="Anniversary Template 01"
-          >
+            alt="Anniversary Template 01">
 
         </div>
 
-        <div class="template-counter">
-          <span id="anniversaryCurrent">1</span> / 5
+        <div class="card-overlay">
+
+          <div class="card-number">
+            01
+          </div>
+
+        </div>
+
+        <div class="slider-counter">
+          <span class="current-slide">1</span> / 5
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          01 · ANNIVERSARY
+      <div class="card-body">
+
+        <div class="card-label">
+          ANNIVERSARY · TEMPLATE 01
         </div>
 
-        <h3>
+        <div class="card-title">
           วันครบรอบแบบที่หนึ่ง
-        </h3>
+        </div>
 
-        <p>
-          A little digital story made for two.
-        </p>
+        <div class="card-description">
+          เว็บไซต์เล็ก ๆ สำหรับเก็บเรื่องราว
+          ความทรงจำ และช่วงเวลาที่มีร่วมกัน
+          ในวันสำคัญของความสัมพันธ์
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
@@ -603,143 +886,138 @@ footer{
     </a>
 
 
-    <!-- ANNIVERSARY 02 -->
 
-    <a href="template-02.html" class="template-card">
+    <!-- TEMPLATE 02 -->
 
-      <div class="template-image">
+    <a href="template-02.html"
+       class="template-card">
 
-        <div class="placeholder">
+      <div class="card-image">
 
-          <div class="placeholder-inner">
+        <img
+          src="anniversary-02.jpg"
+          alt="Anniversary Template 02">
 
-            <div class="placeholder-small">
-              ANNIVERSARY
-            </div>
+        <div class="card-overlay">
 
-            <div class="placeholder-title">
-              Template 02
-            </div>
-
+          <div class="card-number">
+            02
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          02 · ANNIVERSARY
+      <div class="card-body">
+
+        <div class="card-label">
+          ANNIVERSARY · TEMPLATE 02
         </div>
 
-        <h3>
+        <div class="card-title">
           วันครบรอบแบบที่สอง
-        </h3>
-
-        <p>
-          A different way to keep your story.
-        </p>
-
-        <div class="template-bottom">
-
-          <span class="price">
-            129 THB
-          </span>
-
-          <span class="view-template">
-            View Template →
-          </span>
-
         </div>
 
-      </div>
+        <div class="card-description">
+          อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราว
+          ของความสัมพันธ์ผ่านข้อความ
+          และช่วงเวลาที่อยากจดจำ
+        </div>
 
-    </a>
+        <div class="card-bottom">
 
+          <div class="price">
+            129 THB
+          </div>
 
-    <!-- ANNIVERSARY 03 -->
-
-    <a href="template-03.html" class="template-card">
-
-      <div class="template-image">
-
-        <div class="placeholder">
-
-          <div class="placeholder-inner">
-
-            <div class="placeholder-small">
-              ANNIVERSARY
-            </div>
-
-            <div class="placeholder-title">
-              Template 03
-            </div>
-
+          <div class="view">
+            VIEW TEMPLATE →
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
+    </a>
 
-        <div class="template-number">
-          03 · ANNIVERSARY
+
+
+    <!-- TEMPLATE 03 -->
+
+    <a href="template-03.html"
+       class="template-card">
+
+      <div class="card-image">
+
+        <img
+          src="anniversary-03.jpg"
+          alt="Anniversary Template 03">
+
+        <div class="card-overlay">
+
+          <div class="card-number">
+            03
+          </div>
+
         </div>
 
-        <h3>
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-label">
+          ANNIVERSARY · TEMPLATE 03
+        </div>
+
+        <div class="card-title">
           วันครบรอบแบบที่สาม
-        </h3>
+        </div>
 
-        <p>
-          Another little experience made with feeling.
-        </p>
+        <div class="card-description">
+          พื้นที่เล็ก ๆ สำหรับบอกความรู้สึก
+          และเก็บเรื่องราวของคนสองคน
+          ไว้ในรูปแบบที่ไม่เหมือนใคร
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
-
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     DIVIDER
-========================= -->
-
-<div class="section-divider"></div>
-
 
 <!-- =========================
      BIRTHDAY
 ========================= -->
 
-<section class="category">
+<section class="birthday-section">
 
-  <div class="category-header">
+  <div class="section-head">
 
     <div>
 
-      <div class="category-label">
+      <div class="section-label">
         PINTO LOVE · BIRTHDAY
       </div>
 
-      <h2 class="category-title">
+      <h2 class="section-title">
         วันเกิด
       </h2>
 
@@ -757,224 +1035,229 @@ footer{
 
     <!-- BIRTHDAY TEMPLATE 01 -->
 
-    <a href="birthday-template-01.html" class="template-card">
+    <a href="birthday-template-01.html"
+       class="template-card">
 
-      <div class="template-image birthday-gallery">
+      <div class="card-image">
 
-        <div class="birthday-slides">
+        <div class="slider"
+             data-slider="birthday-01">
 
           <img
             src="birthday-01.jpg"
-            class="birthday-slide active"
-            alt="Birthday Template 01"
-          >
+            class="active"
+            alt="Birthday Template 01">
 
           <img
             src="birthday-02.jpg"
-            class="birthday-slide"
-            alt="Birthday Template 01"
-          >
+            alt="Birthday Template 01">
 
           <img
             src="birthday-03.jpg"
-            class="birthday-slide"
-            alt="Birthday Template 01"
-          >
+            alt="Birthday Template 01">
 
           <img
             src="birthday-04.jpg"
-            class="birthday-slide"
-            alt="Birthday Template 01"
-          >
+            alt="Birthday Template 01">
 
           <img
             src="birthday-05.jpg"
-            class="birthday-slide"
-            alt="Birthday Template 01"
-          >
+            alt="Birthday Template 01">
 
         </div>
 
-        <div class="template-counter">
-          <span id="birthdayCurrent">1</span> / 5
+        <div class="card-overlay">
+
+          <div class="card-number">
+            01
+          </div>
+
+        </div>
+
+        <div class="slider-counter">
+
+          <span class="current-slide">
+            1
+          </span>
+
+          / 5
+
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          01 · BIRTHDAY
+      <div class="card-body">
+
+        <div class="card-label">
+          BIRTHDAY · TEMPLATE 01
         </div>
 
-        <h3>
+        <div class="card-title">
           วันเกิดแบบที่หนึ่ง
-        </h3>
+        </div>
 
-        <p>
-          A little digital surprise for someone's special day.
-        </p>
+        <div class="card-description">
+          เว็บไซต์เซอร์ไพรส์วันเกิด
+          ที่ค่อย ๆ พาผู้รับเปิดของขวัญ
+          และค้นพบคำอวยพรทีละขั้น
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
+
 
 
     <!-- BIRTHDAY TEMPLATE 02 -->
 
-    <a href="birthday-template-02.html" class="template-card">
+    <a href="birthday-template-02.html"
+       class="template-card">
 
-      <div class="template-image">
+      <div class="card-image">
 
-        <div class="placeholder">
+        <img
+          src="birthday-02.jpg"
+          alt="Birthday Template 02">
 
-          <div class="placeholder-inner">
+        <div class="card-overlay">
 
-            <div class="placeholder-small">
-              BIRTHDAY
-            </div>
-
-            <div class="placeholder-title">
-              Template 02
-            </div>
-
+          <div class="card-number">
+            02
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          02 · BIRTHDAY
+      <div class="card-body">
+
+        <div class="card-label">
+          BIRTHDAY · TEMPLATE 02
         </div>
 
-        <h3>
+        <div class="card-title">
           วันเกิดแบบที่สอง
-        </h3>
+        </div>
 
-        <p>
-          A different little way to celebrate.
-        </p>
+        <div class="card-description">
+          ดีไซน์อีกหนึ่งรูปแบบ
+          สำหรับเก็บคำอวยพรและความทรงจำ
+          ในวันเกิดของคนสำคัญ
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
+
 
 
     <!-- BIRTHDAY TEMPLATE 03 -->
 
-    <a href="birthday-template-03.html" class="template-card">
+    <a href="birthday-template-03.html"
+       class="template-card">
 
-      <div class="template-image">
+      <div class="card-image">
 
-        <div class="placeholder">
+        <img
+          src="birthday-03.jpg"
+          alt="Birthday Template 03">
 
-          <div class="placeholder-inner">
+        <div class="card-overlay">
 
-            <div class="placeholder-small">
-              BIRTHDAY
-            </div>
-
-            <div class="placeholder-title">
-              Template 03
-            </div>
-
+          <div class="card-number">
+            03
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          03 · BIRTHDAY
+      <div class="card-body">
+
+        <div class="card-label">
+          BIRTHDAY · TEMPLATE 03
         </div>
 
-        <h3>
+        <div class="card-title">
           วันเกิดแบบที่สาม
-        </h3>
+        </div>
 
-        <p>
-          Another birthday story made with feeling.
-        </p>
+        <div class="card-description">
+          อีกหนึ่งพื้นที่สำหรับสร้าง
+          เซอร์ไพรส์วันเกิดที่มีเรื่องราว
+          ในแบบของคุณเอง
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
-
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     DIVIDER
-========================= -->
-
-<div class="section-divider"></div>
-
 
 <!-- =========================
-     MAKE UP · APOLOGY
+     MAKE UP
 ========================= -->
 
-<section class="category">
+<section class="makeup-section">
 
-  <div class="category-header">
+  <div class="section-head">
 
     <div>
 
-      <div class="category-label">
+      <div class="section-label">
         PINTO LOVE · MAKE UP
       </div>
 
-      <h2 class="category-title">
+      <h2 class="section-title">
         ขอโทษและคืนดี
       </h2>
 
     </div>
 
-    <a href="#" class="see-all">
+    <a href="make-up.html" class="see-all">
       SEE ALL →
     </a>
 
@@ -986,196 +1269,223 @@ footer{
 
     <!-- MAKE UP TEMPLATE 01 -->
 
-    <a href="#" class="template-card">
+    <a href="make-up-template-01.html"
+       class="template-card">
 
-      <div class="template-image">
+      <div class="card-image">
 
-        <div class="placeholder">
+        <div class="slider"
+             data-slider="makeup-01">
 
-          <div class="placeholder-inner">
+          <img
+            src="make-up-01.jpg"
+            class="active"
+            alt="Make Up Template 01">
 
-            <div class="placeholder-small">
-              MAKE UP
-            </div>
+          <img
+            src="make-up-02.jpg"
+            alt="Make Up Template 01">
 
-            <div class="placeholder-title">
-              Template 01
-            </div>
+          <img
+            src="make-up-03.jpg"
+            alt="Make Up Template 01">
 
+          <img
+            src="make-up-04.jpg"
+            alt="Make Up Template 01">
+
+          <img
+            src="make-up-05.jpg"
+            alt="Make Up Template 01">
+
+        </div>
+
+        <div class="card-overlay">
+
+          <div class="card-number">
+            01
+          </div>
+
+        </div>
+
+        <div class="slider-counter">
+
+          <span class="current-slide">
+            1
+          </span>
+
+          / 5
+
+        </div>
+
+      </div>
+
+
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 01
+        </div>
+
+        <div class="card-title">
+          ขอโทษและคืนดีแบบที่หนึ่ง
+        </div>
+
+        <div class="card-description">
+          เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ
+          ความรู้สึกที่อยากพูด
+          และการขอเริ่มต้นกันใหม่อีกครั้ง
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="price">
+            129 THB
+          </div>
+
+          <div class="view">
+            VIEW TEMPLATE →
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
-
-        <div class="template-number">
-          01 · MAKE UP
-        </div>
-
-        <h3>
-          ขอโทษและคืนดีแบบที่หนึ่ง
-        </h3>
-
-        <p>
-          A little way to say sorry and come back together.
-        </p>
-
-        <div class="template-bottom">
-
-          <span class="price">
-            129 THB
-          </span>
-
-          <span class="view-template">
-            View Template →
-          </span>
-
-        </div>
-
-      </div>
-
     </a>
+
 
 
     <!-- MAKE UP TEMPLATE 02 -->
 
-    <a href="#" class="template-card">
+    <a href="make-up-template-02.html"
+       class="template-card">
 
-      <div class="template-image">
+      <div class="card-image">
 
-        <div class="placeholder">
+        <img
+          src="make-up-02.jpg"
+          alt="Make Up Template 02">
 
-          <div class="placeholder-inner">
+        <div class="card-overlay">
 
-            <div class="placeholder-small">
-              MAKE UP
-            </div>
-
-            <div class="placeholder-title">
-              Template 02
-            </div>
-
+          <div class="card-number">
+            02
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          02 · MAKE UP
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 02
         </div>
 
-        <h3>
+        <div class="card-title">
           ขอโทษและคืนดีแบบที่สอง
-        </h3>
+        </div>
 
-        <p>
-          A softer little story for saying what you mean.
-        </p>
+        <div class="card-description">
+          สำหรับคนที่อยากบอกความรู้สึก
+          ผ่านเรื่องราวและความทรงจำ
+          ที่มีร่วมกัน
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
+
 
 
     <!-- MAKE UP TEMPLATE 03 -->
 
-    <a href="#" class="template-card">
+    <a href="make-up-template-03.html"
+       class="template-card">
 
-      <div class="template-image">
+      <div class="card-image">
 
-        <div class="placeholder">
+        <img
+          src="make-up-03.jpg"
+          alt="Make Up Template 03">
 
-          <div class="placeholder-inner">
+        <div class="card-overlay">
 
-            <div class="placeholder-small">
-              MAKE UP
-            </div>
-
-            <div class="placeholder-title">
-              Template 03
-            </div>
-
+          <div class="card-number">
+            03
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
 
-        <div class="template-number">
-          03 · MAKE UP
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 03
         </div>
 
-        <h3>
+        <div class="card-title">
           ขอโทษและคืนดีแบบที่สาม
-        </h3>
+        </div>
 
-        <p>
-          A little digital experience for making things right.
-        </p>
+        <div class="card-description">
+          พื้นที่เล็ก ๆ สำหรับคำขอโทษ
+          และข้อความที่อยากให้คนสำคัญ
+          ได้อ่านจนจบ
+        </div>
 
-        <div class="template-bottom">
+        <div class="card-bottom">
 
-          <span class="price">
+          <div class="price">
             129 THB
-          </span>
+          </div>
 
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
 
         </div>
 
       </div>
 
     </a>
-
 
   </div>
 
 </section>
 
 
-<!-- =========================
-     DIVIDER
-========================= -->
-
-<div class="section-divider"></div>
-
 
 <!-- =========================
      SPECIAL MOMENT
 ========================= -->
 
-<section class="category">
+<section class="special-section">
 
-  <div class="category-header">
+  <div class="section-head">
 
     <div>
 
-      <div class="category-label">
+      <div class="section-label">
         PINTO LOVE · SPECIAL MOMENT
       </div>
 
-      <h2 class="category-title">
+      <h2 class="section-title">
         Special Moment
       </h2>
 
@@ -1191,53 +1501,24 @@ footer{
   <div class="template-grid">
 
 
-    <!-- SPECIAL MOMENT 01 -->
-
     <a href="#" class="template-card">
 
-      <div class="template-image">
+      <div class="special-card">
 
-        <div class="placeholder">
+        <div class="special-card-inner">
 
-          <div class="placeholder-inner">
-
-            <div class="placeholder-small">
-              SPECIAL MOMENT
-            </div>
-
-            <div class="placeholder-title">
-              Template 01
-            </div>
-
+          <div class="special-label">
+            SPECIAL MOMENT · 01
           </div>
 
-        </div>
+          <div class="special-title">
+            Coming Soon
+          </div>
 
-      </div>
-
-      <div class="template-content">
-
-        <div class="template-number">
-          01 · SPECIAL MOMENT
-        </div>
-
-        <h3>
-          Special Moment
-        </h3>
-
-        <p>
-          A little place for a moment worth remembering.
-        </p>
-
-        <div class="template-bottom">
-
-          <span class="price">
-            129 THB
-          </span>
-
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="special-description">
+            พื้นที่สำหรับช่วงเวลาพิเศษ
+            ที่ไม่จำเป็นต้องอยู่ในหมวดใดหมวดหนึ่ง
+          </div>
 
         </div>
 
@@ -1246,53 +1527,25 @@ footer{
     </a>
 
 
-    <!-- SPECIAL MOMENT 02 -->
 
     <a href="#" class="template-card">
 
-      <div class="template-image">
+      <div class="special-card">
 
-        <div class="placeholder">
+        <div class="special-card-inner">
 
-          <div class="placeholder-inner">
-
-            <div class="placeholder-small">
-              SPECIAL MOMENT
-            </div>
-
-            <div class="placeholder-title">
-              Template 02
-            </div>
-
+          <div class="special-label">
+            SPECIAL MOMENT · 02
           </div>
 
-        </div>
+          <div class="special-title">
+            Coming Soon
+          </div>
 
-      </div>
-
-      <div class="template-content">
-
-        <div class="template-number">
-          02 · SPECIAL MOMENT
-        </div>
-
-        <h3>
-          Special Moment
-        </h3>
-
-        <p>
-          A quiet digital memory for a special day.
-        </p>
-
-        <div class="template-bottom">
-
-          <span class="price">
-            129 THB
-          </span>
-
-          <span class="view-template">
-            View Template →
-          </span>
+          <div class="special-description">
+            รูปแบบใหม่สำหรับเก็บ
+            ความทรงจำและช่วงเวลาสำคัญ
+          </div>
 
         </div>
 
@@ -1301,157 +1554,240 @@ footer{
     </a>
 
 
-    <!-- SPECIAL MOMENT 03 -->
 
     <a href="#" class="template-card">
 
-      <div class="template-image">
+      <div class="special-card">
 
-        <div class="placeholder">
+        <div class="special-card-inner">
 
-          <div class="placeholder-inner">
+          <div class="special-label">
+            SPECIAL MOMENT · 03
+          </div>
 
-            <div class="placeholder-small">
-              SPECIAL MOMENT
-            </div>
+          <div class="special-title">
+            Coming Soon
+          </div>
 
-            <div class="placeholder-title">
-              Template 03
-            </div>
-
+          <div class="special-description">
+            บางช่วงเวลาอาจสั้น
+            แต่ก็มีความหมายพอที่จะจดจำ
           </div>
 
         </div>
 
       </div>
 
-      <div class="template-content">
-
-        <div class="template-number">
-          03 · SPECIAL MOMENT
-        </div>
-
-        <h3>
-          Special Moment
-        </h3>
-
-        <p>
-          Made for the moments you never want to forget.
-        </p>
-
-        <div class="template-bottom">
-
-          <span class="price">
-            129 THB
-          </span>
-
-          <span class="view-template">
-            View Template →
-          </span>
-
-        </div>
-
-      </div>
-
     </a>
-
 
   </div>
 
 </section>
 
 
+
+<!-- =========================
+     NOTE
+========================= -->
+
+<section class="love-note">
+
+  <div class="note-box">
+
+    <div class="note-title">
+      Made to feel personal.
+    </div>
+
+    <div class="note-text">
+
+      ทุก Template สามารถปรับเปลี่ยนข้อความ
+      ในแต่ละหน้าให้เป็นเรื่องราวของคุณเองได้
+      ไม่ว่าจะเป็นชื่อ ข้อความ คำอวยพร
+      หรือเรื่องราวเฉพาะของคนสองคน
+
+      <br><br>
+
+      สามารถปรับโทนและสีของเว็บไซต์ให้เข้ากับ
+      ความสัมพันธ์และสไตล์ที่ต้องการได้
+
+      <br><br>
+
+      หากต้องการฟังก์ชันเพิ่มเติม
+      คิดเพิ่มเพียง <strong>+29 THB / function</strong>
+
+      <br><br>
+
+      ระยะเวลาจัดทำประมาณ <strong>1–2 วัน</strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer>
+<footer class="site-footer">
 
-  <div class="footer-logo">
+  <div class="footer-brand">
     PINTO LOVE
   </div>
 
   <div>
-    Digital experiences, made with feeling.
+    Digital experiences made with intention.
   </div>
 
 </footer>
 
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
+
 
 /* =========================
    ANNIVERSARY SLIDER
 ========================= */
 
-const anniversarySlides =
-  document.querySelectorAll(".anniversary-slide");
+document
+.querySelectorAll('[data-slider="anniversary-01"]')
+.forEach(slider => {
 
-const anniversaryCurrent =
-  document.getElementById("anniversaryCurrent");
+  const images =
+    slider.querySelectorAll('img');
 
-let anniversaryIndex = 0;
+  const counter =
+    slider
+    .closest('.card-image')
+    .querySelector('.current-slide');
 
-function showAnniversarySlide(index){
+  let current = 0;
 
-  anniversarySlides.forEach((slide,i)=>{
-    slide.classList.toggle("active",i === index);
-  });
 
-  anniversaryCurrent.textContent =
-    index + 1;
-}
+  setInterval(() => {
 
-if(anniversarySlides.length){
+    images[current]
+      .classList
+      .remove('active');
 
-  setInterval(()=>{
+    current++;
 
-    anniversaryIndex =
-      (anniversaryIndex + 1) %
-      anniversarySlides.length;
+    if(current >= images.length){
+      current = 0;
+    }
 
-    showAnniversarySlide(anniversaryIndex);
+    images[current]
+      .classList
+      .add('active');
+
+    if(counter){
+      counter.textContent =
+        current + 1;
+    }
 
   },3000);
 
-}
+});
+
 
 
 /* =========================
    BIRTHDAY SLIDER
 ========================= */
 
-const birthdaySlides =
-  document.querySelectorAll(".birthday-slide");
+document
+.querySelectorAll('[data-slider="birthday-01"]')
+.forEach(slider => {
 
-const birthdayCurrent =
-  document.getElementById("birthdayCurrent");
+  const images =
+    slider.querySelectorAll('img');
 
-let birthdayIndex = 0;
+  const counter =
+    slider
+    .closest('.card-image')
+    .querySelector('.current-slide');
 
-function showBirthdaySlide(index){
+  let current = 0;
 
-  birthdaySlides.forEach((slide,i)=>{
-    slide.classList.toggle("active",i === index);
-  });
 
-  birthdayCurrent.textContent =
-    index + 1;
-}
+  setInterval(() => {
 
-if(birthdaySlides.length){
+    images[current]
+      .classList
+      .remove('active');
 
-  setInterval(()=>{
+    current++;
 
-    birthdayIndex =
-      (birthdayIndex + 1) %
-      birthdaySlides.length;
+    if(current >= images.length){
+      current = 0;
+    }
 
-    showBirthdaySlide(birthdayIndex);
+    images[current]
+      .classList
+      .add('active');
+
+    if(counter){
+      counter.textContent =
+        current + 1;
+    }
 
   },3000);
 
-}
+});
+
+
+
+/* =========================
+   MAKE UP SLIDER
+========================= */
+
+document
+.querySelectorAll('[data-slider="makeup-01"]')
+.forEach(slider => {
+
+  const images =
+    slider.querySelectorAll('img');
+
+  const counter =
+    slider
+    .closest('.card-image')
+    .querySelector('.current-slide');
+
+  let current = 0;
+
+
+  setInterval(() => {
+
+    images[current]
+      .classList
+      .remove('active');
+
+    current++;
+
+    if(current >= images.length){
+      current = 0;
+    }
+
+    images[current]
+      .classList
+      .add('active');
+
+    if(counter){
+      counter.textContent =
+        current + 1;
+    }
+
+  },3000);
+
+});
+
 
 </script>
 
