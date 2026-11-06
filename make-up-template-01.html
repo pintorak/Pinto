@@ -52,33 +52,40 @@ img{
   width:100%;
 }
 
+button{
+  font-family:inherit;
+}
+
 
 /* =========================
    HEADER
 ========================= */
 
-header{
+.site-header{
   width:100%;
-  padding:28px 5%;
+  padding:28px 55px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   border-bottom:1px solid var(--line);
-  background:rgba(244,239,234,.92);
+  background:rgba(244,239,234,.96);
+  position:relative;
+  z-index:10;
 }
 
-.logo{
+.brand{
   font-family:"Cormorant Garamond",serif;
   font-size:28px;
-  letter-spacing:2px;
-  font-weight:500;
+  letter-spacing:3px;
+  color:var(--dark);
 }
 
 .back-link{
-  font-size:12px;
-  letter-spacing:1.5px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:15px;
+  letter-spacing:2px;
   color:var(--muted);
-  transition:.3s;
+  transition:.3s ease;
 }
 
 .back-link:hover{
@@ -91,15 +98,26 @@ header{
 ========================= */
 
 .breadcrumb{
-  width:min(1200px,90%);
-  margin:35px auto 55px;
-  font-size:11px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 45px 0;
+  font-family:"Cormorant Garamond",serif;
+  font-size:14px;
   letter-spacing:1.5px;
   color:var(--muted);
 }
 
+.breadcrumb a{
+  transition:.3s ease;
+}
+
+.breadcrumb a:hover{
+  color:var(--dark);
+}
+
 .breadcrumb span{
   margin:0 10px;
+  opacity:.5;
 }
 
 
@@ -108,13 +126,15 @@ header{
 ========================= */
 
 .product{
-  width:min(1200px,90%);
-  margin:0 auto 120px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:60px 45px 110px;
 
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
   gap:80px;
+
+  align-items:start;
 }
 
 
@@ -123,21 +143,42 @@ header{
 ========================= */
 
 .gallery{
-  min-width:0;
+  position:sticky;
+  top:30px;
 }
 
 .main-image{
   position:relative;
+  width:100%;
   aspect-ratio:4 / 5;
   overflow:hidden;
   background:var(--beige);
 }
 
-.main-image img{
+.slider{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+
+.slider img{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:opacity .35s ease, transform .45s ease;
+
+  opacity:0;
+  transform:scale(1.01);
+
+  transition:
+    opacity .8s ease,
+    transform 1.2s ease;
+}
+
+.slider img.active{
+  opacity:1;
+  transform:scale(1);
 }
 
 .gallery-arrow{
@@ -145,29 +186,32 @@ header{
   top:50%;
   transform:translateY(-50%);
 
-  width:42px;
-  height:42px;
+  width:46px;
+  height:46px;
 
   border:1px solid rgba(255,255,255,.65);
+  background:rgba(64,57,52,.25);
+
+  color:#fff;
+
   border-radius:50%;
 
-  background:rgba(255,255,255,.75);
-  color:var(--dark);
-
-  font-size:18px;
-  cursor:pointer;
-
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+
+  cursor:pointer;
 
   z-index:3;
 
-  transition:.3s;
+  transition:.3s ease;
 }
 
 .gallery-arrow:hover{
-  background:#fff;
+  background:rgba(64,57,52,.55);
 }
 
 .gallery-arrow.prev{
@@ -178,48 +222,49 @@ header{
   right:18px;
 }
 
-.counter{
+.image-counter{
   position:absolute;
   right:20px;
   bottom:18px;
 
-  padding:6px 12px;
+  padding:5px 12px;
 
-  background:rgba(255,255,255,.85);
+  background:rgba(64,57,52,.5);
+  color:#fff;
 
-  font-size:10px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:15px;
   letter-spacing:1px;
 
-  color:var(--dark);
+  z-index:3;
 }
 
 .thumbnails{
-  margin-top:14px;
-
   display:grid;
   grid-template-columns:repeat(5,1fr);
-
   gap:10px;
+  margin-top:14px;
 }
 
-.thumbnail{
+.thumb{
   aspect-ratio:4 / 5;
   overflow:hidden;
   cursor:pointer;
-
-  border:1px solid transparent;
-
   opacity:.55;
-
-  transition:.3s;
+  border:1px solid transparent;
+  transition:.3s ease;
 }
 
-.thumbnail.active{
-  border-color:var(--dark);
+.thumb:hover{
+  opacity:.85;
+}
+
+.thumb.active{
   opacity:1;
+  border-color:var(--dark);
 }
 
-.thumbnail img{
+.thumb img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -235,10 +280,11 @@ header{
 }
 
 .product-label{
-  font-size:10px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:14px;
   letter-spacing:3px;
-  color:var(--muted);
-  margin-bottom:20px;
+  color:var(--taupe);
+  margin-bottom:18px;
 }
 
 .product-title{
@@ -257,17 +303,19 @@ header{
   margin-bottom:30px;
 }
 
-.price{
-  font-family:"Cormorant Garamond",serif;
-  font-size:31px;
-  margin-bottom:35px;
-}
-
-.description{
-  font-size:13px;
+.product-description{
+  font-size:14px;
   line-height:2;
   color:var(--muted);
-  margin-bottom:38px;
+  margin-bottom:35px;
+  max-width:570px;
+}
+
+.price{
+  font-family:"Cormorant Garamond",serif;
+  font-size:32px;
+  letter-spacing:1px;
+  margin-bottom:40px;
 }
 
 
@@ -277,49 +325,55 @@ header{
 
 .info-block{
   border-top:1px solid var(--line);
-  padding-top:24px;
+  padding-top:28px;
   margin-top:28px;
 }
 
 .info-title{
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--muted);
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  letter-spacing:1px;
   margin-bottom:15px;
 }
 
-.info-list{
-  list-style:none;
-}
-
-.info-list li{
-  font-size:12px;
+.info-text{
+  font-size:13px;
   line-height:2;
-  margin-bottom:4px;
-  padding-left:18px;
-  position:relative;
+  color:var(--muted);
 }
 
-.info-list li::before{
-  content:"·";
-  position:absolute;
-  left:4px;
+.function-list{
+  list-style:none;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px 25px;
+}
+
+.function-list li{
+  font-size:13px;
+  color:var(--muted);
+}
+
+.function-list li::before{
+  content:"—";
+  margin-right:8px;
+  color:var(--taupe);
 }
 
 
 /* =========================
-   BUTTONS
+   ORDER
 ========================= */
 
-.actions{
+.order-area{
   margin-top:38px;
-
   display:flex;
   flex-direction:column;
   gap:12px;
 }
 
-.button{
+.primary-button,
+.secondary-button{
   width:100%;
   min-height:54px;
 
@@ -327,30 +381,33 @@ header{
   align-items:center;
   justify-content:center;
 
-  border:1px solid var(--dark);
-
-  font-size:10px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:16px;
   letter-spacing:2px;
 
-  transition:.3s;
+  border:1px solid var(--dark);
+
+  transition:.3s ease;
 }
 
-.button.primary{
+.primary-button{
   background:var(--dark);
   color:var(--white);
 }
 
-.button.primary:hover{
+.primary-button:hover{
   background:var(--taupe);
   border-color:var(--taupe);
 }
 
-.button.secondary{
+.secondary-button{
   background:transparent;
+  color:var(--dark);
 }
 
-.button.secondary:hover{
-  background:var(--white);
+.secondary-button:hover{
+  background:var(--dark);
+  color:var(--white);
 }
 
 
@@ -359,30 +416,67 @@ header{
 ========================= */
 
 .story{
-  width:min(900px,90%);
-  margin:0 auto 120px;
+  border-top:1px solid var(--line);
+  max-width:1200px;
+  margin:0 auto;
+  padding:100px 45px 120px;
+}
+
+.story-inner{
+  max-width:760px;
+  margin:0 auto;
   text-align:center;
 }
 
 .story-label{
-  font-size:10px;
-  letter-spacing:3px;
-  color:var(--muted);
-  margin-bottom:18px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:14px;
+  letter-spacing:4px;
+  color:var(--taupe);
+  margin-bottom:20px;
 }
 
 .story-title{
   font-family:"Cormorant Garamond",serif;
   font-size:48px;
+  line-height:1.25;
   font-weight:500;
-  line-height:1.2;
-  margin-bottom:25px;
+  margin-bottom:28px;
 }
 
 .story-text{
+  font-size:14px;
+  line-height:2.2;
   color:var(--muted);
+}
+
+
+/* =========================
+   NOTE
+========================= */
+
+.note-section{
+  background:var(--white);
+  border-top:1px solid var(--line);
+}
+
+.note-inner{
+  max-width:900px;
+  margin:0 auto;
+  padding:80px 45px;
+  text-align:center;
+}
+
+.note-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.note-text{
   font-size:13px;
   line-height:2.1;
+  color:var(--muted);
 }
 
 
@@ -390,23 +484,25 @@ header{
    FOOTER
 ========================= */
 
-footer{
+.site-footer{
   border-top:1px solid var(--line);
-  padding:35px 5%;
-
+  padding:35px 45px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  color:var(--muted);
-  font-size:10px;
-  letter-spacing:1px;
+  gap:20px;
 }
 
-.footer-logo{
+.footer-brand{
   font-family:"Cormorant Garamond",serif;
-  font-size:22px;
-  color:var(--dark);
+  font-size:18px;
+  letter-spacing:2px;
+}
+
+.footer-text{
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:1px;
 }
 
 
@@ -416,31 +512,75 @@ footer{
 
 @media(max-width:900px){
 
+  .site-header{
+    padding:23px 25px;
+  }
+
+  .brand{
+    font-size:25px;
+  }
+
   .product{
     grid-template-columns:1fr;
     gap:55px;
+    padding:45px 25px 90px;
+  }
+
+  .gallery{
+    position:relative;
+    top:auto;
+  }
+
+  .product-info{
+    padding-top:0;
+  }
+
+  .breadcrumb{
+    padding:28px 25px 0;
+  }
+
+  .story{
+    padding:80px 25px 100px;
+  }
+
+  .note-inner{
+    padding:65px 25px;
+  }
+
+  .site-footer{
+    padding:30px 25px;
   }
 
 }
 
 @media(max-width:600px){
 
-  header{
-    padding:22px 6%;
+  .site-header{
+    padding:20px 18px;
   }
 
-  .logo{
-    font-size:25px;
+  .brand{
+    font-size:22px;
+    letter-spacing:2px;
+  }
+
+  .back-link{
+    font-size:12px;
+    letter-spacing:1.5px;
   }
 
   .breadcrumb{
-    margin-top:28px;
-    margin-bottom:40px;
+    padding:25px 20px 0;
+    font-size:12px;
   }
 
   .product{
-    width:88%;
-    margin-bottom:90px;
+    padding:35px 20px 75px;
+  }
+
+  .product-label{
+    font-size:12px;
+    letter-spacing:2px;
   }
 
   .product-title{
@@ -455,37 +595,70 @@ footer{
     margin-bottom:28px;
   }
 
+  .product-description{
+    font-size:13px;
+  }
+
   .price{
-    font-size:28px;
+    font-size:29px;
+    margin-bottom:30px;
+  }
+
+  .function-list{
+    grid-template-columns:1fr;
   }
 
   .gallery-arrow{
-    width:36px;
-    height:36px;
+    width:40px;
+    height:40px;
+    font-size:23px;
+  }
+
+  .gallery-arrow.prev{
+    left:12px;
+  }
+
+  .gallery-arrow.next{
+    right:12px;
+  }
+
+  .image-counter{
+    right:12px;
+    bottom:12px;
+    font-size:13px;
   }
 
   .story{
-    width:88%;
+    padding:70px 20px 85px;
   }
 
   .story-title{
-    font-size:38px;
+    font-size:39px;
   }
 
   .story-text{
-    font-size:12px;
+    font-size:13px;
   }
 
-  footer{
+  .note-inner{
+    padding:55px 20px;
+  }
+
+  .note-title{
+    font-size:25px;
+  }
+
+  .site-footer{
+    padding:28px 20px;
     flex-direction:column;
-    gap:12px;
-    text-align:center;
+    align-items:flex-start;
   }
 
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -494,9 +667,9 @@ footer{
      HEADER
 ========================= -->
 
-<header>
+<header class="site-header">
 
-  <a href="love.html" class="logo">
+  <a href="love.html" class="brand">
     PINTO LOVE
   </a>
 
@@ -507,83 +680,169 @@ footer{
 </header>
 
 
+
 <!-- =========================
      BREADCRUMB
 ========================= -->
 
 <div class="breadcrumb">
 
-  <a href="love.html">PINTO LOVE</a>
+  <a href="love.html">
+    PINTO LOVE
+  </a>
 
   <span>/</span>
 
-  <a href="make-up.html">Make Up</a>
+  <a href="make-up.html">
+    Make Up
+  </a>
 
   <span>/</span>
 
-  Template 01
+  <span>
+    Template 01
+  </span>
 
 </div>
+
 
 
 <!-- =========================
      PRODUCT
 ========================= -->
 
-<section class="product">
+<main class="product">
 
 
-  <!-- GALLERY -->
+  <!-- =========================
+       GALLERY
+  ========================= -->
 
   <div class="gallery">
 
     <div class="main-image">
 
-      <img
-        id="mainImage"
-        src="make-up-01.jpg"
-        alt="Make Up Template 01"
+      <div
+        class="slider"
+        id="makeupSlider"
       >
+
+        <img
+          src="make-up-01.jpg"
+          class="active"
+          alt="Make Up Template 01 - Image 1"
+        >
+
+        <img
+          src="make-up-02.jpg"
+          alt="Make Up Template 01 - Image 2"
+        >
+
+        <img
+          src="make-up-03.jpg"
+          alt="Make Up Template 01 - Image 3"
+        >
+
+        <img
+          src="make-up-04.jpg"
+          alt="Make Up Template 01 - Image 4"
+        >
+
+        <img
+          src="make-up-05.jpg"
+          alt="Make Up Template 01 - Image 5"
+        >
+
+      </div>
+
 
       <button
         class="gallery-arrow prev"
-        onclick="prevImage()">
+        type="button"
+        aria-label="Previous image"
+        onclick="changeSlide(-1)"
+      >
         ‹
       </button>
 
+
       <button
         class="gallery-arrow next"
-        onclick="nextImage()">
+        type="button"
+        aria-label="Next image"
+        onclick="changeSlide(1)"
+      >
         ›
       </button>
 
-      <div class="counter">
-        <span id="currentNumber">1</span> / 5
+
+      <div class="image-counter">
+
+        <span id="currentSlide">
+          1
+        </span>
+
+        /
+
+        5
+
       </div>
 
     </div>
 
 
+    <!-- THUMBNAILS -->
+
     <div class="thumbnails">
 
-      <div class="thumbnail active" onclick="showImage(0)">
-        <img src="make-up-01.jpg" alt="">
+      <div
+        class="thumb active"
+        onclick="goToSlide(0)"
+      >
+        <img
+          src="make-up-01.jpg"
+          alt=""
+        >
       </div>
 
-      <div class="thumbnail" onclick="showImage(1)">
-        <img src="make-up-02.jpg" alt="">
+      <div
+        class="thumb"
+        onclick="goToSlide(1)"
+      >
+        <img
+          src="make-up-02.jpg"
+          alt=""
+        >
       </div>
 
-      <div class="thumbnail" onclick="showImage(2)">
-        <img src="make-up-03.jpg" alt="">
+      <div
+        class="thumb"
+        onclick="goToSlide(2)"
+      >
+        <img
+          src="make-up-03.jpg"
+          alt=""
+        >
       </div>
 
-      <div class="thumbnail" onclick="showImage(3)">
-        <img src="make-up-04.jpg" alt="">
+      <div
+        class="thumb"
+        onclick="goToSlide(3)"
+      >
+        <img
+          src="make-up-04.jpg"
+          alt=""
+        >
       </div>
 
-      <div class="thumbnail" onclick="showImage(4)">
-        <img src="make-up-05.jpg" alt="">
+      <div
+        class="thumb"
+        onclick="goToSlide(4)"
+      >
+        <img
+          src="make-up-05.jpg"
+          alt=""
+        >
       </div>
 
     </div>
@@ -591,7 +850,10 @@ footer{
   </div>
 
 
-  <!-- PRODUCT INFO -->
+
+  <!-- =========================
+       PRODUCT INFO
+  ========================= -->
 
   <div class="product-info">
 
@@ -599,110 +861,148 @@ footer{
       MAKE UP · TEMPLATE 01
     </div>
 
+
     <h1 class="product-title">
       ขอโทษและคืนดี
     </h1>
+
 
     <div class="product-subtitle">
       แบบที่หนึ่ง · Make Up Template
     </div>
 
+
+    <div class="product-description">
+
+      เว็บไซต์เซอร์ไพรส์สำหรับการขอโทษและคืนดี
+      ที่ค่อย ๆ เล่าความรู้สึก
+      สิ่งที่อยากพูด
+      ความทรงจำที่มีร่วมกัน
+      และคำขอเริ่มต้นใหม่อีกครั้ง
+
+    </div>
+
+
     <div class="price">
       129 THB
     </div>
 
-    <p class="description">
-      เว็บไซต์เซอร์ไพรส์สำหรับคำขอโทษและความรู้สึก
-      ที่บางครั้งพูดออกมาตรง ๆ ได้ยาก
-      ให้ทุกการเปิดหน้าเป็นเหมือนการค่อย ๆ บอกสิ่งที่อยู่ในใจ
-      ตั้งแต่คำขอโทษ ไปจนถึงความตั้งใจที่อยากกลับมาเข้าใจกันอีกครั้ง
-    </p>
 
 
-    <!-- INCLUDED FUNCTIONS -->
+    <!-- =========================
+         INCLUDED FUNCTIONS
+    ========================= -->
 
     <div class="info-block">
 
       <div class="info-title">
-        INCLUDED FUNCTIONS
+        Included Functions
       </div>
 
-      <ul class="info-list">
+      <ul class="function-list">
 
-        <li>A Little Apology</li>
+        <li>
+          A Little Apology
+        </li>
 
-        <li>I'm Sorry</li>
+        <li>
+          I'm Sorry
+        </li>
 
-        <li>What I Really Mean</li>
+        <li>
+          What I Really Mean
+        </li>
 
-        <li>Our Little Story</li>
+        <li>
+          Our Little Story
+        </li>
 
-        <li>A Letter For You</li>
+        <li>
+          A Letter For You
+        </li>
 
-        <li>Can We Start Again?</li>
+        <li>
+          Can We Start Again?
+        </li>
 
-        <li>One Last Message</li>
+        <li>
+          One Last Message
+        </li>
 
-        <li>Music Player</li>
+        <li>
+          Music Player
+        </li>
 
       </ul>
 
     </div>
 
 
-    <!-- CUSTOMIZE -->
+
+    <!-- =========================
+         CUSTOMIZE
+    ========================= -->
 
     <div class="info-block">
 
       <div class="info-title">
-        CUSTOMIZE
+        Customize
       </div>
 
-      <ul class="info-list">
+      <div class="info-text">
 
-        <li>เปลี่ยนข้อความในแต่ละหน้าได้</li>
+        สามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของลูกค้า
+        รวมถึงปรับโทนของข้อความและสีของเว็บไซต์ให้เข้ากับความรู้สึกที่ต้องการ
 
-        <li>ใส่เรื่องราวและข้อความของคุณเองได้</li>
-
-        <li>ปรับโทนและสีให้เข้ากับเรื่องราวได้</li>
-
-      </ul>
+      </div>
 
     </div>
 
 
-    <!-- DELIVERY -->
+
+    <!-- =========================
+         EXTRA FUNCTION
+    ========================= -->
 
     <div class="info-block">
 
       <div class="info-title">
-        EXTRA & DELIVERY
+        Extra Function
       </div>
 
-      <ul class="info-list">
+      <div class="info-text">
 
-        <li>Extra Function +29 THB / function</li>
+        เพิ่มฟังก์ชันพิเศษได้
+        <br>
+        +29 THB / function
 
-        <li>ระยะเวลาจัดทำ 1–2 วัน</li>
+        <br><br>
 
-      </ul>
+        ระยะเวลาจัดทำประมาณ 1–2 วัน
+
+      </div>
 
     </div>
 
 
-    <!-- ACTIONS -->
 
-    <div class="actions">
+    <!-- =========================
+         BUTTONS
+    ========================= -->
+
+    <div class="order-area">
 
       <a
         href="#"
-        class="button primary">
-        VIEW LIVE DEMO →
+        class="primary-button"
+      >
+        VIEW LIVE DEMO
       </a>
 
       <a
         href="#order"
-        class="button secondary">
+        class="secondary-button"
+      >
         ORDER THIS TEMPLATE
       </a>
 
@@ -710,7 +1010,8 @@ footer{
 
   </div>
 
-</section>
+</main>
+
 
 
 <!-- =========================
@@ -719,120 +1020,165 @@ footer{
 
 <section class="story">
 
-  <div class="story-label">
-    PINTO LOVE
+  <div class="story-inner">
+
+    <div class="story-label">
+      PINTO LOVE
+    </div>
+
+
+    <h2 class="story-title">
+      A Little Apology.
+    </h2>
+
+
+    <div class="story-text">
+
+      บางครั้งคำว่า “ขอโทษ”
+      อาจพูดออกมาได้ไม่หมดว่ารู้สึกอะไร
+
+      <br><br>
+
+      Template นี้จึงถูกออกแบบให้คำขอโทษ
+      ค่อย ๆ เล่าเรื่องผ่านแต่ละหน้า
+      ตั้งแต่สิ่งที่อยากพูด
+      สิ่งที่เข้าใจ
+      ความทรงจำดี ๆ
+      ไปจนถึงคำขอเล็ก ๆ
+      ว่าเรายังสามารถกลับมาเริ่มต้นกันใหม่ได้ไหม
+
+      <br><br>
+
+      เพราะบางความสัมพันธ์
+      ไม่ได้ต้องการคำพูดที่สมบูรณ์แบบ
+      แต่อาจต้องการเพียงใครสักคน
+      ที่ยอมเปิดใจและพูดความรู้สึกออกมา
+
+    </div>
+
   </div>
 
-  <h2 class="story-title">
-    Made for the words<br>
-    you wish you had said.
-  </h2>
+</section>
 
-  <p class="story-text">
-    บางครั้งคำว่า “ขอโทษ” อาจสั้นเกินไป
-    สำหรับความรู้สึกทั้งหมดที่เราอยากอธิบาย
-    และบางครั้งสิ่งที่สำคัญไม่ใช่แค่การขอโทษ
-    แต่คือการบอกให้อีกคนรู้ว่า
-    เราเข้าใจอะไรที่เกิดขึ้น
-    เรารู้สึกอย่างไร
-    และเรายังอยากรักษาความสัมพันธ์นี้ไว้มากแค่ไหน
-    <br><br>
-    Template นี้จึงออกแบบให้คำขอโทษ
-    ค่อย ๆ ถูกเล่าออกมาทีละหน้า
-    ตั้งแต่ความรู้สึกในใจ
-    เรื่องราวที่มีร่วมกัน
-    จดหมายที่อยากให้อีกคนได้อ่าน
-    ไปจนถึงข้อความสุดท้าย
-    ที่บอกว่าเรายังอยากเริ่มต้นกันใหม่อีกครั้ง
-  </p>
+
+
+<!-- =========================
+     NOTE
+========================= -->
+
+<section class="note-section">
+
+  <div class="note-inner">
+
+    <div class="note-title">
+      Made to say what is hard to say.
+    </div>
+
+
+    <div class="note-text">
+
+      ข้อความ รูปภาพ และรายละเอียดภายในเว็บไซต์
+      สามารถปรับเปลี่ยนให้เป็นเรื่องราวของคุณได้
+
+      <br>
+
+      PINTO LOVE จะจัดวางทุกอย่างให้อยู่ในโครงสร้างของ Template
+      เพื่อให้เรื่องราวของคุณยังคงความรู้สึกและบรรยากาศของเว็บไซต์ไว้
+
+    </div>
+
+  </div>
 
 </section>
+
 
 
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer>
+<footer class="site-footer">
 
-  <div class="footer-logo">
+  <div class="footer-brand">
     PINTO LOVE
   </div>
 
-  <div>
-    © PINTO STUDIO
+  <div class="footer-text">
+    Digital Experiences · PINTO STUDIO
   </div>
 
 </footer>
 
 
+
 <script>
 
-const images = [
-  "make-up-01.jpg",
-  "make-up-02.jpg",
-  "make-up-03.jpg",
-  "make-up-04.jpg",
-  "make-up-05.jpg"
-];
+/* =========================
+   SLIDER
+========================= */
+
+const images =
+  document.querySelectorAll("#makeupSlider img");
+
+const thumbs =
+  document.querySelectorAll(".thumb");
+
+const currentSlide =
+  document.getElementById("currentSlide");
 
 let current = 0;
 
-const mainImage = document.getElementById("mainImage");
-const currentNumber = document.getElementById("currentNumber");
-const thumbnails = document.querySelectorAll(".thumbnail");
+
+function updateSlider(){
+
+  images.forEach((img,index)=>{
+
+    img.classList.toggle(
+      "active",
+      index === current
+    );
+
+  });
 
 
-function showImage(index){
+  thumbs.forEach((thumb,index)=>{
 
-  current = index;
+    thumb.classList.toggle(
+      "active",
+      index === current
+    );
 
-  mainImage.style.opacity = "0";
+  });
 
-  setTimeout(() => {
 
-    mainImage.src = images[current];
-
-    currentNumber.textContent = current + 1;
-
-    thumbnails.forEach((thumb,i) => {
-
-      thumb.classList.toggle(
-        "active",
-        i === current
-      );
-
-    });
-
-    mainImage.style.opacity = "1";
-
-  },150);
+  currentSlide.textContent =
+    current + 1;
 
 }
 
 
-function nextImage(){
+function changeSlide(direction){
 
-  current++;
-
-  if(current >= images.length){
-    current = 0;
-  }
-
-  showImage(current);
-
-}
-
-
-function prevImage(){
-
-  current--;
+  current += direction;
 
   if(current < 0){
     current = images.length - 1;
   }
 
-  showImage(current);
+  if(current >= images.length){
+    current = 0;
+  }
+
+  updateSlider();
+
+}
+
+
+function goToSlide(index){
+
+  current = index;
+
+  updateSlider();
 
 }
 
@@ -841,44 +1187,61 @@ function prevImage(){
    AUTO SLIDE
 ========================= */
 
-setInterval(() => {
+setInterval(()=>{
 
-  nextImage();
+  changeSlide(1);
 
 },3000);
 
 
+
 /* =========================
-   SWIPE MOBILE
+   MOBILE SWIPE
 ========================= */
 
 let touchStartX = 0;
 let touchEndX = 0;
 
-mainImage.addEventListener("touchstart",(e)=>{
-
-  touchStartX = e.changedTouches[0].screenX;
-
-});
+const slider =
+  document.getElementById("makeupSlider");
 
 
-mainImage.addEventListener("touchend",(e)=>{
+slider.addEventListener(
+  "touchstart",
+  function(e){
 
-  touchEndX = e.changedTouches[0].screenX;
+    touchStartX =
+      e.changedTouches[0].screenX;
 
-  const difference = touchStartX - touchEndX;
+  },
+  {passive:true}
+);
 
-  if(Math.abs(difference) > 50){
 
-    if(difference > 0){
-      nextImage();
-    }else{
-      prevImage();
+slider.addEventListener(
+  "touchend",
+  function(e){
+
+    touchEndX =
+      e.changedTouches[0].screenX;
+
+    const distance =
+      touchEndX - touchStartX;
+
+
+    if(Math.abs(distance) > 50){
+
+      if(distance < 0){
+        changeSlide(1);
+      }else{
+        changeSlide(-1);
+      }
+
     }
 
-  }
-
-});
+  },
+  {passive:true}
+);
 
 </script>
 
