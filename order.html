@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PINTO LOVE · Order</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#8C7E74;
+  --secondary:#C8BCB1;
+  --background:#F4EFEA;
+
+  --dark:#403934;
+  --muted:#81766E;
+  --white:#FBF8F5;
+  --line:rgba(64,57,52,.14);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:var(--background);
+  color:var(--dark);
+  font-family:"Noto Sans Thai",sans-serif;
+  font-size:14px;
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.header{
+  padding:25px 55px;
+  border-bottom:1px solid var(--line);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  background:rgba(251,248,245,.8);
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:26px;
+  letter-spacing:2px;
+}
+
+.back{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:55px;
+}
+
+.intro{
+  max-width:700px;
+  margin-bottom:45px;
+}
+
+.category{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:55px;
+  font-weight:500;
+  line-height:1.1;
+}
+
+.intro p{
+  color:var(--muted);
+  line-height:2;
+  margin-top:15px;
+}
+
+/* LAYOUT */
+
+.order-layout{
+  display:grid;
+  grid-template-columns:1fr 420px;
+  gap:70px;
+  align-items:start;
+}
+
+/* FORM */
+
+.section{
+  border-top:1px solid var(--line);
+  padding:25px 0;
+}
+
+.section:first-child{
+  border-top:0;
+  padding-top:0;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid var(--line);
+  background:var(--white);
+  color:var(--dark);
+  padding:13px 14px;
+  outline:none;
+  font-size:13px;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--primary);
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+  line-height:1.8;
+}
+
+/* COLORS */
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.color-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:15px;
+}
+
+.color-card label{
+  margin-bottom:10px;
+}
+
+.color-input-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.color-picker{
+  width:48px;
+  height:42px;
+  padding:3px;
+  border:1px solid var(--line);
+  background:white;
+  cursor:pointer;
+}
+
+.hex{
+  flex:1;
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* PREVIEW */
+
+.preview-wrap{
+  position:sticky;
+  top:30px;
+}
+
+.preview{
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:18px;
+}
+
+.preview-title{
+  font-size:9px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.preview-screen{
+  min-height:420px;
+  background:var(--background);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:35px;
+}
+
+.preview-card{
+  width:100%;
+  max-width:300px;
+  background:var(--primary);
+  color:white;
+  padding:40px 25px;
+  text-align:center;
+}
+
+.preview-card .small{
+  font-size:9px;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.7);
+  margin-bottom:20px;
+}
+
+.preview-card h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  font-weight:500;
+}
+
+.preview-card p{
+  font-size:11px;
+  line-height:1.9;
+  color:rgba(255,255,255,.85);
+  margin-top:15px;
+}
+
+.preview-button{
+  display:inline-block;
+  margin-top:25px;
+  padding:9px 18px;
+  background:var(--secondary);
+  color:var(--dark);
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+/* PRICE */
+
+.price-box{
+  background:var(--white);
+  border:1px solid var(--line);
+}
+
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 18px;
+  border-bottom:1px solid var(--line);
+}
+
+.price-row:last-child{
+  border-bottom:0;
+}
+
+.price-label{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.price-value{
+  font-size:14px;
+}
+
+.price-row.deposit{
+  background:#f4eee8;
+}
+
+.price-row.deposit .price-value{
+  color:var(--primary);
+  font-weight:600;
+}
+
+.price-row.remaining .price-value{
+  font-weight:600;
+}
+
+/* PAYMENT */
+
+.payment-note{
+  background:#f4eee8;
+  border:1px solid #e2d5c9;
+  padding:17px;
+  font-size:11px;
+  line-height:1.9;
+  margin-bottom:20px;
+}
+
+.upload{
+  border:1px dashed var(--secondary);
+  background:var(--white);
+  padding:25px;
+  text-align:center;
+}
+
+.upload input{
+  border:0;
+  padding:0;
+  background:none;
+}
+
+.file-name{
+  margin-top:10px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* BUTTON */
+
+.submit-btn{
+  width:100%;
+  border:1px solid var(--dark);
+  background:var(--dark);
+  color:white;
+  padding:17px;
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+.submit-btn:hover{
+  background:#5a504a;
+}
+
+.submit-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* ERROR */
+
+.message{
+  display:none;
+  margin-bottom:25px;
+  padding:15px;
+  border:1px solid;
+  white-space:pre-wrap;
+  font-size:12px;
+}
+
+.message.error{
+  display:block;
+  background:#f7eceb;
+  border-color:#ddc6c2;
+  color:#8b5752;
+}
+
+.message.success{
+  display:block;
+  background:#edf2ed;
+  border-color:#cbd8cc;
+  color:#58705b;
+}
+
+/* SUCCESS */
+
+.success-page{
+  display:none;
+  max-width:650px;
+  margin:80px auto;
+  text-align:center;
+}
+
+.success-page.active{
+  display:block;
+}
+
+.success-page .check{
+  font-size:45px;
+  color:var(--primary);
+}
+
+.success-page h2{
+  font-family:"Cormorant Garamond",serif;
+  font-size:45px;
+  font-weight:500;
+  margin:15px 0;
+}
+
+.order-id{
+  display:inline-block;
+  margin:15px 0;
+  padding:13px 25px;
+  background:var(--white);
+  border:1px solid var(--line);
+  font-family:monospace;
+  letter-spacing:1px;
+}
+
+.success-page p{
+  color:var(--muted);
+  line-height:2;
+}
+
+.back-home{
+  display:inline-block;
+  margin-top:25px;
+  padding:13px 25px;
+  border:1px solid var(--dark);
+  text-decoration:none;
+  color:var(--dark);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .header{
+    padding:22px 25px;
+  }
+
+  .container{
+    padding:45px 25px 70px;
+  }
+
+  h1{
+    font-size:45px;
+  }
+
+  .order-layout{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .preview-wrap{
+    position:static;
+    order:-1;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .color-grid{
+    grid-template-columns:1fr;
+  }
+
+  .preview-screen{
+    min-height:350px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header class="header">
+
+  <div class="logo">
+    PINTO LOVE
+  </div>
+
+  <a href="love.html" class="back">
+    ← BACK TO PINTO LOVE
+  </a>
+
+</header>
+
+
+<main class="container" id="orderFormPage">
+
+  <div class="intro">
+
+    <div class="category">
+      PINTO LOVE · ORDER
+    </div>
+
+    <h1>
+      Create Your Order
+    </h1>
+
+    <p>
+      กรอกรายละเอียดสำหรับเว็บไซต์ของคุณ
+      เลือกสีที่ต้องการ และชำระมัดจำ 30%
+      เพื่อเริ่มจัดทำงาน
+    </p>
+
+  </div>
+
+
+  <div id="message" class="message"></div>
+
+
+  <div class="order-layout">
+
+
+    <!-- LEFT -->
+
+    <div>
+
+
+      <!-- CUSTOMER -->
+
+      <section class="section">
+
+        <div class="section-title">
+          Your Information
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            NAME
+          </label>
+
+          <input
+            type="text"
+            id="customerName"
+            placeholder="ชื่อของคุณ"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            CONTACT
+          </label>
+
+          <input
+            type="text"
+            id="contact"
+            placeholder="LINE / Instagram / เบอร์โทร"
+            required
+          >
+
+        </div>
+
+      </section>
+
+
+      <!-- TEMPLATE -->
+
+      <section class="section">
+
+        <div class="section-title">
+          Template
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            SELECT TEMPLATE
+          </label>
+
+          <select id="template">
+
+            <option value="Make Up · Template 01" data-price="129">
+              Make Up · Template 01 — 129 THB
+            </option>
+
+            <option value="Birthday · Template 01" data-price="129">
+              Birthday · Template 01 — 129 THB
+            </option>
+
+            <option value="Anniversary · Template 01" data-price="129">
+              Anniversary · Template 01 — 129 THB
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            MESSAGE / DETAILS
+          </label>
+
+          <textarea
+            id="messageText"
+            placeholder="พิมพ์ข้อความที่ต้องการให้ใส่ในเว็บไซต์ หรือรายละเอียดที่อยากแจ้งทีมงาน"
+          ></textarea>
+
+        </div>
+
+      </section>
+
+
+      <!-- COLORS -->
+
+      <section class="section">
+
+        <div class="section-title">
+          Choose Your Colors
+        </div>
+
+
+        <div class="color-grid">
+
+
+          <div class="color-card">
+
+            <label>
+              PRIMARY COLOR
+            </label>
+
+            <div class="color-input-row">
+
+              <input
+                type="color"
+                class="color-picker"
+                id="primaryColor"
+                value="#8C7E74"
+              >
+
+              <span
+                class="hex"
+                id="primaryHex"
+              >
+                #8C7E74
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="color-card">
+
+            <label>
+              SECONDARY COLOR
+            </label>
+
+            <div class="color-input-row">
+
+              <input
+                type="color"
+                class="color-picker"
+                id="secondaryColor"
+                value="#C8BCB1"
+              >
+
+              <span
+                class="hex"
+                id="secondaryHex"
+              >
+                #C8BCB1
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="color-card">
+
+            <label>
+              BACKGROUND COLOR
+            </label>
+
+            <div class="color-input-row">
+
+              <input
+                type="color"
+                class="color-picker"
+                id="backgroundColor"
+                value="#F4EFEA"
+              >
+
+              <span
+                class="hex"
+                id="backgroundHex"
+              >
+                #F4EFEA
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- EXTRA -->
+
+      <section class="section">
+
+        <div class="section-title">
+          Extra Functions
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            EXTRA FUNCTION
+          </label>
+
+          <select id="extraFunction">
+
+            <option value="">
+              ไม่มี
+            </option>
+
+            <option value="เพิ่ม 1 Function (+29 THB)" data-extra="29">
+              เพิ่ม 1 Function — +29 THB
+            </option>
+
+            <option value="เพิ่ม 2 Functions (+58 THB)" data-extra="58">
+              เพิ่ม 2 Functions — +58 THB
+            </option>
+
+            <option value="เพิ่ม 3 Functions (+87 THB)" data-extra="87">
+              เพิ่ม 3 Functions — +87 THB
+            </option>
+
+          </select>
+
+        </div>
+
+      </section>
+
+
+      <!-- PAYMENT -->
+
+      <section class="section">
+
+        <div class="section-title">
+          Deposit Payment
+        </div>
+
+
+        <div class="payment-note">
+
+          <strong>
+            มัดจำ 30% สำหรับทุกออเดอร์
+          </strong>
+
+          <br>
+
+          กรุณาชำระเฉพาะยอดมัดจำ
+          หลังจากนั้นอัปโหลดสลิปเพื่อส่งออเดอร์
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            PAYMENT SLIP
+          </label>
+
+          <div class="upload">
+
+            <input
+              type="file"
+              id="paymentSlip"
+              accept="image/*,.pdf"
+            >
+
+            <div
+              class="file-name"
+              id="fileName"
+            >
+              ยังไม่ได้เลือกไฟล์
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <button
+        class="submit-btn"
+        id="submitBtn"
+        onclick="submitOrder()"
+      >
+        SUBMIT ORDER
+      </button>
+
+
+    </div>
+
+
+    <!-- RIGHT -->
+
+    <aside class="preview-wrap">
+
+      <div class="preview">
+
+        <div class="preview-title">
+          LIVE COLOR PREVIEW
+        </div>
+
+
+        <div
+          class="preview-screen"
+          id="previewScreen"
+        >
+
+          <div
+            class="preview-card"
+            id="previewCard"
+          >
+
+            <div class="small">
+              PINTO LOVE
+            </div>
+
+            <h2>
+              For You ♡
+            </h2>
+
+            <p>
+              เว็บไซต์พิเศษที่สร้างขึ้น
+              สำหรับเรื่องราวของคุณ
+            </p>
+
+            <div
+              class="preview-button"
+              id="previewButton"
+            >
+              VIEW MORE
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRICE -->
+
+      <div
+        class="price-box"
+        style="margin-top:20px;"
+      >
+
+        <div class="price-row">
+
+          <div class="price-label">
+            TEMPLATE
+          </div>
+
+          <div
+            class="price-value"
+            id="templatePrice"
+          >
+            129.00 THB
+          </div>
+
+        </div>
+
+
+        <div class="price-row">
+
+          <div class="price-label">
+            EXTRA
+          </div>
+
+          <div
+            class="price-value"
+            id="extraPrice"
+          >
+            0.00 THB
+          </div>
+
+        </div>
+
+
+        <div class="price-row">
+
+          <div class="price-label">
+            TOTAL
+          </div>
+
+          <div
+            class="price-value"
+            id="totalPrice"
+          >
+            129.00 THB
+          </div>
+
+        </div>
+
+
+        <div class="price-row deposit">
+
+          <div class="price-label">
+            DEPOSIT 30%
+          </div>
+
+          <div
+            class="price-value"
+            id="depositPrice"
+          >
+            38.70 THB
+          </div>
+
+        </div>
+
+
+        <div class="price-row remaining">
+
+          <div class="price-label">
+            REMAINING
+          </div>
+
+          <div
+            class="price-value"
+            id="remainingPrice"
+          >
+            90.30 THB
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
+
+
+<!-- SUCCESS -->
+
+<section
+  class="success-page"
+  id="successPage"
+>
+
+  <div class="check">
+    ✓
+  </div>
+
+  <h2>
+    Order Received
+  </h2>
+
+  <p>
+    เราได้รับข้อมูลออเดอร์ของคุณแล้ว
+    <br>
+    กรุณาเก็บ Order ID นี้ไว้สำหรับติดต่อกับเรา
+  </p>
+
+
+  <div
+    class="order-id"
+    id="successOrderId"
+  >
+  </div>
+
+
+  <p>
+    มัดจำ 30% อยู่ระหว่างตรวจสอบ
+  </p>
+
+
+  <a
+    href="love.html"
+    class="back-home"
+  >
+    BACK TO PINTO LOVE
+  </a>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://keybykrpnpgsnyxtpfqj.supabase.co";
+
+
+const SUPABASE_ANON_KEY =
+  "ใส่ Publishable Key ของ Supabase ตรงนี้";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const template =
+  document.getElementById("template");
+
+const extraFunction =
+  document.getElementById("extraFunction");
+
+const primaryColor =
+  document.getElementById("primaryColor");
+
+const secondaryColor =
+  document.getElementById("secondaryColor");
+
+const backgroundColor =
+  document.getElementById("backgroundColor");
+
+
+/* =====================================================
+   COLOR PREVIEW
+===================================================== */
+
+function updatePreview(){
+
+  const primary =
+    primaryColor.value.toUpperCase();
+
+  const secondary =
+    secondaryColor.value.toUpperCase();
+
+  const background =
+    backgroundColor.value.toUpperCase();
+
+
+  document.documentElement.style
+    .setProperty("--primary", primary);
+
+  document.documentElement.style
+    .setProperty("--secondary", secondary);
+
+  document.documentElement.style
+    .setProperty("--background", background);
+
+
+  document.getElementById(
+    "primaryHex"
+  ).textContent = primary;
+
+
+  document.getElementById(
+    "secondaryHex"
+  ).textContent = secondary;
+
+
+  document.getElementById(
+    "backgroundHex"
+  ).textContent = background;
+
+}
+
+
+primaryColor.addEventListener(
+  "input",
+  updatePreview
+);
+
+secondaryColor.addEventListener(
+  "input",
+  updatePreview
+);
+
+backgroundColor.addEventListener(
+  "input",
+  updatePreview
+);
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function calculatePrice(){
+
+  const selectedTemplate =
+    template.options[
+      template.selectedIndex
+    ];
+
+  const templatePrice =
+    Number(
+      selectedTemplate.dataset.price
+    );
+
+
+  const selectedExtra =
+    extraFunction.options[
+      extraFunction.selectedIndex
+    ];
+
+  const extraPrice =
+    Number(
+      selectedExtra.dataset.extra ||
+      0
+    );
+
+
+  const total =
+    templatePrice +
+    extraPrice;
+
+
+  const deposit =
+    Math.round(
+      total * 0.30 * 100
+    ) / 100;
+
+
+  const remaining =
+    Math.round(
+      (total - deposit) * 100
+    ) / 100;
+
+
+  document.getElementById(
+    "templatePrice"
+  ).textContent =
+    money(templatePrice);
+
+
+  document.getElementById(
+    "extraPrice"
+  ).textContent =
+    money(extraPrice);
+
+
+  document.getElementById(
+    "totalPrice"
+  ).textContent =
+    money(total);
+
+
+  document.getElementById(
+    "depositPrice"
+  ).textContent =
+    money(deposit);
+
+
+  document.getElementById(
+    "remainingPrice"
+  ).textContent =
+    money(remaining);
+
+
+  return {
+    templatePrice,
+    extraPrice,
+    total,
+    deposit,
+    remaining
+  };
+
+}
+
+
+template.addEventListener(
+  "change",
+  calculatePrice
+);
+
+extraFunction.addEventListener(
+  "change",
+  calculatePrice
+);
+
+
+/* =====================================================
+   FILE
+===================================================== */
+
+document
+  .getElementById("paymentSlip")
+  .addEventListener(
+    "change",
+    function(){
+
+      const file =
+        this.files[0];
+
+
+      document.getElementById(
+        "fileName"
+      ).textContent =
+        file
+          ? file.name
+          : "ยังไม่ได้เลือกไฟล์";
+
+    }
+  );
+
+
+/* =====================================================
+   MONEY
+===================================================== */
+
+function money(value){
+
+  return (
+    Number(value)
+      .toLocaleString(
+        "th-TH",
+        {
+          minimumFractionDigits:2,
+          maximumFractionDigits:2
+        }
+      ) +
+    " THB"
+  );
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(text){
+
+  const box =
+    document.getElementById(
+      "message"
+    );
+
+  box.className =
+    "message error";
+
+  box.textContent =
+    text;
+
+  box.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+function clearError(){
+
+  const box =
+    document.getElementById(
+      "message"
+    );
+
+  box.className =
+    "message";
+
+  box.textContent = "";
+
+}
+
+
+/* =====================================================
+   ORDER ID
+===================================================== */
+
+async function generateOrderNumber(){
+
+  const date =
+    new Date();
+
+
+  const year =
+    date.getFullYear();
+
+
+  const month =
+    String(
+      date.getMonth()+1
+    ).padStart(2,"0");
+
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(2,"0");
+
+
+  /*
+    ใช้ timestamp เพื่อให้เลขไม่ซ้ำ
+  */
+
+  const suffix =
+    String(
+      Date.now()
+    ).slice(-3);
+
+
+  return (
+    "PL-" +
+    year +
+    month +
+    day +
+    "-" +
+    suffix
+  );
+
+}
+
+
+/* =====================================================
+   UPLOAD PAYMENT SLIP
+===================================================== */
+
+async function uploadSlip(
+  file,
+  orderNumber
+){
+
+  const extension =
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  const filePath =
+    orderNumber +
+    "-" +
+    Date.now() +
+    "." +
+    extension;
+
+
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/storage/v1/object/payment-slips/" +
+      encodeURIComponent(filePath),
+      {
+
+        method:"POST",
+
+        headers:{
+
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            file.type ||
+            "application/octet-stream"
+
+        },
+
+        body:file
+
+      }
+    );
+
+
+  if(!response.ok){
+
+    const text =
+      await response.text();
+
+
+    throw new Error(
+      "อัปโหลดสลิปไม่สำเร็จ\n" +
+      text
+    );
+
+  }
+
+
+  return filePath;
+
+}
+
+
+/* =====================================================
+   CREATE ORDER
+===================================================== */
+
+async function createOrder(order){
+
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/orders",
+      {
+
+        method:"POST",
+
+        headers:{
+
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            "application/json",
+
+          "Prefer":
+            "return=representation"
+
+        },
+
+        body:
+          JSON.stringify(order)
+
+      }
+    );
+
+
+  if(!response.ok){
+
+    const text =
+      await response.text();
+
+
+    throw new Error(
+      "สร้างออเดอร์ไม่สำเร็จ\n" +
+      text
+    );
+
+  }
+
+
+  return response.json();
+
+}
+
+
+/* =====================================================
+   SUBMIT
+===================================================== */
+
+async function submitOrder(){
+
+  clearError();
+
+
+  const name =
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
+
+  const contact =
+    document.getElementById(
+      "contact"
+    ).value.trim();
+
+
+  const message =
+    document.getElementById(
+      "messageText"
+    ).value.trim();
+
+
+  const slip =
+    document.getElementById(
+      "paymentSlip"
+    ).files[0];
+
+
+  if(!name){
+
+    showError(
+      "กรุณากรอกชื่อ"
+    );
+
+    return;
+
+  }
+
+
+  if(!contact){
+
+    showError(
+      "กรุณากรอกช่องทางติดต่อ"
+    );
+
+    return;
+
+  }
+
+
+  if(!slip){
+
+    showError(
+      "กรุณาอัปโหลดสลิปมัดจำ"
+    );
+
+    return;
+
+  }
+
+
+  const prices =
+    calculatePrice();
+
+
+  const orderNumber =
+    await generateOrderNumber();
+
+
+  const submitButton =
+    document.getElementById(
+      "submitBtn"
+    );
+
+
+  submitButton.disabled =
+    true;
+
+
+  submitButton.textContent =
+    "SUBMITTING...";
+
+
+  try{
+
+    /* 1. Upload slip */
+
+    const slipPath =
+      await uploadSlip(
+        slip,
+        orderNumber
+      );
+
+
+    /* 2. Create order */
+
+    const order = {
+
+      order_number:
+        orderNumber,
+
+      customer_name:
+        name,
+
+      contact:
+        contact,
+
+      template:
+        template.value,
+
+      message:
+        message || null,
+
+      primary_color:
+        primaryColor.value.toUpperCase(),
+
+      secondary_color:
+        secondaryColor.value.toUpperCase(),
+
+      background_color:
+        backgroundColor.value.toUpperCase(),
+
+      extra_functions:
+        extraFunction.value || null,
+
+      total_price:
+        prices.total,
+
+      deposit_amount:
+        prices.deposit,
+
+      remaining_amount:
+        prices.remaining,
+
+      payment_slip:
+        slipPath,
+
+      payment_status:
+        "รอตรวจสอบมัดจำ",
+
+      status:
+        "รอตรวจสอบมัดจำ"
+
+    };
+
+
+    await createOrder(order);
+
+
+    /* 3. Success */
+
+    document.getElementById(
+      "orderFormPage"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "successPage"
+    ).classList.add(
+      "active"
+    );
+
+
+    document.getElementById(
+      "successOrderId"
+    ).textContent =
+      orderNumber;
+
+
+  }
+
+  catch(error){
+
+    console.error(
+      error
+    );
+
+
+    showError(
+      error.message
+    );
+
+
+    submitButton.disabled =
+      false;
+
+
+    submitButton.textContent =
+      "SUBMIT ORDER";
+
+  }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updatePreview();
+
+calculatePrice();
+
+</script>
+
+</body>
+</html>
