@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PINTO LOVE · Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --taupe:#8C7E74;
+  --warm:#C8BCB1;
+  --beige:#E6DED8;
+  --cream:#F4EFEA;
+  --dark:#403934;
+  --muted:#81766E;
+  --white:#FBF8F5;
+  --line:rgba(64,57,52,.13);
+  --green:#71806F;
+  --yellow:#A28D61;
+  --red:#A26F69;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:"Noto Sans Thai",sans-serif;
+  font-weight:300;
+}
+
+header{
+  height:90px;
+  padding:0 55px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  background:rgba(251,248,245,.95);
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  letter-spacing:3px;
+  color:var(--dark);
+}
+
+.logo span{
+  color:var(--taupe);
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:12px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.back{
+  color:var(--dark);
+  text-decoration:none;
+}
+
+.back:hover{
+  color:var(--taupe);
+}
+
+main{
+  max-width:1400px;
+  margin:auto;
+  padding:55px;
+}
+
+.page-title{
+  margin-bottom:35px;
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--taupe);
+  margin-bottom:10px;
+}
+
+h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:52px;
+  font-weight:500;
+  line-height:1;
+}
+
+.subtitle{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.dashboard{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:35px;
+}
+
+.stat{
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:25px;
+}
+
+.stat-label{
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.stat-value{
+  font-family:"Cormorant Garamond",serif;
+  font-size:35px;
+}
+
+.toolbar{
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:20px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.search{
+  flex:1;
+}
+
+.search input,
+select{
+  width:100%;
+  border:1px solid var(--line);
+  background:var(--cream);
+  padding:12px 14px;
+  font-family:inherit;
+  color:var(--dark);
+  outline:none;
+}
+
+.search input:focus,
+select:focus{
+  border-color:var(--taupe);
+}
+
+button{
+  border:0;
+  background:var(--dark);
+  color:white;
+  padding:12px 20px;
+  font-family:inherit;
+  cursor:pointer;
+  letter-spacing:.5px;
+}
+
+button:hover{
+  background:var(--taupe);
+}
+
+.table-wrap{
+  background:var(--white);
+  border:1px solid var(--line);
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+}
+
+thead{
+  background:#eee8e2;
+}
+
+th{
+  padding:15px 14px;
+  text-align:left;
+  font-size:10px;
+  letter-spacing:1.2px;
+  font-weight:500;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+td{
+  padding:17px 14px;
+  border-top:1px solid var(--line);
+  font-size:12px;
+  vertical-align:middle;
+}
+
+tbody tr{
+  transition:.2s;
+}
+
+tbody tr:hover{
+  background:#f7f2ee;
+}
+
+.order-no{
+  font-weight:500;
+  color:var(--dark);
+}
+
+.price{
+  white-space:nowrap;
+}
+
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  font-size:10px;
+  white-space:nowrap;
+  border:1px solid rgba(64,57,52,.12);
+}
+
+.status.deposit{
+  background:#eee8dc;
+  color:#7d6b42;
+}
+
+.status.paid{
+  background:#e7ece5;
+  color:#65705f;
+}
+
+.status.wait{
+  background:#f0e9e5;
+  color:#866d64;
+}
+
+.status.done{
+  background:#e5ebe6;
+  color:#596b5c;
+}
+
+.status.work{
+  background:#e9e4ee;
+  color:#70627d;
+}
+
+.status.edit{
+  background:#eee7dc;
+  color:#826f52;
+}
+
+.empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+}
+
+.loading{
+  text-align:center;
+  padding:45px;
+  color:var(--muted);
+}
+
+.message{
+  margin-bottom:20px;
+  padding:14px 18px;
+  display:none;
+  font-size:12px;
+  border:1px solid var(--line);
+}
+
+.message.error{
+  display:block;
+  background:#f3e7e5;
+  color:#825c56;
+}
+
+.message.success{
+  display:block;
+  background:#e8eee7;
+  color:#5e6c59;
+}
+
+.action-btn{
+  background:transparent;
+  color:var(--dark);
+  border:1px solid var(--line);
+  padding:7px 12px;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.action-btn:hover{
+  background:var(--dark);
+  color:white;
+}
+
+footer{
+  border-top:1px solid var(--line);
+  margin-top:60px;
+  padding:30px 55px;
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+@media(max-width:800px){
+  header{
+    padding:0 25px;
+    height:75px;
+  }
+
+  .logo{
+    font-size:25px;
+  }
+
+  .header-right{
+    font-size:10px;
+  }
+
+  main{
+    padding:40px 25px;
+  }
+
+  h1{
+    font-size:43px;
+  }
+
+  .dashboard{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .toolbar{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  footer{
+    padding:25px;
+    flex-direction:column;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    PINTO <span>LOVE</span>
+  </div>
+
+  <div class="header-right">
+    <span>ADMIN</span>
+    <a href="love.html" class="back">← BACK TO PINTO LOVE</a>
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="page-title">
+    <div class="eyebrow">PINTO LOVE · ORDER MANAGEMENT</div>
+
+    <h1>Orders</h1>
+
+    <div class="subtitle">
+      จัดการคำสั่งซื้อ ตรวจสอบมัดจำ และติดตามสถานะงาน
+    </div>
+  </div>
+
+
+  <div id="message" class="message"></div>
+
+
+  <section class="dashboard">
+
+    <div class="stat">
+      <div class="stat-label">ALL ORDERS</div>
+      <div class="stat-value" id="totalOrders">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">WAITING DEPOSIT</div>
+      <div class="stat-value" id="waitingDeposit">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">PAID DEPOSIT</div>
+      <div class="stat-value" id="paidDeposit">—</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">IN PROGRESS</div>
+      <div class="stat-value" id="inProgress">—</div>
+    </div>
+
+  </section>
+
+
+  <section class="toolbar">
+
+    <div class="search">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="ค้นหาเลขออเดอร์ / ชื่อลูกค้า / Template..."
+        oninput="renderOrders()"
+      >
+    </div>
+
+    <div style="width:220px;">
+      <select id="statusFilter" onchange="renderOrders()">
+        <option value="">ทุกสถานะ</option>
+        <option value="รอชำระเงิน">รอชำระเงิน</option>
+        <option value="รอตรวจสอบมัดจำ">รอตรวจสอบมัดจำ</option>
+        <option value="ชำระเงินแล้ว">ชำระเงินแล้ว</option>
+        <option value="กำลังจัดทำ">กำลังจัดทำ</option>
+        <option value="ส่งให้ลูกค้าตรวจสอบ">ส่งให้ลูกค้าตรวจสอบ</option>
+        <option value="แก้ไข">แก้ไข</option>
+        <option value="เสร็จสิ้น">เสร็จสิ้น</option>
+      </select>
+    </div>
+
+    <button onclick="loadOrders()">REFRESH</button>
+
+  </section>
+
+
+  <section class="table-wrap">
+
+    <div id="loading" class="loading">
+      กำลังโหลดคำสั่งซื้อ...
+    </div>
+
+    <table id="ordersTable" style="display:none;">
+
+      <thead>
+        <tr>
+          <th>ORDER</th>
+          <th>DATE</th>
+          <th>CUSTOMER</th>
+          <th>TEMPLATE</th>
+          <th>TOTAL</th>
+          <th>DEPOSIT</th>
+          <th>REMAINING</th>
+          <th>PAYMENT</th>
+          <th>STATUS</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody id="ordersBody"></tbody>
+
+    </table>
+
+    <div id="empty" class="empty" style="display:none;">
+      ยังไม่มีคำสั่งซื้อ
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div>© 2026 PINTO LOVE</div>
+
+  <div>ORDER MANAGEMENT SYSTEM</div>
+
+</footer>
+
+
+<script>
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+  "https://keybykrpnpgsnyxtpfqj.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "ใส่ PUBLISHABLE KEY ของ Supabase ตรงนี้";
+
+
+let orders = [];
+
+
+/* =========================================================
+   LOAD ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  const loading = document.getElementById("loading");
+  const table = document.getElementById("ordersTable");
+  const empty = document.getElementById("empty");
+
+  loading.style.display = "block";
+  table.style.display = "none";
+  empty.style.display = "none";
+
+  try{
+
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,
+      {
+        method:"GET",
+
+        headers:{
+          "apikey":SUPABASE_ANON_KEY,
+          "Authorization":`Bearer ${SUPABASE_ANON_KEY}`
+        }
+      }
+    );
+
+    if(!response.ok){
+
+      const errorText = await response.text();
+
+      throw new Error(
+        `Supabase Error ${response.status}: ${errorText}`
+      );
+    }
+
+    orders = await response.json();
+
+    updateDashboard();
+    renderOrders();
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "ไม่สามารถโหลดคำสั่งซื้อได้<br><small>" +
+      error.message +
+      "</small>",
+      "error"
+    );
+
+  }finally{
+
+    loading.style.display = "none";
+
+  }
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function updateDashboard(){
+
+  document.getElementById("totalOrders").textContent =
+    orders.length;
+
+
+  const waiting =
+    orders.filter(order =>
+      order.payment_status === "รอตรวจสอบมัดจำ" ||
+      order.status === "รอชำระเงิน"
+    ).length;
+
+  document.getElementById("waitingDeposit").textContent =
+    waiting;
+
+
+  const paid =
+    orders.filter(order =>
+      order.payment_status === "ชำระเงินแล้ว"
+    ).length;
+
+  document.getElementById("paidDeposit").textContent =
+    paid;
+
+
+  const working =
+    orders.filter(order =>
+      [
+        "กำลังจัดทำ",
+        "ส่งให้ลูกค้าตรวจสอบ",
+        "แก้ไข"
+      ].includes(order.status)
+    ).length;
+
+  document.getElementById("inProgress").textContent =
+    working;
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function renderOrders(){
+
+  const tbody =
+    document.getElementById("ordersBody");
+
+  const table =
+    document.getElementById("ordersTable");
+
+  const empty =
+    document.getElementById("empty");
+
+  const search =
+    document.getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const status =
+    document.getElementById("statusFilter").value;
+
+
+  let filtered = orders.filter(order => {
+
+    const searchable = `
+      ${order.order_number || ""}
+      ${order.customer_name || ""}
+      ${order.template || ""}
+      ${order.contact || ""}
+    `.toLowerCase();
+
+    const matchSearch =
+      !search || searchable.includes(search);
+
+    const matchStatus =
+      !status || order.status === status;
+
+    return matchSearch && matchStatus;
+  });
+
+
+  tbody.innerHTML = "";
+
+
+  if(filtered.length === 0){
+
+    table.style.display = "none";
+    empty.style.display = "block";
+
+    return;
+  }
+
+
+  table.style.display = "table";
+  empty.style.display = "none";
+
+
+  filtered.forEach(order => {
+
+    const tr = document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td>
+        <div class="order-no">
+          ${escapeHTML(order.order_number || "-")}
+        </div>
+      </td>
+
+      <td>
+        ${formatDate(order.created_at)}
+      </td>
+
+      <td>
+        <strong>
+          ${escapeHTML(order.customer_name || "-")}
+        </strong>
+        <br>
+        <small style="color:#81766E;">
+          ${escapeHTML(order.contact || "")}
+        </small>
+      </td>
+
+      <td>
+        ${escapeHTML(order.template || "-")}
+      </td>
+
+      <td class="price">
+        ${money(order.total_price)}
+      </td>
+
+      <td class="price">
+        ${money(order.deposit_amount)}
+      </td>
+
+      <td class="price">
+        ${money(order.remaining_amount)}
+      </td>
+
+      <td>
+        ${paymentStatus(order.payment_status)}
+      </td>
+
+      <td>
+        ${orderStatus(order.status)}
+      </td>
+
+      <td>
+        <button
+          class="action-btn"
+          onclick="viewOrder(${order.id})"
+        >
+          VIEW
+        </button>
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+
+/* =========================================================
+   ORDER STATUS
+========================================================= */
+
+function orderStatus(status){
+
+  let cls = "wait";
+
+  if(status === "ชำระเงินแล้ว"){
+    cls = "paid";
+  }
+
+  if(status === "กำลังจัดทำ"){
+    cls = "work";
+  }
+
+  if(status === "ส่งให้ลูกค้าตรวจสอบ"){
+    cls = "work";
+  }
+
+  if(status === "แก้ไข"){
+    cls = "edit";
+  }
+
+  if(status === "เสร็จสิ้น"){
+    cls = "done";
+  }
+
+  return `
+    <span class="status ${cls}">
+      ${escapeHTML(status || "-")}
+    </span>
+  `;
+}
+
+
+/* =========================================================
+   PAYMENT STATUS
+========================================================= */
+
+function paymentStatus(status){
+
+  if(status === "ชำระเงินแล้ว"){
+
+    return `
+      <span class="status paid">
+        ชำระเงินแล้ว
+      </span>
+    `;
+  }
+
+
+  if(status === "รอตรวจสอบมัดจำ"){
+
+    return `
+      <span class="status deposit">
+        รอตรวจสอบมัดจำ
+      </span>
+    `;
+  }
+
+
+  return `
+    <span class="status wait">
+      ${escapeHTML(status || "-")}
+    </span>
+  `;
+}
+
+
+/* =========================================================
+   VIEW ORDER
+========================================================= */
+
+function viewOrder(id){
+
+  const order =
+    orders.find(item => item.id == id);
+
+  if(!order) return;
+
+
+  alert(
+`
+ORDER: ${order.order_number}
+
+ลูกค้า: ${order.customer_name}
+
+ติดต่อ: ${order.contact}
+
+Template: ${order.template}
+
+ข้อความ:
+${order.message || "-"}
+
+Primary Color:
+${order.primary_color || "-"}
+
+Secondary Color:
+${order.secondary_color || "-"}
+
+Background Color:
+${order.background_color || "-"}
+
+Extra Functions:
+${order.extra_functions || "-"}
+
+ยอดรวม:
+${money(order.total_price)}
+
+มัดจำ:
+${money(order.deposit_amount)}
+
+คงเหลือ:
+${money(order.remaining_amount)}
+
+Payment:
+${order.payment_status || "-"}
+
+Status:
+${order.status || "-"}
+`
+  );
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function money(value){
+
+  const number =
+    Number(value || 0);
+
+  return number.toLocaleString(
+    "th-TH",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  ) + " THB";
+}
+
+
+function formatDate(date){
+
+  if(!date) return "-";
+
+  const d = new Date(date);
+
+  return d.toLocaleDateString(
+    "th-TH",
+    {
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function showMessage(text,type){
+
+  const box =
+    document.getElementById("message");
+
+  box.className =
+    "message " + type;
+
+  box.innerHTML =
+    text;
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadOrders();
+
+</script>
+
+</body>
+</html>
