@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --taupe:#8C7E74;
   --warm:#C8BCB1;
@@ -20,9 +21,9 @@
   --muted:#81766E;
   --white:#FBF8F5;
   --line:rgba(64,57,52,.13);
-  --green:#71806F;
-  --yellow:#A28D61;
-  --red:#A26F69;
+  --green:#667b68;
+  --orange:#a47b52;
+  --red:#9b625d;
 }
 
 *{
@@ -35,77 +36,82 @@ body{
   background:var(--cream);
   color:var(--dark);
   font-family:"Noto Sans Thai",sans-serif;
-  font-weight:300;
+  font-size:14px;
 }
 
-header{
-  height:90px;
-  padding:0 55px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+button,
+input,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.header{
   border-bottom:1px solid var(--line);
-  background:rgba(251,248,245,.95);
+  padding:24px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(251,248,245,.85);
 }
 
 .logo{
   font-family:"Cormorant Garamond",serif;
-  font-size:30px;
-  letter-spacing:3px;
-  color:var(--dark);
+  font-size:28px;
+  letter-spacing:2px;
 }
 
 .logo span{
-  color:var(--taupe);
-}
-
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:25px;
-  font-size:12px;
-  letter-spacing:1.5px;
+  font-size:13px;
+  letter-spacing:2px;
   color:var(--muted);
+  margin-left:10px;
 }
 
 .back{
-  color:var(--dark);
+  color:var(--muted);
   text-decoration:none;
+  font-size:12px;
+  letter-spacing:1px;
 }
 
 .back:hover{
-  color:var(--taupe);
+  color:var(--dark);
 }
 
-main{
+.container{
   max-width:1400px;
   margin:auto;
-  padding:55px;
+  padding:50px;
 }
 
 .page-title{
   margin-bottom:35px;
 }
 
-.eyebrow{
+.page-title small{
+  display:block;
   font-size:11px;
-  letter-spacing:3px;
+  letter-spacing:2px;
   color:var(--taupe);
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
-h1{
+.page-title h1{
   font-family:"Cormorant Garamond",serif;
-  font-size:52px;
+  font-size:50px;
   font-weight:500;
-  line-height:1;
 }
 
-.subtitle{
-  margin-top:12px;
+.page-title p{
+  margin-top:8px;
   color:var(--muted);
-  font-size:13px;
 }
+
+/* DASHBOARD */
 
 .dashboard{
   display:grid;
@@ -121,24 +127,31 @@ h1{
 }
 
 .stat-label{
-  font-size:11px;
+  font-size:10px;
   letter-spacing:1.5px;
   color:var(--muted);
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
 
-.stat-value{
+.stat-number{
   font-family:"Cormorant Garamond",serif;
-  font-size:35px;
+  font-size:38px;
 }
+
+.stat-sub{
+  margin-top:4px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* TOOLBAR */
 
 .toolbar{
   background:var(--white);
   border:1px solid var(--line);
-  padding:20px;
+  padding:18px;
   display:flex;
-  gap:15px;
-  align-items:center;
+  gap:12px;
   margin-bottom:15px;
 }
 
@@ -147,34 +160,26 @@ h1{
 }
 
 .search input,
-select{
+.filter select{
   width:100%;
+  height:42px;
   border:1px solid var(--line);
   background:var(--cream);
-  padding:12px 14px;
-  font-family:inherit;
-  color:var(--dark);
+  padding:0 14px;
   outline:none;
+  color:var(--dark);
 }
 
 .search input:focus,
-select:focus{
+.filter select:focus{
   border-color:var(--taupe);
 }
 
-button{
-  border:0;
-  background:var(--dark);
-  color:white;
-  padding:12px 20px;
-  font-family:inherit;
-  cursor:pointer;
-  letter-spacing:.5px;
+.filter{
+  width:220px;
 }
 
-button:hover{
-  background:var(--taupe);
-}
+/* TABLE */
 
 .table-wrap{
   background:var(--white);
@@ -189,158 +194,326 @@ table{
 }
 
 thead{
-  background:#eee8e2;
+  background:#eee7e1;
 }
 
 th{
-  padding:15px 14px;
   text-align:left;
   font-size:10px;
   letter-spacing:1.2px;
   font-weight:500;
   color:var(--muted);
+  padding:15px 14px;
   white-space:nowrap;
 }
 
 td{
-  padding:17px 14px;
   border-top:1px solid var(--line);
-  font-size:12px;
+  padding:17px 14px;
   vertical-align:middle;
 }
 
-tbody tr{
-  transition:.2s;
-}
-
 tbody tr:hover{
-  background:#f7f2ee;
+  background:#faf7f4;
 }
 
-.order-no{
-  font-weight:500;
-  color:var(--dark);
+.order-number{
+  font-size:12px;
+  letter-spacing:.5px;
+  font-weight:600;
 }
 
-.price{
+.customer{
+  font-size:13px;
+}
+
+.template{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.amount{
+  font-size:13px;
   white-space:nowrap;
 }
 
 .status{
-  display:inline-block;
+  display:inline-flex;
   padding:6px 10px;
   font-size:10px;
   white-space:nowrap;
-  border:1px solid rgba(64,57,52,.12);
-}
-
-.status.deposit{
-  background:#eee8dc;
-  color:#7d6b42;
-}
-
-.status.paid{
-  background:#e7ece5;
-  color:#65705f;
+  border:1px solid transparent;
 }
 
 .status.wait{
-  background:#f0e9e5;
-  color:#866d64;
+  background:#f5eee6;
+  color:var(--orange);
+  border-color:#e6d5c1;
 }
 
-.status.done{
-  background:#e5ebe6;
-  color:#596b5c;
+.status.check{
+  background:#f1ece5;
+  color:#96764f;
+  border-color:#dfd0bb;
+}
+
+.status.paid{
+  background:#edf1ed;
+  color:var(--green);
+  border-color:#ccd8cd;
 }
 
 .status.work{
-  background:#e9e4ee;
-  color:#70627d;
+  background:#eeeaf1;
+  color:#74677c;
+  border-color:#d8cedd;
+}
+
+.status.done{
+  background:#e9efea;
+  color:#58705b;
+  border-color:#cbd8cc;
 }
 
 .status.edit{
-  background:#eee7dc;
-  color:#826f52;
+  background:#f3eceb;
+  color:#986864;
+  border-color:#dfcdca;
 }
 
-.empty{
-  text-align:center;
-  padding:60px 20px;
-  color:var(--muted);
-}
-
-.loading{
-  text-align:center;
-  padding:45px;
-  color:var(--muted);
-}
-
-.message{
-  margin-bottom:20px;
-  padding:14px 18px;
-  display:none;
-  font-size:12px;
-  border:1px solid var(--line);
-}
-
-.message.error{
-  display:block;
-  background:#f3e7e5;
-  color:#825c56;
-}
-
-.message.success{
-  display:block;
-  background:#e8eee7;
-  color:#5e6c59;
-}
-
-.action-btn{
+.view-btn{
+  border:1px solid var(--dark);
   background:transparent;
   color:var(--dark);
-  border:1px solid var(--line);
-  padding:7px 12px;
+  padding:7px 13px;
   font-size:10px;
-  letter-spacing:1px;
+  letter-spacing:.8px;
 }
 
-.action-btn:hover{
+.view-btn:hover{
   background:var(--dark);
   color:white;
 }
 
-footer{
-  border-top:1px solid var(--line);
-  margin-top:60px;
-  padding:30px 55px;
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:70px 20px;
+  color:var(--muted);
+}
+
+.empty-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+/* LOADING */
+
+.loading{
+  text-align:center;
+  padding:70px;
+  color:var(--muted);
+}
+
+/* MESSAGE */
+
+.message{
+  display:none;
+  padding:15px 18px;
+  margin-bottom:20px;
+  border:1px solid;
+  font-size:12px;
+}
+
+.message.error{
+  display:block;
+  background:#f6eceb;
+  border-color:#ddc5c1;
+  color:#8e5752;
+}
+
+.message.success{
+  display:block;
+  background:#edf2ed;
+  border-color:#cbd8cc;
+  color:#58705b;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(45,39,35,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  z-index:1000;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-box{
+  width:min(900px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--white);
+  border:1px solid var(--line);
+}
+
+.modal-head{
+  padding:25px 30px;
+  border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
+  align-items:flex-start;
+}
+
+.modal-category{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--taupe);
+  margin-bottom:6px;
+}
+
+.modal-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+}
+
+.close{
+  border:0;
+  background:none;
+  font-size:24px;
   color:var(--muted);
+}
+
+.modal-body{
+  padding:30px;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.detail{
+  padding:18px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.detail.full{
+  grid-column:1 / -1;
+}
+
+.detail-label{
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.detail-value{
+  font-size:13px;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.colors{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.color-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.color-box{
+  width:30px;
+  height:30px;
+  border:1px solid rgba(0,0,0,.15);
+}
+
+.payment-slip{
+  display:inline-block;
+  margin-top:5px;
+  border:1px solid var(--line);
+  padding:10px 15px;
+  color:var(--dark);
+  text-decoration:none;
+  font-size:11px;
+}
+
+.payment-slip:hover{
+  background:var(--dark);
+  color:white;
+}
+
+/* STATUS UPDATE */
+
+.update-area{
+  margin-top:25px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+}
+
+.update-area label{
+  display:block;
+  font-size:10px;
+  letter-spacing:1.2px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.update-row{
+  display:flex;
+  gap:10px;
+}
+
+.update-row select{
+  flex:1;
+  height:42px;
+  border:1px solid var(--line);
+  padding:0 12px;
+  background:var(--cream);
+}
+
+.save-btn{
+  background:var(--dark);
+  color:white;
+  border:1px solid var(--dark);
+  padding:0 25px;
+  height:42px;
   font-size:10px;
   letter-spacing:1px;
 }
 
-@media(max-width:800px){
-  header{
-    padding:0 25px;
-    height:75px;
+.save-btn:hover{
+  background:#5a504a;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .header{
+    padding:20px 25px;
   }
 
-  .logo{
-    font-size:25px;
-  }
-
-  .header-right{
-    font-size:10px;
-  }
-
-  main{
+  .container{
     padding:40px 25px;
-  }
-
-  h1{
-    font-size:43px;
   }
 
   .dashboard{
@@ -349,74 +522,119 @@ footer{
 
   .toolbar{
     flex-direction:column;
-    align-items:stretch;
   }
 
-  footer{
-    padding:25px;
-    flex-direction:column;
-    gap:10px;
+  .filter{
+    width:100%;
   }
+
 }
+
+@media(max-width:600px){
+
+  .logo{
+    font-size:24px;
+  }
+
+  .logo span{
+    display:none;
+  }
+
+  .page-title h1{
+    font-size:40px;
+  }
+
+  .dashboard{
+    grid-template-columns:1fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .detail.full{
+    grid-column:auto;
+  }
+
+  .update-row{
+    flex-direction:column;
+  }
+
+  .save-btn{
+    height:42px;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
   <div class="logo">
-    PINTO <span>LOVE</span>
+    PINTO LOVE
+    <span>ADMIN</span>
   </div>
 
-  <div class="header-right">
-    <span>ADMIN</span>
-    <a href="love.html" class="back">← BACK TO PINTO LOVE</a>
-  </div>
+  <a href="love.html" class="back">
+    ← BACK TO PINTO LOVE
+  </a>
 
 </header>
 
 
-<main>
+<main class="container">
 
   <div class="page-title">
-    <div class="eyebrow">PINTO LOVE · ORDER MANAGEMENT</div>
+
+    <small>PINTO LOVE · ORDER MANAGEMENT</small>
 
     <h1>Orders</h1>
 
-    <div class="subtitle">
-      จัดการคำสั่งซื้อ ตรวจสอบมัดจำ และติดตามสถานะงาน
-    </div>
+    <p>
+      จัดการออเดอร์ ตรวจสอบมัดจำ และติดตามสถานะการจัดทำ
+    </p>
+
   </div>
 
 
   <div id="message" class="message"></div>
 
 
+  <!-- DASHBOARD -->
+
   <section class="dashboard">
 
     <div class="stat">
       <div class="stat-label">ALL ORDERS</div>
-      <div class="stat-value" id="totalOrders">—</div>
+      <div class="stat-number" id="statAll">0</div>
+      <div class="stat-sub">ออเดอร์ทั้งหมด</div>
     </div>
 
     <div class="stat">
       <div class="stat-label">WAITING DEPOSIT</div>
-      <div class="stat-value" id="waitingDeposit">—</div>
+      <div class="stat-number" id="statWaiting">0</div>
+      <div class="stat-sub">รอตรวจสอบมัดจำ</div>
     </div>
 
     <div class="stat">
       <div class="stat-label">PAID DEPOSIT</div>
-      <div class="stat-value" id="paidDeposit">—</div>
+      <div class="stat-number" id="statPaid">0</div>
+      <div class="stat-sub">ชำระมัดจำแล้ว</div>
     </div>
 
     <div class="stat">
       <div class="stat-label">IN PROGRESS</div>
-      <div class="stat-value" id="inProgress">—</div>
+      <div class="stat-number" id="statProgress">0</div>
+      <div class="stat-sub">กำลังจัดทำ</div>
     </div>
 
   </section>
 
+
+  <!-- SEARCH / FILTER -->
 
   <section class="toolbar">
 
@@ -424,39 +642,65 @@ footer{
       <input
         type="text"
         id="searchInput"
-        placeholder="ค้นหาเลขออเดอร์ / ชื่อลูกค้า / Template..."
-        oninput="renderOrders()"
+        placeholder="ค้นหา Order ID, ชื่อลูกค้า, เบอร์ติดต่อ..."
       >
     </div>
 
-    <div style="width:220px;">
-      <select id="statusFilter" onchange="renderOrders()">
-        <option value="">ทุกสถานะ</option>
-        <option value="รอชำระเงิน">รอชำระเงิน</option>
-        <option value="รอตรวจสอบมัดจำ">รอตรวจสอบมัดจำ</option>
-        <option value="ชำระเงินแล้ว">ชำระเงินแล้ว</option>
-        <option value="กำลังจัดทำ">กำลังจัดทำ</option>
-        <option value="ส่งให้ลูกค้าตรวจสอบ">ส่งให้ลูกค้าตรวจสอบ</option>
-        <option value="แก้ไข">แก้ไข</option>
-        <option value="เสร็จสิ้น">เสร็จสิ้น</option>
-      </select>
-    </div>
+    <div class="filter">
 
-    <button onclick="loadOrders()">REFRESH</button>
+      <select id="statusFilter">
+
+        <option value="">ทุกสถานะ</option>
+
+        <option value="รอชำระเงิน">
+          รอชำระเงิน
+        </option>
+
+        <option value="รอตรวจสอบมัดจำ">
+          รอตรวจสอบมัดจำ
+        </option>
+
+        <option value="ชำระเงินแล้ว">
+          ชำระเงินแล้ว
+        </option>
+
+        <option value="กำลังจัดทำ">
+          กำลังจัดทำ
+        </option>
+
+        <option value="ส่งให้ลูกค้าตรวจสอบ">
+          ส่งให้ลูกค้าตรวจสอบ
+        </option>
+
+        <option value="แก้ไข">
+          แก้ไข
+        </option>
+
+        <option value="เสร็จสิ้น">
+          เสร็จสิ้น
+        </option>
+
+      </select>
+
+    </div>
 
   </section>
 
 
+  <!-- TABLE -->
+
   <section class="table-wrap">
 
     <div id="loading" class="loading">
-      กำลังโหลดคำสั่งซื้อ...
+      กำลังโหลดออเดอร์...
     </div>
 
     <table id="ordersTable" style="display:none;">
 
       <thead>
+
         <tr>
+
           <th>ORDER</th>
           <th>DATE</th>
           <th>CUSTOMER</th>
@@ -467,15 +711,26 @@ footer{
           <th>PAYMENT</th>
           <th>STATUS</th>
           <th></th>
+
         </tr>
+
       </thead>
 
       <tbody id="ordersBody"></tbody>
 
     </table>
 
-    <div id="empty" class="empty" style="display:none;">
-      ยังไม่มีคำสั่งซื้อ
+
+    <div id="emptyState" class="empty" style="display:none;">
+
+      <div class="empty-title">
+        No Orders Yet
+      </div>
+
+      <div>
+        ยังไม่มีออเดอร์ในระบบ
+      </div>
+
     </div>
 
   </section>
@@ -483,88 +738,414 @@ footer{
 </main>
 
 
-<footer>
+<!-- ORDER DETAIL MODAL -->
 
-  <div>© 2026 PINTO LOVE</div>
+<div class="modal" id="orderModal">
 
-  <div>ORDER MANAGEMENT SYSTEM</div>
+  <div class="modal-box">
 
-</footer>
+    <div class="modal-head">
+
+      <div>
+
+        <div class="modal-category">
+          PINTO LOVE · ORDER DETAIL
+        </div>
+
+        <div class="modal-title" id="modalOrderNumber">
+          Order
+        </div>
+
+      </div>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div class="detail-grid">
+
+        <div class="detail">
+
+          <div class="detail-label">
+            CUSTOMER
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailCustomer"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            CONTACT
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailContact"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            TEMPLATE
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailTemplate"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            CREATED
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailDate"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            TOTAL PRICE
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailTotal"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            DEPOSIT
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailDeposit"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            REMAINING
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailRemaining"
+          ></div>
+
+        </div>
+
+
+        <div class="detail">
+
+          <div class="detail-label">
+            PAYMENT STATUS
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailPaymentStatus"
+          ></div>
+
+        </div>
+
+
+        <div class="detail full">
+
+          <div class="detail-label">
+            COLORS
+          </div>
+
+          <div
+            class="colors"
+            id="detailColors"
+          ></div>
+
+        </div>
+
+
+        <div class="detail full">
+
+          <div class="detail-label">
+            MESSAGE
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailMessage"
+          ></div>
+
+        </div>
+
+
+        <div class="detail full">
+
+          <div class="detail-label">
+            EXTRA FUNCTIONS
+          </div>
+
+          <div
+            class="detail-value"
+            id="detailExtra"
+          ></div>
+
+        </div>
+
+
+        <div class="detail full">
+
+          <div class="detail-label">
+            PAYMENT SLIP
+          </div>
+
+          <div id="detailSlip"></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="update-area">
+
+        <label>
+          UPDATE ORDER STATUS
+        </label>
+
+        <div class="update-row">
+
+          <select id="newStatus">
+
+            <option value="รอชำระเงิน">
+              รอชำระเงิน
+            </option>
+
+            <option value="รอตรวจสอบมัดจำ">
+              รอตรวจสอบมัดจำ
+            </option>
+
+            <option value="ชำระเงินแล้ว">
+              ชำระเงินแล้ว
+            </option>
+
+            <option value="กำลังจัดทำ">
+              กำลังจัดทำ
+            </option>
+
+            <option value="ส่งให้ลูกค้าตรวจสอบ">
+              ส่งให้ลูกค้าตรวจสอบ
+            </option>
+
+            <option value="แก้ไข">
+              แก้ไข
+            </option>
+
+            <option value="เสร็จสิ้น">
+              เสร็จสิ้น
+            </option>
+
+          </select>
+
+
+          <button
+            class="save-btn"
+            onclick="updateOrderStatus()"
+          >
+            SAVE STATUS
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 
 <script>
+
 /* =========================================================
-   SUPABASE
+   SUPABASE CONFIG
 ========================================================= */
+
+/*
+  ใส่ Publishable Key ของ Supabase ตรงนี้
+
+  ตัวอย่าง:
+  sb_publishable_xxxxxxxxxxxxxxxxx
+
+  ห้ามใส่ Secret key / Service Role key
+*/
 
 const SUPABASE_URL =
   "https://keybykrpnpgsnyxtpfqj.supabase.co";
 
+
 const SUPABASE_ANON_KEY =
-  "ใส่ PUBLISHABLE KEY ของ Supabase ตรงนี้";
+  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
 
 
-let orders = [];
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+let allOrders = [];
+let currentOrder = null;
+
+
+/* =========================================================
+   SUPABASE REQUEST
+========================================================= */
+
+async function supabaseRequest(url, options = {}) {
+
+  const headers = {
+
+    "apikey": SUPABASE_ANON_KEY,
+
+    "Authorization":
+      "Bearer " + SUPABASE_ANON_KEY,
+
+    "Content-Type":
+      "application/json",
+
+    ...(options.headers || {})
+
+  };
+
+  const response =
+    await fetch(
+      SUPABASE_URL + url,
+      {
+        ...options,
+        headers
+      }
+    );
+
+  if (!response.ok) {
+
+    let errorText = "";
+
+    try {
+
+      errorText =
+        await response.text();
+
+    } catch(e) {
+
+      errorText =
+        response.statusText;
+
+    }
+
+    throw new Error(
+      `${response.status} ${response.statusText}\n${errorText}`
+    );
+
+  }
+
+  if (response.status === 204) {
+    return null;
+  }
+
+  return response.json();
+
+}
 
 
 /* =========================================================
    LOAD ORDERS
 ========================================================= */
 
-async function loadOrders(){
+async function loadOrders() {
 
-  const loading = document.getElementById("loading");
-  const table = document.getElementById("ordersTable");
-  const empty = document.getElementById("empty");
+  const loading =
+    document.getElementById("loading");
 
-  loading.style.display = "block";
-  table.style.display = "none";
-  empty.style.display = "none";
+  const table =
+    document.getElementById("ordersTable");
 
-  try{
+  const empty =
+    document.getElementById("emptyState");
 
-    const response = await fetch(
-      `${SUPABASE_URL}/rest/v1/orders?select=*&order=created_at.desc`,
-      {
-        method:"GET",
+  try {
 
-        headers:{
-          "apikey":SUPABASE_ANON_KEY,
-          "Authorization":`Bearer ${SUPABASE_ANON_KEY}`
-        }
-      }
-    );
+    hideMessage();
 
-    if(!response.ok){
+    loading.style.display = "block";
+    table.style.display = "none";
+    empty.style.display = "none";
 
-      const errorText = await response.text();
 
-      throw new Error(
-        `Supabase Error ${response.status}: ${errorText}`
+    allOrders =
+      await supabaseRequest(
+        "/rest/v1/orders?select=*&order=created_at.desc"
       );
-    }
 
-    orders = await response.json();
-
-    updateDashboard();
-    renderOrders();
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "ไม่สามารถโหลดคำสั่งซื้อได้<br><small>" +
-      error.message +
-      "</small>",
-      "error"
-    );
-
-  }finally{
 
     loading.style.display = "none";
 
+
+    updateDashboard();
+
+    renderOrders();
+
+
+  } catch(error) {
+
+    loading.style.display = "none";
+
+    showMessage(
+      "error",
+      "โหลดออเดอร์ไม่สำเร็จ\n\n" +
+      error.message
+    );
+
+    console.error(
+      "Supabase Error:",
+      error
+    );
+
   }
+
 }
 
 
@@ -572,50 +1153,72 @@ async function loadOrders(){
    DASHBOARD
 ========================================================= */
 
-function updateDashboard(){
+function updateDashboard() {
 
-  document.getElementById("totalOrders").textContent =
-    orders.length;
-
-
-  const waiting =
-    orders.filter(order =>
-      order.payment_status === "รอตรวจสอบมัดจำ" ||
-      order.status === "รอชำระเงิน"
-    ).length;
-
-  document.getElementById("waitingDeposit").textContent =
-    waiting;
+  document.getElementById("statAll").textContent =
+    allOrders.length;
 
 
-  const paid =
-    orders.filter(order =>
-      order.payment_status === "ชำระเงินแล้ว"
-    ).length;
-
-  document.getElementById("paidDeposit").textContent =
-    paid;
+  let waiting = 0;
+  let paid = 0;
+  let progress = 0;
 
 
-  const working =
-    orders.filter(order =>
-      [
-        "กำลังจัดทำ",
-        "ส่งให้ลูกค้าตรวจสอบ",
-        "แก้ไข"
-      ].includes(order.status)
-    ).length;
+  allOrders.forEach(order => {
 
-  document.getElementById("inProgress").textContent =
-    working;
+    if (
+      order.payment_status ===
+      "รอตรวจสอบมัดจำ"
+    ) {
+
+      waiting++;
+
+    }
+
+
+    if (
+      order.payment_status ===
+      "ชำระเงินแล้ว"
+    ) {
+
+      paid++;
+
+    }
+
+
+    if (
+      order.status ===
+      "กำลังจัดทำ" ||
+      order.status ===
+      "ส่งให้ลูกค้าตรวจสอบ" ||
+      order.status ===
+      "แก้ไข"
+    ) {
+
+      progress++;
+
+    }
+
+  });
+
+
+  document.getElementById("statWaiting")
+    .textContent = waiting;
+
+  document.getElementById("statPaid")
+    .textContent = paid;
+
+  document.getElementById("statProgress")
+    .textContent = progress;
+
 }
 
 
 /* =========================================================
-   RENDER
+   RENDER ORDERS
 ========================================================= */
 
-function renderOrders(){
+function renderOrders() {
 
   const tbody =
     document.getElementById("ordersBody");
@@ -624,7 +1227,7 @@ function renderOrders(){
     document.getElementById("ordersTable");
 
   const empty =
-    document.getElementById("empty");
+    document.getElementById("emptyState");
 
   const search =
     document.getElementById("searchInput")
@@ -633,37 +1236,54 @@ function renderOrders(){
       .trim();
 
   const status =
-    document.getElementById("statusFilter").value;
+    document.getElementById("statusFilter")
+      .value;
 
 
-  let filtered = orders.filter(order => {
+  let filtered =
+    allOrders.filter(order => {
 
-    const searchable = `
-      ${order.order_number || ""}
-      ${order.customer_name || ""}
-      ${order.template || ""}
-      ${order.contact || ""}
-    `.toLowerCase();
+      const text = (
 
-    const matchSearch =
-      !search || searchable.includes(search);
+        (order.order_number || "") +
+        " " +
+        (order.customer_name || "") +
+        " " +
+        (order.contact || "") +
+        " " +
+        (order.template || "")
 
-    const matchStatus =
-      !status || order.status === status;
+      ).toLowerCase();
 
-    return matchSearch && matchStatus;
-  });
+
+      const matchSearch =
+        !search ||
+        text.includes(search);
+
+
+      const matchStatus =
+        !status ||
+        order.status === status;
+
+
+      return (
+        matchSearch &&
+        matchStatus
+      );
+
+    });
 
 
   tbody.innerHTML = "";
 
 
-  if(filtered.length === 0){
+  if (filtered.length === 0) {
 
     table.style.display = "none";
     empty.style.display = "block";
 
     return;
+
   }
 
 
@@ -673,138 +1293,183 @@ function renderOrders(){
 
   filtered.forEach(order => {
 
-    const tr = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
 
 
     tr.innerHTML = `
 
       <td>
-        <div class="order-no">
+
+        <div class="order-number">
           ${escapeHTML(order.order_number || "-")}
         </div>
+
       </td>
 
+
       <td>
+
         ${formatDate(order.created_at)}
+
       </td>
 
+
       <td>
-        <strong>
+
+        <div class="customer">
           ${escapeHTML(order.customer_name || "-")}
-        </strong>
-        <br>
-        <small style="color:#81766E;">
-          ${escapeHTML(order.contact || "")}
-        </small>
+        </div>
+
       </td>
+
 
       <td>
-        ${escapeHTML(order.template || "-")}
+
+        <div class="template">
+          ${escapeHTML(order.template || "-")}
+        </div>
+
       </td>
 
-      <td class="price">
-        ${money(order.total_price)}
-      </td>
-
-      <td class="price">
-        ${money(order.deposit_amount)}
-      </td>
-
-      <td class="price">
-        ${money(order.remaining_amount)}
-      </td>
 
       <td>
-        ${paymentStatus(order.payment_status)}
+
+        <div class="amount">
+          ${money(order.total_price)}
+        </div>
+
       </td>
 
-      <td>
-        ${orderStatus(order.status)}
-      </td>
 
       <td>
+
+        <div class="amount">
+          ${money(order.deposit_amount)}
+        </div>
+
+      </td>
+
+
+      <td>
+
+        <div class="amount">
+          ${money(order.remaining_amount)}
+        </div>
+
+      </td>
+
+
+      <td>
+
+        ${paymentStatusHTML(
+          order.payment_status
+        )}
+
+      </td>
+
+
+      <td>
+
+        ${statusHTML(
+          order.status
+        )}
+
+      </td>
+
+
+      <td>
+
         <button
-          class="action-btn"
-          onclick="viewOrder(${order.id})"
+          class="view-btn"
+          onclick="viewOrder('${order.id}')"
         >
           VIEW
         </button>
+
       </td>
 
     `;
 
+
     tbody.appendChild(tr);
+
   });
+
 }
 
 
 /* =========================================================
-   ORDER STATUS
+   STATUS HTML
 ========================================================= */
 
-function orderStatus(status){
+function statusHTML(status) {
 
   let cls = "wait";
 
-  if(status === "ชำระเงินแล้ว"){
+
+  if (status === "รอตรวจสอบมัดจำ") {
+    cls = "check";
+  }
+
+  else if (status === "ชำระเงินแล้ว") {
     cls = "paid";
   }
 
-  if(status === "กำลังจัดทำ"){
+  else if (status === "กำลังจัดทำ") {
     cls = "work";
   }
 
-  if(status === "ส่งให้ลูกค้าตรวจสอบ"){
+  else if (
+    status === "ส่งให้ลูกค้าตรวจสอบ"
+  ) {
+
     cls = "work";
+
   }
 
-  if(status === "แก้ไข"){
+  else if (status === "แก้ไข") {
     cls = "edit";
   }
 
-  if(status === "เสร็จสิ้น"){
+  else if (status === "เสร็จสิ้น") {
     cls = "done";
   }
+
 
   return `
     <span class="status ${cls}">
       ${escapeHTML(status || "-")}
     </span>
   `;
+
 }
 
 
-/* =========================================================
-   PAYMENT STATUS
-========================================================= */
+function paymentStatusHTML(status) {
 
-function paymentStatus(status){
+  let cls = "wait";
 
-  if(status === "ชำระเงินแล้ว"){
 
-    return `
-      <span class="status paid">
-        ชำระเงินแล้ว
-      </span>
-    `;
+  if (status === "ชำระเงินแล้ว") {
+    cls = "paid";
   }
 
+  else if (
+    status === "รอตรวจสอบมัดจำ"
+  ) {
 
-  if(status === "รอตรวจสอบมัดจำ"){
+    cls = "check";
 
-    return `
-      <span class="status deposit">
-        รอตรวจสอบมัดจำ
-      </span>
-    `;
   }
 
 
   return `
-    <span class="status wait">
+    <span class="status ${cls}">
       ${escapeHTML(status || "-")}
     </span>
   `;
+
 }
 
 
@@ -812,95 +1477,401 @@ function paymentStatus(status){
    VIEW ORDER
 ========================================================= */
 
-function viewOrder(id){
+function viewOrder(id) {
 
-  const order =
-    orders.find(item => item.id == id);
+  currentOrder =
+    allOrders.find(
+      order => String(order.id) === String(id)
+    );
 
-  if(!order) return;
+
+  if (!currentOrder) {
+    return;
+  }
 
 
-  alert(
-`
-ORDER: ${order.order_number}
+  document.getElementById(
+    "modalOrderNumber"
+  ).textContent =
+    currentOrder.order_number || "-";
 
-ลูกค้า: ${order.customer_name}
 
-ติดต่อ: ${order.contact}
+  document.getElementById(
+    "detailCustomer"
+  ).textContent =
+    currentOrder.customer_name || "-";
 
-Template: ${order.template}
 
-ข้อความ:
-${order.message || "-"}
+  document.getElementById(
+    "detailContact"
+  ).textContent =
+    currentOrder.contact || "-";
 
-Primary Color:
-${order.primary_color || "-"}
 
-Secondary Color:
-${order.secondary_color || "-"}
+  document.getElementById(
+    "detailTemplate"
+  ).textContent =
+    currentOrder.template || "-";
 
-Background Color:
-${order.background_color || "-"}
 
-Extra Functions:
-${order.extra_functions || "-"}
+  document.getElementById(
+    "detailDate"
+  ).textContent =
+    formatDate(currentOrder.created_at);
 
-ยอดรวม:
-${money(order.total_price)}
 
-มัดจำ:
-${money(order.deposit_amount)}
+  document.getElementById(
+    "detailTotal"
+  ).textContent =
+    money(currentOrder.total_price);
 
-คงเหลือ:
-${money(order.remaining_amount)}
 
-Payment:
-${order.payment_status || "-"}
+  document.getElementById(
+    "detailDeposit"
+  ).textContent =
+    money(currentOrder.deposit_amount);
 
-Status:
-${order.status || "-"}
-`
-  );
+
+  document.getElementById(
+    "detailRemaining"
+  ).textContent =
+    money(currentOrder.remaining_amount);
+
+
+  document.getElementById(
+    "detailPaymentStatus"
+  ).innerHTML =
+    paymentStatusHTML(
+      currentOrder.payment_status
+    );
+
+
+  document.getElementById(
+    "detailMessage"
+  ).textContent =
+    currentOrder.message || "-";
+
+
+  document.getElementById(
+    "detailExtra"
+  ).textContent =
+    currentOrder.extra_functions || "-";
+
+
+  renderColors(currentOrder);
+
+
+  renderPaymentSlip(currentOrder);
+
+
+  document.getElementById(
+    "newStatus"
+  ).value =
+    currentOrder.status ||
+    "รอชำระเงิน";
+
+
+  document.getElementById(
+    "orderModal"
+  ).classList.add("active");
+
 }
 
 
 /* =========================================================
-   HELPERS
+   COLORS
 ========================================================= */
 
-function money(value){
+function renderColors(order) {
+
+  const container =
+    document.getElementById("detailColors");
+
+
+  container.innerHTML = "";
+
+
+  const colors = [
+
+    {
+      name:"Primary",
+      value:order.primary_color
+    },
+
+    {
+      name:"Secondary",
+      value:order.secondary_color
+    },
+
+    {
+      name:"Background",
+      value:order.background_color
+    }
+
+  ];
+
+
+  colors.forEach(color => {
+
+    if (!color.value) {
+      return;
+    }
+
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "color-item";
+
+
+    item.innerHTML = `
+
+      <div
+        class="color-box"
+        style="background:${safeColor(color.value)}"
+      ></div>
+
+      <span>
+        ${escapeHTML(color.name)}
+        ·
+        ${escapeHTML(color.value)}
+      </span>
+
+    `;
+
+
+    container.appendChild(item);
+
+  });
+
+
+  if (!container.innerHTML) {
+
+    container.textContent =
+      "ไม่ได้ระบุสี";
+
+  }
+
+}
+
+
+/* =========================================================
+   PAYMENT SLIP
+========================================================= */
+
+function renderPaymentSlip(order) {
+
+  const container =
+    document.getElementById("detailSlip");
+
+
+  container.innerHTML = "";
+
+
+  if (!order.payment_slip) {
+
+    container.textContent =
+      "ยังไม่มีสลิป";
+
+    return;
+
+  }
+
+
+  /*
+    payment_slip สามารถเป็น URL ได้
+    หรือเป็น path ใน Supabase Storage
+  */
+
+  let url =
+    order.payment_slip;
+
+
+  if (
+    !url.startsWith("http://") &&
+    !url.startsWith("https://")
+  ) {
+
+    url =
+      SUPABASE_URL +
+      "/storage/v1/object/public/payment-slips/" +
+      encodeURIComponent(url);
+
+  }
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+  link.target = "_blank";
+  link.rel = "noopener";
+  link.className = "payment-slip";
+  link.textContent = "OPEN PAYMENT SLIP";
+
+
+  container.appendChild(link);
+
+}
+
+
+/* =========================================================
+   UPDATE ORDER STATUS
+========================================================= */
+
+async function updateOrderStatus() {
+
+  if (!currentOrder) {
+    return;
+  }
+
+
+  const newStatus =
+    document.getElementById(
+      "newStatus"
+    ).value;
+
+
+  try {
+
+    await supabaseRequest(
+      `/rest/v1/orders?id=eq.${encodeURIComponent(currentOrder.id)}`,
+      {
+        method:"PATCH",
+
+        headers:{
+          "Prefer":"return=representation"
+        },
+
+        body:JSON.stringify({
+          status:newStatus
+        })
+
+      }
+    );
+
+
+    currentOrder.status =
+      newStatus;
+
+
+    const index =
+      allOrders.findIndex(
+        order =>
+          String(order.id) ===
+          String(currentOrder.id)
+      );
+
+
+    if (index !== -1) {
+
+      allOrders[index].status =
+        newStatus;
+
+    }
+
+
+    updateDashboard();
+    renderOrders();
+
+
+    closeModal();
+
+
+    showMessage(
+      "success",
+      "อัปเดตสถานะออเดอร์เรียบร้อยแล้ว"
+    );
+
+
+  } catch(error) {
+
+    showMessage(
+      "error",
+      "อัปเดตสถานะไม่สำเร็จ\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+  document.getElementById(
+    "orderModal"
+  ).classList.remove("active");
+
+  currentOrder = null;
+
+}
+
+
+/* =========================================================
+   FORMAT MONEY
+========================================================= */
+
+function money(value) {
 
   const number =
     Number(value || 0);
 
-  return number.toLocaleString(
-    "th-TH",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  ) + " THB";
+
+  return (
+    number.toLocaleString(
+      "th-TH",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    ) +
+    " THB"
+  );
+
 }
 
 
-function formatDate(date){
+/* =========================================================
+   FORMAT DATE
+========================================================= */
 
-  if(!date) return "-";
+function formatDate(value) {
 
-  const d = new Date(date);
+  if (!value) {
+    return "-";
+  }
 
-  return d.toLocaleDateString(
+
+  const date =
+    new Date(value);
+
+
+  return date.toLocaleString(
     "th-TH",
     {
-      day:"2-digit",
-      month:"2-digit",
-      year:"numeric"
+      year:"numeric",
+      month:"short",
+      day:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
     }
   );
+
 }
 
 
-function escapeHTML(value){
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
 
   return String(value ?? "")
     .replace(/&/g,"&amp;")
@@ -908,20 +1879,119 @@ function escapeHTML(value){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
 }
 
 
-function showMessage(text,type){
+/* =========================================================
+   SAFE COLOR
+========================================================= */
 
-  const box =
+function safeColor(value) {
+
+  const color =
+    String(value || "").trim();
+
+
+  if (
+    /^#[0-9A-Fa-f]{6}$/.test(color)
+  ) {
+
+    return color;
+
+  }
+
+
+  return "#cccccc";
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(type, text) {
+
+  const message =
     document.getElementById("message");
 
-  box.className =
+
+  message.className =
     "message " + type;
 
-  box.innerHTML =
+
+  message.style.whiteSpace =
+    "pre-wrap";
+
+
+  message.textContent =
     text;
+
+
+  message.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
+
+function hideMessage() {
+
+  const message =
+    document.getElementById("message");
+
+
+  message.className =
+    "message";
+
+
+  message.textContent = "";
+
+}
+
+
+/* =========================================================
+   SEARCH / FILTER
+========================================================= */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "input",
+    renderOrders
+  );
+
+
+document
+  .getElementById("statusFilter")
+  .addEventListener(
+    "change",
+    renderOrders
+  );
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICK OUTSIDE
+========================================================= */
+
+document
+  .getElementById("orderModal")
+  .addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target === this
+      ) {
+
+        closeModal();
+
+      }
+
+    }
+  );
 
 
 /* =========================================================
