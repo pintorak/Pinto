@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PINTO LOVE | Anniversary Template 03</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --taupe:#8C7E74;
+  --warm:#C8BCB1;
+  --beige:#E6DED8;
+  --cream:#F4EFEA;
+  --dark:#403934;
+  --muted:#81766E;
+  --white:#FBF8F5;
+  --line:rgba(64,57,52,.13);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--white);
+  color:var(--dark);
+  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
+  line-height:1.8;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  width:100%;
+  padding:26px 6vw;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(251,248,245,.96);
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:29px;
+  letter-spacing:3px;
+  font-weight:500;
+}
+
+.back-link{
+  font-size:12px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+  transition:.3s;
+}
+
+.back-link:hover{
+  color:var(--dark);
+}
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+  max-width:1280px;
+  margin:0 auto;
+  padding:35px 6vw 0;
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.breadcrumb span{
+  margin:0 8px;
+  color:var(--warm);
+}
+
+/* =========================
+   PRODUCT
+========================= */
+
+.product{
+  max-width:1280px;
+  margin:0 auto;
+  padding:55px 6vw 110px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+  gap:80px;
+
+  align-items:start;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+  position:sticky;
+  top:110px;
+}
+
+.main-preview{
+  width:100%;
+  aspect-ratio:4 / 5;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eee6df 0%,
+      #f8f4f0 50%,
+      #e5dcd5 100%
+    );
+
+  border-radius:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+  position:relative;
+}
+
+.placeholder{
+  text-align:center;
+  color:var(--muted);
+  padding:30px;
+}
+
+.placeholder-number{
+  font-family:"Cormorant Garamond",serif;
+  font-size:110px;
+  line-height:1;
+  font-weight:400;
+  opacity:.7;
+}
+
+.placeholder-title{
+  margin-top:10px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  letter-spacing:2px;
+}
+
+.placeholder-subtitle{
+  margin-top:8px;
+  font-size:12px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.gallery-note{
+  text-align:center;
+  margin-top:14px;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--muted);
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info{
+  padding-top:8px;
+}
+
+.eyebrow{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--taupe);
+  margin-bottom:18px;
+}
+
+.product-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:56px;
+  line-height:1.2;
+  font-weight:500;
+  margin-bottom:18px;
+}
+
+.product-subtitle{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  line-height:1.5;
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+.price{
+  font-family:"Cormorant Garamond",serif;
+  font-size:31px;
+  margin-bottom:30px;
+}
+
+.description{
+  font-size:14px;
+  color:var(--muted);
+  line-height:2;
+  margin-bottom:38px;
+}
+
+/* =========================
+   INFO BLOCK
+========================= */
+
+.info-block{
+  padding:27px 0;
+  border-top:1px solid var(--line);
+}
+
+.info-block:last-of-type{
+  border-bottom:1px solid var(--line);
+}
+
+.info-title{
+  font-size:11px;
+  letter-spacing:1.8px;
+  color:var(--taupe);
+  margin-bottom:16px;
+}
+
+.info-list{
+  list-style:none;
+}
+
+.info-list li{
+  font-size:13px;
+  color:var(--dark);
+  margin-bottom:8px;
+  position:relative;
+  padding-left:18px;
+}
+
+.info-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:11px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--warm);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:50px;
+  padding:0 27px;
+
+  border:1px solid var(--dark);
+
+  font-size:10px;
+  letter-spacing:1.8px;
+
+  transition:.3s;
+}
+
+.btn-primary{
+  background:var(--dark);
+  color:var(--white);
+}
+
+.btn-primary:hover{
+  background:var(--taupe);
+  border-color:var(--taupe);
+}
+
+.btn-secondary{
+  background:transparent;
+}
+
+.btn-secondary:hover{
+  background:var(--cream);
+}
+
+/* =========================
+   STORY SECTION
+========================= */
+
+.story{
+  background:var(--cream);
+  padding:100px 6vw;
+}
+
+.story-inner{
+  max-width:1280px;
+  margin:auto;
+}
+
+.section-eyebrow{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--taupe);
+  margin-bottom:15px;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:50px;
+  line-height:1.2;
+  font-weight:500;
+  margin-bottom:45px;
+}
+
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.story-card{
+  background:var(--white);
+  padding:35px;
+  min-height:220px;
+  border:1px solid var(--line);
+}
+
+.story-card-number{
+  font-family:"Cormorant Garamond",serif;
+  font-size:38px;
+  color:var(--warm);
+  margin-bottom:25px;
+}
+
+.story-card-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:24px;
+  margin-bottom:12px;
+}
+
+.story-card-text{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.9;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:50px 6vw;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+
+.footer-logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  letter-spacing:3px;
+}
+
+.footer-text{
+  margin-top:8px;
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  .product{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .gallery{
+    position:relative;
+    top:auto;
+  }
+
+  .story-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:21px 5vw;
+  }
+
+  .logo{
+    font-size:25px;
+  }
+
+  .back-link{
+    font-size:10px;
+  }
+
+  .breadcrumb{
+    padding:28px 5vw 0;
+    font-size:10px;
+  }
+
+  .product{
+    padding:40px 5vw 80px;
+    gap:40px;
+  }
+
+  .main-preview{
+    border-radius:24px;
+  }
+
+  .placeholder-number{
+    font-size:85px;
+  }
+
+  .placeholder-title{
+    font-size:25px;
+  }
+
+  .product-title{
+    font-size:42px;
+    line-height:1.25;
+    margin-bottom:16px;
+  }
+
+  .product-subtitle{
+    font-size:20px;
+    line-height:1.5;
+    margin-bottom:28px;
+  }
+
+  .price{
+    font-size:28px;
+  }
+
+  .description{
+    font-size:13px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .story{
+    padding:75px 5vw;
+  }
+
+  .section-title{
+    font-size:40px;
+  }
+
+  .story-card{
+    padding:28px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <a href="love.html" class="logo">
+    PINTO LOVE
+  </a>
+
+  <a href="anniversary.html" class="back-link">
+    ← BACK TO TEMPLATES
+  </a>
+
+</header>
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+
+  <a href="love.html">PINTO LOVE</a>
+
+  <span>/</span>
+
+  <a href="anniversary.html">ANNIVERSARY</a>
+
+  <span>/</span>
+
+  TEMPLATE 03
+
+</div>
+
+
+<!-- =========================
+     PRODUCT
+========================= -->
+
+<main class="product">
+
+
+  <!-- =========================
+       GALLERY
+  ========================= -->
+
+  <div class="gallery">
+
+    <div class="main-preview">
+
+      <div class="placeholder">
+
+        <div class="placeholder-number">
+          03
+        </div>
+
+        <div class="placeholder-title">
+          Anniversary
+        </div>
+
+        <div class="placeholder-subtitle">
+          TEMPLATE 03
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="gallery-note">
+      Preview images will be added soon.
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PRODUCT INFO
+  ========================= -->
+
+  <div class="product-info">
+
+    <div class="eyebrow">
+      ANNIVERSARY · TEMPLATE 03
+    </div>
+
+    <h1 class="product-title">
+      วันครบรอบ
+    </h1>
+
+    <div class="product-subtitle">
+      แบบที่สาม · Anniversary Template
+    </div>
+
+    <div class="price">
+      129 THB
+    </div>
+
+
+    <p class="description">
+      เว็บไซต์วันครบรอบสำหรับเก็บช่วงเวลาพิเศษ
+      เรื่องราว และความทรงจำของคุณสองคน
+      ในรูปแบบเรียบง่ายและอบอุ่น
+      พร้อมฟังก์ชันที่ออกแบบมาให้ใช้งานได้จริง
+    </p>
+
+
+    <!-- =========================
+         INCLUDED FUNCTIONS
+    ========================= -->
+
+    <div class="info-block">
+
+      <div class="info-title">
+        INCLUDED FUNCTIONS
+      </div>
+
+      <ul class="info-list">
+
+        <li>
+          Runaway Button
+        </li>
+
+        <li>
+          Anniversary Countdown
+        </li>
+
+        <li>
+          Our Story
+        </li>
+
+        <li>
+          Memories
+        </li>
+
+        <li>
+          Love Letter
+        </li>
+
+        <li>
+          Music
+        </li>
+
+        <li>
+          Other template features
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- =========================
+         CUSTOMIZE
+    ========================= -->
+
+    <div class="info-block">
+
+      <div class="info-title">
+        CUSTOMIZE
+      </div>
+
+      <ul class="info-list">
+
+        <li>
+          สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ
+        </li>
+
+        <li>
+          สามารถเลือกปรับโทนสีให้เข้ากับเรื่องราวของคุณได้
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- =========================
+         EXTRA FUNCTION
+    ========================= -->
+
+    <div class="info-block">
+
+      <div class="info-title">
+        EXTRA FUNCTION
+      </div>
+
+      <ul class="info-list">
+
+        <li>
+          เพิ่มฟังก์ชันพิเศษ +29 THB / function
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- =========================
+         DELIVERY
+    ========================= -->
+
+    <div class="info-block">
+
+      <div class="info-title">
+        DELIVERY
+      </div>
+
+      <ul class="info-list">
+
+        <li>
+          ระยะเวลาจัดทำประมาณ 1–2 วัน
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- =========================
+         ACTIONS
+    ========================= -->
+
+    <div class="actions">
+
+      <a
+        href="#"
+        class="btn btn-secondary"
+      >
+        VIEW LIVE DEMO
+      </a>
+
+      <a
+        href="#order"
+        class="btn btn-primary"
+      >
+        ORDER THIS TEMPLATE
+      </a>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section class="story">
+
+  <div class="story-inner">
+
+    <div class="section-eyebrow">
+      PINTO LOVE
+    </div>
+
+    <h2 class="section-title">
+      Made for Your Story
+    </h2>
+
+
+    <div class="story-grid">
+
+      <div class="story-card">
+
+        <div class="story-card-number">
+          01
+        </div>
+
+        <div class="story-card-title">
+          Your Words
+        </div>
+
+        <div class="story-card-text">
+          ใส่ข้อความของคุณเองในแต่ละหน้า
+          เพื่อให้เว็บไซต์เป็นเรื่องราวของคุณสองคนจริง ๆ
+        </div>
+
+      </div>
+
+
+      <div class="story-card">
+
+        <div class="story-card-number">
+          02
+        </div>
+
+        <div class="story-card-title">
+          Your Memories
+        </div>
+
+        <div class="story-card-text">
+          เก็บภาพและช่วงเวลาที่อยากจดจำ
+          ไว้ในหน้าเว็บไซต์เดียว
+        </div>
+
+      </div>
+
+
+      <div class="story-card">
+
+        <div class="story-card-number">
+          03
+        </div>
+
+        <div class="story-card-title">
+          Your Moment
+        </div>
+
+        <div class="story-card-text">
+          เปลี่ยนเทมเพลตให้กลายเป็นพื้นที่เล็ก ๆ
+          สำหรับเรื่องราวที่มีความหมายกับคุณ
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-logo">
+    PINTO LOVE
+  </div>
+
+  <div class="footer-text">
+    DIGITAL MEMORIES · MADE WITH LOVE
+  </div>
+
+</footer>
+
+</body>
+</html>
