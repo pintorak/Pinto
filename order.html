@@ -36,12 +36,12 @@ html{
 
 body{
   margin:0;
-  background:
-    radial-gradient(circle at top left, rgba(200,188,177,.18), transparent 35%),
-    linear-gradient(180deg,#F8F4F0 0%,#EEE6DF 100%);
+  min-height:100vh;
   color:var(--dark);
   font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
-  min-height:100vh;
+  background:
+    radial-gradient(circle at top left,rgba(200,188,177,.18),transparent 35%),
+    linear-gradient(180deg,#F8F4F0 0%,#EEE6DF 100%);
 }
 
 button,
@@ -92,13 +92,6 @@ button{
   color:var(--muted);
   text-decoration:none;
   font-size:13px;
-  border-bottom:1px solid transparent;
-  transition:.2s;
-}
-
-.back-link:hover{
-  color:var(--dark);
-  border-color:var(--dark);
 }
 
 .page{
@@ -115,7 +108,6 @@ button{
 .eyebrow{
   font-size:11px;
   letter-spacing:4px;
-  text-transform:uppercase;
   color:var(--taupe);
   margin-bottom:10px;
 }
@@ -203,9 +195,7 @@ select{
   font-size:13px;
 }
 
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="file"]:focus,
+input:focus,
 textarea:focus,
 select:focus{
   border-color:var(--taupe);
@@ -227,7 +217,6 @@ textarea{
 .template-name{
   font-family:"Cormorant Garamond",serif;
   font-size:25px;
-  margin-bottom:3px;
 }
 
 .template-note{
@@ -266,19 +255,13 @@ textarea{
   border-radius:14px;
   padding:13px 12px;
   background:#fffdfa;
-  transition:.2s;
   cursor:pointer;
-}
-
-.extra-label:hover{
-  border-color:var(--taupe);
-  transform:translateY(-1px);
+  transition:.2s;
 }
 
 .extra-item input:checked + .extra-label{
   border-color:var(--taupe);
   background:#F1EAE4;
-  box-shadow:inset 0 0 0 1px rgba(140,126,116,.15);
 }
 
 .extra-name{
@@ -300,10 +283,6 @@ textarea{
   gap:12px;
 }
 
-.color-field{
-  min-width:0;
-}
-
 .color-field label{
   font-size:10px;
   color:var(--muted);
@@ -316,7 +295,6 @@ textarea{
   border-radius:12px;
   padding:4px;
   background:white;
-  cursor:pointer;
 }
 
 .upload-box{
@@ -343,18 +321,11 @@ textarea{
   font-size:12px;
   letter-spacing:2px;
   font-weight:600;
-  transition:.2s;
-}
-
-.submit-btn:hover{
-  background:#5B514B;
-  transform:translateY(-1px);
 }
 
 .submit-btn:disabled{
   opacity:.6;
   cursor:not-allowed;
-  transform:none;
 }
 
 .notice{
@@ -380,7 +351,6 @@ textarea{
 .summary-price{
   font-family:"Cormorant Garamond",serif;
   font-size:46px;
-  margin:3px 0;
 }
 
 .summary-sub{
@@ -401,8 +371,9 @@ textarea{
   color:var(--muted);
 }
 
-.summary-row strong{
-  font-weight:600;
+.functions-summary{
+  text-align:right;
+  max-width:180px;
 }
 
 .deposit{
@@ -413,14 +384,8 @@ textarea{
   color:var(--red);
 }
 
-.functions-summary{
-  color:var(--dark);
-  text-align:right;
-  max-width:180px;
-}
-
 .hidden{
-  display:none !important;
+  display:none!important;
 }
 
 /* SUCCESS */
@@ -447,8 +412,6 @@ textarea{
   margin:7px 0 28px;
 }
 
-/* MINI PRINTER */
-
 .printer-wrap{
   display:flex;
   justify-content:center;
@@ -462,8 +425,7 @@ textarea{
 
 .printer-top{
   height:88px;
-  background:
-    linear-gradient(180deg,#5C514B 0%,#403934 100%);
+  background:linear-gradient(180deg,#5C514B 0%,#403934 100%);
   border-radius:20px 20px 12px 12px;
   position:relative;
   box-shadow:0 15px 30px rgba(64,57,52,.25);
@@ -514,24 +476,31 @@ textarea{
   width:220px;
   height:0;
   background:#fff;
-  border-radius:2px;
   overflow:hidden;
   box-shadow:0 8px 18px rgba(64,57,52,.14);
-  z-index:2;
   animation:paperPrint 2.7s ease forwards;
   animation-delay:1s;
 }
 
 .paper-inner{
   padding:15px;
-  height:100%;
-  border:1px solid rgba(64,57,52,.08);
 }
 
 .paper-title{
   font-family:"Cormorant Garamond",serif;
   font-size:20px;
-  margin-bottom:7px;
+}
+
+.paper-photo{
+  width:100%;
+  height:110px;
+  margin:8px 0;
+  background:linear-gradient(135deg,#D8C8BE,#F0E8E1,#CDBBB0);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:28px;
 }
 
 .paper-line{
@@ -541,36 +510,14 @@ textarea{
   margin:6px 0;
 }
 
-.paper-photo{
-  width:100%;
-  height:110px;
-  margin:8px 0;
-  background:
-    linear-gradient(135deg,#D8C8BE,#F0E8E1,#CDBBB0);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family:"Cormorant Garamond",serif;
-  color:#fff;
-  font-size:28px;
-}
-
 @keyframes paperPrint{
-  0%{
-    height:0;
-  }
-  100%{
-    height:310px;
-  }
+  from{height:0}
+  to{height:310px}
 }
 
 @keyframes blink{
-  0%,100%{
-    opacity:.4;
-  }
-  50%{
-    opacity:1;
-  }
+  0%,100%{opacity:.4}
+  50%{opacity:1}
 }
 
 .processing{
@@ -592,16 +539,13 @@ textarea{
   height:100%;
   width:0;
   background:var(--taupe);
-  border-radius:20px;
   animation:progress 4s ease forwards;
 }
 
 @keyframes progress{
-  0%{width:0}
-  100%{width:100%}
+  from{width:0}
+  to{width:100%}
 }
-
-/* RECEIPT */
 
 .receipt{
   max-width:620px;
@@ -617,7 +561,6 @@ textarea{
   text-align:center;
   font-family:"Cormorant Garamond",serif;
   font-size:32px;
-  letter-spacing:1px;
 }
 
 .receipt-sub{
@@ -676,7 +619,6 @@ textarea{
   justify-content:center;
   flex-wrap:wrap;
   gap:10px;
-  margin-top:22px;
 }
 
 .action-btn{
@@ -687,12 +629,6 @@ textarea{
   padding:11px 18px;
   font-size:10px;
   letter-spacing:1px;
-  transition:.2s;
-}
-
-.action-btn:hover{
-  border-color:var(--taupe);
-  transform:translateY(-1px);
 }
 
 .action-btn.primary{
@@ -727,14 +663,6 @@ textarea{
 }
 
 @media(max-width:600px){
-  .header{
-    padding:18px;
-  }
-
-  .logo{
-    font-size:29px;
-  }
-
   .page{
     padding:40px 15px 70px;
   }
@@ -749,10 +677,7 @@ textarea{
     padding:22px 18px;
   }
 
-  .extra-grid{
-    grid-template-columns:1fr;
-  }
-
+  .extra-grid,
   .color-grid{
     grid-template-columns:1fr;
   }
@@ -770,9 +695,8 @@ textarea{
   }
 }
 
-/* PRINT */
-
 @media print{
+
   body{
     background:#fff;
   }
@@ -787,18 +711,16 @@ textarea{
   .processing,
   .receipt-actions,
   .error-box{
-    display:none !important;
+    display:none!important;
   }
 
   .page{
     max-width:none;
     padding:0;
-    margin:0;
   }
 
   .success-section{
-    display:block !important;
-    margin:0;
+    display:block!important;
   }
 
   .success-card{
@@ -813,6 +735,7 @@ textarea{
     box-shadow:none;
     border:0;
   }
+
 }
 
 </style>
@@ -821,6 +744,7 @@ textarea{
 <body>
 
 <header class="header">
+
   <div class="header-inner">
 
     <a href="love.html" class="logo">
@@ -832,754 +756,727 @@ textarea{
     </a>
 
   </div>
+
 </header>
 
 
 <main class="page">
 
-  <!-- ORDER PAGE -->
 
-  <section id="orderSection">
+<section id="orderSection">
 
-    <div class="hero">
+  <div class="hero">
 
-      <div class="eyebrow">
-        CUSTOM ORDER
-      </div>
-
-      <h1>
-        Create Your Love Story
-      </h1>
-
-      <p>
-        Fill in the details below and let us create a beautiful
-        digital experience made especially for you.
-      </p>
-
+    <div class="eyebrow">
+      CUSTOM ORDER
     </div>
 
+    <h1>
+      Create Your Love Story
+    </h1>
 
-    <div class="order-layout">
+    <p>
+      Fill in the details below and let us create a beautiful
+      digital experience made especially for you.
+    </p>
 
-      <!-- FORM -->
+  </div>
 
-      <div class="card form-card">
 
-        <h2 class="section-title">
-          Order Details
-        </h2>
+  <div class="order-layout">
 
-        <p class="section-desc">
-          Tell us a little about your project.
-        </p>
 
+    <div class="card form-card">
 
-        <!-- NAME -->
+      <h2 class="section-title">
+        Order Details
+      </h2>
 
-        <div class="form-group">
+      <p class="section-desc">
+        Tell us a little about your project.
+      </p>
 
-          <label for="customerName">
-            Your Name <span class="required">*</span>
-          </label>
 
-          <input
-            type="text"
-            id="customerName"
-            placeholder="Your name"
-            autocomplete="name"
-          >
+      <div class="form-group">
 
-        </div>
+        <label for="customerName">
+          Your Name <span class="required">*</span>
+        </label>
 
-
-        <!-- CONTACT -->
-
-        <div class="form-group">
-
-          <label for="contact">
-            Contact <span class="required">*</span>
-          </label>
-
-          <input
-            type="text"
-            id="contact"
-            placeholder="LINE / Instagram / Email / Phone"
-          >
-
-        </div>
-
-
-        <!-- TEMPLATE -->
-
-        <div class="form-group">
-
-          <label>
-            Selected Template
-          </label>
-
-          <div class="template-box">
-
-            <div
-              class="template-name"
-              id="templateDisplay"
-            >
-              Birthday Template 01
-            </div>
-
-            <div class="template-note">
-              Your selected template
-            </div>
-
-            <div
-              class="price-tag"
-              id="templatePrice"
-            >
-              ฿299
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- MESSAGE -->
-
-        <div class="form-group">
-
-          <label for="message">
-            Message / Special Request
-          </label>
-
-          <textarea
-            id="message"
-            placeholder="Tell us anything you'd like us to know..."
-          ></textarea>
-
-        </div>
-
-
-        <!-- EXTRA -->
-
-        <div class="form-group">
-
-          <label>
-            Extra Functions
-          </label>
-
-          <div class="extra-grid">
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="music"
-                data-price="29"
-                data-name="Music Player"
-              >
-
-              <label
-                class="extra-label"
-                for="music"
-              >
-                <span class="extra-name">
-                  ♪ Music Player
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="countdown"
-                data-price="29"
-                data-name="Countdown"
-              >
-
-              <label
-                class="extra-label"
-                for="countdown"
-              >
-                <span class="extra-name">
-                  ♡ Countdown
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="gallery"
-                data-price="29"
-                data-name="Photo Gallery"
-              >
-
-              <label
-                class="extra-label"
-                for="gallery"
-              >
-                <span class="extra-name">
-                  ▧ Photo Gallery
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="letter"
-                data-price="29"
-                data-name="Love Letter"
-              >
-
-              <label
-                class="extra-label"
-                for="letter"
-              >
-                <span class="extra-name">
-                  ✉ Love Letter
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="surprise"
-                data-price="29"
-                data-name="Surprise Box"
-              >
-
-              <label
-                class="extra-label"
-                for="surprise"
-              >
-                <span class="extra-name">
-                  🎁 Surprise Box
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="scratch"
-                data-price="29"
-                data-name="Scratch Card"
-              >
-
-              <label
-                class="extra-label"
-                for="scratch"
-              >
-                <span class="extra-name">
-                  ♡ Scratch Card
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-
-            <div class="extra-item">
-              <input
-                type="checkbox"
-                id="animation"
-                data-price="29"
-                data-name="Custom Animation"
-              >
-
-              <label
-                class="extra-label"
-                for="animation"
-              >
-                <span class="extra-name">
-                  ✦ Custom Animation
-                </span>
-
-                <span class="extra-price">
-                  + ฿29
-                </span>
-              </label>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- COLORS -->
-
-        <div class="form-group">
-
-          <label>
-            Color Theme
-          </label>
-
-          <div class="color-grid">
-
-            <div class="color-field">
-
-              <label for="primaryColor">
-                Primary
-              </label>
-
-              <input
-                type="color"
-                id="primaryColor"
-                value="#670626"
-              >
-
-            </div>
-
-
-            <div class="color-field">
-
-              <label for="secondaryColor">
-                Secondary
-              </label>
-
-              <input
-                type="color"
-                id="secondaryColor"
-                value="#FFBDC5"
-              >
-
-            </div>
-
-
-            <div class="color-field">
-
-              <label for="backgroundColor">
-                Background
-              </label>
-
-              <input
-                type="color"
-                id="backgroundColor"
-                value="#FFF9F8"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- PAYMENT SLIP -->
-
-        <div class="form-group">
-
-          <label for="paymentSlip">
-            Payment Slip <span class="required">*</span>
-          </label>
-
-          <div class="upload-box">
-
-            <input
-              type="file"
-              id="paymentSlip"
-              accept="image/*,.pdf"
-            >
-
-            <div class="upload-note">
-              Upload your payment slip after transferring
-              the 30% deposit.
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <button
-          type="button"
-          class="submit-btn"
-          id="submitBtn"
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Your name"
         >
-          SUBMIT ORDER
-        </button>
-
-        <div class="notice">
-          Your order will be saved securely and we will contact
-          you after checking the payment slip.
-        </div>
 
       </div>
 
 
-      <!-- SUMMARY -->
+      <div class="form-group">
 
-      <aside class="card summary-card">
+        <label for="contact">
+          Contact <span class="required">*</span>
+        </label>
 
-        <div class="summary-top">
+        <input
+          type="text"
+          id="contact"
+          placeholder="LINE / Instagram / Email / Phone"
+        >
 
-          <div class="summary-label">
-            ORDER TOTAL
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Selected Template
+        </label>
+
+        <div class="template-box">
+
+          <div
+            class="template-name"
+            id="templateDisplay"
+          >
+            Birthday Template 01
+          </div>
+
+          <div class="template-note">
+            Your selected template
           </div>
 
           <div
-            class="summary-price"
-            id="totalPrice"
+            class="price-tag"
+            id="templatePrice"
           >
             ฿299
           </div>
 
-          <div class="summary-sub">
-            30% deposit · 70% remaining
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="message">
+          Message / Special Request
+        </label>
+
+        <textarea
+          id="message"
+          placeholder="Tell us anything you'd like us to know..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Extra Functions
+        </label>
+
+        <div class="extra-grid">
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="music"
+              data-price="29"
+              data-name="Music Player"
+            >
+
+            <label
+              class="extra-label"
+              for="music"
+            >
+              <span class="extra-name">
+                ♪ Music Player
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="countdown"
+              data-price="29"
+              data-name="Countdown"
+            >
+
+            <label
+              class="extra-label"
+              for="countdown"
+            >
+              <span class="extra-name">
+                ♡ Countdown
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="gallery"
+              data-price="29"
+              data-name="Photo Gallery"
+            >
+
+            <label
+              class="extra-label"
+              for="gallery"
+            >
+              <span class="extra-name">
+                ▧ Photo Gallery
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="letter"
+              data-price="29"
+              data-name="Love Letter"
+            >
+
+            <label
+              class="extra-label"
+              for="letter"
+            >
+              <span class="extra-name">
+                ✉ Love Letter
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="surprise"
+              data-price="29"
+              data-name="Surprise Box"
+            >
+
+            <label
+              class="extra-label"
+              for="surprise"
+            >
+              <span class="extra-name">
+                🎁 Surprise Box
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="scratch"
+              data-price="29"
+              data-name="Scratch Card"
+            >
+
+            <label
+              class="extra-label"
+              for="scratch"
+            >
+              <span class="extra-name">
+                ♡ Scratch Card
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+          <div class="extra-item">
+            <input
+              type="checkbox"
+              id="animation"
+              data-price="29"
+              data-name="Custom Animation"
+            >
+
+            <label
+              class="extra-label"
+              for="animation"
+            >
+              <span class="extra-name">
+                ✦ Custom Animation
+              </span>
+
+              <span class="extra-price">
+                + ฿29
+              </span>
+            </label>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Color Theme
+        </label>
+
+        <div class="color-grid">
+
+          <div class="color-field">
+
+            <label for="primaryColor">
+              Primary
+            </label>
+
+            <input
+              type="color"
+              id="primaryColor"
+              value="#670626"
+            >
+
+          </div>
+
+
+          <div class="color-field">
+
+            <label for="secondaryColor">
+              Secondary
+            </label>
+
+            <input
+              type="color"
+              id="secondaryColor"
+              value="#FFBDC5"
+            >
+
+          </div>
+
+
+          <div class="color-field">
+
+            <label for="backgroundColor">
+              Background
+            </label>
+
+            <input
+              type="color"
+              id="backgroundColor"
+              value="#FFF9F8"
+            >
+
           </div>
 
         </div>
 
+      </div>
 
-        <div class="summary-row">
 
-          <span>
-            Template
-          </span>
+      <div class="form-group">
 
-          <strong id="summaryTemplate">
-            Birthday Template 01
-          </strong>
+        <label for="paymentSlip">
+          Payment Slip <span class="required">*</span>
+        </label>
+
+        <div class="upload-box">
+
+          <input
+            type="file"
+            id="paymentSlip"
+            accept="image/*,.pdf"
+          >
+
+          <div class="upload-note">
+            Upload your payment slip after transferring
+            the 30% deposit.
+          </div>
 
         </div>
 
+      </div>
 
-        <div class="summary-row">
+
+      <button
+        type="button"
+        class="submit-btn"
+        id="submitBtn"
+      >
+        SUBMIT ORDER
+      </button>
+
+
+      <div class="notice">
+        Your order will be saved securely and we will contact
+        you after checking the payment slip.
+      </div>
+
+    </div>
+
+
+    <aside class="card summary-card">
+
+      <div class="summary-top">
+
+        <div class="summary-label">
+          ORDER TOTAL
+        </div>
+
+        <div
+          class="summary-price"
+          id="totalPrice"
+        >
+          ฿299
+        </div>
+
+        <div class="summary-sub">
+          30% deposit · 70% remaining
+        </div>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>
+          Template
+        </span>
+
+        <strong id="summaryTemplate">
+          Birthday Template 01
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>
+          Extra
+        </span>
+
+        <strong
+          id="selectedFunctions"
+          class="functions-summary"
+        >
+          None
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>
+          Deposit 30%
+        </span>
+
+        <strong
+          id="depositPrice"
+          class="deposit"
+        >
+          ฿90
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>
+          Remaining 70%
+        </span>
+
+        <strong
+          id="remainingPrice"
+          class="remaining"
+        >
+          ฿209
+        </strong>
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</section>
+
+
+<section
+  id="successSection"
+  class="success-section hidden"
+>
+
+  <div class="card success-card">
+
+    <h2 class="success-title">
+      Order Received
+    </h2>
+
+    <p class="success-sub">
+      Your order has been saved successfully.
+    </p>
+
+
+    <div class="printer-wrap">
+
+      <div class="printer">
+
+        <div class="printer-top">
+
+          <div class="status-light"></div>
+
+        </div>
+
+        <div class="printer-slot"></div>
+
+        <div class="printer-paper">
+
+          <div class="paper-inner">
+
+            <div class="paper-title">
+              PINTO LOVE
+            </div>
+
+            <div class="paper-photo">
+              ♡
+            </div>
+
+            <div class="paper-line"></div>
+            <div class="paper-line"></div>
+            <div class="paper-line"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="processing">
+
+      Printing your order receipt...
+
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+
+    </div>
+
+
+    <div
+      class="receipt"
+      id="receipt"
+    >
+
+      <div class="receipt-brand">
+        PINTO LOVE
+      </div>
+
+      <div class="receipt-sub">
+        ORDER RECEIPT
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Order Number
+        </span>
+
+        <strong id="receiptOrderNumber">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Customer
+        </span>
+
+        <strong id="receiptCustomer">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Contact
+        </span>
+
+        <strong id="receiptContact">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Template
+        </span>
+
+        <strong id="receiptTemplate">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Extra Functions
+        </span>
+
+        <strong id="receiptFunctions">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-row">
+
+        <span>
+          Payment Status
+        </span>
+
+        <strong>
+          <span class="status-ok">
+            Deposit Submitted
+          </span>
+        </strong>
+
+      </div>
+
+
+      <div class="receipt-total">
+
+        <div class="receipt-row">
 
           <span>
-            Extra
+            Total
           </span>
 
           <strong
-            id="selectedFunctions"
-            class="functions-summary"
+            class="receipt-big"
+            id="receiptTotal"
           >
-            None
+            ฿0
           </strong>
 
         </div>
 
 
-        <div class="summary-row">
+        <div class="receipt-row">
 
           <span>
             Deposit 30%
           </span>
 
-          <strong
-            id="depositPrice"
-            class="deposit"
-          >
-            ฿90
+          <strong id="receiptDeposit">
+            ฿0
           </strong>
 
         </div>
 
 
-        <div class="summary-row">
+        <div class="receipt-row">
 
           <span>
             Remaining 70%
           </span>
 
-          <strong
-            id="remainingPrice"
-            class="remaining"
-          >
-            ฿209
+          <strong id="receiptRemaining">
+            ฿0
           </strong>
 
         </div>
 
-      </aside>
+      </div>
 
     </div>
 
-  </section>
 
+    <div class="receipt-actions">
 
-  <!-- SUCCESS -->
-
-  <section
-    id="successSection"
-    class="success-section hidden"
-  >
-
-    <div class="card success-card">
-
-      <h2 class="success-title">
-        Order Received
-      </h2>
-
-      <p class="success-sub">
-        Your order has been saved successfully.
-      </p>
-
-
-      <!-- PRINTER -->
-
-      <div class="printer-wrap">
-
-        <div class="printer">
-
-          <div class="printer-top">
-
-            <div class="status-light"></div>
-
-          </div>
-
-          <div class="printer-slot"></div>
-
-          <div class="printer-paper">
-
-            <div class="paper-inner">
-
-              <div class="paper-title">
-                PINTO LOVE
-              </div>
-
-              <div
-                class="paper-photo"
-              >
-                ♡
-              </div>
-
-              <div class="paper-line"></div>
-              <div class="paper-line"></div>
-              <div class="paper-line"></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="processing">
-
-        Printing your order receipt...
-
-        <div class="progress">
-          <div class="progress-bar"></div>
-        </div>
-
-      </div>
-
-
-      <!-- RECEIPT -->
-
-      <div
-        class="receipt"
-        id="receipt"
+      <button
+        type="button"
+        class="action-btn primary"
+        id="printBtn"
       >
+        PRINT RECEIPT
+      </button>
 
-        <div class="receipt-brand">
-          PINTO LOVE
-        </div>
+      <button
+        type="button"
+        class="action-btn"
+        id="saveBtn"
+      >
+        SAVE / PDF
+      </button>
 
-        <div class="receipt-sub">
-          ORDER RECEIPT
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Order Number
-          </span>
-
-          <strong id="receiptOrderNumber">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Customer
-          </span>
-
-          <strong id="receiptCustomer">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Contact
-          </span>
-
-          <strong id="receiptContact">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Template
-          </span>
-
-          <strong id="receiptTemplate">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Extra Functions
-          </span>
-
-          <strong id="receiptFunctions">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Payment Status
-          </span>
-
-          <strong>
-            <span class="status-ok">
-              Deposit Submitted
-            </span>
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-total">
-
-          <div class="receipt-row">
-
-            <span>
-              Total
-            </span>
-
-            <strong
-              class="receipt-big"
-              id="receiptTotal"
-            >
-              ฿0
-            </strong>
-
-          </div>
-
-
-          <div class="receipt-row">
-
-            <span>
-              Deposit 30%
-            </span>
-
-            <strong id="receiptDeposit">
-              ฿0
-            </strong>
-
-          </div>
-
-
-          <div class="receipt-row">
-
-            <span>
-              Remaining 70%
-            </span>
-
-            <strong id="receiptRemaining">
-              ฿0
-            </strong>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- ACTIONS -->
-
-      <div class="receipt-actions">
-
-        <button
-          type="button"
-          class="action-btn primary"
-          id="printBtn"
-        >
-          PRINT RECEIPT
-        </button>
-
-        <button
-          type="button"
-          class="action-btn"
-          id="saveBtn"
-        >
-          SAVE / PDF
-        </button>
-
-        <button
-          type="button"
-          class="action-btn"
-          id="shareBtn"
-        >
-          SHARE
-        </button>
-
-      </div>
-
-
-      <!-- ERROR -->
-
-      <div
-        id="errorBox"
-        class="error-box hidden"
-      ></div>
+      <button
+        type="button"
+        class="action-btn"
+        id="shareBtn"
+      >
+        SHARE
+      </button>
 
     </div>
 
-  </section>
+
+    <div
+      id="errorBox"
+      class="error-box hidden"
+    ></div>
+
+  </div>
+
+</section>
 
 </main>
 
@@ -1587,7 +1484,7 @@ textarea{
 <script>
 
 /* =========================================================
-   SUPABASE CONFIG
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -1598,7 +1495,7 @@ const SUPABASE_ANON_KEY =
 
 
 /* =========================================================
-   TEMPLATE CONFIG
+   TEMPLATE DATA
 ========================================================= */
 
 const TEMPLATE_DATA = {
@@ -1630,12 +1527,6 @@ const TEMPLATE_DATA = {
    DOM
 ========================================================= */
 
-const orderSection =
-  document.getElementById("orderSection");
-
-const successSection =
-  document.getElementById("successSection");
-
 const customerName =
   document.getElementById("customerName");
 
@@ -1645,23 +1536,29 @@ const contact =
 const message =
   document.getElementById("message");
 
-const templateDisplay =
-  document.getElementById("templateDisplay");
-
-const summaryTemplate =
-  document.getElementById("summaryTemplate");
-
 const paymentSlip =
   document.getElementById("paymentSlip");
 
 const submitBtn =
   document.getElementById("submitBtn");
 
+const orderSection =
+  document.getElementById("orderSection");
+
+const successSection =
+  document.getElementById("successSection");
+
 const totalPrice =
   document.getElementById("totalPrice");
 
 const templatePrice =
   document.getElementById("templatePrice");
+
+const templateDisplay =
+  document.getElementById("templateDisplay");
+
+const summaryTemplate =
+  document.getElementById("summaryTemplate");
 
 const selectedFunctions =
   document.getElementById("selectedFunctions");
@@ -1674,74 +1571,34 @@ const remainingPrice =
 
 
 /* =========================================================
-   SELECT TEMPLATE FROM URL
+   TEMPLATE
 ========================================================= */
 
-function selectTemplateFromURL(){
+function getTemplateKey(){
 
   const params =
     new URLSearchParams(
       window.location.search
     );
 
-  const template =
-    params.get("template");
-
-  if(
-    template &&
-    TEMPLATE_DATA[template]
-  ){
-
-    templateDisplay.textContent =
-      TEMPLATE_DATA[template].name;
-
-    summaryTemplate.textContent =
-      TEMPLATE_DATA[template].name;
-
-    templatePrice.textContent =
-      "฿" +
-      TEMPLATE_DATA[template].price;
-
-    updatePrice();
-
-  }else{
-
-    templateDisplay.textContent =
-      "Birthday Template 01";
-
-    summaryTemplate.textContent =
-      "Birthday Template 01";
-
-    templatePrice.textContent =
-      "฿299";
-
-    updatePrice();
-
-  }
+  return (
+    params.get("template")
+    || "birthday-01"
+  );
 
 }
 
 
-/* =========================================================
-   GET TEMPLATE PRICE
-========================================================= */
-
 function getTemplatePrice(){
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  const template =
-    params.get("template");
+  const key =
+    getTemplateKey();
 
   if(
-    template &&
-    TEMPLATE_DATA[template]
+    TEMPLATE_DATA[key]
   ){
 
-    return TEMPLATE_DATA[template].price;
+    return TEMPLATE_DATA[key].price;
 
   }
 
@@ -1750,26 +1607,30 @@ function getTemplatePrice(){
 }
 
 
-/* =========================================================
-   UPDATE COLORS
-========================================================= */
+function setupTemplate(){
 
-function updateColors(){
+  const key =
+    getTemplateKey();
 
-  const primary =
-    document.getElementById("primaryColor").value;
+  const data =
+    TEMPLATE_DATA[key]
+    || TEMPLATE_DATA["birthday-01"];
 
-  const secondary =
-    document.getElementById("secondaryColor").value;
 
-  const background =
-    document.getElementById("backgroundColor").value;
+  templateDisplay.textContent =
+    data.name;
+
+  summaryTemplate.textContent =
+    data.name;
+
+  templatePrice.textContent =
+    "฿" + data.price;
 
 }
 
 
 /* =========================================================
-   EXTRA FUNCTIONS
+   EXTRA
 ========================================================= */
 
 function getSelectedFunctions(){
@@ -1779,39 +1640,39 @@ function getSelectedFunctions(){
       '.extra-item input[type="checkbox"]:checked'
     );
 
-  const names = [];
+  const result = [];
 
   checked.forEach(function(item){
 
-    names.push(
+    result.push(
       item.dataset.name
     );
 
   });
 
-  return names;
+  return result;
 
 }
 
 
-function updateExtraFunctions(){
+function getExtraPrice(){
 
-  const selected =
-    getSelectedFunctions();
+  let price = 0;
 
-  if(selected.length === 0){
+  document
+    .querySelectorAll(
+      '.extra-item input[type="checkbox"]:checked'
+    )
+    .forEach(function(item){
 
-    selectedFunctions.textContent =
-      "None";
+      price +=
+        Number(
+          item.dataset.price || 0
+        );
 
-  }else{
+    });
 
-    selectedFunctions.textContent =
-      selected.join(", ");
-
-  }
-
-  updatePrice();
+  return price;
 
 }
 
@@ -1822,34 +1683,15 @@ function updateExtraFunctions(){
 
 function updatePrice(){
 
-  const basePrice =
-    getTemplatePrice();
-
-  let extraPrice = 0;
-
-  document
-    .querySelectorAll(
-      '.extra-item input[type="checkbox"]:checked'
-    )
-    .forEach(function(item){
-
-      extraPrice +=
-        Number(
-          item.dataset.price || 0
-        );
-
-    });
-
-
   const total =
-    basePrice + extraPrice;
-
+    getTemplatePrice()
+    +
+    getExtraPrice();
 
   const deposit =
     Math.ceil(
       total * 0.30
     );
-
 
   const remaining =
     total - deposit;
@@ -1864,6 +1706,16 @@ function updatePrice(){
   remainingPrice.textContent =
     "฿" + remaining;
 
+
+  const extras =
+    getSelectedFunctions();
+
+
+  selectedFunctions.textContent =
+    extras.length
+      ? extras.join(", ")
+      : "None";
+
 }
 
 
@@ -1876,15 +1728,11 @@ function createOrderNumber(){
   const now =
     new Date();
 
-  const year =
-    now.getFullYear();
-
-  const month =
+  const date =
+    now.getFullYear() +
     String(
       now.getMonth()+1
-    ).padStart(2,"0");
-
-  const day =
+    ).padStart(2,"0") +
     String(
       now.getDate()
     ).padStart(2,"0");
@@ -1896,9 +1744,7 @@ function createOrderNumber(){
 
   return (
     "PL-" +
-    year +
-    month +
-    day +
+    date +
     "-" +
     random
   );
@@ -1907,10 +1753,10 @@ function createOrderNumber(){
 
 
 /* =========================================================
-   SHOW ERROR
+   ERROR
 ========================================================= */
 
-function showError(message){
+function showError(text){
 
   const box =
     document.getElementById(
@@ -1918,7 +1764,7 @@ function showError(message){
     );
 
   box.textContent =
-    message;
+    text;
 
   box.classList.remove(
     "hidden"
@@ -1927,10 +1773,6 @@ function showError(message){
 }
 
 
-/* =========================================================
-   HIDE ERROR
-========================================================= */
-
 function hideError(){
 
   const box =
@@ -1938,18 +1780,109 @@ function hideError(){
       "errorBox"
     );
 
+  box.textContent =
+    "";
+
   box.classList.add(
     "hidden"
   );
-
-  box.textContent =
-    "";
 
 }
 
 
 /* =========================================================
-   UPLOAD PAYMENT SLIP
+   IMPORTANT:
+   SAFE FILE CONTENT TYPE
+========================================================= */
+
+function getSafeContentType(file){
+
+  const type =
+    String(
+      file.type || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  const allowed = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/webp",
+    "image/gif",
+    "application/pdf"
+  ];
+
+
+  if(
+    allowed.includes(type)
+  ){
+
+    return type;
+
+  }
+
+
+  const name =
+    String(
+      file.name || ""
+    ).toLowerCase();
+
+
+  if(
+    name.endsWith(".jpg") ||
+    name.endsWith(".jpeg")
+  ){
+
+    return "image/jpeg";
+
+  }
+
+
+  if(
+    name.endsWith(".png")
+  ){
+
+    return "image/png";
+
+  }
+
+
+  if(
+    name.endsWith(".webp")
+  ){
+
+    return "image/webp";
+
+  }
+
+
+  if(
+    name.endsWith(".gif")
+  ){
+
+    return "image/gif";
+
+  }
+
+
+  if(
+    name.endsWith(".pdf")
+  ){
+
+    return "application/pdf";
+
+  }
+
+
+  return "application/octet-stream";
+
+}
+
+
+/* =========================================================
+   UPLOAD SLIP
 ========================================================= */
 
 async function uploadPaymentSlip(file){
@@ -1963,96 +1896,93 @@ async function uploadPaymentSlip(file){
   }
 
 
+  const contentType =
+    getSafeContentType(
+      file
+    );
+
+
   const extension =
-    file.name
-      .split(".")
-      .pop()
-      .toLowerCase();
-
-
-  const safeExtension =
-    extension || "jpg";
+    contentType === "application/pdf"
+      ? "pdf"
+      : contentType === "image/png"
+        ? "png"
+        : contentType === "image/webp"
+          ? "webp"
+          : contentType === "image/gif"
+            ? "gif"
+            : "jpg";
 
 
   const fileName =
+    "slip-" +
     Date.now() +
     "-" +
     Math.random()
       .toString(36)
-      .substring(2,8) +
+      .slice(2,8) +
     "." +
-    safeExtension;
+    extension;
 
 
-  const uploadUrl =
-    `${SUPABASE_URL}/storage/v1/object/payment-slips/${fileName}`;
-
-
-  console.log(
-    "STEP 2: uploading payment slip"
-  );
-
-
-  let response;
+  const url =
+    SUPABASE_URL +
+    "/storage/v1/object/payment-slips/" +
+    fileName;
 
 
   try{
 
-    response =
+    const response =
       await fetch(
-        uploadUrl,
+        url,
         {
           method:"POST",
 
           headers:{
-            apikey:
+            "apikey":
               SUPABASE_ANON_KEY,
 
-            Authorization:
-              `Bearer ${SUPABASE_ANON_KEY}`,
+            "Authorization":
+              "Bearer " +
+              SUPABASE_ANON_KEY,
 
             "Content-Type":
-              file.type ||
-              "application/octet-stream"
+              contentType
           },
 
           body:file
         }
       );
 
+
+    if(!response.ok){
+
+      const text =
+        await response.text();
+
+      throw new Error(
+        "อัปโหลดสลิปไม่สำเร็จ\n\n" +
+        "HTTP " +
+        response.status +
+        "\n" +
+        text
+      );
+
+    }
+
+
+    return fileName;
+
+
   }catch(error){
 
     throw new Error(
-      "เชื่อมต่อ Supabase Storage ไม่สำเร็จ\n\n" +
-      "รายละเอียด: " +
+      "ไม่สามารถอัปโหลดสลิปไปยัง Supabase Storage ได้\n\n" +
       error.message
     );
 
   }
-
-
-  if(!response.ok){
-
-    const errorText =
-      await response.text();
-
-    throw new Error(
-      "อัปโหลดสลิปไม่สำเร็จ\n\n" +
-      "HTTP " +
-      response.status +
-      "\n\n" +
-      errorText
-    );
-
-  }
-
-
-  console.log(
-    "STEP 2 SUCCESS"
-  );
-
-
-  return fileName;
 
 }
 
@@ -2061,84 +1991,77 @@ async function uploadPaymentSlip(file){
    INSERT ORDER
 ========================================================= */
 
-async function insertOrder(orderData){
+async function insertOrder(data){
 
-  console.log(
-    "STEP 3: inserting order"
-  );
-
-
-  let response;
+  const url =
+    SUPABASE_URL +
+    "/rest/v1/orders";
 
 
   try{
 
-    response =
+    const response =
       await fetch(
-        `${SUPABASE_URL}/rest/v1/orders`,
+        url,
         {
           method:"POST",
 
           headers:{
-            apikey:
+            "apikey":
               SUPABASE_ANON_KEY,
 
-            Authorization:
-              `Bearer ${SUPABASE_ANON_KEY}`,
+            "Authorization":
+              "Bearer " +
+              SUPABASE_ANON_KEY,
 
             "Content-Type":
               "application/json",
 
-            Prefer:
+            "Prefer":
               "return=representation"
           },
 
           body:
             JSON.stringify(
-              orderData
+              data
             )
         }
       );
 
+
+    if(!response.ok){
+
+      const text =
+        await response.text();
+
+      throw new Error(
+        "บันทึกคำสั่งซื้อไม่สำเร็จ\n\n" +
+        "HTTP " +
+        response.status +
+        "\n" +
+        text
+      );
+
+    }
+
+
+    return await response.json();
+
+
   }catch(error){
 
     throw new Error(
-      "เชื่อมต่อ Supabase Database ไม่สำเร็จ\n\n" +
-      "รายละเอียด: " +
+      "ไม่สามารถบันทึกข้อมูลลง Supabase Database ได้\n\n" +
       error.message
     );
 
   }
 
-
-  if(!response.ok){
-
-    const errorText =
-      await response.text();
-
-    throw new Error(
-      "บันทึกคำสั่งซื้อไม่สำเร็จ\n\n" +
-      "HTTP " +
-      response.status +
-      "\n\n" +
-      errorText
-    );
-
-  }
-
-
-  console.log(
-    "STEP 3 SUCCESS"
-  );
-
-
-  return response;
-
 }
 
 
 /* =========================================================
-   SUBMIT ORDER
+   SUBMIT
 ========================================================= */
 
 async function submitOrder(){
@@ -2185,7 +2108,7 @@ async function submitOrder(){
   if(!slip){
 
     showError(
-      "กรุณาอัปโหลดสลิปการโอนเงิน"
+      "กรุณาอัปโหลดสลิป"
     );
 
     paymentSlip.focus();
@@ -2195,46 +2118,22 @@ async function submitOrder(){
   }
 
 
+  const templateKey =
+    getTemplateKey();
+
   const template =
-    new URLSearchParams(
-      window.location.search
-    ).get("template")
-    || "birthday-01";
-
-
-  const templateName =
-    TEMPLATE_DATA[template]
-      ? TEMPLATE_DATA[template].name
-      : templateDisplay.textContent;
-
-
-  const basePrice =
-    getTemplatePrice();
+    TEMPLATE_DATA[templateKey]
+      || TEMPLATE_DATA["birthday-01"];
 
 
   const extras =
     getSelectedFunctions();
 
 
-  let extraPrice = 0;
-
-
-  document
-    .querySelectorAll(
-      '.extra-item input[type="checkbox"]:checked'
-    )
-    .forEach(function(item){
-
-      extraPrice +=
-        Number(
-          item.dataset.price || 0
-        );
-
-    });
-
-
   const total =
-    basePrice + extraPrice;
+    getTemplatePrice()
+    +
+    getExtraPrice();
 
 
   const deposit =
@@ -2260,8 +2159,10 @@ async function submitOrder(){
 
   try{
 
+    /* STEP 1 */
+
     console.log(
-      "STEP 1: preparing order"
+      "PINTO LOVE: uploading slip..."
     );
 
 
@@ -2270,6 +2171,8 @@ async function submitOrder(){
         slip
       );
 
+
+    /* STEP 2 */
 
     const orderData = {
 
@@ -2283,7 +2186,7 @@ async function submitOrder(){
         customerContact,
 
       template:
-        templateName,
+        template.name,
 
       message:
         message.value.trim(),
@@ -2329,10 +2232,17 @@ async function submitOrder(){
     };
 
 
+    console.log(
+      "PINTO LOVE: saving order..."
+    );
+
+
     await insertOrder(
       orderData
     );
 
+
+    /* SUCCESS */
 
     showSuccess(
       orderData
@@ -2342,13 +2252,12 @@ async function submitOrder(){
   }catch(error){
 
     console.error(
-      "ORDER ERROR:",
       error
     );
 
 
     showError(
-      "คำสั่งซื้อไม่สำเร็จ\n\n" +
+      "เกิดข้อผิดพลาด\n\n" +
       error.message
     );
 
@@ -2365,10 +2274,10 @@ async function submitOrder(){
 
 
 /* =========================================================
-   SHOW SUCCESS
+   SUCCESS
 ========================================================= */
 
-function showSuccess(orderData){
+function showSuccess(data){
 
   orderSection.classList.add(
     "hidden"
@@ -2382,52 +2291,52 @@ function showSuccess(orderData){
   document.getElementById(
     "receiptOrderNumber"
   ).textContent =
-    orderData.order_number;
+    data.order_number;
 
 
   document.getElementById(
     "receiptCustomer"
   ).textContent =
-    orderData.customer_name;
+    data.customer_name;
 
 
   document.getElementById(
     "receiptContact"
   ).textContent =
-    orderData.contact;
+    data.contact;
 
 
   document.getElementById(
     "receiptTemplate"
   ).textContent =
-    orderData.template;
+    data.template;
 
 
   document.getElementById(
     "receiptFunctions"
   ).textContent =
-    orderData.extra_functions;
+    data.extra_functions;
 
 
   document.getElementById(
     "receiptTotal"
   ).textContent =
     "฿" +
-    orderData.total_price;
+    data.total_price;
 
 
   document.getElementById(
     "receiptDeposit"
   ).textContent =
     "฿" +
-    orderData.deposit_amount;
+    data.deposit_amount;
 
 
   document.getElementById(
     "receiptRemaining"
   ).textContent =
     "฿" +
-    orderData.remaining_amount;
+    data.remaining_amount;
 
 
   window.scrollTo({
@@ -2442,131 +2351,115 @@ function showSuccess(orderData){
    PRINT
 ========================================================= */
 
-function printReceipt(){
+document
+  .getElementById("printBtn")
+  .addEventListener(
+    "click",
+    function(){
 
-  window.print();
+      window.print();
 
-}
+    }
+  );
 
 
 /* =========================================================
-   SAVE / PDF
+   SAVE PDF
 ========================================================= */
 
-function savePDF(){
+document
+  .getElementById("saveBtn")
+  .addEventListener(
+    "click",
+    function(){
 
-  window.print();
+      window.print();
 
-}
+    }
+  );
 
 
 /* =========================================================
    SHARE
 ========================================================= */
 
-async function shareReceipt(){
+document
+  .getElementById("shareBtn")
+  .addEventListener(
+    "click",
+    async function(){
 
-  const orderNumber =
-    document.getElementById(
-      "receiptOrderNumber"
-    ).textContent;
+      const text =
+        "PINTO LOVE Order\n" +
+        "Order Number: " +
+        document.getElementById(
+          "receiptOrderNumber"
+        ).textContent +
+        "\nCustomer: " +
+        document.getElementById(
+          "receiptCustomer"
+        ).textContent +
+        "\nTotal: " +
+        document.getElementById(
+          "receiptTotal"
+        ).textContent;
 
-  const customer =
-    document.getElementById(
-      "receiptCustomer"
-    ).textContent;
-
-  const total =
-    document.getElementById(
-      "receiptTotal"
-    ).textContent;
-
-
-  const shareText =
-    "PINTO LOVE Order\n" +
-    "Order Number: " +
-    orderNumber +
-    "\nCustomer: " +
-    customer +
-    "\nTotal: " +
-    total;
-
-
-  if(
-    navigator.share
-  ){
-
-    try{
-
-      await navigator.share({
-
-        title:
-          "PINTO LOVE Order",
-
-        text:
-          shareText,
-
-        url:
-          window.location.href
-
-      });
-
-    }catch(error){
 
       if(
-        error.name !==
-        "AbortError"
+        navigator.share
       ){
 
-        fallbackShare(
-          shareText
+        try{
+
+          await navigator.share({
+            title:"PINTO LOVE Order",
+            text:text,
+            url:window.location.href
+          });
+
+          return;
+
+        }catch(error){
+
+          if(
+            error.name ===
+            "AbortError"
+          ){
+
+            return;
+
+          }
+
+        }
+
+      }
+
+
+      try{
+
+        await navigator.clipboard.writeText(
+          text
+        );
+
+        alert(
+          "คัดลอกรายละเอียดคำสั่งซื้อแล้ว"
+        );
+
+      }catch(error){
+
+        prompt(
+          "คัดลอกข้อความนี้:",
+          text
         );
 
       }
 
     }
-
-  }else{
-
-    fallbackShare(
-      shareText
-    );
-
-  }
-
-}
+  );
 
 
 /* =========================================================
-   FALLBACK SHARE
-========================================================= */
-
-async function fallbackShare(text){
-
-  try{
-
-    await navigator.clipboard.writeText(
-      text
-    );
-
-    alert(
-      "คัดลอกรายละเอียดคำสั่งซื้อแล้ว"
-    );
-
-  }catch(error){
-
-    prompt(
-      "คัดลอกข้อความนี้:",
-      text
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   EVENTS
+   EXTRA EVENTS
 ========================================================= */
 
 document
@@ -2577,41 +2470,15 @@ document
 
     item.addEventListener(
       "change",
-      updateExtraFunctions
+      updatePrice
     );
 
   });
 
 
-document
-  .getElementById(
-    "primaryColor"
-  )
-  .addEventListener(
-    "input",
-    updateColors
-  );
-
-
-document
-  .getElementById(
-    "secondaryColor"
-  )
-  .addEventListener(
-    "input",
-    updateColors
-  );
-
-
-document
-  .getElementById(
-    "backgroundColor"
-  )
-  .addEventListener(
-    "input",
-    updateColors
-  );
-
+/* =========================================================
+   SUBMIT EVENT
+========================================================= */
 
 submitBtn.addEventListener(
   "click",
@@ -2619,45 +2486,13 @@ submitBtn.addEventListener(
 );
 
 
-document
-  .getElementById(
-    "printBtn"
-  )
-  .addEventListener(
-    "click",
-    printReceipt
-);
-
-
-document
-  .getElementById(
-    "saveBtn"
-  )
-  .addEventListener(
-    "click",
-    savePDF
-);
-
-
-document
-  .getElementById(
-    "shareBtn"
-  )
-  .addEventListener(
-    "click",
-    shareReceipt
-);
-
-
 /* =========================================================
    INIT
 ========================================================= */
 
-selectTemplateFromURL();
+setupTemplate();
 
-updateExtraFunctions();
-
-updateColors();
+updatePrice();
 
 </script>
 
