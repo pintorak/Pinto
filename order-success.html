@@ -10,458 +10,437 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --brown:#8C7E74;
-  --dark:#5f5148;
-  --beige:#C8BCB1;
-  --light:#E6DED8;
-  --cream:#F4EFEA;
-  --white:#fffdfb;
-  --line:rgba(95,81,72,.18);
-  --shadow:0 25px 70px rgba(95,81,72,.15);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root {
+  --brown: #8c7e74;
+  --dark: #4f4742;
+  --cream: #f8f3ee;
+  --beige: #e6ded8;
+  --soft: #f4efeA;
+  --paper: #fffdf9;
 }
 
-body{
-  min-height:100vh;
+body {
+  min-height: 100vh;
+  font-family: "DM Sans", "Noto Sans Thai", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(200,188,177,.25), transparent 35%),
-    var(--cream);
-  color:var(--dark);
-  font-family:"DM Sans","Noto Sans Thai",sans-serif;
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.9), transparent 42%),
+    linear-gradient(135deg, #f4efea 0%, #e8dfd8 100%);
+  color: var(--dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 18px;
+  overflow-x: hidden;
 }
 
-button{
-  font-family:inherit;
-  cursor:pointer;
+.page {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
 }
 
-.page{
-  width:min(100%, 1100px);
-  margin:auto;
-  padding:55px 22px 80px;
+.brand {
+  letter-spacing: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 8px;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.top{
-  text-align:center;
-  margin-bottom:45px;
+.title {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 8vw, 45px);
+  font-weight: 400;
+  color: #544b45;
+  margin-bottom: 8px;
 }
 
-.logo{
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
-  font-weight:600;
-  letter-spacing:4px;
-}
-
-.logo span{
-  font-size:13px;
-  letter-spacing:4px;
-  display:block;
-  margin-top:-4px;
-  opacity:.65;
-}
-
-.success-title{
-  margin-top:30px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:52px;
-  font-weight:600;
-  letter-spacing:.5px;
-}
-
-.success-text{
-  margin-top:8px;
-  font-family:"Noto Sans Thai",sans-serif;
-  font-size:14px;
-  color:#8b7e75;
+.subtitle {
+  font-size: 13px;
+  color: #887d75;
+  margin-bottom: 30px;
 }
 
 /* =========================
-   MAIN
+   PRINTER
 ========================= */
 
-.content{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:35px;
-  align-items:start;
+.printer-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
 }
 
-/* =========================
-   POLAROID
-========================= */
-
-.photo-section{
-  display:flex;
-  justify-content:center;
-}
-
-.polaroid-wrap{
-  position:relative;
-  width:100%;
-  max-width:450px;
-}
-
-.polaroid{
-  position:relative;
-  background:#fff;
-  padding:16px 16px 30px;
-  box-shadow:0 28px 60px rgba(95,81,72,.22);
-  transform:rotate(-2.2deg);
-  animation:photoIn 1s cubic-bezier(.2,.8,.2,1) both;
-}
-
-.polaroid::before{
-  content:"";
-  position:absolute;
-  top:-14px;
-  left:50%;
-  width:100px;
-  height:28px;
-  background:rgba(200,188,177,.55);
-  transform:translateX(-50%) rotate(-1deg);
-}
-
-.photo{
-  width:100%;
-  aspect-ratio:1 / 1;
+.printer {
+  position: relative;
+  width: min(290px, 78vw);
+  height: 245px;
+  border-radius: 25px 25px 18px 18px;
   background:
-    linear-gradient(135deg, #e6ded8 0%, #f4efea 48%, #c8bcb1 100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  position:relative;
+    linear-gradient(145deg, #fdfbf8 0%, #e9e1da 100%);
+  box-shadow:
+    0 24px 55px rgba(79, 65, 55, .16),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  border: 1px solid rgba(140,126,116,.18);
+  z-index: 5;
 }
 
-.photo::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    125deg,
-    rgba(255,255,255,.45),
-    transparent 35%,
-    transparent 65%,
-    rgba(95,81,72,.08)
-  );
+.printer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 16%;
+  width: 68%;
+  height: 5px;
+  border-radius: 0 0 10px 10px;
+  background: rgba(255,255,255,.8);
 }
 
-.photo-placeholder{
-  text-align:center;
-  position:relative;
-  z-index:2;
-  padding:25px;
+.printer-face {
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  width: 76%;
+  height: 138px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.25);
+  border: 1px solid rgba(140,126,116,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.photo-placeholder .heart{
-  font-size:42px;
-  display:block;
-  margin-bottom:12px;
-  opacity:.75;
+.logo {
+  text-align: center;
 }
 
-.photo-placeholder h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:38px;
-  font-weight:600;
+.logo-main {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  color: #766a62;
 }
 
-.photo-placeholder p{
-  margin-top:4px;
-  font-size:11px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  opacity:.55;
+.logo-heart {
+  display: block;
+  font-size: 14px;
+  color: #9a877b;
+  margin-top: 5px;
 }
 
-.polaroid-caption{
-  text-align:center;
-  padding-top:20px;
+.status {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: #a19790;
+  white-space: nowrap;
 }
 
-.polaroid-caption .small{
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  opacity:.5;
+/* light */
+
+.status-light {
+  position: absolute;
+  right: 26px;
+  top: 25px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cfc7c0;
+  box-shadow: 0 0 0 transparent;
 }
 
-.polaroid-caption .moment{
-  margin-top:3px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:27px;
-  font-style:italic;
+.status-light.active {
+  animation: lightBlink .65s ease-in-out 1;
+}
+
+@keyframes lightBlink {
+  0%, 100% {
+    background: #cfc7c0;
+    box-shadow: none;
+  }
+
+  35% {
+    background: #b59d8d;
+    box-shadow: 0 0 13px rgba(181,157,141,.75);
+  }
+}
+
+/* printer slot */
+
+.slot {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%);
+  width: 74%;
+  height: 18px;
+  border-radius: 10px 10px 5px 5px;
+  background: #5b514b;
+  box-shadow:
+    inset 0 4px 8px rgba(0,0,0,.25),
+    0 1px 0 rgba(255,255,255,.25);
+  z-index: 7;
+}
+
+.slot::after {
+  content: "";
+  position: absolute;
+  inset: 3px 8px;
+  border-radius: 6px;
+  background: #2f2b28;
+}
+
+.slot.glow::after {
+  animation: slotGlow .8s ease-in-out 1;
+}
+
+@keyframes slotGlow {
+  0%, 100% {
+    box-shadow: none;
+  }
+
+  40% {
+    box-shadow: 0 0 14px rgba(193,167,148,.8);
+  }
 }
 
 /* =========================
-   RECEIPT
+   PAPER
 ========================= */
 
-.receipt-card{
-  background:rgba(255,255,255,.76);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:30px;
-  box-shadow:var(--shadow);
-  position:relative;
+.paper-area {
+  position: absolute;
+  left: 50%;
+  top: 205px;
+  transform: translateX(-50%);
+  width: min(222px, 60vw);
+  height: 245px;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
 }
 
-.receipt-card::before,
-.receipt-card::after{
-  content:"";
-  position:absolute;
-  left:0;
-  width:100%;
-  height:10px;
+.paper {
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 100%;
+  min-height: 220px;
+  padding: 22px 20px 20px;
   background:
-    radial-gradient(circle at 5px 0, transparent 5px, var(--white) 5.5px)
-    repeat-x;
-  background-size:10px 10px;
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.98) 0%,
+      rgba(255,253,249,.98) 100%
+    );
+  box-shadow:
+    0 10px 30px rgba(70,55,45,.13);
+  border: 1px solid rgba(90,70,60,.08);
+
+  transform: translateY(-100%);
+  opacity: 0;
+
+  transition:
+    transform 2.6s cubic-bezier(.22,.8,.28,1),
+    opacity .25s ease;
 }
 
-.receipt-card::before{
-  top:-10px;
+.paper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 7px;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(140,126,116,.08) 5px,
+      rgba(140,126,116,.08) 7px
+    );
 }
 
-.receipt-card::after{
-  bottom:-10px;
-  transform:rotate(180deg);
+.paper.show {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.receipt-head{
-  text-align:center;
-  padding-bottom:22px;
-  border-bottom:1px dashed rgba(95,81,72,.3);
+.paper.bounce {
+  animation: paperBounce .35s ease-out;
 }
 
-.receipt-brand{
-  font-family:"Cormorant Garamond",serif;
-  font-size:28px;
-  letter-spacing:3px;
+@keyframes paperBounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(7px);
+  }
+
+  75% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
-.receipt-label{
-  font-size:10px;
-  letter-spacing:3px;
-  margin-top:2px;
-  opacity:.55;
+.paper-brand {
+  font-family: Georgia, serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: #786c64;
+  margin-bottom: 12px;
 }
 
-.order-number{
-  margin-top:15px;
-  font-size:12px;
-  letter-spacing:1px;
-  font-weight:600;
+.paper-line {
+  height: 1px;
+  background: #e9e1da;
+  margin: 10px 0 14px;
 }
 
-.receipt-body{
-  padding:23px 0;
-  border-bottom:1px dashed rgba(95,81,72,.3);
+.paper-label {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #a39891;
+  margin-bottom: 4px;
 }
 
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:13px;
-  font-size:13px;
+.paper-value {
+  font-size: 11px;
+  color: #5d554f;
+  word-break: break-word;
 }
 
-.row:last-child{
-  margin-bottom:0;
+.paper-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.row .label{
-  color:#93877e;
+.paper-row .right {
+  text-align: right;
 }
 
-.row .value{
-  text-align:right;
-  font-weight:500;
-  max-width:60%;
+.paper-total {
+  font-size: 15px;
+  color: #62584f;
+  font-weight: 600;
 }
 
-.extras{
-  margin-top:17px;
-}
-
-.extra{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:5px 0;
-  font-size:12px;
-}
-
-.extra-name{
-  color:#8c7e74;
-}
-
-.extra-price{
-  font-weight:500;
-}
-
-.money{
-  padding:23px 0;
-  border-bottom:1px dashed rgba(95,81,72,.3);
-}
-
-.money .row{
-  align-items:center;
-}
-
-.money .total{
-  font-size:18px;
-  margin-top:10px;
-  padding-top:15px;
-  border-top:1px solid rgba(95,81,72,.12);
-}
-
-.money .deposit .value{
-  font-weight:700;
-}
-
-.money .remaining .value{
-  color:#8c7e74;
-}
-
-.payment-status{
-  margin-top:23px;
-  text-align:center;
-  background:rgba(200,188,177,.22);
-  border:1px solid rgba(140,126,116,.18);
-  border-radius:14px;
-  padding:13px;
-}
-
-.payment-status .status-label{
-  font-size:9px;
-  letter-spacing:2px;
-  opacity:.55;
-  text-transform:uppercase;
-}
-
-.payment-status .status{
-  margin-top:5px;
-  font-size:13px;
-  font-weight:600;
+.paper-small {
+  font-size: 8px;
+  line-height: 1.6;
+  color: #aaa099;
+  margin-top: 15px;
 }
 
 /* =========================
-   BUTTONS
+   REVEAL BUTTON
 ========================= */
 
-.actions{
-  margin-top:30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.reveal-btn {
+  appearance: none;
+  border: 1px solid rgba(140,126,116,.45);
+  background: rgba(255,255,255,.48);
+  color: #6f625a;
+  border-radius: 999px;
+  padding: 13px 25px;
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  cursor: pointer;
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
 }
 
-.btn{
-  border:1px solid rgba(95,81,72,.22);
-  background:rgba(255,255,255,.8);
-  color:var(--dark);
-  min-height:48px;
-  border-radius:999px;
-  padding:0 18px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.4px;
-  transition:.2s ease;
+.reveal-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.75);
+  box-shadow: 0 10px 25px rgba(90,70,60,.1);
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 25px rgba(95,81,72,.12);
+.reveal-btn:active {
+  transform: translateY(1px);
 }
 
-.btn.primary{
-  background:var(--brown);
-  color:white;
-  border-color:var(--brown);
+.reveal-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(5px);
 }
 
-.btn.full{
-  grid-column:1 / -1;
+.ready {
+  margin-top: 20px;
+  min-height: 22px;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  color: #76685f;
+  opacity: 0;
+  transform: translateY(7px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.ready.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================
-   FOOTER
+   PARTICLES
 ========================= */
 
-.footer{
-  text-align:center;
-  margin-top:55px;
-  color:#9a8e85;
-  font-size:11px;
+.particle {
+  position: fixed;
+  left: 50%;
+  top: 58%;
+  pointer-events: none;
+  opacity: 0;
+  color: #b49e91;
+  font-size: 10px;
+  animation: floatUp 1.8s ease-out forwards;
+  z-index: 20;
 }
 
-.footer .brand{
-  font-family:"Cormorant Garamond",serif;
-  font-size:20px;
-  letter-spacing:3px;
-  color:#7d7067;
-  margin-bottom:5px;
-}
-
-/* =========================
-   PRINT
-========================= */
-
-@media print{
-  body{
-    background:white;
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(.7);
   }
 
-  .page{
-    padding:0;
-    width:100%;
+  20% {
+    opacity: .7;
   }
 
-  .top{
-    margin-bottom:25px;
-  }
-
-  .success-title{
-    font-size:40px;
-  }
-
-  .content{
-    display:block;
-  }
-
-  .photo-section{
-    margin-bottom:35px;
-  }
-
-  .polaroid{
-    box-shadow:none;
-  }
-
-  .receipt-card{
-    box-shadow:none;
-    border:1px solid #ddd;
-  }
-
-  .actions,
-  .footer{
-    display:none !important;
+  100% {
+    opacity: 0;
+    transform:
+      translate(var(--x), -80px)
+      scale(1.1);
   }
 }
 
@@ -469,56 +448,29 @@ button{
    RESPONSIVE
 ========================= */
 
-@media(max-width:760px){
-  .page{
-    padding:35px 15px 60px;
+@media (max-width: 480px) {
+  body {
+    padding-top: 20px;
   }
 
-  .success-title{
-    font-size:42px;
+  .subtitle {
+    margin-bottom: 22px;
   }
 
-  .content{
-    grid-template-columns:1fr;
-    gap:30px;
+  .printer {
+    height: 225px;
   }
 
-  .photo-section{
-    order:1;
+  .printer-face {
+    height: 125px;
   }
 
-  .receipt-card{
-    order:2;
-    padding:25px 20px;
+  .paper-area {
+    top: 187px;
   }
 
-  .polaroid{
-    max-width:370px;
-  }
-
-  .actions{
-    grid-template-columns:1fr;
-  }
-
-  .btn.full{
-    grid-column:auto;
-  }
-}
-
-@keyframes photoIn{
-  0%{
-    opacity:0;
-    transform:translateY(-80px) rotate(-8deg);
-  }
-
-  70%{
-    opacity:1;
-    transform:translateY(8px) rotate(-1deg);
-  }
-
-  100%{
-    opacity:1;
-    transform:rotate(-2.2deg);
+  .paper {
+    min-height: 205px;
   }
 }
 </style>
@@ -528,450 +480,645 @@ button{
 
 <div class="page">
 
-  <header class="top">
-    <div class="logo">
-      PINTO LOVE
-      <span>little digital moment</span>
+  <div class="brand">PINTO LOVE</div>
+
+  <h1 class="title">A little moment<br>for you ♡</h1>
+
+  <p class="subtitle">
+    Your order is ready to be revealed.
+  </p>
+
+  <div class="printer-wrap">
+
+    <div class="printer">
+
+      <div class="status-light" id="statusLight"></div>
+
+      <div class="printer-face">
+        <div class="logo">
+          <div class="logo-main">PINTO</div>
+          <span class="logo-heart">LOVE ♡</span>
+        </div>
+      </div>
+
+      <div class="status">
+        PRINTING YOUR LITTLE MOMENT
+      </div>
+
+      <div class="slot" id="slot"></div>
+
     </div>
 
-    <h1 class="success-title">Order Complete ♡</h1>
+    <div class="paper-area">
 
-    <p class="success-text">
-      ขอบคุณสำหรับออเดอร์ของคุณ
-      เราได้รับข้อมูลเรียบร้อยแล้ว
-    </p>
-  </header>
+      <div class="paper" id="paper">
 
+        <div class="paper-brand">
+          PINTO LOVE
+        </div>
 
-  <main class="content">
+        <div class="paper-line"></div>
 
-    <!-- POLAROID -->
-    <section class="photo-section">
+        <div class="paper-row">
 
-      <div class="polaroid-wrap">
-
-        <div class="polaroid">
-
-          <div class="photo">
-            <div class="photo-placeholder">
-              <span class="heart">♡</span>
-
-              <h2>Your Moment</h2>
-
-              <p>PINTO LOVE</p>
+          <div>
+            <div class="paper-label">ORDER NO.</div>
+            <div class="paper-value" id="orderNumber">
+              —
             </div>
           </div>
 
-          <div class="polaroid-caption">
-            <div class="small">a little digital moment</div>
-
-            <div class="moment">
-              made especially for you
+          <div class="right">
+            <div class="paper-label">STATUS</div>
+            <div class="paper-value">
+              RECEIVED
             </div>
           </div>
 
+        </div>
+
+        <div class="paper-row">
+
+          <div>
+            <div class="paper-label">TEMPLATE</div>
+            <div class="paper-value" id="templateName">
+              —
+            </div>
+          </div>
+
+        </div>
+
+        <div class="paper-line"></div>
+
+        <div class="paper-row">
+          <div>
+            <div class="paper-label">TOTAL</div>
+            <div class="paper-value paper-total" id="totalPrice">
+              ฿—
+            </div>
+          </div>
+
+          <div class="right">
+            <div class="paper-label">DEPOSIT 30%</div>
+            <div class="paper-value" id="depositAmount">
+              ฿—
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-row">
+          <div>
+            <div class="paper-label">REMAINING 70%</div>
+            <div class="paper-value" id="remainingAmount">
+              ฿—
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-small">
+          Thank you for choosing PINTO LOVE.<br>
+          Made with a little love, just for you ♡
         </div>
 
       </div>
 
-    </section>
-
-
-    <!-- RECEIPT -->
-    <section>
-
-      <div class="receipt-card">
-
-        <div class="receipt-head">
-
-          <div class="receipt-brand">
-            PINTO LOVE
-          </div>
-
-          <div class="receipt-label">
-            ORDER RECEIPT
-          </div>
-
-          <div class="order-number" id="orderNumber">
-            ORDER #—
-          </div>
-
-        </div>
-
-
-        <div class="receipt-body">
-
-          <div class="row">
-            <span class="label">Template</span>
-            <span class="value" id="templateName">
-              Anniversary Template
-            </span>
-          </div>
-
-          <div class="row">
-            <span class="label">Customer</span>
-            <span class="value" id="customerName">
-              —
-            </span>
-          </div>
-
-          <div class="row">
-            <span class="label">Order Date</span>
-            <span class="value" id="orderDate">
-              —
-            </span>
-          </div>
-
-          <div class="extras" id="extrasList"></div>
-
-        </div>
-
-
-        <div class="money">
-
-          <div class="row">
-            <span class="label">Subtotal</span>
-            <span class="value" id="subtotal">
-              ฿129.00
-            </span>
-          </div>
-
-          <div class="row total">
-            <span class="label">Total</span>
-            <span class="value" id="total">
-              ฿129.00
-            </span>
-          </div>
-
-          <div class="row deposit">
-            <span class="label">Deposit 30%</span>
-            <span class="value" id="deposit">
-              ฿38.70
-            </span>
-          </div>
-
-          <div class="row remaining">
-            <span class="label">Remaining 70%</span>
-            <span class="value" id="remaining">
-              ฿90.30
-            </span>
-          </div>
-
-        </div>
-
-
-        <div class="payment-status">
-
-          <div class="status-label">
-            Payment Status
-          </div>
-
-          <div class="status" id="paymentStatus">
-            รอตรวจสอบมัดจำ
-          </div>
-
-        </div>
-
-
-        <div class="actions">
-
-          <button
-            class="btn primary"
-            onclick="printPhoto()">
-            PRINT PHOTO
-          </button>
-
-          <button
-            class="btn"
-            onclick="printReceipt()">
-            PRINT RECEIPT
-          </button>
-
-          <button
-            class="btn full"
-            onclick="savePDF()">
-            SAVE AS PDF
-          </button>
-
-          <button
-            class="btn full"
-            onclick="goHome()">
-            BACK TO PINTO LOVE
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <footer class="footer">
-
-    <div class="brand">
-      PINTO LOVE
     </div>
 
-    <div>
-      little digital moments, made with love.
-    </div>
+  </div>
 
-  </footer>
+  <button class="reveal-btn" id="revealBtn">
+    REVEAL MY ORDER ♡
+  </button>
+
+  <div class="ready" id="readyMessage">
+    Your little moment is ready ♡
+  </div>
 
 </div>
 
-
 <script>
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-/* ==========================================================
+const SUPABASE_URL =
+  "https://kevbykrpnpgsnyxtpfqj.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+
+
+/* =====================================================
    GET ORDER NUMBER
-========================================================== */
+===================================================== */
 
 const params = new URLSearchParams(window.location.search);
 
-const orderNumber =
+const orderNumberFromUrl =
   params.get("order") ||
-  params.get("order_number") ||
-  "";
-
-document.getElementById("orderNumber").textContent =
-  orderNumber
-    ? `ORDER #${orderNumber}`
-    : "ORDER #—";
+  params.get("order_number");
 
 
-/* ==========================================================
-   DEMO DATA
-   จะถูกแทนด้วยข้อมูล Order จริงในขั้นต่อไป
-========================================================== */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-const demoOrder = {
-  template: "Anniversary Template",
-  customer: "Your Name",
-  date: new Date().toLocaleDateString("th-TH", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  }),
-  extras: [
-    {
-      name: "Music Player",
-      price: 29
-    },
-    {
-      name: "Photo Gallery",
-      price: 29
-    }
-  ],
-  subtotal: 187,
-  total: 187,
-  deposit: 56.10,
-  remaining: 130.90,
-  paymentStatus: "รอตรวจสอบมัดจำ"
-};
+const revealBtn = document.getElementById("revealBtn");
+const paper = document.getElementById("paper");
+const statusLight = document.getElementById("statusLight");
+const slot = document.getElementById("slot");
+const readyMessage = document.getElementById("readyMessage");
+
+const orderNumberEl =
+  document.getElementById("orderNumber");
+
+const templateNameEl =
+  document.getElementById("templateName");
+
+const totalPriceEl =
+  document.getElementById("totalPrice");
+
+const depositAmountEl =
+  document.getElementById("depositAmount");
+
+const remainingAmountEl =
+  document.getElementById("remainingAmount");
 
 
-/* ==========================================================
-   RENDER DEMO
-========================================================== */
+/* =====================================================
+   LOAD ORDER
+===================================================== */
 
-function renderOrder(order){
+async function loadOrder() {
 
-  document.getElementById("templateName").textContent =
-    order.template || "—";
-
-  document.getElementById("customerName").textContent =
-    order.customer || "—";
-
-  document.getElementById("orderDate").textContent =
-    order.date || "—";
-
-  document.getElementById("subtotal").textContent =
-    formatTHB(order.subtotal);
-
-  document.getElementById("total").textContent =
-    formatTHB(order.total);
-
-  document.getElementById("deposit").textContent =
-    formatTHB(order.deposit);
-
-  document.getElementById("remaining").textContent =
-    formatTHB(order.remaining);
-
-  document.getElementById("paymentStatus").textContent =
-    order.paymentStatus || "รอตรวจสอบมัดจำ";
-
-
-  const extrasList =
-    document.getElementById("extrasList");
-
-  extrasList.innerHTML = "";
-
-  if(
-    !order.extras ||
-    order.extras.length === 0
-  ){
+  if (!orderNumberFromUrl) {
     return;
   }
 
-  order.extras.forEach(extra => {
+  try {
 
-    const div =
-      document.createElement("div");
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/orders?order_number=eq.${encodeURIComponent(orderNumberFromUrl)}&select=order_number,template,total_price,deposit_amount,remaining_amount,payment_status,status`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization:
+            `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      }
+    );
 
-    div.className = "extra";
+    if (!response.ok) {
+      throw new Error("Could not load order.");
+    }
 
-    div.innerHTML = `
-      <span class="extra-name">
-        + ${escapeHTML(extra.name)}
-      </span>
+    const orders = await response.json();
 
-      <span class="extra-price">
-        ${formatTHB(extra.price)}
-      </span>
-    `;
+    if (!orders.length) {
+      orderNumberEl.textContent =
+        orderNumberFromUrl;
 
-    extrasList.appendChild(div);
+      return;
+    }
 
-  });
+    const order = orders[0];
 
+    orderNumberEl.textContent =
+      order.order_number || "—";
+
+    templateNameEl.textContent =
+      order.template || "—";
+
+    totalPriceEl.textContent =
+      `฿${formatMoney(order.total_price)}`;
+
+    depositAmountEl.textContent =
+      `฿${formatMoney(order.deposit_amount)}`;
+
+    remainingAmountEl.textContent =
+      `฿${formatMoney(order.remaining_amount)}`;
+
+  } catch (error) {
+
+    console.error(
+      "LOAD ORDER ERROR:",
+      error
+    );
+
+    /*
+      ถ้าโหลดข้อมูลไม่ได้ อย่างน้อยยังแสดง
+      Order No. ที่ส่งมากับ URL
+    */
+    orderNumberEl.textContent =
+      orderNumberFromUrl || "—";
+  }
 }
 
 
-/* ==========================================================
-   FORMAT
-========================================================== */
-
-function formatTHB(value){
+function formatMoney(value) {
 
   const number =
     Number(value || 0);
 
-  return (
-    "฿" +
-    number.toLocaleString("th-TH", {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    })
+  return number.toLocaleString(
+    "en-US",
+    {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    }
   );
 }
 
 
-function escapeHTML(text){
+/* =====================================================
+   PAPER SOUND
+===================================================== */
 
-  return String(text)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+let audioContext = null;
 
+
+/*
+  สร้าง AudioContext หลัง user interaction
+  เพื่อไม่ให้ browser block เสียง
+*/
+
+function getAudioContext() {
+
+  if (!audioContext) {
+
+    const AudioCtx =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if (!AudioCtx) {
+      return null;
+    }
+
+    audioContext =
+      new AudioCtx();
+  }
+
+  if (
+    audioContext.state === "suspended"
+  ) {
+    audioContext.resume();
+  }
+
+  return audioContext;
 }
 
 
-/* ==========================================================
-   PRINT PHOTO
-========================================================== */
+/*
+  เสียง click เล็ก ๆ ตอนเครื่องเริ่มทำงาน
+*/
 
-function printPhoto(){
+function playClickSound() {
 
-  const original =
-    document.body.innerHTML;
+  const ctx =
+    getAudioContext();
 
-  const photo =
-    document.querySelector(".photo-section").outerHTML;
+  if (!ctx) return;
 
-  document.body.innerHTML = `
-    <div style="
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px;
-      background:white;
-    ">
-      ${photo}
-    </div>
-  `;
+  const osc =
+    ctx.createOscillator();
 
-  window.print();
+  const gain =
+    ctx.createGain();
 
-  document.body.innerHTML =
-    original;
+  osc.type = "sine";
 
-  location.reload();
-
-}
-
-
-/* ==========================================================
-   PRINT RECEIPT
-========================================================== */
-
-function printReceipt(){
-
-  const receipt =
-    document.querySelector(".receipt-card");
-
-  const original =
-    document.body.innerHTML;
-
-  document.body.innerHTML = `
-    <div style="
-      max-width:500px;
-      margin:40px auto;
-      padding:20px;
-      background:white;
-    ">
-      ${receipt.outerHTML}
-    </div>
-  `;
-
-  window.print();
-
-  document.body.innerHTML =
-    original;
-
-  location.reload();
-
-}
-
-
-/* ==========================================================
-   SAVE PDF
-========================================================== */
-
-function savePDF(){
-
-  alert(
-    "เลือกเครื่องพิมพ์เป็น “Save as PDF” หรือ “บันทึกเป็น PDF” แล้วกด Save ได้เลยค่ะ"
+  osc.frequency.setValueAtTime(
+    850,
+    ctx.currentTime
   );
 
-  window.print();
+  gain.gain.setValueAtTime(
+    0.0001,
+    ctx.currentTime
+  );
 
+  gain.gain.exponentialRampToValueAtTime(
+    0.045,
+    ctx.currentTime + 0.01
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    ctx.currentTime + 0.09
+  );
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+  osc.stop(
+    ctx.currentTime + 0.1
+  );
 }
 
 
-/* ==========================================================
-   BACK
-========================================================== */
+/*
+  เสียงกระดาษ / printer mechanism
+*/
 
-function goHome(){
+function playPaperSound() {
 
-  window.location.href =
-    "index.html";
+  const ctx =
+    getAudioContext();
 
+  if (!ctx) return;
+
+  const duration = 2.45;
+
+  const bufferSize =
+    Math.floor(
+      ctx.sampleRate * duration
+    );
+
+  const buffer =
+    ctx.createBuffer(
+      1,
+      bufferSize,
+      ctx.sampleRate
+    );
+
+  const data =
+    buffer.getChannelData(0);
+
+  for (
+    let i = 0;
+    i < bufferSize;
+    i++
+  ) {
+
+    const time =
+      i / ctx.sampleRate;
+
+    /*
+      noise + rhythmic mechanical pulses
+    */
+    const noise =
+      (Math.random() * 2 - 1);
+
+    const pulse =
+      Math.sin(
+        time * 2 * Math.PI * 22
+      );
+
+    const detail =
+      Math.sin(
+        time * 2 * Math.PI * 75
+      );
+
+    data[i] =
+      noise * 0.025 +
+      pulse * 0.008 +
+      detail * 0.004;
+  }
+
+  const source =
+    ctx.createBufferSource();
+
+  const filter =
+    ctx.createBiquadFilter();
+
+  const gain =
+    ctx.createGain();
+
+  source.buffer = buffer;
+
+  filter.type = "bandpass";
+  filter.frequency.value = 900;
+  filter.Q.value = 0.7;
+
+  gain.gain.setValueAtTime(
+    0.0001,
+    ctx.currentTime
+  );
+
+  gain.gain.linearRampToValueAtTime(
+    0.045,
+    ctx.currentTime + 0.15
+  );
+
+  gain.gain.setValueAtTime(
+    0.045,
+    ctx.currentTime + 1.9
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    ctx.currentTime + duration
+  );
+
+  source.connect(filter);
+  filter.connect(gain);
+  gain.connect(ctx.destination);
+
+  source.start();
+  source.stop(
+    ctx.currentTime + duration
+  );
 }
 
 
-/* ==========================================================
-   INITIAL RENDER
-========================================================== */
+/*
+  เสียง tick ตอนกระดาษออกสุด
+*/
 
-renderOrder(demoOrder);
+function playTickSound() {
 
+  const ctx =
+    getAudioContext();
+
+  if (!ctx) return;
+
+  const osc =
+    ctx.createOscillator();
+
+  const gain =
+    ctx.createGain();
+
+  osc.type = "triangle";
+
+  osc.frequency.setValueAtTime(
+    720,
+    ctx.currentTime
+  );
+
+  osc.frequency.exponentialRampToValueAtTime(
+    980,
+    ctx.currentTime + 0.045
+  );
+
+  gain.gain.setValueAtTime(
+    0.0001,
+    ctx.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.055,
+    ctx.currentTime + 0.008
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,
+    ctx.currentTime + 0.12
+  );
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start();
+
+  osc.stop(
+    ctx.currentTime + 0.13
+  );
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function createParticles() {
+
+  const symbols = [
+    "♡",
+    "✦",
+    "·"
+  ];
+
+  for (
+    let i = 0;
+    i < 7;
+    i++
+  ) {
+
+    const particle =
+      document.createElement("span");
+
+    particle.className =
+      "particle";
+
+    particle.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+    const x =
+      (Math.random() * 100 - 50);
+
+    particle.style.setProperty(
+      "--x",
+      `${x}px`
+    );
+
+    particle.style.left =
+      `${50 + (Math.random() * 20 - 10)}%`;
+
+    particle.style.top =
+      `${58 + Math.random() * 10}%`;
+
+    particle.style.animationDelay =
+      `${Math.random() * 0.35}s`;
+
+    document.body.appendChild(
+      particle
+    );
+
+    setTimeout(() => {
+      particle.remove();
+    }, 2200);
+  }
+}
+
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+let printed = false;
+
+revealBtn.addEventListener(
+  "click",
+  async function () {
+
+    if (printed) {
+      return;
+    }
+
+    printed = true;
+
+    /*
+      เริ่มเสียงหลัง user กดปุ่ม
+      ทำให้ browser ยอมให้เล่นเสียง
+    */
+    getAudioContext();
+
+    playClickSound();
+
+    statusLight.classList.add(
+      "active"
+    );
+
+    slot.classList.add(
+      "glow"
+    );
+
+    revealBtn.classList.add(
+      "hidden"
+    );
+
+    /*
+      เริ่มเสียงกระดาษ
+    */
+    setTimeout(() => {
+      playPaperSound();
+    }, 160);
+
+    /*
+      กระดาษเริ่มออก
+    */
+    setTimeout(() => {
+
+      paper.classList.add(
+        "show"
+      );
+
+    }, 180);
+
+    /*
+      ตอนกระดาษออกสุด
+    */
+    setTimeout(() => {
+
+      playTickSound();
+
+      paper.classList.add(
+        "bounce"
+      );
+
+      createParticles();
+
+      readyMessage.classList.add(
+        "show"
+      );
+
+    }, 2850);
+
+  }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadOrder();
 </script>
 
 </body>
