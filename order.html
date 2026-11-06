@@ -949,65 +949,115 @@ function showCouponMessage(message, type){
   box.className = "coupon-message " + type;
 }
 
+/* =========================================================
+   CHECK COUPON
+   ใช้ RPC check_coupon ที่สร้างใน Supabase
+========================================================= */
+async function checkCouponOnSupabase(couponCode, lineId){
+
+  const response = await fetch(
+    SUPABASE_URL + "/rest/v1/rpc/check_coupon",
+    {
+      method:"POST",
+
+      headers:{
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        p_coupon_code: couponCode,
+        p_contact: lineId
+      })
+    }
+  );
+
+  if(!response.ok){
+
+    let errorText = "";
+
+    try{
+      errorText = await response.text();
+    }catch(e){}
+
+    throw new Error(
+      "Unable to verify the coupon right now." +
+      (errorText ? " " + errorText : "")
+    );
+  }
+
+  return await response.json();
+}
+
 async function applyCoupon(){
-  const code = document.getElementById("couponCode").value.trim();
-  const lineId = normalizeLineId(document.getElementById("lineId").value);
+
+  const code =
+    document.getElementById("couponCode").value.trim();
+
+  const lineId =
+    normalizeLineId(
+      document.getElementById("lineId").value
+    );
 
   if(!lineId){
-    showCouponMessage("Please enter your LINE ID first.", "error");
+    showCouponMessage(
+      "Please enter your LINE ID first.",
+      "error"
+    );
+
     document.getElementById("lineId").focus();
     return;
   }
 
   if(!code){
-    showCouponMessage("Please enter your discount code.", "error");
+    showCouponMessage(
+      "Please enter your discount code.",
+      "error"
+    );
+
     return;
   }
 
   if(code.toUpperCase() !== DISCOUNT_CODE){
     couponApplied = false;
     couponCodeApplied = "";
+
     calculatePrices();
 
-    showCouponMessage("Invalid discount code.", "error");
+    showCouponMessage(
+      "Invalid discount code.",
+      "error"
+    );
+
     return;
   }
 
-  const button = document.getElementById("applyCouponBtn");
+  const button =
+    document.getElementById("applyCouponBtn");
 
   button.disabled = true;
   button.textContent = "Checking...";
 
   try{
-    const response = await fetch(
-      SUPABASE_URL +
-      "/rest/v1/coupon_usages?coupon_code=eq." +
-      encodeURIComponent(DISCOUNT_CODE.toLowerCase()) +
-      "&contact=eq." +
-      encodeURIComponent(lineId) +
-      "&select=id",
-      {
-        method:"GET",
-        headers:{
-          "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY
-        }
-      }
-    );
 
-    if(!response.ok){
-      throw new Error("Unable to verify coupon right now.");
-    }
+    const result =
+      await checkCouponOnSupabase(
+        DISCOUNT_CODE,
+        lineId
+      );
 
-    const data = await response.json();
+    if(!result || result.success !== true){
 
-    if(data.length > 0){
       couponApplied = false;
       couponCodeApplied = "";
+
       calculatePrices();
 
       showCouponMessage(
-        "This discount code has already been used with this LINE ID.",
+        result && result.message
+          ? result.message
+          : "This discount code cannot be used.",
         "error"
       );
 
@@ -1025,27 +1075,35 @@ async function applyCoupon(){
     );
 
   }catch(error){
+
     couponApplied = false;
     couponCodeApplied = "";
+
     calculatePrices();
 
+    console.error("Coupon check error:", error);
+
     showCouponMessage(
-      error.message || "Unable to verify the coupon right now.",
+      error.message ||
+      "Unable to verify the coupon right now.",
       "error"
     );
 
   }finally{
+
     button.disabled = false;
     button.textContent = "Apply";
   }
 }
 
 function getSafeContentType(file){
+
   if(!file){
     return "application/octet-stream";
   }
 
-  const type = String(file.type || "");
+  const type =
+    String(file.type || "");
 
   const safeTypes = [
     "image/jpeg",
@@ -1063,22 +1121,45 @@ function getSafeContentType(file){
 }
 
 function makeOrderNumber(){
+
   const now = new Date();
 
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2,"0");
-  const day = String(now.getDate()).padStart(2,"0");
+  const year =
+    now.getFullYear();
 
-  const random = Math.floor(1000 + Math.random() * 9000);
+  const month =
+    String(now.getMonth() + 1)
+      .padStart(2,"0");
 
-  return "PINTO-" + year + month + day + "-" + random;
+  const day =
+    String(now.getDate())
+      .padStart(2,"0");
+
+  const random =
+    Math.floor(
+      1000 + Math.random() * 9000
+    );
+
+  return (
+    "PINTO-" +
+    year +
+    month +
+    day +
+    "-" +
+    random
+  );
 }
 
 function showStatus(message, type){
-  const box = document.getElementById("statusBox");
 
-  box.className = "status show " + type;
-  box.innerHTML = message;
+  const box =
+    document.getElementById("statusBox");
+
+  box.className =
+    "status show " + type;
+
+  box.innerHTML =
+    message;
 
   box.scrollIntoView({
     behavior:"smooth",
@@ -1087,9 +1168,11 @@ function showStatus(message, type){
 }
 
 async function uploadPaymentSlip(file, orderNumber){
-  const extension = file.name.includes(".")
-    ? file.name.split(".").pop().toLowerCase()
-    : "file";
+
+  const extension =
+    file.name.includes(".")
+      ? file.name.split(".").pop().toLowerCase()
+      : "file";
 
   const filePath =
     orderNumber +
@@ -1098,36 +1181,41 @@ async function uploadPaymentSlip(file, orderNumber){
     "." +
     extension;
 
-  const uploadResponse = await fetch(
-    SUPABASE_URL +
-    "/storage/v1/object/" +
-    STORAGE_BUCKET +
-    "/" +
-    encodeURIComponent(filePath),
-    {
-      method:"POST",
+  const uploadResponse =
+    await fetch(
+      SUPABASE_URL +
+      "/storage/v1/object/" +
+      STORAGE_BUCKET +
+      "/" +
+      encodeURIComponent(filePath),
+      {
+        method:"POST",
 
-      headers:{
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-        "Content-Type": getSafeContentType(file),
-        "x-upsert": "false"
-      },
+        headers:{
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type": getSafeContentType(file),
+          "x-upsert": "false"
+        },
 
-      body:file
-    }
-  );
+        body:file
+      }
+    );
 
   if(!uploadResponse.ok){
+
     let errorText = "";
 
     try{
-      errorText = await uploadResponse.text();
+      errorText =
+        await uploadResponse.text();
     }catch(e){}
 
     throw new Error(
       "Payment slip upload failed." +
-      (errorText ? " " + errorText : "")
+      (errorText
+        ? " " + errorText
+        : "")
     );
   }
 
@@ -1135,32 +1223,40 @@ async function uploadPaymentSlip(file, orderNumber){
 }
 
 async function createOrder(orderData){
-  const response = await fetch(
-    SUPABASE_URL + "/rest/v1/orders",
-    {
-      method:"POST",
 
-      headers:{
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-        "Content-Type":"application/json",
-        "Prefer":"return=representation"
-      },
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/orders",
+      {
+        method:"POST",
 
-      body:JSON.stringify(orderData)
-    }
-  );
+        headers:{
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type":"application/json",
+          "Prefer":"return=representation"
+        },
+
+        body:
+          JSON.stringify(orderData)
+      }
+    );
 
   if(!response.ok){
+
     let errorText = "";
 
     try{
-      errorText = await response.text();
+      errorText =
+        await response.text();
     }catch(e){}
 
     throw new Error(
       "Order creation failed." +
-      (errorText ? " " + errorText : "")
+      (errorText
+        ? " " + errorText
+        : "")
     );
   }
 
@@ -1168,7 +1264,9 @@ async function createOrder(orderData){
 }
 
 async function deleteUploadedSlip(filePath){
+
   try{
+
     await fetch(
       SUPABASE_URL +
       "/storage/v1/object/" +
@@ -1177,215 +1275,343 @@ async function deleteUploadedSlip(filePath){
       encodeURIComponent(filePath),
       {
         method:"DELETE",
+
         headers:{
           "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY
         }
       }
     );
+
   }catch(e){
-    console.warn("Could not delete uploaded file:", e);
+
+    console.warn(
+      "Could not delete uploaded file:",
+      e
+    );
   }
 }
 
+/* =========================================================
+   USE COUPON
+   เรียกตอน Submit เท่านั้น
+========================================================= */
 async function useCouponOnSupabase({
   couponCode,
   lineId,
   orderNumber,
   customerName
 }){
-  const response = await fetch(
-    SUPABASE_URL + "/rest/v1/rpc/use_coupon",
-    {
-      method:"POST",
 
-      headers:{
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-        "Content-Type":"application/json"
-      },
+  const response =
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/rpc/use_coupon",
+      {
+        method:"POST",
 
-      body:JSON.stringify({
-        p_coupon_code: couponCode,
-        p_contact: lineId,
-        p_order_number: orderNumber,
-        p_customer_name: customerName
-      })
-    }
-  );
+        headers:{
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+          "Content-Type":
+            "application/json"
+        },
+
+        body:
+          JSON.stringify({
+            p_coupon_code:
+              couponCode,
+
+            p_contact:
+              lineId,
+
+            p_order_number:
+              orderNumber,
+
+            p_customer_name:
+              customerName
+          })
+      }
+    );
 
   if(!response.ok){
+
     let errorText = "";
 
     try{
-      errorText = await response.text();
+      errorText =
+        await response.text();
     }catch(e){}
 
     throw new Error(
       "Coupon verification failed." +
-      (errorText ? " " + errorText : "")
+      (errorText
+        ? " " + errorText
+        : "")
     );
   }
 
-  const result = await response.json();
-
-  return result;
+  return await response.json();
 }
 
 async function submitOrder(){
-  const submitButton = document.getElementById("submitBtn");
+
+  const submitButton =
+    document.getElementById("submitBtn");
 
   const customerName =
-    document.getElementById("customerName").value.trim();
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
 
   const lineId =
-    normalizeLineId(document.getElementById("lineId").value);
+    normalizeLineId(
+      document
+        .getElementById("lineId")
+        .value
+    );
 
   const message =
-    document.getElementById("message").value.trim();
+    document
+      .getElementById("message")
+      .value
+      .trim();
 
   const paymentSlip =
-    document.getElementById("paymentSlip").files[0];
+    document
+      .getElementById("paymentSlip")
+      .files[0];
 
   const template =
     getTemplateFromURL();
 
   const primaryColor =
-    document.getElementById("primaryColor").value;
+    document
+      .getElementById("primaryColor")
+      .value;
 
   const secondaryColor =
-    document.getElementById("secondaryColor").value;
+    document
+      .getElementById("secondaryColor")
+      .value;
 
   const backgroundColor =
-    document.getElementById("backgroundColor").value;
+    document
+      .getElementById("backgroundColor")
+      .value;
 
   if(!customerName){
-    showStatus("Please enter your name.", "error");
-    document.getElementById("customerName").focus();
+
+    showStatus(
+      "Please enter your name.",
+      "error"
+    );
+
+    document
+      .getElementById("customerName")
+      .focus();
+
     return;
   }
 
   if(!lineId){
-    showStatus("Please enter your LINE ID.", "error");
-    document.getElementById("lineId").focus();
+
+    showStatus(
+      "Please enter your LINE ID.",
+      "error"
+    );
+
+    document
+      .getElementById("lineId")
+      .focus();
+
     return;
   }
 
   if(!paymentSlip){
-    showStatus("Please upload your payment slip.", "error");
-    document.getElementById("paymentSlip").focus();
+
+    showStatus(
+      "Please upload your payment slip.",
+      "error"
+    );
+
+    document
+      .getElementById("paymentSlip")
+      .focus();
+
     return;
   }
 
-  const prices = calculatePrices();
+  const prices =
+    calculatePrices();
 
-  const orderNumber = makeOrderNumber();
+  const orderNumber =
+    makeOrderNumber();
 
   submitButton.disabled = true;
   submitButton.textContent = "SENDING...";
 
   let uploadedFilePath = null;
-  let createdOrder = null;
 
   try{
 
     /*
-      If a coupon is applied, verify again immediately
-      before creating the order.
+      ถ้าใช้คูปอง ให้ตรวจอีกครั้งผ่าน RPC
+      ก่อนสร้าง Order
     */
-    if(couponApplied && couponCodeApplied){
+    if(
+      couponApplied &&
+      couponCodeApplied
+    ){
 
-      const checkResponse = await fetch(
-        SUPABASE_URL +
-        "/rest/v1/coupon_usages?coupon_code=eq." +
-        encodeURIComponent(couponCodeApplied.toLowerCase()) +
-        "&contact=eq." +
-        encodeURIComponent(lineId) +
-        "&select=id",
-        {
-          method:"GET",
-          headers:{
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": "Bearer " + SUPABASE_ANON_KEY
-          }
-        }
-      );
+      const latestCouponCheck =
+        await checkCouponOnSupabase(
+          couponCodeApplied,
+          lineId
+        );
 
-      if(!checkResponse.ok){
-        throw new Error("Unable to verify coupon before submitting.");
-      }
+      if(
+        !latestCouponCheck ||
+        latestCouponCheck.success !== true
+      ){
 
-      const existingUsage = await checkResponse.json();
-
-      if(existingUsage.length > 0){
         couponApplied = false;
         couponCodeApplied = "";
+
         calculatePrices();
 
         throw new Error(
-          "This discount code has already been used with this LINE ID."
+          latestCouponCheck &&
+          latestCouponCheck.message
+            ? latestCouponCheck.message
+            : "This discount code cannot be used."
         );
       }
     }
 
     uploadedFilePath =
-      await uploadPaymentSlip(paymentSlip, orderNumber);
+      await uploadPaymentSlip(
+        paymentSlip,
+        orderNumber
+      );
 
     const orderData = {
-      order_number: orderNumber,
-      customer_name: customerName,
-      contact: lineId,
-      template: template,
-      message: message,
-      primary_color: primaryColor,
-      secondary_color: secondaryColor,
-      background_color: backgroundColor,
-      extra_functions: prices.extras,
-      total_price: prices.total,
-      deposit_amount: prices.deposit,
-      remaining_amount: prices.remaining,
-      payment_slip: uploadedFilePath,
-      payment_status: "รอตรวจสอบมัดจำ",
-      status: "รอตรวจสอบมัดจำ"
+
+      order_number:
+        orderNumber,
+
+      customer_name:
+        customerName,
+
+      contact:
+        lineId,
+
+      template:
+        template,
+
+      message:
+        message,
+
+      primary_color:
+        primaryColor,
+
+      secondary_color:
+        secondaryColor,
+
+      background_color:
+        backgroundColor,
+
+      extra_functions:
+        prices.extras,
+
+      total_price:
+        prices.total,
+
+      deposit_amount:
+        prices.deposit,
+
+      remaining_amount:
+        prices.remaining,
+
+      payment_slip:
+        uploadedFilePath,
+
+      payment_status:
+        "รอตรวจสอบมัดจำ",
+
+      status:
+        "รอตรวจสอบมัดจำ"
     };
 
-    createdOrder = await createOrder(orderData);
+    /*
+      สร้าง Order
+    */
+    await createOrder(
+      orderData
+    );
 
     /*
-      Record coupon usage only when the order
-      has successfully been created.
+      ถ้ามีคูปอง ให้บันทึกการใช้หลังจาก
+      Order สร้างสำเร็จแล้ว
     */
-    if(couponApplied && couponCodeApplied){
+    if(
+      couponApplied &&
+      couponCodeApplied
+    ){
 
-      const couponResult = await useCouponOnSupabase({
-        couponCode: couponCodeApplied,
-        lineId: lineId,
-        orderNumber: orderNumber,
-        customerName: customerName
-      });
+      const couponResult =
+        await useCouponOnSupabase({
+          couponCode:
+            couponCodeApplied,
 
-      if(!couponResult.success){
+          lineId:
+            lineId,
 
-        /*
-          The order was already created but the coupon
-          could not be recorded. Remove the order
-          so the discounted order is not left behind.
-        */
+          orderNumber:
+            orderNumber,
+
+          customerName:
+            customerName
+        });
+
+      /*
+        ถ้าบันทึกคูปองไม่สำเร็จ
+        ให้ลบ Order ที่เพิ่งสร้าง
+      */
+      if(
+        !couponResult ||
+        couponResult.success !== true
+      ){
 
         try{
+
           await fetch(
             SUPABASE_URL +
             "/rest/v1/orders?order_number=eq." +
-            encodeURIComponent(orderNumber),
+            encodeURIComponent(
+              orderNumber
+            ),
             {
               method:"DELETE",
+
               headers:{
-                "apikey": SUPABASE_ANON_KEY,
-                "Authorization": "Bearer " + SUPABASE_ANON_KEY
+                "apikey":
+                  SUPABASE_ANON_KEY,
+
+                "Authorization":
+                  "Bearer " +
+                  SUPABASE_ANON_KEY
               }
             }
           );
+
         }catch(deleteError){
+
           console.warn(
             "Could not remove order after coupon failure:",
             deleteError
@@ -1393,47 +1619,77 @@ async function submitOrder(){
         }
 
         if(uploadedFilePath){
-          await deleteUploadedSlip(uploadedFilePath);
+
+          await deleteUploadedSlip(
+            uploadedFilePath
+          );
+
           uploadedFilePath = null;
         }
 
         throw new Error(
-          couponResult.message ||
-          "This discount code has already been used with this LINE ID."
+          couponResult &&
+          couponResult.message
+            ? couponResult.message
+            : "This discount code has already been used with this LINE ID."
         );
       }
     }
 
     showStatus(
       "<div>Order submitted successfully ♡</div>" +
+
       "<div class='order-number'>" +
       orderNumber +
       "</div>" +
+
       "<div>" +
-      "Total: " + money(prices.total) +
+
+      "Total: " +
+      money(prices.total) +
+
       "<br>" +
-      "Deposit: " + money(prices.deposit) +
+
+      "Deposit: " +
+      money(prices.deposit) +
+
       "<br><br>" +
+
       "We will contact you via LINE after checking your payment." +
+
       "</div>",
+
       "success"
     );
 
-    submitButton.textContent = "Order Submitted";
+    submitButton.textContent =
+      "Order Submitted";
 
-    document.querySelectorAll("input, textarea, button").forEach(el => {
-      if(el !== submitButton){
-        el.disabled = true;
-      }
-    });
+    document
+      .querySelectorAll(
+        "input, textarea, button"
+      )
+      .forEach(el => {
+
+        if(el !== submitButton){
+          el.disabled = true;
+        }
+
+      });
 
   }catch(error){
 
     if(uploadedFilePath){
-      await deleteUploadedSlip(uploadedFilePath);
+
+      await deleteUploadedSlip(
+        uploadedFilePath
+      );
     }
 
-    console.error(error);
+    console.error(
+      "Submit order error:",
+      error
+    );
 
     showStatus(
       error.message ||
@@ -1442,45 +1698,60 @@ async function submitOrder(){
     );
 
     submitButton.disabled = false;
-    submitButton.textContent = "Submit Order";
+    submitButton.textContent =
+      "Submit Order";
   }
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-  const template =
-    getTemplateFromURL();
+    const template =
+      getTemplateFromURL();
 
-  document.getElementById("templateName").textContent =
-    getTemplateName(template);
+    document
+      .getElementById("templateName")
+      .textContent =
+      getTemplateName(template);
 
-  document.getElementById("templateCode").textContent =
-    template;
+    document
+      .getElementById("templateCode")
+      .textContent =
+      template;
 
-  document.querySelectorAll(
-    '.extra-card input[type="checkbox"]'
-  ).forEach(input => {
-    input.addEventListener("change", calculatePrices);
-  });
+    document
+      .querySelectorAll(
+        '.extra-card input[type="checkbox"]'
+      )
+      .forEach(input => {
 
-  updateColorValue(
-    "primaryColor",
-    "primaryColorValue"
-  );
+        input.addEventListener(
+          "change",
+          calculatePrices
+        );
 
-  updateColorValue(
-    "secondaryColor",
-    "secondaryColorValue"
-  );
+      });
 
-  updateColorValue(
-    "backgroundColor",
-    "backgroundColorValue"
-  );
+    updateColorValue(
+      "primaryColor",
+      "primaryColorValue"
+    );
 
-  calculatePrices();
+    updateColorValue(
+      "secondaryColor",
+      "secondaryColorValue"
+    );
 
-});
+    updateColorValue(
+      "backgroundColor",
+      "backgroundColorValue"
+    );
+
+    calculatePrices();
+
+  }
+);
 </script>
 
 </body>
