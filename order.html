@@ -1269,36 +1269,96 @@ async function useCouponOnSupabase(
   customerName
 ){
 
-  const {data,error} =
-    await supabaseClient
-      .rpc(
-        "use_coupon",
-        {
-          p_coupon_code:couponCode,
-          p_contact:normalizeLineId(lineId),
-          p_order_number:orderNumber,
-          p_customer_name:customerName
-        }
-      );
+  const cleanCouponCode =
+    String(couponCode || "")
+      .trim()
+      .toLowerCase();
 
-  console.log(
-    "USE COUPON RESULT:",
-    data
-  );
+  const cleanContact =
+    normalizeLineId(lineId);
+
+  const cleanOrderNumber =
+    String(orderNumber || "")
+      .trim();
+
+  const cleanCustomerName =
+    String(customerName || "")
+      .trim();
+
+  if(!cleanCouponCode){
+    throw new Error("Discount code is missing.");
+  }
+
+  if(!cleanContact){
+    throw new Error("LINE ID is missing.");
+  }
+
+  if(!cleanOrderNumber){
+    throw new Error("Order number is missing.");
+  }
+
+  console.log("VERIFYING COUPON:", {
+    coupon_code: cleanCouponCode,
+    contact: cleanContact,
+    order_number: cleanOrderNumber
+  });
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "use_coupon",
+      {
+        p_coupon_code: cleanCouponCode,
+        p_contact: cleanContact,
+        p_order_number: cleanOrderNumber,
+        p_customer_name: cleanCustomerName
+      }
+    );
+
+  console.log("USE COUPON RPC DATA:", data);
+  console.log("USE COUPON RPC ERROR:", error);
 
   if(error){
+
     console.error(
-      "USE COUPON ERROR:",
+      "USE COUPON RPC ERROR:",
       error
     );
 
     throw new Error(
-      error.message ||
-      "Unable to verify the coupon right now."
+      "Unable to verify the coupon right now: " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
     );
   }
 
-  return data;
+  if(!data){
+
+    throw new Error(
+      "The coupon verification returned no result."
+    );
+  }
+
+  /*
+    Supabase can return the JSON result either as an object
+    or as an array depending on the RPC response shape.
+  */
+
+  let result = data;
+
+  if(Array.isArray(data)){
+    result = data[0];
+  }
+
+  if(!result){
+
+    throw new Error(
+      "The coupon verification returned an empty result."
+    );
+  }
+
+  return result;
 }
 
 /* =========================
@@ -1447,9 +1507,9 @@ async function submitOrder(){
 
     /*
       IMPORTANT:
-      Coupon is recorded only after the order exists.
-      If the coupon has already been used with this LINE ID,
-      the RPC returns success:false and the order is removed.
+      The coupon is consumed only after the order exists.
+      If use_coupon says that this LINE ID has already used
+      the coupon, the temporary order and slip are removed.
     */
 
     if(couponApplied){
@@ -1468,15 +1528,12 @@ async function submitOrder(){
         );
 
       if(
-        !couponResult ||
         couponResult.success !== true
       ){
 
         const couponMessage =
-          couponResult &&
-          couponResult.message
-            ? couponResult.message
-            : "This discount code could not be applied.";
+          couponResult.message ||
+          "This discount code cannot be used.";
 
         await deleteCreatedOrder();
         await deleteUploadedSlip();
