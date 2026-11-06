@@ -9,18 +9,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --bg:#faf8f6;
-  --paper:#ffffff;
-  --text:#262220;
-  --muted:#8a817c;
-  --line:#e9e2de;
-  --accent:#b88d88;
-  --accent-dark:#936c67;
+  --taupe:#8C7E74;
+  --warm:#C8BCB1;
+  --beige:#E6DED8;
+  --cream:#F4EFEA;
+  --dark:#403934;
+  --muted:#81766E;
+  --white:#FBF8F5;
+  --line:rgba(64,57,52,.13);
 }
 
 *{
@@ -34,171 +35,200 @@ html{
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:"Inter",sans-serif;
-  font-weight:300;
+  background:var(--cream);
+  color:var(--dark);
+  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
   line-height:1.8;
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
 
 img{
+  max-width:100%;
   display:block;
-  width:100%;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 header{
-  height:82px;
-  border-bottom:1px solid var(--line);
-  background:rgba(250,248,246,.94);
-  display:flex;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:20;
-  backdrop-filter:blur(10px);
-}
-
-.header-inner{
-  width:min(1180px,calc(100% - 48px));
-  margin:auto;
+  width:100%;
+  padding:25px 55px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  border-bottom:1px solid var(--line);
+  background:rgba(251,248,245,.94);
 }
 
 .logo{
   font-family:"Cormorant Garamond",serif;
-  font-size:27px;
+  font-size:25px;
   letter-spacing:2px;
+  color:var(--dark);
 }
 
-.back{
-  font-size:11px;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
+.back-link{
+  font-size:12px;
+  letter-spacing:1px;
   color:var(--muted);
   transition:.3s;
 }
 
-.back:hover{
-  color:var(--text);
+.back-link:hover{
+  color:var(--dark);
 }
 
-/* PRODUCT */
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+  max-width:1200px;
+  margin:0 auto;
+  padding:35px 55px 0;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--muted);
+}
+
+.breadcrumb span{
+  margin:0 7px;
+  opacity:.5;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
 
 .product{
-  width:min(1180px,calc(100% - 48px));
-  margin:auto;
-  padding:90px 0 120px;
-}
-
-.product-grid{
+  max-width:1200px;
+  margin:0 auto;
+  padding:55px 55px 100px;
   display:grid;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
-  gap:90px;
-  align-items:start;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
 }
 
-/* GALLERY */
+
+/* =========================
+   GALLERY
+========================= */
 
 .gallery{
-  min-width:0;
+  position:sticky;
+  top:35px;
+  align-self:start;
 }
 
-.main-image{
+.gallery-main{
   position:relative;
   aspect-ratio:4 / 5;
   overflow:hidden;
-  background:#eee9e6;
+  background:var(--beige);
 }
 
-.main-image img{
+.gallery-main img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:opacity .35s ease;
+  transition:opacity .45s ease;
 }
 
 .gallery-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:44px;
-  height:44px;
-  border:0;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.7);
+  background:rgba(64,57,52,.28);
+  color:white;
   border-radius:50%;
-  background:rgba(255,255,255,.9);
-  color:#262220;
-  cursor:pointer;
-  font-size:25px;
-  line-height:1;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  font-size:20px;
+  cursor:pointer;
+  z-index:3;
+  transition:.3s;
 }
 
-.gallery-arrow.prev{
+.gallery-arrow:hover{
+  background:rgba(64,57,52,.65);
+}
+
+.gallery-arrow.left{
   left:18px;
 }
 
-.gallery-arrow.next{
+.gallery-arrow.right{
   right:18px;
 }
 
-.counter{
+.gallery-counter{
   position:absolute;
   right:18px;
   bottom:18px;
-  background:rgba(255,255,255,.92);
-  padding:7px 12px;
+  padding:5px 10px;
+  background:rgba(64,57,52,.65);
+  color:white;
   font-size:10px;
   letter-spacing:1px;
 }
 
-.thumbs{
+.gallery-thumbs{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:8px;
   margin-top:10px;
 }
 
-.thumb{
-  aspect-ratio:4/5;
+.gallery-thumb{
+  aspect-ratio:4 / 5;
   overflow:hidden;
   cursor:pointer;
-  opacity:.45;
+  border:1px solid transparent;
+  opacity:.55;
   transition:.3s;
 }
 
-.thumb.active{
+.gallery-thumb:hover{
   opacity:1;
 }
 
-.thumb img{
+.gallery-thumb.active{
+  opacity:1;
+  border-color:var(--dark);
+}
+
+.gallery-thumb img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-/* PRODUCT INFO */
+
+/* =========================
+   PRODUCT INFO
+========================= */
 
 .product-info{
   padding-top:5px;
 }
 
-.product-label{
-  font-size:10px;
-  letter-spacing:2.5px;
-  color:var(--accent-dark);
-  text-transform:uppercase;
-  margin-bottom:22px;
+.product-category{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--taupe);
+  margin-bottom:25px;
 }
 
 .product-title{
@@ -206,7 +236,7 @@ header{
   font-size:56px;
   line-height:1.2;
   font-weight:500;
-  margin-bottom:12px;
+  margin-bottom:18px;
 }
 
 .product-subtitle{
@@ -214,240 +244,277 @@ header{
   font-size:23px;
   line-height:1.5;
   color:var(--muted);
-  margin-bottom:28px;
-}
-
-.price{
-  font-size:13px;
-  letter-spacing:2px;
-  margin-bottom:28px;
-}
-
-.description{
-  color:#665e5a;
-  font-size:14px;
-  line-height:2;
-  margin-bottom:35px;
-}
-
-/* FUNCTIONS */
-
-.info-title{
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:14px;
-}
-
-.function-list{
-  list-style:none;
-  border-top:1px solid var(--line);
-  margin-bottom:32px;
-}
-
-.function-list li{
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-  font-size:13px;
-  color:#625b57;
-}
-
-/* CUSTOMIZE */
-
-.customize{
   margin-bottom:30px;
 }
 
-.customize p{
-  color:#706863;
+.price{
+  font-family:"Cormorant Garamond",serif;
+  font-size:30px;
+  margin-bottom:35px;
+}
+
+.description{
+  font-size:14px;
+  line-height:2;
+  color:var(--muted);
+  margin-bottom:45px;
+}
+
+
+/* =========================
+   INFO BLOCK
+========================= */
+
+.info-block{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
+}
+
+.info-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:20px;
+}
+
+.info-list{
+  list-style:none;
+}
+
+.info-list li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:10px;
   font-size:13px;
+  color:var(--muted);
+}
+
+.info-list li::before{
+  content:"";
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:var(--taupe);
+  position:absolute;
+  left:0;
+  top:12px;
+}
+
+
+/* =========================
+   CUSTOMIZE
+========================= */
+
+.customize{
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
+}
+
+.customize-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.customize p{
+  font-size:13px;
+  color:var(--muted);
   line-height:2;
 }
 
+
+/* =========================
+   EXTRA FUNCTION
+========================= */
+
 .extra{
-  margin-top:18px;
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:35px;
 }
 
-.extra-title,
-.delivery-title{
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:5px;
+.extra-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:10px;
 }
 
-.extra-text{
+.extra-price{
   font-size:13px;
-  color:#706863;
+  color:var(--muted);
 }
+
+
+/* =========================
+   DELIVERY
+========================= */
 
 .delivery{
-  margin-top:18px;
-  margin-bottom:34px;
+  border-top:1px solid var(--line);
+  padding-top:30px;
+  margin-bottom:40px;
 }
 
-.delivery-text{
+.delivery-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.delivery p{
   font-size:13px;
-  color:#706863;
+  color:var(--muted);
 }
 
-/* BUTTONS */
+
+/* =========================
+   BUTTONS
+========================= */
 
 .buttons{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
 }
 
-.primary-button,
-.secondary-button{
-  min-height:52px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:10px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+.btn{
+  width:100%;
+  padding:16px 25px;
+  text-align:center;
+  border:1px solid var(--dark);
+  font-size:11px;
+  letter-spacing:1.5px;
   transition:.3s;
 }
 
-.primary-button{
-  background:var(--text);
-  color:#fff;
+.btn.primary{
+  background:var(--dark);
+  color:var(--white);
 }
 
-.primary-button:hover{
-  background:var(--accent-dark);
+.btn.primary:hover{
+  background:var(--taupe);
+  border-color:var(--taupe);
 }
 
-.secondary-button{
-  border:1px solid var(--text);
+.btn.secondary{
+  background:transparent;
+  color:var(--dark);
 }
 
-.secondary-button:hover{
-  background:var(--text);
-  color:#fff;
+.btn.secondary:hover{
+  background:var(--beige);
 }
 
-/* STORY */
+
+/* =========================
+   STORY
+========================= */
 
 .story{
   border-top:1px solid var(--line);
-  padding:110px 0 120px;
-}
-
-.story-inner{
-  width:min(760px,calc(100% - 48px));
-  margin:auto;
+  max-width:1200px;
+  margin:0 auto;
+  padding:90px 55px 110px;
+  text-align:center;
 }
 
 .story-label{
   font-size:10px;
-  letter-spacing:2.5px;
-  color:var(--accent-dark);
-  margin-bottom:18px;
+  letter-spacing:3px;
+  color:var(--taupe);
+  margin-bottom:20px;
 }
 
-.story h2{
+.story-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:54px;
-  line-height:1.15;
+  font-size:48px;
   font-weight:500;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
-.story p{
-  color:#706863;
-  font-size:14px;
-  line-height:2.2;
-  margin-bottom:22px;
+.story-text{
+  max-width:650px;
+  margin:0 auto;
+  font-size:13px;
+  line-height:2.1;
+  color:var(--muted);
 }
 
-.story p:last-child{
-  margin-bottom:0;
-}
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   border-top:1px solid var(--line);
-  padding:42px 0;
-  text-align:center;
+  padding:35px 55px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--muted);
 }
 
 .footer-logo{
   font-family:"Cormorant Garamond",serif;
-  font-size:25px;
-  letter-spacing:2px;
-  margin-bottom:5px;
+  font-size:20px;
+  color:var(--dark);
 }
 
-.footer-sub{
-  font-size:9px;
-  letter-spacing:2px;
-  color:var(--muted);
-  text-transform:uppercase;
-}
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:800px){
 
   header{
-    height:70px;
+    padding:22px 25px;
   }
 
-  .header-inner{
-    width:calc(100% - 32px);
+  .breadcrumb{
+    padding:28px 25px 0;
   }
 
   .product{
-    width:calc(100% - 32px);
-    padding:55px 0 80px;
+    grid-template-columns:1fr;
+    gap:50px;
+    padding:45px 25px 75px;
   }
 
-  .product-grid{
-    grid-template-columns:1fr;
-    gap:55px;
+  .gallery{
+    position:relative;
+    top:auto;
   }
 
   .product-title{
-    font-size:44px;
+    font-size:42px;
     line-height:1.25;
+    margin-bottom:16px;
   }
 
   .product-subtitle{
     font-size:20px;
+    line-height:1.5;
+    margin-bottom:28px;
   }
 
   .story{
-    padding:80px 0 90px;
+    padding:70px 25px 85px;
   }
 
-  .story-inner{
-    width:calc(100% - 32px);
+  .story-title{
+    font-size:40px;
   }
 
-  .story h2{
-    font-size:42px;
-  }
-
-}
-
-@media(max-width:480px){
-
-  .product-title{
-    font-size:39px;
-  }
-
-  .thumbs{
-    gap:5px;
-  }
-
-  .gallery-arrow{
-    width:38px;
-    height:38px;
-    font-size:21px;
+  footer{
+    padding:30px 25px;
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
   }
 
 }
@@ -457,210 +524,254 @@ footer{
 
 <body>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
-  <div class="header-inner">
 
-    <a href="love.html" class="logo">
-      PINTO LOVE
-    </a>
+  <a href="love.html" class="logo">
+    PINTO LOVE
+  </a>
 
-    <a href="make-up.html" class="back">
-      ← BACK TO TEMPLATES
-    </a>
+  <a href="make-up.html" class="back-link">
+    ← BACK TO TEMPLATES
+  </a>
 
-  </div>
 </header>
 
 
-<!-- PRODUCT -->
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+
+  <a href="love.html">PINTO LOVE</a>
+
+  <span>/</span>
+
+  <a href="make-up.html">Make Up</a>
+
+  <span>/</span>
+
+  Template 01
+
+</div>
+
+
+<!-- =========================
+     PRODUCT
+========================= -->
 
 <section class="product">
 
-  <div class="product-grid">
 
+  <!-- GALLERY -->
 
-    <!-- GALLERY -->
+  <div class="gallery">
 
-    <div class="gallery">
+    <div class="gallery-main">
 
-      <div class="main-image">
+      <img
+        id="galleryImage"
+        src="make-up-01.jpg"
+        alt="Make Up Template 01"
+      >
 
-        <img
-          id="mainImage"
-          src="make-up-01.jpg"
-          alt="Make Up Template 01 - Image 1"
-        >
+      <button
+        class="gallery-arrow left"
+        onclick="prevImage()"
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
 
-        <button
-          class="gallery-arrow prev"
-          onclick="prevImage()"
-          aria-label="Previous image">
-          ‹
-        </button>
+      <button
+        class="gallery-arrow right"
+        onclick="nextImage()"
+        aria-label="Next image"
+      >
+        ›
+      </button>
 
-        <button
-          class="gallery-arrow next"
-          onclick="nextImage()"
-          aria-label="Next image">
-          ›
-        </button>
-
-        <div class="counter">
-          <span id="currentNumber">1</span> / 5
-        </div>
-
-      </div>
-
-
-      <div class="thumbs">
-
-        <div class="thumb active" onclick="showImage(0)">
-          <img src="make-up-01.jpg" alt="Make Up Template 01 - Image 1">
-        </div>
-
-        <div class="thumb" onclick="showImage(1)">
-          <img src="make-up-02.jpg" alt="Make Up Template 01 - Image 2">
-        </div>
-
-        <div class="thumb" onclick="showImage(2)">
-          <img src="make-up-03.jpg" alt="Make Up Template 01 - Image 3">
-        </div>
-
-        <div class="thumb" onclick="showImage(3)">
-          <img src="make-up-04.jpg" alt="Make Up Template 01 - Image 4">
-        </div>
-
-        <div class="thumb" onclick="showImage(4)">
-          <img src="make-up-05.jpg" alt="Make Up Template 01 - Image 5">
-        </div>
-
+      <div class="gallery-counter">
+        <span id="currentImage">1</span> / 5
       </div>
 
     </div>
 
 
-    <!-- PRODUCT INFO -->
+    <div class="gallery-thumbs">
 
-    <div class="product-info">
-
-      <div class="product-label">
-        MAKE UP · TEMPLATE 01
+      <div class="gallery-thumb active" onclick="showImage(0)">
+        <img src="make-up-01.jpg" alt="Make Up Template 01 - Image 1">
       </div>
 
-      <h1 class="product-title">
-        ขอโทษและคืนดี
-      </h1>
-
-      <div class="product-subtitle">
-        แบบที่หนึ่ง · Make Up Template
+      <div class="gallery-thumb" onclick="showImage(1)">
+        <img src="make-up-02.jpg" alt="Make Up Template 01 - Image 2">
       </div>
 
-      <div class="price">
-        129 THB
+      <div class="gallery-thumb" onclick="showImage(2)">
+        <img src="make-up-03.jpg" alt="Make Up Template 01 - Image 3">
       </div>
 
-      <p class="description">
-        เว็บไซต์เซอร์ไพรส์สำหรับการขอโทษและคืนดี
-        ที่ค่อย ๆ เล่าความรู้สึก สิ่งที่อยากพูด
-        ความทรงจำที่มีร่วมกัน และคำขอเริ่มต้นใหม่อีกครั้ง
-      </p>
+      <div class="gallery-thumb" onclick="showImage(3)">
+        <img src="make-up-04.jpg" alt="Make Up Template 01 - Image 4">
+      </div>
+
+      <div class="gallery-thumb" onclick="showImage(4)">
+        <img src="make-up-05.jpg" alt="Make Up Template 01 - Image 5">
+      </div>
+
+    </div>
+
+  </div>
 
 
-      <!-- INCLUDED FUNCTIONS -->
+  <!-- PRODUCT INFO -->
+
+  <div class="product-info">
+
+    <div class="product-category">
+      MAKE UP · TEMPLATE 01
+    </div>
+
+    <h1 class="product-title">
+      ขอโทษและคืนดี
+    </h1>
+
+    <div class="product-subtitle">
+      แบบที่หนึ่ง · Make Up Template
+    </div>
+
+    <div class="price">
+      129 THB
+    </div>
+
+    <div class="description">
+
+      เว็บไซต์เซอร์ไพรส์สำหรับการขอโทษและคืนดี
+      ที่ค่อย ๆ เล่าความรู้สึก สิ่งที่อยากพูด
+      ความทรงจำที่มีร่วมกัน
+      และคำขอเริ่มต้นใหม่อีกครั้ง
+
+    </div>
+
+
+    <!-- INCLUDED FUNCTIONS -->
+
+    <div class="info-block">
 
       <div class="info-title">
         Included Functions
       </div>
 
-      <ul class="function-list">
+      <ul class="info-list">
 
-        <li>A Little Apology</li>
+        <li>
+          A Little Apology
+        </li>
 
-        <li>I'm Sorry</li>
+        <li>
+          I'm Sorry
+        </li>
 
-        <li>What I Really Mean</li>
+        <li>
+          What I Really Mean
+        </li>
 
-        <li>Our Little Story</li>
+        <li>
+          Our Little Story
+        </li>
 
-        <li>A Letter For You</li>
+        <li>
+          A Letter For You
+        </li>
 
-        <li>Can We Start Again?</li>
+        <li>
+          Can We Start Again?
+        </li>
 
-        <li>One Last Message</li>
+        <li>
+          One Last Message
+        </li>
 
-        <li>Music Player</li>
+        <li>
+          Music Player
+        </li>
 
       </ul>
 
+    </div>
 
-      <!-- CUSTOMIZE -->
 
-      <div class="customize">
+    <!-- CUSTOMIZE -->
 
-        <div class="info-title">
-          Customize
-        </div>
+    <div class="customize">
 
-        <p>
-          สามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของลูกค้า
-          รวมถึงปรับโทนของข้อความและสีของเว็บไซต์
-          ให้เข้ากับความรู้สึกที่ต้องการ
-        </p>
-
+      <div class="customize-title">
+        Customize
       </div>
 
+      <p>
+        ลูกค้าสามารถเปลี่ยนข้อความในแต่ละหน้าได้ตามเรื่องราวของตัวเอง
+        และสามารถปรับโทนข้อความและสีให้เข้ากับคนที่ต้องการมอบให้ได้
+      </p>
 
-      <!-- EXTRA FUNCTION -->
+    </div>
 
-      <div class="extra">
 
-        <div class="extra-title">
-          Extra Function
-        </div>
+    <!-- EXTRA FUNCTION -->
 
-        <div class="extra-text">
-          +29 THB / function
-        </div>
+    <div class="extra">
 
+      <div class="extra-title">
+        Extra Function
       </div>
 
-
-      <!-- DELIVERY -->
-
-      <div class="delivery">
-
-        <div class="delivery-title">
-          Delivery
-        </div>
-
-        <div class="delivery-text">
-          1–2 days
-        </div>
-
+      <div class="extra-price">
+        +29 THB / function
       </div>
 
+    </div>
 
-      <!-- BUTTONS -->
 
-      <div class="buttons">
+    <!-- DELIVERY -->
 
-        <a
-          href="https://pintorak.github.io/Template-1-Scratch-Coin/"
-          class="primary-button"
-          target="_blank"
-          rel="noopener">
-          VIEW LIVE DEMO
-        </a>
+    <div class="delivery">
 
-        <a
-          href="#order"
-          class="secondary-button">
-          ORDER THIS TEMPLATE
-        </a>
-
+      <div class="delivery-title">
+        Delivery
       </div>
+
+      <p>
+        1–2 days
+      </p>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+      <a
+        href="https://pintorak.github.io/Template-1-Scratch-Coin/"
+        class="btn secondary"
+        target="_blank"
+        rel="noopener"
+      >
+        VIEW LIVE DEMO
+      </a>
+
+      <a
+        href="#order"
+        class="btn primary"
+      >
+        ORDER THIS TEMPLATE
+      </a>
 
     </div>
 
@@ -669,79 +780,68 @@ footer{
 </section>
 
 
-<!-- STORY -->
+<!-- =========================
+     STORY
+========================= -->
 
 <section class="story">
 
-  <div class="story-inner">
-
-    <div class="story-label">
-      PINTO LOVE
-    </div>
-
-    <h2>
-      A Little Apology.
-    </h2>
-
-    <p>
-      บางครั้งคำว่า “ขอโทษ” อาจพูดออกมาได้ไม่หมดว่ารู้สึกอะไร
-    </p>
-
-    <p>
-      Template นี้จึงถูกออกแบบให้คำขอโทษ
-      ค่อย ๆ เล่าเรื่องผ่านแต่ละหน้า
-      ตั้งแต่สิ่งที่อยากพูด สิ่งที่เข้าใจ
-      ความทรงจำดี ๆ ไปจนถึงคำขอเล็ก ๆ
-      ว่าเรายังสามารถกลับมาเริ่มต้นกันใหม่ได้ไหม
-    </p>
-
-    <p>
-      เพราะบางความสัมพันธ์ ไม่ได้ต้องการคำพูดที่สมบูรณ์แบบ
-      แต่อาจต้องการเพียงใครสักคน
-      ที่ยอมเปิดใจและพูดความรู้สึกออกมา
-    </p>
-
-    <p>
-      Made to say what is hard to say.
-    </p>
-
-    <p>
-      ข้อความ รูปภาพ และรายละเอียดภายในเว็บไซต์
-      สามารถปรับเปลี่ยนให้เป็นเรื่องราวของคุณได้
-      PINTO LOVE จะจัดวางทุกอย่างให้อยู่ในโครงสร้างของ Template
-      เพื่อให้เรื่องราวของคุณยังคงความรู้สึกและบรรยากาศของเว็บไซต์ไว้
-    </p>
-
+  <div class="story-label">
+    PINTO LOVE
   </div>
+
+  <h2 class="story-title">
+    Made for Your Apology.
+  </h2>
+
+  <p class="story-text">
+
+    เพราะคำว่า “ขอโทษ”
+    บางครั้งอาจมีความรู้สึกมากกว่าที่เราพูดออกมาได้
+
+    <br><br>
+
+    เราออกแบบ Make Up Template นี้
+    ให้ทุกการเปิด ทุกการกด และทุกข้อความ
+    ค่อย ๆ เล่าเรื่องราวแทนความรู้สึกของคุณ
+
+  </p>
 
 </section>
 
 
-<!-- ORDER -->
+<!-- =========================
+     ORDER
+========================= -->
 
 <section class="story" id="order">
 
-  <div class="story-inner">
-
-    <div class="story-label">
-      PINTO LOVE
-    </div>
-
-    <h2>
-      Make It Yours.
-    </h2>
-
-    <p>
-      Template นี้สามารถปรับข้อความ รูปภาพ
-      และรายละเอียดภายในเว็บไซต์ให้เป็นเรื่องราวของคุณได้
-    </p>
-
+  <div class="story-label">
+    PINTO LOVE
   </div>
+
+  <h2 class="story-title">
+    Made to Say What Is Hard to Say.
+  </h2>
+
+  <p class="story-text">
+
+    ข้อความ รูปภาพ และรายละเอียดภายในเว็บไซต์
+    สามารถปรับเปลี่ยนให้เป็นเรื่องราวของคุณได้
+
+    <br><br>
+
+    PINTO LOVE จะจัดวางทุกอย่างให้อยู่ในโครงสร้างของ Template
+    เพื่อให้เรื่องราวของคุณยังคงความรู้สึกและบรรยากาศของเว็บไซต์ไว้
+
+  </p>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -749,8 +849,8 @@ footer{
     PINTO LOVE
   </div>
 
-  <div class="footer-sub">
-    Digital Experiences · PINTO STUDIO
+  <div>
+    Digital experiences, made with feeling.
   </div>
 
 </footer>
@@ -768,88 +868,80 @@ const images = [
 
 let current = 0;
 
-const mainImage =
-  document.getElementById("mainImage");
+const galleryImage =
+  document.getElementById("galleryImage");
 
-const currentNumber =
-  document.getElementById("currentNumber");
+const currentImage =
+  document.getElementById("currentImage");
 
-const thumbs =
-  document.querySelectorAll(".thumb");
+const thumbnails =
+  document.querySelectorAll(".gallery-thumb");
 
 
 function showImage(index){
 
-  current = index;
+  if(index === current){
+    return;
+  }
 
-  mainImage.style.opacity = "0";
+  galleryImage.style.opacity = "0";
 
   setTimeout(() => {
 
-    mainImage.src = images[current];
+    current = index;
 
-    mainImage.style.opacity = "1";
+    galleryImage.src =
+      images[current];
 
-  },150);
+    currentImage.textContent =
+      current + 1;
 
-  currentNumber.textContent =
-    current + 1;
+    thumbnails.forEach((thumb,i) => {
 
-  thumbs.forEach((thumb,index) => {
+      thumb.classList.toggle(
+        "active",
+        i === current
+      );
 
-    thumb.classList.toggle(
-      "active",
-      index === current
-    );
+    });
 
-  });
+    galleryImage.style.opacity = "1";
+
+  },180);
 
 }
 
 
 function nextImage(){
 
-  current++;
+  const next =
+    (current + 1) % images.length;
 
-  if(current >= images.length){
-    current = 0;
-  }
-
-  showImage(current);
+  showImage(next);
 
 }
 
 
 function prevImage(){
 
-  current--;
+  const prev =
+    (current - 1 + images.length)
+    % images.length;
 
-  if(current < 0){
-    current = images.length - 1;
-  }
-
-  showImage(current);
+  showImage(prev);
 
 }
 
 
-/* AUTO SLIDE */
-
-setInterval(() => {
-  nextImage();
-},3000);
-
-
-/* MOBILE SWIPE */
+/* =========================
+   SWIPE
+========================= */
 
 let touchStartX = 0;
 let touchEndX = 0;
 
-const gallery =
-  document.querySelector(".main-image");
 
-
-gallery.addEventListener(
+galleryImage.addEventListener(
   "touchstart",
   function(e){
 
@@ -861,21 +953,21 @@ gallery.addEventListener(
 );
 
 
-gallery.addEventListener(
+galleryImage.addEventListener(
   "touchend",
   function(e){
 
     touchEndX =
       e.changedTouches[0].screenX;
 
-    const difference =
+    const distance =
       touchEndX - touchStartX;
 
-    if(Math.abs(difference) < 50){
+    if(Math.abs(distance) < 50){
       return;
     }
 
-    if(difference < 0){
+    if(distance < 0){
       nextImage();
     }else{
       prevImage();
@@ -884,6 +976,17 @@ gallery.addEventListener(
   },
   {passive:true}
 );
+
+
+/* =========================
+   AUTO SLIDE
+========================= */
+
+setInterval(() => {
+
+  nextImage();
+
+},3000);
 
 </script>
 
