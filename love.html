@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PINTO LOVE | Templates</title>
+<title>PINTO LOVE | Meaningful Moments</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,7 +60,9 @@ button{
   top:22px;
   left:50%;
   transform:translateX(-50%);
+
   width:min(92%,1100px);
+
   z-index:1000;
 
   display:flex;
@@ -94,6 +96,7 @@ button{
 .nav-links{
   display:flex;
   gap:24px;
+
   font-size:11px;
   letter-spacing:.08em;
 }
@@ -110,11 +113,16 @@ button{
 .lang-btn{
   border:1px solid var(--line);
   background:transparent;
+
   border-radius:999px;
+
   padding:7px 14px;
+
   font-size:10px;
   letter-spacing:.08em;
+
   color:var(--dark);
+
   cursor:pointer;
 }
 
@@ -124,10 +132,13 @@ button{
 
 .hero{
   min-height:78vh;
+
   padding:170px 24px 100px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
 }
 
@@ -145,10 +156,14 @@ button{
 
 .hero h1{
   margin-top:25px;
+
   font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+
   font-size:clamp(58px,9vw,110px);
+
   line-height:.85;
   font-weight:500;
+
   letter-spacing:-.02em;
 }
 
@@ -158,30 +173,35 @@ button{
 }
 
 .hero p{
-  max-width:600px;
+  max-width:620px;
+
   margin:35px auto 0;
+
   color:var(--muted);
+
   font-size:13px;
   line-height:2;
 }
 
 /* =========================
-   BACK LINK
+   BACK
 ========================= */
 
-.back-link-wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:0 30px 30px;
+.back-wrap{
+  width:min(1100px,92%);
+  margin:auto;
 }
 
 .back-link{
   display:inline-flex;
   align-items:center;
   gap:10px;
+
   color:var(--muted);
+
   font-size:11px;
   letter-spacing:.08em;
+
   transition:.25s;
 }
 
@@ -190,11 +210,11 @@ button{
 }
 
 /* =========================
-   TEMPLATES
+   CATALOG
 ========================= */
 
-.templates{
-  padding:70px 0 130px;
+.catalog{
+  padding:80px 0 130px;
 }
 
 .section-wrap{
@@ -202,28 +222,75 @@ button{
   margin:auto;
 }
 
-.templates-head{
-  max-width:700px;
-  margin-bottom:55px;
+/* =========================
+   CATEGORY
+========================= */
+
+.category{
+  padding:0 0 80px;
 }
 
-.section-title{
-  margin-top:14px;
-  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
-  font-size:54px;
-  line-height:1;
-  font-weight:500;
+.category + .category{
+  padding-top:80px;
+  border-top:1px solid var(--line);
 }
 
-.section-title span{
+.category-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+
+  gap:30px;
+
+  margin-bottom:35px;
+}
+
+.category-title-wrap{
+  max-width:650px;
+}
+
+.category-label{
+  font-size:9px;
+  letter-spacing:.25em;
   color:var(--taupe);
 }
 
-.templates-intro{
-  margin-top:20px;
+.category-title{
+  margin-top:8px;
+
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+
+  font-size:48px;
+  line-height:1;
+
+  font-weight:500;
+}
+
+.category-title span{
+  color:var(--taupe);
+}
+
+.category-description{
+  margin-top:15px;
+
   color:var(--muted);
-  font-size:13px;
-  line-height:2;
+
+  font-size:12px;
+  line-height:1.9;
+}
+
+.see-all-top{
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.12em;
+
+  white-space:nowrap;
+
+  transition:.25s;
+}
+
+.see-all-top:hover{
+  color:var(--dark);
 }
 
 /* =========================
@@ -236,11 +303,19 @@ button{
   gap:24px;
 }
 
+/* =========================
+   TEMPLATE CARD
+========================= */
+
 .template-card{
   background:var(--white);
+
   border:1px solid var(--line);
+
   border-radius:30px;
+
   overflow:hidden;
+
   transition:
     transform .35s ease,
     box-shadow .35s ease;
@@ -248,7 +323,9 @@ button{
 
 .template-card:hover{
   transform:translateY(-6px);
-  box-shadow:0 22px 50px rgba(64,57,52,.10);
+
+  box-shadow:
+    0 22px 50px rgba(64,57,52,.10);
 }
 
 /* =========================
@@ -257,16 +334,22 @@ button{
 
 .template-preview{
   position:relative;
-  aspect-ratio:4/5;
+
+  aspect-ratio:4 / 5;
+
   overflow:hidden;
+
   background:var(--beige);
 }
 
 .template-preview img{
   width:100%;
   height:100%;
+
   display:block;
+
   object-fit:cover;
+
   transition:transform .6s ease;
 }
 
@@ -274,101 +357,162 @@ button{
   transform:scale(1.035);
 }
 
-/*
-  ใส่รูป Template ได้โดยเปลี่ยน src
-  เช่น:
-  images/template-01.jpg
-*/
-
 .template-number{
   position:absolute;
-  top:18px;
-  left:18px;
+
+  top:17px;
+  left:17px;
 
   padding:6px 11px;
 
-  background:rgba(251,248,245,.9);
+  background:rgba(251,248,245,.90);
+
   backdrop-filter:blur(10px);
 
   border-radius:999px;
 
   font-family:'Cormorant Garamond',serif;
+
   font-size:13px;
+
   letter-spacing:.08em;
 }
 
 /* =========================
-   TEMPLATE INFO
+   CARD INFO
 ========================= */
 
 .template-info{
-  padding:27px 28px 30px;
+  padding:25px 27px 28px;
 }
 
 .template-category{
   color:var(--taupe);
-  font-size:9px;
+
+  font-size:8px;
+
   letter-spacing:.2em;
+
   text-transform:uppercase;
 }
 
 .template-name{
   margin-top:8px;
+
   font-family:'Cormorant Garamond','Noto Serif Thai',serif;
-  font-size:28px;
+
+  font-size:27px;
+
   line-height:1.05;
+
   font-weight:500;
 }
 
 .template-description{
-  margin-top:14px;
+  margin-top:13px;
+
+  min-height:48px;
+
   color:var(--muted);
+
   font-size:11px;
+
   line-height:1.9;
-  min-height:44px;
 }
 
 .template-bottom{
-  margin-top:24px;
-  padding-top:20px;
+  margin-top:22px;
+
+  padding-top:18px;
+
   border-top:1px solid var(--line);
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  gap:15px;
+
+  gap:12px;
 }
 
 .template-price{
   font-family:'Cormorant Garamond',serif;
+
   font-size:28px;
+
+  line-height:1;
 }
 
 .template-price small{
   font-family:'Noto Sans Thai','Noto Sans KR',sans-serif;
-  font-size:10px;
+
+  font-size:9px;
+
   color:var(--muted);
 }
 
 .view-template{
-  font-size:10px;
-  letter-spacing:.1em;
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
   color:var(--dark);
 
-  display:flex;
-  align-items:center;
-  gap:8px;
+  font-size:9px;
+
+  letter-spacing:.1em;
 
   transition:.25s;
 }
 
 .view-template span{
   color:var(--taupe);
+
   font-size:15px;
 }
 
-.view-template:hover{
+.template-card:hover .view-template{
   color:var(--taupe);
+}
+
+/* =========================
+   SEE ALL
+========================= */
+
+.see-all-wrap{
+  margin-top:27px;
+
+  text-align:right;
+}
+
+.see-all{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  letter-spacing:.16em;
+
+  text-transform:uppercase;
+
+  transition:.25s;
+}
+
+.see-all span{
+  font-size:15px;
+  color:var(--taupe);
+}
+
+.see-all:hover{
+  color:var(--dark);
 }
 
 /* =========================
@@ -377,9 +521,10 @@ button{
 
 .price-note{
   max-width:850px;
-  margin:70px auto 0;
 
-  padding:30px 35px;
+  margin:20px auto 0;
+
+  padding:32px 35px;
 
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
@@ -387,7 +532,9 @@ button{
   text-align:center;
 
   color:var(--muted);
+
   font-size:11px;
+
   line-height:2;
 }
 
@@ -397,22 +544,31 @@ button{
 
 .cta{
   padding:110px 24px 130px;
+
   background:var(--dark);
+
   color:var(--white);
+
   text-align:center;
 }
 
 .cta-label{
   color:var(--warm);
+
   font-size:10px;
+
   letter-spacing:.25em;
 }
 
 .cta h2{
   margin-top:20px;
+
   font-family:'Cormorant Garamond',serif;
+
   font-size:60px;
+
   line-height:.95;
+
   font-weight:500;
 }
 
@@ -423,23 +579,31 @@ button{
 
 .cta p{
   max-width:500px;
+
   margin:25px auto 35px;
+
   color:rgba(251,248,245,.58);
+
   font-size:12px;
+
   line-height:2;
 }
 
 .cta-button{
   display:inline-flex;
+
   align-items:center;
+
   gap:10px;
 
   padding:13px 24px;
 
   border:1px solid rgba(251,248,245,.25);
+
   border-radius:999px;
 
   font-size:10px;
+
   letter-spacing:.12em;
 
   transition:.25s;
@@ -456,16 +620,21 @@ button{
 
 footer{
   background:var(--dark);
+
   border-top:1px solid rgba(251,248,245,.1);
+
   color:rgba(251,248,245,.45);
 
   padding:25px 6%;
 
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   font-size:9px;
+
   letter-spacing:.08em;
 }
 
@@ -475,14 +644,19 @@ footer{
 
 .lang-modal{
   position:fixed;
+
   inset:0;
+
   z-index:2000;
 
   display:none;
+
   align-items:center;
+
   justify-content:center;
 
   background:rgba(64,57,52,.45);
+
   backdrop-filter:blur(8px);
 }
 
@@ -492,10 +666,13 @@ footer{
 
 .lang-box{
   width:min(90%,360px);
+
   padding:35px;
 
   background:var(--white);
+
   border-radius:28px;
+
   border:1px solid var(--line);
 
   text-align:center;
@@ -503,26 +680,35 @@ footer{
 
 .lang-box h3{
   font-family:'Cormorant Garamond',serif;
+
   font-size:30px;
+
   font-weight:500;
 }
 
 .lang-options{
   margin-top:25px;
+
   display:flex;
+
   flex-direction:column;
+
   gap:10px;
 }
 
 .lang-option{
   width:100%;
+
   padding:13px;
 
   border:1px solid var(--line);
+
   background:transparent;
+
   border-radius:999px;
 
   cursor:pointer;
+
   font-size:11px;
 
   transition:.25s;
@@ -530,15 +716,21 @@ footer{
 
 .lang-option:hover{
   background:var(--dark);
+
   color:var(--white);
 }
 
 .close-lang{
   margin-top:20px;
+
   border:0;
+
   background:transparent;
+
   color:var(--muted);
+
   font-size:10px;
+
   cursor:pointer;
 }
 
@@ -554,7 +746,6 @@ footer{
 
   .hero{
     min-height:70vh;
-    padding-top:145px;
   }
 
   .hero h1{
@@ -562,11 +753,11 @@ footer{
   }
 
   .template-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .section-title{
-    font-size:46px;
+  .category-title{
+    font-size:43px;
   }
 }
 
@@ -592,25 +783,40 @@ footer{
     font-size:12px;
   }
 
-  .section-wrap{
-    width:90%;
+  .catalog{
+    padding-top:55px;
   }
 
-  .templates{
-    padding-top:50px;
+  .category{
+    padding-bottom:65px;
+  }
+
+  .category + .category{
+    padding-top:65px;
+  }
+
+  .category-head{
+    display:block;
+  }
+
+  .see-all-top{
+    display:none;
+  }
+
+  .category-title{
+    font-size:40px;
   }
 
   .template-grid{
     grid-template-columns:1fr;
-    gap:20px;
   }
 
   .template-preview{
-    aspect-ratio:4/5;
+    aspect-ratio:4 / 5;
   }
 
-  .template-info{
-    padding:24px;
+  .see-all-wrap{
+    margin-top:22px;
   }
 
   .price-note{
@@ -626,12 +832,15 @@ footer{
     gap:10px;
     text-align:center;
   }
+
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      NAV
@@ -639,17 +848,34 @@ footer{
 
 <nav class="nav">
 
-  <a href="../Pinto/index.html" class="logo">
+  <a href="https://pintorak.github.io/Pinto/index.html" class="logo">
     PINTO
   </a>
 
   <div class="nav-right">
 
     <div class="nav-links">
-      <a href="../Pinto/index.html#about" data-i18n="navAbout">About</a>
-      <a href="../Pinto/index.html#works" data-i18n="navWorks">Works</a>
-      <a href="../Pinto/index.html#pricing" data-i18n="navPricing">Pricing</a>
-      <a href="../Pinto/index.html#contact" data-i18n="navContact">Contact</a>
+
+      <a href="https://pintorak.github.io/Pinto/index.html#about"
+         data-i18n="navAbout">
+        About
+      </a>
+
+      <a href="https://pintorak.github.io/Pinto/index.html#works"
+         data-i18n="navWorks">
+        Works
+      </a>
+
+      <a href="https://pintorak.github.io/Pinto/index.html#pricing"
+         data-i18n="navPricing">
+        Pricing
+      </a>
+
+      <a href="https://pintorak.github.io/Pinto/index.html#contact"
+         data-i18n="navContact">
+        Contact
+      </a>
+
     </div>
 
     <button class="lang-btn" onclick="openLanguage()">
@@ -669,7 +895,7 @@ footer{
 
   <div class="hero-inner">
 
-    <div class="section-label" data-i18n="heroLabel">
+    <div class="section-label">
       PINTO LOVE
     </div>
 
@@ -693,238 +919,953 @@ footer{
      BACK
 ========================= -->
 
-<div class="back-link-wrap">
+<div class="back-wrap">
 
-  <a href="../Pinto/index.html#works" class="back-link">
-    ← <span data-i18n="backToWorks">Back to Works</span>
+  <a href="https://pintorak.github.io/Pinto/index.html#works"
+     class="back-link">
+
+    ←
+
+    <span data-i18n="backToWorks">
+      กลับไปยัง Works
+    </span>
+
   </a>
 
 </div>
 
 
 <!-- =========================
-     TEMPLATES
+     CATALOG
 ========================= -->
 
-<section class="templates">
+<section class="catalog">
 
-  <div class="section-wrap">
+<div class="section-wrap">
 
-    <div class="templates-head">
 
-      <div class="section-label" data-i18n="templateLabel">
-        Templates
+<!-- =====================================================
+     ANNIVERSARY
+===================================================== -->
+
+<section class="category">
+
+  <div class="category-head">
+
+    <div class="category-title-wrap">
+
+      <div class="category-label">
+        ANNIVERSARY
       </div>
 
-      <h2 class="section-title">
-        Choose your
-        <span>moment.</span>
+      <h2 class="category-title"
+          data-i18n="anniversaryTitle">
+        วันครบรอบ
       </h2>
 
-      <p class="templates-intro" data-i18n="templateIntro">
-        เลือก Template ที่เหมาะกับเรื่องราวของคุณ
-        แต่ละ Template มีฟังก์ชันและรูปแบบที่แตกต่างกัน
-        สามารถดูรายละเอียดและทดลองชมเว็บไซต์ได้ในหน้าของแต่ละ Template
+      <p class="category-description"
+         data-i18n="anniversaryDescription">
+        เว็บไซต์สำหรับเก็บเรื่องราว ความทรงจำ
+        และช่วงเวลาสำคัญของเราสองคน
       </p>
 
     </div>
 
-
-    <div class="template-grid">
-
-
-      <!-- =========================
-           TEMPLATE 01
-      ========================= -->
-
-      <a href="template-01.html" class="template-card">
-
-        <div class="template-preview">
-
-          <img
-            src="images/template-01.jpg"
-            alt="PINTO LOVE Template 01">
-
-          <div class="template-number">
-            01
-          </div>
-
-        </div>
-
-        <div class="template-info">
-
-          <div class="template-category"
-               data-i18n="template01Category">
-            ANNIVERSARY
-          </div>
-
-          <div class="template-name"
-               data-i18n="template01Name">
-            วันครบรอบแบบที่หนึ่ง
-          </div>
-
-          <p class="template-description"
-             data-i18n="template01Description">
-            เว็บไซต์สำหรับเก็บเรื่องราว
-            ความทรงจำ และช่วงเวลาที่อยากบอกคนสำคัญ
-          </p>
-
-          <div class="template-bottom">
-
-            <div class="template-price">
-              129
-              <small>THB</small>
-            </div>
-
-            <div class="view-template">
-              <span data-i18n="viewTemplate">
-                View Template
-              </span>
-              →
-            </div>
-
-          </div>
-
-        </div>
-
-      </a>
-
-
-      <!-- =========================
-           TEMPLATE 02
-      ========================= -->
-
-      <a href="template-02.html" class="template-card">
-
-        <div class="template-preview">
-
-          <img
-            src="images/template-02.jpg"
-            alt="PINTO LOVE Template 02">
-
-          <div class="template-number">
-            02
-          </div>
-
-        </div>
-
-        <div class="template-info">
-
-          <div class="template-category"
-               data-i18n="template02Category">
-            SORRY / MAKE UP
-          </div>
-
-          <div class="template-name"
-               data-i18n="template02Name">
-            ขอโทษและง้อ
-          </div>
-
-          <p class="template-description"
-             data-i18n="template02Description">
-            เว็บไซต์เล็ก ๆ สำหรับพูดในสิ่งที่อยากบอก
-            เมื่อคำพูดธรรมดาอาจยังไม่พอ
-          </p>
-
-          <div class="template-bottom">
-
-            <div class="template-price">
-              129
-              <small>THB</small>
-            </div>
-
-            <div class="view-template">
-              <span data-i18n="viewTemplate">
-                View Template
-              </span>
-              →
-            </div>
-
-          </div>
-
-        </div>
-
-      </a>
-
-
-      <!-- =========================
-           TEMPLATE 03
-      ========================= -->
-
-      <a href="template-03.html" class="template-card">
-
-        <div class="template-preview">
-
-          <img
-            src="images/template-03.jpg"
-            alt="PINTO LOVE Template 03">
-
-          <div class="template-number">
-            03
-          </div>
-
-        </div>
-
-        <div class="template-info">
-
-          <div class="template-category"
-               data-i18n="template03Category">
-            BIRTHDAY
-          </div>
-
-          <div class="template-name"
-               data-i18n="template03Name">
-            วันเกิด
-          </div>
-
-          <p class="template-description"
-             data-i18n="template03Description">
-            ของขวัญวันเกิดในรูปแบบเว็บไซต์
-            สำหรับคนที่อยากทำให้วันธรรมดากลายเป็นความทรงจำ
-          </p>
-
-          <div class="template-bottom">
-
-            <div class="template-price">
-              129
-              <small>THB</small>
-            </div>
-
-            <div class="view-template">
-              <span data-i18n="viewTemplate">
-                View Template
-              </span>
-              →
-            </div>
-
-          </div>
-
-        </div>
-
-      </a>
-
-
-    </div>
-
-
-    <!-- =========================
-         PRICE NOTE
-    ========================= -->
-
-    <div class="price-note">
-
-      <div data-i18n="priceNote">
-        1 Template = 129 THB<br>
-        ฟังก์ชันที่มีใน Template รวมอยู่แล้ว<br>
-        ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน<br>
-        ปรับสีตามสีที่ลูกค้าต้องการ<br><br>
-        ระยะเวลาจัดทำประมาณ 1–2 วัน<br>
-        สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ
-      </div>
-
-    </div>
+    <a href="anniversary.html"
+       class="see-all-top"
+       data-i18n="seeAll">
+      See All →
+    </a>
 
   </div>
+
+
+  <div class="template-grid">
+
+
+    <!-- TEMPLATE 01 -->
+
+    <a href="template-01.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/anniversary-01.jpg"
+          alt="Anniversary Template 01">
+
+        <div class="template-number">
+          01
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          ANNIVERSARY
+        </div>
+
+        <div class="template-name"
+             data-i18n="anniversary01">
+          วันครบรอบแบบที่หนึ่ง
+        </div>
+
+        <p class="template-description"
+           data-i18n="anniversary01Desc">
+          เว็บไซต์สำหรับเก็บเรื่องราว
+          ความทรงจำ และคำที่อยากบอกคนสำคัญ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- TEMPLATE 02 -->
+
+    <a href="template-02.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/anniversary-02.jpg"
+          alt="Anniversary Template 02">
+
+        <div class="template-number">
+          02
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          ANNIVERSARY
+        </div>
+
+        <div class="template-name"
+             data-i18n="anniversary02">
+          วันครบรอบแบบที่สอง
+        </div>
+
+        <p class="template-description"
+           data-i18n="anniversary02Desc">
+          อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราว
+          และความทรงจำของคนสองคน
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- TEMPLATE 03 -->
+
+    <a href="template-03.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/anniversary-03.jpg"
+          alt="Anniversary Template 03">
+
+        <div class="template-number">
+          03
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          ANNIVERSARY
+        </div>
+
+        <div class="template-name"
+             data-i18n="anniversary03">
+          วันครบรอบแบบที่สาม
+        </div>
+
+        <p class="template-description"
+           data-i18n="anniversary03Desc">
+          เก็บช่วงเวลาที่มีความหมาย
+          ไว้ในเว็บไซต์ที่กลับมาเปิดดูได้เสมอ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <div class="see-all-wrap">
+
+    <a href="anniversary.html"
+       class="see-all">
+
+      <span data-i18n="seeAll">
+        See All
+      </span>
+
+      →
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BIRTHDAY
+===================================================== -->
+
+<section class="category">
+
+  <div class="category-head">
+
+    <div class="category-title-wrap">
+
+      <div class="category-label">
+        BIRTHDAY
+      </div>
+
+      <h2 class="category-title"
+          data-i18n="birthdayTitle">
+        วันเกิด
+      </h2>
+
+      <p class="category-description"
+         data-i18n="birthdayDescription">
+        ของขวัญวันเกิดในรูปแบบเว็บไซต์
+        สำหรับเปลี่ยนวันธรรมดาให้กลายเป็นความทรงจำ
+      </p>
+
+    </div>
+
+    <a href="birthday.html"
+       class="see-all-top"
+       data-i18n="seeAll">
+      See All →
+    </a>
+
+  </div>
+
+
+  <div class="template-grid">
+
+
+    <!-- BIRTHDAY 01 -->
+
+    <a href="birthday-01.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/birthday-01.jpg"
+          alt="Birthday Template 01">
+
+        <div class="template-number">
+          01
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          BIRTHDAY
+        </div>
+
+        <div class="template-name"
+             data-i18n="birthday01">
+          วันเกิดแบบที่หนึ่ง
+        </div>
+
+        <p class="template-description"
+           data-i18n="birthday01Desc">
+          เว็บไซต์วันเกิดที่ออกแบบมา
+          เพื่อส่งความรู้สึกดี ๆ ให้คนพิเศษ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- BIRTHDAY 02 -->
+
+    <a href="birthday-02.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/birthday-02.jpg"
+          alt="Birthday Template 02">
+
+        <div class="template-number">
+          02
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          BIRTHDAY
+        </div>
+
+        <div class="template-name"
+             data-i18n="birthday02">
+          วันเกิดแบบที่สอง
+        </div>
+
+        <p class="template-description"
+           data-i18n="birthday02Desc">
+          เก็บคำอวยพร รูปภาพ
+          และช่วงเวลาพิเศษไว้ในที่เดียว
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- BIRTHDAY 03 -->
+
+    <a href="birthday-03.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/birthday-03.jpg"
+          alt="Birthday Template 03">
+
+        <div class="template-number">
+          03
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          BIRTHDAY
+        </div>
+
+        <div class="template-name"
+             data-i18n="birthday03">
+          วันเกิดแบบที่สาม
+        </div>
+
+        <p class="template-description"
+           data-i18n="birthday03Desc">
+          ของขวัญเล็ก ๆ ในรูปแบบเว็บไซต์
+          สำหรับวันพิเศษของคนที่คุณรัก
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <div class="see-all-wrap">
+
+    <a href="birthday.html"
+       class="see-all">
+
+      <span data-i18n="seeAll">
+        See All
+      </span>
+
+      →
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SORRY / MAKE UP
+===================================================== -->
+
+<section class="category">
+
+  <div class="category-head">
+
+    <div class="category-title-wrap">
+
+      <div class="category-label">
+        SORRY / MAKE UP
+      </div>
+
+      <h2 class="category-title"
+          data-i18n="sorryTitle">
+        ขอโทษและง้อ
+      </h2>
+
+      <p class="category-description"
+         data-i18n="sorryDescription">
+        สำหรับวันที่อยากพูดคำขอโทษ
+        หรืออยากบอกใครบางคนว่าเรายังใส่ใจ
+      </p>
+
+    </div>
+
+    <a href="sorry.html"
+       class="see-all-top"
+       data-i18n="seeAll">
+      See All →
+    </a>
+
+  </div>
+
+
+  <div class="template-grid">
+
+
+    <!-- SORRY 01 -->
+
+    <a href="sorry-01.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/sorry-01.jpg"
+          alt="Sorry Template 01">
+
+        <div class="template-number">
+          01
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SORRY / MAKE UP
+        </div>
+
+        <div class="template-name"
+             data-i18n="sorry01">
+          ขอโทษแบบที่หนึ่ง
+        </div>
+
+        <p class="template-description"
+           data-i18n="sorry01Desc">
+          พื้นที่เล็ก ๆ สำหรับพูดในสิ่งที่
+          อยากบอกเมื่อคำพูดธรรมดาอาจยังไม่พอ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- SORRY 02 -->
+
+    <a href="sorry-02.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/sorry-02.jpg"
+          alt="Sorry Template 02">
+
+        <div class="template-number">
+          02
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SORRY / MAKE UP
+        </div>
+
+        <div class="template-name"
+             data-i18n="sorry02">
+          ขอโทษแบบที่สอง
+        </div>
+
+        <p class="template-description"
+           data-i18n="sorry02Desc">
+          บอกความรู้สึกที่อยู่ในใจ
+          ผ่านเรื่องราวที่ออกแบบมาเพื่อคนพิเศษ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- SORRY 03 -->
+
+    <a href="sorry-03.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/sorry-03.jpg"
+          alt="Sorry Template 03">
+
+        <div class="template-number">
+          03
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SORRY / MAKE UP
+        </div>
+
+        <div class="template-name"
+             data-i18n="sorry03">
+          ขอโทษแบบที่สาม
+        </div>
+
+        <p class="template-description"
+           data-i18n="sorry03Desc">
+          เปลี่ยนคำขอโทษให้กลายเป็น
+          ช่วงเวลาที่อีกคนเปิดกลับมาดูได้เสมอ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <div class="see-all-wrap">
+
+    <a href="sorry.html"
+       class="see-all">
+
+      <span data-i18n="seeAll">
+        See All
+      </span>
+
+      →
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SPECIAL MOMENTS
+===================================================== -->
+
+<section class="category">
+
+  <div class="category-head">
+
+    <div class="category-title-wrap">
+
+      <div class="category-label">
+        SPECIAL MOMENTS
+      </div>
+
+      <h2 class="category-title"
+          data-i18n="specialTitle">
+        ช่วงเวลาพิเศษ
+      </h2>
+
+      <p class="category-description"
+         data-i18n="specialDescription">
+        Template สำหรับช่วงเวลาอื่น ๆ
+        ที่อยากเก็บไว้ในรูปแบบของเว็บไซต์
+      </p>
+
+    </div>
+
+    <a href="special.html"
+       class="see-all-top"
+       data-i18n="seeAll">
+      See All →
+    </a>
+
+  </div>
+
+
+  <div class="template-grid">
+
+
+    <!-- SPECIAL 01 -->
+
+    <a href="special-01.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/special-01.jpg"
+          alt="Special Moment Template 01">
+
+        <div class="template-number">
+          01
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SPECIAL MOMENTS
+        </div>
+
+        <div class="template-name"
+             data-i18n="special01">
+          ช่วงเวลาพิเศษแบบที่หนึ่ง
+        </div>
+
+        <p class="template-description"
+           data-i18n="special01Desc">
+          สำหรับเรื่องราวที่ไม่จำเป็นต้องอยู่ในหมวดใด
+          แค่เป็นช่วงเวลาที่มีความหมาย
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- SPECIAL 02 -->
+
+    <a href="special-02.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/special-02.jpg"
+          alt="Special Moment Template 02">
+
+        <div class="template-number">
+          02
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SPECIAL MOMENTS
+        </div>
+
+        <div class="template-name"
+             data-i18n="special02">
+          ช่วงเวลาพิเศษแบบที่สอง
+        </div>
+
+        <p class="template-description"
+           data-i18n="special02Desc">
+          ออกแบบมาเพื่อเรื่องราวที่อยากเก็บไว้
+          ในแบบที่เป็นตัวคุณ
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- SPECIAL 03 -->
+
+    <a href="special-03.html"
+       class="template-card">
+
+      <div class="template-preview">
+
+        <img
+          src="images/special-03.jpg"
+          alt="Special Moment Template 03">
+
+        <div class="template-number">
+          03
+        </div>
+
+      </div>
+
+      <div class="template-info">
+
+        <div class="template-category">
+          SPECIAL MOMENTS
+        </div>
+
+        <div class="template-name"
+             data-i18n="special03">
+          ช่วงเวลาพิเศษแบบที่สาม
+        </div>
+
+        <p class="template-description"
+           data-i18n="special03Desc">
+          เก็บความทรงจำเล็ก ๆ
+          ให้กลายเป็นสิ่งที่กลับมาเปิดดูได้อีกครั้ง
+        </p>
+
+        <div class="template-bottom">
+
+          <div class="template-price">
+            129
+            <small>THB</small>
+          </div>
+
+          <div class="view-template">
+            <span data-i18n="viewTemplate">
+              ดู Template
+            </span>
+            →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <div class="see-all-wrap">
+
+    <a href="special.html"
+       class="see-all">
+
+      <span data-i18n="seeAll">
+        See All
+      </span>
+
+      →
+
+    </a>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     PRICE NOTE
+========================= -->
+
+<div class="price-note">
+
+  <div data-i18n="priceNote">
+
+    1 Template = 129 THB<br>
+    ฟังก์ชันที่มีใน Template รวมอยู่แล้ว<br>
+    ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน<br>
+    ปรับสีตามสีที่ลูกค้าต้องการ<br><br>
+
+    ระยะเวลาจัดทำประมาณ 1–2 วัน<br>
+    สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ
+
+  </div>
+
+</div>
+
+
+</div>
 
 </section>
 
@@ -935,7 +1876,7 @@ footer{
 
 <section class="cta">
 
-  <div class="cta-label" data-i18n="ctaLabel">
+  <div class="cta-label">
     PINTO LOVE
   </div>
 
@@ -949,11 +1890,15 @@ footer{
     แล้วเปลี่ยนช่วงเวลาของคุณให้กลายเป็นสิ่งที่เปิดกลับมาดูได้เสมอ
   </p>
 
-  <a href="../Pinto/index.html#contact" class="cta-button">
+  <a href="https://pintorak.github.io/Pinto/index.html#contact"
+     class="cta-button">
+
     <span data-i18n="ctaButton">
-      Contact PINTO
+      ติดต่อ PINTO
     </span>
+
     →
+
   </a>
 
 </section>
@@ -988,21 +1933,25 @@ footer{
 
     <div class="lang-options">
 
-      <button class="lang-option" onclick="setLanguage('th')">
+      <button class="lang-option"
+              onclick="setLanguage('th')">
         ไทย
       </button>
 
-      <button class="lang-option" onclick="setLanguage('en')">
+      <button class="lang-option"
+              onclick="setLanguage('en')">
         English
       </button>
 
-      <button class="lang-option" onclick="setLanguage('ko')">
+      <button class="lang-option"
+              onclick="setLanguage('ko')">
         한국어
       </button>
 
     </div>
 
-    <button class="close-lang" onclick="closeLanguage()">
+    <button class="close-lang"
+            onclick="closeLanguage()">
       Close
     </button>
 
@@ -1015,151 +1964,370 @@ footer{
 
 const translations = {
 
-  th: {
+th:{
 
-    navAbout:"About",
-    navWorks:"Works",
-    navPricing:"Pricing",
-    navContact:"Contact",
+heroText:
+"เว็บไซต์สำหรับบอกรัก วันครบรอบ วันเกิด และช่วงเวลาพิเศษที่อยากเก็บไว้ ในรูปแบบของเว็บไซต์ที่ออกแบบมาเพื่อคุณ",
 
-    heroLabel:"PINTO LOVE",
+backToWorks:
+"กลับไปยัง Works",
 
-    heroText:
-    "เว็บไซต์สำหรับบอกรัก วันครบรอบ วันเกิด และช่วงเวลาพิเศษที่อยากเก็บไว้ ในรูปแบบของเว็บไซต์ที่ออกแบบมาเพื่อคุณ",
+anniversaryTitle:
+"วันครบรอบ",
 
-    backToWorks:"กลับไปยัง Works",
+anniversaryDescription:
+"เว็บไซต์สำหรับเก็บเรื่องราว ความทรงจำ และช่วงเวลาสำคัญของเราสองคน",
 
-    templateLabel:"Templates",
+anniversary01:
+"วันครบรอบแบบที่หนึ่ง",
 
-    templateIntro:
-    "เลือก Template ที่เหมาะกับเรื่องราวของคุณ แต่ละ Template มีฟังก์ชันและรูปแบบที่แตกต่างกัน สามารถดูรายละเอียดและทดลองชมเว็บไซต์ได้ในหน้าของแต่ละ Template",
+anniversary01Desc:
+"เว็บไซต์สำหรับเก็บเรื่องราว ความทรงจำ และคำที่อยากบอกคนสำคัญ",
 
-    template01Category:"ANNIVERSARY",
-    template01Name:"วันครบรอบแบบที่หนึ่ง",
-    template01Description:
-    "เว็บไซต์สำหรับเก็บเรื่องราว ความทรงจำ และช่วงเวลาที่อยากบอกคนสำคัญ",
+anniversary02:
+"วันครบรอบแบบที่สอง",
 
-    template02Category:"SORRY / MAKE UP",
-    template02Name:"ขอโทษและง้อ",
-    template02Description:
-    "เว็บไซต์เล็ก ๆ สำหรับพูดในสิ่งที่อยากบอก เมื่อคำพูดธรรมดาอาจยังไม่พอ",
+anniversary02Desc:
+"อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราว และความทรงจำของคนสองคน",
 
-    template03Category:"BIRTHDAY",
-    template03Name:"วันเกิด",
-    template03Description:
-    "ของขวัญวันเกิดในรูปแบบเว็บไซต์ สำหรับคนที่อยากทำให้วันธรรมดากลายเป็นความทรงจำ",
+anniversary03:
+"วันครบรอบแบบที่สาม",
 
-    viewTemplate:"ดู Template",
+anniversary03Desc:
+"เก็บช่วงเวลาที่มีความหมาย ไว้ในเว็บไซต์ที่กลับมาเปิดดูได้เสมอ",
 
-    priceNote:
-    "1 Template = 129 THB<br>ฟังก์ชันที่มีใน Template รวมอยู่แล้ว<br>ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน<br>ปรับสีตามสีที่ลูกค้าต้องการ<br><br>ระยะเวลาจัดทำประมาณ 1–2 วัน<br>สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ",
+birthdayTitle:
+"วันเกิด",
 
-    ctaLabel:"PINTO LOVE",
+birthdayDescription:
+"ของขวัญวันเกิดในรูปแบบเว็บไซต์ สำหรับเปลี่ยนวันธรรมดาให้กลายเป็นความทรงจำ",
 
-    ctaText:
-    "เลือก Template ที่ชอบ แล้วเปลี่ยนช่วงเวลาของคุณให้กลายเป็นสิ่งที่เปิดกลับมาดูได้เสมอ",
+birthday01:
+"วันเกิดแบบที่หนึ่ง",
 
-    ctaButton:"ติดต่อ PINTO"
+birthday01Desc:
+"เว็บไซต์วันเกิดที่ออกแบบมา เพื่อส่งความรู้สึกดี ๆ ให้คนพิเศษ",
 
-  },
+birthday02:
+"วันเกิดแบบที่สอง",
+
+birthday02Desc:
+"เก็บคำอวยพร รูปภาพ และช่วงเวลาพิเศษไว้ในที่เดียว",
+
+birthday03:
+"วันเกิดแบบที่สาม",
+
+birthday03Desc:
+"ของขวัญเล็ก ๆ ในรูปแบบเว็บไซต์ สำหรับวันพิเศษของคนที่คุณรัก",
+
+sorryTitle:
+"ขอโทษและง้อ",
+
+sorryDescription:
+"สำหรับวันที่อยากพูดคำขอโทษ หรืออยากบอกใครบางคนว่าเรายังใส่ใจ",
+
+sorry01:
+"ขอโทษแบบที่หนึ่ง",
+
+sorry01Desc:
+"พื้นที่เล็ก ๆ สำหรับพูดในสิ่งที่อยากบอก เมื่อคำพูดธรรมดาอาจยังไม่พอ",
+
+sorry02:
+"ขอโทษแบบที่สอง",
+
+sorry02Desc:
+"บอกความรู้สึกที่อยู่ในใจ ผ่านเรื่องราวที่ออกแบบมาเพื่อคนพิเศษ",
+
+sorry03:
+"ขอโทษแบบที่สาม",
+
+sorry03Desc:
+"เปลี่ยนคำขอโทษให้กลายเป็น ช่วงเวลาที่อีกคนเปิดกลับมาดูได้เสมอ",
+
+specialTitle:
+"ช่วงเวลาพิเศษ",
+
+specialDescription:
+"Template สำหรับช่วงเวลาอื่น ๆ ที่อยากเก็บไว้ในรูปแบบของเว็บไซต์",
+
+special01:
+"ช่วงเวลาพิเศษแบบที่หนึ่ง",
+
+special01Desc:
+"สำหรับเรื่องราวที่ไม่จำเป็นต้องอยู่ในหมวดใด แค่เป็นช่วงเวลาที่มีความหมาย",
+
+special02:
+"ช่วงเวลาพิเศษแบบที่สอง",
+
+special02Desc:
+"ออกแบบมาเพื่อเรื่องราวที่อยากเก็บไว้ ในแบบที่เป็นตัวคุณ",
+
+special03:
+"ช่วงเวลาพิเศษแบบที่สาม",
+
+special03Desc:
+"เก็บความทรงจำเล็ก ๆ ให้กลายเป็นสิ่งที่กลับมาเปิดดูได้อีกครั้ง",
+
+seeAll:
+"See All",
+
+viewTemplate:
+"ดู Template",
+
+priceNote:
+"1 Template = 129 THB<br>ฟังก์ชันที่มีใน Template รวมอยู่แล้ว<br>ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน<br>ปรับสีตามสีที่ลูกค้าต้องการ<br><br>ระยะเวลาจัดทำประมาณ 1–2 วัน<br>สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ",
+
+ctaText:
+"เลือก Template ที่ชอบ แล้วเปลี่ยนช่วงเวลาของคุณให้กลายเป็นสิ่งที่เปิดกลับมาดูได้เสมอ",
+
+ctaButton:
+"ติดต่อ PINTO"
+
+},
 
 
-  en: {
+en:{
 
-    navAbout:"About",
-    navWorks:"Works",
-    navPricing:"Pricing",
-    navContact:"Contact",
+heroText:
+"Digital websites for love, anniversaries, birthdays, and meaningful moments — thoughtfully designed to make your memories last.",
 
-    heroLabel:"PINTO LOVE",
+backToWorks:
+"Back to Works",
 
-    heroText:
-    "Digital websites for love, anniversaries, birthdays, and meaningful moments — thoughtfully designed to make your memories last.",
+anniversaryTitle:
+"Anniversary",
 
-    backToWorks:"Back to Works",
+anniversaryDescription:
+"Digital spaces for your story, memories, and meaningful moments together.",
 
-    templateLabel:"Templates",
+anniversary01:
+"Anniversary Template 01",
 
-    templateIntro:
-    "Choose a template that fits your story. Each template comes with its own design and functions. Explore each template to see the details and live experience.",
+anniversary01Desc:
+"A digital space for your story, memories, and the words you want to share with someone special.",
 
-    template01Category:"ANNIVERSARY",
-    template01Name:"Anniversary Template 01",
-    template01Description:
-    "A digital space for your story, memories, and the words you want to share with someone special.",
+anniversary02:
+"Anniversary Template 02",
 
-    template02Category:"SORRY / MAKE UP",
-    template02Name:"Sorry & Make Up",
-    template02Description:
-    "A little website for the things you want to say when ordinary words don't feel like enough.",
+anniversary02Desc:
+"Another way to tell your story and preserve the memories you share together.",
 
-    template03Category:"BIRTHDAY",
-    template03Name:"Birthday",
-    template03Description:
-    "A birthday gift in the form of a website, made to turn an ordinary day into a lasting memory.",
+anniversary03:
+"Anniversary Template 03",
 
-    viewTemplate:"View Template",
+anniversary03Desc:
+"Keep meaningful moments in a website you can always come back to.",
 
-    priceNote:
-    "1 Template = 129 THB<br>All functions included in the selected template<br>Additional function +29 THB / function<br>Custom color adjustment available<br><br>Estimated production time: 1–2 days<br>Text on each page can be customized according to the customer's preference.",
+birthdayTitle:
+"Birthday",
 
-    ctaLabel:"PINTO LOVE",
+birthdayDescription:
+"A birthday gift in the form of a website, made to turn an ordinary day into a lasting memory.",
 
-    ctaText:
-    "Choose the template you love and turn your moment into something you can always come back to.",
+birthday01:
+"Birthday Template 01",
 
-    ctaButton:"Contact PINTO"
+birthday01Desc:
+"A birthday website designed to send warm wishes to someone special.",
 
-  },
+birthday02:
+"Birthday Template 02",
+
+birthday02Desc:
+"Keep wishes, photos, and special moments together in one place.",
+
+birthday03:
+"Birthday Template 03",
+
+birthday03Desc:
+"A little digital gift for a special birthday and someone you love.",
+
+sorryTitle:
+"Sorry / Make Up",
+
+sorryDescription:
+"For the days when you want to say sorry or remind someone that you still care.",
+
+sorry01:
+"Sorry Template 01",
+
+sorry01Desc:
+"A little space for the things you want to say when ordinary words don't feel like enough.",
+
+sorry02:
+"Sorry Template 02",
+
+sorry02Desc:
+"Share what is in your heart through a story designed for someone special.",
+
+sorry03:
+"Sorry Template 03",
+
+sorry03Desc:
+"Turn an apology into a meaningful moment they can always come back to.",
+
+specialTitle:
+"Special Moments",
+
+specialDescription:
+"Templates for other meaningful moments you want to preserve as a website.",
+
+special01:
+"Special Moment Template 01",
+
+special01Desc:
+"For stories that don't need a category — just a moment that means something.",
+
+special02:
+"Special Moment Template 02",
+
+special02Desc:
+"Designed for stories you want to keep in a way that feels uniquely yours.",
+
+special03:
+"Special Moment Template 03",
+
+special03Desc:
+"Turn little memories into something you can always come back to.",
+
+seeAll:
+"See All",
+
+viewTemplate:
+"View Template",
+
+priceNote:
+"1 Template = 129 THB<br>All functions included in the selected template<br>Additional function +29 THB / function<br>Custom color adjustment available<br><br>Estimated production time: 1–2 days<br>Text on each page can be customized according to the customer's preference.",
+
+ctaText:
+"Choose the template you love and turn your moment into something you can always come back to.",
+
+ctaButton:
+"Contact PINTO"
+
+},
 
 
-  ko: {
+ko:{
 
-    navAbout:"About",
-    navWorks:"Works",
-    navPricing:"Pricing",
-    navContact:"Contact",
+heroText:
+"사랑, 기념일, 생일 그리고 특별한 순간을 위한 디지털 웹사이트입니다. 소중한 기억을 오래 간직할 수 있도록 디자인합니다.",
 
-    heroLabel:"PINTO LOVE",
+backToWorks:
+"Works로 돌아가기",
 
-    heroText:
-    "사랑, 기념일, 생일 그리고 특별한 순간을 위한 디지털 웹사이트입니다. 소중한 기억을 오래 간직할 수 있도록 디자인합니다.",
+anniversaryTitle:
+"기념일",
 
-    backToWorks:"Works로 돌아가기",
+anniversaryDescription:
+"두 사람의 이야기와 추억, 소중한 순간을 담을 수 있는 디지털 공간입니다.",
 
-    templateLabel:"Templates",
+anniversary01:
+"기념일 템플릿 01",
 
-    templateIntro:
-    "당신의 이야기에 어울리는 템플릿을 선택해보세요. 각 템플릿마다 다른 디자인과 기능이 제공되며, 자세한 내용과 실제 웹사이트를 확인할 수 있습니다.",
+anniversary01Desc:
+"소중한 사람에게 전하고 싶은 이야기와 추억을 담을 수 있는 디지털 웹사이트입니다.",
 
-    template01Category:"ANNIVERSARY",
-    template01Name:"기념일 템플릿 01",
-    template01Description:
-    "소중한 사람에게 전하고 싶은 이야기와 추억을 담을 수 있는 디지털 웹사이트입니다.",
+anniversary02:
+"기념일 템플릿 02",
 
-    template02Category:"SORRY / MAKE UP",
-    template02Name:"미안해 그리고 화해",
-    template02Description:
-    "평범한 말만으로는 부족할 때, 전하고 싶은 마음을 담을 수 있는 작은 웹사이트입니다.",
+anniversary02Desc:
+"두 사람이 함께한 이야기와 추억을 다른 방식으로 담아낼 수 있습니다.",
 
-    template03Category:"BIRTHDAY",
-    template03Name:"생일",
-    template03Description:
-    "평범한 생일을 오래 기억할 수 있는 특별한 순간으로 만들어주는 디지털 선물입니다.",
+anniversary03:
+"기념일 템플릿 03",
 
-    viewTemplate:"템플릿 보기",
+anniversary03Desc:
+"소중한 순간을 언제든 다시 꺼내볼 수 있는 웹사이트로 간직하세요.",
 
-    priceNote:
-    "1 Template = 129 THB<br>선택한 템플릿의 모든 기본 기능 포함<br>추가 기능 +29 THB / 기능<br>원하는 색상으로 조정 가능<br><br>제작 기간은 약 1~2일입니다.<br>각 페이지의 문구는 고객의 요청에 따라 자유롭게 수정할 수 있습니다.",
+birthdayTitle:
+"생일",
 
-    ctaLabel:"PINTO LOVE",
+birthdayDescription:
+"평범한 생일을 오래 기억할 수 있는 특별한 디지털 선물입니다.",
 
-    ctaText:
-    "마음에 드는 템플릿을 선택하고, 소중한 순간을 언제든 다시 꺼내볼 수 있는 기억으로 만들어보세요.",
+birthday01:
+"생일 템플릿 01",
 
-    ctaButton:"PINTO에 문의하기"
+birthday01Desc:
+"특별한 사람에게 따뜻한 마음을 전할 수 있도록 디자인된 생일 웹사이트입니다.",
 
-  }
+birthday02:
+"생일 템플릿 02",
+
+birthday02Desc:
+"축하 메시지와 사진, 특별한 순간을 한곳에 담아보세요.",
+
+birthday03:
+"생일 템플릿 03",
+
+birthday03Desc:
+"사랑하는 사람의 특별한 생일을 위한 작은 디지털 선물입니다.",
+
+sorryTitle:
+"미안해 그리고 화해",
+
+sorryDescription:
+"미안하다는 말을 전하고 싶을 때, 그리고 아직 마음을 전하고 싶을 때를 위한 공간입니다.",
+
+sorry01:
+"미안해 템플릿 01",
+
+sorry01Desc:
+"평범한 말만으로는 부족할 때 전하고 싶은 마음을 담을 수 있는 작은 공간입니다.",
+
+sorry02:
+"미안해 템플릿 02",
+
+sorry02Desc:
+"특별한 사람을 위해 마음속 이야기를 하나의 이야기로 전해보세요.",
+
+sorry03:
+"미안해 템플릿 03",
+
+sorry03Desc:
+"미안하다는 마음을 다시 꺼내볼 수 있는 의미 있는 순간으로 만들어보세요.",
+
+specialTitle:
+"특별한 순간",
+
+specialDescription:
+"다른 어떤 카테고리에도 담기지 않는 소중한 순간을 위한 템플릿입니다.",
+
+special01:
+"특별한 순간 템플릿 01",
+
+special01Desc:
+"카테고리는 필요하지 않아도 의미가 있는 순간을 위한 웹사이트입니다.",
+
+special02:
+"특별한 순간 템플릿 02",
+
+special02Desc:
+"당신만의 방식으로 특별한 이야기를 간직할 수 있도록 디자인했습니다.",
+
+special03:
+"특별한 순간 템플릿 03",
+
+special03Desc:
+"작은 추억을 언제든 다시 꺼내볼 수 있는 특별한 공간으로 만들어보세요.",
+
+seeAll:
+"전체 보기",
+
+viewTemplate:
+"템플릿 보기",
+
+priceNote:
+"1 Template = 129 THB<br>선택한 템플릿의 모든 기본 기능 포함<br>추가 기능 +29 THB / 기능<br>원하는 색상으로 조정 가능<br><br>제작 기간은 약 1~2일입니다.<br>각 페이지의 문구는 고객의 요청에 따라 자유롭게 수정할 수 있습니다.",
+
+ctaText:
+"마음에 드는 템플릿을 선택하고, 소중한 순간을 언제든 다시 꺼내볼 수 있는 기억으로 만들어보세요.",
+
+ctaButton:
+"PINTO에 문의하기"
+
+}
 
 };
 
@@ -1187,26 +2355,37 @@ function setLanguage(lang){
     lang === "en" ? "EN" : "KO";
 
   closeLanguage();
+
 }
 
 
 function openLanguage(){
-  document.getElementById("langModal").classList.add("active");
+
+  document
+    .getElementById("langModal")
+    .classList.add("active");
+
 }
 
 
 function closeLanguage(){
-  document.getElementById("langModal").classList.remove("active");
+
+  document
+    .getElementById("langModal")
+    .classList.remove("active");
+
 }
 
 
-document.getElementById("langModal").addEventListener("click",function(e){
+document
+  .getElementById("langModal")
+  .addEventListener("click",function(e){
 
-  if(e.target === this){
-    closeLanguage();
-  }
+    if(e.target === this){
+      closeLanguage();
+    }
 
-});
+  });
 
 
 const savedLanguage =
