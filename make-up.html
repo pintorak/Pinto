@@ -1,1 +1,690 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>PINTO LOVE | Make Up</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+Thai:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --taupe:#8C7E74;
+  --warm:#C8BCB1;
+  --beige:#E6DED8;
+  --cream:#F4EFEA;
+  --dark:#403934;
+  --muted:#81766E;
+  --white:#FBF8F5;
+  --line:rgba(64,57,52,.13);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
+  font-weight:300;
+  line-height:1.8;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+.container{
+  width:min(1200px,90%);
+  margin:auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  width:100%;
+  padding:28px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  background:rgba(244,239,234,.92);
+}
+
+.logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:28px;
+  letter-spacing:2px;
+  font-weight:500;
+}
+
+.back-link{
+  font-size:12px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+  transition:.3s;
+}
+
+.back-link:hover{
+  color:var(--dark);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  padding:110px 20px 90px;
+  text-align:center;
+}
+
+.hero-label{
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--muted);
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-family:"Cormorant Garamond",serif;
+  font-size:76px;
+  line-height:1;
+  font-weight:500;
+  margin-bottom:28px;
+}
+
+.hero p{
+  max-width:620px;
+  margin:auto;
+  color:var(--muted);
+  font-size:15px;
+  line-height:2;
+}
+
+
+/* =========================
+   BREADCRUMB
+========================= */
+
+.breadcrumb{
+  width:min(1200px,90%);
+  margin:0 auto 50px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+.breadcrumb span{
+  margin:0 10px;
+}
+
+
+/* =========================
+   TEMPLATE SECTION
+========================= */
+
+.templates{
+  padding:0 0 110px;
+}
+
+.section-head{
+  width:min(1200px,90%);
+  margin:0 auto 38px;
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+}
+
+.section-label{
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.section-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:42px;
+  font-weight:500;
+}
+
+.see-all{
+  font-size:11px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.template-grid{
+  width:min(1200px,90%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+}
+
+.template-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+
+.template-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 45px rgba(64,57,52,.08);
+}
+
+.card-image{
+  position:relative;
+  aspect-ratio:4 / 5;
+  overflow:hidden;
+  background:var(--beige);
+}
+
+.card-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card-overlay{
+  position:absolute;
+  inset:auto 0 0;
+  padding:45px 25px 22px;
+  background:linear-gradient(
+    to top,
+    rgba(35,30,27,.55),
+    transparent
+  );
+}
+
+.card-number{
+  color:#fff;
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+}
+
+.card-body{
+  padding:25px 24px 28px;
+}
+
+.card-label{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.card-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  line-height:1.25;
+  margin-bottom:14px;
+}
+
+.card-description{
+  font-size:12px;
+  line-height:1.9;
+  color:var(--muted);
+  min-height:48px;
+}
+
+.card-bottom{
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.price{
+  font-family:"Cormorant Garamond",serif;
+  font-size:24px;
+}
+
+.view{
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:var(--muted);
+}
+
+
+/* =========================
+   NOTE
+========================= */
+
+.note{
+  width:min(900px,90%);
+  margin:0 auto 120px;
+  padding:38px 35px;
+  background:var(--white);
+  border:1px solid var(--line);
+  text-align:center;
+}
+
+.note-title{
+  font-family:"Cormorant Garamond",serif;
+  font-size:25px;
+  margin-bottom:14px;
+}
+
+.note p{
+  font-size:12px;
+  line-height:2;
+  color:var(--muted);
+}
+
+.note p + p{
+  margin-top:5px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.footer-logo{
+  font-family:"Cormorant Garamond",serif;
+  font-size:22px;
+  color:var(--dark);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .template-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  header{
+    padding:22px 6%;
+  }
+
+  .logo{
+    font-size:25px;
+  }
+
+  .hero{
+    padding:80px 20px 65px;
+  }
+
+  .hero h1{
+    font-size:58px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .see-all{
+    display:inline-block;
+    margin-top:10px;
+  }
+
+  .section-title{
+    font-size:36px;
+  }
+
+  .template-grid{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .note{
+    padding:30px 22px;
+  }
+
+  footer{
+    flex-direction:column;
+    gap:12px;
+    text-align:center;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <a href="love.html" class="logo">
+    PINTO LOVE
+  </a>
+
+  <a href="love.html" class="back-link">
+    BACK TO PINTO LOVE
+  </a>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-label">
+    PINTO LOVE · MAKE UP
+  </div>
+
+  <h1>
+    Make Up
+  </h1>
+
+  <p>
+    เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ
+    คำที่บางครั้งพูดออกมาตรง ๆ ไม่ได้
+    และความตั้งใจที่อยากกลับมาทำความเข้าใจกันอีกครั้ง
+  </p>
+
+</section>
+
+
+<!-- =========================
+     BREADCRUMB
+========================= -->
+
+<div class="breadcrumb">
+
+  <a href="love.html">PINTO LOVE</a>
+
+  <span>/</span>
+
+  Make Up
+
+</div>
+
+
+<!-- =========================
+     TEMPLATES
+========================= -->
+
+<section class="templates">
+
+  <div class="section-head">
+
+    <div>
+      <div class="section-label">
+        PINTO LOVE · MAKE UP
+      </div>
+
+      <div class="section-title">
+        ขอโทษและคืนดี
+      </div>
+    </div>
+
+    <a href="#" class="see-all">
+      SEE ALL
+    </a>
+
+  </div>
+
+
+  <div class="template-grid">
+
+
+    <!-- TEMPLATE 01 -->
+
+    <a href="make-up-template-01.html"
+       class="template-card">
+
+      <div class="card-image">
+
+        <img
+          src="make-up-01.jpg"
+          alt="Make Up Template 01"
+        >
+
+        <div class="card-overlay">
+
+          <div class="card-number">
+            01
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 01
+        </div>
+
+        <div class="card-title">
+          ขอโทษและคืนดีแบบที่หนึ่ง
+        </div>
+
+        <div class="card-description">
+          เว็บไซต์เซอร์ไพรส์สำหรับคำขอโทษ
+          ความรู้สึกที่อยากพูด
+          และการขอเริ่มต้นกันใหม่อีกครั้ง
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="price">
+            129 THB
+          </div>
+
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- TEMPLATE 02 -->
+
+    <a href="make-up-template-02.html"
+       class="template-card">
+
+      <div class="card-image">
+
+        <div class="card-overlay">
+
+          <div class="card-number">
+            02
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 02
+        </div>
+
+        <div class="card-title">
+          ขอโทษและคืนดีแบบที่สอง
+        </div>
+
+        <div class="card-description">
+          สำหรับคนที่อยากบอกความรู้สึก
+          ผ่านเรื่องราวและความทรงจำ
+          ที่มีร่วมกัน
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="price">
+            129 THB
+          </div>
+
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- TEMPLATE 03 -->
+
+    <a href="make-up-template-03.html"
+       class="template-card">
+
+      <div class="card-image">
+
+        <div class="card-overlay">
+
+          <div class="card-number">
+            03
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        <div class="card-label">
+          MAKE UP · TEMPLATE 03
+        </div>
+
+        <div class="card-title">
+          ขอโทษและคืนดีแบบที่สาม
+        </div>
+
+        <div class="card-description">
+          พื้นที่เล็ก ๆ สำหรับคำขอโทษ
+          และข้อความที่อยากให้คนสำคัญ
+          ได้อ่านจนจบ
+        </div>
+
+        <div class="card-bottom">
+
+          <div class="price">
+            129 THB
+          </div>
+
+          <div class="view">
+            VIEW TEMPLATE →
+          </div>
+
+        </div>
+
+      </div>
+
+    </a>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     NOTE
+========================= -->
+
+<section class="note">
+
+  <div class="note-title">
+    Made to say what words sometimes can't.
+  </div>
+
+  <p>
+    สามารถเปลี่ยนข้อความในแต่ละหน้าให้เป็นเรื่องราวของคุณเองได้
+  </p>
+
+  <p>
+    สามารถปรับโทนและสีให้เข้ากับเรื่องราวของคุณได้
+  </p>
+
+  <p>
+    เพิ่มฟังก์ชันพิเศษได้ในราคา +29 THB / ฟังก์ชัน
+  </p>
+
+  <p>
+    ระยะเวลาจัดทำประมาณ 1–2 วัน
+  </p>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-logo">
+    PINTO LOVE
+  </div>
+
+  <div>
+    © PINTO STUDIO
+  </div>
+
+</footer>
+
+</body>
+</html>
