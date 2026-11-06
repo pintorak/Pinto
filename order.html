@@ -38,13 +38,11 @@ body{
     radial-gradient(circle at top left, rgba(255,255,255,.7), transparent 35%),
     var(--cream);
   color:var(--brown);
-  font-family:"DM Sans", sans-serif;
+  font-family:"DM Sans",sans-serif;
   padding:32px 18px 60px;
 }
 
-button,
-input,
-textarea{
+button,input,textarea{
   font-family:inherit;
 }
 
@@ -161,8 +159,7 @@ label{
   color:var(--accent);
 }
 
-input,
-textarea{
+input,textarea{
   width:100%;
   border:1px solid var(--line);
   background:#fff;
@@ -174,8 +171,7 @@ textarea{
   transition:.2s;
 }
 
-input:focus,
-textarea:focus{
+input:focus,textarea:focus{
   border-color:var(--taupe);
   box-shadow:0 0 0 3px rgba(181,163,141,.12);
 }
@@ -502,352 +498,383 @@ input[type="color"]{
 
 <div class="page">
 
-  <div class="topbar">
-    <a href="index.html" class="brand">PINTO LOVE</a>
-    <a href="index.html" class="back">← Back</a>
+<div class="topbar">
+  <a href="index.html" class="brand">PINTO LOVE</a>
+  <a href="index.html" class="back">← Back</a>
+</div>
+
+<div class="hero">
+  <h1>Order Your Website</h1>
+  <p>Create your own little digital moment ♡</p>
+</div>
+
+<section class="card">
+  <div class="section-title">Selected Template</div>
+
+  <div class="template-box">
+    <div>
+      <div class="template-name" id="templateName">Anniversary</div>
+      <div class="helper" id="templateCode">anniversary-01</div>
+    </div>
+
+    <div class="template-price">฿129</div>
+  </div>
+</section>
+
+<section class="card">
+
+  <div class="section-title">Your Information</div>
+
+  <div class="field">
+    <label for="customerName">
+      Name <span class="required">*</span>
+    </label>
+
+    <input
+      type="text"
+      id="customerName"
+      placeholder="Enter your name"
+      autocomplete="name"
+    >
   </div>
 
-  <div class="hero">
-    <h1>Order Your Website</h1>
-    <p>Create your own little digital moment ♡</p>
+  <div class="field">
+    <label for="lineId">
+      LINE ID <span class="required">*</span>
+    </label>
+
+    <input
+      type="text"
+      id="lineId"
+      placeholder="@yourlineid"
+      autocomplete="off"
+    >
+
+    <div class="helper">
+      ใช้ LINE ID สำหรับติดต่อและตรวจสอบสิทธิ์ส่วนลด 1 ครั้งต่อคน
+    </div>
   </div>
 
-  <section class="card">
-    <div class="section-title">Selected Template</div>
+  <div class="field">
+    <label for="message">
+      Message / Details
+    </label>
 
-    <div class="template-box">
-      <div>
-        <div class="template-name" id="templateName">Anniversary</div>
-        <div class="helper" id="templateCode">anniversary-01</div>
-      </div>
+    <textarea
+      id="message"
+      placeholder="Tell us what you would like to have on your website..."
+    ></textarea>
+  </div>
 
-      <div class="template-price">฿129</div>
-    </div>
-  </section>
+</section>
 
-  <section class="card">
-    <div class="section-title">Your Information</div>
+<section class="card">
 
-    <div class="field">
-      <label for="customerName">
-        Name <span class="required">*</span>
+  <div class="section-title">Extra Menu</div>
+  <div class="section-sub">
+    Add special features to your website · ฿29 each
+  </div>
+
+  <div class="extras">
+
+    <div class="extra-card">
+      <input type="checkbox" id="music" value="Music Player">
+      <label for="music" class="extra-label">
+        <span class="extra-icon">🎵</span>
+        <span class="extra-info">
+          <span class="extra-name">Music Player</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
       </label>
-
-      <input
-        type="text"
-        id="customerName"
-        placeholder="Enter your name"
-        autocomplete="name"
-      >
     </div>
 
-    <div class="field">
-      <label for="lineId">
-        LINE ID <span class="required">*</span>
+    <div class="extra-card">
+      <input type="checkbox" id="gallery" value="Photo Gallery">
+      <label for="gallery" class="extra-label">
+        <span class="extra-icon">📸</span>
+        <span class="extra-info">
+          <span class="extra-name">Photo Gallery</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
       </label>
-
-      <input
-        type="text"
-        id="lineId"
-        placeholder="@yourlineid"
-        autocomplete="off"
-      >
-
-      <div class="helper">
-        ใช้ LINE ID สำหรับติดต่อและตรวจสอบสิทธิ์ส่วนลด 1 ครั้งต่อคน
-      </div>
     </div>
 
-    <div class="field">
-      <label for="message">
-        Message / Details
+    <div class="extra-card">
+      <input type="checkbox" id="letter" value="Love Letter">
+      <label for="letter" class="extra-label">
+        <span class="extra-icon">💌</span>
+        <span class="extra-info">
+          <span class="extra-name">Love Letter</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
       </label>
-
-      <textarea
-        id="message"
-        placeholder="Tell us what you would like to have on your website..."
-      ></textarea>
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">Extra Menu</div>
-    <div class="section-sub">Add special features to your website · ฿29 each</div>
-
-    <div class="extras">
-
-      <div class="extra-card">
-        <input type="checkbox" id="music" value="Music Player">
-        <label for="music" class="extra-label">
-          <span class="extra-icon">🎵</span>
-          <span class="extra-info">
-            <span class="extra-name">Music Player</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="gallery" value="Photo Gallery">
-        <label for="gallery" class="extra-label">
-          <span class="extra-icon">📸</span>
-          <span class="extra-info">
-            <span class="extra-name">Photo Gallery</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="letter" value="Love Letter">
-        <label for="letter" class="extra-label">
-          <span class="extra-icon">💌</span>
-          <span class="extra-info">
-            <span class="extra-name">Love Letter</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="countdown" value="Countdown">
-        <label for="countdown" class="extra-label">
-          <span class="extra-icon">⏳</span>
-          <span class="extra-info">
-            <span class="extra-name">Countdown</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="scratch" value="Scratch Card">
-        <label for="scratch" class="extra-label">
-          <span class="extra-icon">🎟️</span>
-          <span class="extra-info">
-            <span class="extra-name">Scratch Card</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="quiz" value="เกมคำถาม 5 ข้อ">
-        <label for="quiz" class="extra-label">
-          <span class="extra-icon">💕</span>
-          <span class="extra-info">
-            <span class="extra-name">เกมคำถาม 5 ข้อ</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="password" value="เมนูใส่รหัส">
-        <label for="password" class="extra-label">
-          <span class="extra-icon">🔐</span>
-          <span class="extra-info">
-            <span class="extra-name">เมนูใส่รหัส</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="mind" value="เกมทายใจ">
-        <label for="mind" class="extra-label">
-          <span class="extra-icon">🔮</span>
-          <span class="extra-info">
-            <span class="extra-name">เกมทายใจ</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="puzzle" value="Puzzle">
-        <label for="puzzle" class="extra-label">
-          <span class="extra-icon">🧩</span>
-          <span class="extra-info">
-            <span class="extra-name">Puzzle</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="map" value="Memory Map">
-        <label for="map" class="extra-label">
-          <span class="extra-icon">📍</span>
-          <span class="extra-info">
-            <span class="extra-name">Memory Map</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="polaroid" value="Polaroid Memory">
-        <label for="polaroid" class="extra-label">
-          <span class="extra-icon">📷</span>
-          <span class="extra-info">
-            <span class="extra-name">Polaroid Memory</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="extra-card">
-        <input type="checkbox" id="gacha" value="ตู้กาชาปอง">
-        <label for="gacha" class="extra-label">
-          <span class="extra-icon">🎁</span>
-          <span class="extra-info">
-            <span class="extra-name">ตู้กาชาปอง</span>
-            <span class="extra-price">+ ฿29</span>
-          </span>
-        </label>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">Color Theme</div>
-    <div class="section-sub">Choose the colors for your website</div>
-
-    <div class="colors">
-
-      <div class="color-box">
-        <label for="primaryColor">Primary Color</label>
-
-        <div class="color-row">
-          <input type="color" id="primaryColor" value="#8A6750">
-          <span class="color-value" id="primaryColorValue">#8A6750</span>
-        </div>
-      </div>
-
-      <div class="color-box">
-        <label for="secondaryColor">Secondary Color</label>
-
-        <div class="color-row">
-          <input type="color" id="secondaryColor" value="#C8BCB1">
-          <span class="color-value" id="secondaryColorValue">#C8BCB1</span>
-        </div>
-      </div>
-
-      <div class="color-box">
-        <label for="backgroundColor">Background Color</label>
-
-        <div class="color-row">
-          <input type="color" id="backgroundColor" value="#F4EFEA">
-          <span class="color-value" id="backgroundColorValue">#F4EFEA</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">Referral / Discount Code</div>
-
-    <div class="coupon-row">
-      <input
-        type="text"
-        id="couponCode"
-        placeholder="Enter your discount code"
-        autocomplete="off"
-      >
-
-      <button
-        type="button"
-        class="btn"
-        id="applyCouponBtn"
-        onclick="applyCoupon()"
-      >
-        Apply
-      </button>
     </div>
 
-    <div class="coupon-message" id="couponMessage"></div>
-  </section>
+    <div class="extra-card">
+      <input type="checkbox" id="countdown" value="Countdown">
+      <label for="countdown" class="extra-label">
+        <span class="extra-icon">⏳</span>
+        <span class="extra-info">
+          <span class="extra-name">Countdown</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
 
-  <section class="card">
-    <div class="section-title">Payment Slip</div>
+    <div class="extra-card">
+      <input type="checkbox" id="scratch" value="Scratch Card">
+      <label for="scratch" class="extra-label">
+        <span class="extra-icon">🎟️</span>
+        <span class="extra-info">
+          <span class="extra-name">Scratch Card</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
 
-    <div class="upload">
-      <div style="font-size:28px;margin-bottom:8px;">🧾</div>
+    <div class="extra-card">
+      <input type="checkbox" id="quiz" value="เกมคำถาม 5 ข้อ">
+      <label for="quiz" class="extra-label">
+        <span class="extra-icon">💕</span>
+        <span class="extra-info">
+          <span class="extra-name">เกมคำถาม 5 ข้อ</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
 
-      <div style="font-size:13px;font-weight:600;margin-bottom:6px;">
-        Upload your deposit slip
+    <div class="extra-card">
+      <input type="checkbox" id="password" value="เมนูใส่รหัส">
+      <label for="password" class="extra-label">
+        <span class="extra-icon">🔐</span>
+        <span class="extra-info">
+          <span class="extra-name">เมนูใส่รหัส</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="extra-card">
+      <input type="checkbox" id="mind" value="เกมทายใจ">
+      <label for="mind" class="extra-label">
+        <span class="extra-icon">🔮</span>
+        <span class="extra-info">
+          <span class="extra-name">เกมทายใจ</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="extra-card">
+      <input type="checkbox" id="puzzle" value="Puzzle">
+      <label for="puzzle" class="extra-label">
+        <span class="extra-icon">🧩</span>
+        <span class="extra-info">
+          <span class="extra-name">Puzzle</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="extra-card">
+      <input type="checkbox" id="map" value="Memory Map">
+      <label for="map" class="extra-label">
+        <span class="extra-icon">📍</span>
+        <span class="extra-info">
+          <span class="extra-name">Memory Map</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="extra-card">
+      <input type="checkbox" id="polaroid" value="Polaroid Memory">
+      <label for="polaroid" class="extra-label">
+        <span class="extra-icon">📷</span>
+        <span class="extra-info">
+          <span class="extra-name">Polaroid Memory</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+    <div class="extra-card">
+      <input type="checkbox" id="gacha" value="ตู้กาชาปอง">
+      <label for="gacha" class="extra-label">
+        <span class="extra-icon">🎁</span>
+        <span class="extra-info">
+          <span class="extra-name">ตู้กาชาปอง</span>
+          <span class="extra-price">+ ฿29</span>
+        </span>
+      </label>
+    </div>
+
+  </div>
+</section>
+
+<section class="card">
+
+  <div class="section-title">Color Theme</div>
+  <div class="section-sub">
+    Choose the colors for your website
+  </div>
+
+  <div class="colors">
+
+    <div class="color-box">
+      <label for="primaryColor">Primary Color</label>
+
+      <div class="color-row">
+        <input type="color" id="primaryColor" value="#8A6750">
+        <span class="color-value" id="primaryColorValue">#8A6750</span>
       </div>
+    </div>
 
-      <div class="helper" style="margin-bottom:13px;">
-        Please upload the slip for your 30% deposit.
+    <div class="color-box">
+      <label for="secondaryColor">Secondary Color</label>
+
+      <div class="color-row">
+        <input type="color" id="secondaryColor" value="#C8BCB1">
+        <span class="color-value" id="secondaryColorValue">#C8BCB1</span>
       </div>
-
-      <input
-        type="file"
-        id="paymentSlip"
-        accept="image/*,.pdf"
-      >
-    </div>
-  </section>
-
-  <section class="summary">
-    <div class="summary-title">Order Summary</div>
-
-    <div class="price-row">
-      <span>Template</span>
-      <span id="basePriceText">฿129.00</span>
     </div>
 
-    <div class="price-row">
-      <span>Extra Menu</span>
-      <span id="extraPriceText">฿0.00</span>
+    <div class="color-box">
+      <label for="backgroundColor">Background Color</label>
+
+      <div class="color-row">
+        <input type="color" id="backgroundColor" value="#F4EFEA">
+        <span class="color-value" id="backgroundColorValue">#F4EFEA</span>
+      </div>
     </div>
 
-    <div class="price-row discount" id="discountRow" style="display:none;">
-      <span>Discount</span>
-      <span id="discountText">-฿0.00</span>
+  </div>
+</section>
+
+<section class="card">
+
+  <div class="section-title">Referral / Discount Code</div>
+
+  <div class="coupon-row">
+
+    <input
+      type="text"
+      id="couponCode"
+      placeholder="Enter your discount code"
+      autocomplete="off"
+    >
+
+    <button
+      type="button"
+      class="btn"
+      id="applyCouponBtn"
+      onclick="applyCoupon()"
+    >
+      Apply
+    </button>
+
+  </div>
+
+  <div class="coupon-message" id="couponMessage"></div>
+
+</section>
+
+<section class="card">
+
+  <div class="section-title">Payment Slip</div>
+
+  <div class="upload">
+
+    <div style="font-size:28px;margin-bottom:8px;">
+      🧾
     </div>
 
-    <div class="price-row total">
-      <span>Total</span>
-      <span id="totalPriceText">฿129.00</span>
+    <div style="font-size:13px;font-weight:600;margin-bottom:6px;">
+      Upload your deposit slip
     </div>
 
-    <div class="price-row deposit">
-      <span>30% Deposit</span>
-      <span id="depositText">฿38.70</span>
+    <div class="helper" style="margin-bottom:13px;">
+      Please upload the slip for your 30% deposit.
     </div>
 
-    <div class="price-row remaining">
-      <span>Remaining 70%</span>
-      <span id="remainingText">฿90.30</span>
-    </div>
-  </section>
+    <input
+      type="file"
+      id="paymentSlip"
+      accept="image/*,.pdf"
+    >
 
-  <button
-    type="button"
-    class="submit"
-    id="submitBtn"
-    onclick="submitOrder()"
+  </div>
+
+</section>
+
+<section class="summary">
+
+  <div class="summary-title">
+    Order Summary
+  </div>
+
+  <div class="price-row">
+    <span>Template</span>
+    <span id="basePriceText">฿129.00</span>
+  </div>
+
+  <div class="price-row">
+    <span>Extra Menu</span>
+    <span id="extraPriceText">฿0.00</span>
+  </div>
+
+  <div
+    class="price-row discount"
+    id="discountRow"
+    style="display:none;"
   >
-    Submit Order
-  </button>
-
-  <div class="status" id="statusBox"></div>
-
-  <div class="note">
-    After submitting your order, we will check your deposit and contact you via LINE.
+    <span>Discount</span>
+    <span id="discountText">-฿0.00</span>
   </div>
+
+  <div class="price-row total">
+    <span>Total</span>
+    <span id="totalPriceText">฿129.00</span>
+  </div>
+
+  <div class="price-row deposit">
+    <span>30% Deposit</span>
+    <span id="depositText">฿38.70</span>
+  </div>
+
+  <div class="price-row remaining">
+    <span>Remaining 70%</span>
+    <span id="remainingText">฿90.30</span>
+  </div>
+
+</section>
+
+<button
+  type="button"
+  class="submit"
+  id="submitBtn"
+  onclick="submitOrder()"
+>
+  Submit Order
+</button>
+
+<div class="status" id="statusBox"></div>
+
+<div class="note">
+  After submitting your order, we will check your deposit and contact you via LINE.
+</div>
 
 </div>
 
 <script>
-const SUPABASE_URL = "https://keybykrpnpgsnyxtpfqj.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
-const STORAGE_BUCKET = "payment-slips";
+const SUPABASE_URL =
+  "https://keybykrpnpgsnyxtpfqj.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+
+const STORAGE_BUCKET =
+  "payment-slips";
 
 const BASE_PRICE = 129;
 const EXTRA_PRICE = 29;
@@ -866,59 +893,103 @@ function normalizeLineId(value){
   return value
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, "");
+    .replace(/\s+/g,"");
 }
 
 function getTemplateFromURL(){
-  const params = new URLSearchParams(window.location.search);
-  return params.get("template") || "anniversary-01";
+  const params =
+    new URLSearchParams(window.location.search);
+
+  return params.get("template") ||
+    "anniversary-01";
 }
 
 function getTemplateName(template){
+
   const names = {
-    "anniversary-01": "Anniversary",
-    "birthday-01": "Birthday",
-    "love-01": "Love",
-    "valentine-01": "Valentine"
+    "anniversary-01":"Anniversary",
+    "birthday-01":"Birthday",
+    "love-01":"Love",
+    "valentine-01":"Valentine"
   };
 
   return names[template] || template;
 }
 
 function getSelectedExtras(){
+
   return Array.from(
-    document.querySelectorAll('.extra-card input[type="checkbox"]:checked')
+    document.querySelectorAll(
+      '.extra-card input[type="checkbox"]:checked'
+    )
   ).map(input => input.value);
 }
 
 function calculatePrices(){
-  const extras = getSelectedExtras();
 
-  const extraTotal = extras.length * EXTRA_PRICE;
-  const subtotal = BASE_PRICE + extraTotal;
+  const extras =
+    getSelectedExtras();
+
+  const extraTotal =
+    extras.length * EXTRA_PRICE;
+
+  const subtotal =
+    BASE_PRICE + extraTotal;
 
   let discount = 0;
 
   if(couponApplied){
-    discount = subtotal * (DISCOUNT_PERCENT / 100);
+    discount =
+      subtotal * (DISCOUNT_PERCENT / 100);
   }
 
-  const total = subtotal - discount;
-  const deposit = total * 0.30;
-  const remaining = total - deposit;
+  const total =
+    subtotal - discount;
 
-  document.getElementById("extraPriceText").textContent = money(extraTotal);
+  const deposit =
+    total * 0.30;
+
+  const remaining =
+    total - deposit;
+
+  document.getElementById(
+    "extraPriceText"
+  ).textContent =
+    money(extraTotal);
 
   if(discount > 0){
-    document.getElementById("discountRow").style.display = "flex";
-    document.getElementById("discountText").textContent = "-" + money(discount);
+
+    document.getElementById(
+      "discountRow"
+    ).style.display = "flex";
+
+    document.getElementById(
+      "discountText"
+    ).textContent =
+      "-" + money(discount);
+
   }else{
-    document.getElementById("discountRow").style.display = "none";
+
+    document.getElementById(
+      "discountRow"
+    ).style.display = "none";
+
   }
 
-  document.getElementById("totalPriceText").textContent = money(total);
-  document.getElementById("depositText").textContent = money(deposit);
-  document.getElementById("remainingText").textContent = money(remaining);
+  document.getElementById(
+    "totalPriceText"
+  ).textContent =
+    money(total);
+
+  document.getElementById(
+    "depositText"
+  ).textContent =
+    money(deposit);
+
+  document.getElementById(
+    "remainingText"
+  ).textContent =
+    money(remaining);
 
   return {
     extras,
@@ -931,86 +1002,87 @@ function calculatePrices(){
   };
 }
 
-function updateColorValue(inputId, valueId){
-  const input = document.getElementById(inputId);
-  const value = document.getElementById(valueId);
+function updateColorValue(
+  inputId,
+  valueId
+){
 
-  value.textContent = input.value.toUpperCase();
+  const input =
+    document.getElementById(inputId);
 
-  input.addEventListener("input", function(){
-    value.textContent = this.value.toUpperCase();
-  });
-}
+  const value =
+    document.getElementById(valueId);
 
-function showCouponMessage(message, type){
-  const box = document.getElementById("couponMessage");
+  value.textContent =
+    input.value.toUpperCase();
 
-  box.textContent = message;
-  box.className = "coupon-message " + type;
-}
-
-/* =========================================================
-   CHECK COUPON
-   ใช้ RPC check_coupon ที่สร้างใน Supabase
-========================================================= */
-async function checkCouponOnSupabase(couponCode, lineId){
-
-  const response = await fetch(
-    SUPABASE_URL + "/rest/v1/rpc/check_coupon",
-    {
-      method:"POST",
-
-      headers:{
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-        "Content-Type":"application/json"
-      },
-
-      body:JSON.stringify({
-        p_coupon_code: couponCode,
-        p_contact: lineId
-      })
+  input.addEventListener(
+    "input",
+    function(){
+      value.textContent =
+        this.value.toUpperCase();
     }
   );
-
-  if(!response.ok){
-
-    let errorText = "";
-
-    try{
-      errorText = await response.text();
-    }catch(e){}
-
-    throw new Error(
-      "Unable to verify the coupon right now." +
-      (errorText ? " " + errorText : "")
-    );
-  }
-
-  return await response.json();
 }
 
-async function applyCoupon(){
+function showCouponMessage(
+  message,
+  type
+){
+
+  const box =
+    document.getElementById(
+      "couponMessage"
+    );
+
+  box.textContent =
+    message;
+
+  box.className =
+    "coupon-message " +
+    type;
+}
+
+/*
+  IMPORTANT:
+  Apply ไม่เรียก coupon_usages แล้ว
+
+  เพราะ REST GET ไปยัง coupon_usages
+  เป็นจุดที่ทำให้เกิด Failed to fetch
+
+  การใช้จริง 1 ครั้งจะถูกตรวจโดย
+  use_coupon RPC ตอน Submit Order
+*/
+function applyCoupon(){
 
   const code =
-    document.getElementById("couponCode").value.trim();
+    document.getElementById(
+      "couponCode"
+    ).value.trim();
 
   const lineId =
     normalizeLineId(
-      document.getElementById("lineId").value
+      document.getElementById(
+        "lineId"
+      ).value
     );
 
   if(!lineId){
+
     showCouponMessage(
       "Please enter your LINE ID first.",
       "error"
     );
 
-    document.getElementById("lineId").focus();
+    document.getElementById(
+      "lineId"
+    ).focus();
+
     return;
   }
 
   if(!code){
+
     showCouponMessage(
       "Please enter your discount code.",
       "error"
@@ -1019,7 +1091,11 @@ async function applyCoupon(){
     return;
   }
 
-  if(code.toUpperCase() !== DISCOUNT_CODE){
+  if(
+    code.toUpperCase() !==
+    DISCOUNT_CODE
+  ){
+
     couponApplied = false;
     couponCodeApplied = "";
 
@@ -1033,67 +1109,21 @@ async function applyCoupon(){
     return;
   }
 
-  const button =
-    document.getElementById("applyCouponBtn");
+  /*
+    ตรงนี้เป็นเพียงการเปิดส่วนลดในหน้า Order
+    ยังไม่บันทึกการใช้คูปองลง Supabase
+  */
 
-  button.disabled = true;
-  button.textContent = "Checking...";
+  couponApplied = true;
+  couponCodeApplied =
+    DISCOUNT_CODE;
 
-  try{
+  calculatePrices();
 
-    const result =
-      await checkCouponOnSupabase(
-        DISCOUNT_CODE,
-        lineId
-      );
-
-    if(!result || result.success !== true){
-
-      couponApplied = false;
-      couponCodeApplied = "";
-
-      calculatePrices();
-
-      showCouponMessage(
-        result && result.message
-          ? result.message
-          : "This discount code cannot be used.",
-        "error"
-      );
-
-      return;
-    }
-
-    couponApplied = true;
-    couponCodeApplied = DISCOUNT_CODE;
-
-    calculatePrices();
-
-    showCouponMessage(
-      "5% discount applied successfully.",
-      "success"
-    );
-
-  }catch(error){
-
-    couponApplied = false;
-    couponCodeApplied = "";
-
-    calculatePrices();
-
-    console.error("Coupon check error:", error);
-
-    showCouponMessage(
-      error.message ||
-      "Unable to verify the coupon right now.",
-      "error"
-    );
-
-  }finally{
-
-    button.disabled = false;
-    button.textContent = "Apply";
-  }
+  showCouponMessage(
+    "5% discount applied successfully.",
+    "success"
+  );
 }
 
 function getSafeContentType(file){
@@ -1113,7 +1143,9 @@ function getSafeContentType(file){
     "application/pdf"
   ];
 
-  if(safeTypes.includes(type)){
+  if(
+    safeTypes.includes(type)
+  ){
     return type;
   }
 
@@ -1122,22 +1154,26 @@ function getSafeContentType(file){
 
 function makeOrderNumber(){
 
-  const now = new Date();
+  const now =
+    new Date();
 
   const year =
     now.getFullYear();
 
   const month =
-    String(now.getMonth() + 1)
-      .padStart(2,"0");
+    String(
+      now.getMonth() + 1
+    ).padStart(2,"0");
 
   const day =
-    String(now.getDate())
-      .padStart(2,"0");
+    String(
+      now.getDate()
+    ).padStart(2,"0");
 
   const random =
     Math.floor(
-      1000 + Math.random() * 9000
+      1000 +
+      Math.random() * 9000
     );
 
   return (
@@ -1150,13 +1186,19 @@ function makeOrderNumber(){
   );
 }
 
-function showStatus(message, type){
+function showStatus(
+  message,
+  type
+){
 
   const box =
-    document.getElementById("statusBox");
+    document.getElementById(
+      "statusBox"
+    );
 
   box.className =
-    "status show " + type;
+    "status show " +
+    type;
 
   box.innerHTML =
     message;
@@ -1167,11 +1209,17 @@ function showStatus(message, type){
   });
 }
 
-async function uploadPaymentSlip(file, orderNumber){
+async function uploadPaymentSlip(
+  file,
+  orderNumber
+){
 
   const extension =
     file.name.includes(".")
-      ? file.name.split(".").pop().toLowerCase()
+      ? file.name
+          .split(".")
+          .pop()
+          .toLowerCase()
       : "file";
 
   const filePath =
@@ -1187,15 +1235,27 @@ async function uploadPaymentSlip(file, orderNumber){
       "/storage/v1/object/" +
       STORAGE_BUCKET +
       "/" +
-      encodeURIComponent(filePath),
+      encodeURIComponent(
+        filePath
+      ),
       {
         method:"POST",
 
         headers:{
-          "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-          "Content-Type": getSafeContentType(file),
-          "x-upsert": "false"
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            getSafeContentType(
+              file
+            ),
+
+          "x-upsert":
+            "false"
         },
 
         body:file
@@ -1213,16 +1273,20 @@ async function uploadPaymentSlip(file, orderNumber){
 
     throw new Error(
       "Payment slip upload failed." +
-      (errorText
-        ? " " + errorText
-        : "")
+      (
+        errorText
+          ? " " + errorText
+          : ""
+      )
     );
   }
 
   return filePath;
 }
 
-async function createOrder(orderData){
+async function createOrder(
+  orderData
+){
 
   const response =
     await fetch(
@@ -1232,14 +1296,24 @@ async function createOrder(orderData){
         method:"POST",
 
         headers:{
-          "apikey": SUPABASE_ANON_KEY,
-          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-          "Content-Type":"application/json",
-          "Prefer":"return=representation"
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY,
+
+          "Content-Type":
+            "application/json",
+
+          "Prefer":
+            "return=representation"
         },
 
         body:
-          JSON.stringify(orderData)
+          JSON.stringify(
+            orderData
+          )
       }
     );
 
@@ -1254,16 +1328,20 @@ async function createOrder(orderData){
 
     throw new Error(
       "Order creation failed." +
-      (errorText
-        ? " " + errorText
-        : "")
+      (
+        errorText
+          ? " " + errorText
+          : ""
+      )
     );
   }
 
   return await response.json();
 }
 
-async function deleteUploadedSlip(filePath){
+async function deleteUploadedSlip(
+  filePath
+){
 
   try{
 
@@ -1272,12 +1350,16 @@ async function deleteUploadedSlip(filePath){
       "/storage/v1/object/" +
       STORAGE_BUCKET +
       "/" +
-      encodeURIComponent(filePath),
+      encodeURIComponent(
+        filePath
+      ),
       {
         method:"DELETE",
 
         headers:{
-          "apikey": SUPABASE_ANON_KEY,
+          "apikey":
+            SUPABASE_ANON_KEY,
+
           "Authorization":
             "Bearer " +
             SUPABASE_ANON_KEY
@@ -1291,13 +1373,10 @@ async function deleteUploadedSlip(filePath){
       "Could not delete uploaded file:",
       e
     );
+
   }
 }
 
-/* =========================================================
-   USE COUPON
-   เรียกตอน Submit เท่านั้น
-========================================================= */
 async function useCouponOnSupabase({
   couponCode,
   lineId,
@@ -1313,10 +1392,13 @@ async function useCouponOnSupabase({
         method:"POST",
 
         headers:{
-          "apikey": SUPABASE_ANON_KEY,
+          "apikey":
+            SUPABASE_ANON_KEY,
+
           "Authorization":
             "Bearer " +
             SUPABASE_ANON_KEY,
+
           "Content-Type":
             "application/json"
         },
@@ -1349,61 +1431,99 @@ async function useCouponOnSupabase({
 
     throw new Error(
       "Coupon verification failed." +
-      (errorText
-        ? " " + errorText
-        : "")
+      (
+        errorText
+          ? " " + errorText
+          : ""
+      )
     );
   }
 
   return await response.json();
 }
 
+async function deleteCreatedOrder(
+  orderNumber
+){
+
+  try{
+
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/orders?order_number=eq." +
+      encodeURIComponent(
+        orderNumber
+      ),
+      {
+        method:"DELETE",
+
+        headers:{
+          "apikey":
+            SUPABASE_ANON_KEY,
+
+          "Authorization":
+            "Bearer " +
+            SUPABASE_ANON_KEY
+        }
+      }
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Could not remove order:",
+      error
+    );
+
+  }
+}
+
 async function submitOrder(){
 
   const submitButton =
-    document.getElementById("submitBtn");
+    document.getElementById(
+      "submitBtn"
+    );
 
   const customerName =
-    document
-      .getElementById("customerName")
-      .value
-      .trim();
+    document.getElementById(
+      "customerName"
+    ).value.trim();
 
   const lineId =
     normalizeLineId(
-      document
-        .getElementById("lineId")
-        .value
+      document.getElementById(
+        "lineId"
+      ).value
     );
 
   const message =
-    document
-      .getElementById("message")
-      .value
-      .trim();
+    document.getElementById(
+      "message"
+    ).value.trim();
 
   const paymentSlip =
-    document
-      .getElementById("paymentSlip")
-      .files[0];
+    document.getElementById(
+      "paymentSlip"
+    ).files[0];
 
   const template =
     getTemplateFromURL();
 
   const primaryColor =
-    document
-      .getElementById("primaryColor")
-      .value;
+    document.getElementById(
+      "primaryColor"
+    ).value;
 
   const secondaryColor =
-    document
-      .getElementById("secondaryColor")
-      .value;
+    document.getElementById(
+      "secondaryColor"
+    ).value;
 
   const backgroundColor =
-    document
-      .getElementById("backgroundColor")
-      .value;
+    document.getElementById(
+      "backgroundColor"
+    ).value;
 
   if(!customerName){
 
@@ -1412,9 +1532,9 @@ async function submitOrder(){
       "error"
     );
 
-    document
-      .getElementById("customerName")
-      .focus();
+    document.getElementById(
+      "customerName"
+    ).focus();
 
     return;
   }
@@ -1426,9 +1546,9 @@ async function submitOrder(){
       "error"
     );
 
-    document
-      .getElementById("lineId")
-      .focus();
+    document.getElementById(
+      "lineId"
+    ).focus();
 
     return;
   }
@@ -1440,9 +1560,9 @@ async function submitOrder(){
       "error"
     );
 
-    document
-      .getElementById("paymentSlip")
-      .focus();
+    document.getElementById(
+      "paymentSlip"
+    ).focus();
 
     return;
   }
@@ -1453,52 +1573,30 @@ async function submitOrder(){
   const orderNumber =
     makeOrderNumber();
 
-  submitButton.disabled = true;
-  submitButton.textContent = "SENDING...";
+  submitButton.disabled =
+    true;
 
-  let uploadedFilePath = null;
+  submitButton.textContent =
+    "SENDING...";
+
+  let uploadedFilePath =
+    null;
 
   try{
 
     /*
-      ถ้าใช้คูปอง ให้ตรวจอีกครั้งผ่าน RPC
-      ก่อนสร้าง Order
+      1. อัปโหลดสลิป
     */
-    if(
-      couponApplied &&
-      couponCodeApplied
-    ){
-
-      const latestCouponCheck =
-        await checkCouponOnSupabase(
-          couponCodeApplied,
-          lineId
-        );
-
-      if(
-        !latestCouponCheck ||
-        latestCouponCheck.success !== true
-      ){
-
-        couponApplied = false;
-        couponCodeApplied = "";
-
-        calculatePrices();
-
-        throw new Error(
-          latestCouponCheck &&
-          latestCouponCheck.message
-            ? latestCouponCheck.message
-            : "This discount code cannot be used."
-        );
-      }
-    }
 
     uploadedFilePath =
       await uploadPaymentSlip(
         paymentSlip,
         orderNumber
       );
+
+    /*
+      2. สร้าง Order
+    */
 
     const orderData = {
 
@@ -1548,17 +1646,16 @@ async function submitOrder(){
         "รอตรวจสอบมัดจำ"
     };
 
-    /*
-      สร้าง Order
-    */
     await createOrder(
       orderData
     );
 
     /*
-      ถ้ามีคูปอง ให้บันทึกการใช้หลังจาก
-      Order สร้างสำเร็จแล้ว
+      3. ถ้าใช้ส่วนลด
+         ให้ Supabase เป็นคนตรวจ
+         และบันทึกการใช้จริง
     */
+
     if(
       couponApplied &&
       couponCodeApplied
@@ -1580,43 +1677,17 @@ async function submitOrder(){
         });
 
       /*
-        ถ้าบันทึกคูปองไม่สำเร็จ
-        ให้ลบ Order ที่เพิ่งสร้าง
+        ถ้า SQL function พบว่า
+        LINE ID นี้เคยใช้แล้ว
       */
+
       if(
-        !couponResult ||
-        couponResult.success !== true
+        !couponResult.success
       ){
 
-        try{
-
-          await fetch(
-            SUPABASE_URL +
-            "/rest/v1/orders?order_number=eq." +
-            encodeURIComponent(
-              orderNumber
-            ),
-            {
-              method:"DELETE",
-
-              headers:{
-                "apikey":
-                  SUPABASE_ANON_KEY,
-
-                "Authorization":
-                  "Bearer " +
-                  SUPABASE_ANON_KEY
-              }
-            }
-          );
-
-        }catch(deleteError){
-
-          console.warn(
-            "Could not remove order after coupon failure:",
-            deleteError
-          );
-        }
+        await deleteCreatedOrder(
+          orderNumber
+        );
 
         if(uploadedFilePath){
 
@@ -1624,17 +1695,28 @@ async function submitOrder(){
             uploadedFilePath
           );
 
-          uploadedFilePath = null;
+          uploadedFilePath =
+            null;
         }
 
+        couponApplied =
+          false;
+
+        couponCodeApplied =
+          "";
+
+        calculatePrices();
+
         throw new Error(
-          couponResult &&
-          couponResult.message
-            ? couponResult.message
-            : "This discount code has already been used with this LINE ID."
+          couponResult.message ||
+          "This discount code has already been used with this LINE ID."
         );
       }
     }
+
+    /*
+      4. สำเร็จ
+    */
 
     showStatus(
       "<div>Order submitted successfully ♡</div>" +
@@ -1671,7 +1753,9 @@ async function submitOrder(){
       )
       .forEach(el => {
 
-        if(el !== submitButton){
+        if(
+          el !== submitButton
+        ){
           el.disabled = true;
         }
 
@@ -1679,15 +1763,17 @@ async function submitOrder(){
 
   }catch(error){
 
-    if(uploadedFilePath){
+    if(
+      uploadedFilePath
+    ){
 
       await deleteUploadedSlip(
         uploadedFilePath
       );
+
     }
 
     console.error(
-      "Submit order error:",
       error
     );
 
@@ -1697,62 +1783,13 @@ async function submitOrder(){
       "error"
     );
 
-    submitButton.disabled = false;
+    submitButton.disabled =
+      false;
+
     submitButton.textContent =
       "Submit Order";
   }
 }
 
 document.addEventListener(
-  "DOMContentLoaded",
-  function(){
-
-    const template =
-      getTemplateFromURL();
-
-    document
-      .getElementById("templateName")
-      .textContent =
-      getTemplateName(template);
-
-    document
-      .getElementById("templateCode")
-      .textContent =
-      template;
-
-    document
-      .querySelectorAll(
-        '.extra-card input[type="checkbox"]'
-      )
-      .forEach(input => {
-
-        input.addEventListener(
-          "change",
-          calculatePrices
-        );
-
-      });
-
-    updateColorValue(
-      "primaryColor",
-      "primaryColorValue"
-    );
-
-    updateColorValue(
-      "secondaryColor",
-      "secondaryColorValue"
-    );
-
-    updateColorValue(
-      "backgroundColor",
-      "backgroundColorValue"
-    );
-
-    calculatePrices();
-
-  }
-);
-</script>
-
-</body>
-</html>
+ 
