@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,15 +18,10 @@
   --warm:#C8BCB1;
   --beige:#E6DED8;
   --cream:#F4EFEA;
-
   --dark:#403934;
   --muted:#81766E;
   --white:#FBF8F5;
-
-  --eng:"Cormorant Garamond",serif;
-  --thai-title:"Noto Serif Thai",serif;
-  --thai-body:"Noto Sans Thai",sans-serif;
-  --kr:"Noto Sans KR",sans-serif;
+  --line:rgba(64,57,52,.13);
 }
 
 *{
@@ -42,16 +37,15 @@ html{
 body{
   background:var(--cream);
   color:var(--dark);
-  font-family:var(--thai-body);
-  overflow-x:hidden;
+  font-family:'Noto Sans Thai','Noto Sans KR',sans-serif;
+  font-weight:400;
+  line-height:1.8;
 }
 
-body.lang-en{
-  font-family:var(--eng);
-}
-
-body.lang-ko{
-  font-family:var(--kr);
+body,
+button,
+a{
+  -webkit-font-smoothing:antialiased;
 }
 
 a{
@@ -60,82 +54,41 @@ a{
 }
 
 button{
-  font-family:inherit;
+  font:inherit;
 }
 
-section{
-  position:relative;
+img{
+  max-width:100%;
+  display:block;
 }
-
-.container{
-  width:min(1180px,calc(100% - 48px));
-  margin:auto;
-}
-
-.section{
-  padding:130px 0;
-}
-
-.section-label{
-  font-family:var(--eng);
-  font-size:13px;
-  letter-spacing:.28em;
-  color:var(--taupe);
-  margin-bottom:22px;
-  text-transform:uppercase;
-}
-
-.section-title{
-  font-family:var(--thai-title);
-  font-size:clamp(34px,5vw,65px);
-  font-weight:400;
-  line-height:1.18;
-  letter-spacing:-.02em;
-}
-
-.section-text{
-  color:var(--muted);
-  font-size:15px;
-  line-height:2;
-}
-
 
 /* =========================
    NAV
 ========================= */
 
-.nav-wrap{
+.nav{
   position:fixed;
   top:24px;
   left:50%;
   transform:translateX(-50%);
-  width:calc(100% - 48px);
-  max-width:1180px;
-  z-index:1000;
-}
-
-.nav{
-  height:64px;
-  padding:8px 10px 8px 22px;
-
+  width:min(1180px,calc(100% - 40px));
+  padding:12px 18px 12px 24px;
+  background:rgba(251,248,245,.88);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(64,57,52,.09);
+  border-radius:999px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  background:rgba(251,248,245,.86);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  border:1px solid rgba(140,126,116,.18);
-  border-radius:999px;
+  z-index:1000;
 }
 
 .logo{
-  font-family:var(--eng);
-  font-size:23px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
   font-weight:600;
-  letter-spacing:.13em;
-  white-space:nowrap;
+  letter-spacing:.08em;
 }
 
 .logo span{
@@ -145,44 +98,799 @@ section{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:4px;
+  gap:30px;
 }
 
 .nav-links a{
-  font-family:var(--thai-body);
-  font-size:13px;
+  font-size:12px;
+  letter-spacing:.08em;
   color:var(--muted);
-  padding:10px 17px;
-  border-radius:999px;
   transition:.3s ease;
 }
 
 .nav-links a:hover{
-  color:var(--taupe);
+  color:var(--dark);
 }
 
-.nav-links a.active{
-  background:var(--beige);
-  color:var(--taupe);
-  font-weight:500;
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.lang-btn{
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:50%;
-  background:var(--taupe);
-  color:#fff;
-  font-size:17px;
+.language-btn{
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--dark);
+  border-radius:999px;
+  padding:8px 15px;
   cursor:pointer;
   transition:.3s ease;
 }
 
-.lang-btn:hover{
-  transform:rotate(8deg);
+.language-btn:hover{
+  background:var(--dark);
+  color:var(--white);
 }
 
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  padding:150px 0 100px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-inner{
+  width:min(1200px,calc(100% - 48px));
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:80px;
+  align-items:center;
+}
+
+.eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--taupe);
+  font-size:18px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:clamp(65px,10vw,125px);
+  line-height:.82;
+  font-weight:500;
+  letter-spacing:-.04em;
+}
+
+.hero h1 span{
+  display:block;
+  color:var(--taupe);
+}
+
+.hero-text{
+  max-width:590px;
+  margin-top:35px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2.05;
+}
+
+.hero-actions{
+  margin-top:36px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.primary-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 25px;
+  border-radius:999px;
+  background:var(--dark);
+  color:var(--white);
+  font-size:12px;
+  letter-spacing:.04em;
+  transition:.3s ease;
+}
+
+.primary-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 30px rgba(64,57,52,.18);
+}
+
+.text-btn{
+  font-size:12px;
+  color:var(--muted);
+  transition:.3s ease;
+}
+
+.text-btn:hover{
+  color:var(--dark);
+}
+
+.hero-visual{
+  position:relative;
+  min-height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-image{
+  width:min(440px,100%);
+  height:530px;
+  object-fit:cover;
+  border-radius:38px;
+  background:var(--beige);
+  box-shadow:0 35px 90px rgba(64,57,52,.14);
+}
+
+.hero-image-placeholder{
+  width:min(440px,100%);
+  height:530px;
+  border-radius:38px;
+  background:
+    linear-gradient(145deg,
+      rgba(255,255,255,.7),
+      rgba(200,188,177,.45)
+    );
+  border:1px solid rgba(64,57,52,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-image-placeholder::before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:rgba(140,126,116,.13);
+  top:-120px;
+  right:-100px;
+}
+
+.hero-image-placeholder::after{
+  content:"";
+  position:absolute;
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background:rgba(240,238,243,.7);
+  bottom:-100px;
+  left:-70px;
+}
+
+.hero-note{
+  position:relative;
+  z-index:2;
+  width:250px;
+  min-height:320px;
+  background:var(--white);
+  border-radius:22px;
+  border:1px solid rgba(64,57,52,.1);
+  box-shadow:0 30px 70px rgba(64,57,52,.13);
+  padding:30px;
+  text-align:center;
+  transform:rotate(-5deg);
+}
+
+.hero-note-small{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--taupe);
+  font-size:15px;
+  letter-spacing:.12em;
+}
+
+.hero-note-title{
+  margin-top:50px;
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:31px;
+  line-height:1.1;
+}
+
+.hero-note-line{
+  width:50px;
+  height:1px;
+  background:var(--warm);
+  margin:25px auto;
+}
+
+.hero-note-sub{
+  font-size:11px;
+  color:var(--muted);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about{
+  padding:120px 0;
+  background:var(--white);
+}
+
+.section-wrap{
+  width:min(1200px,calc(100% - 48px));
+  margin:auto;
+}
+
+.section-top{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:70px;
+  align-items:start;
+}
+
+.section-label{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  color:var(--taupe);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.section-title{
+  margin-top:10px;
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:clamp(45px,6vw,78px);
+  line-height:.95;
+  font-weight:500;
+}
+
+.section-title span{
+  color:var(--taupe);
+}
+
+.about-text{
+  max-width:650px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2.1;
+}
+
+.about-slider{
+  margin-top:70px;
+  overflow:hidden;
+  border-radius:34px;
+}
+
+.about-track{
+  display:flex;
+  gap:18px;
+  width:max-content;
+  animation:aboutSlide 30s linear infinite;
+}
+
+.about-track img{
+  width:320px;
+  height:400px;
+  object-fit:cover;
+  border-radius:25px;
+  background:var(--beige);
+}
+
+@keyframes aboutSlide{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* =========================
+   WORKS
+========================= */
+
+.works{
+  padding:130px 0;
+  background:var(--cream);
+}
+
+.works-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:55px;
+}
+
+.works-title{
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:clamp(50px,7vw,88px);
+  line-height:.9;
+  font-weight:500;
+}
+
+.works-title span{
+  color:var(--taupe);
+}
+
+.works-intro{
+  max-width:430px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.work-card{
+  min-height:510px;
+  border-radius:34px;
+  padding:34px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border:1px solid rgba(64,57,52,.1);
+  transition:.45s ease;
+}
+
+.work-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 70px rgba(64,57,52,.12);
+}
+
+.work-card-love{
+  background:
+    linear-gradient(145deg,
+      #E8DDD7 0%,
+      #D7C7C0 100%
+    );
+}
+
+.work-card-wedding{
+  background:
+    linear-gradient(145deg,
+      #DED8D1 0%,
+      #CFC7BE 100%
+    );
+}
+
+.work-card-special{
+  background:
+    linear-gradient(145deg,
+      #DDE1DF 0%,
+      #C8D0CE 100%
+    );
+}
+
+.work-number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;
+  color:rgba(64,57,52,.65);
+  letter-spacing:.12em;
+}
+
+.work-content{
+  position:relative;
+  z-index:2;
+}
+
+.work-content h3{
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:48px;
+  line-height:.95;
+  font-weight:500;
+}
+
+.work-content h3 span{
+  display:block;
+  color:rgba(64,57,52,.62);
+}
+
+.work-content p{
+  max-width:280px;
+  margin-top:18px;
+  color:rgba(64,57,52,.7);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.explore{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-top:27px;
+  font-size:12px;
+  letter-spacing:.1em;
+  transition:.3s ease;
+}
+
+.explore::after{
+  content:"→";
+  transition:.3s ease;
+}
+
+.explore:hover::after{
+  transform:translateX(5px);
+}
+
+.work-decoration{
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  right:-70px;
+  top:130px;
+  background:rgba(255,255,255,.28);
+}
+
+.work-decoration.two{
+  width:130px;
+  height:130px;
+  left:-45px;
+  bottom:100px;
+  top:auto;
+  background:rgba(255,255,255,.2);
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+  padding:130px 0;
+  background:var(--white);
+}
+
+.features-layout{
+  display:grid;
+  grid-template-columns:.7fr 1.3fr;
+  gap:80px;
+}
+
+.features-title{
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:70px;
+  line-height:.9;
+  font-weight:500;
+}
+
+.features-title span{
+  color:var(--taupe);
+}
+
+.features-intro{
+  margin-top:25px;
+  max-width:330px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+}
+
+.feature-list{
+  border-top:1px solid var(--line);
+}
+
+.feature-item{
+  padding:25px 0;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:60px 1fr;
+  gap:20px;
+}
+
+.feature-number{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--taupe);
+  font-size:17px;
+}
+
+.feature-item h3{
+  font-family:'Noto Serif Thai','Cormorant Garamond',serif;
+  font-size:18px;
+  font-weight:500;
+}
+
+.feature-item p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* =========================
+   PRICING
+========================= */
+
+.pricing{
+  padding:130px 0;
+  background:var(--cream);
+}
+
+.pricing-head{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 60px;
+}
+
+.pricing-head .section-title{
+  margin-top:15px;
+}
+
+.pricing-head p{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+  max-width:900px;
+  margin:auto;
+}
+
+.price-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:32px;
+  padding:38px;
+}
+
+.price-card.dark{
+  background:var(--dark);
+  color:var(--white);
+}
+
+.price-type{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  letter-spacing:.12em;
+  color:var(--taupe);
+}
+
+.price-card.dark .price-type{
+  color:var(--warm);
+}
+
+.price{
+  margin-top:10px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:55px;
+  line-height:1;
+}
+
+.price small{
+  font-family:'Noto Sans Thai','Noto Sans KR',sans-serif;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.price-card.dark .price small{
+  color:rgba(251,248,245,.55);
+}
+
+.price-description{
+  margin-top:20px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.9;
+}
+
+.price-card.dark .price-description{
+  color:rgba(251,248,245,.65);
+}
+
+.price-list{
+  margin-top:25px;
+  list-style:none;
+  border-top:1px solid var(--line);
+}
+
+.price-card.dark .price-list{
+  border-color:rgba(251,248,245,.13);
+}
+
+.price-list li{
+  padding:10px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px;
+}
+
+.price-card.dark .price-list li{
+  border-color:rgba(251,248,245,.13);
+}
+
+.price-note{
+  margin-top:22px;
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.9;
+}
+
+.price-card.dark .price-note{
+  color:rgba(251,248,245,.5);
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.process{
+  padding:130px 0;
+  background:var(--white);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.process-card{
+  padding:35px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:var(--cream);
+}
+
+.process-number{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--taupe);
+  font-size:20px;
+}
+
+.process-card h3{
+  margin-top:20px;
+  font-family:'Noto Serif Thai','Cormorant Garamond',serif;
+  font-size:19px;
+  font-weight:500;
+}
+
+.process-card p{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:2;
+}
+
+/* =========================
+   FINAL ABOUT
+========================= */
+
+.final-about{
+  padding:130px 0;
+  background:var(--dark);
+  color:var(--white);
+}
+
+.final-about-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:80px;
+  align-items:center;
+}
+
+.final-about .section-label{
+  color:var(--warm);
+}
+
+.final-about h2{
+  margin-top:15px;
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:65px;
+  line-height:.9;
+  font-weight:500;
+}
+
+.final-about h2 span{
+  color:var(--warm);
+}
+
+.final-about p{
+  max-width:650px;
+  color:rgba(251,248,245,.62);
+  font-size:14px;
+  line-height:2.1;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  padding:140px 20px;
+  background:var(--cream);
+  text-align:center;
+}
+
+.cta-label{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--taupe);
+  font-size:18px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.cta h2{
+  margin-top:12px;
+  font-family:'Cormorant Garamond','Noto Serif Thai',serif;
+  font-size:clamp(50px,8vw,92px);
+  line-height:.9;
+  font-weight:500;
+}
+
+.cta h2 span{
+  color:var(--taupe);
+}
+
+.cta p{
+  max-width:540px;
+  margin:28px auto 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+
+.cta-btn{
+  display:inline-flex;
+  margin-top:34px;
+  padding:12px 27px;
+  border-radius:999px;
+  background:var(--dark);
+  color:var(--white);
+  font-size:12px;
+  transition:.3s ease;
+}
+
+.cta-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:var(--dark);
+  color:rgba(251,248,245,.5);
+  padding:35px 0;
+}
+
+.footer-inner{
+  width:min(1200px,calc(100% - 48px));
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  align-items:center;
+}
+
+.footer-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;
+  color:var(--white);
+  letter-spacing:.1em;
+}
+
+.footer-copy{
+  font-size:10px;
+}
 
 /* =========================
    LANGUAGE MODAL
@@ -191,1072 +899,188 @@ section{
 .language-modal{
   position:fixed;
   inset:0;
+  background:rgba(40,35,32,.45);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
   display:none;
   align-items:center;
   justify-content:center;
-
-  background:rgba(64,57,52,.28);
-  backdrop-filter:blur(8px);
-
-  z-index:2000;
+  padding:20px;
+  z-index:3000;
 }
 
-.language-modal.show{
+.language-modal.active{
   display:flex;
 }
 
 .language-box{
-  width:min(390px,calc(100% - 40px));
-
+  width:min(420px,100%);
   background:var(--white);
-
-  border-radius:28px;
-
-  padding:38px 30px 30px;
-
-  text-align:center;
-
-  box-shadow:
-    0 25px 80px rgba(64,57,52,.15);
+  border-radius:30px;
+  padding:38px;
+  box-shadow:0 30px 80px rgba(0,0,0,.18);
 }
 
 .language-box h3{
-  font-family:var(--thai-title);
-  font-size:24px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
   font-weight:500;
-  margin-bottom:25px;
+}
+
+.language-box p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
+}
+
+.language-options{
+  display:grid;
+  gap:10px;
+  margin-top:28px;
 }
 
 .language-option{
   width:100%;
-
-  border:1px solid rgba(140,126,116,.18);
-
+  border:1px solid var(--line);
   background:transparent;
-
-  border-radius:16px;
-
-  padding:15px;
-
-  margin-bottom:10px;
-
-  font-family:var(--thai-body);
-  font-size:14px;
-
+  border-radius:15px;
+  padding:13px 16px;
+  text-align:left;
   cursor:pointer;
-
-  transition:.25s ease;
-}
-
-.language-option:hover{
-  background:var(--beige);
-  border-color:var(--warm);
-  color:var(--taupe);
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  min-height:100vh;
-
-  padding:130px 0 90px;
-
-  display:flex;
-  align-items:center;
-}
-
-.hero-grid{
-  width:min(1180px,calc(100% - 48px));
-
-  margin:auto;
-
-  display:grid;
-
-  grid-template-columns:.9fr 1.1fr;
-
-  gap:90px;
-
-  align-items:center;
-}
-
-.hero-copy{
-  padding-left:20px;
-}
-
-.hero-kicker{
-  display:block;
-
-  margin-bottom:30px;
-
-  font-family:var(--eng);
-
-  font-size:12px;
-
-  line-height:1;
-
-  letter-spacing:.30em;
-
-  color:var(--taupe);
-
-  text-transform:uppercase;
-}
-
-.hero-title{
-  font-family:var(--thai-title);
-
-  font-size:clamp(62px,9vw,130px);
-
-  font-weight:400;
-
-  line-height:.95;
-
-  letter-spacing:-.06em;
-
-  color:var(--dark);
-}
-
-.hero-brand{
-  margin-top:24px;
-
-  font-family:var(--eng);
-
-  font-size:18px;
-
-  letter-spacing:.28em;
-
-  color:var(--taupe);
-}
-
-.hero-desc{
-  max-width:460px;
-
-  margin-top:35px;
-
-  font-size:15px;
-
-  line-height:2;
-
-  color:var(--muted);
-}
-
-.hero-image{
-  position:relative;
-
-  width:100%;
-
-  max-width:570px;
-
-  justify-self:end;
-
-  aspect-ratio:4/5;
-
-  overflow:hidden;
-
-  border-radius:180px 180px 24px 24px;
-
-  background:var(--beige);
-}
-
-.hero-image img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-
-  display:block;
-}
-
-.image-placeholder{
-  position:absolute;
-
-  inset:0;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  flex-direction:column;
-
-  color:var(--taupe);
-
-  text-align:center;
-}
-
-.image-placeholder .thai{
-  font-family:var(--thai-title);
-  font-size:42px;
-}
-
-.image-placeholder .eng{
-  font-family:var(--eng);
-  font-size:18px;
-  letter-spacing:.25em;
-}
-
-
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-  background:var(--white);
-}
-
-.about-grid{
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:100px;
-
-  align-items:center;
-}
-
-.about-slider{
-  position:relative;
-
-  width:100%;
-
-  aspect-ratio:4/3;
-
-  overflow:hidden;
-
-  border-radius:24px;
-
-  background:var(--beige);
-}
-
-.about-track{
-  display:flex;
-
-  width:600%;
-
-  height:100%;
-
-  transition:
-    transform .7s cubic-bezier(.65,0,.35,1);
-}
-
-.about-slide{
-  width:calc(100% / 6);
-
-  height:100%;
-
-  flex:0 0 calc(100% / 6);
-}
-
-.about-slide img{
-  width:100%;
-  height:100%;
-
-  display:block;
-
-  object-fit:cover;
-}
-
-.about-copy{
-  max-width:500px;
-}
-
-.about-copy .section-title{
-  margin-bottom:28px;
-}
-
-.about-copy .section-text{
-  margin-bottom:24px;
-}
-
-.about-small{
-  font-family:var(--eng);
-
-  font-size:14px;
-
-  letter-spacing:.18em;
-
-  color:var(--taupe);
-}
-
-
-/* =========================
-   WORKS
-========================= */
-
-.works{
-  background:var(--cream);
-}
-
-.works-header{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:end;
-
-  gap:40px;
-
-  margin-bottom:65px;
-}
-
-.works-intro{
-  max-width:430px;
-}
-
-.work-grid{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:20px;
-}
-
-.work-card{
-  min-height:430px;
-
-  background:var(--white);
-
-  border-radius:24px;
-
-  padding:34px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:space-between;
-
-  border:1px solid rgba(140,126,116,.10);
-
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
-}
-
-.work-card:hover{
-  transform:translateY(-7px);
-
-  box-shadow:
-    0 20px 50px rgba(140,126,116,.10);
-}
-
-.work-number{
-  font-family:var(--eng);
-
-  font-size:16px;
-
-  color:var(--taupe);
-}
-
-.work-card h3{
-  font-family:var(--thai-title);
-
-  font-size:29px;
-
-  font-weight:500;
-
-  margin-bottom:13px;
-}
-
-.work-card p{
-  color:var(--muted);
-
-  font-size:14px;
-
-  line-height:1.9;
-}
-
-.work-link{
-  font-family:var(--eng);
-
-  font-size:15px;
-
-  letter-spacing:.12em;
-
-  color:var(--taupe);
-}
-
-
-/* =========================
-   FEATURES
-========================= */
-
-.features{
-  background:var(--white);
-}
-
-.features-grid{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:1px;
-
-  border:1px solid rgba(140,126,116,.12);
-
-  margin-top:60px;
-}
-
-.feature{
-  min-height:260px;
-
-  padding:35px;
-
-  background:var(--white);
-
-  border:1px solid rgba(140,126,116,.12);
-}
-
-.feature-number{
-  font-family:var(--eng);
-
-  color:var(--taupe);
-
-  font-size:15px;
-}
-
-.feature h3{
-  margin-top:50px;
-
-  font-family:var(--thai-title);
-
-  font-size:25px;
-
-  font-weight:500;
-}
-
-.feature p{
-  margin-top:12px;
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.9;
-}
-
-
-/* =========================
-   PRICING
-========================= */
-
-.pricing{
-  background:var(--cream);
-}
-
-.pricing-brand{
-  text-align:center;
-  max-width:760px;
-  margin:0 auto 48px;
-}
-
-.pricing-brand.wedding-brand{
-  margin-top:115px;
-}
-
-.pricing-brand-line{
-  width:42px;
-  height:1px;
-  background:var(--taupe);
-  margin:0 auto 22px;
-}
-
-.pricing-brand-title{
-  color:var(--dark);
-  font-family:var(--eng);
-  font-size:34px;
-  line-height:1;
-  letter-spacing:.12em;
-}
-
-.pricing-brand-title small{
-  display:block;
-  margin-top:10px;
-  font-family:var(--thai-body);
-  font-size:13px;
-  letter-spacing:.08em;
-  color:var(--muted);
-}
-
-.pricing-brand-desc{
-  max-width:590px;
-  margin:20px auto 0;
-  color:var(--muted);
-  font-size:14px;
-  line-height:2;
-}
-
-
-/* =========================
-   PINTO LOVE
-========================= */
-
-.love-price-card{
-  max-width:900px;
-  margin:auto;
-  padding:60px 55px;
-  background:var(--white);
-  border-radius:35px;
-  border:1px solid rgba(140,126,116,.10);
-  text-align:center;
-}
-
-.love-price-label{
-  font-family:var(--thai-body);
-  color:var(--taupe);
-  font-size:13px;
-  letter-spacing:.12em;
-}
-
-.love-price{
-  margin-top:10px;
-  font-family:var(--eng);
-  font-size:92px;
-  line-height:1;
-  color:var(--dark);
-}
-
-.love-price small{
-  font-family:var(--thai-body);
-  font-size:16px;
-  color:var(--muted);
-}
-
-.love-price-desc{
-  max-width:650px;
-  margin:23px auto 0;
-  color:var(--muted);
-  font-size:14px;
-  line-height:2;
-}
-
-.love-occasion{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:9px;
-  margin-top:28px;
-}
-
-.love-occasion span{
-  padding:8px 14px;
-  border:1px solid rgba(140,126,116,.20);
-  color:var(--muted);
-  font-size:12px;
-}
-
-.love-extra{
-  margin-top:40px;
-  padding-top:30px;
-  border-top:1px solid rgba(140,126,116,.16);
-}
-
-.extra-title{
-  font-size:14px;
-  color:var(--dark);
-}
-
-.extra-price{
-  margin-top:5px;
-  font-family:var(--eng);
-  font-size:38px;
-  color:var(--taupe);
-}
-
-.extra-price small{
-  font-family:var(--thai-body);
-  font-size:11px;
-  color:var(--muted);
-}
-
-.love-extra p{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.function-list{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:8px;
-  margin-top:18px;
-}
-
-.function-list span{
-  padding:7px 13px;
-  border:1px solid rgba(140,126,116,.20);
-  color:var(--muted);
-  font-size:12px;
-}
-
-
-/* =========================
-   PINTO WEDDING
-========================= */
-
-.wedding-packages{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.wedding-card{
-  min-height:440px;
-  padding:30px 25px;
-  background:var(--white);
-  border:1px solid rgba(140,126,116,.12);
-  display:flex;
-  flex-direction:column;
-}
-
-.wedding-card.featured{
-  border-color:var(--taupe);
-}
-
-.wedding-card-top{
-  padding-bottom:23px;
-  border-bottom:1px solid rgba(140,126,116,.16);
-}
-
-.wedding-name{
-  font-family:var(--eng);
-  font-size:31px;
-  letter-spacing:.08em;
-  color:var(--dark);
-}
-
-.wedding-price{
-  margin-top:6px;
-  font-family:var(--eng);
-  font-size:46px;
-  line-height:1;
-  color:var(--taupe);
-}
-
-.wedding-price small{
-  font-family:var(--thai-body);
-  font-size:12px;
-  color:var(--muted);
-}
-
-.wedding-feature-title{
-  min-height:55px;
-  margin-top:22px;
-  color:var(--dark);
-  font-size:12px;
-  line-height:1.8;
-}
-
-.wedding-features{
-  margin:12px 0 0;
-  padding:0;
-  list-style:none;
-}
-
-.wedding-features li{
-  position:relative;
-  padding-left:17px;
-  margin-bottom:10px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-}
-
-.wedding-features li::before{
-  content:"—";
-  position:absolute;
-  left:0;
-  color:var(--taupe);
-}
-
-.special-note{
-  margin-top:auto;
-  padding-top:20px;
-  color:var(--taupe);
-  font-size:11px;
-  line-height:1.8;
-}
-
-
-/* =========================
-   PRICING NOTES
-========================= */
-
-.pricing-notes{
-  max-width:900px;
-  margin:60px auto 0;
-  padding-top:32px;
-  border-top:1px solid rgba(140,126,116,.20);
-}
-
-.pricing-note-title{
-  margin-bottom:18px;
-  font-size:13px;
-  letter-spacing:.12em;
-  color:var(--dark);
-}
-
-.pricing-note-list p{
-  margin:8px 0;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.8;
-}
-
-.pricing-note-list p::before{
-  content:"— ";
-  color:var(--taupe);
-}
-
-
-/* =========================
-   HOW IT WORKS
-========================= */
-
-.how{
-  background:var(--white);
-}
-
-.steps{
-  display:grid;
-
-  grid-template-columns:repeat(3,1fr);
-
-  gap:70px;
-
-  margin-top:70px;
-}
-
-.step-number{
-  font-family:var(--eng);
-
-  font-size:44px;
-
-  color:var(--taupe);
-}
-
-.step h3{
-  margin-top:15px;
-
-  font-family:var(--thai-title);
-
-  font-size:24px;
-
-  font-weight:500;
-}
-
-.step p{
-  margin-top:12px;
-
-  color:var(--muted);
-
-  font-size:14px;
-
-  line-height:1.9;
-}
-
-
-/* =========================
-   FINAL
-========================= */
-
-.final-about{
-  background:var(--cream);
-}
-
-.final-about-inner{
-  max-width:850px;
-
-  margin:auto;
-
-  text-align:center;
-}
-
-.final-about-inner .section-text{
-  margin-top:30px;
-}
-
-.signature{
-  margin-top:38px;
-
-  font-family:var(--eng);
-
-  font-size:24px;
-
-  letter-spacing:.15em;
-
-  color:var(--taupe);
-}
-
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-  padding:110px 0;
-
-  background:var(--beige);
-
-  text-align:center;
-}
-
-.cta h2{
-  font-family:var(--thai-title);
-
-  font-size:clamp(35px,5vw,65px);
-
-  font-weight:400;
-}
-
-.cta p{
-  margin:20px auto 30px;
-
-  max-width:560px;
-
-  color:var(--taupe);
-
-  font-size:14px;
-
-  line-height:2;
-}
-
-.cta-button{
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  min-width:170px;
-
-  padding:15px 25px;
-
-  border-radius:999px;
-
-  background:var(--taupe);
-
-  color:white;
-
-  font-family:var(--thai-body);
-
-  font-size:13px;
-
   transition:.3s ease;
 }
 
-.cta-button:hover{
-  transform:translateY(-3px);
-
+.language-option:hover{
   background:var(--dark);
+  color:var(--white);
 }
 
+.close-language{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  margin-top:20px;
+}
 
 /* =========================
-   FOOTER
+   RESPONSIVE
 ========================= */
 
-footer{
-  padding:40px 0;
-
-  background:var(--taupe);
-
-  color:rgba(255,255,255,.72);
-}
-
-.footer-inner{
-  width:min(1180px,calc(100% - 48px));
-
-  margin:auto;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-}
-
-.footer-brand{
-  font-family:var(--eng);
-
-  font-size:19px;
-
-  letter-spacing:.2em;
-
-  color:white;
-}
-
-.footer-copy{
-  font-size:11px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:900px){
-
-  .nav-wrap{
-    width:calc(100% - 24px);
-    top:12px;
-  }
-
-  .nav{
-    padding-left:17px;
-  }
+@media(max-width:950px){
 
   .nav-links{
     display:none;
   }
 
-  .hero{
-    padding-top:120px;
-  }
-
-  .hero-grid{
+  .hero-inner{
     grid-template-columns:1fr;
-    gap:55px;
   }
 
-  .hero-copy{
-    padding-left:0;
+  .hero-visual{
+    min-height:430px;
   }
 
-  .hero-image{
-    justify-self:center;
-    max-width:600px;
-  }
-
-  .about-grid{
+  .section-top,
+  .features-layout,
+  .final-about-grid{
     grid-template-columns:1fr;
-    gap:55px;
-  }
-
-  .about-copy{
-    max-width:none;
+    gap:45px;
   }
 
   .work-grid{
     grid-template-columns:1fr;
   }
 
-  .features-grid{
+  .work-card{
+    min-height:430px;
+  }
+
+  .price-grid{
     grid-template-columns:1fr;
   }
 
-  .steps{
+  .process-grid{
     grid-template-columns:1fr;
-    gap:45px;
   }
 
-  .works-header{
+}
+
+@media(max-width:650px){
+
+  .nav{
+    top:12px;
+    width:calc(100% - 24px);
+    padding:10px 13px 10px 17px;
+  }
+
+  .logo{
+    font-size:21px;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .hero-inner,
+  .section-wrap{
+    width:calc(100% - 32px);
+  }
+
+  .hero h1{
+    font-size:72px;
+  }
+
+  .hero-image,
+  .hero-image-placeholder{
+    height:420px;
+  }
+
+  .hero-note{
+    width:210px;
+    min-height:280px;
+  }
+
+  .hero-note-title{
+    margin-top:40px;
+    font-size:27px;
+  }
+
+  .about-track img{
+    width:250px;
+    height:320px;
+  }
+
+  .works-head{
     display:block;
   }
 
   .works-intro{
-    margin-top:25px;
+    margin-top:20px;
   }
 
-  .love-price-card{
-    padding:50px 25px;
+  .work-content h3{
+    font-size:43px;
   }
 
-  .love-price{
-    font-size:72px;
+  .features-title{
+    font-size:58px;
   }
 
-  .wedding-packages{
-    grid-template-columns:repeat(2,1fr);
+  .price-card{
+    padding:30px;
   }
 
-  .wedding-card{
-    min-height:420px;
-  }
-
-  .section{
-    padding:100px 0;
-  }
-}
-
-@media(max-width:520px){
-
-  .container{
-    width:calc(100% - 32px);
-  }
-
-  .hero-grid{
-    width:calc(100% - 32px);
-  }
-
-  .hero-title{
-    font-size:70px;
-  }
-
-  .hero-kicker{
-    margin-bottom:32px;
-  }
-
-  .hero-image{
-    border-radius:120px 120px 20px 20px;
-  }
-
-  .about-slider{
-    aspect-ratio:4/3;
-    border-radius:18px;
-  }
-
-  .section-title{
-    font-size:38px;
-  }
-
-  .work-card{
-    min-height:360px;
-  }
-
-  .feature{
-    min-height:220px;
-  }
-
-  .love-price-card{
-    padding:40px 18px;
-  }
-
-  .love-price{
-    font-size:60px;
-  }
-
-  .love-occasion span{
-    font-size:11px;
-  }
-
-  .wedding-packages{
-    grid-template-columns:1fr;
-  }
-
-  .wedding-card{
-    min-height:auto;
-  }
-
-  .pricing-brand.wedding-brand{
-    margin-top:90px;
-  }
-
-  .pricing-brand-title{
-    font-size:29px;
+  .final-about h2{
+    font-size:54px;
   }
 
   .footer-inner{
-    flex-direction:column;
-    text-align:center;
+    display:block;
+  }
+
+  .footer-copy{
+    margin-top:12px;
   }
 
 }
@@ -1271,62 +1095,45 @@ footer{
      NAV
 ========================= -->
 
-<div class="nav-wrap">
-
 <nav class="nav">
 
-<a href="#home" class="logo">
-PINTO <span>STUDIO</span>
-</a>
+  <a href="#home" class="logo">
+    PINTO <span>STUDIO</span>
+  </a>
 
-<div class="nav-links">
+  <div class="nav-links">
 
-<a href="#home" data-nav="home"></a>
-<a href="#about" data-nav="about"></a>
-<a href="#works" data-nav="works"></a>
-<a href="#features" data-nav="features"></a>
-<a href="#pricing" data-nav="pricing"></a>
-<a href="#how" data-nav="how"></a>
+    <a href="#about" data-i18n="navAbout">
+      ABOUT
+    </a>
 
-</div>
+    <a href="#works" data-i18n="navWorks">
+      WORKS
+    </a>
 
-<button
-class="lang-btn"
-id="languageButton"
-aria-label="Language">
-🌐
-</button>
+    <a href="#pricing" data-i18n="navPricing">
+      PRICING
+    </a>
+
+    <a href="#process" data-i18n="navProcess">
+      PROCESS
+    </a>
+
+    <a href="#contact" data-i18n="navContact">
+      CONTACT
+    </a>
+
+  </div>
+
+  <div class="nav-right">
+
+    <button class="language-btn" onclick="openLanguage()">
+      ◉ <span id="currentLanguage">TH</span>
+    </button>
+
+  </div>
 
 </nav>
-
-</div>
-
-
-<!-- =========================
-     LANGUAGE MODAL
-========================= -->
-
-<div class="language-modal" id="languageModal">
-
-<div class="language-box">
-
-<h3 id="languageTitle"></h3>
-
-<button class="language-option" data-lang="th">
-🇹🇭 ภาษาไทย
-</button>
-
-<button class="language-option" data-lang="en">
-🇬🇧 English
-</button>
-
-<button class="language-option" data-lang="ko">
-🇰🇷 한국어
-</button>
-
-</div>
-
-</div>
 
 
 <!-- =========================
@@ -1335,58 +1142,75 @@ aria-label="Language">
 
 <section class="hero" id="home">
 
-<div class="hero-grid">
+  <div class="hero-inner">
 
-<div class="hero-copy">
+    <div>
 
-<span
-class="hero-kicker"
-id="heroKicker">
-</span>
+      <div class="eyebrow" data-i18n="heroEyebrow">
+        Digital Experiences
+      </div>
 
-<h1
-class="hero-title"
-id="heroTitle">
-PINTO
-</h1>
+      <h1>
+        PINTO
+        <span>STUDIO</span>
+      </h1>
 
-<div class="hero-brand">
-STUDIO
-</div>
+      <p class="hero-text" data-i18n="heroText">
+        เราสร้างเว็บไซต์ดิจิทัลสำหรับความรัก งานแต่งงาน
+        และช่วงเวลาพิเศษ เพื่อเปลี่ยนเรื่องราวของคุณ
+        ให้กลายเป็นประสบการณ์ที่น่าจดจำ
+      </p>
 
-<p
-class="hero-desc"
-id="heroDesc">
-</p>
+      <div class="hero-actions">
 
-</div>
+        <a href="#works" class="primary-btn" data-i18n="exploreWorks">
+          Explore Works →
+        </a>
+
+        <a href="#about" class="text-btn" data-i18n="discoverPinto">
+          Discover PINTO
+        </a>
+
+      </div>
+
+    </div>
 
 
-<div class="hero-image">
+    <div class="hero-visual">
 
-<img
-src="hero-cover.jpg"
-alt="PINTO STUDIO"
-onerror="
-this.style.display='none';
-document.querySelector('.image-placeholder').style.display='flex';
-">
+      <img
+        src="hero-cover.jpg"
+        alt="PINTO STUDIO"
+        class="hero-image"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      >
 
-<div class="image-placeholder">
+      <div class="hero-image-placeholder" style="display:none;">
 
-<div class="thai">
-PINTO STUDIO
-</div>
+        <div class="hero-note">
 
-<div class="eng">
-DIGITAL STUDIO
-</div>
+          <div class="hero-note-small">
+            PINTO STUDIO
+          </div>
 
-</div>
+          <div class="hero-note-title" data-i18n="heroCardTitle">
+            Digital<br>
+            Experiences
+          </div>
 
-</div>
+          <div class="hero-note-line"></div>
 
-</div>
+          <div class="hero-note-sub">
+            LOVE · WEDDING · MOMENT
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1395,100 +1219,66 @@ DIGITAL STUDIO
      ABOUT
 ========================= -->
 
-<section
-class="section about"
-id="about">
+<section class="about" id="about">
 
-<div class="container">
+  <div class="section-wrap">
 
-<div class="about-grid">
+    <div class="section-top">
 
-<div class="about-slider">
+      <div>
 
-<div
-class="about-track"
-id="aboutTrack">
+        <div class="section-label" data-i18n="aboutLabel">
+          About PINTO
+        </div>
 
+        <h2 class="section-title">
+          Small moments.<br>
+          <span>Beautifully made.</span>
+        </h2>
 
-<div class="about-slide">
-<img
-src="about-1.jpg"
-alt="PINTO STUDIO">
-</div>
+      </div>
 
-<div class="about-slide">
-<img
-src="about-2.jpg"
-alt="PINTO STUDIO">
-</div>
+      <div>
 
-<div class="about-slide">
-<img
-src="about-3.jpg"
-alt="PINTO STUDIO">
-</div>
+        <p class="about-text" data-i18n="aboutText">
+          PINTO STUDIO คือพื้นที่สำหรับสร้าง Digital Experience
+          ที่มีความหมาย เราเชื่อว่าเว็บไซต์ไม่จำเป็นต้องเป็นเพียง
+          หน้าข้อมูล แต่สามารถเป็นของขวัญ ความทรงจำ
+          หรือพื้นที่เล็ก ๆ ที่เก็บช่วงเวลาสำคัญของใครบางคนได้
+        </p>
 
-<div class="about-slide">
-<img
-src="about-4.jpg"
-alt="PINTO STUDIO">
-</div>
+      </div>
 
-<div class="about-slide">
-<img
-src="about-5.jpg"
-alt="PINTO STUDIO">
-</div>
-
-<div class="about-slide">
-<img
-src="about-6.jpg"
-alt="PINTO STUDIO">
-</div>
+    </div>
 
 
-</div>
+    <div class="about-slider">
 
-</div>
+      <div class="about-track">
 
+        <img src="about-1.jpg" alt="PINTO Studio">
 
-<div class="about-copy">
+        <img src="about-2.jpg" alt="PINTO Studio">
 
-<div
-class="section-label"
-id="aboutLabel">
-</div>
+        <img src="about-3.jpg" alt="PINTO Studio">
 
-<h2
-class="section-title"
-id="aboutTitle">
-</h2>
+        <img src="about-4.jpg" alt="PINTO Studio">
 
-<p
-class="section-text"
-id="aboutText1">
-</p>
+        <img src="about-5.jpg" alt="PINTO Studio">
 
-<p
-class="section-text"
-id="aboutText2">
-</p>
+        <img src="about-6.jpg" alt="PINTO Studio">
 
-<p
-class="section-text"
-id="aboutText3">
-</p>
+        <img src="about-1.jpg" alt="PINTO Studio">
 
-<div
-class="about-small"
-id="aboutSmall">
-</div>
+        <img src="about-2.jpg" alt="PINTO Studio">
 
-</div>
+        <img src="about-3.jpg" alt="PINTO Studio">
 
-</div>
+      </div>
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
@@ -1497,108 +1287,148 @@ id="aboutSmall">
      WORKS
 ========================= -->
 
-<section
-class="section works"
-id="works">
+<section class="works" id="works">
 
-<div class="container">
+  <div class="section-wrap">
 
-<div class="works-header">
+    <div class="works-head">
 
-<div>
+      <div>
 
-<div
-class="section-label"
-id="worksLabel">
-</div>
+        <div class="section-label" data-i18n="worksLabel">
+          Selected Works
+        </div>
 
-<h2
-class="section-title"
-id="worksTitle">
-</h2>
+        <h2 class="works-title">
+          Our <span>Experiences.</span>
+        </h2>
 
-</div>
+      </div>
 
-<div
-class="works-intro section-text"
-id="worksIntro">
-</div>
+      <p class="works-intro" data-i18n="worksIntro">
+        เลือกประเภทของ Digital Experience
+        ที่คุณกำลังมองหา แล้วค้นพบ Template
+        ที่เหมาะกับช่วงเวลาของคุณ
+      </p>
 
-</div>
+    </div>
 
 
-<div class="work-grid">
+    <div class="work-grid">
 
 
-<div class="work-card">
+      <!-- PINTO LOVE -->
 
-<div class="work-number">
-01
-</div>
+      <article class="work-card work-card-love">
 
-<div>
+        <div>
 
-<h3 id="work1Title"></h3>
+          <div class="work-number">
+            01 / PINTO LOVE
+          </div>
 
-<p id="work1Text"></p>
+        </div>
 
-</div>
+        <div class="work-content">
 
-<div
-class="work-link"
-id="workLink">
-</div>
+          <h3>
+            PINTO
+            <span>LOVE</span>
+          </h3>
 
-</div>
+          <p data-i18n="loveDescription">
+            เว็บไซต์สำหรับบอกรัก วันครบรอบ วันเกิด
+            ง้อแฟน และช่วงเวลาพิเศษของคนสองคน
+          </p>
 
+          <a href="love.html" class="explore" data-i18n="explore">
+            EXPLORE
+          </a>
 
-<div class="work-card">
+        </div>
 
-<div class="work-number">
-02
-</div>
+        <div class="work-decoration"></div>
+        <div class="work-decoration two"></div>
 
-<div>
-
-<h3 id="work2Title"></h3>
-
-<p id="work2Text"></p>
-
-</div>
-
-<div
-class="work-link"
-id="workLink2">
-</div>
-
-</div>
+      </article>
 
 
-<div class="work-card">
+      <!-- PINTO WEDDING -->
 
-<div class="work-number">
-03
-</div>
+      <article class="work-card work-card-wedding">
 
-<div>
+        <div>
 
-<h3 id="work3Title"></h3>
+          <div class="work-number">
+            02 / PINTO WEDDING
+          </div>
 
-<p id="work3Text"></p>
+        </div>
 
-</div>
+        <div class="work-content">
 
-<div
-class="work-link"
-id="workLink3">
-</div>
+          <h3>
+            PINTO
+            <span>WEDDING</span>
+          </h3>
 
-</div>
+          <p data-i18n="weddingDescription">
+            เว็บไซต์งานแต่งงานที่รวมรายละเอียด
+            เรื่องราวของคู่รัก ตารางงาน แผนที่
+            และฟังก์ชันพิเศษสำหรับแขก
+          </p>
+
+          <a href="wedding.html" class="explore" data-i18n="explore">
+            EXPLORE
+          </a>
+
+        </div>
+
+        <div class="work-decoration"></div>
+        <div class="work-decoration two"></div>
+
+      </article>
 
 
-</div>
+      <!-- SPECIAL MOMENT -->
 
-</div>
+      <article class="work-card work-card-special">
+
+        <div>
+
+          <div class="work-number">
+            03 / SPECIAL MOMENT
+          </div>
+
+        </div>
+
+        <div class="work-content">
+
+          <h3>
+            SPECIAL
+            <span>MOMENT</span>
+          </h3>
+
+          <p data-i18n="specialDescription">
+            Digital Experience สำหรับช่วงเวลาพิเศษ
+            ที่ไม่จำเป็นต้องอยู่ในรูปแบบเดิม ๆ
+          </p>
+
+          <a href="special-moment.html" class="explore" data-i18n="explore">
+            EXPLORE
+          </a>
+
+        </div>
+
+        <div class="work-decoration"></div>
+        <div class="work-decoration two"></div>
+
+      </article>
+
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1607,107 +1437,125 @@ id="workLink3">
      FEATURES
 ========================= -->
 
-<section
-class="section features"
-id="features">
+<section class="features">
 
-<div class="container">
+  <div class="section-wrap">
 
-<div
-class="section-label"
-id="featuresLabel">
-</div>
+    <div class="features-layout">
 
-<h2
-class="section-title"
-id="featuresTitle">
-</h2>
+      <div>
 
+        <div class="section-label" data-i18n="featureLabel">
+          Interactive Features
+        </div>
 
-<div class="features-grid">
+        <h2 class="features-title">
+          More than<br>
+          <span>a website.</span>
+        </h2>
 
+        <p class="features-intro" data-i18n="featureIntro">
+          เราออกแบบให้แต่ละเว็บไซต์มีรายละเอียดเล็ก ๆ
+          ที่ทำให้ผู้รับรู้สึกว่าเว็บไซต์นี้ถูกสร้างขึ้นมาเพื่อเขาโดยเฉพาะ
+        </p>
 
-<div class="feature">
-
-<div class="feature-number">
-01
-</div>
-
-<h3 id="feature1Title"></h3>
-
-<p id="feature1Text"></p>
-
-</div>
+      </div>
 
 
-<div class="feature">
+      <div class="feature-list">
 
-<div class="feature-number">
-02
-</div>
+        <div class="feature-item">
 
-<h3 id="feature2Title"></h3>
+          <div class="feature-number">
+            01
+          </div>
 
-<p id="feature2Text"></p>
+          <div>
 
-</div>
+            <h3 data-i18n="feature1Title">
+              Interactive Moments
+            </h3>
 
+            <p data-i18n="feature1Text">
+              เพิ่มลูกเล่นที่ทำให้ผู้รับมีส่วนร่วม
+              ไม่ใช่เพียงแค่เปิดอ่านแล้วจบ
+            </p>
 
-<div class="feature">
+          </div>
 
-<div class="feature-number">
-03
-</div>
-
-<h3 id="feature3Title"></h3>
-
-<p id="feature3Text"></p>
-
-</div>
+        </div>
 
 
-<div class="feature">
+        <div class="feature-item">
 
-<div class="feature-number">
-04
-</div>
+          <div class="feature-number">
+            02
+          </div>
 
-<h3 id="feature4Title"></h3>
+          <div>
 
-<p id="feature4Text"></p>
+            <h3 data-i18n="feature2Title">
+              Personal Story
+            </h3>
 
-</div>
+            <p data-i18n="feature2Text">
+              ใส่เรื่องราว รูปภาพ ข้อความ และรายละเอียด
+              ที่เป็นของคุณเอง
+            </p>
 
+          </div>
 
-<div class="feature">
-
-<div class="feature-number">
-05
-</div>
-
-<h3 id="feature5Title"></h3>
-
-<p id="feature5Text"></p>
-
-</div>
+        </div>
 
 
-<div class="feature">
+        <div class="feature-item">
 
-<div class="feature-number">
-06
-</div>
+          <div class="feature-number">
+            03
+          </div>
 
-<h3 id="feature6Title"></h3>
+          <div>
 
-<p id="feature6Text"></p>
+            <h3 data-i18n="feature3Title">
+              Music & Memories
+            </h3>
 
-</div>
+            <p data-i18n="feature3Text">
+              สร้างบรรยากาศด้วยเพลง รูปภาพ
+              และความทรงจำที่อยากเก็บไว้
+            </p>
+
+          </div>
+
+        </div>
 
 
-</div>
+        <div class="feature-item">
 
-</div>
+          <div class="feature-number">
+            04
+          </div>
+
+          <div>
+
+            <h3 data-i18n="feature4Title">
+              Made for You
+            </h3>
+
+            <p data-i18n="feature4Text">
+              แต่ละเว็บไซต์ถูกจัดทำตามรายละเอียด
+              และเรื่องราวของผู้สั่งทำ
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -1716,419 +1564,235 @@ id="featuresTitle">
      PRICING
 ========================= -->
 
-<section
-class="section pricing"
-id="pricing">
+<section class="pricing" id="pricing">
 
-<div class="container">
+  <div class="section-wrap">
 
+    <div class="pricing-head">
 
-<!-- PINTO LOVE -->
+      <div class="section-label" data-i18n="pricingLabel">
+        Pricing
+      </div>
 
-<div class="pricing-brand">
+      <h2 class="section-title">
+        Simple pricing.<br>
+        <span>Meaningful moments.</span>
+      </h2>
 
-<div class="pricing-brand-line"></div>
+      <p data-i18n="pricingIntro">
+        เลือกรูปแบบที่เหมาะกับช่วงเวลาของคุณ
+        โดยแต่ละ Template จะมีฟังก์ชันที่แตกต่างกัน
+        ตามที่แสดงในตัวอย่าง
+      </p>
 
-<div class="pricing-brand-title">
-PINTO LOVE
-<small id="loveBrandThai">
-ปิ่นโตรัก
-</small>
-</div>
+    </div>
 
-<p
-class="pricing-brand-desc"
-id="loveIntro">
-เว็บไซต์สำหรับบอกรักและเก็บช่วงเวลาสำคัญ
-สำหรับแฟน ครอบครัว และคนพิเศษ
-</p>
 
-</div>
+    <div class="price-grid">
 
 
-<div class="love-price-card">
+      <!-- PINTO LOVE -->
 
-<div
-class="love-price-label"
-id="loveStartLabel">
-เริ่มต้น
-</div>
+      <div class="price-card">
 
-<div class="love-price">
-129 <small>THB</small>
-</div>
+        <div class="price-type">
+          PINTO LOVE
+        </div>
 
-<p
-class="love-price-desc"
-id="lovePriceDesc">
-เว็บไซต์บอกรักสำหรับวันสำคัญและช่วงเวลาพิเศษ
-</p>
+        <div class="price">
+          129
+          <small>THB</small>
+        </div>
 
+        <p class="price-description" data-i18n="lovePriceDescription">
+          ราคาเริ่มต้นสำหรับ Template
+          ใน PINTO LOVE
+        </p>
 
-<div class="love-occasion">
+        <ul class="price-list">
 
-<span id="loveOccasion1">บอกรัก</span>
-<span id="loveOccasion2">วันครบรอบ</span>
-<span id="loveOccasion3">วันเกิด</span>
-<span id="loveOccasion4">ง้อ / ขอโทษ</span>
-<span id="loveOccasion5">ขอเป็นแฟน</span>
-<span id="loveOccasion6">วันสำคัญต่าง ๆ</span>
+          <li data-i18n="lovePrice1">
+            1 Template = 129 THB
+          </li>
 
-</div>
+          <li data-i18n="lovePrice2">
+            ฟังก์ชันที่มีใน Template รวมอยู่แล้ว
+          </li>
 
+          <li data-i18n="lovePrice3">
+            ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน
+          </li>
 
-<div class="love-extra">
+          <li data-i18n="lovePrice4">
+            ปรับสีตามสีที่ลูกค้าต้องการ
+          </li>
 
-<div
-class="extra-title"
-id="loveExtraTitle">
-ฟังก์ชันเพิ่มเติม
-</div>
+          <li data-i18n="lovePrice5">
+            ระยะเวลาจัดทำประมาณ 1–2 วัน
+          </li>
 
-<div class="extra-price">
-+29 <small>THB / function</small>
-</div>
+        </ul>
 
-<p
-id="loveExtraDesc">
-เลือกเพิ่มฟังก์ชันที่ต้องการได้ตามสไตล์ของคุณ
-</p>
+        <p class="price-note" data-i18n="lovePriceNote">
+          หมายเหตุ: ไม่สามารถเปลี่ยนโครงสร้างหรือสไตล์หลักของ Template ได้
+        </p>
 
-<div class="function-list">
+      </div>
 
-<span id="loveFunction1">Game</span>
-<span id="loveFunction2">Letter</span>
-<span id="loveFunction3">Gallery</span>
-<span id="loveFunction4">Music</span>
-<span id="loveFunction5">Cake</span>
-<span id="loveFunction6">Surprise</span>
-<span id="loveFunction7">Countdown</span>
 
-</div>
+      <!-- PINTO WEDDING -->
 
-</div>
+      <div class="price-card dark">
 
-</div>
+        <div class="price-type">
+          PINTO WEDDING
+        </div>
 
+        <div class="price">
+          299
+          <small>THB</small>
+        </div>
 
-<!-- PINTO WEDDING -->
+        <p class="price-description" data-i18n="weddingPriceDescription">
+          Standard Package
+          สำหรับเว็บไซต์งานแต่งงาน
+        </p>
 
-<div class="pricing-brand wedding-brand">
+        <ul class="price-list">
 
-<div class="pricing-brand-line"></div>
+          <li data-i18n="weddingPrice1">
+            Music
+          </li>
 
-<div class="pricing-brand-title">
-PINTO WEDDING
-</div>
+          <li data-i18n="weddingPrice2">
+            Photos
+          </li>
 
-<p
-class="pricing-brand-desc"
-id="weddingIntro">
-เว็บไซต์แต่งงานสำหรับเก็บรายละเอียด
-และเรื่องราวสำคัญของวันพิเศษ
-</p>
+          <li data-i18n="weddingPrice3">
+            Google Maps
+          </li>
 
-</div>
+          <li data-i18n="weddingPrice4">
+            Wedding Countdown
+          </li>
 
+          <li data-i18n="weddingPrice5">
+            Schedule + Couple's Message
+          </li>
 
-<!-- WEDDING PACKAGES -->
+          <li data-i18n="weddingPrice6">
+            Dress Code
+          </li>
 
-<div class="wedding-packages">
+          <li data-i18n="weddingPrice7">
+            ระยะเวลาจัดทำประมาณ 4–5 วัน
+          </li>
 
+        </ul>
 
-<!-- STANDARD -->
+        <p class="price-note" data-i18n="weddingPriceNote">
+          Plus 349 THB เลือกฟังก์ชันพิเศษ 1 อย่าง
+          และ Premium 399 THB ได้ครบทั้ง 3 ฟังก์ชัน
+        </p>
 
-<div class="wedding-card">
+      </div>
 
-<div class="wedding-card-top">
+    </div>
 
-<div
-class="wedding-name"
-id="standardTitle">
-Standard
-</div>
-
-<div class="wedding-price">
-299 <small>THB</small>
-</div>
-
-</div>
-
-<div
-class="wedding-feature-title"
-id="standardFeatureTitle">
-ฟังก์ชันพื้นฐาน
-</div>
-
-<ul class="wedding-features">
-
-<li id="standardFeature1">
-Music
-</li>
-
-<li id="standardFeature2">
-Photos
-</li>
-
-<li id="standardFeature3">
-Google Maps
-</li>
-
-<li id="standardFeature4">
-Wedding Countdown
-</li>
-
-<li id="standardFeature5">
-Schedule
-</li>
-
-<li id="standardFeature6">
-Couple's Message
-</li>
-
-<li id="standardFeature7">
-Dress Code
-</li>
-
-</ul>
-
-</div>
-
-
-<!-- PLUS -->
-
-<div class="wedding-card featured">
-
-<div class="wedding-card-top">
-
-<div
-class="wedding-name"
-id="plusTitle">
-Plus
-</div>
-
-<div class="wedding-price">
-349 <small>THB</small>
-</div>
-
-</div>
-
-<div
-class="wedding-feature-title"
-id="plusFeatureTitle">
-ฟังก์ชันพื้นฐาน + เลือก 1 ฟังก์ชันพิเศษ
-</div>
-
-<ul class="wedding-features">
-
-<li>RSVP</li>
-<li>QR Code รับซอง</li>
-<li>Guest Wishes</li>
-
-</ul>
-
-<div
-class="special-note"
-id="plusNote">
-เลือกได้ 1 อย่าง จาก 3 ฟังก์ชันพิเศษ
-</div>
-
-</div>
-
-
-<!-- PREMIUM -->
-
-<div class="wedding-card">
-
-<div class="wedding-card-top">
-
-<div
-class="wedding-name"
-id="premiumTitle">
-Premium
-</div>
-
-<div class="wedding-price">
-399 <small>THB</small>
-</div>
-
-</div>
-
-<div
-class="wedding-feature-title"
-id="premiumFeatureTitle">
-ฟังก์ชันพื้นฐาน + ฟังก์ชันพิเศษครบทั้ง 3
-</div>
-
-<ul class="wedding-features">
-
-<li>RSVP</li>
-<li>QR Code รับซอง</li>
-<li>Guest Wishes</li>
-
-</ul>
-
-</div>
-
-
-<!-- LUXURY -->
-
-<div class="wedding-card">
-
-<div class="wedding-card-top">
-
-<div
-class="wedding-name"
-id="luxuryTitle">
-Luxury
-</div>
-
-<div class="wedding-price">
-499 <small>THB</small>
-</div>
-
-</div>
-
-<div
-class="wedding-feature-title"
-id="luxuryFeatureTitle">
-ฟังก์ชันทั้งหมด + 2 ภาษา
-</div>
-
-<ul class="wedding-features">
-
-<li id="luxuryFeature1">
-ฟังก์ชัน Wedding ทั้งหมด
-</li>
-
-<li id="luxuryFeature2">
-2 ภาษา
-</li>
-
-<li id="luxuryFeature3">
-เพิ่มภาษาอื่นได้ตามต้องการ
-</li>
-
-</ul>
-
-</div>
-
-
-</div>
-
-
-<!-- PRICING NOTES -->
-
-<div class="pricing-notes">
-
-<div
-class="pricing-note-title"
-id="pricingNotesTitle">
-หมายเหตุ
-</div>
-
-<div class="pricing-note-list">
-
-<p id="pricingNote1">
-PINTO LOVE ใช้เวลาจัดทำประมาณ 1–2 วัน
-</p>
-
-<p id="pricingNote2">
-PINTO WEDDING ใช้เวลาจัดทำประมาณ 4–5 วัน แล้วแต่กรณี
-</p>
-
-<p id="pricingNote3">
-มัดจำ 30%
-</p>
-
-<p id="pricingNote4">
-แก้ไขฟรี 1 ครั้งหลังส่งงาน
-</p>
-
-<p id="pricingNote5">
-แก้ไขเพิ่มเติมครั้งละ 50 บาท
-</p>
-
-<p id="pricingNote6">
-เว็บไซต์ใช้งานได้ 1 ปี
-</p>
-
-</div>
-
-</div>
-
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- =========================
-     HOW IT WORKS
+     PROCESS
 ========================= -->
 
-<section
-class="section how"
-id="how">
+<section class="process" id="process">
 
-<div class="container">
+  <div class="section-wrap">
 
-<div
-class="section-label"
-id="howLabel">
-</div>
+    <div class="works-head">
 
-<h2
-class="section-title"
-id="howTitle">
-</h2>
+      <div>
 
+        <div class="section-label" data-i18n="processLabel">
+          How It Works
+        </div>
 
-<div class="steps">
+        <h2 class="works-title">
+          From idea<br>
+          <span>to experience.</span>
+        </h2>
 
+      </div>
 
-<div class="step">
+      <p class="works-intro" data-i18n="processIntro">
+        ขั้นตอนง่าย ๆ ตั้งแต่เลือก Template
+        ไปจนถึงรับเว็บไซต์พร้อมใช้งาน
+      </p>
 
-<div class="step-number">
-01
-</div>
-
-<h3 id="step1Title"></h3>
-
-<p id="step1Text"></p>
-
-</div>
+    </div>
 
 
-<div class="step">
+    <div class="process-grid">
 
-<div class="step-number">
-02
-</div>
+      <div class="process-card">
 
-<h3 id="step2Title"></h3>
+        <div class="process-number">
+          01
+        </div>
 
-<p id="step2Text"></p>
+        <h3 data-i18n="process1Title">
+          เลือก Template
+        </h3>
 
-</div>
+        <p data-i18n="process1Text">
+          เลือกประเภทเว็บไซต์และ Template
+          ที่เหมาะกับช่วงเวลาของคุณ
+        </p>
 
-
-<div class="step">
-
-<div class="step-number">
-03
-</div>
-
-<h3 id="step3Title"></h3>
-
-<p id="step3Text"></p>
-
-</div>
+      </div>
 
 
-</div>
+      <div class="process-card">
 
-</div>
+        <div class="process-number">
+          02
+        </div>
+
+        <h3 data-i18n="process2Title">
+          ส่งรายละเอียด
+        </h3>
+
+        <p data-i18n="process2Text">
+          ส่งข้อความ รูปภาพ เพลง และรายละเอียด
+          ที่ต้องการใส่ในเว็บไซต์
+        </p>
+
+      </div>
+
+
+      <div class="process-card">
+
+        <div class="process-number">
+          03
+        </div>
+
+        <h3 data-i18n="process3Title">
+          รับเว็บไซต์
+        </h3>
+
+        <p data-i18n="process3Text">
+          PINTO จัดทำเว็บไซต์และส่งให้คุณ
+          พร้อมใช้งานตามระยะเวลาของแพ็กเกจ
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2137,35 +1801,40 @@ id="howTitle">
      FINAL ABOUT
 ========================= -->
 
-<section class="section final-about">
+<section class="final-about">
 
-<div class="container">
+  <div class="section-wrap">
 
-<div class="final-about-inner">
+    <div class="final-about-grid">
 
-<div
-class="section-label"
-id="finalLabel">
-</div>
+      <div>
 
-<h2
-class="section-title"
-id="finalTitle">
-</h2>
+        <div class="section-label" data-i18n="finalLabel">
+          PINTO STUDIO
+        </div>
 
-<p
-class="section-text"
-id="finalText">
-</p>
+        <h2>
+          Made with<br>
+          <span>meaning.</span>
+        </h2>
 
-<div
-class="signature"
-id="signature">
-</div>
+      </div>
 
-</div>
+      <div>
 
-</div>
+        <p data-i18n="finalText">
+          เราเชื่อว่าช่วงเวลาบางช่วงมีค่ามากพอ
+          ที่จะถูกสร้างขึ้นมาเป็นอะไรสักอย่างที่มากกว่าข้อความ
+          PINTO STUDIO จึงสร้าง Digital Experiences
+          ที่ช่วยให้คุณบอกความรู้สึก เก็บความทรงจำ
+          และส่งต่อช่วงเวลาสำคัญในรูปแบบที่ไม่เหมือนใคร
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
@@ -2174,21 +1843,25 @@ id="signature">
      CTA
 ========================= -->
 
-<section class="cta">
+<section class="cta" id="contact">
 
-<div class="container">
+  <div class="cta-label">
+    PINTO STUDIO
+  </div>
 
-<h2 id="ctaTitle"></h2>
+  <h2>
+    Your moment.<br>
+    <span>Your story.</span>
+  </h2>
 
-<p id="ctaText"></p>
+  <p data-i18n="ctaText">
+    พร้อมเปลี่ยนช่วงเวลาของคุณให้กลายเป็น
+    Digital Experience ที่มีความหมายหรือยัง?
+  </p>
 
-<a
-href="#pricing"
-class="cta-button"
-id="ctaButton">
-</a>
-
-</div>
+  <a href="mailto:hello@pintostudio.com" class="cta-btn" data-i18n="ctaButton">
+    Contact PINTO →
+  </a>
 
 </section>
 
@@ -2199,1551 +1872,467 @@ id="ctaButton">
 
 <footer>
 
-<div class="footer-inner">
+  <div class="footer-inner">
 
-<div class="footer-brand">
-PINTO STUDIO
-</div>
+    <div class="footer-brand">
+      PINTO STUDIO
+    </div>
 
-<div
-class="footer-copy"
-id="footerCopy">
-</div>
+    <div class="footer-copy" data-i18n="copyright">
+      © 2026 PINTO STUDIO. All rights reserved.
+    </div>
 
-</div>
+  </div>
 
 </footer>
 
 
+<!-- =========================
+     LANGUAGE MODAL
+========================= -->
+
+<div class="language-modal" id="languageModal">
+
+  <div class="language-box">
+
+    <h3>
+      Language
+    </h3>
+
+    <p>
+      Select your preferred language.
+    </p>
+
+
+    <div class="language-options">
+
+      <button class="language-option" onclick="setLanguage('th')">
+        ไทย
+      </button>
+
+      <button class="language-option" onclick="setLanguage('en')">
+        English
+      </button>
+
+      <button class="language-option" onclick="setLanguage('ko')">
+        한국어
+      </button>
+
+    </div>
+
+
+    <button class="close-language" onclick="closeLanguage()">
+      Close
+    </button>
+
+  </div>
+
+</div>
+
+
 <script>
-
-
-/* =========================
-   TRANSLATIONS
-========================= */
 
 const translations = {
 
+  th: {
 
-/* =========================
-   THAI
-========================= */
+    navAbout:"ABOUT",
+    navWorks:"WORKS",
+    navPricing:"PRICING",
+    navProcess:"PROCESS",
+    navContact:"CONTACT",
 
-th: {
+    heroEyebrow:"Digital Experiences",
 
-navHome:"หน้าหลัก",
-navAbout:"เกี่ยวกับ",
-navWorks:"ผลงาน",
-navFeatures:"ฟีเจอร์",
-navPricing:"ราคา",
-navHow:"วิธีสั่งทำ",
+    heroText:
+    "เราสร้างเว็บไซต์ดิจิทัลสำหรับความรัก งานแต่งงาน และช่วงเวลาพิเศษ เพื่อเปลี่ยนเรื่องราวของคุณให้กลายเป็นประสบการณ์ที่น่าจดจำ",
 
-languageTitle:"เลือกภาษา",
+    exploreWorks:"สำรวจผลงาน →",
+    discoverPinto:"รู้จัก PINTO",
 
+    heroCardTitle:"Digital<br>Experiences",
 
-heroKicker:
-"Digital experiences for meaningful moments",
+    aboutLabel:"About PINTO",
 
-heroDesc:
-"PINTO STUDIO สร้างสรรค์ประสบการณ์ดิจิทัลสำหรับช่วงเวลาที่มีความหมาย ตั้งแต่การ์ดแต่งงานออนไลน์ ไปจนถึงเว็บไซต์สำหรับบอกความรัก ความขอบคุณ และความรู้สึกที่อยากส่งต่อให้ใครสักคน",
+    aboutText:
+    "PINTO STUDIO คือพื้นที่สำหรับสร้าง Digital Experience ที่มีความหมาย เราเชื่อว่าเว็บไซต์ไม่จำเป็นต้องเป็นเพียงหน้าข้อมูล แต่สามารถเป็นของขวัญ ความทรงจำ หรือพื้นที่เล็ก ๆ ที่เก็บช่วงเวลาสำคัญของใครบางคนได้",
 
+    worksLabel:"Selected Works",
 
-aboutLabel:
-"ABOUT PINTO STUDIO",
+    worksIntro:
+    "เลือกประเภทของ Digital Experience ที่คุณกำลังมองหา แล้วค้นพบ Template ที่เหมาะกับช่วงเวลาของคุณ",
 
-aboutTitle:
-"เราออกแบบเรื่องราวสำคัญ<br>ให้อยู่ในรูปแบบที่น่าจดจำ",
+    loveDescription:
+    "เว็บไซต์สำหรับบอกรัก วันครบรอบ วันเกิด ง้อแฟน และช่วงเวลาพิเศษของคนสองคน",
 
-aboutText1:
-"PINTO STUDIO คือสตูดิโอที่สร้างสรรค์งานดิจิทัลสำหรับช่วงเวลาที่อยากจดจำ",
+    weddingDescription:
+    "เว็บไซต์งานแต่งงานที่รวมรายละเอียด เรื่องราวของคู่รัก ตารางงาน แผนที่ และฟังก์ชันพิเศษสำหรับแขก",
 
-aboutText2:
-"ตั้งแต่วันแต่งงานที่อยากเชิญคนสำคัญมาร่วมเป็นส่วนหนึ่ง ไปจนถึงวันเกิด วันครบรอบ การบอกรัก การขอบคุณ หรือความรู้สึกเล็ก ๆ ที่อยากส่งต่อ",
+    specialDescription:
+    "Digital Experience สำหรับช่วงเวลาพิเศษ ที่ไม่จำเป็นต้องอยู่ในรูปแบบเดิม ๆ",
 
-aboutText3:
-"เราเปลี่ยนเรื่องราว รูปภาพ ข้อความ และรายละเอียดของคุณ ให้กลายเป็นประสบการณ์บนเว็บไซต์ที่ทั้งสวยและมีความหมาย",
+    explore:"EXPLORE",
 
-aboutSmall:
-"DESIGNED WITH MEANING",
+    featureLabel:"Interactive Features",
 
+    featureIntro:
+    "เราออกแบบให้แต่ละเว็บไซต์มีรายละเอียดเล็ก ๆ ที่ทำให้ผู้รับรู้สึกว่าเว็บไซต์นี้ถูกสร้างขึ้นมาเพื่อเขาโดยเฉพาะ",
 
-worksLabel:
-"SELECTED WORKS",
+    feature1Title:"Interactive Moments",
+    feature1Text:"เพิ่มลูกเล่นที่ทำให้ผู้รับมีส่วนร่วม ไม่ใช่เพียงแค่เปิดอ่านแล้วจบ",
 
-worksTitle:
-"สองรูปแบบของความรู้สึก<br>หนึ่งพื้นที่สำหรับเรื่องราวของคุณ",
+    feature2Title:"Personal Story",
+    feature2Text:"ใส่เรื่องราว รูปภาพ ข้อความ และรายละเอียดที่เป็นของคุณเอง",
 
-worksIntro:
-"ไม่ว่าจะเป็นจุดเริ่มต้นของชีวิตคู่ หรือความรู้สึกที่อยากมอบให้ใครสักคน PINTO STUDIO ออกแบบให้แต่ละเรื่องราวมีรูปแบบที่เป็นของคุณเอง",
+    feature3Title:"Music & Memories",
+    feature3Text:"สร้างบรรยากาศด้วยเพลง รูปภาพ และความทรงจำที่อยากเก็บไว้",
 
+    feature4Title:"Made for You",
+    feature4Text:"แต่ละเว็บไซต์ถูกจัดทำตามรายละเอียดและเรื่องราวของผู้สั่งทำ",
 
-work1Title:
-"PINTO WEDDING",
+    pricingLabel:"Pricing",
 
-work1Text:
-"การ์ดแต่งงานออนไลน์และ Digital Wedding Experience สำหรับคู่รักที่อยากเล่าเรื่องราวของวันสำคัญในแบบที่พิเศษกว่าเดิม",
+    pricingIntro:
+    "เลือกรูปแบบที่เหมาะกับช่วงเวลาของคุณ โดยแต่ละ Template จะมีฟังก์ชันที่แตกต่างกันตามที่แสดงในตัวอย่าง",
 
-work2Title:
-"PINTO LOVE",
+    lovePriceDescription:
+    "ราคาเริ่มต้นสำหรับ Template ใน PINTO LOVE",
 
-work2Text:
-"เว็บไซต์สำหรับวันเกิด วันครบรอบ การบอกรัก การขอบคุณ และทุกช่วงเวลาที่อยากเปลี่ยนความรู้สึกให้กลายเป็นของขวัญ",
+    lovePrice1:"1 Template = 129 THB",
+    lovePrice2:"ฟังก์ชันที่มีใน Template รวมอยู่แล้ว",
+    lovePrice3:"ฟังก์ชันเพิ่มเติม +29 THB / ฟังก์ชัน",
+    lovePrice4:"ปรับสีตามสีที่ลูกค้าต้องการ",
+    lovePrice5:"ระยะเวลาจัดทำประมาณ 1–2 วัน",
 
-work3Title:
-"SPECIAL MOMENTS",
+    lovePriceNote:
+    "หมายเหตุ: ไม่สามารถเปลี่ยนโครงสร้างหรือสไตล์หลักของ Template ได้",
 
-work3Text:
-"สร้างประสบการณ์ดิจิทัลสำหรับวันสำคัญของครอบครัว เพื่อน หรือใครก็ตามที่มีความหมายกับคุณ",
+    weddingPriceDescription:
+    "Standard Package สำหรับเว็บไซต์งานแต่งงาน",
 
-workLink:
-"EXPLORE →",
+    weddingPrice1:"Music",
+    weddingPrice2:"Photos",
+    weddingPrice3:"Google Maps",
+    weddingPrice4:"Wedding Countdown",
+    weddingPrice5:"Schedule + Couple's Message",
+    weddingPrice6:"Dress Code",
+    weddingPrice7:"ระยะเวลาจัดทำประมาณ 4–5 วัน",
 
+    weddingPriceNote:
+    "Plus 349 THB เลือกฟังก์ชันพิเศษ 1 อย่าง และ Premium 399 THB ได้ครบทั้ง 3 ฟังก์ชัน",
 
-featuresLabel:
-"INTERACTIVE FEATURES",
+    processLabel:"How It Works",
 
-featuresTitle:
-"รายละเอียดเล็ก ๆ<br>ที่ทำให้เรื่องราวพิเศษขึ้น",
+    processIntro:
+    "ขั้นตอนง่าย ๆ ตั้งแต่เลือก Template ไปจนถึงรับเว็บไซต์พร้อมใช้งาน",
 
+    process1Title:"เลือก Template",
+    process1Text:"เลือกประเภทเว็บไซต์และ Template ที่เหมาะกับช่วงเวลาของคุณ",
 
-feature1Title:
-"Interactive Invitation",
+    process2Title:"ส่งรายละเอียด",
+    process2Text:"ส่งข้อความ รูปภาพ เพลง และรายละเอียดที่ต้องการใส่ในเว็บไซต์",
 
-feature1Text:
-"การ์ดและคำเชิญที่ไม่ได้มีเพียงข้อมูล แต่สามารถเปิดดู สำรวจ และสัมผัสเรื่องราวของคุณได้",
+    process3Title:"รับเว็บไซต์",
+    process3Text:"PINTO จัดทำเว็บไซต์และส่งให้คุณ พร้อมใช้งานตามระยะเวลาของแพ็กเกจ",
 
+    finalLabel:"PINTO STUDIO",
 
-feature2Title:
-"Interactive Letter",
+    finalText:
+    "เราเชื่อว่าช่วงเวลาบางช่วงมีค่ามากพอที่จะถูกสร้างขึ้นมาเป็นอะไรสักอย่างที่มากกว่าข้อความ PINTO STUDIO จึงสร้าง Digital Experiences ที่ช่วยให้คุณบอกความรู้สึก เก็บความทรงจำ และส่งต่อช่วงเวลาสำคัญในรูปแบบที่ไม่เหมือนใคร",
 
-feature2Text:
-"เปิดซองจดหมายและอ่านข้อความที่ตั้งใจเขียนถึงคนสำคัญ",
+    ctaText:
+    "พร้อมเปลี่ยนช่วงเวลาของคุณให้กลายเป็น Digital Experience ที่มีความหมายหรือยัง?",
 
+    ctaButton:"ติดต่อ PINTO →",
 
-feature3Title:
-"Interactive Surprise",
+    copyright:"© 2026 PINTO STUDIO. All rights reserved."
 
-feature3Text:
-"ซ่อนข้อความ รูปภาพ หรือเซอร์ไพรส์ไว้ให้ผู้รับได้ค้นพบด้วยตัวเอง",
+  },
 
 
-feature4Title:
-"Photo Gallery",
+  en: {
 
-feature4Text:
-"รวมภาพความทรงจำ คนสำคัญ และช่วงเวลาพิเศษไว้ในพื้นที่เดียวกัน",
+    navAbout:"ABOUT",
+    navWorks:"WORKS",
+    navPricing:"PRICING",
+    navProcess:"PROCESS",
+    navContact:"CONTACT",
 
+    heroEyebrow:"Digital Experiences",
 
-feature5Title:
-"Music & Atmosphere",
+    heroText:
+    "We create digital websites for love, weddings, and meaningful moments — turning your stories into experiences worth remembering.",
 
-feature5Text:
-"เพิ่มเพลงที่มีความหมาย เพื่อสร้างบรรยากาศและอารมณ์ให้กับเรื่องราว",
+    exploreWorks:"Explore Works →",
+    discoverPinto:"Discover PINTO",
 
+    heroCardTitle:"Digital<br>Experiences",
 
-feature6Title:
-"Interactive Moments",
+    aboutLabel:"About PINTO",
 
-feature6Text:
-"เพิ่มลูกเล่นเล็ก ๆ เช่น เกม เค้ก การนับถอยหลัง หรือประสบการณ์พิเศษอื่น ๆ",
+    aboutText:
+    "PINTO STUDIO is a space for creating meaningful Digital Experiences. We believe a website can be more than information — it can become a gift, a memory, or a small place to keep someone's most important moments.",
 
+    worksLabel:"Selected Works",
 
-/* =========================
-   PRICING — THAI
-========================= */
+    worksIntro:
+    "Choose the type of Digital Experience you're looking for and discover templates designed for your moment.",
 
-loveBrandThai:
-"ปิ่นโตรัก",
+    loveDescription:
+    "Digital websites for love, anniversaries, birthdays, apologies, and meaningful moments between two people.",
 
-loveIntro:
-"เว็บไซต์สำหรับบอกรักและเก็บช่วงเวลาสำคัญ สำหรับแฟน ครอบครัว และคนพิเศษ",
+    weddingDescription:
+    "Wedding websites that bring together your story, schedule, location, details, and special guest features.",
 
-loveStartLabel:
-"เริ่มต้น",
+    specialDescription:
+    "Digital Experiences for meaningful moments that do not need to fit into the usual format.",
 
-lovePriceDesc:
-"เว็บไซต์บอกรักสำหรับวันสำคัญและช่วงเวลาพิเศษ",
+    explore:"EXPLORE",
 
-loveOccasion1:
-"บอกรัก",
+    featureLabel:"Interactive Features",
 
-loveOccasion2:
-"วันครบรอบ",
+    featureIntro:
+    "Every website includes thoughtful details designed to make the experience feel personal and made specifically for its recipient.",
 
-loveOccasion3:
-"วันเกิด",
+    feature1Title:"Interactive Moments",
+    feature1Text:"Interactive details that make the recipient participate instead of simply reading.",
 
-loveOccasion4:
-"ง้อ / ขอโทษ",
+    feature2Title:"Personal Story",
+    feature2Text:"Add your own stories, photos, messages, and personal details.",
 
-loveOccasion5:
-"ขอเป็นแฟน",
+    feature3Title:"Music & Memories",
+    feature3Text:"Create an atmosphere with music, photos, and memories worth keeping.",
 
-loveOccasion6:
-"วันสำคัญต่าง ๆ",
+    feature4Title:"Made for You",
+    feature4Text:"Every website is created around the details and story you provide.",
 
-loveExtraTitle:
-"ฟังก์ชันเพิ่มเติม",
+    pricingLabel:"Pricing",
 
-loveExtraDesc:
-"เลือกเพิ่มฟังก์ชันที่ต้องการได้ตามสไตล์ของคุณ",
+    pricingIntro:
+    "Choose the experience that fits your moment. Each template includes the functions shown in its demo.",
 
-loveFunction1:
-"Game",
+    lovePriceDescription:
+    "Starting price for PINTO LOVE templates",
 
-loveFunction2:
-"Letter",
+    lovePrice1:"1 Template = 129 THB",
+    lovePrice2:"All functions included in the selected template",
+    lovePrice3:"Additional function +29 THB / function",
+    lovePrice4:"Custom color adjustment available",
+    lovePrice5:"Estimated delivery: 1–2 days",
 
-loveFunction3:
-"Gallery",
+    lovePriceNote:
+    "Note: The main layout and style of the selected template cannot be changed.",
 
-loveFunction4:
-"Music",
+    weddingPriceDescription:
+    "Standard Package for wedding websites",
 
-loveFunction5:
-"Cake",
+    weddingPrice1:"Music",
+    weddingPrice2:"Photos",
+    weddingPrice3:"Google Maps",
+    weddingPrice4:"Wedding Countdown",
+    weddingPrice5:"Schedule + Couple's Message",
+    weddingPrice6:"Dress Code",
+    weddingPrice7:"Estimated delivery: 4–5 days",
 
-loveFunction6:
-"Surprise",
+    weddingPriceNote:
+    "Plus 349 THB includes 1 special function. Premium 399 THB includes all 3 special functions.",
 
-loveFunction7:
-"Countdown",
+    processLabel:"How It Works",
 
+    processIntro:
+    "A simple process from choosing your template to receiving your finished website.",
 
-weddingIntro:
-"เว็บไซต์แต่งงานสำหรับเก็บรายละเอียด และเรื่องราวสำคัญของวันพิเศษ",
+    process1Title:"Choose a Template",
+    process1Text:"Choose the website type and template that fit your moment.",
 
-standardTitle:
-"Standard",
+    process2Title:"Send Your Details",
+    process2Text:"Send your messages, photos, music, and details for the website.",
 
-standardFeatureTitle:
-"ฟังก์ชันพื้นฐาน",
+    process3Title:"Receive Your Website",
+    process3Text:"PINTO creates your website and delivers it according to the package timeline.",
 
-standardFeature1:
-"Music",
+    finalLabel:"PINTO STUDIO",
 
-standardFeature2:
-"Photos",
+    finalText:
+    "We believe some moments deserve to become something more than a message. PINTO STUDIO creates Digital Experiences that help you express feelings, preserve memories, and share meaningful moments in a way that feels uniquely yours.",
 
-standardFeature3:
-"Google Maps",
+    ctaText:
+    "Ready to turn your moment into a meaningful Digital Experience?",
 
-standardFeature4:
-"Wedding Countdown",
+    ctaButton:"Contact PINTO →",
 
-standardFeature5:
-"Schedule",
+    copyright:"© 2026 PINTO STUDIO. All rights reserved."
 
-standardFeature6:
-"Couple's Message",
+  },
 
-standardFeature7:
-"Dress Code",
 
+  ko: {
 
-plusTitle:
-"Plus",
+    navAbout:"ABOUT",
+    navWorks:"WORKS",
+    navPricing:"PRICING",
+    navProcess:"PROCESS",
+    navContact:"CONTACT",
 
-plusFeatureTitle:
-"ฟังก์ชันพื้นฐาน + เลือก 1 ฟังก์ชันพิเศษ",
+    heroEyebrow:"Digital Experiences",
 
-plusNote:
-"เลือกได้ 1 อย่าง จาก 3 ฟังก์ชันพิเศษ",
+    heroText:
+    "사랑, 결혼식, 그리고 특별한 순간을 위한 디지털 웹사이트를 만듭니다. 당신의 이야기를 오래 기억할 수 있는 경험으로 만들어드립니다.",
 
-premiumTitle:
-"Premium",
+    exploreWorks:"작품 보기 →",
+    discoverPinto:"PINTO 알아보기",
 
-premiumFeatureTitle:
-"ฟังก์ชันพื้นฐาน + ฟังก์ชันพิเศษครบทั้ง 3",
+    heroCardTitle:"Digital<br>Experiences",
 
-luxuryTitle:
-"Luxury",
+    aboutLabel:"About PINTO",
 
-luxuryFeatureTitle:
-"ฟังก์ชันทั้งหมด + 2 ภาษา",
+    aboutText:
+    "PINTO STUDIO는 의미 있는 Digital Experience를 만드는 공간입니다. 웹사이트는 단순한 정보 페이지가 아니라 선물, 추억, 그리고 소중한 순간을 담아두는 작은 공간이 될 수 있다고 믿습니다.",
 
-luxuryFeature1:
-"ฟังก์ชัน Wedding ทั้งหมด",
+    worksLabel:"Selected Works",
 
-luxuryFeature2:
-"2 ภาษา",
+    worksIntro:
+    "원하는 Digital Experience의 종류를 선택하고 당신의 순간에 어울리는 템플릿을 찾아보세요.",
 
-luxuryFeature3:
-"เพิ่มภาษาอื่นได้ตามต้องการ",
+    loveDescription:
+    "사랑, 기념일, 생일, 사과와 특별한 순간을 위한 디지털 웹사이트입니다.",
 
+    weddingDescription:
+    "두 사람의 이야기, 일정, 장소, 웨딩 정보와 특별한 기능을 담을 수 있는 웨딩 웹사이트입니다.",
 
-pricingNotesTitle:
-"หมายเหตุ",
+    specialDescription:
+    "기존의 형식에 얽매이지 않고 특별한 순간을 위한 Digital Experience를 제공합니다.",
 
-pricingNote1:
-"PINTO LOVE ใช้เวลาจัดทำประมาณ 1–2 วัน",
+    explore:"EXPLORE",
 
-pricingNote2:
-"PINTO WEDDING ใช้เวลาจัดทำประมาณ 4–5 วัน แล้วแต่กรณี",
+    featureLabel:"Interactive Features",
 
-pricingNote3:
-"มัดจำ 30%",
+    featureIntro:
+    "작은 디테일까지 세심하게 디자인하여 받는 사람이 자신을 위해 만들어진 웹사이트라고 느낄 수 있도록 합니다.",
 
-pricingNote4:
-"แก้ไขฟรี 1 ครั้งหลังส่งงาน",
+    feature1Title:"Interactive Moments",
+    feature1Text:"단순히 읽는 것을 넘어 직접 참여할 수 있는 인터랙티브 요소를 더합니다.",
 
-pricingNote5:
-"แก้ไขเพิ่มเติมครั้งละ 50 บาท",
+    feature2Title:"Personal Story",
+    feature2Text:"당신만의 이야기, 사진, 메시지와 특별한 내용을 담을 수 있습니다.",
 
-pricingNote6:
-"เว็บไซต์ใช้งานได้ 1 ปี",
+    feature3Title:"Music & Memories",
+    feature3Text:"음악, 사진, 추억을 통해 특별한 분위기를 만들어보세요.",
 
+    feature4Title:"Made for You",
+    feature4Text:"각 웹사이트는 주문자의 이야기와 원하는 내용을 바탕으로 제작됩니다.",
 
-howLabel:
-"HOW IT WORKS",
+    pricingLabel:"Pricing",
 
-howTitle:
-"จากเรื่องราวของคุณ<br>สู่ประสบการณ์ที่สร้างขึ้นเพื่อคุณ",
+    pricingIntro:
+    "당신의 순간에 맞는 서비스를 선택하세요. 각 템플릿에는 데모에서 확인할 수 있는 기능이 포함됩니다.",
 
+    lovePriceDescription:
+    "PINTO LOVE 템플릿 기본 가격",
 
-step1Title:
-"เลือกสิ่งที่คุณต้องการ",
+    lovePrice1:"1 Template = 129 THB",
+    lovePrice2:"선택한 템플릿의 기본 기능 포함",
+    lovePrice3:"추가 기능 +29 THB / 기능",
+    lovePrice4:"원하는 색상으로 조정 가능",
+    lovePrice5:"제작 기간 약 1–2일",
 
-step1Text:
-"เลือกว่าจะสร้าง Wedding Invitation, Love Website หรือเว็บไซต์สำหรับโอกาสพิเศษ",
+    lovePriceNote:
+    "참고: 선택한 템플릿의 기본 레이아웃과 스타일은 변경할 수 없습니다.",
 
+    weddingPriceDescription:
+    "웨딩 웹사이트 Standard Package",
 
-step2Title:
-"ส่งเรื่องราวของคุณ",
+    weddingPrice1:"Music",
+    weddingPrice2:"Photos",
+    weddingPrice3:"Google Maps",
+    weddingPrice4:"Wedding Countdown",
+    weddingPrice5:"Schedule + Couple's Message",
+    weddingPrice6:"Dress Code",
+    weddingPrice7:"제작 기간 약 4–5일",
 
-step2Text:
-"ส่งรูป ข้อความ เพลง รายละเอียด และสิ่งที่อยากให้เราใส่ลงในเว็บไซต์",
+    weddingPriceNote:
+    "Plus 349 THB는 특별 기능 1개 선택, Premium 399 THB는 특별 기능 3개를 모두 포함합니다.",
 
+    processLabel:"How It Works",
 
-step3Title:
-"รับเว็บไซต์ของคุณ",
+    processIntro:
+    "템플릿 선택부터 완성된 웹사이트를 받기까지 간단한 과정으로 진행됩니다.",
 
-step3Text:
-"เมื่อทุกอย่างเสร็จเรียบร้อย คุณจะได้รับลิงก์สำหรับเปิดดูและส่งต่อให้คนสำคัญ",
+    process1Title:"템플릿 선택",
+    process1Text:"당신의 순간에 어울리는 웹사이트 유형과 템플릿을 선택하세요.",
 
+    process2Title:"내용 보내기",
+    process2Text:"웹사이트에 넣을 메시지, 사진, 음악 및 필요한 정보를 보내주세요.",
 
-finalLabel:
-"THE PINTO STUDIO",
+    process3Title:"웹사이트 완성",
+    process3Text:"PINTO가 웹사이트를 제작하고 패키지에 안내된 기간 내에 전달해드립니다.",
 
-finalTitle:
-"บางเรื่องราวเกิดขึ้นเพียงครั้งเดียว<br>จึงควรได้รับการออกแบบอย่างตั้งใจ",
+    finalLabel:"PINTO STUDIO",
 
-finalText:
-"สำหรับเรา เว็บไซต์ไม่ได้เป็นเพียงหน้าจอ แต่เป็นพื้นที่ที่เก็บเรื่องราว ความรู้สึก และความทรงจำของผู้คน PINTO STUDIO จึงอยากสร้างงานดิจิทัลที่ไม่ได้มีเพียงความสวยงาม แต่มีความหมายสำหรับคนที่ได้เปิดมัน",
+    finalText:
+    "어떤 순간은 단순한 메시지보다 더 특별한 형태로 남을 가치가 있습니다. PINTO STUDIO는 감정을 전하고 추억을 간직하며 소중한 순간을 특별한 방식으로 전달할 수 있는 Digital Experience를 만듭니다.",
 
-signature:
-"PINTO STUDIO — MADE WITH MEANING",
+    ctaText:
+    "당신의 순간을 의미 있는 Digital Experience로 만들어보세요.",
 
+    ctaButton:"PINTO 문의하기 →",
 
-ctaTitle:
-"มีเรื่องราวที่อยากให้เราสร้างไหม?",
+    copyright:"© 2026 PINTO STUDIO. All rights reserved."
 
-ctaText:
-"ไม่ว่าจะเป็นวันแต่งงาน วันสำคัญ หรือความรู้สึกที่อยากส่งต่อ ให้ PINTO STUDIO ช่วยเปลี่ยนเรื่องราวของคุณให้กลายเป็นประสบการณ์ที่น่าจดจำ",
-
-ctaButton:
-"เริ่มต้นสร้างงาน",
-
-
-footerCopy:
-"© 2026 PINTO STUDIO — Digital experiences for meaningful moments"
-
-},
-
-
-/* =========================
-   ENGLISH
-========================= */
-
-en: {
-
-navHome:"Home",
-navAbout:"About",
-navWorks:"Works",
-navFeatures:"Features",
-navPricing:"Pricing",
-navHow:"How It Works",
-
-languageTitle:
-"Choose Language",
-
-
-heroKicker:
-"Digital experiences for meaningful moments",
-
-heroDesc:
-"PINTO STUDIO creates digital experiences for moments worth remembering — from elegant online wedding invitations to intimate websites made for love, gratitude, memories, and the people who matter.",
-
-
-aboutLabel:
-"ABOUT PINTO STUDIO",
-
-aboutTitle:
-"We design meaningful stories<br>to be beautifully remembered",
-
-aboutText1:
-"PINTO STUDIO is a digital studio creating experiences for the moments people want to remember.",
-
-aboutText2:
-"From the beginning of a marriage to birthdays, anniversaries, love letters, gratitude, and the little feelings we want to share with someone special.",
-
-aboutText3:
-"We turn your stories, photographs, words, and details into digital experiences designed to feel personal, beautiful, and meaningful.",
-
-aboutSmall:
-"DESIGNED WITH MEANING",
-
-
-worksLabel:
-"SELECTED WORKS",
-
-worksTitle:
-"Two expressions of feeling<br>One space for your story",
-
-worksIntro:
-"Whether it is the beginning of a marriage or a feeling you want to give to someone special, PINTO STUDIO creates an experience that feels entirely yours.",
-
-
-work1Title:
-"PINTO WEDDING",
-
-work1Text:
-"Online wedding invitations and digital wedding experiences designed for couples who want their special day to begin with something beautifully personal.",
-
-work2Title:
-"PINTO LOVE",
-
-work2Text:
-"Little websites for birthdays, anniversaries, love, gratitude, surprises, and every feeling worth turning into a gift.",
-
-work3Title:
-"SPECIAL MOMENTS",
-
-work3Text:
-"Digital experiences for meaningful days shared with family, friends, or anyone who holds a special place in your life.",
-
-workLink:
-"EXPLORE →",
-
-
-featuresLabel:
-"INTERACTIVE FEATURES",
-
-featuresTitle:
-"Little details<br>that make every story special",
-
-
-feature1Title:
-"Interactive Invitation",
-
-feature1Text:
-"An invitation that goes beyond information — designed to be opened, explored, and experienced.",
-
-
-feature2Title:
-"Interactive Letter",
-
-feature2Text:
-"Open the envelope and discover a message written especially for someone who matters.",
-
-
-feature3Title:
-"Interactive Surprise",
-
-feature3Text:
-"Hide messages, photographs, and little surprises for your recipient to discover.",
-
-
-feature4Title:
-"Photo Gallery",
-
-feature4Text:
-"Bring meaningful people, memories, and moments together in one beautiful space.",
-
-
-feature5Title:
-"Music & Atmosphere",
-
-feature5Text:
-"Add meaningful music to create the mood and atmosphere behind your story.",
-
-
-feature6Title:
-"Interactive Moments",
-
-feature6Text:
-"Add little experiences such as games, cakes, countdowns, or other interactive surprises.",
-
-
-/* =========================
-   PRICING — ENGLISH
-========================= */
-
-loveBrandThai:
-"PINTO LOVE",
-
-loveIntro:
-"A personal website for expressing love and celebrating meaningful moments with your partner, family, or someone special.",
-
-loveStartLabel:
-"Starting from",
-
-lovePriceDesc:
-"A personal love website for special days and meaningful moments.",
-
-loveOccasion1:
-"Love",
-
-loveOccasion2:
-"Anniversary",
-
-loveOccasion3:
-"Birthday",
-
-loveOccasion4:
-"Apology",
-
-loveOccasion5:
-"Confession",
-
-loveOccasion6:
-"Special Moments",
-
-loveExtraTitle:
-"Additional Functions",
-
-loveExtraDesc:
-"Add the functions you want and make the website your own.",
-
-loveFunction1:
-"Game",
-
-loveFunction2:
-"Letter",
-
-loveFunction3:
-"Gallery",
-
-loveFunction4:
-"Music",
-
-loveFunction5:
-"Cake",
-
-loveFunction6:
-"Surprise",
-
-loveFunction7:
-"Countdown",
-
-
-weddingIntro:
-"A wedding website designed to collect the important details and stories of your special day.",
-
-standardTitle:
-"Standard",
-
-standardFeatureTitle:
-"Basic Features",
-
-standardFeature1:
-"Music",
-
-standardFeature2:
-"Photos",
-
-standardFeature3:
-"Google Maps",
-
-standardFeature4:
-"Wedding Countdown",
-
-standardFeature5:
-"Schedule",
-
-standardFeature6:
-"Couple's Message",
-
-standardFeature7:
-"Dress Code",
-
-
-plusTitle:
-"Plus",
-
-plusFeatureTitle:
-"Basic Features + Choose 1 Special Function",
-
-plusNote:
-"Choose 1 from 3 special functions",
-
-premiumTitle:
-"Premium",
-
-premiumFeatureTitle:
-"Basic Features + All 3 Special Functions",
-
-luxuryTitle:
-"Luxury",
-
-luxuryFeatureTitle:
-"All Features + 2 Languages",
-
-luxuryFeature1:
-"All Wedding Features",
-
-luxuryFeature2:
-"2 Languages",
-
-luxuryFeature3:
-"Additional languages available",
-
-
-pricingNotesTitle:
-"Notes",
-
-pricingNote1:
-"PINTO LOVE: approximately 1–2 days",
-
-pricingNote2:
-"PINTO WEDDING: approximately 4–5 days, depending on the case",
-
-pricingNote3:
-"30% deposit",
-
-pricingNote4:
-"1 free revision after delivery",
-
-pricingNote5:
-"Additional revisions: 50 THB each",
-
-pricingNote6:
-"Website usage period: 1 year",
-
-
-howLabel:
-"HOW IT WORKS",
-
-howTitle:
-"From your story<br>to an experience made for you",
-
-
-step1Title:
-"Choose What You Need",
-
-step1Text:
-"Choose between a Wedding Invitation, Love Website, or a digital experience for your special occasion.",
-
-
-step2Title:
-"Send Your Story",
-
-step2Text:
-"Share your photographs, words, music, details, and everything you want to bring into the experience.",
-
-
-step3Title:
-"Receive Your Website",
-
-step3Text:
-"Once everything is complete, you will receive a link to open, enjoy, and share with the people who matter.",
-
-
-finalLabel:
-"THE PINTO STUDIO",
-
-finalTitle:
-"Some stories happen only once<br>so they deserve to be designed with intention",
-
-finalText:
-"To us, a website is more than a screen. It is a place to hold stories, feelings, and memories. PINTO STUDIO creates digital work that is not only beautiful, but meaningful to the people who experience it.",
-
-signature:
-"PINTO STUDIO — MADE WITH MEANING",
-
-
-ctaTitle:
-"Have a story you'd like us to create?",
-
-ctaText:
-"Whether it is a wedding, a special occasion, or simply a feeling you want to share, let PINTO STUDIO turn your story into something worth remembering.",
-
-ctaButton:
-"Start Your Project",
-
-
-footerCopy:
-"© 2026 PINTO STUDIO — Digital experiences for meaningful moments"
-
-},
-
-
-/* =========================
-   KOREAN
-========================= */
-
-ko: {
-
-navHome:"홈",
-navAbout:"소개",
-navWorks:"작품",
-navFeatures:"기능",
-navPricing:"가격",
-navHow:"제작 과정",
-
-languageTitle:
-"언어 선택",
-
-
-heroKicker:
-"Digital experiences for meaningful moments",
-
-heroDesc:
-"PINTO STUDIO는 오래 기억하고 싶은 순간을 위한 디지털 경험을 만듭니다. 세련된 온라인 웨딩 초대장부터 사랑, 감사, 추억을 전하기 위한 특별한 웹사이트까지.",
-
-
-aboutLabel:
-"ABOUT PINTO STUDIO",
-
-aboutTitle:
-"소중한 이야기를<br>아름답게 기억할 수 있도록",
-
-aboutText1:
-"PINTO STUDIO는 오래 기억하고 싶은 순간을 위한 디지털 스튜디오입니다.",
-
-aboutText2:
-"결혼을 시작하는 특별한 순간부터 생일, 기념일, 사랑의 메시지, 감사의 마음, 그리고 소중한 사람에게 전하고 싶은 작은 감정까지.",
-
-aboutText3:
-"당신의 이야기와 사진, 메시지, 디테일을 담아 개인적이고 아름다운 디지털 경험으로 만들어 드립니다.",
-
-aboutSmall:
-"DESIGNED WITH MEANING",
-
-
-worksLabel:
-"SELECTED WORKS",
-
-worksTitle:
-"두 가지 형태의 마음<br>하나의 특별한 이야기",
-
-worksIntro:
-"결혼이라는 새로운 시작부터 소중한 사람에게 전하고 싶은 마음까지, PINTO STUDIO는 당신만의 이야기를 특별한 경험으로 만들어 드립니다.",
-
-
-work1Title:
-"PINTO WEDDING",
-
-work1Text:
-"소중한 결혼식을 위한 온라인 웨딩 초대장과 디지털 웨딩 경험을 만들어 드립니다.",
-
-work2Title:
-"PINTO LOVE",
-
-work2Text:
-"생일, 기념일, 사랑, 감사, 서프라이즈 등 소중한 마음을 특별한 선물로 만들어 드리는 작은 웹사이트입니다.",
-
-work3Title:
-"SPECIAL MOMENTS",
-
-work3Text:
-"가족, 친구, 그리고 소중한 사람과 함께하는 특별한 날을 위한 디지털 경험을 만들어 드립니다.",
-
-workLink:
-"자세히 보기 →",
-
-
-featuresLabel:
-"INTERACTIVE FEATURES",
-
-featuresTitle:
-"작은 디테일이<br>특별한 이야기를 만듭니다",
-
-
-feature1Title:
-"Interactive Invitation",
-
-feature1Text:
-"정보만 전달하는 초대장이 아니라 직접 열어보고 둘러보며 경험할 수 있는 초대장입니다.",
-
-
-feature2Title:
-"Interactive Letter",
-
-feature2Text:
-"봉투를 열고 소중한 사람을 위해 준비한 특별한 메시지를 발견해 보세요.",
-
-
-feature3Title:
-"Interactive Surprise",
-
-feature3Text:
-"메시지와 사진, 작은 서프라이즈를 숨겨 직접 발견할 수 있도록 만들 수 있습니다.",
-
-
-feature4Title:
-"Photo Gallery",
-
-feature4Text:
-"소중한 사람과 추억, 특별한 순간을 하나의 아름다운 공간에 담아보세요.",
-
-
-feature5Title:
-"Music & Atmosphere",
-
-feature5Text:
-"의미 있는 음악을 더해 이야기의 분위기와 감정을 완성해 보세요.",
-
-
-feature6Title:
-"Interactive Moments",
-
-feature6Text:
-"게임, 케이크, 카운트다운 등 작은 인터랙티브 요소를 더할 수 있습니다.",
-
-
-/* =========================
-   PRICING — KOREAN
-========================= */
-
-loveBrandThai:
-"핀토 러브",
-
-loveIntro:
-"연인, 가족, 소중한 사람에게 마음을 전하고 특별한 순간을 기록하는 개인 웹사이트입니다.",
-
-loveStartLabel:
-"시작 가격",
-
-lovePriceDesc:
-"특별한 날과 소중한 순간을 위한 사랑의 웹사이트",
-
-loveOccasion1:
-"사랑 고백",
-
-loveOccasion2:
-"기념일",
-
-loveOccasion3:
-"생일",
-
-loveOccasion4:
-"화해 / 사과",
-
-loveOccasion5:
-"고백",
-
-loveOccasion6:
-"특별한 날",
-
-loveExtraTitle:
-"추가 기능",
-
-loveExtraDesc:
-"원하는 기능을 추가하여 나만의 웹사이트를 만들어보세요.",
-
-loveFunction1:
-"Game",
-
-loveFunction2:
-"Letter",
-
-loveFunction3:
-"Gallery",
-
-loveFunction4:
-"Music",
-
-loveFunction5:
-"Cake",
-
-loveFunction6:
-"Surprise",
-
-loveFunction7:
-"Countdown",
-
-
-weddingIntro:
-"결혼식의 중요한 정보와 특별한 이야기를 담을 수 있는 웨딩 웹사이트입니다.",
-
-standardTitle:
-"Standard",
-
-standardFeatureTitle:
-"기본 기능",
-
-standardFeature1:
-"Music",
-
-standardFeature2:
-"Photos",
-
-standardFeature3:
-"Google Maps",
-
-standardFeature4:
-"Wedding Countdown",
-
-standardFeature5:
-"Schedule",
-
-standardFeature6:
-"Couple's Message",
-
-standardFeature7:
-"Dress Code",
-
-
-plusTitle:
-"Plus",
-
-plusFeatureTitle:
-"기본 기능 + 특별 기능 1개 선택",
-
-plusNote:
-"3가지 특별 기능 중 1개 선택",
-
-premiumTitle:
-"Premium",
-
-premiumFeatureTitle:
-"기본 기능 + 특별 기능 3가지 모두 포함",
-
-luxuryTitle:
-"Luxury",
-
-luxuryFeatureTitle:
-"전체 기능 + 2개 언어",
-
-luxuryFeature1:
-"모든 Wedding 기능",
-
-luxuryFeature2:
-"2개 언어",
-
-luxuryFeature3:
-"추가 언어 선택 가능",
-
-
-pricingNotesTitle:
-"안내사항",
-
-pricingNote1:
-"PINTO LOVE: 약 1–2일 소요",
-
-pricingNote2:
-"PINTO WEDDING: 경우에 따라 약 4–5일 소요",
-
-pricingNote3:
-"예약금 30%",
-
-pricingNote4:
-"제작 완료 후 1회 무료 수정",
-
-pricingNote5:
-"추가 수정은 1회당 50 THB",
-
-pricingNote6:
-"웹사이트 이용 기간: 1년",
-
-
-howLabel:
-"HOW IT WORKS",
-
-howTitle:
-"당신의 이야기에서<br>당신만의 경험으로",
-
-
-step1Title:
-"원하는 서비스를 선택하세요",
-
-step1Text:
-"웨딩 초대장, Love Website 또는 특별한 날을 위한 디지털 경험을 선택하세요.",
-
-
-step2Title:
-"당신의 이야기를 보내주세요",
-
-step2Text:
-"사진, 메시지, 음악, 필요한 정보와 담고 싶은 이야기를 보내주세요.",
-
-
-step3Title:
-"완성된 웹사이트를 받아보세요",
-
-step3Text:
-"모든 작업이 완료되면 소중한 사람과 공유할 수 있는 링크를 보내드립니다.",
-
-
-finalLabel:
-"THE PINTO STUDIO",
-
-finalTitle:
-"한 번뿐인 이야기는<br>더욱 특별하게 디자인되어야 합니다",
-
-finalText:
-"PINTO STUDIO에게 웹사이트는 단순한 화면이 아닙니다. 이야기와 감정, 추억을 담아두는 공간입니다. 아름다움뿐만 아니라 그 안에 담긴 사람의 마음까지 느껴질 수 있는 디지털 경험을 만들고 싶습니다.",
-
-signature:
-"PINTO STUDIO — MADE WITH MEANING",
-
-
-ctaTitle:
-"우리와 함께 만들고 싶은 이야기가 있나요?",
-
-ctaText:
-"결혼식이든 특별한 날이든, 혹은 누군가에게 전하고 싶은 작은 마음이든 PINTO STUDIO와 함께 오래 기억할 수 있는 경험으로 만들어 보세요.",
-
-ctaButton:
-"프로젝트 시작하기",
-
-
-footerCopy:
-"© 2026 PINTO STUDIO — Digital experiences for meaningful moments"
-
-}
+  }
 
 };
 
 
-/* =========================
-   LANGUAGE SETUP
-========================= */
+function setLanguage(lang){
 
-const languageButton =
-document.getElementById("languageButton");
+  document.querySelectorAll("[data-i18n]").forEach(element => {
 
-const languageModal =
-document.getElementById("languageModal");
+    const key = element.getAttribute("data-i18n");
+
+    if(translations[lang] && translations[lang][key]){
+      element.innerHTML = translations[lang][key];
+    }
+
+  });
+
+  document.documentElement.lang = lang;
+
+  document.getElementById("currentLanguage").textContent =
+    lang === "th" ? "TH" :
+    lang === "en" ? "EN" :
+    "KO";
+
+  localStorage.setItem("pintoLanguage",lang);
+
+  closeLanguage();
+
+}
 
 
-languageButton.addEventListener("click",()=>{
-  languageModal.classList.add("show");
-});
+function openLanguage(){
+  document.getElementById("languageModal").classList.add("active");
+}
 
 
-languageModal.addEventListener("click",(e)=>{
+function closeLanguage(){
+  document.getElementById("languageModal").classList.remove("active");
+}
 
-  if(e.target===languageModal){
-    languageModal.classList.remove("show");
+
+document.getElementById("languageModal").addEventListener("click",function(e){
+
+  if(e.target === this){
+    closeLanguage();
   }
 
 });
 
 
-function setLanguage(lang){
+const savedLanguage =
+  localStorage.getItem("pintoLanguage") || "th";
 
-const t=translations[lang];
-
-document.documentElement.lang=lang;
-
-document.body.classList.remove(
-  "lang-en",
-  "lang-ko"
-);
-
-if(lang==="en"){
-  document.body.classList.add("lang-en");
-}
-
-if(lang==="ko"){
-  document.body.classList.add("lang-ko");
-}
-
-
-/* NAV */
-
-document.querySelector(
-'[data-nav="home"]'
-).textContent=t.navHome;
-
-document.querySelector(
-'[data-nav="about"]'
-).textContent=t.navAbout;
-
-document.querySelector(
-'[data-nav="works"]'
-).textContent=t.navWorks;
-
-document.querySelector(
-'[data-nav="features"]'
-).textContent=t.navFeatures;
-
-document.querySelector(
-'[data-nav="pricing"]'
-).textContent=t.navPricing;
-
-document.querySelector(
-'[data-nav="how"]'
-).textContent=t.navHow;
-
-
-/* MODAL */
-
-document.getElementById(
-"languageTitle"
-).textContent=t.languageTitle;
-
-
-/* HERO */
-
-document.getElementById(
-"heroKicker"
-).textContent=t.heroKicker;
-
-document.getElementById(
-"heroDesc"
-).textContent=t.heroDesc;
-
-
-/* ABOUT */
-
-document.getElementById(
-"aboutLabel"
-).textContent=t.aboutLabel;
-
-document.getElementById(
-"aboutTitle"
-).innerHTML=t.aboutTitle;
-
-document.getElementById(
-"aboutText1"
-).textContent=t.aboutText1;
-
-document.getElementById(
-"aboutText2"
-).textContent=t.aboutText2;
-
-document.getElementById(
-"aboutText3"
-).textContent=t.aboutText3;
-
-document.getElementById(
-"aboutSmall"
-).textContent=t.aboutSmall;
-
-
-/* WORKS */
-
-document.getElementById(
-"worksLabel"
-).textContent=t.worksLabel;
-
-document.getElementById(
-"worksTitle"
-).innerHTML=t.worksTitle;
-
-document.getElementById(
-"worksIntro"
-).textContent=t.worksIntro;
-
-
-document.getElementById(
-"work1Title"
-).textContent=t.work1Title;
-
-document.getElementById(
-"work1Text"
-).textContent=t.work1Text;
-
-
-document.getElementById(
-"work2Title"
-).textContent=t.work2Title;
-
-document.getElementById(
-"work2Text"
-).textContent=t.work2Text;
-
-
-document.getElementById(
-"work3Title"
-).textContent=t.work3Title;
-
-document.getElementById(
-"work3Text"
-).textContent=t.work3Text;
-
-
-document.getElementById(
-"workLink"
-).textContent=t.workLink;
-
-document.getElementById(
-"workLink2"
-).textContent=t.workLink;
-
-document.getElementById(
-"workLink3"
-).textContent=t.workLink;
-
-
-/* FEATURES */
-
-document.getElementById(
-"featuresLabel"
-).textContent=t.featuresLabel;
-
-document.getElementById(
-"featuresTitle"
-).innerHTML=t.featuresTitle;
-
-
-for(let i=1;i<=6;i++){
-
-document.getElementById(
-`feature${i}Title`
-).textContent=
-t[`feature${i}Title`];
-
-document.getElementById(
-`feature${i}Text`
-).textContent=
-t[`feature${i}Text`];
-
-}
-
-
-/* PRICING */
-
-document.getElementById(
-"loveBrandThai"
-).textContent=t.loveBrandThai;
-
-document.getElementById(
-"loveIntro"
-).textContent=t.loveIntro;
-
-document.getElementById(
-"loveStartLabel"
-).textContent=t.loveStartLabel;
-
-document.getElementById(
-"lovePriceDesc"
-).textContent=t.lovePriceDesc;
-
-for(let i=1;i<=6;i++){
-
-document.getElementById(
-`loveOccasion${i}`
-).textContent=
-t[`loveOccasion${i}`];
-
-}
-
-document.getElementById(
-"loveExtraTitle"
-).textContent=t.loveExtraTitle;
-
-document.getElementById(
-"loveExtraDesc"
-).textContent=t.loveExtraDesc;
-
-for(let i=1;i<=7;i++){
-
-document.getElementById(
-`loveFunction${i}`
-).textContent=
-t[`loveFunction${i}`];
-
-}
-
-
-document.getElementById(
-"weddingIntro"
-).textContent=t.weddingIntro;
-
-
-document.getElementById(
-"standardTitle"
-).textContent=t.standardTitle;
-
-document.getElementById(
-"standardFeatureTitle"
-).textContent=t.standardFeatureTitle;
-
-for(let i=1;i<=7;i++){
-
-document.getElementById(
-`standardFeature${i}`
-).textContent=
-t[`standardFeature${i}`];
-
-}
-
-
-document.getElementById(
-"plusTitle"
-).textContent=t.plusTitle;
-
-document.getElementById(
-"plusFeatureTitle"
-).textContent=t.plusFeatureTitle;
-
-document.getElementById(
-"plusNote"
-).textContent=t.plusNote;
-
-
-document.getElementById(
-"premiumTitle"
-).textContent=t.premiumTitle;
-
-document.getElementById(
-"premiumFeatureTitle"
-).textContent=t.premiumFeatureTitle;
-
-
-document.getElementById(
-"luxuryTitle"
-).textContent=t.luxuryTitle;
-
-document.getElementById(
-"luxuryFeatureTitle"
-).textContent=t.luxuryFeatureTitle;
-
-for(let i=1;i<=3;i++){
-
-document.getElementById(
-`luxuryFeature${i}`
-).textContent=
-t[`luxuryFeature${i}`];
-
-}
-
-
-document.getElementById(
-"pricingNotesTitle"
-).textContent=t.pricingNotesTitle;
-
-for(let i=1;i<=6;i++){
-
-document.getElementById(
-`pricingNote${i}`
-).textContent=
-t[`pricingNote${i}`];
-
-}
-
-
-/* HOW */
-
-document.getElementById(
-"howLabel"
-).textContent=t.howLabel;
-
-document.getElementById(
-"howTitle"
-).innerHTML=t.howTitle;
-
-
-for(let i=1;i<=3;i++){
-
-document.getElementById(
-`step${i}Title`
-).textContent=
-t[`step${i}Title`];
-
-document.getElementById(
-`step${i}Text`
-).textContent=
-t[`step${i}Text`];
-
-}
-
-
-/* FINAL */
-
-document.getElementById(
-"finalLabel"
-).textContent=t.finalLabel;
-
-document.getElementById(
-"finalTitle"
-).innerHTML=t.finalTitle;
-
-document.getElementById(
-"finalText"
-).textContent=t.finalText;
-
-document.getElementById(
-"signature"
-).textContent=t.signature;
-
-
-/* CTA */
-
-document.getElementById(
-"ctaTitle"
-).textContent=t.ctaTitle;
-
-document.getElementById(
-"ctaText"
-).textContent=t.ctaText;
-
-document.getElementById(
-"ctaButton"
-).textContent=t.ctaButton;
-
-
-/* FOOTER */
-
-document.getElementById(
-"footerCopy"
-).textContent=t.footerCopy;
-
-
-/* SAVE */
-
-localStorage.setItem(
-"pintostudio-language",
-lang
-);
-
-languageModal.classList.remove("show");
-
-}
-
-
-/* =========================
-   LANGUAGE BUTTONS
-========================= */
-
-document
-.querySelectorAll(".language-option")
-.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-  setLanguage(
-    button.dataset.lang
-  );
-
-});
-
-});
-
-
-setLanguage(
-localStorage.getItem(
-"pintostudio-language"
-) || "th"
-);
-
-
-/* =========================
-   ACTIVE NAV
-========================= */
-
-const navLinks =
-document.querySelectorAll(
-".nav-links a"
-);
-
-const sections = [
-
-document.getElementById("home"),
-
-document.getElementById("about"),
-
-document.getElementById("works"),
-
-document.getElementById("features"),
-
-document.getElementById("pricing"),
-
-document.getElementById("how")
-
-];
-
-
-function updateActiveNav(){
-
-let current="home";
-
-const scrollPosition =
-window.scrollY +
-window.innerHeight*.35;
-
-
-sections.forEach(section=>{
-
-if(
-scrollPosition >=
-section.offsetTop
-){
-  current=section.id;
-}
-
-});
-
-
-navLinks.forEach(link=>{
-
-link.classList.remove(
-"active"
-);
-
-if(
-link.dataset.nav===current
-){
-
-link.classList.add(
-"active"
-);
-
-}
-
-});
-
-}
-
-
-window.addEventListener(
-"scroll",
-updateActiveNav
-);
-
-updateActiveNav();
-
-
-/* =========================
-   ABOUT SLIDER
-========================= */
-
-const aboutTrack =
-document.getElementById(
-"aboutTrack"
-);
-
-let currentSlide=0;
-
-const totalSlides=6;
-
-
-function nextAboutSlide(){
-
-currentSlide++;
-
-if(
-currentSlide>=totalSlides
-){
-  currentSlide=0;
-}
-
-aboutTrack.style.transform =
-`translateX(-${
-currentSlide*(100/totalSlides)
-}%)`;
-
-}
-
-
-setInterval(
-nextAboutSlide,
-1500
-);
+setLanguage(savedLanguage);
 
 </script>
 
