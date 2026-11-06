@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PINTO LOVE | Anniversary Template 03</title>
+<title>Anniversary Template 03 | PINTO LOVE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,10 +54,13 @@ header{
   width:100%;
   padding:26px 6vw;
   border-bottom:1px solid var(--line);
+
   display:flex;
   justify-content:space-between;
   align-items:center;
+
   background:rgba(251,248,245,.96);
+
   position:sticky;
   top:0;
   z-index:20;
@@ -81,6 +84,7 @@ header{
   color:var(--dark);
 }
 
+
 /* =========================
    BREADCRUMB
 ========================= */
@@ -89,6 +93,7 @@ header{
   max-width:1280px;
   margin:0 auto;
   padding:35px 6vw 0;
+
   font-size:11px;
   letter-spacing:1.5px;
   color:var(--muted);
@@ -99,6 +104,7 @@ header{
   color:var(--warm);
 }
 
+
 /* =========================
    PRODUCT
 ========================= */
@@ -106,14 +112,17 @@ header{
 .product{
   max-width:1280px;
   margin:0 auto;
+
   padding:55px 6vw 110px;
 
   display:grid;
   grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);
+
   gap:80px;
 
   align-items:start;
 }
+
 
 /* =========================
    GALLERY
@@ -143,7 +152,6 @@ header{
   justify-content:center;
 
   overflow:hidden;
-  position:relative;
 }
 
 .placeholder{
@@ -162,25 +170,33 @@ header{
 
 .placeholder-title{
   margin-top:10px;
+
   font-family:"Cormorant Garamond",serif;
   font-size:30px;
+
   letter-spacing:2px;
 }
 
 .placeholder-subtitle{
   margin-top:8px;
+
   font-size:12px;
   letter-spacing:1.5px;
+
   color:var(--muted);
 }
 
 .gallery-note{
   text-align:center;
+
   margin-top:14px;
+
   font-size:11px;
   letter-spacing:1px;
+
   color:var(--muted);
 }
+
 
 /* =========================
    PRODUCT INFO
@@ -193,38 +209,52 @@ header{
 .eyebrow{
   font-size:11px;
   letter-spacing:2px;
+
   color:var(--taupe);
+
   margin-bottom:18px;
 }
 
 .product-title{
   font-family:"Cormorant Garamond",serif;
+
   font-size:56px;
   line-height:1.2;
+
   font-weight:500;
+
   margin-bottom:18px;
 }
 
 .product-subtitle{
   font-family:"Cormorant Garamond",serif;
+
   font-size:23px;
   line-height:1.5;
+
   color:var(--muted);
+
   margin-bottom:30px;
 }
 
 .price{
   font-family:"Cormorant Garamond",serif;
+
   font-size:31px;
+
   margin-bottom:30px;
 }
 
 .description{
   font-size:14px;
+
   color:var(--muted);
+
   line-height:2;
+
   margin-bottom:38px;
 }
+
 
 /* =========================
    INFO BLOCK
@@ -232,6 +262,7 @@ header{
 
 .info-block{
   padding:27px 0;
+
   border-top:1px solid var(--line);
 }
 
@@ -241,8 +272,11 @@ header{
 
 .info-title{
   font-size:11px;
+
   letter-spacing:1.8px;
+
   color:var(--taupe);
+
   margin-bottom:16px;
 }
 
@@ -252,22 +286,32 @@ header{
 
 .info-list li{
   font-size:13px;
+
   color:var(--dark);
+
   margin-bottom:8px;
+
   position:relative;
+
   padding-left:18px;
 }
 
 .info-list li::before{
   content:"";
+
   position:absolute;
+
   left:0;
   top:11px;
+
   width:5px;
   height:5px;
+
   border-radius:50%;
+
   background:var(--warm);
 }
+
 
 /* =========================
    BUTTONS
@@ -275,22 +319,28 @@ header{
 
 .actions{
   display:flex;
+
   gap:12px;
+
   margin-top:35px;
+
   flex-wrap:wrap;
 }
 
 .btn{
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
 
   min-height:50px;
+
   padding:0 27px;
 
   border:1px solid var(--dark);
 
   font-size:10px;
+
   letter-spacing:1.8px;
 
   transition:.3s;
@@ -298,11 +348,13 @@ header{
 
 .btn-primary{
   background:var(--dark);
+
   color:var(--white);
 }
 
 .btn-primary:hover{
   background:var(--taupe);
+
   border-color:var(--taupe);
 }
 
@@ -314,66 +366,59 @@ header{
   background:var(--cream);
 }
 
+
 /* =========================
-   STORY SECTION
+   STORY
 ========================= */
 
 .story{
   background:var(--cream);
+
   padding:100px 6vw;
 }
 
 .story-inner{
-  max-width:1280px;
+  max-width:900px;
+
   margin:auto;
+
+  text-align:center;
 }
 
 .section-eyebrow{
   font-size:11px;
+
   letter-spacing:2px;
+
   color:var(--taupe);
+
   margin-bottom:15px;
 }
 
 .section-title{
   font-family:"Cormorant Garamond",serif;
+
   font-size:50px;
+
   line-height:1.2;
+
   font-weight:500;
-  margin-bottom:45px;
-}
 
-.story-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.story-card{
-  background:var(--white);
-  padding:35px;
-  min-height:220px;
-  border:1px solid var(--line);
-}
-
-.story-card-number{
-  font-family:"Cormorant Garamond",serif;
-  font-size:38px;
-  color:var(--warm);
   margin-bottom:25px;
 }
 
-.story-card-title{
-  font-family:"Cormorant Garamond",serif;
-  font-size:24px;
-  margin-bottom:12px;
+.story-text{
+  max-width:720px;
+
+  margin:auto;
+
+  font-size:13px;
+
+  line-height:2;
+
+  color:var(--muted);
 }
 
-.story-card-text{
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.9;
-}
 
 /* =========================
    FOOTER
@@ -381,22 +426,30 @@ header{
 
 footer{
   padding:50px 6vw;
+
   text-align:center;
+
   border-top:1px solid var(--line);
 }
 
 .footer-logo{
   font-family:"Cormorant Garamond",serif;
+
   font-size:27px;
+
   letter-spacing:3px;
 }
 
 .footer-text{
   margin-top:8px;
+
   font-size:10px;
+
   letter-spacing:1.5px;
+
   color:var(--muted);
 }
+
 
 /* =========================
    MOBILE
@@ -406,16 +459,14 @@ footer{
 
   .product{
     grid-template-columns:1fr;
+
     gap:50px;
   }
 
   .gallery{
     position:relative;
-    top:auto;
-  }
 
-  .story-grid{
-    grid-template-columns:1fr;
+    top:auto;
   }
 
 }
@@ -436,11 +487,13 @@ footer{
 
   .breadcrumb{
     padding:28px 5vw 0;
+
     font-size:10px;
   }
 
   .product{
     padding:40px 5vw 80px;
+
     gap:40px;
   }
 
@@ -458,13 +511,17 @@ footer{
 
   .product-title{
     font-size:42px;
+
     line-height:1.25;
+
     margin-bottom:16px;
   }
 
   .product-subtitle{
     font-size:20px;
+
     line-height:1.5;
+
     margin-bottom:28px;
   }
 
@@ -492,16 +549,14 @@ footer{
     font-size:40px;
   }
 
-  .story-card{
-    padding:28px;
-  }
-
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      HEADER
@@ -514,7 +569,7 @@ footer{
   </a>
 
   <a href="anniversary.html" class="back-link">
-    ← BACK TO TEMPLATES
+    ← Back to Templates
   </a>
 
 </header>
@@ -526,15 +581,19 @@ footer{
 
 <div class="breadcrumb">
 
-  <a href="love.html">PINTO LOVE</a>
+  <a href="love.html">
+    PINTO LOVE
+  </a>
 
   <span>/</span>
 
-  <a href="anniversary.html">ANNIVERSARY</a>
+  <a href="anniversary.html">
+    Anniversary
+  </a>
 
   <span>/</span>
 
-  TEMPLATE 03
+  Template 03
 
 </div>
 
@@ -565,15 +624,11 @@ footer{
         </div>
 
         <div class="placeholder-subtitle">
-          TEMPLATE 03
+          Preview images will be added soon.
         </div>
 
       </div>
 
-    </div>
-
-    <div class="gallery-note">
-      Preview images will be added soon.
     </div>
 
   </div>
@@ -589,13 +644,16 @@ footer{
       ANNIVERSARY · TEMPLATE 03
     </div>
 
+
     <h1 class="product-title">
       วันครบรอบ
     </h1>
 
+
     <div class="product-subtitle">
       แบบที่สาม · Anniversary Template
     </div>
+
 
     <div class="price">
       129 THB
@@ -603,10 +661,9 @@ footer{
 
 
     <p class="description">
-      เว็บไซต์วันครบรอบสำหรับเก็บช่วงเวลาพิเศษ
-      เรื่องราว และความทรงจำของคุณสองคน
-      ในรูปแบบเรียบง่ายและอบอุ่น
-      พร้อมฟังก์ชันที่ออกแบบมาให้ใช้งานได้จริง
+      เว็บไซต์บอกรักสำหรับวันครบรอบ
+      ที่ออกแบบมาให้เก็บเรื่องราว ความทรงจำ
+      และข้อความเล็ก ๆ ที่มีความหมายสำหรับคุณสองคน
     </p>
 
 
@@ -617,7 +674,7 @@ footer{
     <div class="info-block">
 
       <div class="info-title">
-        INCLUDED FUNCTIONS
+        Included Functions
       </div>
 
       <ul class="info-list">
@@ -662,20 +719,19 @@ footer{
     <div class="info-block">
 
       <div class="info-title">
-        CUSTOMIZE
+        Customize
       </div>
 
-      <ul class="info-list">
+      <div style="font-size:13px; color:var(--dark); line-height:2;">
 
-        <li>
-          สามารถปรับเปลี่ยนข้อความในแต่ละหน้าได้ตามที่ลูกค้าต้องการ
-        </li>
+        สามารถปรับเปลี่ยนข้อความในแต่ละหน้า
+        ได้ตามที่ลูกค้าต้องการ
 
-        <li>
-          สามารถเลือกปรับโทนสีให้เข้ากับเรื่องราวของคุณได้
-        </li>
+        <br>
 
-      </ul>
+        สามารถปรับโทนสีให้เข้ากับเรื่องราวของคุณได้
+
+      </div>
 
     </div>
 
@@ -687,16 +743,15 @@ footer{
     <div class="info-block">
 
       <div class="info-title">
-        EXTRA FUNCTION
+        Extra Function
       </div>
 
-      <ul class="info-list">
+      <div style="font-size:13px; color:var(--dark); line-height:2;">
 
-        <li>
-          เพิ่มฟังก์ชันพิเศษ +29 THB / function
-        </li>
+        เพิ่มฟังก์ชันพิเศษได้ในราคา
+        +29 THB / function
 
-      </ul>
+      </div>
 
     </div>
 
@@ -708,22 +763,20 @@ footer{
     <div class="info-block">
 
       <div class="info-title">
-        DELIVERY
+        Delivery
       </div>
 
-      <ul class="info-list">
+      <div style="font-size:13px; color:var(--dark); line-height:2;">
 
-        <li>
-          ระยะเวลาจัดทำประมาณ 1–2 วัน
-        </li>
+        ระยะเวลาจัดทำประมาณ 1–2 วัน
 
-      </ul>
+      </div>
 
     </div>
 
 
     <!-- =========================
-         ACTIONS
+         BUTTONS
     ========================= -->
 
     <div class="actions">
@@ -735,8 +788,9 @@ footer{
         VIEW LIVE DEMO
       </a>
 
+
       <a
-        href="#order"
+        href="#"
         class="btn btn-primary"
       >
         ORDER THIS TEMPLATE
@@ -762,66 +816,14 @@ footer{
     </div>
 
     <h2 class="section-title">
-      Made for Your Story
+      Made for Your Story.
     </h2>
 
-
-    <div class="story-grid">
-
-      <div class="story-card">
-
-        <div class="story-card-number">
-          01
-        </div>
-
-        <div class="story-card-title">
-          Your Words
-        </div>
-
-        <div class="story-card-text">
-          ใส่ข้อความของคุณเองในแต่ละหน้า
-          เพื่อให้เว็บไซต์เป็นเรื่องราวของคุณสองคนจริง ๆ
-        </div>
-
-      </div>
-
-
-      <div class="story-card">
-
-        <div class="story-card-number">
-          02
-        </div>
-
-        <div class="story-card-title">
-          Your Memories
-        </div>
-
-        <div class="story-card-text">
-          เก็บภาพและช่วงเวลาที่อยากจดจำ
-          ไว้ในหน้าเว็บไซต์เดียว
-        </div>
-
-      </div>
-
-
-      <div class="story-card">
-
-        <div class="story-card-number">
-          03
-        </div>
-
-        <div class="story-card-title">
-          Your Moment
-        </div>
-
-        <div class="story-card-text">
-          เปลี่ยนเทมเพลตให้กลายเป็นพื้นที่เล็ก ๆ
-          สำหรับเรื่องราวที่มีความหมายกับคุณ
-        </div>
-
-      </div>
-
-    </div>
+    <p class="story-text">
+      ทุกความสัมพันธ์มีเรื่องราวของตัวเอง
+      เลือก Template ที่ชอบ แล้วเติมข้อความและความทรงจำของคุณลงไป
+      ให้เว็บไซต์นี้กลายเป็นพื้นที่เล็ก ๆ ที่มีความหมายสำหรับคนสองคน
+    </p>
 
   </div>
 
@@ -839,10 +841,11 @@ footer{
   </div>
 
   <div class="footer-text">
-    DIGITAL MEMORIES · MADE WITH LOVE
+    Digital experiences, made with feeling.
   </div>
 
 </footer>
+
 
 </body>
 </html>
