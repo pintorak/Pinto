@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,175 +8,87 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
-  --taupe:#8C7E74;
-  --warm:#C8BCB1;
-  --beige:#E6DED8;
-  --cream:#F4EFEA;
-  --dark:#403934;
-  --muted:#81766E;
-  --white:#FBF8F5;
-  --line:rgba(64,57,52,.13);
-  --green:#718A70;
-  --red:#A85D5D;
-}
-
 *{
   box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#F4EFEA;
+  color:#514941;
   min-height:100vh;
-  color:var(--dark);
-  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
-  background:
-    radial-gradient(circle at top left,rgba(200,188,177,.18),transparent 35%),
-    linear-gradient(180deg,#F8F4F0 0%,#EEE6DF 100%);
 }
 
 button,
 input,
 textarea,
 select{
-  font-family:inherit;
+  font:inherit;
 }
 
 button{
   cursor:pointer;
 }
 
-.header{
-  width:100%;
-  padding:22px 28px;
-  border-bottom:1px solid var(--line);
-  background:rgba(251,248,245,.88);
-  backdrop-filter:blur(12px);
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-
-.header-inner{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.logo{
-  text-decoration:none;
-  color:var(--dark);
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-.logo span{
-  color:var(--taupe);
-}
-
-.back-link{
-  color:var(--muted);
-  text-decoration:none;
-  font-size:13px;
-}
-
 .page{
-  max-width:1100px;
+  width:min(100%, 900px);
   margin:auto;
-  padding:55px 22px 90px;
+  padding:30px 18px 70px;
+}
+
+.card{
+  background:#fff;
+  border-radius:24px;
+  padding:28px;
+  margin-bottom:20px;
+  box-shadow:0 12px 35px rgba(80,65,55,.08);
+  border:1px solid rgba(140,126,116,.15);
 }
 
 .hero{
   text-align:center;
-  margin-bottom:42px;
+  padding:42px 25px;
 }
 
-.eyebrow{
-  font-size:11px;
-  letter-spacing:4px;
-  color:var(--taupe);
-  margin-bottom:10px;
+.logo{
+  font-family:"DM Serif Display",serif;
+  font-size:42px;
+  letter-spacing:1px;
+  color:#6E5F55;
 }
 
 .hero h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:54px;
-  line-height:1;
-  margin:0 0 12px;
-  font-weight:600;
+  font-family:"DM Serif Display",serif;
+  font-size:34px;
+  font-weight:400;
+  margin-top:8px;
+  color:#514941;
 }
 
 .hero p{
-  max-width:600px;
-  margin:auto;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.9;
-}
-
-.order-layout{
-  display:grid;
-  grid-template-columns:minmax(0,1.45fr) minmax(300px,.7fr);
-  gap:28px;
-  align-items:start;
-}
-
-.card{
-  background:rgba(251,248,245,.94);
-  border:1px solid var(--line);
-  border-radius:24px;
-  box-shadow:0 18px 55px rgba(64,57,52,.08);
-}
-
-.form-card{
-  padding:30px;
-}
-
-.summary-card{
-  padding:26px;
-  position:sticky;
-  top:100px;
+  margin-top:12px;
+  color:#887C73;
+  line-height:1.7;
 }
 
 .section-title{
-  font-family:"Cormorant Garamond",serif;
-  font-size:29px;
-  margin:0 0 5px;
-}
-
-.section-desc{
-  color:var(--muted);
-  font-size:12px;
-  margin:0 0 25px;
-}
-
-.form-group{
-  margin-bottom:22px;
+  font-family:"DM Serif Display",serif;
+  font-size:25px;
+  margin-bottom:20px;
+  color:#5D514A;
 }
 
 label{
   display:block;
-  font-size:12px;
+  font-size:13px;
   font-weight:600;
   margin-bottom:8px;
-}
-
-.required{
-  color:var(--red);
+  color:#665B54;
 }
 
 input[type="text"],
@@ -185,2315 +97,1419 @@ input[type="file"],
 textarea,
 select{
   width:100%;
-  border:1px solid var(--line);
-  background:#fffdfa;
-  color:var(--dark);
+  border:1px solid #D9CEC6;
+  background:#FCFAF8;
   border-radius:13px;
   padding:13px 14px;
   outline:none;
+  color:#514941;
   transition:.2s;
-  font-size:13px;
 }
 
-input:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
 textarea:focus,
 select:focus{
-  border-color:var(--taupe);
-  box-shadow:0 0 0 4px rgba(140,126,116,.08);
+  border-color:#A89587;
+  box-shadow:0 0 0 3px rgba(168,149,135,.12);
 }
 
 textarea{
-  min-height:110px;
+  min-height:120px;
   resize:vertical;
 }
 
-.template-box{
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:16px;
-  background:#fffdfa;
+.form-group{
+  margin-bottom:20px;
 }
 
-.template-name{
-  font-family:"Cormorant Garamond",serif;
-  font-size:25px;
-}
-
-.template-note{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.price-tag{
-  display:inline-block;
-  margin-top:10px;
-  background:var(--beige);
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:11px;
-}
-
-.extra-grid{
+.grid{
   display:grid;
   grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.template-price{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#F8F3EF;
+  border-radius:15px;
+  padding:16px;
+  margin-top:10px;
+}
+
+.template-price strong{
+  font-size:18px;
+}
+
+.price{
+  font-weight:700;
+}
+
+.extra-list{
+  display:grid;
   gap:10px;
 }
 
 .extra-item{
-  position:relative;
-}
-
-.extra-item input{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
-}
-
-.extra-label{
-  display:block;
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:13px 12px;
-  background:#fffdfa;
-  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 16px;
+  border:1px solid #E2D9D2;
+  border-radius:15px;
+  background:#FCFAF8;
   transition:.2s;
 }
 
-.extra-item input:checked + .extra-label{
-  border-color:var(--taupe);
-  background:#F1EAE4;
+.extra-item:hover{
+  border-color:#B8A89C;
+}
+
+.extra-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.extra-left input{
+  width:18px;
+  height:18px;
+  accent-color:#8C7E74;
 }
 
 .extra-name{
-  display:block;
-  font-size:12px;
+  font-size:14px;
   font-weight:600;
 }
 
 .extra-price{
-  display:block;
-  color:var(--muted);
-  font-size:10px;
-  margin-top:4px;
+  font-size:13px;
+  color:#887C73;
 }
 
-.color-grid{
+.colors{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
 
-.color-field label{
-  font-size:10px;
-  color:var(--muted);
+.color-box{
+  background:#FCFAF8;
+  border:1px solid #E2D9D2;
+  border-radius:15px;
+  padding:14px;
 }
 
-.color-field input[type="color"]{
-  width:100%;
-  height:44px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:4px;
-  background:white;
+.color-box label{
+  margin-bottom:10px;
 }
 
-.upload-box{
-  border:1px dashed rgba(64,57,52,.25);
-  background:#fffdfa;
-  border-radius:16px;
-  padding:18px;
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.upload-note{
-  color:var(--muted);
-  font-size:10px;
-  line-height:1.7;
-  margin-top:8px;
-}
-
-.submit-btn{
-  width:100%;
+input[type="color"]{
+  width:52px;
+  height:42px;
   border:0;
-  background:var(--dark);
-  color:#fff;
-  border-radius:14px;
-  padding:16px 18px;
+  padding:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.color-code{
   font-size:12px;
-  letter-spacing:2px;
-  font-weight:600;
+  color:#887C73;
 }
 
-.submit-btn:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.coupon{
+  display:flex;
+  gap:10px;
 }
 
-.notice{
-  margin-top:13px;
-  font-size:10px;
-  line-height:1.8;
-  color:var(--muted);
-  text-align:center;
+.coupon input{
+  flex:1;
 }
 
-.summary-top{
-  text-align:center;
-  padding-bottom:20px;
-  border-bottom:1px solid var(--line);
+.apply-btn{
+  border:0;
+  background:#8C7E74;
+  color:#fff;
+  border-radius:13px;
+  padding:0 20px;
+  font-weight:700;
+  min-width:100px;
 }
 
-.summary-label{
-  font-size:10px;
-  letter-spacing:3px;
-  color:var(--taupe);
+.apply-btn:hover{
+  opacity:.9;
 }
 
-.summary-price{
-  font-family:"Cormorant Garamond",serif;
-  font-size:46px;
+.coupon-message{
+  margin-top:10px;
+  font-size:13px;
+  min-height:20px;
 }
 
-.summary-sub{
-  color:var(--muted);
-  font-size:10px;
+.coupon-success{
+  color:#4D7A5D;
+}
+
+.coupon-error{
+  color:#A54D4D;
+}
+
+.summary{
+  background:#5D514A;
+  color:#fff;
+}
+
+.summary .section-title{
+  color:#fff;
 }
 
 .summary-row{
   display:flex;
   justify-content:space-between;
-  gap:12px;
-  padding:13px 0;
-  border-bottom:1px solid rgba(64,57,52,.08);
-  font-size:12px;
+  gap:15px;
+  padding:10px 0;
+  font-size:14px;
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.summary-row span:first-child{
-  color:var(--muted);
+.summary-row:last-child{
+  border-bottom:0;
 }
 
-.functions-summary{
-  text-align:right;
-  max-width:180px;
+.summary-row.discount{
+  color:#D8F0D8;
 }
 
-.deposit{
-  color:var(--green);
-}
-
-.remaining{
-  color:var(--red);
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* SUCCESS */
-
-.success-section{
-  max-width:900px;
-  margin:0 auto;
-}
-
-.success-card{
-  padding:35px 25px 45px;
-  text-align:center;
-}
-
-.success-title{
-  font-family:"Cormorant Garamond",serif;
-  font-size:42px;
-  margin:0;
-}
-
-.success-sub{
-  color:var(--muted);
-  font-size:12px;
-  margin:7px 0 28px;
-}
-
-.printer-wrap{
-  display:flex;
-  justify-content:center;
-  margin:20px 0 35px;
-}
-
-.printer{
-  width:280px;
-  position:relative;
-}
-
-.printer-top{
-  height:88px;
-  background:linear-gradient(180deg,#5C514B 0%,#403934 100%);
-  border-radius:20px 20px 12px 12px;
-  position:relative;
-  box-shadow:0 15px 30px rgba(64,57,52,.25);
-}
-
-.printer-top:before{
-  content:"PINTO LOVE";
-  position:absolute;
-  left:0;
-  right:0;
-  top:20px;
-  text-align:center;
-  color:#E9DDD3;
-  font-family:"Cormorant Garamond",serif;
+.summary-row.total{
+  margin-top:8px;
+  padding-top:17px;
   font-size:19px;
-  letter-spacing:2px;
+  font-weight:700;
 }
 
-.status-light{
-  position:absolute;
-  top:53px;
-  left:50%;
-  transform:translateX(-50%);
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#C8BCB1;
-  box-shadow:0 0 12px rgba(200,188,177,.7);
-  animation:blink 1.2s infinite;
+.summary-row.deposit{
+  margin-top:15px;
+  color:#F7E4B4;
 }
 
-.printer-slot{
-  position:absolute;
-  bottom:-7px;
-  left:25px;
-  right:25px;
-  height:16px;
-  background:#29231F;
-  border-radius:20px;
-  z-index:3;
+.summary-row.remaining{
+  color:#E9DCD4;
 }
 
-.printer-paper{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  top:73px;
-  width:220px;
-  height:0;
-  background:#fff;
-  overflow:hidden;
-  box-shadow:0 8px 18px rgba(64,57,52,.14);
-  animation:paperPrint 2.7s ease forwards;
-  animation-delay:1s;
-}
-
-.paper-inner{
-  padding:15px;
-}
-
-.paper-title{
-  font-family:"Cormorant Garamond",serif;
-  font-size:20px;
-}
-
-.paper-photo{
+.submit-btn{
   width:100%;
-  height:110px;
-  margin:8px 0;
-  background:linear-gradient(135deg,#D8C8BE,#F0E8E1,#CDBBB0);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  border:0;
+  background:#8C7E74;
   color:#fff;
-  font-size:28px;
+  padding:16px;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:700;
+  margin-top:5px;
+  transition:.2s;
 }
 
-.paper-line{
-  height:5px;
-  border-radius:10px;
-  background:#E9E1DB;
-  margin:6px 0;
+.submit-btn:hover{
+  transform:translateY(-1px);
+  opacity:.95;
 }
 
-@keyframes paperPrint{
-  from{height:0}
-  to{height:310px}
+.submit-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
 }
 
-@keyframes blink{
-  0%,100%{opacity:.4}
-  50%{opacity:1}
+.note{
+  font-size:12px;
+  color:#887C73;
+  line-height:1.7;
+  margin-top:10px;
 }
 
-.processing{
-  font-size:11px;
-  color:var(--muted);
-  margin-bottom:25px;
+.status{
+  display:none;
+  text-align:center;
+  padding:20px;
+  border-radius:15px;
+  background:#F8F3EF;
+  color:#6D625A;
+  line-height:1.7;
 }
 
-.progress{
-  width:240px;
-  height:5px;
-  background:#E6DED8;
-  border-radius:20px;
-  margin:10px auto 0;
-  overflow:hidden;
+.status.show{
+  display:block;
 }
 
-.progress-bar{
-  height:100%;
-  width:0;
-  background:var(--taupe);
-  animation:progress 4s ease forwards;
+.success{
+  display:none;
 }
 
-@keyframes progress{
-  from{width:0}
-  to{width:100%}
+.success.show{
+  display:block;
 }
 
 .receipt{
-  max-width:620px;
-  margin:0 auto 25px;
+  max-width:520px;
+  margin:0 auto;
   background:#fff;
-  border:1px solid rgba(64,57,52,.1);
-  padding:30px;
-  text-align:left;
-  box-shadow:0 18px 45px rgba(64,57,52,.08);
+  border:1px dashed #CBBEB4;
+  padding:25px;
+  border-radius:4px;
 }
 
-.receipt-brand{
+.receipt h3{
   text-align:center;
-  font-family:"Cormorant Garamond",serif;
-  font-size:32px;
+  font-family:"DM Serif Display",serif;
+  font-size:28px;
+  font-weight:400;
+  margin-bottom:5px;
 }
 
 .receipt-sub{
   text-align:center;
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--muted);
-  margin-bottom:24px;
+  color:#887C73;
+  font-size:12px;
+  margin-bottom:20px;
+}
+
+.receipt-line{
+  border-top:1px dashed #CBBEB4;
+  margin:15px 0;
 }
 
 .receipt-row{
   display:flex;
   justify-content:space-between;
-  gap:20px;
-  padding:10px 0;
-  border-bottom:1px dashed rgba(64,57,52,.15);
-  font-size:11px;
-}
-
-.receipt-row span:first-child{
-  color:var(--muted);
-}
-
-.receipt-row strong{
-  text-align:right;
-  max-width:65%;
-  word-break:break-word;
+  gap:15px;
+  padding:6px 0;
+  font-size:13px;
 }
 
 .receipt-total{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:2px solid var(--dark);
+  font-size:17px;
+  font-weight:700;
 }
 
-.receipt-total .receipt-row{
-  border:0;
-}
-
-.receipt-big{
-  font-family:"Cormorant Garamond",serif;
-  font-size:30px;
-}
-
-.status-ok{
-  display:inline-block;
-  padding:5px 10px;
-  background:#EDF3EC;
-  color:#5E765D;
-  border-radius:999px;
-  font-size:9px;
-}
-
-.receipt-actions{
+.receipt-buttons{
   display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
   gap:10px;
+  margin-top:20px;
 }
 
-.action-btn{
-  border:1px solid var(--line);
-  background:#fffdfa;
-  color:var(--dark);
-  border-radius:999px;
-  padding:11px 18px;
-  font-size:10px;
-  letter-spacing:1px;
+.receipt-buttons button{
+  flex:1;
+  border:1px solid #D9CEC6;
+  background:#fff;
+  padding:12px;
+  border-radius:12px;
+  color:#514941;
+  font-weight:600;
 }
 
-.action-btn.primary{
-  background:var(--dark);
-  color:#fff;
-  border-color:var(--dark);
+.printer{
+  display:none;
+  text-align:center;
+  padding:30px;
 }
 
-.error-box{
-  max-width:700px;
-  margin:25px auto 0;
-  background:#FFF1F1;
-  border:1px solid rgba(168,93,93,.25);
-  color:#8E4E4E;
-  padding:15px;
-  border-radius:14px;
-  font-size:11px;
-  line-height:1.8;
+.printer.show{
+  display:block;
+}
+
+.printer-machine{
+  width:130px;
+  height:90px;
+  background:#D8D0CA;
+  border-radius:12px 12px 6px 6px;
+  margin:0 auto 0;
+  position:relative;
+}
+
+.printer-machine:before{
+  content:"";
+  position:absolute;
+  width:72px;
+  height:8px;
+  background:#8D8179;
+  top:18px;
+  left:29px;
+  border-radius:4px;
+}
+
+.paper{
+  width:95px;
+  height:0;
+  background:#fff;
+  margin:auto;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,.12);
+  transition:height 1.2s ease;
+}
+
+.printer.show .paper{
+  height:125px;
+}
+
+.paper-content{
+  padding:12px;
+  font-size:8px;
+  line-height:1.6;
   text-align:left;
-  white-space:pre-wrap;
-  word-break:break-word;
 }
 
-@media(max-width:850px){
-  .order-layout{
+@media(max-width:650px){
+  .grid,
+  .colors{
     grid-template-columns:1fr;
   }
 
-  .summary-card{
-    position:static;
+  .card{
+    padding:21px;
   }
-}
 
-@media(max-width:600px){
-  .page{
-    padding:40px 15px 70px;
+  .hero{
+    padding:32px 18px;
+  }
+
+  .logo{
+    font-size:36px;
   }
 
   .hero h1{
-    font-size:43px;
+    font-size:28px;
   }
 
-  .form-card,
-  .summary-card,
-  .success-card{
-    padding:22px 18px;
-  }
-
-  .extra-grid,
-  .color-grid{
-    grid-template-columns:1fr;
-  }
-
-  .receipt{
-    padding:22px 16px;
-  }
-
-  .receipt-actions{
+  .coupon{
     flex-direction:column;
   }
 
-  .action-btn{
-    width:100%;
+  .apply-btn{
+    min-height:45px;
   }
 }
 
 @media print{
-
   body{
     background:#fff;
   }
 
-  .header,
-  .hero,
-  .form-card,
-  .summary-card,
-  .success-title,
-  .success-sub,
-  .printer-wrap,
-  .processing,
-  .receipt-actions,
-  .error-box{
-    display:none!important;
+  body *{
+    visibility:hidden;
   }
 
-  .page{
-    max-width:none;
-    padding:0;
+  #receiptSection,
+  #receiptSection *{
+    visibility:visible;
   }
 
-  .success-section{
-    display:block!important;
+  #receiptSection{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
   }
 
-  .success-card{
-    padding:0;
-    box-shadow:none;
-    border:0;
+  .receipt-buttons{
+    display:none;
   }
-
-  .receipt{
-    max-width:100%;
-    margin:0;
-    box-shadow:none;
-    border:0;
-  }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<header class="header">
+<div class="page">
 
-  <div class="header-inner">
-
-    <a href="love.html" class="logo">
-      PINTO <span>LOVE</span>
-    </a>
-
-    <a href="love.html" class="back-link">
-      ← Back to Templates
-    </a>
-
-  </div>
-
-</header>
-
-
-<main class="page">
-
-
-<section id="orderSection">
-
-  <div class="hero">
-
-    <div class="eyebrow">
-      CUSTOM ORDER
-    </div>
-
-    <h1>
-      Create Your Love Story
-    </h1>
-
+  <section class="card hero">
+    <div class="logo">PINTO LOVE</div>
+    <h1>Order Your Template</h1>
     <p>
-      Fill in the details below and let us create a beautiful
-      digital experience made especially for you.
+      Create your own beautiful personalized template.<br>
+      All templates start at <strong>129 THB</strong>.
     </p>
+  </section>
 
-  </div>
+  <form id="orderForm">
 
+    <section class="card">
+      <div class="section-title">Customer Information</div>
 
-  <div class="order-layout">
-
-
-    <div class="card form-card">
-
-      <h2 class="section-title">
-        Order Details
-      </h2>
-
-      <p class="section-desc">
-        Tell us a little about your project.
-      </p>
-
-
-      <div class="form-group">
-
-        <label for="customerName">
-          Your Name <span class="required">*</span>
-        </label>
-
-        <input
-          type="text"
-          id="customerName"
-          placeholder="Your name"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="contact">
-          Contact <span class="required">*</span>
-        </label>
-
-        <input
-          type="text"
-          id="contact"
-          placeholder="LINE / Instagram / Email / Phone"
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          Selected Template
-        </label>
-
-        <div class="template-box">
-
-          <div
-            class="template-name"
-            id="templateDisplay"
+      <div class="grid">
+        <div class="form-group">
+          <label for="customerName">Name</label>
+          <input
+            type="text"
+            id="customerName"
+            name="customerName"
+            placeholder="Your name"
+            required
           >
-            Birthday Template 01
-          </div>
-
-          <div class="template-note">
-            Your selected template
-          </div>
-
-          <div
-            class="price-tag"
-            id="templatePrice"
-          >
-            ฿299
-          </div>
-
         </div>
 
+        <div class="form-group">
+          <label for="contact">Contact</label>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            placeholder="LINE / Instagram / Phone"
+            required
+          >
+        </div>
       </div>
+    </section>
 
+    <section class="card">
+      <div class="section-title">Choose Your Template</div>
 
       <div class="form-group">
+        <label for="template">Template</label>
 
-        <label for="message">
-          Message / Special Request
-        </label>
+        <select id="template" name="template">
+          <option value="birthday-01">Birthday Template 01</option>
+          <option value="anniversary-01">Anniversary Template 01</option>
+          <option value="anniversary-02">Anniversary Template 02</option>
+          <option value="love-01">Love Template 01</option>
+        </select>
+
+        <div class="template-price">
+          <span>Template Price</span>
+          <strong id="templatePrice">129.00 THB</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message / Special Request</label>
 
         <textarea
           id="message"
-          placeholder="Tell us anything you'd like us to know..."
+          name="message"
+          placeholder="Tell us what you want on your template..."
         ></textarea>
-
       </div>
+    </section>
 
+    <section class="card">
+      <div class="section-title">Extra Menu</div>
 
-      <div class="form-group">
+      <div class="extra-list">
 
-        <label>
-          Extra Functions
-        </label>
-
-        <div class="extra-grid">
-
-
-          <div class="extra-item">
+        <label class="extra-item">
+          <span class="extra-left">
             <input
               type="checkbox"
-              id="music"
-              data-price="29"
+              class="extra"
               data-name="Music Player"
+              data-price="29"
             >
+            <span class="extra-name">Music Player</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
+        </label>
 
-            <label
-              class="extra-label"
-              for="music"
-            >
-              <span class="extra-name">
-                ♪ Music Player
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
+        <label class="extra-item">
+          <span class="extra-left">
             <input
               type="checkbox"
-              id="countdown"
-              data-price="29"
-              data-name="Countdown"
-            >
-
-            <label
-              class="extra-label"
-              for="countdown"
-            >
-              <span class="extra-name">
-                ♡ Countdown
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
-            <input
-              type="checkbox"
-              id="gallery"
-              data-price="29"
+              class="extra"
               data-name="Photo Gallery"
+              data-price="29"
             >
+            <span class="extra-name">Photo Gallery</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
+        </label>
 
-            <label
-              class="extra-label"
-              for="gallery"
-            >
-              <span class="extra-name">
-                ▧ Photo Gallery
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
+        <label class="extra-item">
+          <span class="extra-left">
             <input
               type="checkbox"
-              id="letter"
+              class="extra"
+              data-name="Spider"
               data-price="29"
-              data-name="Love Letter"
             >
+            <span class="extra-name">Spider</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
+        </label>
 
-            <label
-              class="extra-label"
-              for="letter"
-            >
-              <span class="extra-name">
-                ✉ Love Letter
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
+        <label class="extra-item">
+          <span class="extra-left">
             <input
               type="checkbox"
-              id="surprise"
-              data-price="29"
-              data-name="Surprise Box"
-            >
-
-            <label
-              class="extra-label"
-              for="surprise"
-            >
-              <span class="extra-name">
-                🎁 Surprise Box
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
-            <input
-              type="checkbox"
-              id="scratch"
-              data-price="29"
-              data-name="Scratch Card"
-            >
-
-            <label
-              class="extra-label"
-              for="scratch"
-            >
-              <span class="extra-name">
-                ♡ Scratch Card
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-          <div class="extra-item">
-            <input
-              type="checkbox"
-              id="animation"
-              data-price="29"
+              class="extra"
               data-name="Custom Animation"
+              data-price="29"
             >
-
-            <label
-              class="extra-label"
-              for="animation"
-            >
-              <span class="extra-name">
-                ✦ Custom Animation
-              </span>
-
-              <span class="extra-price">
-                + ฿29
-              </span>
-            </label>
-          </div>
-
-
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          Color Theme
+            <span class="extra-name">Custom Animation</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
         </label>
 
-        <div class="color-grid">
-
-          <div class="color-field">
-
-            <label for="primaryColor">
-              Primary
-            </label>
-
+        <label class="extra-item">
+          <span class="extra-left">
             <input
-              type="color"
-              id="primaryColor"
-              value="#670626"
+              type="checkbox"
+              class="extra"
+              data-name="Scrap Card"
+              data-price="29"
             >
-
-          </div>
-
-
-          <div class="color-field">
-
-            <label for="secondaryColor">
-              Secondary
-            </label>
-
-            <input
-              type="color"
-              id="secondaryColor"
-              value="#FFBDC5"
-            >
-
-          </div>
-
-
-          <div class="color-field">
-
-            <label for="backgroundColor">
-              Background
-            </label>
-
-            <input
-              type="color"
-              id="backgroundColor"
-              value="#FFF9F8"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="paymentSlip">
-          Payment Slip <span class="required">*</span>
+            <span class="extra-name">Scrap Card</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
         </label>
 
-        <div class="upload-box">
+        <label class="extra-item">
+          <span class="extra-left">
+            <input
+              type="checkbox"
+              class="extra"
+              data-name="Love Letter"
+              data-price="29"
+            >
+            <span class="extra-name">Love Letter</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
+        </label>
 
-          <input
-            type="file"
-            id="paymentSlip"
-            accept="image/*,.pdf"
-          >
+        <label class="extra-item">
+          <span class="extra-left">
+            <input
+              type="checkbox"
+              class="extra"
+              data-name="Countdown"
+              data-price="29"
+            >
+            <span class="extra-name">Countdown</span>
+          </span>
+          <span class="extra-price">+29 THB</span>
+        </label>
 
-          <div class="upload-note">
-            Upload your payment slip after transferring
-            the 30% deposit.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Color Theme</div>
+
+      <div class="colors">
+
+        <div class="color-box">
+          <label for="primaryColor">Primary Color</label>
+          <div class="color-row">
+            <input type="color" id="primaryColor" value="#8C7E74">
+            <span class="color-code" id="primaryCode">#8C7E74</span>
           </div>
+        </div>
 
+        <div class="color-box">
+          <label for="secondaryColor">Secondary Color</label>
+          <div class="color-row">
+            <input type="color" id="secondaryColor" value="#C8BCB1">
+            <span class="color-code" id="secondaryCode">#C8BCB1</span>
+          </div>
+        </div>
+
+        <div class="color-box">
+          <label for="backgroundColor">Background Color</label>
+          <div class="color-row">
+            <input type="color" id="backgroundColor" value="#F4EFEA">
+            <span class="color-code" id="backgroundCode">#F4EFEA</span>
+          </div>
         </div>
 
       </div>
+    </section>
 
+    <section class="card">
+      <div class="section-title">Referral / Discount Code</div>
+
+      <label for="discountCode">Enter your discount code</label>
+
+      <div class="coupon">
+        <input
+          type="text"
+          id="discountCode"
+          placeholder="Enter your code"
+          autocomplete="off"
+          spellcheck="false"
+        >
+
+        <button type="button" class="apply-btn" id="applyCoupon">
+          Apply
+        </button>
+      </div>
+
+      <div id="couponMessage" class="coupon-message"></div>
+
+      <div class="note">
+        Referral code can only be used once.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title">Payment Slip</div>
+
+      <div class="form-group">
+        <label for="paymentSlip">Upload payment slip</label>
+
+        <input
+          type="file"
+          id="paymentSlip"
+          accept="image/*,.pdf"
+          required
+        >
+      </div>
+
+      <p class="note">
+        Please upload your payment slip after making the deposit.
+      </p>
+    </section>
+
+    <section class="card summary">
+
+      <div class="section-title">Order Summary</div>
+
+      <div class="summary-row">
+        <span>Template</span>
+        <span id="summaryTemplate">129.00 THB</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Extra Menu</span>
+        <span id="summaryExtra">0.00 THB</span>
+      </div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="summarySubtotal">129.00 THB</span>
+      </div>
+
+      <div class="summary-row discount">
+        <span>Referral Discount (5%)</span>
+        <span id="summaryDiscount">0.00 THB</span>
+      </div>
+
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="summaryTotal">129.00 THB</span>
+      </div>
+
+      <div class="summary-row deposit">
+        <span>Deposit 30%</span>
+        <span id="summaryDeposit">38.70 THB</span>
+      </div>
+
+      <div class="summary-row remaining">
+        <span>Remaining 70%</span>
+        <span id="summaryRemaining">90.30 THB</span>
+      </div>
+
+    </section>
+
+    <section class="card">
 
       <button
-        type="button"
+        type="submit"
         class="submit-btn"
-        id="submitBtn"
+        id="submitButton"
       >
-        SUBMIT ORDER
+        Submit Order
       </button>
 
+      <div
+        class="status"
+        id="statusBox"
+      ></div>
 
-      <div class="notice">
-        Your order will be saved securely and we will contact
-        you after checking the payment slip.
-      </div>
+    </section>
 
+  </form>
+
+  <section class="card printer" id="printerSection">
+
+    <div class="section-title">
+      Printing Your Receipt
     </div>
 
+    <div class="printer-machine"></div>
 
-    <aside class="card summary-card">
-
-      <div class="summary-top">
-
-        <div class="summary-label">
-          ORDER TOTAL
-        </div>
-
-        <div
-          class="summary-price"
-          id="totalPrice"
-        >
-          ฿299
-        </div>
-
-        <div class="summary-sub">
-          30% deposit · 70% remaining
-        </div>
-
+    <div class="paper">
+      <div class="paper-content">
+        <strong>PINTO LOVE</strong><br>
+        ORDER RECEIPT<br>
+        --------------------<br>
+        Order received<br>
+        Thank you ♡
       </div>
+    </div>
 
+  </section>
 
-      <div class="summary-row">
+  <section class="card success" id="receiptSection">
 
-        <span>
-          Template
-        </span>
-
-        <strong id="summaryTemplate">
-          Birthday Template 01
-        </strong>
-
-      </div>
-
-
-      <div class="summary-row">
-
-        <span>
-          Extra
-        </span>
-
-        <strong
-          id="selectedFunctions"
-          class="functions-summary"
-        >
-          None
-        </strong>
-
-      </div>
-
-
-      <div class="summary-row">
-
-        <span>
-          Deposit 30%
-        </span>
-
-        <strong
-          id="depositPrice"
-          class="deposit"
-        >
-          ฿90
-        </strong>
-
-      </div>
-
-
-      <div class="summary-row">
-
-        <span>
-          Remaining 70%
-        </span>
-
-        <strong
-          id="remainingPrice"
-          class="remaining"
-        >
-          ฿209
-        </strong>
-
-      </div>
-
-    </aside>
-
-  </div>
-
-</section>
-
-
-<section
-  id="successSection"
-  class="success-section hidden"
->
-
-  <div class="card success-card">
-
-    <h2 class="success-title">
+    <div class="section-title">
       Order Received
-    </h2>
-
-    <p class="success-sub">
-      Your order has been saved successfully.
-    </p>
-
-
-    <div class="printer-wrap">
-
-      <div class="printer">
-
-        <div class="printer-top">
-
-          <div class="status-light"></div>
-
-        </div>
-
-        <div class="printer-slot"></div>
-
-        <div class="printer-paper">
-
-          <div class="paper-inner">
-
-            <div class="paper-title">
-              PINTO LOVE
-            </div>
-
-            <div class="paper-photo">
-              ♡
-            </div>
-
-            <div class="paper-line"></div>
-            <div class="paper-line"></div>
-            <div class="paper-line"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
     </div>
 
+    <div class="receipt">
 
-    <div class="processing">
-
-      Printing your order receipt...
-
-      <div class="progress">
-        <div class="progress-bar"></div>
-      </div>
-
-    </div>
-
-
-    <div
-      class="receipt"
-      id="receipt"
-    >
-
-      <div class="receipt-brand">
-        PINTO LOVE
-      </div>
+      <h3>PINTO LOVE</h3>
 
       <div class="receipt-sub">
         ORDER RECEIPT
       </div>
 
+      <div class="receipt-line"></div>
 
       <div class="receipt-row">
-
-        <span>
-          Order Number
-        </span>
-
-        <strong id="receiptOrderNumber">
-          -
-        </strong>
-
+        <span>Order Number</span>
+        <strong id="receiptOrderNumber">-</strong>
       </div>
-
 
       <div class="receipt-row">
-
-        <span>
-          Customer
-        </span>
-
-        <strong id="receiptCustomer">
-          -
-        </strong>
-
+        <span>Customer</span>
+        <span id="receiptCustomer">-</span>
       </div>
-
 
       <div class="receipt-row">
-
-        <span>
-          Contact
-        </span>
-
-        <strong id="receiptContact">
-          -
-        </strong>
-
+        <span>Template</span>
+        <span id="receiptTemplate">-</span>
       </div>
-
 
       <div class="receipt-row">
-
-        <span>
-          Template
-        </span>
-
-        <strong id="receiptTemplate">
-          -
-        </strong>
-
+        <span>Extra Menu</span>
+        <span id="receiptExtra">-</span>
       </div>
-
 
       <div class="receipt-row">
-
-        <span>
-          Extra Functions
-        </span>
-
-        <strong id="receiptFunctions">
-          -
-        </strong>
-
+        <span>Subtotal</span>
+        <span id="receiptSubtotal">-</span>
       </div>
-
 
       <div class="receipt-row">
-
-        <span>
-          Payment Status
-        </span>
-
-        <strong>
-          <span class="status-ok">
-            Deposit Submitted
-          </span>
-        </strong>
-
+        <span>Discount</span>
+        <span id="receiptDiscount">-</span>
       </div>
 
+      <div class="receipt-line"></div>
 
-      <div class="receipt-total">
+      <div class="receipt-row receipt-total">
+        <span>Total</span>
+        <span id="receiptTotal">-</span>
+      </div>
 
-        <div class="receipt-row">
+      <div class="receipt-row">
+        <span>Deposit 30%</span>
+        <span id="receiptDeposit">-</span>
+      </div>
 
-          <span>
-            Total
-          </span>
+      <div class="receipt-row">
+        <span>Remaining 70%</span>
+        <span id="receiptRemaining">-</span>
+      </div>
 
-          <strong
-            class="receipt-big"
-            id="receiptTotal"
-          >
-            ฿0
-          </strong>
+      <div class="receipt-row">
+        <span>Status</span>
+        <span>Pending Deposit Review</span>
+      </div>
 
-        </div>
+      <div class="receipt-buttons">
+        <button type="button" onclick="window.print()">
+          Print
+        </button>
 
+        <button type="button" onclick="savePDF()">
+          Save as PDF
+        </button>
 
-        <div class="receipt-row">
-
-          <span>
-            Deposit 30%
-          </span>
-
-          <strong id="receiptDeposit">
-            ฿0
-          </strong>
-
-        </div>
-
-
-        <div class="receipt-row">
-
-          <span>
-            Remaining 70%
-          </span>
-
-          <strong id="receiptRemaining">
-            ฿0
-          </strong>
-
-        </div>
-
+        <button type="button" onclick="shareReceipt()">
+          Share
+        </button>
       </div>
 
     </div>
 
+  </section>
 
-    <div class="receipt-actions">
-
-      <button
-        type="button"
-        class="action-btn primary"
-        id="printBtn"
-      >
-        PRINT RECEIPT
-      </button>
-
-      <button
-        type="button"
-        class="action-btn"
-        id="saveBtn"
-      >
-        SAVE / PDF
-      </button>
-
-      <button
-        type="button"
-        class="action-btn"
-        id="shareBtn"
-      >
-        SHARE
-      </button>
-
-    </div>
-
-
-    <div
-      id="errorBox"
-      class="error-box hidden"
-    ></div>
-
-  </div>
-
-</section>
-
-</main>
-
+</div>
 
 <script>
+const SUPABASE_URL = "https://keybykrpnpgsnyxtpfqj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
 
-/* =========================================================
-   SUPABASE
-========================================================= */
+const TEMPLATE_PRICE = 129;
+const EXTRA_PRICE = 29;
+const DISCOUNT_CODE = "PINT05-STANG";
+const DISCOUNT_PERCENT = 5;
 
-const SUPABASE_URL =
-  "https://keybykrpnpgsnyxtpfqj.supabase.co";
+let couponApplied = false;
 
-const SUPABASE_ANON_KEY =
-  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+const templateEl = document.getElementById("template");
+const extras = document.querySelectorAll(".extra");
 
+const summaryTemplate = document.getElementById("summaryTemplate");
+const summaryExtra = document.getElementById("summaryExtra");
+const summarySubtotal = document.getElementById("summarySubtotal");
+const summaryDiscount = document.getElementById("summaryDiscount");
+const summaryTotal = document.getElementById("summaryTotal");
+const summaryDeposit = document.getElementById("summaryDeposit");
+const summaryRemaining = document.getElementById("summaryRemaining");
 
-/* =========================================================
-   TEMPLATE DATA
-========================================================= */
+const discountCodeEl = document.getElementById("discountCode");
+const couponMessage = document.getElementById("couponMessage");
 
-const TEMPLATE_DATA = {
+const primaryColor = document.getElementById("primaryColor");
+const secondaryColor = document.getElementById("secondaryColor");
+const backgroundColor = document.getElementById("backgroundColor");
 
-  "birthday-01":{
-    name:"Birthday Template 01",
-    price:299
-  },
-
-  "anniversary-01":{
-    name:"Anniversary Template 01",
-    price:399
-  },
-
-  "anniversary-02":{
-    name:"Anniversary Template 02",
-    price:399
-  },
-
-  "love-01":{
-    name:"Love Template 01",
-    price:299
-  }
-
-};
-
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const customerName =
-  document.getElementById("customerName");
-
-const contact =
-  document.getElementById("contact");
-
-const message =
-  document.getElementById("message");
-
-const paymentSlip =
-  document.getElementById("paymentSlip");
-
-const submitBtn =
-  document.getElementById("submitBtn");
-
-const orderSection =
-  document.getElementById("orderSection");
-
-const successSection =
-  document.getElementById("successSection");
-
-const totalPrice =
-  document.getElementById("totalPrice");
-
-const templatePrice =
-  document.getElementById("templatePrice");
-
-const templateDisplay =
-  document.getElementById("templateDisplay");
-
-const summaryTemplate =
-  document.getElementById("summaryTemplate");
-
-const selectedFunctions =
-  document.getElementById("selectedFunctions");
-
-const depositPrice =
-  document.getElementById("depositPrice");
-
-const remainingPrice =
-  document.getElementById("remainingPrice");
-
-
-/* =========================================================
-   TEMPLATE
-========================================================= */
-
-function getTemplateKey(){
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  return (
-    params.get("template")
-    || "birthday-01"
-  );
-
+function money(value){
+  return Number(value).toFixed(2) + " THB";
 }
 
-
-function getTemplatePrice(){
-
-  const key =
-    getTemplateKey();
-
-  if(
-    TEMPLATE_DATA[key]
-  ){
-
-    return TEMPLATE_DATA[key].price;
-
-  }
-
-  return 299;
-
+function updateColorCode(input, outputId){
+  document.getElementById(outputId).textContent = input.value.toUpperCase();
 }
 
+primaryColor.addEventListener("input", function(){
+  updateColorCode(primaryColor, "primaryCode");
+});
 
-function setupTemplate(){
+secondaryColor.addEventListener("input", function(){
+  updateColorCode(secondaryColor, "secondaryCode");
+});
 
-  const key =
-    getTemplateKey();
+backgroundColor.addEventListener("input", function(){
+  updateColorCode(backgroundColor, "backgroundCode");
+});
 
-  const data =
-    TEMPLATE_DATA[key]
-    || TEMPLATE_DATA["birthday-01"];
+function calculatePrices(){
 
+  const templatePrice = TEMPLATE_PRICE;
 
-  templateDisplay.textContent =
-    data.name;
+  let extraTotal = 0;
+  let extraNames = [];
 
-  summaryTemplate.textContent =
-    data.name;
+  extras.forEach(extra => {
 
-  templatePrice.textContent =
-    "฿" + data.price;
+    if(extra.checked){
 
-}
+      const price = Number(extra.dataset.price || EXTRA_PRICE);
 
-
-/* =========================================================
-   EXTRA
-========================================================= */
-
-function getSelectedFunctions(){
-
-  const checked =
-    document.querySelectorAll(
-      '.extra-item input[type="checkbox"]:checked'
-    );
-
-  const result = [];
-
-  checked.forEach(function(item){
-
-    result.push(
-      item.dataset.name
-    );
-
+      extraTotal += price;
+      extraNames.push(extra.dataset.name);
+    }
   });
 
-  return result;
+  const subtotal = templatePrice + extraTotal;
 
+  let discount = 0;
+
+  if(couponApplied){
+    discount = subtotal * (DISCOUNT_PERCENT / 100);
+  }
+
+  const total = subtotal - discount;
+
+  const deposit = total * 0.30;
+  const remaining = total - deposit;
+
+  summaryTemplate.textContent = money(templatePrice);
+  summaryExtra.textContent = money(extraTotal);
+  summarySubtotal.textContent = money(subtotal);
+  summaryDiscount.textContent = discount > 0 ? "-" + money(discount) : "0.00 THB";
+  summaryTotal.textContent = money(total);
+  summaryDeposit.textContent = money(deposit);
+  summaryRemaining.textContent = money(remaining);
+
+  return {
+    templatePrice,
+    extraTotal,
+    extraNames,
+    subtotal,
+    discount,
+    total,
+    deposit,
+    remaining
+  };
 }
 
+extras.forEach(extra => {
+  extra.addEventListener("change", calculatePrices);
+});
 
-function getExtraPrice(){
+document.getElementById("applyCoupon").addEventListener("click", applyCoupon);
 
-  let price = 0;
+discountCodeEl.addEventListener("keydown", function(event){
 
-  document
-    .querySelectorAll(
-      '.extra-item input[type="checkbox"]:checked'
-    )
-    .forEach(function(item){
+  if(event.key === "Enter"){
+    event.preventDefault();
+    applyCoupon();
+  }
 
-      price +=
-        Number(
-          item.dataset.price || 0
-        );
+});
 
-    });
+async function checkCouponAlreadyUsed(){
 
-  return price;
+  const url =
+    SUPABASE_URL +
+    "/rest/v1/orders?discount_code=eq." +
+    encodeURIComponent(DISCOUNT_CODE) +
+    "&select=order_number&limit=1";
 
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "apikey": SUPABASE_ANON_KEY,
+      "Authorization": "Bearer " + SUPABASE_ANON_KEY
+    }
+  });
+
+  if(!response.ok){
+    throw new Error("Unable to check coupon.");
+  }
+
+  const data = await response.json();
+
+  return Array.isArray(data) && data.length > 0;
 }
 
+async function applyCoupon(){
 
-/* =========================================================
-   PRICE
-========================================================= */
+  const code = discountCodeEl.value.trim().toUpperCase();
 
-function updatePrice(){
+  couponApplied = false;
 
-  const total =
-    getTemplatePrice()
-    +
-    getExtraPrice();
+  couponMessage.className = "coupon-message";
+  couponMessage.textContent = "";
 
-  const deposit =
-    Math.ceil(
-      total * 0.30
-    );
+  if(!code){
 
-  const remaining =
-    total - deposit;
+    couponMessage.classList.add("coupon-error");
+    couponMessage.textContent = "Please enter a discount code.";
 
+    calculatePrices();
 
-  totalPrice.textContent =
-    "฿" + total;
+    return;
+  }
 
-  depositPrice.textContent =
-    "฿" + deposit;
+  if(code !== DISCOUNT_CODE){
 
-  remainingPrice.textContent =
-    "฿" + remaining;
+    couponMessage.classList.add("coupon-error");
+    couponMessage.textContent = "Invalid discount code.";
 
+    calculatePrices();
 
-  const extras =
-    getSelectedFunctions();
+    return;
+  }
 
+  try{
 
-  selectedFunctions.textContent =
-    extras.length
-      ? extras.join(", ")
-      : "None";
+    const alreadyUsed = await checkCouponAlreadyUsed();
 
+    if(alreadyUsed){
+
+      couponMessage.classList.add("coupon-error");
+      couponMessage.textContent = "This coupon has already been used.";
+
+      calculatePrices();
+
+      return;
+    }
+
+    couponApplied = true;
+
+    couponMessage.classList.add("coupon-success");
+    couponMessage.textContent = "Coupon applied! 5% OFF";
+
+    calculatePrices();
+
+  }catch(error){
+
+    console.error(error);
+
+    couponMessage.classList.add("coupon-error");
+    couponMessage.textContent = "Unable to verify the coupon right now.";
+
+    calculatePrices();
+  }
 }
-
-
-/* =========================================================
-   ORDER NUMBER
-========================================================= */
 
 function createOrderNumber(){
 
-  const now =
-    new Date();
+  const now = new Date();
 
   const date =
-    now.getFullYear() +
-    String(
-      now.getMonth()+1
-    ).padStart(2,"0") +
-    String(
-      now.getDate()
-    ).padStart(2,"0");
+    now.getFullYear().toString() +
+    String(now.getMonth() + 1).padStart(2, "0") +
+    String(now.getDate()).padStart(2, "0");
 
   const random =
-    Math.floor(
-      Math.random()*900
-    ) + 100;
+    Math.floor(1000 + Math.random() * 9000);
 
-  return (
-    "PL-" +
-    date +
-    "-" +
-    random
-  );
-
+  return "PL-" + date + "-" + random;
 }
-
-
-/* =========================================================
-   ERROR
-========================================================= */
-
-function showError(text){
-
-  const box =
-    document.getElementById(
-      "errorBox"
-    );
-
-  box.textContent =
-    text;
-
-  box.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-function hideError(){
-
-  const box =
-    document.getElementById(
-      "errorBox"
-    );
-
-  box.textContent =
-    "";
-
-  box.classList.add(
-    "hidden"
-  );
-
-}
-
-
-/* =========================================================
-   IMPORTANT:
-   SAFE FILE CONTENT TYPE
-========================================================= */
 
 function getSafeContentType(file){
 
-  const type =
-    String(
-      file.type || ""
-    )
-    .toLowerCase()
-    .trim();
+  if(!file){
+    return "application/octet-stream";
+  }
 
+  const type = String(file.type || "").toLowerCase();
 
   const allowed = [
     "image/jpeg",
-    "image/jpg",
     "image/png",
     "image/webp",
     "image/gif",
     "application/pdf"
   ];
 
-
-  if(
-    allowed.includes(type)
-  ){
-
+  if(allowed.includes(type)){
     return type;
-
   }
-
-
-  const name =
-    String(
-      file.name || ""
-    ).toLowerCase();
-
-
-  if(
-    name.endsWith(".jpg") ||
-    name.endsWith(".jpeg")
-  ){
-
-    return "image/jpeg";
-
-  }
-
-
-  if(
-    name.endsWith(".png")
-  ){
-
-    return "image/png";
-
-  }
-
-
-  if(
-    name.endsWith(".webp")
-  ){
-
-    return "image/webp";
-
-  }
-
-
-  if(
-    name.endsWith(".gif")
-  ){
-
-    return "image/gif";
-
-  }
-
-
-  if(
-    name.endsWith(".pdf")
-  ){
-
-    return "application/pdf";
-
-  }
-
 
   return "application/octet-stream";
-
 }
 
+async function uploadPaymentSlip(file, orderNumber){
 
-/* =========================================================
-   UPLOAD SLIP
-========================================================= */
+  const safeName =
+    String(file.name || "payment-slip")
+      .replace(/[^a-zA-Z0-9._-]/g, "_");
 
-async function uploadPaymentSlip(file){
+  const filePath =
+    orderNumber + "-" + Date.now() + "-" + safeName;
 
-  if(!file){
-
-    throw new Error(
-      "ไม่ได้เลือกไฟล์สลิป"
-    );
-
-  }
-
-
-  const contentType =
-    getSafeContentType(
-      file
-    );
-
-
-  const extension =
-    contentType === "application/pdf"
-      ? "pdf"
-      : contentType === "image/png"
-        ? "png"
-        : contentType === "image/webp"
-          ? "webp"
-          : contentType === "image/gif"
-            ? "gif"
-            : "jpg";
-
-
-  const fileName =
-    "slip-" +
-    Date.now() +
-    "-" +
-    Math.random()
-      .toString(36)
-      .slice(2,8) +
-    "." +
-    extension;
-
-
-  const url =
+  const uploadUrl =
     SUPABASE_URL +
     "/storage/v1/object/payment-slips/" +
-    fileName;
+    encodeURIComponent(filePath);
 
+  const response = await fetch(uploadUrl, {
 
-  try{
+    method: "POST",
 
-    const response =
-      await fetch(
-        url,
-        {
-          method:"POST",
+    headers: {
+      "apikey": SUPABASE_ANON_KEY,
+      "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+      "Content-Type": getSafeContentType(file),
+      "x-upsert": "false"
+    },
 
-          headers:{
-            "apikey":
-              SUPABASE_ANON_KEY,
+    body: file
+  });
 
-            "Authorization":
-              "Bearer " +
-              SUPABASE_ANON_KEY,
+  if(!response.ok){
 
-            "Content-Type":
-              contentType
-          },
-
-          body:file
-        }
-      );
-
-
-    if(!response.ok){
-
-      const text =
-        await response.text();
-
-      throw new Error(
-        "อัปโหลดสลิปไม่สำเร็จ\n\n" +
-        "HTTP " +
-        response.status +
-        "\n" +
-        text
-      );
-
-    }
-
-
-    return fileName;
-
-
-  }catch(error){
+    const errorText = await response.text();
 
     throw new Error(
-      "ไม่สามารถอัปโหลดสลิปไปยัง Supabase Storage ได้\n\n" +
-      error.message
+      "Payment slip upload failed: " +
+      errorText
     );
-
   }
 
+  return filePath;
 }
 
+async function submitToSupabase(orderData){
 
-/* =========================================================
-   INSERT ORDER
-========================================================= */
+  const response = await fetch(
+    SUPABASE_URL + "/rest/v1/orders",
+    {
 
-async function insertOrder(data){
+      method: "POST",
 
-  const url =
-    SUPABASE_URL +
-    "/rest/v1/orders";
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+        "Prefer": "return=representation"
+      },
 
-
-  try{
-
-    const response =
-      await fetch(
-        url,
-        {
-          method:"POST",
-
-          headers:{
-            "apikey":
-              SUPABASE_ANON_KEY,
-
-            "Authorization":
-              "Bearer " +
-              SUPABASE_ANON_KEY,
-
-            "Content-Type":
-              "application/json",
-
-            "Prefer":
-              "return=representation"
-          },
-
-          body:
-            JSON.stringify(
-              data
-            )
-        }
-      );
-
-
-    if(!response.ok){
-
-      const text =
-        await response.text();
-
-      throw new Error(
-        "บันทึกคำสั่งซื้อไม่สำเร็จ\n\n" +
-        "HTTP " +
-        response.status +
-        "\n" +
-        text
-      );
-
+      body: JSON.stringify(orderData)
     }
+  );
 
+  if(!response.ok){
 
-    return await response.json();
-
-
-  }catch(error){
+    const errorText = await response.text();
 
     throw new Error(
-      "ไม่สามารถบันทึกข้อมูลลง Supabase Database ได้\n\n" +
-      error.message
+      "Order submission failed: " +
+      errorText
     );
-
   }
 
+  return await response.json();
 }
 
+function fillReceipt(orderNumber, prices){
 
-/* =========================================================
-   SUBMIT
-========================================================= */
+  document.getElementById("receiptOrderNumber").textContent =
+    orderNumber;
 
-async function submitOrder(){
+  document.getElementById("receiptCustomer").textContent =
+    document.getElementById("customerName").value.trim();
 
-  hideError();
+  document.getElementById("receiptTemplate").textContent =
+    templateEl.options[templateEl.selectedIndex].text +
+    " — " +
+    money(prices.templatePrice);
 
+  document.getElementById("receiptExtra").textContent =
+    prices.extraNames.length
+      ? prices.extraNames.join(", ") + " — " + money(prices.extraTotal)
+      : "None";
 
-  const name =
-    customerName.value.trim();
+  document.getElementById("receiptSubtotal").textContent =
+    money(prices.subtotal);
 
-  const customerContact =
-    contact.value.trim();
+  document.getElementById("receiptDiscount").textContent =
+    prices.discount > 0
+      ? "-" + money(prices.discount) + " (5%)"
+      : "0.00 THB";
 
-  const slip =
-    paymentSlip.files[0];
+  document.getElementById("receiptTotal").textContent =
+    money(prices.total);
 
+  document.getElementById("receiptDeposit").textContent =
+    money(prices.deposit);
 
-  if(!name){
+  document.getElementById("receiptRemaining").textContent =
+    money(prices.remaining);
+}
 
-    showError(
-      "กรุณากรอกชื่อ"
-    );
+document.getElementById("orderForm").addEventListener("submit", async function(event){
 
-    customerName.focus();
+  event.preventDefault();
+
+  const submitButton =
+    document.getElementById("submitButton");
+
+  const statusBox =
+    document.getElementById("statusBox");
+
+  const paymentSlip =
+    document.getElementById("paymentSlip").files[0];
+
+  if(!paymentSlip){
+
+    statusBox.classList.add("show");
+    statusBox.textContent =
+      "Please upload your payment slip.";
 
     return;
-
   }
 
+  const prices = calculatePrices();
 
-  if(!customerContact){
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
 
-    showError(
-      "กรุณากรอกช่องทางติดต่อ"
-    );
-
-    contact.focus();
-
-    return;
-
-  }
-
-
-  if(!slip){
-
-    showError(
-      "กรุณาอัปโหลดสลิป"
-    );
-
-    paymentSlip.focus();
-
-    return;
-
-  }
-
-
-  const templateKey =
-    getTemplateKey();
-
-  const template =
-    TEMPLATE_DATA[templateKey]
-      || TEMPLATE_DATA["birthday-01"];
-
-
-  const extras =
-    getSelectedFunctions();
-
-
-  const total =
-    getTemplatePrice()
-    +
-    getExtraPrice();
-
-
-  const deposit =
-    Math.ceil(
-      total * 0.30
-    );
-
-
-  const remaining =
-    total - deposit;
-
-
-  const orderNumber =
-    createOrderNumber();
-
-
-  submitBtn.disabled =
-    true;
-
-  submitBtn.textContent =
-    "PROCESSING...";
-
+  statusBox.classList.add("show");
+  statusBox.textContent = "Uploading your order...";
 
   try{
 
-    /* STEP 1 */
+    if(couponApplied){
 
-    console.log(
-      "PINTO LOVE: uploading slip..."
-    );
+      const alreadyUsed =
+        await checkCouponAlreadyUsed();
 
+      if(alreadyUsed){
 
-    const slipPath =
+        throw new Error(
+          "This coupon has already been used."
+        );
+      }
+    }
+
+    const orderNumber =
+      createOrderNumber();
+
+    statusBox.textContent =
+      "Uploading payment slip...";
+
+    const paymentSlipPath =
       await uploadPaymentSlip(
-        slip
+        paymentSlip,
+        orderNumber
       );
-
-
-    /* STEP 2 */
 
     const orderData = {
 
-      order_number:
-        orderNumber,
+      order_number: orderNumber,
 
       customer_name:
-        name,
+        document.getElementById("customerName")
+          .value
+          .trim(),
 
       contact:
-        customerContact,
+        document.getElementById("contact")
+          .value
+          .trim(),
 
       template:
-        template.name,
+        templateEl.value,
 
       message:
-        message.value.trim(),
+        document.getElementById("message")
+          .value
+          .trim(),
 
       primary_color:
-        document.getElementById(
-          "primaryColor"
-        ).value,
+        primaryColor.value,
 
       secondary_color:
-        document.getElementById(
-          "secondaryColor"
-        ).value,
+        secondaryColor.value,
 
       background_color:
-        document.getElementById(
-          "backgroundColor"
-        ).value,
+        backgroundColor.value,
 
       extra_functions:
-        extras.length
-          ? extras.join(", ")
-          : "None",
+        prices.extraNames,
 
       total_price:
-        total,
+        Number(prices.total.toFixed(2)),
 
       deposit_amount:
-        deposit,
+        Number(prices.deposit.toFixed(2)),
 
       remaining_amount:
-        remaining,
+        Number(prices.remaining.toFixed(2)),
+
+      discount_code:
+        couponApplied
+          ? DISCOUNT_CODE
+          : null,
+
+      discount_percent:
+        couponApplied
+          ? DISCOUNT_PERCENT
+          : 0,
+
+      discount_amount:
+        Number(prices.discount.toFixed(2)),
 
       payment_slip:
-        slipPath,
+        paymentSlipPath,
 
       payment_status:
         "รอตรวจสอบมัดจำ",
 
       status:
         "รอตรวจสอบมัดจำ"
-
     };
 
+    statusBox.textContent =
+      "Saving your order...";
 
-    console.log(
-      "PINTO LOVE: saving order..."
-    );
+    await submitToSupabase(orderData);
 
+    statusBox.classList.remove("show");
 
-    await insertOrder(
-      orderData
-    );
+    document.getElementById("printerSection")
+      .classList.add("show");
 
+    window.scrollTo({
+      top: document.getElementById("printerSection").offsetTop,
+      behavior: "smooth"
+    });
 
-    /* SUCCESS */
+    setTimeout(function(){
 
-    showSuccess(
-      orderData
-    );
+      document.getElementById("printerSection")
+        .classList.remove("show");
 
+      fillReceipt(orderNumber, prices);
+
+      document.getElementById("receiptSection")
+        .classList.add("show");
+
+      document.getElementById("receiptSection")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }, 1500);
 
   }catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
+    statusBox.classList.add("show");
 
-    showError(
-      "เกิดข้อผิดพลาด\n\n" +
-      error.message
-    );
+    statusBox.textContent =
+      "Order failed: " +
+      error.message;
 
-
-    submitBtn.disabled =
-      false;
-
-    submitBtn.textContent =
-      "SUBMIT ORDER";
-
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit Order";
   }
 
+});
+
+function savePDF(){
+
+  window.print();
 }
 
+async function shareReceipt(){
 
-/* =========================================================
-   SUCCESS
-========================================================= */
+  const orderNumber =
+    document.getElementById("receiptOrderNumber").textContent;
 
-function showSuccess(data){
+  const total =
+    document.getElementById("receiptTotal").textContent;
 
-  orderSection.classList.add(
-    "hidden"
-  );
+  const text =
+    "PINTO LOVE Order Receipt\n" +
+    "Order: " + orderNumber + "\n" +
+    "Total: " + total;
 
-  successSection.classList.remove(
-    "hidden"
-  );
+  if(navigator.share){
 
+    try{
 
-  document.getElementById(
-    "receiptOrderNumber"
-  ).textContent =
-    data.order_number;
+      await navigator.share({
+        title:"PINTO LOVE Receipt",
+        text:text
+      });
 
+    }catch(error){
+      console.log(error);
+    }
 
-  document.getElementById(
-    "receiptCustomer"
-  ).textContent =
-    data.customer_name;
+  }else{
 
+    try{
 
-  document.getElementById(
-    "receiptContact"
-  ).textContent =
-    data.contact;
+      await navigator.clipboard.writeText(text);
 
+      alert("Receipt information copied.");
 
-  document.getElementById(
-    "receiptTemplate"
-  ).textContent =
-    data.template;
+    }catch(error){
 
-
-  document.getElementById(
-    "receiptFunctions"
-  ).textContent =
-    data.extra_functions;
-
-
-  document.getElementById(
-    "receiptTotal"
-  ).textContent =
-    "฿" +
-    data.total_price;
-
-
-  document.getElementById(
-    "receiptDeposit"
-  ).textContent =
-    "฿" +
-    data.deposit_amount;
-
-
-  document.getElementById(
-    "receiptRemaining"
-  ).textContent =
-    "฿" +
-    data.remaining_amount;
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+      alert(text);
+    }
+  }
 }
 
-
-/* =========================================================
-   PRINT
-========================================================= */
-
-document
-  .getElementById("printBtn")
-  .addEventListener(
-    "click",
-    function(){
-
-      window.print();
-
-    }
-  );
-
-
-/* =========================================================
-   SAVE PDF
-========================================================= */
-
-document
-  .getElementById("saveBtn")
-  .addEventListener(
-    "click",
-    function(){
-
-      window.print();
-
-    }
-  );
-
-
-/* =========================================================
-   SHARE
-========================================================= */
-
-document
-  .getElementById("shareBtn")
-  .addEventListener(
-    "click",
-    async function(){
-
-      const text =
-        "PINTO LOVE Order\n" +
-        "Order Number: " +
-        document.getElementById(
-          "receiptOrderNumber"
-        ).textContent +
-        "\nCustomer: " +
-        document.getElementById(
-          "receiptCustomer"
-        ).textContent +
-        "\nTotal: " +
-        document.getElementById(
-          "receiptTotal"
-        ).textContent;
-
-
-      if(
-        navigator.share
-      ){
-
-        try{
-
-          await navigator.share({
-            title:"PINTO LOVE Order",
-            text:text,
-            url:window.location.href
-          });
-
-          return;
-
-        }catch(error){
-
-          if(
-            error.name ===
-            "AbortError"
-          ){
-
-            return;
-
-          }
-
-        }
-
-      }
-
-
-      try{
-
-        await navigator.clipboard.writeText(
-          text
-        );
-
-        alert(
-          "คัดลอกรายละเอียดคำสั่งซื้อแล้ว"
-        );
-
-      }catch(error){
-
-        prompt(
-          "คัดลอกข้อความนี้:",
-          text
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   EXTRA EVENTS
-========================================================= */
-
-document
-  .querySelectorAll(
-    '.extra-item input[type="checkbox"]'
-  )
-  .forEach(function(item){
-
-    item.addEventListener(
-      "change",
-      updatePrice
-    );
-
-  });
-
-
-/* =========================================================
-   SUBMIT EVENT
-========================================================= */
-
-submitBtn.addEventListener(
-  "click",
-  submitOrder
-);
-
-
-/* =========================================================
-   INIT
-========================================================= */
-
-setupTemplate();
-
-updatePrice();
-
+calculatePrices();
 </script>
 
 </body>
