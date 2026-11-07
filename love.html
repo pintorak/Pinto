@@ -86,6 +86,113 @@ img{
 
 
 /* =========================
+   LANGUAGE SWITCHER
+   เพิ่มระบบภาษาเท่านั้น
+========================= */
+
+.language-switcher{
+  position:fixed;
+  top:24px;
+  right:24px;
+  z-index:9999;
+}
+
+.language-button{
+  width:44px;
+  height:44px;
+
+  border:1px solid rgba(64,57,52,.15);
+
+  background:rgba(251,248,245,.88);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-size:17px;
+
+  color:var(--dark);
+
+  box-shadow:0 8px 25px rgba(64,57,52,.08);
+
+  transition:.3s ease;
+}
+
+.language-button:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 28px rgba(64,57,52,.12);
+}
+
+.language-menu{
+  position:absolute;
+  top:52px;
+  right:0;
+
+  width:145px;
+
+  background:rgba(251,248,245,.96);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  border:1px solid rgba(64,57,52,.12);
+
+  border-radius:14px;
+
+  padding:7px;
+
+  box-shadow:0 14px 40px rgba(64,57,52,.12);
+
+  display:none;
+}
+
+.language-menu.show{
+  display:block;
+}
+
+.language-option{
+  width:100%;
+
+  border:0;
+  background:transparent;
+
+  padding:9px 11px;
+
+  border-radius:9px;
+
+  font-family:"Noto Sans Thai","Noto Sans KR",sans-serif;
+
+  font-size:12px;
+
+  font-weight:400;
+
+  text-align:left;
+
+  color:var(--dark);
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.language-option:hover{
+  background:var(--beige);
+}
+
+.language-option.active{
+  background:var(--beige);
+  font-weight:500;
+}
+
+
+/* =========================
    HERO
 ========================= */
 
@@ -498,11 +605,57 @@ img{
     PINTO LOVE
   </a>
 
-  <a href="index.html" class="back-link">
+  <a href="index.html" class="back-link" data-i18n="backToStudio">
     BACK TO PINTO STUDIO
   </a>
 
 </header>
+
+
+<!-- =========================
+     LANGUAGE SWITCHER
+========================= -->
+
+<div class="language-switcher">
+
+  <button
+    class="language-button"
+    id="languageButton"
+    type="button"
+    aria-label="Change language"
+  >
+    🌐
+  </button>
+
+  <div class="language-menu" id="languageMenu">
+
+    <button
+      class="language-option"
+      data-lang="th"
+      type="button"
+    >
+      🇹🇭 ไทย
+    </button>
+
+    <button
+      class="language-option"
+      data-lang="en"
+      type="button"
+    >
+      🇬🇧 English
+    </button>
+
+    <button
+      class="language-option"
+      data-lang="ko"
+      type="button"
+    >
+      🇰🇷 한국어
+    </button>
+
+  </div>
+
+</div>
 
 
 
@@ -516,12 +669,12 @@ img{
     PINTO LOVE
   </div>
 
-  <h1 class="hero-title">
+  <h1 class="hero-title" data-i18n="heroTitle">
     Little things,<br>
     made to remember.
   </h1>
 
-  <p class="hero-text">
+  <p class="hero-text" data-i18n="heroText">
     Digital experiences made for love,
     memories, special days and little moments
     that deserve to be remembered.
@@ -545,13 +698,13 @@ img{
         PINTO LOVE · ANNIVERSARY
       </div>
 
-      <h2 class="section-title">
+      <h2 class="section-title" data-i18n="anniversary">
         วันครบรอบ
       </h2>
 
     </div>
 
-    <a href="anniversary.html" class="see-all">
+    <a href="anniversary.html" class="see-all" data-i18n="seeAll">
       SEE ALL →
     </a>
 
@@ -610,11 +763,11 @@ img{
           ANNIVERSARY · TEMPLATE 01
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="anniversaryTemplate01">
           วันครบรอบแบบที่หนึ่ง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="anniversaryDesc01">
           เว็บไซต์เล็ก ๆ สำหรับเก็บเรื่องราว
           ความทรงจำ และช่วงเวลาที่มีร่วมกัน
           ในวันสำคัญของความสัมพันธ์
@@ -624,7 +777,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -656,11 +809,11 @@ img{
           ANNIVERSARY · TEMPLATE 02
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="anniversaryTemplate02">
           วันครบรอบแบบที่สอง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="anniversaryDesc02">
           อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราว
           ของความสัมพันธ์ผ่านข้อความ
           และช่วงเวลาที่อยากจดจำ
@@ -670,7 +823,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -702,11 +855,11 @@ img{
           ANNIVERSARY · TEMPLATE 03
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="anniversaryTemplate03">
           วันครบรอบแบบที่สาม
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="anniversaryDesc03">
           พื้นที่เล็ก ๆ สำหรับบอกความรู้สึก
           และเก็บเรื่องราวของคนสองคน
           ไว้ในรูปแบบที่ไม่เหมือนใคร
@@ -716,7 +869,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -744,14 +897,13 @@ img{
         PINTO LOVE · BIRTHDAY
       </div>
 
-      <h2 class="section-title">
+      <h2 class="section-title" data-i18n="birthday">
         วันเกิด
       </h2>
 
     </div>
 
-    <!-- BIRTHDAY SEE ALL -->
-    <a href="birthday.html" class="see-all">
+    <a href="birthday.html" class="see-all" data-i18n="seeAll">
       SEE ALL →
     </a>
 
@@ -810,11 +962,11 @@ img{
           BIRTHDAY · TEMPLATE 01
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="birthdayTemplate01">
           วันเกิดแบบที่หนึ่ง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="birthdayDesc01">
           เว็บไซต์เซอร์ไพรส์วันเกิด
           ที่ค่อย ๆ พาผู้รับเปิดของขวัญ
           และค้นพบคำอวยพรทีละขั้น
@@ -824,7 +976,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -856,11 +1008,11 @@ img{
           BIRTHDAY · TEMPLATE 02
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="birthdayTemplate02">
           วันเกิดแบบที่สอง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="birthdayDesc02">
           ดีไซน์อีกหนึ่งรูปแบบ
           สำหรับเก็บคำอวยพรและความทรงจำ
           ในวันเกิดของคนสำคัญ
@@ -870,7 +1022,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -902,11 +1054,11 @@ img{
           BIRTHDAY · TEMPLATE 03
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="birthdayTemplate03">
           วันเกิดแบบที่สาม
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="birthdayDesc03">
           อีกหนึ่งพื้นที่สำหรับสร้าง
           เซอร์ไพรส์วันเกิดที่มีเรื่องราว
           ในแบบของคุณเอง
@@ -916,7 +1068,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -944,14 +1096,13 @@ img{
         PINTO LOVE · MAKE UP
       </div>
 
-      <h2 class="section-title">
+      <h2 class="section-title" data-i18n="makeup">
         ขอโทษและคืนดี
       </h2>
 
     </div>
 
-    <!-- MAKE UP SEE ALL -->
-    <a href="make-up.html" class="see-all">
+    <a href="make-up.html" class="see-all" data-i18n="seeAll">
       SEE ALL →
     </a>
 
@@ -1014,11 +1165,11 @@ img{
           MAKE UP · TEMPLATE 01
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="makeupTemplate01">
           ขอโทษและคืนดีแบบที่หนึ่ง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="makeupDesc01">
           เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ
           ความรู้สึกที่อยากพูด
           และการขอเริ่มต้นกันใหม่อีกครั้ง
@@ -1028,7 +1179,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -1064,11 +1215,11 @@ img{
           MAKE UP · TEMPLATE 02
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="makeupTemplate02">
           ขอโทษและคืนดีแบบที่สอง
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="makeupDesc02">
           สำหรับคนที่อยากบอกความรู้สึก
           ผ่านเรื่องราวและความทรงจำ
           ที่มีร่วมกัน
@@ -1078,7 +1229,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -1114,11 +1265,11 @@ img{
           MAKE UP · TEMPLATE 03
         </div>
 
-        <div class="template-title">
+        <div class="template-title" data-i18n="makeupTemplate03">
           ขอโทษและคืนดีแบบที่สาม
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="makeupDesc03">
           พื้นที่เล็ก ๆ สำหรับคำขอโทษ
           และข้อความที่อยากให้คนสำคัญ
           ได้อ่านจนจบ
@@ -1128,7 +1279,7 @@ img{
           129 THB
         </div>
 
-        <div class="view-template">
+        <div class="view-template" data-i18n="viewTemplate">
           VIEW TEMPLATE →
         </div>
 
@@ -1162,7 +1313,7 @@ img{
 
     </div>
 
-    <a href="#" class="see-all">
+    <a href="#" class="see-all" data-i18n="seeAll">
       SEE ALL →
     </a>
 
@@ -1197,7 +1348,7 @@ img{
           Coming Soon
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="specialDesc01">
           พื้นที่สำหรับช่วงเวลาพิเศษ
           ที่ไม่จำเป็นต้องอยู่ในหมวดใดหมวดหนึ่ง
         </div>
@@ -1232,7 +1383,7 @@ img{
           Coming Soon
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="specialDesc02">
           รูปแบบใหม่สำหรับเก็บ
           ความทรงจำและช่วงเวลาสำคัญ
         </div>
@@ -1267,7 +1418,7 @@ img{
           Coming Soon
         </div>
 
-        <div class="template-description">
+        <div class="template-description" data-i18n="specialDesc03">
           บางช่วงเวลาอาจสั้น
           แต่ก็มีความหมายพอที่จะจดจำ
         </div>
@@ -1292,11 +1443,11 @@ img{
     PINTO LOVE
   </div>
 
-  <div class="note-title">
+  <div class="note-title" data-i18n="noteTitle">
     Made to feel personal.
   </div>
 
-  <div class="note-text">
+  <div class="note-text" data-i18n="noteText">
 
     ทุก Template สามารถปรับเปลี่ยนข้อความ
     ในแต่ละหน้าให้เป็นเรื่องราวของคุณเองได้
@@ -1333,7 +1484,7 @@ img{
     PINTO LOVE
   </div>
 
-  <div class="footer-text">
+  <div class="footer-text" data-i18n="footerText">
     Digital experiences made with intention.
   </div>
 
@@ -1342,6 +1493,421 @@ img{
 
 
 <script>
+
+/* ==================================
+   LANGUAGE SYSTEM
+================================== */
+
+const translations = {
+
+  th: {
+
+    backToStudio:
+      "BACK TO PINTO STUDIO",
+
+    heroTitle:
+      "Little things,<br>made to remember.",
+
+    heroText:
+      "ประสบการณ์ดิจิทัลที่สร้างขึ้นเพื่อความรัก ความทรงจำ วันพิเศษ และช่วงเวลาเล็ก ๆ ที่ควรค่าแก่การจดจำ",
+
+    anniversary:
+      "วันครบรอบ",
+
+    birthday:
+      "วันเกิด",
+
+    makeup:
+      "ขอโทษและคืนดี",
+
+    seeAll:
+      "SEE ALL →",
+
+    viewTemplate:
+      "VIEW TEMPLATE →",
+
+    anniversaryTemplate01:
+      "วันครบรอบแบบที่หนึ่ง",
+
+    anniversaryDesc01:
+      "เว็บไซต์เล็ก ๆ สำหรับเก็บเรื่องราว ความทรงจำ และช่วงเวลาที่มีร่วมกัน ในวันสำคัญของความสัมพันธ์",
+
+    anniversaryTemplate02:
+      "วันครบรอบแบบที่สอง",
+
+    anniversaryDesc02:
+      "อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราวของความสัมพันธ์ผ่านข้อความ และช่วงเวลาที่อยากจดจำ",
+
+    anniversaryTemplate03:
+      "วันครบรอบแบบที่สาม",
+
+    anniversaryDesc03:
+      "พื้นที่เล็ก ๆ สำหรับบอกความรู้สึก และเก็บเรื่องราวของคนสองคนไว้ในรูปแบบที่ไม่เหมือนใคร",
+
+    birthdayTemplate01:
+      "วันเกิดแบบที่หนึ่ง",
+
+    birthdayDesc01:
+      "เว็บไซต์เซอร์ไพรส์วันเกิด ที่ค่อย ๆ พาผู้รับเปิดของขวัญ และค้นพบคำอวยพรทีละขั้น",
+
+    birthdayTemplate02:
+      "วันเกิดแบบที่สอง",
+
+    birthdayDesc02:
+      "ดีไซน์อีกหนึ่งรูปแบบ สำหรับเก็บคำอวยพรและความทรงจำ ในวันเกิดของคนสำคัญ",
+
+    birthdayTemplate03:
+      "วันเกิดแบบที่สาม",
+
+    birthdayDesc03:
+      "อีกหนึ่งพื้นที่สำหรับสร้าง เซอร์ไพรส์วันเกิดที่มีเรื่องราว ในแบบของคุณเอง",
+
+    makeupTemplate01:
+      "ขอโทษและคืนดีแบบที่หนึ่ง",
+
+    makeupDesc01:
+      "เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ ความรู้สึกที่อยากพูด และการขอเริ่มต้นกันใหม่อีกครั้ง",
+
+    makeupTemplate02:
+      "ขอโทษและคืนดีแบบที่สอง",
+
+    makeupDesc02:
+      "สำหรับคนที่อยากบอกความรู้สึก ผ่านเรื่องราวและความทรงจำ ที่มีร่วมกัน",
+
+    makeupTemplate03:
+      "ขอโทษและคืนดีแบบที่สาม",
+
+    makeupDesc03:
+      "พื้นที่เล็ก ๆ สำหรับคำขอโทษ และข้อความที่อยากให้คนสำคัญ ได้อ่านจนจบ",
+
+    specialDesc01:
+      "พื้นที่สำหรับช่วงเวลาพิเศษ ที่ไม่จำเป็นต้องอยู่ในหมวดใดหมวดหนึ่ง",
+
+    specialDesc02:
+      "รูปแบบใหม่สำหรับเก็บ ความทรงจำและช่วงเวลาสำคัญ",
+
+    specialDesc03:
+      "บางช่วงเวลาอาจสั้น แต่ก็มีความหมายพอที่จะจดจำ",
+
+    noteTitle:
+      "Made to feel personal.",
+
+    noteText:
+      "ทุก Template สามารถปรับเปลี่ยนข้อความในแต่ละหน้าให้เป็นเรื่องราวของคุณเองได้ ไม่ว่าจะเป็นชื่อ ข้อความ คำอวยพร หรือเรื่องราวเฉพาะของคนสองคน<br><br>สามารถปรับโทนและสีของเว็บไซต์ให้เข้ากับความสัมพันธ์และสไตล์ที่ต้องการได้<br><br>หากต้องการฟังก์ชันเพิ่มเติม คิดเพิ่มเพียง +29 THB / function<br><br>ระยะเวลาจัดทำประมาณ 1–2 วัน",
+
+    footerText:
+      "Digital experiences made with intention."
+
+  },
+
+
+  en: {
+
+    backToStudio:
+      "BACK TO PINTO STUDIO",
+
+    heroTitle:
+      "Little things,<br>made to remember.",
+
+    heroText:
+      "Digital experiences made for love, memories, special days and little moments that deserve to be remembered.",
+
+    anniversary:
+      "Anniversary",
+
+    birthday:
+      "Birthday",
+
+    makeup:
+      "Apology & Reconciliation",
+
+    seeAll:
+      "SEE ALL →",
+
+    viewTemplate:
+      "VIEW TEMPLATE →",
+
+    anniversaryTemplate01:
+      "Anniversary · Template One",
+
+    anniversaryDesc01:
+      "A little website for keeping stories, memories and shared moments from an important day in your relationship.",
+
+    anniversaryTemplate02:
+      "Anniversary · Template Two",
+
+    anniversaryDesc02:
+      "Another way to tell your relationship story through words and moments worth remembering.",
+
+    anniversaryTemplate03:
+      "Anniversary · Template Three",
+
+    anniversaryDesc03:
+      "A little space to express your feelings and keep the story of two people in a unique format.",
+
+    birthdayTemplate01:
+      "Birthday · Template One",
+
+    birthdayDesc01:
+      "A birthday surprise website that slowly guides the recipient through gifts and wishes, one step at a time.",
+
+    birthdayTemplate02:
+      "Birthday · Template Two",
+
+    birthdayDesc02:
+      "Another design for keeping birthday wishes and memories of someone special.",
+
+    birthdayTemplate03:
+      "Birthday · Template Three",
+
+    birthdayDesc03:
+      "Another space for creating a birthday surprise with your own story.",
+
+    makeupTemplate01:
+      "Apology & Reconciliation · Template One",
+
+    makeupDesc01:
+      "A little website for an apology, feelings you want to express, and asking to begin again.",
+
+    makeupTemplate02:
+      "Apology & Reconciliation · Template Two",
+
+    makeupDesc02:
+      "For those who want to express their feelings through shared stories and memories.",
+
+    makeupTemplate03:
+      "Apology & Reconciliation · Template Three",
+
+    makeupDesc03:
+      "A little space for an apology and words you want someone important to read until the end.",
+
+    specialDesc01:
+      "A space for special moments that do not necessarily belong to any particular category.",
+
+    specialDesc02:
+      "A new format for keeping memories and meaningful moments.",
+
+    specialDesc03:
+      "Some moments may be short, but they can still be meaningful enough to remember.",
+
+    noteTitle:
+      "Made to feel personal.",
+
+    noteText:
+      "Every template can be customized with your own story. Add names, messages, wishes, or details that belong specifically to the two of you.<br><br>You can also adjust the website's tone and colors to match your relationship and preferred style.<br><br>If you want additional functions, they are only +29 THB / function.<br><br>Estimated completion time: 1–2 days.",
+
+    footerText:
+      "Digital experiences made with intention."
+
+  },
+
+
+  ko: {
+
+    backToStudio:
+      "BACK TO PINTO STUDIO",
+
+    heroTitle:
+      "기억하고 싶은<br>작은 순간들.",
+
+    heroText:
+      "사랑, 추억, 특별한 날 그리고 오래 기억하고 싶은 소중한 순간을 위한 디지털 경험을 만듭니다.",
+
+    anniversary:
+      "기념일",
+
+    birthday:
+      "생일",
+
+    makeup:
+      "사과와 화해",
+
+    seeAll:
+      "SEE ALL →",
+
+    viewTemplate:
+      "VIEW TEMPLATE →",
+
+    anniversaryTemplate01:
+      "기념일 · 첫 번째 템플릿",
+
+    anniversaryDesc01:
+      "관계의 특별한 날에 함께한 이야기와 추억, 소중한 순간을 담아두는 작은 웹사이트입니다.",
+
+    anniversaryTemplate02:
+      "기념일 · 두 번째 템플릿",
+
+    anniversaryDesc02:
+      "기억하고 싶은 순간과 이야기를 통해 두 사람의 관계를 담아내는 또 다른 방식입니다.",
+
+    anniversaryTemplate03:
+      "기념일 · 세 번째 템플릿",
+
+    anniversaryDesc03:
+      "두 사람의 이야기를 특별한 방식으로 담고 마음을 전할 수 있는 작은 공간입니다.",
+
+    birthdayTemplate01:
+      "생일 · 첫 번째 템플릿",
+
+    birthdayDesc01:
+      "선물과 축하 메시지를 하나씩 발견해가는 방식으로 구성된 생일 서프라이즈 웹사이트입니다.",
+
+    birthdayTemplate02:
+      "생일 · 두 번째 템플릿",
+
+    birthdayDesc02:
+      "소중한 사람의 생일을 위한 축하 메시지와 추억을 담아둘 수 있는 또 다른 디자인입니다.",
+
+    birthdayTemplate03:
+      "생일 · 세 번째 템플릿",
+
+    birthdayDesc03:
+      "나만의 이야기를 담아 특별한 생일 서프라이즈를 만들 수 있는 또 하나의 공간입니다.",
+
+    makeupTemplate01:
+      "사과와 화해 · 첫 번째 템플릿",
+
+    makeupDesc01:
+      "미안한 마음과 전하고 싶은 감정, 그리고 다시 시작하고 싶은 마음을 담는 작은 웹사이트입니다.",
+
+    makeupTemplate02:
+      "사과와 화해 · 두 번째 템플릿",
+
+    makeupDesc02:
+      "함께했던 이야기와 추억을 통해 마음을 전하고 싶은 사람을 위한 디자인입니다.",
+
+    makeupTemplate03:
+      "사과와 화해 · 세 번째 템플릿",
+
+    makeupDesc03:
+      "소중한 사람이 끝까지 읽어주었으면 하는 사과와 진심을 담을 수 있는 작은 공간입니다.",
+
+    specialDesc01:
+      "특정 카테고리에 속하지 않아도 되는 특별한 순간을 위한 공간입니다.",
+
+    specialDesc02:
+      "소중한 추억과 의미 있는 순간을 담아둘 새로운 형식입니다.",
+
+    specialDesc03:
+      "어떤 순간은 짧지만, 기억할 만큼 충분히 의미가 있습니다.",
+
+    noteTitle:
+      "나만의 이야기처럼 특별하게.",
+
+    noteText:
+      "모든 템플릿은 여러분의 이야기에 맞게 내용을 변경할 수 있습니다. 이름, 메시지, 축하 문구 또는 두 사람만의 특별한 이야기를 담을 수 있습니다.<br><br>관계와 원하는 스타일에 맞게 웹사이트의 분위기와 색상도 변경할 수 있습니다.<br><br>추가 기능이 필요한 경우 기능당 +29 THB가 추가됩니다.<br><br>제작 기간은 약 1–2일입니다.",
+
+    footerText:
+      "의미를 담아 만든 디지털 경험."
+
+  }
+
+};
+
+
+/* ==================================
+   LANGUAGE FUNCTIONS
+================================== */
+
+function getSavedLanguage(){
+
+  const saved =
+    localStorage.getItem("pintoLanguage") ||
+    localStorage.getItem("language") ||
+    localStorage.getItem("lang");
+
+  if(saved === "en" || saved === "ko" || saved === "th"){
+    return saved;
+  }
+
+  return "th";
+}
+
+
+function setLanguage(lang){
+
+  if(!translations[lang]) return;
+
+  localStorage.setItem("pintoLanguage",lang);
+  localStorage.setItem("language",lang);
+  localStorage.setItem("lang",lang);
+
+  document.documentElement.lang = lang;
+
+  const elements =
+    document.querySelectorAll("[data-i18n]");
+
+  elements.forEach(function(element){
+
+    const key = element.dataset.i18n;
+
+    if(translations[lang][key]){
+      element.innerHTML =
+        translations[lang][key];
+    }
+
+  });
+
+
+  document.querySelectorAll(".language-option")
+    .forEach(function(option){
+
+      option.classList.toggle(
+        "active",
+        option.dataset.lang === lang
+      );
+
+    });
+
+}
+
+
+const languageButton =
+  document.getElementById("languageButton");
+
+const languageMenu =
+  document.getElementById("languageMenu");
+
+
+languageButton.addEventListener("click",function(e){
+
+  e.stopPropagation();
+
+  languageMenu.classList.toggle("show");
+
+});
+
+
+document.querySelectorAll(".language-option")
+  .forEach(function(option){
+
+    option.addEventListener("click",function(){
+
+      setLanguage(this.dataset.lang);
+
+      languageMenu.classList.remove("show");
+
+    });
+
+  });
+
+
+document.addEventListener("click",function(e){
+
+  if(!e.target.closest(".language-switcher")){
+    languageMenu.classList.remove("show");
+  }
+
+});
+
+
+/* ==================================
+   LOAD SAVED LANGUAGE
+================================== */
+
+setLanguage(getSavedLanguage());
+
+
 
 /* ==================================
    ALL SLIDERS
