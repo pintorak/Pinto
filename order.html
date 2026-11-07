@@ -11,314 +11,296 @@
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root{
+  --cream:#f7f2ec;
+  --cream2:#eee5dc;
+  --brown:#8c7e74;
+  --brown-dark:#5d5149;
+  --line:#d9cec4;
+  --white:#fffdfb;
+  --green:#66806f;
+  --red:#b56d6d;
 }
+
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:"DM Sans","Noto Sans Thai",sans-serif;
-  background:#F4EFEA;
-  color:#5f534b;
+  color:var(--brown-dark);
+  background:
+    radial-gradient(circle at top left,rgba(255,255,255,.8),transparent 35%),
+    linear-gradient(135deg,var(--cream),#f3ece5 55%,var(--cream2));
   min-height:100vh;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-button,
-input,
-textarea,
-select{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
-}
+button,input,textarea{font-family:inherit}
+button{cursor:pointer}
 
 .navbar{
-  width:calc(100% - 32px);
-  max-width:1200px;
-  margin:16px auto 0;
-  padding:14px 20px;
-  border:1px solid rgba(140,126,116,.22);
-  background:rgba(255,255,255,.52);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+  width:min(1100px,calc(100% - 32px));
+  margin:22px auto 0;
+  padding:13px 18px;
+  background:rgba(255,253,251,.72);
+  border:1px solid rgba(217,206,196,.8);
   border-radius:999px;
+  backdrop-filter:blur(14px);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  position:sticky;
-  top:14px;
-  z-index:20;
+  justify-content:space-between;
+  position:relative;
+  z-index:10;
 }
 
 .logo{
-  font-size:15px;
+  color:var(--brown-dark);
+  text-decoration:none;
+  font-size:18px;
   font-weight:700;
   letter-spacing:2px;
-  color:#6d5d52;
 }
 
-.back-link{
-  font-size:12px;
-  color:#8c7e74;
-  transition:.2s;
+.back-home{
+  text-decoration:none;
+  color:var(--brown);
+  font-size:13px;
+  font-weight:600;
 }
 
-.back-link:hover{
-  color:#5f534b;
-}
-
-.container{
-  width:calc(100% - 32px);
-  max-width:1200px;
-  margin:42px auto 80px;
-}
+.back-home:hover{color:var(--brown-dark)}
 
 .hero{
+  width:min(900px,calc(100% - 32px));
+  margin:70px auto 45px;
   text-align:center;
-  margin-bottom:34px;
 }
 
 .eyebrow{
-  font-size:10px;
-  letter-spacing:3px;
-  color:#9b8d82;
-  margin-bottom:12px;
+  font-size:12px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
+  color:var(--brown);
+  font-weight:600;
+  margin-bottom:16px;
 }
 
 .hero h1{
-  font-size:34px;
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(38px,7vw,64px);
+  line-height:1;
   font-weight:600;
-  color:#5d5048;
-  margin-bottom:10px;
+  letter-spacing:-2px;
+  color:var(--brown-dark);
+  margin-bottom:20px;
 }
 
 .hero p{
-  font-size:13px;
-  color:#96887e;
+  max-width:620px;
+  margin:auto;
+  font-size:15px;
+  line-height:1.9;
+  color:var(--brown);
 }
 
-.section{
-  background:rgba(255,255,255,.58);
-  border:1px solid rgba(140,126,116,.18);
+.container{
+  width:min(900px,calc(100% - 32px));
+  margin:0 auto 80px;
+}
+
+.card{
+  background:rgba(255,253,251,.86);
+  border:1px solid var(--line);
   border-radius:24px;
-  padding:28px;
+  padding:30px;
   margin-bottom:18px;
-  box-shadow:0 10px 35px rgba(100,80,60,.04);
+  box-shadow:0 15px 45px rgba(93,81,73,.06);
 }
 
 .section-head{
   display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:22px;
+  align-items:flex-start;
+  gap:17px;
+  margin-bottom:25px;
 }
 
 .section-number{
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background:#8C7E74;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
+  font-size:12px;
+  color:var(--brown);
+  font-weight:700;
+  letter-spacing:1px;
+  min-width:28px;
+  padding-top:4px;
+}
+
+.section-title h2{
+  font-size:20px;
   font-weight:600;
-  flex:none;
+  color:var(--brown-dark);
+  margin-bottom:5px;
 }
 
-.section-title{
-  font-size:16px;
-  font-weight:600;
-  color:#5d5048;
+.section-title p{
+  font-size:13px;
+  color:var(--brown);
+  line-height:1.7;
 }
 
-.section-subtitle{
-  font-size:11px;
-  color:#9a8c82;
-  margin-top:3px;
-}
-
-.template-card{
-  border:1px solid rgba(140,126,116,.2);
+.template-box{
+  border:1px solid var(--line);
   border-radius:18px;
-  overflow:hidden;
-  background:#fffdfb;
-}
-
-.template-preview{
-  height:220px;
-  background:
-    linear-gradient(135deg,rgba(200,188,177,.3),rgba(244,239,234,.7));
+  padding:20px;
   display:flex;
   align-items:center;
-  justify-content:center;
-  position:relative;
-}
-
-.template-preview img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.template-placeholder{
-  text-align:center;
-  color:#9a8c82;
-}
-
-.template-placeholder .icon{
-  font-size:36px;
-  margin-bottom:10px;
-}
-
-.template-placeholder p{
-  font-size:11px;
+  justify-content:space-between;
+  gap:20px;
+  background:rgba(247,242,236,.55);
 }
 
 .template-info{
-  padding:18px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:20px;
-}
-
-.template-name{
-  font-size:14px;
-  font-weight:600;
-  color:#5d5048;
-}
-
-.template-desc{
-  font-size:11px;
-  color:#9a8c82;
-  margin-top:5px;
-}
-
-.price{
-  font-size:18px;
-  font-weight:700;
-  color:#7c6d62;
-  white-space:nowrap;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px;
 }
 
-.field{
+.template-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:var(--cream2);
   display:flex;
-  flex-direction:column;
-  gap:8px;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
 }
 
-.field.full{
-  grid-column:1/-1;
+.template-name{
+  font-weight:600;
+  color:var(--brown-dark);
+  font-size:15px;
+  margin-bottom:4px;
 }
+
+.template-desc{
+  font-size:12px;
+  color:var(--brown);
+}
+
+.price{
+  font-weight:700;
+  color:var(--brown-dark);
+  white-space:nowrap;
+}
+
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
 
 label{
-  font-size:11px;
+  display:block;
+  font-size:13px;
   font-weight:600;
-  color:#75665d;
+  color:var(--brown-dark);
+  margin-bottom:8px;
 }
 
-.required{
-  color:#a77d6e;
-}
+.required{color:var(--red)}
 
-input,
-textarea,
-select{
+input[type="text"],textarea{
   width:100%;
-  border:1px solid rgba(140,126,116,.2);
-  background:rgba(255,255,255,.7);
-  border-radius:12px;
-  padding:12px 14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.75);
+  border-radius:13px;
+  padding:13px 15px;
   outline:none;
-  color:#5f534b;
-  font-size:12px;
+  color:var(--brown-dark);
+  font-size:14px;
   transition:.2s;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-  border-color:#b19f93;
+input[type="text"]:focus,textarea:focus{
+  border-color:var(--brown);
   box-shadow:0 0 0 3px rgba(140,126,116,.08);
 }
 
 textarea{
   min-height:130px;
   resize:vertical;
+  line-height:1.8;
 }
 
 .helper{
-  font-size:10px;
-  line-height:1.7;
-  color:#9b8d82;
+  font-size:11px;
+  color:var(--brown);
+  margin-top:7px;
+  line-height:1.6;
 }
 
 .extra-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
 
-.extra-card{
-  border:1px solid rgba(140,126,116,.18);
-  background:rgba(255,255,255,.58);
+.extra-item{
+  border:1px solid var(--line);
   border-radius:16px;
   padding:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(255,253,251,.6);
   transition:.2s;
-  position:relative;
 }
 
-.extra-card:hover{
-  transform:translateY(-2px);
-  border-color:rgba(140,126,116,.35);
+.extra-item:hover{
+  border-color:var(--brown);
+  transform:translateY(-1px);
 }
 
-.extra-card.selected{
-  border-color:#8C7E74;
-  background:rgba(200,188,177,.18);
+.extra-item input{display:none}
+
+.extra-check{
+  width:20px;
+  height:20px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  transition:.2s;
 }
 
-.extra-card input{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
+.extra-item input:checked + .extra-check{
+  background:var(--brown);
+  border-color:var(--brown);
+  color:white;
 }
 
-.extra-icon{
-  font-size:24px;
-  margin-bottom:10px;
+.extra-content{
+  flex:1;
+  min-width:0;
 }
 
 .extra-name{
-  font-size:12px;
+  font-size:13px;
   font-weight:600;
-  color:#665950;
-  line-height:1.5;
+  color:var(--brown-dark);
+}
+
+.extra-desc{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:3px;
 }
 
 .extra-price{
-  font-size:10px;
-  color:#9a8c82;
-  margin-top:5px;
+  font-size:12px;
+  font-weight:700;
+  color:var(--brown);
+  white-space:nowrap;
 }
 
 .color-grid{
@@ -327,282 +309,266 @@ textarea{
   gap:14px;
 }
 
-.color-field{
-  border:1px solid rgba(140,126,116,.18);
-  background:rgba(255,255,255,.52);
-  border-radius:16px;
-  padding:14px;
+.color-item{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:15px;
+  background:rgba(255,255,255,.55);
 }
 
-.color-field label{
-  display:block;
+.color-item label{
+  font-size:12px;
   margin-bottom:10px;
 }
 
 .color-row{
   display:flex;
-  gap:8px;
   align-items:center;
+  gap:10px;
 }
 
-.color-row input[type="color"]{
+input[type="color"]{
   width:44px;
-  height:38px;
+  height:36px;
   padding:3px;
-  border-radius:10px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:white;
   cursor:pointer;
 }
 
 .color-code{
-  font-size:10px;
-  color:#8f8178;
+  font-size:11px;
+  color:var(--brown);
+  text-transform:uppercase;
 }
 
 .coupon-box{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:18px;
+  background:rgba(247,242,236,.5);
+}
+
+.coupon-row{
   display:flex;
   gap:10px;
 }
 
-.coupon-box input{
-  flex:1;
-}
+.coupon-row input{flex:1}
 
-.btn{
-  border:0;
-  border-radius:999px;
-  padding:12px 20px;
-  font-size:11px;
+.btn-small{
+  border:1px solid var(--brown);
+  background:var(--brown);
+  color:white;
+  border-radius:12px;
+  padding:0 20px;
+  font-size:13px;
   font-weight:600;
-  transition:.2s;
+  min-width:80px;
 }
 
-.btn-primary{
-  background:#8C7E74;
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:#776960;
-  transform:translateY(-1px);
-}
-
-.btn-light{
-  background:#e8dfd8;
-  color:#6d5d52;
-}
+.btn-small:hover{background:var(--brown-dark)}
 
 .coupon-message{
   margin-top:10px;
-  font-size:10px;
-  min-height:16px;
+  font-size:12px;
+  line-height:1.6;
+  min-height:18px;
 }
 
-.coupon-message.success{
-  color:#6c8a70;
-}
-
-.coupon-message.error{
-  color:#a66f67;
-}
+.coupon-message.success{color:var(--green)}
+.coupon-message.error{color:var(--red)}
 
 .payment-box{
-  border:1px solid rgba(140,126,116,.18);
-  background:#fffdfb;
-  border-radius:18px;
+  border:1px solid var(--line);
+  border-radius:17px;
   padding:20px;
+  background:rgba(247,242,236,.5);
 }
 
-.payment-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-bottom:18px;
-}
-
-.amount-card{
-  background:#F4EFEA;
-  border-radius:14px;
+.bank-info{
   padding:15px;
+  border-radius:12px;
+  background:var(--white);
+  border:1px dashed var(--line);
+  margin-bottom:20px;
 }
 
-.amount-label{
-  font-size:10px;
-  color:#9a8c82;
-  margin-bottom:6px;
+.bank-info p{
+  font-size:12px;
+  color:var(--brown);
+  line-height:1.9;
 }
 
-.amount{
-  font-size:18px;
-  font-weight:700;
-  color:#6d5d52;
-}
+.bank-info strong{color:var(--brown-dark)}
 
-.upload{
-  border:1px dashed rgba(140,126,116,.35);
+.file-label{
+  border:1px dashed var(--brown);
   border-radius:14px;
-  padding:22px;
+  padding:20px;
   text-align:center;
-  background:rgba(244,239,234,.45);
+  cursor:pointer;
+  display:block;
+  background:rgba(255,255,255,.45);
 }
 
-.upload input{
-  border:0;
-  background:transparent;
-  padding:0;
+.file-label:hover{background:rgba(255,255,255,.75)}
+.file-label input{display:none}
+
+.file-icon{
+  font-size:25px;
+  margin-bottom:7px;
 }
 
-.upload p{
-  font-size:10px;
-  color:#9b8d82;
-  margin-top:7px;
+.file-title{
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
+}
+
+.file-name{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:5px;
+  word-break:break-word;
 }
 
 .summary{
   position:sticky;
   bottom:18px;
-  z-index:10;
-  margin-top:22px;
-  background:rgba(255,253,251,.94);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(140,126,116,.2);
-  border-radius:20px;
-  padding:18px 20px;
-  box-shadow:0 15px 45px rgba(80,60,40,.1);
+  z-index:5;
+  background:rgba(255,253,251,.95);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px 24px;
+  box-shadow:0 18px 50px rgba(93,81,73,.14);
+  backdrop-filter:blur(15px);
 }
 
-.summary-top{
+.summary-row{
   display:flex;
   justify-content:space-between;
-  gap:20px;
   align-items:center;
+  gap:20px;
+  font-size:13px;
+  color:var(--brown);
+  margin-bottom:9px;
 }
 
-.summary-left{
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
+.summary-row strong{color:var(--brown-dark)}
 
-.summary-label{
-  font-size:10px;
-  color:#9a8c82;
-}
+.summary-row.discount{color:var(--green)}
+.summary-row.discount strong{color:var(--green)}
 
 .summary-total{
-  font-size:22px;
-  font-weight:700;
-  color:#675850;
-}
-
-.summary-right{
+  border-top:1px solid var(--line);
+  margin-top:13px;
+  padding-top:15px;
   display:flex;
-  align-items:center;
-  gap:18px;
+  justify-content:space-between;
+  align-items:flex-end;
 }
 
-.deposit-text{
-  font-size:10px;
-  color:#8f8178;
-  line-height:1.6;
-  text-align:right;
+.total-label{
+  font-size:12px;
+  color:var(--brown);
+}
+
+.total-main{
+  font-size:26px;
+  font-weight:700;
+  color:var(--brown-dark);
+}
+
+.deposit-info{
+  margin-top:9px;
+  font-size:11px;
+  color:var(--brown);
+  line-height:1.7;
 }
 
 .submit-btn{
-  min-width:160px;
-  padding:14px 24px;
+  width:100%;
+  margin-top:18px;
+  border:0;
+  border-radius:14px;
+  padding:15px;
+  background:var(--brown-dark);
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.submit-btn:hover{
+  background:#493f39;
+  transform:translateY(-1px);
+}
+
+.submit-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.status-message{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:11px;
+  display:none;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.status-message.show{display:block}
+
+.status-message.success{
+  color:var(--green);
+  background:#edf4ef;
+  border:1px solid #cfded4;
+}
+
+.status-message.error{
+  color:var(--red);
+  background:#faf0f0;
+  border:1px solid #ead1d1;
+}
+
+footer{
+  text-align:center;
+  padding:0 20px 45px;
+  color:var(--brown);
   font-size:11px;
 }
 
-.status{
-  margin-top:12px;
-  font-size:10px;
-  text-align:center;
-  min-height:16px;
-}
-
-.status.success{
-  color:#6c8a70;
-}
-
-.status.error{
-  color:#a66f67;
-}
-
-.loading{
-  opacity:.65;
-  pointer-events:none;
-}
-
-@media(max-width:800px){
-  .extra-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .color-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:600px){
+@media(max-width:700px){
   .navbar{
-    width:calc(100% - 20px);
-    margin-top:10px;
+    width:calc(100% - 22px);
+    margin-top:12px;
   }
 
-  .container{
-    width:calc(100% - 20px);
-    margin-top:30px;
+  .hero{margin-top:50px}
+  .hero h1{font-size:42px}
+
+  .card{
+    padding:22px 18px;
+    border-radius:19px;
   }
 
-  .hero h1{
-    font-size:28px;
-  }
+  .extra-grid{grid-template-columns:1fr}
+  .color-grid{grid-template-columns:1fr}
 
-  .section{
-    padding:20px;
-    border-radius:20px;
-  }
+  .template-box{align-items:flex-start}
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+  .coupon-row{flex-direction:column}
 
-  .field.full{
-    grid-column:auto;
-  }
+  .btn-small{min-height:44px}
 
-  .extra-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .template-info{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .payment-grid{
-    grid-template-columns:1fr;
-  }
-
-  .summary-top{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .summary-right{
-    justify-content:space-between;
-  }
-
-  .deposit-text{
-    text-align:left;
-  }
-
-  .submit-btn{
-    flex:1;
-  }
-
-  .coupon-box{
-    flex-direction:column;
+  .summary{
+    bottom:8px;
+    padding:18px;
+    border-radius:18px;
   }
 }
 </style>
@@ -612,612 +578,2210 @@ textarea{
 
 <nav class="navbar">
   <a href="index.html" class="logo">PINTO LOVE</a>
-  <a href="index.html" class="back-link">← Back to Home</a>
+  <a href="index.html" class="back-home" data-i18n="backHome">← Back to Home</a>
 </nav>
+
+<section class="hero">
+  <div class="eyebrow" data-i18n="eyebrow">Create Your Digital Love Story</div>
+
+  <h1 data-i18n="heroTitle">Order Your Template</h1>
+
+  <p data-i18n="heroDescription">
+    Create a little digital moment made especially for someone you love.
+    Fill in your details, choose your extras, and make it yours.
+  </p>
+</section>
 
 <main class="container">
 
-<section class="hero">
-  <div class="eyebrow">ORDER YOUR DIGITAL MOMENT</div>
-  <h1>Place Your Order</h1>
-  <p>Create your special page with PINTO LOVE.</p>
+<section class="card">
+<div class="section-head">
+<div class="section-number">01</div>
+
+<div class="section-title">
+<h2 data-i18n="templateTitle">Your Template</h2>
+<p data-i18n="templateSubtitle">
+Choose the template you want to create.
+</p>
+</div>
+</div>
+
+<div class="template-box">
+<div class="template-info">
+
+<div class="template-icon">💌</div>
+
+<div>
+<div class="template-name" id="templateName">
+Anniversary Template 01
+</div>
+
+<div class="template-desc" id="templateDesc">
+A little digital love story for your special person.
+</div>
+</div>
+
+</div>
+
+<div class="price">
+<span id="templatePrice">129</span> THB
+</div>
+
+</div>
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">01</div>
-    <div>
-      <div class="section-title">Choose Your Template</div>
-      <div class="section-subtitle">Select the template you want us to create.</div>
-    </div>
-  </div>
+<section class="card">
 
-  <div class="template-card">
-    <div class="template-preview">
-      <img id="templateImage"
-           src=""
-           alt="Template Preview"
-           style="display:none;"
-           onerror="this.style.display='none'; document.getElementById('templatePlaceholder').style.display='block';">
+<div class="section-head">
+<div class="section-number">02</div>
 
-      <div id="templatePlaceholder" class="template-placeholder">
-        <div class="icon">♡</div>
-        <p>Template Preview</p>
-      </div>
-    </div>
+<div class="section-title">
+<h2 data-i18n="informationTitle">Your Information</h2>
 
-    <div class="template-info">
-      <div>
-        <div class="template-name" id="templateName">Anniversary Template 01</div>
-        <div class="template-desc" id="templateDesc">
-          A romantic digital page for your special day.
-        </div>
-      </div>
+<p data-i18n="informationSubtitle">
+Tell us the details we need to create your page.
+</p>
+</div>
+</div>
 
-      <div class="price" id="templatePrice">129 THB</div>
-    </div>
-  </div>
+<div class="field">
+
+<label for="customerName">
+<span data-i18n="yourName">Your Name</span>
+<span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="customerName"
+placeholder="Enter your name"
+data-i18n-placeholder="namePlaceholder"
+autocomplete="name"
+>
+
+</div>
+
+<div class="field">
+
+<label for="lineId">
+LINE ID <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="lineId"
+placeholder="Enter your LINE ID"
+data-i18n-placeholder="linePlaceholder"
+autocomplete="off"
+>
+
+<div class="helper" data-i18n="lineHelper">
+We will use your LINE ID to contact you.
+</div>
+
+</div>
+
+<div class="field">
+
+<label for="message" data-i18n="messageLabel">
+Message / Notes
+</label>
+
+<textarea
+id="message"
+placeholder="Tell us anything you'd like us to know about your order..."
+data-i18n-placeholder="messagePlaceholder"
+></textarea>
+
+</div>
+
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">02</div>
-    <div>
-      <div class="section-title">Your Information</div>
-      <div class="section-subtitle">Tell us where to contact you and what you want.</div>
-    </div>
-  </div>
+<section class="card">
 
-  <div class="grid">
+<div class="section-head">
 
-    <div class="field">
-      <label>
-        Your Name <span class="required">*</span>
-      </label>
+<div class="section-number">03</div>
 
-      <input
-        type="text"
-        id="customerName"
-        placeholder="Enter your name"
-        autocomplete="name">
-    </div>
+<div class="section-title">
 
-    <div class="field">
-      <label>
-        LINE ID <span class="required">*</span>
-      </label>
+<h2 data-i18n="extraTitle">
+Extra Menu
+</h2>
 
-      <input
-        type="text"
-        id="lineId"
-        placeholder="Enter your LINE ID"
-        autocomplete="off">
+<p data-i18n="extraSubtitle">
+Add more little moments to your template. +29 THB each.
+</p>
 
-      <div class="helper">
-        เราจะใช้ LINE ID สำหรับติดต่อคุณ
-      </div>
-    </div>
+</div>
+</div>
 
-    <div class="field full">
-      <label>
-        Message / Notes
-      </label>
+<div class="extra-grid">
 
-      <textarea
-        id="message"
-        placeholder="Tell us anything you'd like us to know about your page..."></textarea>
-    </div>
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Music Player" data-price="29">
 
-  </div>
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="musicName">🎵 Music Player</span>
+<span class="extra-desc" data-i18n="musicDesc">Add your special song</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Photo Gallery" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="photoName">📸 Photo Gallery</span>
+<span class="extra-desc" data-i18n="photoDesc">A collection of your memories</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Love Letter" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="letterName">💌 Love Letter</span>
+<span class="extra-desc" data-i18n="letterDesc">A private letter from your heart</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Countdown" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="countdownName">⏳ Countdown</span>
+<span class="extra-desc" data-i18n="countdownDesc">Count down to your special day</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Scratch Card" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="scratchName">🎟️ Scratch Card</span>
+<span class="extra-desc" data-i18n="scratchDesc">Scratch to reveal a secret</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เกมคำถาม 5 ข้อ" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="quizName">💕 เกมคำถาม 5 ข้อ</span>
+<span class="extra-desc" data-i18n="quizDesc">A cute little love quiz</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เมนูใส่รหัส" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="passwordName">🔐 เมนูใส่รหัส</span>
+<span class="extra-desc" data-i18n="passwordDesc">Unlock your private message</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เกมทายใจ" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="guessName">🔮 เกมทายใจ</span>
+<span class="extra-desc" data-i18n="guessDesc">A playful guessing game</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Puzzle" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="puzzleName">🧩 Puzzle</span>
+<span class="extra-desc" data-i18n="puzzleDesc">Put the pieces of your memory together</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Memory Map" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="mapName">📍 Memory Map</span>
+<span class="extra-desc" data-i18n="mapDesc">Mark the places that mean something</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Polaroid Memory" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="polaroidName">📷 Polaroid Memory</span>
+<span class="extra-desc" data-i18n="polaroidDesc">Turn your memories into polaroids</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="ตู้กาชาปอง" data-price="29">
+
+<span class="extra-check">✓</span>
+
+<span class="extra-content">
+<span class="extra-name" data-i18n="gachaName">🎁 ตู้กาชาปอง</span>
+<span class="extra-desc" data-i18n="gachaDesc">Little surprises waiting inside</span>
+</span>
+
+<span class="extra-price">+29 THB</span>
+</label>
+
+</div>
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">03</div>
-    <div>
-      <div class="section-title">Extra Functions</div>
-      <div class="section-subtitle">Add more features to make your page more special.</div>
-    </div>
-  </div>
+<section class="card">
 
-  <div class="extra-grid">
+<div class="section-head">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Music Player" data-price="29">
-      <div class="extra-icon">🎵</div>
-      <div class="extra-name">Music Player</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<div class="section-number">04</div>
 
-    <label class="extra-card">
-      <input type="checkbox" value="Photo Gallery" data-price="29">
-      <div class="extra-icon">📸</div>
-      <div class="extra-name">Photo Gallery</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<div class="section-title">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Love Letter" data-price="29">
-      <div class="extra-icon">💌</div>
-      <div class="extra-name">Love Letter</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<h2 data-i18n="colorTitle">
+Color Theme
+</h2>
 
-    <label class="extra-card">
-      <input type="checkbox" value="Countdown" data-price="29">
-      <div class="extra-icon">⏳</div>
-      <div class="extra-name">Countdown</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<p data-i18n="colorSubtitle">
+Choose the colors you'd like for your digital page.
+</p>
 
-    <label class="extra-card">
-      <input type="checkbox" value="Scratch Card" data-price="29">
-      <div class="extra-icon">🎟️</div>
-      <div class="extra-name">Scratch Card</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+</div>
+</div>
 
-    <label class="extra-card">
-      <input type="checkbox" value="5 Question Game" data-price="29">
-      <div class="extra-icon">💕</div>
-      <div class="extra-name">5 Question Game</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<div class="color-grid">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Password Menu" data-price="29">
-      <div class="extra-icon">🔐</div>
-      <div class="extra-name">Password Menu</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<div class="color-item">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Love Quiz" data-price="29">
-      <div class="extra-icon">🔮</div>
-      <div class="extra-name">Love Quiz</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<label for="primaryColor" data-i18n="primaryColor">
+Primary Color
+</label>
 
-    <label class="extra-card">
-      <input type="checkbox" value="Puzzle" data-price="29">
-      <div class="extra-icon">🧩</div>
-      <div class="extra-name">Puzzle</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<div class="color-row">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Memory Map" data-price="29">
-      <div class="extra-icon">📍</div>
-      <div class="extra-name">Memory Map</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<input type="color" id="primaryColor" value="#8C7E74">
 
-    <label class="extra-card">
-      <input type="checkbox" value="Polaroid Memory" data-price="29">
-      <div class="extra-icon">📷</div>
-      <div class="extra-name">Polaroid Memory</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+<span class="color-code" id="primaryColorCode">
+#8C7E74
+</span>
 
-    <label class="extra-card">
-      <input type="checkbox" value="Gachapon" data-price="29">
-      <div class="extra-icon">🎁</div>
-      <div class="extra-name">Gachapon</div>
-      <div class="extra-price">+29 THB</div>
-    </label>
+</div>
 
-  </div>
+</div>
+
+<div class="color-item">
+
+<label for="secondaryColor" data-i18n="secondaryColor">
+Secondary Color
+</label>
+
+<div class="color-row">
+
+<input type="color" id="secondaryColor" value="#C8BCB1">
+
+<span class="color-code" id="secondaryColorCode">
+#C8BCB1
+</span>
+
+</div>
+
+</div>
+
+<div class="color-item">
+
+<label for="backgroundColor" data-i18n="backgroundColor">
+Background Color
+</label>
+
+<div class="color-row">
+
+<input type="color" id="backgroundColor" value="#F4EFEA">
+
+<span class="color-code" id="backgroundColorCode">
+#F4EFEA
+</span>
+
+</div>
+
+</div>
+
+</div>
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">04</div>
-    <div>
-      <div class="section-title">Color Theme</div>
-      <div class="section-subtitle">Choose the colors you'd like for your page.</div>
-    </div>
-  </div>
+<section class="card">
 
-  <div class="color-grid">
+<div class="section-head">
 
-    <div class="color-field">
-      <label>Primary Color</label>
+<div class="section-number">05</div>
 
-      <div class="color-row">
-        <input type="color" id="primaryColor" value="#8C7E74">
-        <span class="color-code" id="primaryCode">#8C7E74</span>
-      </div>
-    </div>
+<div class="section-title">
 
-    <div class="color-field">
-      <label>Secondary Color</label>
+<h2 data-i18n="couponTitle">
+Referral / Discount Code
+</h2>
 
-      <div class="color-row">
-        <input type="color" id="secondaryColor" value="#C8BCB1">
-        <span class="color-code" id="secondaryCode">#C8BCB1</span>
-      </div>
-    </div>
+<p data-i18n="couponSubtitle">
+Have a discount code? Enter it below.
+</p>
 
-    <div class="color-field">
-      <label>Background Color</label>
+</div>
+</div>
 
-      <div class="color-row">
-        <input type="color" id="backgroundColor" value="#F4EFEA">
-        <span class="color-code" id="backgroundCode">#F4EFEA</span>
-      </div>
-    </div>
+<div class="coupon-box">
 
-  </div>
+<div class="coupon-row">
+
+<input
+type="text"
+id="couponCode"
+placeholder="Enter your discount code"
+data-i18n-placeholder="couponPlaceholder"
+autocomplete="off"
+>
+
+<button
+type="button"
+class="btn-small"
+id="applyCouponBtn"
+data-i18n="applyButton"
+>
+Apply
+</button>
+
+</div>
+
+<div
+class="coupon-message"
+id="couponMessage">
+</div>
+
+<div class="helper" data-i18n="couponHelper">
+Each person can use the discount code only once.
+</div>
+
+</div>
 </section>
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">05</div>
-    <div>
-      <div class="section-title">Coupon Code</div>
-      <div class="section-subtitle">Enter your discount code if you have one.</div>
-    </div>
-  </div>
+<section class="card">
 
-  <div class="coupon-box">
-    <input
-      type="text"
-      id="couponCode"
-      placeholder="Enter coupon code"
-      autocomplete="off">
+<div class="section-head">
 
-    <button
-      type="button"
-      class="btn btn-primary"
-      id="applyCouponBtn">
-      Apply
-    </button>
-  </div>
+<div class="section-number">06</div>
 
-  <div class="coupon-message" id="couponMessage"></div>
-</section>
+<div class="section-title">
 
-<section class="section">
-  <div class="section-head">
-    <div class="section-number">06</div>
-    <div>
-      <div class="section-title">Payment</div>
-      <div class="section-subtitle">Upload your payment slip to confirm your order.</div>
-    </div>
-  </div>
+<h2 data-i18n="paymentTitle">
+Payment
+</h2>
 
-  <div class="payment-box">
+<p data-i18n="paymentSubtitle">
+Complete the payment and upload your payment slip.
+</p>
 
-    <div class="payment-grid">
+</div>
+</div>
 
-      <div class="amount-card">
-        <div class="amount-label">Deposit (30%)</div>
-        <div class="amount" id="depositAmount">38.70 THB</div>
-      </div>
+<div class="payment-box">
 
-      <div class="amount-card">
-        <div class="amount-label">Remaining (70%)</div>
-        <div class="amount" id="remainingAmount">90.30 THB</div>
-      </div>
+<div class="bank-info">
 
-    </div>
+<p>
 
-    <div class="upload">
-      <input
-        type="file"
-        id="paymentSlip"
-        accept="image/png,image/jpeg,image/webp,application/pdf">
+<strong data-i18n="bankTransfer">
+Bank Transfer
+</strong>
 
-      <p>Upload your payment slip (JPG, PNG, WEBP or PDF)</p>
-    </div>
+<br>
 
-  </div>
+<span data-i18n="bankName">
+Bank: Your Bank Name
+</span>
+
+<br>
+
+<span data-i18n="accountName">
+Account Name: PINTO LOVE
+</span>
+
+<br>
+
+<span data-i18n="accountNumber">
+Account Number: 000-0-00000-0
+</span>
+
+</p>
+
+</div>
+
+<label class="file-label" for="paymentSlip">
+
+<input
+type="file"
+id="paymentSlip"
+accept="image/png,image/jpeg,image/webp,application/pdf"
+>
+
+<div class="file-icon">🧾</div>
+
+<div
+class="file-title"
+data-i18n="uploadSlip">
+Click to upload your payment slip
+</div>
+
+<div
+class="file-name"
+id="fileName">
+No file selected
+</div>
+
+</label>
+
+<div class="helper" data-i18n="acceptedFiles">
+Accepted: JPG, PNG, WEBP or PDF
+</div>
+
+</div>
 </section>
 
 <div class="summary">
 
-  <div class="summary-top">
+<div class="summary-row">
 
-    <div class="summary-left">
-      <div class="summary-label">TOTAL ORDER</div>
-      <div class="summary-total" id="totalPrice">129 THB</div>
-    </div>
+<span data-i18n="summaryTemplate">
+Template
+</span>
 
-    <div class="summary-right">
+<strong>
+<span id="summaryTemplatePrice">129</span> THB
+</strong>
 
-      <div class="deposit-text">
-        Deposit: <strong id="summaryDeposit">38.70 THB</strong><br>
-        Remaining: <strong id="summaryRemaining">90.30 THB</strong>
-      </div>
+</div>
 
-      <button
-        type="button"
-        class="btn btn-primary submit-btn"
-        id="submitBtn">
-        Submit Order
-      </button>
+<div class="summary-row">
 
-    </div>
+<span data-i18n="summaryExtra">
+Extra Menu
+</span>
 
-  </div>
+<strong>
+<span id="extrasPrice">0</span> THB
+</strong>
 
-  <div class="status" id="statusMessage"></div>
+</div>
+
+<div
+class="summary-row discount"
+id="discountRow"
+style="display:none;"
+>
+
+<span data-i18n="summaryDiscount">
+Discount (5%)
+</span>
+
+<strong>
+-<span id="discountPrice">0</span> THB
+</strong>
+
+</div>
+
+<div class="summary-total">
+
+<div>
+
+<div
+class="total-label"
+data-i18n="totalLabel">
+Total
+</div>
+
+<div
+class="deposit-info"
+data-i18n="depositInfo">
+Deposit 30% · Remaining 70%
+</div>
+
+</div>
+
+<div class="total-main">
+
+<span id="totalPrice">129</span> THB
+
+</div>
+
+</div>
+
+<div class="summary-row" style="margin-top:14px;">
+
+<span data-i18n="depositLabel">
+Deposit 30%
+</span>
+
+<strong>
+<span id="depositPrice">38.70</span> THB
+</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span data-i18n="remainingLabel">
+Remaining 70%
+</span>
+
+<strong>
+<span id="remainingPrice">90.30</span> THB
+</strong>
+
+</div>
+
+<button
+type="button"
+class="submit-btn"
+id="submitBtn"
+data-i18n="placeOrder">
+Place Order
+</button>
+
+<div
+class="status-message"
+id="statusMessage">
+</div>
 
 </div>
 
 </main>
 
+<footer data-i18n="footer">
+© 2026 PINTO LOVE · Little digital moments, made with love.
+</footer>
+
 <script>
+
 const SUPABASE_URL =
-  "https://kevbykrpnpgsnyxtpfqj.supabase.co";
+"https://kevbykrpnpgsnyxtpfqj.supabase.co";
 
 const SUPABASE_ANON_KEY =
-  "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+"sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
 
-const STORAGE_BUCKET = "payment-slips";
+const STORAGE_BUCKET =
+"payment-slips";
 
 const BASE_PRICE = 129;
-const DISCOUNT_CODE = "PINT05-STANG";
+
+const DISCOUNT_CODE =
+"PINT05-STANG";
+
 const DISCOUNT_PERCENT = 5;
+
 const DEPOSIT_PERCENT = 30;
 
-let couponApplied = false;
-let discountAmount = 0;
 
-function getSupabaseClient(){
-  if(window.supabase && window.supabase.createClient){
-    return window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+let couponApplied = false;
+let couponCodeApplied = "";
+let createdOrderNumber = "";
+let uploadedSlipPath = "";
+
+
+/* =========================
+  LANGUAGE
+========================= */
+
+const translations = {
+
+  th: {
+
+    backHome:"← กลับหน้าหลัก",
+
+    eyebrow:"สร้างเรื่องราวความรักในรูปแบบดิจิทัล",
+
+    heroTitle:"สั่งซื้อเว็บไซต์ของคุณ",
+
+    heroDescription:
+      "สร้างช่วงเวลาเล็ก ๆ ในรูปแบบดิจิทัลที่ทำขึ้นเพื่อคนพิเศษของคุณโดยเฉพาะ กรอกข้อมูล เลือกเมนูเพิ่มเติม และปรับแต่งให้เป็นแบบของคุณ",
+
+    templateTitle:"เว็บไซต์ที่เลือก",
+
+    templateSubtitle:
+      "เลือกเว็บไซต์ที่คุณต้องการสร้าง",
+
+    informationTitle:"ข้อมูลของคุณ",
+
+    informationSubtitle:
+      "กรอกข้อมูลที่เราต้องใช้สำหรับสร้างเว็บไซต์ของคุณ",
+
+    yourName:"ชื่อของคุณ",
+
+    namePlaceholder:"กรอกชื่อของคุณ",
+
+    linePlaceholder:"กรอก LINE ID",
+
+    lineHelper:
+      "เราจะใช้ LINE ID สำหรับติดต่อคุณ",
+
+    messageLabel:"ข้อความ / หมายเหตุ",
+
+    messagePlaceholder:
+      "บอกเราได้เลยว่ามีอะไรที่อยากให้เราทราบเกี่ยวกับออเดอร์ของคุณ...",
+
+    extraTitle:"เมนูเพิ่มเติม",
+
+    extraSubtitle:
+      "เพิ่มลูกเล่นและช่วงเวลาพิเศษให้เว็บไซต์ของคุณ +29 บาทต่อรายการ",
+
+    musicName:"🎵 เครื่องเล่นเพลง",
+    musicDesc:"เพิ่มเพลงพิเศษของคุณ",
+
+    photoName:"📸 แกลเลอรีรูปภาพ",
+    photoDesc:"รวมความทรงจำของคุณไว้ด้วยกัน",
+
+    letterName:"💌 จดหมายรัก",
+    letterDesc:"จดหมายส่วนตัวจากความรู้สึกของคุณ",
+
+    countdownName:"⏳ นับถอยหลัง",
+    countdownDesc:"นับถอยหลังสู่วันสำคัญของคุณ",
+
+    scratchName:"🎟️ การ์ดขูด",
+    scratchDesc:"ขูดเพื่อเปิดเผยความลับ",
+
+    quizName:"💕 เกมคำถาม 5 ข้อ",
+    quizDesc:"เกมคำถามน่ารัก ๆ สำหรับคนพิเศษ",
+
+    passwordName:"🔐 เมนูใส่รหัส",
+    passwordDesc:"ปลดล็อกข้อความส่วนตัวของคุณ",
+
+    guessName:"🔮 เกมทายใจ",
+    guessDesc:"เกมทายใจสนุก ๆ",
+
+    puzzleName:"🧩 พัซเซิล",
+    puzzleDesc:"นำชิ้นส่วนความทรงจำมาต่อกัน",
+
+    mapName:"📍 แผนที่ความทรงจำ",
+    mapDesc:"ปักหมุดสถานที่ที่มีความหมาย",
+
+    polaroidName:"📷 ความทรงจำโพลารอยด์",
+    polaroidDesc:"เปลี่ยนความทรงจำของคุณให้เป็นโพลารอยด์",
+
+    gachaName:"🎁 ตู้กาชาปอง",
+    gachaDesc:"ของเซอร์ไพรส์เล็ก ๆ ที่รออยู่ข้างใน",
+
+    colorTitle:"โทนสี",
+
+    colorSubtitle:
+      "เลือกสีที่คุณต้องการสำหรับเว็บไซต์ของคุณ",
+
+    primaryColor:"สีหลัก",
+
+    secondaryColor:"สีรอง",
+
+    backgroundColor:"สีพื้นหลัง",
+
+    couponTitle:"โค้ดส่วนลด",
+
+    couponSubtitle:
+      "มีโค้ดส่วนลดใช่ไหม? กรอกด้านล่างได้เลย",
+
+    couponPlaceholder:"กรอกโค้ดส่วนลด",
+
+    applyButton:"ใช้โค้ด",
+
+    couponHelper:
+      "แต่ละคนสามารถใช้โค้ดส่วนลดได้เพียงครั้งเดียว",
+
+    paymentTitle:"การชำระเงิน",
+
+    paymentSubtitle:
+      "ชำระเงินและอัปโหลดสลิปการโอนเงินของคุณ",
+
+    bankTransfer:"โอนเงินผ่านธนาคาร",
+
+    bankName:"ธนาคาร: ชื่อธนาคารของคุณ",
+
+    accountName:"ชื่อบัญชี: PINTO LOVE",
+
+    accountNumber:"เลขที่บัญชี: 000-0-00000-0",
+
+    uploadSlip:"คลิกเพื่ออัปโหลดสลิปการชำระเงิน",
+
+    acceptedFiles:"รองรับ: JPG, PNG, WEBP หรือ PDF",
+
+    summaryTemplate:"เว็บไซต์",
+
+    summaryExtra:"เมนูเพิ่มเติม",
+
+    summaryDiscount:"ส่วนลด (5%)",
+
+    totalLabel:"ยอดรวม",
+
+    depositInfo:"มัดจำ 30% · ชำระส่วนที่เหลือ 70%",
+
+    depositLabel:"มัดจำ 30%",
+
+    remainingLabel:"คงเหลือ 70%",
+
+    placeOrder:"สั่งซื้อ",
+
+    footer:
+      "© 2026 PINTO LOVE · ช่วงเวลาดิจิทัลเล็ก ๆ ที่สร้างขึ้นด้วยความรัก",
+
+    noFile:"ยังไม่ได้เลือกไฟล์",
+
+    invalidCoupon:"โค้ดส่วนลดไม่ถูกต้อง",
+
+    enterCoupon:"กรุณากรอกโค้ดส่วนลด",
+
+    couponSuccess:"ใช้ส่วนลดสำเร็จ — ลด 5% สำหรับออเดอร์ของคุณ",
+
+    enterName:"กรุณากรอกชื่อของคุณ",
+
+    enterLine:"กรุณากรอก LINE ID",
+
+    uploadPayment:"กรุณาอัปโหลดสลิปการชำระเงิน",
+
+    invalidFile:"กรุณาอัปโหลดเฉพาะ JPG, PNG, WEBP หรือ PDF",
+
+    fileTooLarge:"สลิปการชำระเงินต้องมีขนาดไม่เกิน 10 MB",
+
+    uploading:"กำลังอัปโหลดสลิปการชำระเงิน...",
+
+    creating:"กำลังสร้างออเดอร์ของคุณ...",
+
+    verifying:"กำลังตรวจสอบส่วนลด...",
+
+    submitted:"ส่งออเดอร์สำเร็จ เลขที่ออเดอร์ ",
+
+    submitSuccess:
+      "ส่งออเดอร์สำเร็จ!\n\nเลขที่ออเดอร์: ",
+
+    submittedButton:"ส่งออเดอร์แล้ว ✓",
+
+    submitting:"กำลังส่งออเดอร์...",
+
+    paymentRequired:"ต้องมีสลิปการชำระเงิน",
+
+    couponMissing:"ไม่พบโค้ดส่วนลด",
+
+    lineMissing:"ไม่พบ LINE ID",
+
+    orderNumberMissing:"ไม่พบเลขที่ออเดอร์",
+
+    couponVerifyFailed:
+      "ไม่สามารถตรวจสอบโค้ดส่วนลดได้ในขณะนี้",
+
+    couponEmptyResult:
+      "ระบบตรวจสอบโค้ดส่วนลดไม่ส่งผลลัพธ์กลับมา",
+
+    couponCannotUse:
+      "ไม่สามารถใช้โค้ดส่วนลดนี้ได้",
+
+    uploadFailed:"อัปโหลดสลิปการชำระเงินไม่สำเร็จ: ",
+
+    orderFailed:"ส่งออเดอร์ไม่สำเร็จ"
+
+  },
+
+
+  en: {
+
+    backHome:"← Back to Home",
+
+    eyebrow:"Create Your Digital Love Story",
+
+    heroTitle:"Order Your Template",
+
+    heroDescription:
+      "Create a little digital moment made especially for someone you love. Fill in your details, choose your extras, and make it yours.",
+
+    templateTitle:"Your Template",
+
+    templateSubtitle:
+      "Choose the template you want to create.",
+
+    informationTitle:"Your Information",
+
+    informationSubtitle:
+      "Tell us the details we need to create your page.",
+
+    yourName:"Your Name",
+
+    namePlaceholder:"Enter your name",
+
+    linePlaceholder:"Enter your LINE ID",
+
+    lineHelper:
+      "We will use your LINE ID to contact you.",
+
+    messageLabel:"Message / Notes",
+
+    messagePlaceholder:
+      "Tell us anything you'd like us to know about your order...",
+
+    extraTitle:"Extra Menu",
+
+    extraSubtitle:
+      "Add more little moments to your template. +29 THB each.",
+
+    musicName:"🎵 Music Player",
+    musicDesc:"Add your special song",
+
+    photoName:"📸 Photo Gallery",
+    photoDesc:"A collection of your memories",
+
+    letterName:"💌 Love Letter",
+    letterDesc:"A private letter from your heart",
+
+    countdownName:"⏳ Countdown",
+    countdownDesc:"Count down to your special day",
+
+    scratchName:"🎟️ Scratch Card",
+    scratchDesc:"Scratch to reveal a secret",
+
+    quizName:"💕 게임คำถาม 5 ข้อ",
+    quizDesc:"A cute little love quiz",
+
+    passwordName:"🔐 เมนูใส่รหัส",
+    passwordDesc:"Unlock your private message",
+
+    guessName:"🔮 เกมทายใจ",
+    guessDesc:"A playful guessing game",
+
+    puzzleName:"🧩 Puzzle",
+    puzzleDesc:"Put the pieces of your memory together",
+
+    mapName:"📍 Memory Map",
+    mapDesc:"Mark the places that mean something",
+
+    polaroidName:"📷 Polaroid Memory",
+    polaroidDesc:"Turn your memories into polaroids",
+
+    gachaName:"🎁 ตู้กาชาปอง",
+    gachaDesc:"Little surprises waiting inside",
+
+    colorTitle:"Color Theme",
+
+    colorSubtitle:
+      "Choose the colors you'd like for your digital page.",
+
+    primaryColor:"Primary Color",
+
+    secondaryColor:"Secondary Color",
+
+    backgroundColor:"Background Color",
+
+    couponTitle:"Referral / Discount Code",
+
+    couponSubtitle:
+      "Have a discount code? Enter it below.",
+
+    couponPlaceholder:"Enter your discount code",
+
+    applyButton:"Apply",
+
+    couponHelper:
+      "Each person can use the discount code only once.",
+
+    paymentTitle:"Payment",
+
+    paymentSubtitle:
+      "Complete the payment and upload your payment slip.",
+
+    bankTransfer:"Bank Transfer",
+
+    bankName:"Bank: Your Bank Name",
+
+    accountName:"Account Name: PINTO LOVE",
+
+    accountNumber:"Account Number: 000-0-00000-0",
+
+    uploadSlip:"Click to upload your payment slip",
+
+    acceptedFiles:"Accepted: JPG, PNG, WEBP or PDF",
+
+    summaryTemplate:"Template",
+
+    summaryExtra:"Extra Menu",
+
+    summaryDiscount:"Discount (5%)",
+
+    totalLabel:"Total",
+
+    depositInfo:"Deposit 30% · Remaining 70%",
+
+    depositLabel:"Deposit 30%",
+
+    remainingLabel:"Remaining 70%",
+
+    placeOrder:"Place Order",
+
+    footer:
+      "© 2026 PINTO LOVE · Little digital moments, made with love.",
+
+    noFile:"No file selected",
+
+    invalidCoupon:"Invalid discount code.",
+
+    enterCoupon:"Please enter a discount code.",
+
+    couponSuccess:
+      "Discount applied successfully — 5% off your order.",
+
+    enterName:"Please enter your name.",
+
+    enterLine:"Please enter your LINE ID.",
+
+    uploadPayment:"Please upload your payment slip.",
+
+    invalidFile:"Please upload JPG, PNG, WEBP or PDF only.",
+
+    fileTooLarge:"Payment slip must be smaller than 10 MB.",
+
+    uploading:"Uploading your payment slip...",
+
+    creating:"Creating your order...",
+
+    verifying:"Verifying your discount...",
+
+    submitted:"Order submitted successfully. Order No. ",
+
+    submitSuccess:
+      "Order submitted successfully!\n\nOrder No.: ",
+
+    submittedButton:"Order Submitted ✓",
+
+    submitting:"Submitting...",
+
+    paymentRequired:"Payment slip is required.",
+
+    couponMissing:"Discount code is missing.",
+
+    lineMissing:"LINE ID is missing.",
+
+    orderNumberMissing:"Order number is missing.",
+
+    couponVerifyFailed:
+      "Unable to verify the coupon right now.",
+
+    couponEmptyResult:
+      "The coupon verification returned no result.",
+
+    couponCannotUse:
+      "This discount code cannot be used.",
+
+    uploadFailed:"Payment slip upload failed: ",
+
+    orderFailed:"Failed to submit your order."
+
+  },
+
+
+  ko: {
+
+    backHome:"← 홈으로 돌아가기",
+
+    eyebrow:"당신만을 위한 디지털 러브 스토리",
+
+    heroTitle:"템플릿 주문하기",
+
+    heroDescription:
+      "소중한 사람을 위해 특별한 디지털 순간을 만들어보세요. 정보를 입력하고 추가 기능을 선택해 나만의 페이지를 완성해보세요.",
+
+    templateTitle:"선택한 템플릿",
+
+    templateSubtitle:
+      "만들고 싶은 템플릿을 선택하세요.",
+
+    informationTitle:"고객 정보",
+
+    informationSubtitle:
+      "페이지 제작에 필요한 정보를 입력해주세요.",
+
+    yourName:"이름",
+
+    namePlaceholder:"이름을 입력하세요",
+
+    linePlaceholder:"LINE ID를 입력하세요",
+
+    lineHelper:
+      "LINE ID는 연락을 위해 사용됩니다.",
+
+    messageLabel:"메시지 / 요청사항",
+
+    messagePlaceholder:
+      "주문과 관련해 알려주고 싶은 내용을 자유롭게 적어주세요...",
+
+    extraTitle:"추가 기능",
+
+    extraSubtitle:
+      "템플릿에 특별한 기능을 추가해보세요. 기능당 +29 THB",
+
+    musicName:"🎵 음악 플레이어",
+    musicDesc:"특별한 노래를 추가하세요",
+
+    photoName:"📸 사진 갤러리",
+    photoDesc:"소중한 추억을 사진으로 담아보세요",
+
+    letterName:"💌 러브레터",
+    letterDesc:"마음을 담은 비밀 편지",
+
+    countdownName:"⏳ 카운트다운",
+    countdownDesc:"특별한 날까지 남은 시간을 보여주세요",
+
+    scratchName:"🎟️ 스크래치 카드",
+    scratchDesc:"긁어서 비밀을 확인해보세요",
+
+    quizName:"💕 5문제 사랑 퀴즈",
+    quizDesc:"귀엽고 재미있는 사랑 퀴즈",
+
+    passwordName:"🔐 비밀번호 메뉴",
+    passwordDesc:"비밀 메시지를 잠금 해제하세요",
+
+    guessName:"🔮 마음 맞히기 게임",
+    guessDesc:"재미있는 추측 게임",
+
+    puzzleName:"🧩 퍼즐",
+    puzzleDesc:"추억의 조각을 하나씩 맞춰보세요",
+
+    mapName:"📍 추억의 지도",
+    mapDesc:"의미 있는 장소를 표시해보세요",
+
+    polaroidName:"📷 폴라로이드 추억",
+    polaroidDesc:"추억을 폴라로이드처럼 담아보세요",
+
+    gachaName:"🎁 가챠 머신",
+    gachaDesc:"안에 작은 깜짝 선물이 기다리고 있어요",
+
+    colorTitle:"색상 테마",
+
+    colorSubtitle:
+      "디지털 페이지에 사용할 색상을 선택하세요.",
+
+    primaryColor:"메인 컬러",
+
+    secondaryColor:"서브 컬러",
+
+    backgroundColor:"배경 색상",
+
+    couponTitle:"추천 / 할인 코드",
+
+    couponSubtitle:
+      "할인 코드가 있다면 아래에 입력해주세요.",
+
+    couponPlaceholder:"할인 코드를 입력하세요",
+
+    applyButton:"적용",
+
+    couponHelper:
+      "할인 코드는 한 사람당 한 번만 사용할 수 있습니다.",
+
+    paymentTitle:"결제",
+
+    paymentSubtitle:
+      "결제를 완료한 후 결제 영수증을 업로드해주세요.",
+
+    bankTransfer:"은행 송금",
+
+    bankName:"은행: Your Bank Name",
+
+    accountName:"예금주: PINTO LOVE",
+
+    accountNumber:"계좌번호: 000-0-00000-0",
+
+    uploadSlip:"결제 영수증을 업로드하려면 클릭하세요",
+
+    acceptedFiles:"지원 형식: JPG, PNG, WEBP 또는 PDF",
+
+    summaryTemplate:"템플릿",
+
+    summaryExtra:"추가 기능",
+
+    summaryDiscount:"할인 (5%)",
+
+    totalLabel:"총 금액",
+
+    depositInfo:"예약금 30% · 잔액 70%",
+
+    depositLabel:"예약금 30%",
+
+    remainingLabel:"잔액 70%",
+
+    placeOrder:"주문하기",
+
+    footer:
+      "© 2026 PINTO LOVE · 사랑으로 만든 작은 디지털 순간",
+
+    noFile:"선택된 파일 없음",
+
+    invalidCoupon:"유효하지 않은 할인 코드입니다.",
+
+    enterCoupon:"할인 코드를 입력해주세요.",
+
+    couponSuccess:
+      "할인이 적용되었습니다 — 주문 금액의 5% 할인",
+
+    enterName:"이름을 입력해주세요.",
+
+    enterLine:"LINE ID를 입력해주세요.",
+
+    uploadPayment:"결제 영수증을 업로드해주세요.",
+
+    invalidFile:"JPG, PNG, WEBP 또는 PDF 파일만 업로드해주세요.",
+
+    fileTooLarge:"결제 영수증은 10MB보다 작아야 합니다.",
+
+    uploading:"결제 영수증을 업로드하는 중...",
+
+    creating:"주문을 생성하는 중...",
+
+    verifying:"할인을 확인하는 중...",
+
+    submitted:"주문이 완료되었습니다. 주문번호 ",
+
+    submitSuccess:
+      "주문이 완료되었습니다!\n\n주문번호: ",
+
+    submittedButton:"주문 완료 ✓",
+
+    submitting:"주문을 보내는 중...",
+
+    paymentRequired:"결제 영수증이 필요합니다.",
+
+    couponMissing:"할인 코드가 없습니다.",
+
+    lineMissing:"LINE ID가 없습니다.",
+
+    orderNumberMissing:"주문번호가 없습니다.",
+
+    couponVerifyFailed:
+      "현재 할인 코드를 확인할 수 없습니다.",
+
+    couponEmptyResult:
+      "할인 코드 확인 결과가 없습니다.",
+
+    couponCannotUse:
+      "이 할인 코드는 사용할 수 없습니다.",
+
+    uploadFailed:"결제 영수증 업로드 실패: ",
+
+    orderFailed:"주문을 제출하지 못했습니다."
+
   }
 
-  return null;
+};
+
+
+function getCurrentLanguage(){
+
+  const candidates = [
+
+    localStorage.getItem("pintoLanguage"),
+
+    localStorage.getItem("language"),
+
+    localStorage.getItem("lang")
+
+  ];
+
+  for(const value of candidates){
+
+    if(!value) continue;
+
+    const clean =
+      String(value)
+        .trim()
+        .toLowerCase();
+
+    if(clean === "th" ||
+       clean === "thai"){
+      return "th";
+    }
+
+    if(clean === "en" ||
+       clean === "english"){
+      return "en";
+    }
+
+    if(clean === "ko" ||
+       clean === "kr" ||
+       clean === "korean"){
+      return "ko";
+    }
+  }
+
+  return "th";
 }
 
-const supabaseClient = getSupabaseClient();
+
+let currentLanguage =
+  getCurrentLanguage();
+
+
+function t(key){
+
+  return (
+    translations[currentLanguage] &&
+    translations[currentLanguage][key]
+  ) ||
+  translations.th[key] ||
+  key;
+}
+
+
+function applyTranslations(){
+
+  document.documentElement.lang =
+    currentLanguage === "th"
+      ? "th"
+      : currentLanguage === "ko"
+        ? "ko"
+        : "en";
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(el => {
+
+      const key =
+        el.getAttribute("data-i18n");
+
+      if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key]
+      ){
+        el.textContent =
+          translations[currentLanguage][key];
+      }
+
+    });
+
+
+  document
+    .querySelectorAll("[data-i18n-placeholder]")
+    .forEach(el => {
+
+      const key =
+        el.getAttribute("data-i18n-placeholder");
+
+      if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key]
+      ){
+        el.placeholder =
+          translations[currentLanguage][key];
+      }
+
+    });
+
+
+  document.title =
+    currentLanguage === "th"
+      ? "สั่งซื้อ | PINTO LOVE"
+      : currentLanguage === "ko"
+        ? "주문 | PINTO LOVE"
+        : "Order | PINTO LOVE";
+
+
+  const file =
+    document.getElementById("paymentSlip");
+
+  const fileName =
+    document.getElementById("fileName");
+
+  if(
+    file &&
+    fileName &&
+    (!file.files || !file.files.length)
+  ){
+    fileName.textContent =
+      t("noFile");
+  }
+}
+
+
+/* =========================
+  BASIC FUNCTIONS
+========================= */
+
+function formatMoney(value){
+
+  return Number(value).toFixed(2);
+
+}
+
 
 function normalizeLineId(value){
+
   return String(value || "")
     .trim()
-    .toLowerCase();
+    .toLowerCase()
+    .replace(/\s+/g,"");
+
 }
 
-function formatTHB(value){
-  return `${Number(value).toFixed(2)} THB`;
+
+function showStatus(message,type){
+
+  const el =
+    document.getElementById("statusMessage");
+
+  el.textContent =
+    message;
+
+  el.className =
+    "status-message show " + type;
+
 }
+
+
+function hideStatus(){
+
+  const el =
+    document.getElementById("statusMessage");
+
+  el.textContent = "";
+
+  el.className =
+    "status-message";
+
+}
+
+
+function setButtonLoading(loading){
+
+  const btn =
+    document.getElementById("submitBtn");
+
+  btn.disabled =
+    loading;
+
+  btn.textContent =
+    loading
+      ? t("submitting")
+      : t("placeOrder");
+
+}
+
+
+function generateOrderNumber(){
+
+  const now =
+    new Date();
+
+  const date =
+    now.getFullYear().toString() +
+    String(now.getMonth()+1).padStart(2,"0") +
+    String(now.getDate()).padStart(2,"0");
+
+  const random =
+    Math.random()
+      .toString(36)
+      .substring(2,7)
+      .toUpperCase();
+
+  return "PR-" +
+    date +
+    "-" +
+    random;
+
+}
+
 
 function getSelectedExtras(){
-  return [...document.querySelectorAll(".extra-card input:checked")];
+
+  const selected = [];
+
+  document
+    .querySelectorAll(".extra-checkbox:checked")
+    .forEach(item => {
+
+      selected.push({
+
+        name:item.dataset.name,
+
+        price:Number(
+          item.dataset.price
+        )
+
+      });
+
+    });
+
+  return selected;
+
 }
 
-function calculateSubtotal(){
-  let total = BASE_PRICE;
 
-  getSelectedExtras().forEach(item=>{
-    total += Number(item.dataset.price || 0);
-  });
+function calculatePrices(){
 
-  return total;
+  const extras =
+    getSelectedExtras();
+
+  const extrasTotal =
+    extras.reduce(
+      (sum,item) =>
+        sum + item.price,
+      0
+    );
+
+  const subtotal =
+    BASE_PRICE +
+    extrasTotal;
+
+  const discountAmount =
+    couponApplied
+      ? subtotal *
+        (DISCOUNT_PERCENT / 100)
+      : 0;
+
+  const total =
+    subtotal -
+    discountAmount;
+
+  const deposit =
+    total *
+    (DEPOSIT_PERCENT / 100);
+
+  const remaining =
+    total -
+    deposit;
+
+
+  document.getElementById(
+    "templatePrice"
+  ).textContent =
+    BASE_PRICE;
+
+  document.getElementById(
+    "summaryTemplatePrice"
+  ).textContent =
+    BASE_PRICE;
+
+  document.getElementById(
+    "extrasPrice"
+  ).textContent =
+    extrasTotal;
+
+  document.getElementById(
+    "discountPrice"
+  ).textContent =
+    formatMoney(
+      discountAmount
+    );
+
+  document.getElementById(
+    "totalPrice"
+  ).textContent =
+    formatMoney(
+      total
+    );
+
+  document.getElementById(
+    "depositPrice"
+  ).textContent =
+    formatMoney(
+      deposit
+    );
+
+  document.getElementById(
+    "remainingPrice"
+  ).textContent =
+    formatMoney(
+      remaining
+    );
+
+
+  document.getElementById(
+    "discountRow"
+  ).style.display =
+    couponApplied
+      ? "flex"
+      : "none";
+
+
+  return {
+
+    extras,
+
+    templatePrice:
+      BASE_PRICE,
+
+    extrasTotal,
+
+    subtotal,
+
+    discountAmount,
+
+    total,
+
+    deposit,
+
+    remaining
+
+  };
+
 }
 
-function calculateTotal(){
-  const subtotal = calculateSubtotal();
 
-  if(couponApplied){
-    discountAmount = subtotal * (DISCOUNT_PERCENT / 100);
-    return subtotal - discountAmount;
+function updateColorCode(
+  inputId,
+  codeId
+){
+
+  document.getElementById(
+    codeId
+  ).textContent =
+    document.getElementById(
+      inputId
+    ).value.toUpperCase();
+
+}
+
+
+/* =========================
+  EVENTS
+========================= */
+
+document.getElementById(
+  "primaryColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "primaryColor",
+      "primaryColorCode"
+    )
+);
+
+
+document.getElementById(
+  "secondaryColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "secondaryColor",
+      "secondaryColorCode"
+    )
+);
+
+
+document.getElementById(
+  "backgroundColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "backgroundColor",
+      "backgroundColorCode"
+    )
+);
+
+
+document
+  .querySelectorAll(
+    ".extra-checkbox"
+  )
+  .forEach(item =>
+    item.addEventListener(
+      "change",
+      calculatePrices
+    )
+  );
+
+
+document.getElementById(
+  "paymentSlip"
+)
+.addEventListener(
+  "change",
+  function(){
+
+    document.getElementById(
+      "fileName"
+    ).textContent =
+      this.files &&
+      this.files.length
+        ? this.files[0].name
+        : t("noFile");
+
   }
+);
 
-  discountAmount = 0;
-  return subtotal;
-}
 
-function updateSummary(){
-  const total = calculateTotal();
+/* =========================
+  COUPON APPLY
+========================= */
 
-  const deposit = total * (DEPOSIT_PERCENT / 100);
-  const remaining = total - deposit;
+function applyCoupon(){
 
-  document.getElementById("totalPrice").textContent =
-    formatTHB(total);
-
-  document.getElementById("depositAmount").textContent =
-    formatTHB(deposit);
-
-  document.getElementById("remainingAmount").textContent =
-    formatTHB(remaining);
-
-  document.getElementById("summaryDeposit").textContent =
-    formatTHB(deposit);
-
-  document.getElementById("summaryRemaining").textContent =
-    formatTHB(remaining);
-}
-
-function updateColorCode(inputId, codeId){
-  const input = document.getElementById(inputId);
-  const code = document.getElementById(codeId);
-
-  code.textContent = input.value.toUpperCase();
-}
-
-document.querySelectorAll(".extra-card").forEach(card=>{
-  const checkbox = card.querySelector("input");
-
-  checkbox.addEventListener("change", ()=>{
-    card.classList.toggle("selected", checkbox.checked);
-    updateSummary();
-  });
-
-  card.addEventListener("click", event=>{
-    if(event.target.tagName !== "INPUT"){
-      checkbox.checked = !checkbox.checked;
-      card.classList.toggle("selected", checkbox.checked);
-      updateSummary();
-    }
-  });
-});
-
-document.getElementById("primaryColor")
-  .addEventListener("input", ()=>{
-    updateColorCode("primaryColor","primaryCode");
-  });
-
-document.getElementById("secondaryColor")
-  .addEventListener("input", ()=>{
-    updateColorCode("secondaryColor","secondaryCode");
-  });
-
-document.getElementById("backgroundColor")
-  .addEventListener("input", ()=>{
-    updateColorCode("backgroundColor","backgroundCode");
-  });
-
-document.getElementById("applyCouponBtn")
-  .addEventListener("click", applyCoupon);
-
-async function applyCoupon(){
-
-  const couponInput =
-    document.getElementById("couponCode");
+  const input =
+    document.getElementById(
+      "couponCode"
+    );
 
   const message =
-    document.getElementById("couponMessage");
+    document.getElementById(
+      "couponMessage"
+    );
 
   const code =
-    couponInput.value.trim();
+    input.value.trim();
+
+
+  couponApplied = false;
+
+  couponCodeApplied = "";
+
 
   if(!code){
-    couponApplied = false;
 
     message.textContent =
-      "Please enter a coupon code.";
+      t("enterCoupon");
 
     message.className =
       "coupon-message error";
 
-    updateSummary();
+    calculatePrices();
+
     return;
+
   }
 
-  if(code.toLowerCase() !== DISCOUNT_CODE.toLowerCase()){
-    couponApplied = false;
+
+  if(
+    code.toLowerCase() !==
+    DISCOUNT_CODE.toLowerCase()
+  ){
 
     message.textContent =
-      "Invalid coupon code.";
+      t("invalidCoupon");
 
     message.className =
       "coupon-message error";
 
-    updateSummary();
+    calculatePrices();
+
     return;
+
   }
+
 
   couponApplied = true;
 
+  couponCodeApplied =
+    DISCOUNT_CODE;
+
+
   message.textContent =
-    "Coupon applied — 5% off.";
+    t("couponSuccess");
 
   message.className =
     "coupon-message success";
 
-  updateSummary();
+
+  calculatePrices();
+
 }
 
-async function uploadPaymentSlip(file, orderNumber){
 
-  if(!supabaseClient){
-    throw new Error("Supabase client is not available.");
+document.getElementById(
+  "applyCouponBtn"
+)
+.addEventListener(
+  "click",
+  applyCoupon
+);
+
+
+/* =========================
+  STORAGE
+========================= */
+
+async function uploadPaymentSlip(
+  file,
+  orderNumber
+){
+
+  if(!file){
+
+    throw new Error(
+      t("paymentRequired")
+    );
+
   }
+
 
   const extension =
-    file.name.split(".").pop().toLowerCase();
+    file.name.includes(".")
+      ? file.name
+          .split(".")
+          .pop()
+          .toLowerCase()
+      : "jpg";
+
+
+  const safeExtension =
+    extension.replace(
+      /[^a-z0-9]/gi,
+      ""
+    );
+
 
   const filePath =
-    `${orderNumber}/${Date.now()}.${extension}`;
+    orderNumber +
+    "/" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2,8) +
+    "." +
+    safeExtension;
 
-  const {data,error} =
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient
       .storage
-      .from(STORAGE_BUCKET)
-      .upload(filePath,file,{
-        cacheControl:"3600",
-        upsert:false
-      });
+      .from(
+        STORAGE_BUCKET
+      )
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false,
+          contentType:
+            file.type ||
+            "application/octet-stream"
+        }
+      );
+
 
   if(error){
+
     throw new Error(
-      `Payment slip upload failed: ${error.message}`
+      t("uploadFailed") +
+      error.message
     );
+
   }
 
-  return filePath;
+
+  uploadedSlipPath =
+    data.path;
+
+
+  return data.path;
+
 }
 
-async function useCouponOnSupabase(contact){
 
-  if(!couponApplied){
+async function deleteUploadedSlip(){
+
+  if(!uploadedSlipPath){
+
     return;
+
   }
 
-  if(!supabaseClient){
-    throw new Error("Supabase client is not available.");
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .storage
+      .from(
+        STORAGE_BUCKET
+      )
+      .remove([
+        uploadedSlipPath
+      ]);
+
+
+  if(error){
+
+    console.warn(
+      "Could not delete uploaded slip:",
+      error.message
+    );
+
   }
 
-  const {data,error} =
+
+  uploadedSlipPath =
+    "";
+
+}
+
+
+/* =========================
+  ORDERS
+========================= */
+
+async function createOrder(
+  order
+){
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("orders")
+      .insert(order);
+
+
+  if(error){
+
+    throw new Error(
+      error.message
+    );
+
+  }
+
+}
+
+
+async function deleteCreatedOrder(){
+
+  if(!createdOrderNumber){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("orders")
+      .delete()
+      .eq(
+        "order_number",
+        createdOrderNumber
+      );
+
+
+  if(error){
+
+    console.warn(
+      "Could not delete order:",
+      error.message
+    );
+
+  }
+
+
+  createdOrderNumber =
+    "";
+
+}
+
+
+/* =========================
+  USE COUPON
+========================= */
+
+async function useCouponOnSupabase(
+  couponCode,
+  lineId,
+  orderNumber,
+  customerName
+){
+
+  const cleanCouponCode =
+    String(
+      couponCode || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  const cleanContact =
+    normalizeLineId(
+      lineId
+    );
+
+
+  const cleanOrderNumber =
+    String(
+      orderNumber || ""
+    )
+    .trim();
+
+
+  const cleanCustomerName =
+    String(
+      customerName || ""
+    )
+    .trim();
+
+
+  if(!cleanCouponCode){
+
+    throw new Error(
+      t("couponMissing")
+    );
+
+  }
+
+
+  if(!cleanContact){
+
+    throw new Error(
+      t("lineMissing")
+    );
+
+  }
+
+
+  if(!cleanOrderNumber){
+
+    throw new Error(
+      t("orderNumberMissing")
+    );
+
+  }
+
+
+  console.log(
+    "VERIFYING COUPON:",
+    {
+      coupon_code:
+        cleanCouponCode,
+
+      contact:
+        cleanContact,
+
+      order_number:
+        cleanOrderNumber
+    }
+  );
+
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient.rpc(
       "use_coupon",
       {
         p_coupon_code:
-          DISCOUNT_CODE.toLowerCase(),
+          cleanCouponCode,
 
         p_contact:
-          normalizeLineId(contact)
+          cleanContact,
+
+        p_order_number:
+          cleanOrderNumber,
+
+        p_customer_name:
+          cleanCustomerName
       }
     );
 
+
+  console.log(
+    "USE COUPON RPC DATA:",
+    data
+  );
+
+  console.log(
+    "USE COUPON RPC ERROR:",
+    error
+  );
+
+
   if(error){
-    throw new Error(error.message);
-  }
 
-  if(
-    data &&
-    typeof data === "object" &&
-    data.success === false
-  ){
-    throw new Error(
-      data.message ||
-      "This discount code cannot be used."
+    console.error(
+      "USE COUPON RPC ERROR:",
+      error
     );
+
+    throw new Error(
+      t("couponVerifyFailed") +
+      ": " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
+    );
+
   }
 
-  return data;
-}
 
-function generateOrderNumber(){
-  const now = new Date();
+  if(!data){
 
-  const year =
-    now.getFullYear();
+    throw new Error(
+      t("couponEmptyResult")
+    );
 
-  const month =
-    String(now.getMonth()+1).padStart(2,"0");
-
-  const day =
-    String(now.getDate()).padStart(2,"0");
-
-  const random =
-    Math.floor(1000 + Math.random()*9000);
-
-  return `PTO-${year}${month}${day}-${random}`;
-}
-
-function validateFile(file){
-
-  if(!file){
-    return "Please upload your payment slip.";
   }
+
+
+  let result =
+    data;
+
+
+  if(Array.isArray(data)){
+
+    result =
+      data[0];
+
+  }
+
+
+  if(!result){
+
+    throw new Error(
+      t("couponEmptyResult")
+    );
+
+  }
+
+
+  return result;
+
+}
+
+
+/* =========================
+  SUBMIT ORDER
+========================= */
+
+async function submitOrder(){
+
+  hideStatus();
+
+
+  const customerName =
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
+
+  const lineId =
+    document.getElementById(
+      "lineId"
+    ).value.trim();
+
+
+  const message =
+    document.getElementById(
+      "message"
+    ).value.trim();
+
+
+  const paymentSlip =
+    document.getElementById(
+      "paymentSlip"
+    ).files[0];
+
+
+  if(!customerName){
+
+    showStatus(
+      t("enterName"),
+      "error"
+    );
+
+    document.getElementById(
+      "customerName"
+    ).focus();
+
+    return;
+
+  }
+
+
+  if(!lineId){
+
+    showStatus(
+      t("enterLine"),
+      "error"
+    );
+
+    document.getElementById(
+      "lineId"
+    ).focus();
+
+    return;
+
+  }
+
+
+  if(!paymentSlip){
+
+    showStatus(
+      t("uploadPayment"),
+      "error"
+    );
+
+    return;
+
+  }
+
 
   const allowedTypes = [
     "image/jpeg",
@@ -1226,184 +2790,236 @@ function validateFile(file){
     "application/pdf"
   ];
 
-  if(!allowedTypes.includes(file.type)){
-    return "Please upload JPG, PNG, WEBP or PDF.";
-  }
 
-  const maxSize =
-    10 * 1024 * 1024;
+  if(
+    paymentSlip.type &&
+    !allowedTypes.includes(
+      paymentSlip.type
+    )
+  ){
 
-  if(file.size > maxSize){
-    return "Payment slip must be smaller than 10MB.";
-  }
-
-  return null;
-}
-
-async function submitOrder(){
-
-  const status =
-    document.getElementById("statusMessage");
-
-  const submitBtn =
-    document.getElementById("submitBtn");
-
-  const customerName =
-    document.getElementById("customerName")
-      .value
-      .trim();
-
-  const lineId =
-    document.getElementById("lineId")
-      .value
-      .trim();
-
-  const message =
-    document.getElementById("message")
-      .value
-      .trim();
-
-  const paymentSlip =
-    document.getElementById("paymentSlip")
-      .files[0];
-
-  status.textContent = "";
-  status.className = "status";
-
-  if(!customerName){
-    status.textContent =
-      "Please enter your name.";
-
-    status.className =
-      "status error";
+    showStatus(
+      t("invalidFile"),
+      "error"
+    );
 
     return;
+
   }
 
-  if(!lineId){
-    status.textContent =
-      "Please enter your LINE ID.";
 
-    status.className =
-      "status error";
+  if(
+    paymentSlip.size >
+    10 * 1024 * 1024
+  ){
+
+    showStatus(
+      t("fileTooLarge"),
+      "error"
+    );
 
     return;
+
   }
 
-  const fileError =
-    validateFile(paymentSlip);
 
-  if(fileError){
-    status.textContent =
-      fileError;
+  const prices =
+    calculatePrices();
 
-    status.className =
-      "status error";
 
-    return;
-  }
-
-  if(!supabaseClient){
-    status.textContent =
-      "Supabase connection is not available.";
-
-    status.className =
-      "status error";
-
-    return;
-  }
-
-  const total =
-    calculateTotal();
-
-  const deposit =
-    total * (DEPOSIT_PERCENT / 100);
-
-  const remaining =
-    total - deposit;
-
-  const orderNumber =
+  createdOrderNumber =
     generateOrderNumber();
 
-  const selectedExtras =
-    getSelectedExtras().map(item=>item.value);
 
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Submitting...";
-  document.body.classList.add("loading");
+  setButtonLoading(
+    true
+  );
 
-  let uploadedFilePath = null;
-  let insertedOrder = false;
 
   try{
 
-    uploadedFilePath =
-      await uploadPaymentSlip(
-        paymentSlip,
-        orderNumber
-      );
-
-    const {data,error} =
-      await supabaseClient
-        .from("orders")
-        .insert({
-          order_number: orderNumber,
-          customer_name: customerName,
-          contact: lineId,
-          template:
-            new URLSearchParams(
-              window.location.search
-            ).get("template") ||
-            "anniversary-01",
-          message: message,
-          primary_color:
-            document.getElementById("primaryColor").value,
-          secondary_color:
-            document.getElementById("secondaryColor").value,
-          background_color:
-            document.getElementById("backgroundColor").value,
-          extra_functions:
-            selectedExtras,
-          total_price:
-            Number(total.toFixed(2)),
-          deposit_amount:
-            Number(deposit.toFixed(2)),
-          remaining_amount:
-            Number(remaining.toFixed(2)),
-          payment_slip:
-            uploadedFilePath,
-          payment_status:
-            "pending",
-          status:
-            "new"
-        })
-        .select()
-        .single();
-
-    if(error){
-      throw new Error(error.message);
-    }
-
-    insertedOrder = true;
-
-    await useCouponOnSupabase(lineId);
-
-    sessionStorage.setItem(
-      "pintoLoveOrderSuccess",
-      JSON.stringify({
-        orderNumber: orderNumber,
-        customerName: customerName,
-        totalPrice: Number(total.toFixed(2)),
-        depositAmount: Number(deposit.toFixed(2)),
-        remainingAmount: Number(remaining.toFixed(2)),
-        template:
-          document.getElementById("templateName")
-            .textContent
-      })
+    showStatus(
+      t("uploading"),
+      "success"
     );
 
-    window.location.href =
-      "order-success.html";
+
+    const slipPath =
+      await uploadPaymentSlip(
+        paymentSlip,
+        createdOrderNumber
+      );
+
+
+    showStatus(
+      t("creating"),
+      "success"
+    );
+
+
+    const orderData = {
+
+      order_number:
+        createdOrderNumber,
+
+      customer_name:
+        customerName,
+
+      contact:
+        normalizeLineId(
+          lineId
+        ),
+
+      template:
+        new URLSearchParams(
+          window.location.search
+        ).get("template") ||
+        "anniversary-01",
+
+      message:
+        message,
+
+      primary_color:
+        document
+          .getElementById(
+            "primaryColor"
+          )
+          .value
+          .toUpperCase(),
+
+      secondary_color:
+        document
+          .getElementById(
+            "secondaryColor"
+          )
+          .value
+          .toUpperCase(),
+
+      background_color:
+        document
+          .getElementById(
+            "backgroundColor"
+          )
+          .value
+          .toUpperCase(),
+
+      extra_functions:
+        prices.extras
+          .map(
+            item =>
+              item.name
+          )
+          .join(", "),
+
+      total_price:
+        Number(
+          prices.total
+            .toFixed(2)
+        ),
+
+      deposit_amount:
+        Number(
+          prices.deposit
+            .toFixed(2)
+        ),
+
+      remaining_amount:
+        Number(
+          prices.remaining
+            .toFixed(2)
+        ),
+
+      payment_slip:
+        slipPath,
+
+      payment_status:
+        "pending",
+
+      status:
+        "pending"
+
+    };
+
+
+    await createOrder(
+      orderData
+    );
+
+
+    if(couponApplied){
+
+      showStatus(
+        t("verifying"),
+        "success"
+      );
+
+
+      const couponResult =
+        await useCouponOnSupabase(
+          couponCodeApplied,
+          lineId,
+          createdOrderNumber,
+          customerName
+        );
+
+
+      if(
+        couponResult.success !== true
+      ){
+
+        const couponMessage =
+          couponResult.message ||
+          t("couponCannotUse");
+
+
+        await deleteCreatedOrder();
+
+        await deleteUploadedSlip();
+
+
+        couponApplied =
+          false;
+
+        couponCodeApplied =
+          "";
+
+
+        calculatePrices();
+
+
+        throw new Error(
+          couponMessage
+        );
+
+      }
+
+    }
+
+
+    showStatus(
+      t("submitted") +
+      createdOrderNumber,
+      "success"
+    );
+
+
+    alert(
+      t("submitSuccess") +
+      createdOrderNumber
+    );
+
+
+    document.getElementById(
+      "submitBtn"
+    ).textContent =
+      t("submittedButton");
+
+
+    document.getElementById(
+      "submitBtn"
+    ).disabled =
+      true;
+
 
   }catch(error){
 
@@ -1412,36 +3028,42 @@ async function submitOrder(){
       error
     );
 
-    if(insertedOrder){
-      await supabaseClient
-        .from("orders")
-        .delete()
-        .eq("order_number",orderNumber);
+
+    if(createdOrderNumber){
+
+      await deleteCreatedOrder();
+
     }
 
-    if(uploadedFilePath){
-      await supabaseClient
-        .storage
-        .from(STORAGE_BUCKET)
-        .remove([uploadedFilePath]);
+
+    if(uploadedSlipPath){
+
+      await deleteUploadedSlip();
+
     }
 
-    status.textContent =
-      error.message ||
-      "Something went wrong. Please try again.";
 
-    status.className =
-      "status error";
+    showStatus(
+      error &&
+      error.message
+        ? error.message
+        : t("orderFailed"),
+      "error"
+    );
 
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Submit Order";
 
-    document.body.classList.remove("loading");
+    setButtonLoading(
+      false
+    );
+
   }
+
 }
 
-document.getElementById("submitBtn")
-  .addEventListener("click",submitOrder);
+
+/* =========================
+  LOAD TEMPLATE
+========================= */
 
 function loadTemplate(){
 
@@ -1450,67 +3072,51 @@ function loadTemplate(){
       window.location.search
     );
 
+
   const template =
     params.get("template");
 
-  const templateImage =
-    document.getElementById("templateImage");
 
-  const templatePlaceholder =
-    document.getElementById("templatePlaceholder");
+  if(
+    template ===
+    "anniversary-01"
+  ){
 
-  if(template === "anniversary-01"){
+    document.getElementById(
+      "templateName"
+    ).textContent =
+      currentLanguage === "th"
+        ? "เทมเพลตครบรอบ 01"
+        : currentLanguage === "ko"
+          ? "기념일 템플릿 01"
+          : "Anniversary Template 01";
 
-    document.getElementById("templateName")
-      .textContent =
-      "Anniversary Template 01";
 
-    document.getElementById("templateDesc")
-      .textContent =
-      "A romantic digital page for your special day.";
+    document.getElementById(
+      "templateDesc"
+    ).textContent =
+      currentLanguage === "th"
+        ? "เรื่องราวความรักเล็ก ๆ สำหรับคนพิเศษของคุณ"
+        : currentLanguage === "ko"
+          ? "소중한 사람을 위한 작은 디지털 러브 스토리"
+          : "A little digital love story for your special person.";
 
-    document.getElementById("templatePrice")
-      .textContent =
-      "129 THB";
-
-    templateImage.src =
-      "templates/anniversary-01/preview.jpg";
-
-  }else{
-
-    document.getElementById("templateName")
-      .textContent =
-      "Anniversary Template 01";
-
-    document.getElementById("templateDesc")
-      .textContent =
-      "A romantic digital page for your special day.";
-
-    document.getElementById("templatePrice")
-      .textContent =
-      "129 THB";
-
-    templateImage.src =
-      "templates/anniversary-01/preview.jpg";
   }
 
-  templateImage.onload = ()=>{
-    templateImage.style.display = "block";
-    templatePlaceholder.style.display = "none";
-  };
-
-  templateImage.onerror = ()=>{
-    templateImage.style.display = "none";
-    templatePlaceholder.style.display = "block";
-  };
 }
 
-loadTemplate();
-updateSummary();
-</script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+/* =========================
+  START
+========================= */
+
+applyTranslations();
+
+loadTemplate();
+
+calculatePrices();
+
+</script>
 
 </body>
 </html>
-```
