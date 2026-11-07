@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Receipt | PINTO STUDIO</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap"
+rel="stylesheet">
 
 <style>
 
@@ -31,6 +41,7 @@
 
 body{
   min-height:100vh;
+
   font-family:
     "DM Sans",
     "Noto Sans Thai",
@@ -53,6 +64,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:flex-start;
+
   padding:42px 18px 70px;
 }
 
@@ -84,9 +96,9 @@ body{
 }
 
 
-/* =================================
+/* =========================
 PRINTER
-================================= */
+========================= */
 
 .printer-wrap{
   width:100%;
@@ -130,7 +142,9 @@ PRINTER
   font-size:19px;
   font-weight:700;
   letter-spacing:4px;
-  text-shadow:0 1px 3px rgba(0,0,0,.3);
+
+  text-shadow:
+    0 1px 3px rgba(0,0,0,.3);
 }
 
 .printer-brand span{
@@ -262,12 +276,13 @@ PRINTER
 }
 
 
-/* =================================
-PAPER STAGE
-================================= */
+/* =========================
+PAPER
+========================= */
 
 .paper-stage{
   width:100%;
+
   position:relative;
 
   margin-top:-2px;
@@ -277,20 +292,10 @@ PAPER STAGE
 
   overflow:visible;
 
-  /*
-  IMPORTANT:
-  The receipt must be above the printer body
-  while feeding out of the slot.
-  */
   z-index:6;
 
   pointer-events:none;
 }
-
-
-/* =================================
-RECEIPT
-================================= */
 
 .receipt{
   width:min(340px,82vw);
@@ -319,17 +324,17 @@ RECEIPT
     "Noto Sans Thai",
     sans-serif;
 
-  /*
-  Keep the receipt in front of the printer.
-  */
   z-index:7;
 }
 
 .receipt::before,
 .receipt::after{
   content:"";
+
   position:absolute;
+
   left:0;
+
   width:100%;
   height:8px;
 
@@ -351,11 +356,13 @@ RECEIPT
 
 .receipt::after{
   bottom:-7px;
+
   transform:rotate(180deg);
 }
 
 .receipt.printing{
   display:block;
+
   opacity:1;
 
   animation:
@@ -378,12 +385,10 @@ RECEIPT
 
   35%{
     transform:translateY(-145px);
-    opacity:1;
   }
 
   65%{
     transform:translateY(-65px);
-    opacity:1;
   }
 
   100%{
@@ -394,14 +399,17 @@ RECEIPT
 }
 
 
-/* =================================
-RECEIPT CONTENT
-================================= */
+/* =========================
+RECEIPT
+========================= */
 
 .receipt-header{
   text-align:center;
+
   border-bottom:1px dashed #aaa09a;
+
   padding-bottom:17px;
+
   margin-bottom:15px;
 }
 
@@ -437,15 +445,21 @@ RECEIPT CONTENT
 
 .receipt-section{
   border-top:1px dashed #aaa09a;
+
   padding-top:14px;
+
   margin-top:14px;
 }
 
 .receipt-line{
   display:flex;
+
   justify-content:space-between;
+
   gap:15px;
+
   font-size:10px;
+
   line-height:1.9;
 }
 
@@ -479,13 +493,17 @@ RECEIPT CONTENT
 
 .receipt-footer{
   border-top:1px dashed #aaa09a;
+
   margin-top:18px;
+
   padding-top:15px;
 
   text-align:center;
 
   font-size:8px;
+
   line-height:1.8;
+
   color:#77706b;
 }
 
@@ -496,9 +514,23 @@ RECEIPT CONTENT
 }
 
 
-/* =================================
-ACTION BUTTONS
-================================= */
+/* =========================
+STATUS
+========================= */
+
+.status{
+  font-size:11px;
+  color:var(--brown);
+
+  margin-top:24px;
+
+  min-height:18px;
+}
+
+
+/* =========================
+BUTTONS
+========================= */
 
 .actions{
   display:none;
@@ -510,6 +542,7 @@ ACTION BUTTONS
   gap:10px;
 
   position:relative;
+
   z-index:20;
 }
 
@@ -530,6 +563,7 @@ ACTION BUTTONS
   padding:13px 12px;
 
   font-size:12px;
+
   font-weight:600;
 
   transition:.2s;
@@ -556,6 +590,7 @@ ACTION BUTTONS
   display:none;
 
   border:0;
+
   background:none;
 
   color:var(--brown);
@@ -572,9 +607,9 @@ ACTION BUTTONS
 }
 
 
-/* =================================
+/* =========================
 MOBILE
-================================= */
+========================= */
 
 @media(max-width:500px){
 
@@ -604,6 +639,7 @@ MOBILE
 </style>
 </head>
 
+
 <body>
 
 <div class="page">
@@ -628,8 +664,13 @@ Your order has been received. Press the button to print your receipt.
 <div class="printer-top">
 
 <div class="printer-brand">
+
 PINTO STUDIO
-<span>RECEIPT PRINTER</span>
+
+<span>
+RECEIPT PRINTER
+</span>
+
 </div>
 
 </div>
@@ -646,7 +687,9 @@ type="button"
 class="printer-button"
 id="printButton"
 aria-label="Print receipt">
+
 ●
+
 </button>
 
 </div>
@@ -666,7 +709,7 @@ id="receipt">
 PINTO STUDIO
 </div>
 
-<div class="receipt-small" id="receiptTagline">
+<div class="receipt-small">
 DIGITAL MOMENTS
 </div>
 
@@ -676,18 +719,41 @@ DIGITAL MOMENTS
 <div class="receipt-info">
 
 <div class="receipt-info-row">
-<span id="labelOrder">Order No.</span>
-<span id="receiptOrder">-</span>
+
+<span id="labelOrder">
+Order No.
+</span>
+
+<span id="receiptOrder">
+-
+</span>
+
 </div>
 
-<div class="receipt-info-row">
-<span id="labelName">Customer</span>
-<span id="receiptName">-</span>
-</div>
 
 <div class="receipt-info-row">
-<span id="labelDate">Date</span>
-<span id="receiptDate">-</span>
+
+<span id="labelName">
+Customer
+</span>
+
+<span id="receiptName">
+-
+</span>
+
+</div>
+
+
+<div class="receipt-info-row">
+
+<span id="labelDate">
+Date
+</span>
+
+<span id="receiptDate">
+-
+</span>
+
 </div>
 
 </div>
@@ -824,14 +890,19 @@ Ready to print.
 type="button"
 class="action-btn"
 id="saveButton">
+
 ↓ Save Receipt
+
 </button>
+
 
 <button
 type="button"
 class="action-btn primary"
 id="shareButton">
+
 ↗ Share Receipt
+
 </button>
 
 </div>
@@ -841,7 +912,9 @@ id="shareButton">
 type="button"
 class="back-btn"
 id="backButton">
+
 ← Back to Home
+
 </button>
 
 </div>
@@ -849,10 +922,15 @@ id="backButton">
 
 <script>
 
-let currentLanguage="th";
-let receiptData=null;
+let currentLanguage = "th";
+let receiptData = null;
 
-const translations={
+
+/* ==========================================
+TRANSLATIONS
+========================================== */
+
+const translations = {
 
 th:{
 title:"สลิปคำสั่งซื้อ",
@@ -860,6 +938,7 @@ subtitle:"ออเดอร์ของคุณถูกส่งเรีย�
 ready:"พร้อมปริ้นสลิป",
 printing:"กำลังปริ้นสลิป...",
 finished:"ปริ้นสลิปเรียบร้อยแล้ว",
+
 order:"เลขที่ออเดอร์",
 name:"ลูกค้า",
 date:"วันที่",
@@ -869,11 +948,14 @@ discount:"ส่วนลด",
 total:"ยอดรวม",
 deposit:"มัดจำ 30%",
 remaining:"คงเหลือ 70%",
+
 thanks:"ขอบคุณที่เลือก PINTO STUDIO",
 contact:"เราจะติดต่อคุณผ่าน LINE ID",
+
 save:"↓ บันทึกสลิป",
 share:"↗ แชร์สลิป",
 back:"← กลับหน้าหลัก",
+
 shareTitle:"สลิปคำสั่งซื้อ PINTO STUDIO",
 shareText:"สลิปคำสั่งซื้อจาก PINTO STUDIO"
 },
@@ -884,6 +966,7 @@ subtitle:"Your order has been received. Press the button to print your receipt."
 ready:"Ready to print.",
 printing:"Printing your receipt...",
 finished:"Receipt printed successfully.",
+
 order:"Order No.",
 name:"Customer",
 date:"Date",
@@ -893,11 +976,14 @@ discount:"Discount",
 total:"Total",
 deposit:"Deposit 30%",
 remaining:"Remaining 70%",
+
 thanks:"Thank you for choosing PINTO STUDIO.",
 contact:"We will contact you via LINE ID.",
+
 save:"↓ Save Receipt",
 share:"↗ Share Receipt",
 back:"← Back to Home",
+
 shareTitle:"PINTO STUDIO Order Receipt",
 shareText:"Order receipt from PINTO STUDIO"
 },
@@ -908,6 +994,7 @@ subtitle:"주문이 접수되었습니다. 버튼을 눌러 영수증을 출력�
 ready:"출력 준비 완료",
 printing:"영수증을 출력하는 중...",
 finished:"영수증 출력이 완료되었습니다.",
+
 order:"주문번호",
 name:"고객",
 date:"날짜",
@@ -917,11 +1004,14 @@ discount:"할인",
 total:"총 금액",
 deposit:"예약금 30%",
 remaining:"잔액 70%",
+
 thanks:"PINTO STUDIO를 선택해주셔서 감사합니다.",
 contact:"LINE ID를 통해 연락드리겠습니다.",
+
 save:"↓ 영수증 저장",
 share:"↗ 영수증 공유",
 back:"← 홈으로 돌아가기",
+
 shareTitle:"PINTO STUDIO 주문 영수증",
 shareText:"PINTO STUDIO 주문 영수증"
 }
@@ -929,55 +1019,92 @@ shareText:"PINTO STUDIO 주문 영수증"
 };
 
 
+/* ==========================================
+LANGUAGE
+========================================== */
+
 function getLanguage(){
 
-const candidates=[
+const candidates = [
+
 localStorage.getItem("pintoLanguage"),
+
+sessionStorage.getItem("pintoLanguage"),
+
 localStorage.getItem("language"),
-localStorage.getItem("lang")
+
+sessionStorage.getItem("language"),
+
+localStorage.getItem("lang"),
+
+sessionStorage.getItem("lang")
+
 ];
 
 for(const value of candidates){
 
 if(!value) continue;
 
-const v=String(value).trim().toLowerCase();
+const v =
+String(value)
+.trim()
+.toLowerCase();
 
-if(v==="th"||v==="thai")
-return"th";
+if(
+v==="th" ||
+v==="thai"
+){
+return "th";
+}
 
-if(v==="en"||v==="english")
-return"en";
+if(
+v==="en" ||
+v==="english"
+){
+return "en";
+}
 
-if(v==="ko"||v==="kr"||v==="korean")
-return"ko";
+if(
+v==="ko" ||
+v==="kr" ||
+v==="korean"
+){
+return "ko";
+}
 
 }
 
-return"th";
+return "th";
 
 }
 
 
 function t(key){
 
-return translations[currentLanguage][key]||
-translations.th[key]||
+return translations[currentLanguage][key]
+||
+translations.th[key]
+||
 key;
 
 }
 
 
+/* ==========================================
+FORMAT
+========================================== */
+
 function formatMoney(value){
 
-return Number(value||0).toFixed(2);
+return Number(value || 0)
+.toFixed(2);
 
 }
 
 
 function escapeHTML(value){
 
-return String(value||"")
+return String(value || "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -989,7 +1116,7 @@ return String(value||"")
 
 function formatDate(dateString){
 
-const date=
+const date =
 dateString
 ?new Date(dateString)
 :new Date();
@@ -1032,71 +1159,106 @@ day:"2-digit"
 }
 
 
-/* =================================
-LANGUAGE
-================================= */
+/* ==========================================
+LANGUAGE UI
+========================================== */
 
 function applyLanguage(){
 
-document.documentElement.lang=
+document.documentElement.lang =
 currentLanguage==="th"
 ?"th"
 :currentLanguage==="ko"
 ?"ko"
 :"en";
 
+
 document.getElementById("pageTitle")
-.textContent=t("title");
+.textContent =
+t("title");
+
 
 document.getElementById("pageSubtitle")
-.textContent=t("subtitle");
+.textContent =
+t("subtitle");
+
 
 document.getElementById("status")
-.textContent=t("ready");
+.textContent =
+t("ready");
+
 
 document.getElementById("labelOrder")
-.textContent=t("order");
+.textContent =
+t("order");
+
 
 document.getElementById("labelName")
-.textContent=t("name");
+.textContent =
+t("name");
+
 
 document.getElementById("labelDate")
-.textContent=t("date");
+.textContent =
+t("date");
+
 
 document.getElementById("receiptTemplateLabel")
-.textContent=t("template");
+.textContent =
+t("template");
+
 
 document.getElementById("labelSubtotal")
-.textContent=t("subtotal");
+.textContent =
+t("subtotal");
+
 
 document.getElementById("labelDiscount")
-.textContent=t("discount");
+.textContent =
+t("discount");
+
 
 document.getElementById("labelTotal")
-.textContent=t("total");
+.textContent =
+t("total");
+
 
 document.getElementById("labelDeposit")
-.textContent=t("deposit");
+.textContent =
+t("deposit");
+
 
 document.getElementById("labelRemaining")
-.textContent=t("remaining");
+.textContent =
+t("remaining");
+
 
 document.getElementById("receiptThanks")
-.textContent=t("thanks");
+.textContent =
+t("thanks");
+
 
 document.getElementById("receiptContact")
-.textContent=t("contact");
+.textContent =
+t("contact");
+
 
 document.getElementById("saveButton")
-.textContent=t("save");
+.textContent =
+t("save");
+
 
 document.getElementById("shareButton")
-.textContent=t("share");
+.textContent =
+t("share");
+
 
 document.getElementById("backButton")
-.textContent=t("back");
+.textContent =
+t("back");
 
-document.title=
+
+document.title =
 currentLanguage==="th"
 ?"สลิปคำสั่งซื้อ | PINTO STUDIO"
 :currentLanguage==="ko"
@@ -1106,42 +1268,65 @@ currentLanguage==="th"
 }
 
 
-/* =================================
-LOAD DATA
-================================= */
+/* ==========================================
+LOAD RECEIPT DATA
+========================================== */
 
 function loadReceiptData(){
 
-const raw=
-localStorage.getItem("pintoReceiptData");
+/*
+  อ่าน sessionStorage ก่อน
+  เพราะ order.html เพิ่งสร้างข้อมูล
+  แล้วค่อย fallback ไป localStorage
+*/
+
+let raw =
+sessionStorage.getItem("pintoReceiptData");
+
 
 if(!raw){
 
-document.getElementById("status")
-.textContent=
+raw =
+localStorage.getItem("pintoReceiptData");
+
+}
+
+
+if(!raw){
+
+const status =
+document.getElementById("status");
+
+status.textContent =
 currentLanguage==="th"
 ?"ไม่พบข้อมูลสลิป"
 :currentLanguage==="ko"
 ?"영수증 정보를 찾을 수 없습니다."
 :"Receipt information could not be found.";
 
+
 document.getElementById("printButton")
-.disabled=true;
+.disabled = true;
 
 return;
 
 }
 
+
 try{
 
-receiptData=JSON.parse(raw);
+receiptData =
+JSON.parse(raw);
 
 }catch(error){
 
-console.error(error);
+console.error(
+"Receipt JSON parse error:",
+error
+);
 
 document.getElementById("status")
-.textContent=
+.textContent =
 currentLanguage==="th"
 ?"ข้อมูลสลิปไม่ถูกต้อง"
 :currentLanguage==="ko"
@@ -1149,106 +1334,211 @@ currentLanguage==="th"
 :"Receipt data is invalid.";
 
 document.getElementById("printButton")
-.disabled=true;
+.disabled = true;
 
 return;
 
 }
+
+
+if(
+!receiptData ||
+typeof receiptData !== "object"
+){
+
+document.getElementById("status")
+.textContent =
+currentLanguage==="th"
+?"ไม่พบข้อมูลคำสั่งซื้อ"
+:currentLanguage==="ko"
+?"주문 정보를 찾을 수 없습니다."
+:"Order information could not be found.";
+
+document.getElementById("printButton")
+.disabled = true;
+
+return;
+
+}
+
+
+/*
+  ถ้าข้อมูลใน receiptData มีภาษาอยู่
+  ให้ใช้ภาษานั้นโดยตรง
+*/
+
+if(
+receiptData.language==="th" ||
+receiptData.language==="en" ||
+receiptData.language==="ko"
+){
+
+currentLanguage =
+receiptData.language;
+
+applyLanguage();
+
+}
+
 
 fillReceipt();
 
 }
 
 
+/* ==========================================
+FILL RECEIPT
+========================================== */
+
 function fillReceipt(){
 
 if(!receiptData)
 return;
 
+
 document.getElementById("receiptOrder")
-.textContent=
-receiptData.orderNumber||"-";
+.textContent =
+receiptData.orderNumber || "-";
+
 
 document.getElementById("receiptOrderBottom")
-.textContent=
-receiptData.orderNumber||"-";
+.textContent =
+receiptData.orderNumber || "-";
+
 
 document.getElementById("receiptName")
-.textContent=
-receiptData.customerName||"-";
+.textContent =
+receiptData.customerName || "-";
+
 
 document.getElementById("receiptDate")
-.textContent=
-formatDate(receiptData.createdAt);
+.textContent =
+formatDate(
+receiptData.createdAt
+);
+
 
 document.getElementById("receiptTemplate")
-.textContent=
-receiptData.template||"-";
+.textContent =
+receiptData.template || "-";
+
 
 document.getElementById("receiptSubtotal")
-.textContent=
-formatMoney(receiptData.subtotal)+
+.textContent =
+formatMoney(
+receiptData.subtotal
+)
++
 " THB";
+
 
 document.getElementById("receiptTotal")
-.textContent=
-formatMoney(receiptData.total)+
+.textContent =
+formatMoney(
+receiptData.total
+)
++
 " THB";
+
 
 document.getElementById("receiptDeposit")
-.textContent=
-formatMoney(receiptData.deposit)+
+.textContent =
+formatMoney(
+receiptData.deposit
+)
++
 " THB";
+
 
 document.getElementById("receiptRemaining")
-.textContent=
-formatMoney(receiptData.remaining)+
+.textContent =
+formatMoney(
+receiptData.remaining
+)
++
 " THB";
 
 
-const discountRow=
-document.getElementById("discountReceiptRow");
+const discountRow =
+document.getElementById(
+"discountReceiptRow"
+);
 
-if(Number(receiptData.discountAmount||0)>0){
 
-discountRow.style.display="flex";
+if(
+Number(
+receiptData.discountAmount || 0
+)>0
+){
 
-document.getElementById("receiptDiscount")
-.textContent=
-"-"+
-formatMoney(receiptData.discountAmount)+
+discountRow.style.display =
+"flex";
+
+document.getElementById(
+"receiptDiscount"
+).textContent =
+"-"
++
+formatMoney(
+receiptData.discountAmount
+)
++
 " THB";
 
 }else{
 
-discountRow.style.display="none";
+discountRow.style.display =
+"none";
 
 }
 
 
-const extrasList=
-document.getElementById("extrasList");
+/* EXTRAS */
 
-extrasList.innerHTML="";
+const extrasList =
+document.getElementById(
+"extrasList"
+);
+
+extrasList.innerHTML = "";
+
 
 if(
-Array.isArray(receiptData.extras) &&
+Array.isArray(
+receiptData.extras
+)
+&&
 receiptData.extras.length
 ){
 
-receiptData.extras.forEach(item=>{
+receiptData.extras.forEach(
+item=>{
 
-const row=
+const row =
 document.createElement("div");
 
-row.className="receipt-line";
+row.className =
+"receipt-line";
 
-row.innerHTML=`
-<span>${escapeHTML(item.name)}</span>
-<span>+${formatMoney(item.price)} THB</span>
+row.innerHTML = `
+
+<span>
+${escapeHTML(
+item.name
+)}
+</span>
+
+<span>
++${formatMoney(
+item.price
+)} THB
+</span>
+
 `;
 
-extrasList.appendChild(row);
+extrasList.appendChild(
+row
+);
 
 });
 
@@ -1257,11 +1547,11 @@ extrasList.appendChild(row);
 }
 
 
-/* =================================
+/* ==========================================
 SOUND
-================================= */
+========================================== */
 
-let audioContext=null;
+let audioContext = null;
 
 
 function beep(
@@ -1274,54 +1564,73 @@ try{
 
 if(!audioContext){
 
-audioContext=
+audioContext =
 new(
-window.AudioContext||
+window.AudioContext ||
 window.webkitAudioContext
 )();
 
 }
 
-if(audioContext.state==="suspended"){
+
+if(
+audioContext.state ===
+"suspended"
+){
 
 audioContext.resume();
 
 }
 
-const oscillator=
+
+const oscillator =
 audioContext.createOscillator();
 
-const gain=
+const gain =
 audioContext.createGain();
 
-oscillator.type="square";
 
-oscillator.frequency.value=
+oscillator.type =
+"square";
+
+
+oscillator.frequency.value =
 frequency;
+
 
 gain.gain.setValueAtTime(
 volume,
 audioContext.currentTime
 );
 
+
 gain.gain.exponentialRampToValueAtTime(
 0.001,
-audioContext.currentTime+duration
+audioContext.currentTime +
+duration
 );
 
+
 oscillator.connect(gain);
-gain.connect(audioContext.destination);
+
+gain.connect(
+audioContext.destination
+);
+
 
 oscillator.start();
 
+
 oscillator.stop(
-audioContext.currentTime+
+audioContext.currentTime +
 duration
 );
 
 }catch(error){
 
-console.log("Audio unavailable.");
+console.log(
+"Audio unavailable."
+);
 
 }
 
@@ -1330,42 +1639,71 @@ console.log("Audio unavailable.");
 
 function printSoundSequence(){
 
-beep(1150,.07,.055);
+beep(
+1150,
+.07,
+.055
+);
 
 setTimeout(
-()=>beep(900,.07,.05),
+()=>{
+beep(
+900,
+.07,
+.05
+);
+},
 170
 );
 
 setTimeout(
-()=>beep(1150,.07,.055),
+()=>{
+beep(
+1150,
+.07,
+.055
+);
+},
 340
 );
 
 setTimeout(
-()=>beep(900,.07,.05),
+()=>{
+beep(
+900,
+.07,
+.05
+);
+},
 510
 );
 
 setTimeout(
-()=>beep(1150,.09,.06),
+()=>{
+beep(
+1150,
+.09,
+.06
+);
+},
 680
 );
 
 }
 
 
-/* =================================
+/* ==========================================
 PRINT
-================================= */
+========================================== */
 
-let hasPrinted=false;
+let hasPrinted = false;
 
 
 function printReceipt(){
 
 if(hasPrinted)
 return;
+
 
 if(!receiptData){
 
@@ -1376,176 +1714,227 @@ return;
 
 }
 
-hasPrinted=true;
 
-const button=
-document.getElementById("printButton");
-
-const receipt=
-document.getElementById("receipt");
-
-const status=
-document.getElementById("status");
-
-button.disabled=true;
-
-status.textContent=t("printing");
+hasPrinted = true;
 
 
-/*
-Reset animation completely
-before starting again.
-*/
+const button =
+document.getElementById(
+"printButton"
+);
 
-receipt.classList.remove("printing");
+const receipt =
+document.getElementById(
+"receipt"
+);
 
-receipt.style.display="none";
+const status =
+document.getElementById(
+"status"
+);
+
+
+button.disabled = true;
+
+status.textContent =
+t("printing");
+
+
+receipt.classList.remove(
+"printing"
+);
+
+
+receipt.style.display =
+"none";
+
 
 void receipt.offsetWidth;
 
-receipt.style.display="block";
+
+receipt.style.display =
+"block";
+
 
 void receipt.offsetWidth;
 
-receipt.classList.add("printing");
 
+receipt.classList.add(
+"printing"
+);
 
-/*
-Start printer sounds
-only after user interaction.
-*/
 
 printSoundSequence();
 
 
-setTimeout(()=>{
+setTimeout(
+()=>{
 
-status.textContent=t("finished");
+status.textContent =
+t("finished");
 
-document.getElementById("actions")
-.classList.add("show");
 
-document.getElementById("backButton")
-.classList.add("show");
+document.getElementById(
+"actions"
+).classList.add(
+"show"
+);
 
-},4600);
+
+document.getElementById(
+"backButton"
+).classList.add(
+"show"
+);
+
+},
+4600
+);
 
 }
 
 
-/* =================================
-BUTTON EVENTS
-================================= */
+/* ==========================================
+PRINT BUTTON
+========================================== */
 
-document.getElementById("printButton")
+document.getElementById(
+"printButton"
+)
 .addEventListener(
 "click",
 printReceipt
 );
 
 
-/* =================================
-SAVE
-================================= */
+/* ==========================================
+SAVE RECEIPT
+========================================== */
 
 async function saveReceipt(){
 
 if(!receiptData)
 return;
 
-const receipt=
-document.getElementById("receipt");
 
-const clone=
+const receipt =
+document.getElementById(
+"receipt"
+);
+
+
+const clone =
 receipt.cloneNode(true);
 
-clone.classList.remove("printing");
 
-clone.style.display="block";
-clone.style.opacity="1";
-clone.style.transform="none";
-clone.style.position="absolute";
-clone.style.left="-99999px";
-clone.style.top="0";
+clone.classList.remove(
+"printing"
+);
 
-document.body.appendChild(clone);
+
+clone.style.display =
+"block";
+
+clone.style.opacity =
+"1";
+
+clone.style.transform =
+"none";
+
+clone.style.position =
+"absolute";
+
+clone.style.left =
+"-99999px";
+
+clone.style.top =
+"0";
+
+
+document.body.appendChild(
+clone
+);
+
 
 try{
 
-if(typeof html2canvas!=="undefined"){
-
-const canvas=
-await html2canvas(
-clone,
-{
-backgroundColor:"#fffdf8",
-scale:2
-}
-);
-
-const link=
-document.createElement("a");
-
-link.download=
-`${receiptData.orderNumber||"pinto-receipt"}.png`;
-
-link.href=
-canvas.toDataURL("image/png");
-
-link.click();
-
-}else{
+/*
+  ไม่ต้องใช้ html2canvas จากภายนอก
+  ให้เปิด print dialog ของ browser
+*/
 
 window.print();
-
-}
 
 }catch(error){
 
 console.error(error);
 
-window.print();
-
 }
+
 
 clone.remove();
 
 }
 
 
-document.getElementById("saveButton")
-.addEventListener(
-"click",
-saveReceipt
-);
-
-
-/* =================================
+/* ==========================================
 SHARE
-================================= */
+========================================== */
 
 async function shareReceipt(){
 
 if(!receiptData)
 return;
 
-const shareText=
+
+const shareText =
+
 `${t("shareText")}
 
-${t("order")}: ${receiptData.orderNumber}
-${t("total")}: ${formatMoney(receiptData.total)} THB
-${t("deposit")}: ${formatMoney(receiptData.deposit)} THB
-${t("remaining")}: ${formatMoney(receiptData.remaining)} THB`;
+${t("order")}: ${
+receiptData.orderNumber || "-"
+}
+
+${t("name")}: ${
+receiptData.customerName || "-"
+}
+
+${t("template")}: ${
+receiptData.template || "-"
+}
+
+${t("total")}: ${
+formatMoney(
+receiptData.total
+)
+} THB
+
+${t("deposit")}: ${
+formatMoney(
+receiptData.deposit
+)
+} THB
+
+${t("remaining")}: ${
+formatMoney(
+receiptData.remaining
+)
+} THB`;
+
 
 try{
 
-if(navigator.share){
+if(
+navigator.share
+){
 
 await navigator.share({
 
-title:t("shareTitle"),
+title:
+t("shareTitle"),
 
-text:shareText
+text:
+shareText
 
 });
 
@@ -1554,6 +1943,7 @@ text:shareText
 await navigator.clipboard.writeText(
 shareText
 );
+
 
 alert(
 currentLanguage==="th"
@@ -1567,45 +1957,67 @@ currentLanguage==="th"
 
 }catch(error){
 
-console.log("Share cancelled.");
+console.log(
+"Share cancelled."
+);
 
 }
 
 }
 
 
-document.getElementById("shareButton")
+document.getElementById(
+"saveButton"
+)
+.addEventListener(
+"click",
+saveReceipt
+);
+
+
+document.getElementById(
+"shareButton"
+)
 .addEventListener(
 "click",
 shareReceipt
 );
 
 
-/* =================================
+/* ==========================================
 BACK
-================================= */
+========================================== */
 
-document.getElementById("backButton")
+document.getElementById(
+"backButton"
+)
 .addEventListener(
 "click",
 ()=>{
-window.location.href="index.html";
+
+window.location.href =
+"index.html";
+
 }
 );
 
 
-/* =================================
+/* ==========================================
 INIT
-================================= */
+========================================== */
 
-currentLanguage=
+currentLanguage =
 getLanguage();
 
+
 applyLanguage();
+
 
 loadReceiptData();
 
 </script>
 
 </body>
+
 </html>
+```
