@@ -392,21 +392,47 @@ input[type="color"]{
   background:rgba(247,242,236,.5);
 }
 
-.bank-info{
-  padding:15px;
-  border-radius:12px;
+/* =========================
+QR PAYMENT
+========================= */
+
+.qr-payment{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px;
   background:var(--white);
-  border:1px dashed var(--line);
   margin-bottom:20px;
+  text-align:center;
 }
 
-.bank-info p{
-  font-size:12px;
+.qr-payment-title{
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
+  margin-bottom:6px;
+}
+
+.qr-payment-subtitle{
+  font-size:11px;
   color:var(--brown);
-  line-height:1.9;
+  line-height:1.7;
+  margin-bottom:15px;
 }
 
-.bank-info strong{color:var(--brown-dark)}
+.qr-image{
+  width:min(330px,100%);
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
+  border:1px solid #eee4dc;
+}
+
+.qr-note{
+  font-size:11px;
+  color:var(--brown);
+  line-height:1.7;
+  margin-top:12px;
+}
 
 .file-label{
   border:1px dashed var(--brown);
@@ -575,6 +601,10 @@ footer{
     bottom:8px;
     padding:18px;
     border-radius:18px;
+  }
+
+  .qr-image{
+    width:min(300px,100%);
   }
 }
 </style>
@@ -892,16 +922,25 @@ Each person can use the discount code only once.
 
 <div class="payment-box">
 
-<div class="bank-info">
-<p>
-<strong data-i18n="bankTransfer">Bank Transfer</strong>
-<br>
-<span data-i18n="bankName">Bank: Your Bank Name</span>
-<br>
-<span data-i18n="accountName">Account Name: PINTO LOVE</span>
-<br>
-<span data-i18n="accountNumber">Account Number: 000-0-00000-0</span>
-</p>
+<div class="qr-payment">
+
+<div class="qr-payment-title" data-i18n="qrTitle">
+Scan to Pay
+</div>
+
+<div class="qr-payment-subtitle" data-i18n="qrSubtitle">
+Scan this QR Code to make your payment.
+</div>
+
+<img
+src="qr-payment.png"
+alt="PINTO LOVE Thai QR Payment"
+class="qr-image">
+
+<div class="qr-note" data-i18n="qrNote">
+Please scan the QR Code and pay the deposit amount shown below.
+</div>
+
 </div>
 
 <label class="file-label" for="paymentSlip">
@@ -951,6 +990,7 @@ Accepted: JPG, PNG, WEBP or PDF
 
 <div>
 <div class="total-label" data-i18n="totalLabel">Total</div>
+
 <div class="deposit-info" data-i18n="depositInfo">
 Deposit 30% · Remaining 70%
 </div>
@@ -1075,10 +1115,9 @@ applyButton:"ใช้โค้ด",
 couponHelper:"แต่ละคนสามารถใช้โค้ดส่วนลดได้เพียงครั้งเดียว",
 paymentTitle:"การชำระเงิน",
 paymentSubtitle:"ชำระเงินและอัปโหลดสลิปการโอนเงินของคุณ",
-bankTransfer:"โอนเงินผ่านธนาคาร",
-bankName:"ธนาคาร: ชื่อธนาคารของคุณ",
-accountName:"ชื่อบัญชี: PINTO LOVE",
-accountNumber:"เลขที่บัญชี: 000-0-00000-0",
+qrTitle:"สแกนเพื่อชำระเงิน",
+qrSubtitle:"สแกน QR Code นี้เพื่อชำระเงิน",
+qrNote:"กรุณาสแกน QR Code และชำระเงินตามยอดมัดจำที่แสดงด้านล่าง",
 uploadSlip:"คลิกเพื่ออัปโหลดสลิปการชำระเงิน",
 acceptedFiles:"รองรับ: JPG, PNG, WEBP หรือ PDF",
 summaryTemplate:"เว็บไซต์",
@@ -1173,10 +1212,9 @@ applyButton:"Apply",
 couponHelper:"Each person can use the discount code only once.",
 paymentTitle:"Payment",
 paymentSubtitle:"Complete the payment and upload your payment slip.",
-bankTransfer:"Bank Transfer",
-bankName:"Bank: Your Bank Name",
-accountName:"Account Name: PINTO LOVE",
-accountNumber:"Account Number: 000-0-00000-0",
+qrTitle:"Scan to Pay",
+qrSubtitle:"Scan this QR Code to make your payment.",
+qrNote:"Please scan the QR Code and pay the deposit amount shown below.",
 uploadSlip:"Click to upload your payment slip",
 acceptedFiles:"Accepted: JPG, PNG, WEBP or PDF",
 summaryTemplate:"Template",
@@ -1271,10 +1309,9 @@ applyButton:"적용",
 couponHelper:"할인 코드는 한 사람당 한 번만 사용할 수 있습니다.",
 paymentTitle:"결제",
 paymentSubtitle:"결제를 완료한 후 결제 영수증을 업로드해주세요.",
-bankTransfer:"은행 송금",
-bankName:"은행: Your Bank Name",
-accountName:"예금주: PINTO LOVE",
-accountNumber:"계좌번호: 000-0-00000-0",
+qrTitle:"결제하기",
+qrSubtitle:"이 QR Code를 스캔하여 결제해주세요.",
+qrNote:"QR Code를 스캔한 후 아래에 표시된 예약금 금액을 결제해주세요.",
 uploadSlip:"결제 영수증을 업로드하려면 클릭하세요",
 acceptedFiles:"지원 형식: JPG, PNG, WEBP 또는 PDF",
 summaryTemplate:"템플릿",
@@ -2185,15 +2222,29 @@ new Date().toISOString()
 
 };
 
+const receiptJSON=
+JSON.stringify(receiptData);
+
+try{
+
 localStorage.setItem(
 "pintoReceiptData",
-JSON.stringify(receiptData)
+receiptJSON
 );
 
+sessionStorage.setItem(
+"pintoReceiptData",
+receiptJSON
+);
 
-/* ==================================
-REDIRECT TO RECEIPT PRINTER PAGE
-================================== */
+}catch(storageError){
+
+console.error(
+"Could not save receipt data:",
+storageError
+);
+
+}
 
 window.location.href=
 "order-success.html";
