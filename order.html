@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -370,6 +371,11 @@ input[type="color"]{
 
 .btn-small:hover{background:var(--brown-dark)}
 
+.btn-small:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .coupon-message{
   margin-top:10px;
   font-size:12px;
@@ -573,6 +579,7 @@ footer{
   }
 }
 </style>
+
 </head>
 
 <body>
@@ -1155,7 +1162,7 @@ let uploadedSlipPath = "";
 
 
 /* =========================
-  LANGUAGE
+ LANGUAGE
 ========================= */
 
 const translations = {
@@ -1335,7 +1342,16 @@ couponCannotUse:
 
 uploadFailed:"อัปโหลดสลิปการชำระเงินไม่สำเร็จ: ",
 
-orderFailed:"ส่งออเดอร์ไม่สำเร็จ"
+orderFailed:"ส่งออเดอร์ไม่สำเร็จ",
+
+couponAlreadyUsed:
+"LINE ID นี้เคยใช้โค้ดส่วนลดนี้ไปแล้ว",
+
+couponCheckLine:
+"กรุณากรอก LINE ID ก่อนตรวจสอบโค้ดส่วนลด",
+
+checkingCoupon:
+"กำลังตรวจสอบโค้ดส่วนลด..."
 
 },
 
@@ -1515,7 +1531,16 @@ couponCannotUse:
 
 uploadFailed:"Payment slip upload failed: ",
 
-orderFailed:"Failed to submit your order."
+orderFailed:"Failed to submit your order.",
+
+couponAlreadyUsed:
+"This LINE ID has already used this discount code.",
+
+couponCheckLine:
+"Please enter your LINE ID before checking the discount code.",
+
+checkingCoupon:
+"Checking discount code..."
 
 },
 
@@ -1695,7 +1720,16 @@ couponCannotUse:
 
 uploadFailed:"결제 영수증 업로드 실패: ",
 
-orderFailed:"주문을 제출하지 못했습니다."
+orderFailed:"주문을 제출하지 못했습니다.",
+
+couponAlreadyUsed:
+"이 LINE ID는 이미 이 할인 코드를 사용했습니다.",
+
+couponCheckLine:
+"할인 코드를 확인하기 전에 LINE ID를 입력해주세요.",
+
+checkingCoupon:
+"할인 코드를 확인하는 중..."
 
 }
 
@@ -1763,39 +1797,39 @@ function applyTranslations(){
         : "en";
 
   document
-    .querySelectorAll("[data-i18n]")
-    .forEach(el => {
+  .querySelectorAll("[data-i18n]")
+  .forEach(el => {
 
-      const key =
-        el.getAttribute("data-i18n");
+    const key =
+      el.getAttribute("data-i18n");
 
-      if(
-        translations[currentLanguage] &&
-        translations[currentLanguage][key]
-      ){
-        el.textContent =
-          translations[currentLanguage][key];
-      }
+    if(
+      translations[currentLanguage] &&
+      translations[currentLanguage][key]
+    ){
+      el.textContent =
+        translations[currentLanguage][key];
+    }
 
-    });
+  });
 
 
   document
-    .querySelectorAll("[data-i18n-placeholder]")
-    .forEach(el => {
+  .querySelectorAll("[data-i18n-placeholder]")
+  .forEach(el => {
 
-      const key =
-        el.getAttribute("data-i18n-placeholder");
+    const key =
+      el.getAttribute("data-i18n-placeholder");
 
-      if(
-        translations[currentLanguage] &&
-        translations[currentLanguage][key]
-      ){
-        el.placeholder =
-          translations[currentLanguage][key];
-      }
+    if(
+      translations[currentLanguage] &&
+      translations[currentLanguage][key]
+    ){
+      el.placeholder =
+        translations[currentLanguage][key];
+    }
 
-    });
+  });
 
 
   document.title =
@@ -1825,7 +1859,7 @@ function applyTranslations(){
 
 
 /* =========================
-  BASIC FUNCTIONS
+ BASIC FUNCTIONS
 ========================= */
 
 function formatMoney(value){
@@ -1865,7 +1899,6 @@ function hideStatus(){
     document.getElementById("statusMessage");
 
   el.textContent = "";
-
   el.className =
     "status-message";
 
@@ -2063,7 +2096,7 @@ function updateColorCode(
 
 
 /* =========================
-  EVENTS
+ EVENTS
 ========================= */
 
 document.getElementById(
@@ -2106,15 +2139,15 @@ document.getElementById(
 
 
 document
-  .querySelectorAll(
-    ".extra-checkbox"
+.querySelectorAll(
+  ".extra-checkbox"
+)
+.forEach(item =>
+  item.addEventListener(
+    "change",
+    calculatePrices
   )
-  .forEach(item =>
-    item.addEventListener(
-      "change",
-      calculatePrices
-    )
-  );
+);
 
 
 document.getElementById(
@@ -2137,7 +2170,7 @@ document.getElementById(
 
 
 /* =========================
-  FIX: SUBMIT BUTTON
+ FIX: SUBMIT BUTTON
 ========================= */
 
 document.getElementById(
@@ -2149,14 +2182,142 @@ document.getElementById(
 
 
 /* =========================
-  COUPON APPLY
+ COUPON CHECK
 ========================= */
 
-function applyCoupon(){
+async function checkCouponOnSupabase(
+  couponCode,
+  lineId
+){
+
+  const cleanCouponCode =
+    String(
+      couponCode || ""
+    )
+    .trim()
+    .toLowerCase();
+
+  const cleanContact =
+    normalizeLineId(
+      lineId
+    );
+
+  if(!cleanCouponCode){
+
+    throw new Error(
+      t("couponMissing")
+    );
+
+  }
+
+  if(!cleanContact){
+
+    throw new Error(
+      t("lineMissing")
+    );
+
+  }
+
+  console.log(
+    "CHECKING COUPON:",
+    {
+      coupon_code:
+        cleanCouponCode,
+
+      contact:
+        cleanContact
+    }
+  );
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient.rpc(
+      "check_coupon",
+      {
+        p_coupon_code:
+          cleanCouponCode,
+
+        p_contact:
+          cleanContact
+      }
+    );
+
+  console.log(
+    "CHECK COUPON RPC DATA:",
+    data
+  );
+
+  console.log(
+    "CHECK COUPON RPC ERROR:",
+    error
+  );
+
+  if(error){
+
+    throw new Error(
+      t("couponVerifyFailed") +
+      ": " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
+    );
+
+  }
+
+  if(
+    data === null ||
+    data === undefined
+  ){
+
+    throw new Error(
+      t("couponEmptyResult")
+    );
+
+  }
+
+  let result =
+    data;
+
+  if(Array.isArray(data)){
+
+    result =
+      data[0];
+
+  }
+
+  if(
+    result === null ||
+    result === undefined
+  ){
+
+    throw new Error(
+      t("couponEmptyResult")
+    );
+
+  }
+
+  return result;
+
+}
+
+
+/* =========================
+ COUPON APPLY
+========================= */
+
+async function applyCoupon(){
 
   const input =
     document.getElementById(
       "couponCode"
+    );
+
+  const lineInput =
+    document.getElementById(
+      "lineId"
     );
 
   const message =
@@ -2164,8 +2325,16 @@ function applyCoupon(){
       "couponMessage"
     );
 
+  const button =
+    document.getElementById(
+      "applyCouponBtn"
+    );
+
   const code =
     input.value.trim();
+
+  const lineId =
+    lineInput.value.trim();
 
 
   couponApplied = false;
@@ -2205,20 +2374,211 @@ function applyCoupon(){
   }
 
 
-  couponApplied = true;
+  if(!lineId){
 
-  couponCodeApplied =
-    DISCOUNT_CODE;
+    message.textContent =
+      t("couponCheckLine");
 
+    message.className =
+      "coupon-message error";
+
+    lineInput.focus();
+
+    calculatePrices();
+
+    return;
+
+  }
+
+
+  button.disabled =
+    true;
 
   message.textContent =
-    t("couponSuccess");
+    t("checkingCoupon");
 
   message.className =
-    "coupon-message success";
+    "coupon-message";
 
 
-  calculatePrices();
+  try{
+
+    const result =
+      await checkCouponOnSupabase(
+        DISCOUNT_CODE,
+        lineId
+      );
+
+
+    /*
+      รองรับผลลัพธ์จาก RPC หลายรูปแบบ
+      เช่น:
+      { success: true }
+      { success: false, message: "..." }
+      { available: true }
+      { can_use: true }
+    */
+
+    let canUse = null;
+
+    if(
+      typeof result === "boolean"
+    ){
+
+      canUse =
+        result;
+
+    }
+    else if(
+      typeof result === "object"
+    ){
+
+      if(
+        typeof result.success === "boolean"
+      ){
+
+        canUse =
+          result.success;
+
+      }
+      else if(
+        typeof result.available === "boolean"
+      ){
+
+        canUse =
+          result.available;
+
+      }
+      else if(
+        typeof result.can_use === "boolean"
+      ){
+
+        canUse =
+          result.can_use;
+
+      }
+      else if(
+        typeof result.is_available === "boolean"
+      ){
+
+        canUse =
+          result.is_available;
+
+      }
+
+    }
+
+
+    /*
+      ถ้า RPC บอกตรง ๆ ว่าใช้ไม่ได้
+    */
+
+    if(canUse === false){
+
+      const alreadyUsedMessage =
+        result &&
+        typeof result === "object" &&
+        result.message
+          ? result.message
+          : t("couponAlreadyUsed");
+
+      message.textContent =
+        alreadyUsedMessage;
+
+      message.className =
+        "coupon-message error";
+
+      calculatePrices();
+
+      return;
+
+    }
+
+
+    /*
+      ถ้า RPC ไม่ได้ส่ง success/available
+      แต่ส่ง message ที่สื่อว่าใช้แล้ว
+    */
+
+    if(
+      result &&
+      typeof result === "object" &&
+      typeof result.message === "string"
+    ){
+
+      const resultMessage =
+        result.message.toLowerCase();
+
+      if(
+        resultMessage.includes("already") ||
+        resultMessage.includes("used") ||
+        resultMessage.includes("duplicate") ||
+        resultMessage.includes("ใช้ไปแล้ว") ||
+        resultMessage.includes("เคยใช้")
+      ){
+
+        message.textContent =
+          result.message;
+
+        message.className =
+          "coupon-message error";
+
+        calculatePrices();
+
+        return;
+
+      }
+
+    }
+
+
+    /*
+      ถ้า RPC ไม่ได้บอกว่าใช้ไม่ได้
+      ให้ถือว่ายังใช้ได้
+    */
+
+    couponApplied =
+      true;
+
+    couponCodeApplied =
+      DISCOUNT_CODE;
+
+
+    message.textContent =
+      t("couponSuccess");
+
+    message.className =
+      "coupon-message success";
+
+
+    calculatePrices();
+
+  }
+  catch(error){
+
+    console.error(
+      "CHECK COUPON ERROR:",
+      error
+    );
+
+    message.textContent =
+      error &&
+      error.message
+        ? error.message
+        : t("couponVerifyFailed");
+
+    message.className =
+      "coupon-message error";
+
+    calculatePrices();
+
+  }
+  finally{
+
+    button.disabled =
+      false;
+
+  }
 
 }
 
@@ -2233,7 +2593,7 @@ document.getElementById(
 
 
 /* =========================
-  STORAGE
+ STORAGE
 ========================= */
 
 async function uploadPaymentSlip(
@@ -2358,7 +2718,7 @@ async function deleteUploadedSlip(){
 
 
 /* =========================
-  ORDERS
+ ORDERS
 ========================= */
 
 async function createOrder(
@@ -2422,7 +2782,7 @@ async function deleteCreatedOrder(){
 
 
 /* =========================
-  USE COUPON
+ USE COUPON
 ========================= */
 
 async function useCouponOnSupabase(
@@ -2590,7 +2950,7 @@ async function useCouponOnSupabase(
 
 
 /* =========================
-  SUBMIT ORDER
+ SUBMIT ORDER
 ========================= */
 
 async function submitOrder(){
@@ -2856,7 +3216,6 @@ async function submitOrder(){
 
 
         await deleteCreatedOrder();
-
         await deleteUploadedSlip();
 
 
@@ -2945,7 +3304,7 @@ async function submitOrder(){
 
 
 /* =========================
-  LOAD TEMPLATE
+ LOAD TEMPLATE
 ========================= */
 
 function loadTemplate(){
@@ -2990,7 +3349,7 @@ function loadTemplate(){
 
 
 /* =========================
-  START
+ START
 ========================= */
 
 applyTranslations();
@@ -3003,3 +3362,4 @@ calculatePrices();
 
 </body>
 </html>
+```
