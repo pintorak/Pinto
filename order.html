@@ -1,807 +1,575 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PINTO STUDIO | Your Little Moment</title>
+<title>Order | PINTO LOVE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root{
-  --cream:#f5eee7;
-  --cream-light:#fbf8f4;
-  --taupe:#8c7e74;
-  --taupe-dark:#5d5149;
-  --beige:#c8bcb1;
-  --line:#d8cbc0;
-  --paper:#fffdf9;
+  --cream:#f7f2ec;
+  --cream2:#eee5dc;
+  --brown:#8c7e74;
+  --brown-dark:#5d5149;
+  --line:#d9cec4;
+  --white:#fffdfb;
+  --green:#66806f;
+  --red:#b56d6d;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,body{
-  width:100%;
-  min-height:100%;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  min-height:100vh;
-  overflow-x:hidden;
   font-family:"DM Sans","Noto Sans Thai",sans-serif;
-  color:var(--taupe-dark);
+  color:var(--brown-dark);
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(255,255,255,.9),
-      transparent 38%
-    ),
-    linear-gradient(
-      135deg,
-      #f7f1eb 0%,
-      #eee5dc 52%,
-      #e7ddd4 100%
-    );
-}
-
-button{
-  font-family:inherit;
-}
-
-.page{
-  width:100%;
+    radial-gradient(circle at top left,rgba(255,255,255,.8),transparent 35%),
+    linear-gradient(135deg,var(--cream),#f3ece5 55%,var(--cream2));
   min-height:100vh;
+}
+
+button,input,textarea{font-family:inherit}
+button{cursor:pointer}
+
+.navbar{
+  width:min(1100px,calc(100% - 32px));
+  margin:22px auto 0;
+  padding:13px 18px;
+  background:rgba(255,253,251,.72);
+  border:1px solid rgba(217,206,196,.8);
+  border-radius:999px;
+  backdrop-filter:blur(14px);
   display:flex;
-  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  padding:55px 20px 60px;
+  justify-content:space-between;
   position:relative;
+  z-index:10;
 }
 
-.brand-top{
-  position:absolute;
-  top:28px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:700;
-  color:var(--taupe);
-  white-space:nowrap;
-}
-
-.brand-top::after{
-  content:"";
-  display:block;
-  width:28px;
-  height:1px;
-  background:var(--beige);
-  margin:8px auto 0;
-}
-
-.intro{
-  text-align:center;
-  margin-bottom:26px;
-  position:relative;
-  z-index:2;
-}
-
-.intro-kicker{
-  font-size:10px;
-  letter-spacing:2.8px;
-  text-transform:uppercase;
-  color:var(--taupe);
-  margin-bottom:9px;
-}
-
-.intro h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:36px;
-  line-height:1;
-  font-weight:600;
-  color:var(--taupe-dark);
-}
-
-.intro p{
-  margin-top:8px;
-  font-size:11px;
-  color:var(--taupe);
-  letter-spacing:.2px;
-}
-
-/* =========================
-   PRINTER STAGE
-========================= */
-
-.printer-stage{
-  width:370px;
-  max-width:100%;
-  height:500px;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
-
-/* =========================
-   RECEIPT
-========================= */
-
-.paper{
-  position:absolute;
-  left:50%;
-  bottom:164px;
-  width:286px;
-  height:410px;
-  transform:
-    translateX(-50%)
-    translateY(-355px);
-  z-index:2;
-  filter:
-    drop-shadow(0 10px 17px rgba(93,81,73,.15));
-  transition:none;
-}
-
-.paper.printing{
-  animation:
-    printPaper 3.1s cubic-bezier(.22,.75,.24,1) forwards;
-}
-
-.paper.finished{
-  animation:
-    receiptPop .48s cubic-bezier(.2,1.5,.4,1) forwards;
-}
-
-@keyframes printPaper{
-  0%{
-    transform:translateX(-50%) translateY(-355px);
-  }
-
-  8%{
-    transform:translateX(-50%) translateY(-338px);
-  }
-
-  25%{
-    transform:translateX(-50%) translateY(-278px);
-  }
-
-  50%{
-    transform:translateX(-50%) translateY(-190px);
-  }
-
-  75%{
-    transform:translateX(-50%) translateY(-94px);
-  }
-
-  92%{
-    transform:translateX(-50%) translateY(-18px);
-  }
-
-  100%{
-    transform:translateX(-50%) translateY(0);
-  }
-}
-
-@keyframes receiptPop{
-  0%{
-    transform:translateX(-50%) translateY(0) scale(1);
-  }
-
-  45%{
-    transform:translateX(-50%) translateY(-8px) scale(1.018);
-  }
-
-  100%{
-    transform:translateX(-50%) translateY(0) scale(1);
-  }
-}
-
-.paper-inner{
-  width:100%;
-  min-height:100%;
-  background:
-    linear-gradient(
-      180deg,
-      #fffefa 0%,
-      #fbf7f1 100%
-    );
-  border:1px solid rgba(140,126,116,.25);
-  border-radius:4px 4px 12px 12px;
-  padding:23px 20px 24px;
-  position:relative;
-}
-
-.paper-inner::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:100%;
-  height:8px;
-  background:
-    linear-gradient(
-      135deg,
-      transparent 5px,
-      var(--paper) 5px
-    );
-  opacity:.95;
-}
-
-.receipt-brand{
-  text-align:center;
-  color:var(--taupe-dark);
-  font-size:13px;
+.logo{
+  color:var(--brown-dark);
+  text-decoration:none;
+  font-size:18px;
   font-weight:700;
   letter-spacing:2px;
 }
 
-.receipt-mini{
-  text-align:center;
-  font-size:8px;
-  letter-spacing:1.8px;
-  color:var(--taupe);
-  margin-top:5px;
-  text-transform:uppercase;
-}
-
-.receipt-divider{
-  height:1px;
-  background:var(--line);
-  margin:17px 0 14px;
-}
-
-.receipt-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:12px;
-  margin-bottom:8px;
-}
-
-.receipt-label{
-  font-size:9px;
-  color:#9b8d82;
-  flex:0 0 auto;
-}
-
-.receipt-value{
-  font-size:9px;
+.back-home{
+  text-decoration:none;
+  color:var(--brown);
+  font-size:13px;
   font-weight:600;
-  color:var(--taupe-dark);
-  text-align:right;
-  max-width:165px;
-  word-break:break-word;
 }
 
-.receipt-section-title{
-  margin-top:13px;
-  margin-bottom:8px;
-  font-size:8px;
-  color:var(--taupe);
-  letter-spacing:1.7px;
+.back-home:hover{color:var(--brown-dark)}
+
+.hero{
+  width:min(900px,calc(100% - 32px));
+  margin:70px auto 45px;
+  text-align:center;
+}
+
+.eyebrow{
+  font-size:12px;
+  letter-spacing:2.5px;
   text-transform:uppercase;
+  color:var(--brown);
+  font-weight:600;
+  margin-bottom:16px;
+}
+
+.hero h1{
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(38px,7vw,64px);
+  line-height:1;
+  font-weight:600;
+  letter-spacing:-2px;
+  color:var(--brown-dark);
+  margin-bottom:20px;
+}
+
+.hero p{
+  max-width:620px;
+  margin:auto;
+  font-size:15px;
+  line-height:1.9;
+  color:var(--brown);
+}
+
+.container{
+  width:min(900px,calc(100% - 32px));
+  margin:0 auto 80px;
+}
+
+.card{
+  background:rgba(255,253,251,.86);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:30px;
+  margin-bottom:18px;
+  box-shadow:0 15px 45px rgba(93,81,73,.06);
+}
+
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  gap:17px;
+  margin-bottom:25px;
+}
+
+.section-number{
+  font-size:12px;
+  color:var(--brown);
   font-weight:700;
+  letter-spacing:1px;
+  min-width:28px;
+  padding-top:4px;
 }
 
-.extra-list{
-  padding-left:14px;
-  margin-bottom:2px;
+.section-title h2{
+  font-size:20px;
+  font-weight:600;
+  color:var(--brown-dark);
+  margin-bottom:5px;
 }
 
-.extra-list li{
-  font-size:9px;
-  color:var(--taupe-dark);
+.section-title p{
+  font-size:13px;
+  color:var(--brown);
+  line-height:1.7;
+}
+
+.template-box{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  background:rgba(247,242,236,.55);
+}
+
+.template-info{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.template-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:var(--cream2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.template-name{
+  font-weight:600;
+  color:var(--brown-dark);
+  font-size:15px;
   margin-bottom:4px;
 }
 
-.empty-extra{
-  font-size:9px;
-  color:#a79b92;
-  font-style:italic;
-}
-
-.money-box{
-  margin-top:13px;
-  padding-top:12px;
-  border-top:1px dashed var(--line);
-}
-
-.money-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:7px;
-}
-
-.money-row span:first-child{
-  font-size:9px;
-  color:var(--taupe);
-}
-
-.money-row strong{
-  font-size:9px;
-  color:var(--taupe-dark);
-}
-
-.money-row.discount strong,
-.money-row.discount span:first-child{
-  color:#66806f;
-}
-
-.total-row{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid var(--line);
-}
-
-.total-row span:first-child{
-  font-size:10px;
-  font-weight:700;
-  color:var(--taupe-dark);
-}
-
-.total-row strong{
-  font-size:16px;
-  color:var(--taupe-dark);
-}
-
-.receipt-footer{
-  text-align:center;
-  margin-top:17px;
-  padding-top:11px;
-  border-top:1px dashed var(--line);
-}
-
-.receipt-footer p:first-child{
-  font-size:8px;
-  letter-spacing:1.4px;
-  color:var(--taupe);
-  text-transform:uppercase;
-}
-
-.receipt-footer p:last-child{
-  margin-top:4px;
-  font-family:"Cormorant Garamond",serif;
-  font-size:13px;
-  color:var(--taupe-dark);
-}
-
-/* =========================
-   PRINTER
-========================= */
-
-.printer{
-  width:330px;
-  height:225px;
-  position:absolute;
-  bottom:76px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:5;
-
-  border:1px solid rgba(93,81,73,.18);
-  border-radius:28px 28px 20px 20px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #d6c9be 0%,
-      #c8bcb1 48%,
-      #b9aaa0 100%
-    );
-
-  box-shadow:
-    0 28px 55px rgba(93,81,73,.18),
-    inset 0 1px rgba(255,255,255,.6),
-    inset 0 -8px 20px rgba(93,81,73,.06);
-}
-
-.printer::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:30px;
-  right:30px;
-  height:1px;
-  background:rgba(255,255,255,.55);
-}
-
-.printer-top{
-  height:74px;
-  border-radius:28px 28px 0 0;
-  position:relative;
-  padding:19px 25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-}
-
-.screen{
-  width:212px;
-  height:43px;
-  border-radius:11px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #5d534c,
-      #413a35
-    );
-
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-    inset 0 3px 8px rgba(0,0,0,.25),
-    0 2px 7px rgba(93,81,73,.14);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-  position:relative;
-}
-
-.screen::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-80%;
-  width:55%;
-  height:100%;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.08),
-    transparent
-  );
-  animation:screenShine 3s linear infinite;
-}
-
-@keyframes screenShine{
-  0%{left:-80%}
-  100%{left:150%}
-}
-
-.screen-brand{
-  color:#eee5dc;
-  font-size:11px;
-  letter-spacing:2.7px;
-  font-weight:700;
-  position:relative;
-  z-index:1;
-}
-
-.screen-brand span{
-  color:#c8bcb1;
-}
-
-.status-light{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  margin-top:9px;
-
-  background:#c8bcb1;
-
-  box-shadow:
-    0 0 0 rgba(255,255,255,0);
-
-  opacity:.7;
-}
-
-.status-light.blink{
-  animation:
-    lightBlink .7s ease-in-out 2;
-}
-
-@keyframes lightBlink{
-  0%,100%{
-    opacity:.45;
-    box-shadow:none;
-  }
-
-  30%{
-    opacity:1;
-    box-shadow:
-      0 0 14px rgba(255,240,220,.8);
-  }
-}
-
-.printer-middle{
-  padding:0 24px;
-}
-
-.machine-label{
-  font-size:8px;
-  letter-spacing:1.8px;
-  color:#776960;
-  text-align:center;
-  margin-bottom:12px;
-}
-
-.slot{
-  height:23px;
-  border-radius:8px;
-  background:#504740;
-  box-shadow:
-    inset 0 4px 8px rgba(0,0,0,.32),
-    0 1px 0 rgba(255,255,255,.18);
-
-  position:relative;
-  overflow:hidden;
-}
-
-.slot::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.07),
-      transparent
-    );
-  transform:translateX(-100%);
-}
-
-.slot.glow::after{
-  animation:slotGlow 1s ease-in-out 3;
-}
-
-@keyframes slotGlow{
-  0%,100%{
-    transform:translateX(-100%);
-  }
-
-  50%{
-    transform:translateX(100%);
-  }
-}
-
-.printer-bottom{
-  position:absolute;
-  bottom:16px;
-  left:25px;
-  right:25px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.bottom-brand{
-  font-size:8px;
-  letter-spacing:2px;
-  color:#796d64;
-  font-weight:700;
-}
-
-.bottom-dot{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#8f8278;
-  opacity:.6;
-}
-
-/* =========================
-   PARTICLES
-========================= */
-
-.particles{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:8;
-  overflow:hidden;
-}
-
-.particle{
-  position:absolute;
-  bottom:175px;
-  left:50%;
+.template-desc{
   font-size:12px;
-  color:var(--taupe);
-  opacity:0;
+  color:var(--brown);
 }
 
-.particle:nth-child(1){
-  margin-left:-85px;
-}
-
-.particle:nth-child(2){
-  margin-left:-35px;
-}
-
-.particle:nth-child(3){
-  margin-left:45px;
-}
-
-.particle:nth-child(4){
-  margin-left:90px;
-}
-
-.particles.show .particle{
-  animation:floatParticle 1.8s ease-out forwards;
-}
-
-.particles.show .particle:nth-child(2){
-  animation-delay:.15s;
-}
-
-.particles.show .particle:nth-child(3){
-  animation-delay:.3s;
-}
-
-.particles.show .particle:nth-child(4){
-  animation-delay:.45s;
-}
-
-@keyframes floatParticle{
-  0%{
-    opacity:0;
-    transform:translateY(0) scale(.7);
-  }
-
-  20%{
-    opacity:.7;
-  }
-
-  100%{
-    opacity:0;
-    transform:translateY(-100px) scale(1.15);
-  }
-}
-
-/* =========================
-   READY MESSAGE
-========================= */
-
-.ready-message{
-  text-align:center;
-  margin-top:0;
-  opacity:0;
-  transform:translateY(10px);
-  transition:
-    opacity .7s ease,
-    transform .7s ease;
-
-  min-height:54px;
-}
-
-.ready-message.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.ready-main{
-  font-family:"Cormorant Garamond",serif;
-  font-size:23px;
-  color:var(--taupe-dark);
-}
-
-.ready-sub{
-  margin-top:4px;
-  font-size:10px;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
-  color:var(--taupe);
-}
-
-.loading-message{
-  position:absolute;
-  bottom:28px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:9px;
-  letter-spacing:1.8px;
-  color:var(--taupe);
-  text-transform:uppercase;
+.price{
+  font-weight:700;
+  color:var(--brown-dark);
   white-space:nowrap;
 }
 
-.loading-message.hidden{
-  display:none;
-}
+.field{margin-bottom:20px}
+.field:last-child{margin-bottom:0}
 
-/* =========================
-   FALLBACK
-========================= */
-
-.error-box{
-  width:min(420px,100%);
-  padding:28px;
-  background:rgba(255,253,251,.9);
-  border:1px solid var(--line);
-  border-radius:20px;
-  text-align:center;
-  box-shadow:0 20px 50px rgba(93,81,73,.1);
-}
-
-.error-box h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:28px;
+label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
   margin-bottom:8px;
 }
 
-.error-box p{
-  font-size:12px;
-  color:var(--taupe);
+.required{color:var(--red)}
+
+input[type="text"],textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.75);
+  border-radius:13px;
+  padding:13px 15px;
+  outline:none;
+  color:var(--brown-dark);
+  font-size:14px;
+  transition:.2s;
+}
+
+input[type="text"]:focus,textarea:focus{
+  border-color:var(--brown);
+  box-shadow:0 0 0 3px rgba(140,126,116,.08);
+}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
   line-height:1.8;
 }
 
-.back-link{
-  display:inline-block;
-  margin-top:18px;
-  color:var(--taupe-dark);
-  text-decoration:none;
+.helper{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:7px;
+  line-height:1.6;
+}
+
+.extra-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.extra-item{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(255,253,251,.6);
+  transition:.2s;
+}
+
+.extra-item:hover{
+  border-color:var(--brown);
+  transform:translateY(-1px);
+}
+
+.extra-item input{display:none}
+
+.extra-check{
+  width:20px;
+  height:20px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  flex:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:12px;
+  transition:.2s;
+}
+
+.extra-item input:checked + .extra-check{
+  background:var(--brown);
+  border-color:var(--brown);
+  color:white;
+}
+
+.extra-content{
+  flex:1;
+  min-width:0;
+}
+
+.extra-name{
+  font-size:13px;
   font-weight:600;
+  color:var(--brown-dark);
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:520px){
-
-  .page{
-    padding:
-      48px 12px 45px;
-  }
-
-  .intro{
-    margin-bottom:18px;
-  }
-
-  .intro h1{
-    font-size:31px;
-  }
-
-  .intro p{
-    font-size:10px;
-  }
-
-  .printer-stage{
-    width:330px;
-    height:475px;
-    transform:scale(.91);
-    transform-origin:top center;
-    margin-bottom:-40px;
-  }
-
-  .ready-message{
-    margin-top:-18px;
-  }
+.extra-desc{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:3px;
 }
 
-@media(max-height:760px){
-  .page{
-    padding-top:42px;
+.extra-price{
+  font-size:12px;
+  font-weight:700;
+  color:var(--brown);
+  white-space:nowrap;
+}
+
+.color-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.color-item{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:15px;
+  background:rgba(255,255,255,.55);
+}
+
+.color-item label{
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+input[type="color"]{
+  width:44px;
+  height:36px;
+  padding:3px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:white;
+  cursor:pointer;
+}
+
+.color-code{
+  font-size:11px;
+  color:var(--brown);
+  text-transform:uppercase;
+}
+
+.coupon-box{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:18px;
+  background:rgba(247,242,236,.5);
+}
+
+.coupon-row{
+  display:flex;
+  gap:10px;
+}
+
+.coupon-row input{flex:1}
+
+.btn-small{
+  border:1px solid var(--brown);
+  background:var(--brown);
+  color:white;
+  border-radius:12px;
+  padding:0 20px;
+  font-size:13px;
+  font-weight:600;
+  min-width:80px;
+}
+
+.btn-small:hover{background:var(--brown-dark)}
+
+.coupon-message{
+  margin-top:10px;
+  font-size:12px;
+  line-height:1.6;
+  min-height:18px;
+}
+
+.coupon-message.success{color:var(--green)}
+.coupon-message.error{color:var(--red)}
+
+.payment-box{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:20px;
+  background:rgba(247,242,236,.5);
+}
+
+.bank-info{
+  padding:15px;
+  border-radius:12px;
+  background:var(--white);
+  border:1px dashed var(--line);
+  margin-bottom:20px;
+}
+
+.bank-info p{
+  font-size:12px;
+  color:var(--brown);
+  line-height:1.9;
+}
+
+.bank-info strong{color:var(--brown-dark)}
+
+.file-label{
+  border:1px dashed var(--brown);
+  border-radius:14px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  display:block;
+  background:rgba(255,255,255,.45);
+}
+
+.file-label:hover{background:rgba(255,255,255,.75)}
+.file-label input{display:none}
+
+.file-icon{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.file-title{
+  font-size:13px;
+  font-weight:600;
+  color:var(--brown-dark);
+}
+
+.file-name{
+  font-size:11px;
+  color:var(--brown);
+  margin-top:5px;
+  word-break:break-word;
+}
+
+.summary{
+  position:sticky;
+  bottom:18px;
+  z-index:5;
+  background:rgba(255,253,251,.95);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px 24px;
+  box-shadow:0 18px 50px rgba(93,81,73,.14);
+  backdrop-filter:blur(15px);
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  font-size:13px;
+  color:var(--brown);
+  margin-bottom:9px;
+}
+
+.summary-row strong{color:var(--brown-dark)}
+
+.summary-row.discount{color:var(--green)}
+.summary-row.discount strong{color:var(--green)}
+
+.summary-total{
+  border-top:1px solid var(--line);
+  margin-top:13px;
+  padding-top:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+
+.total-label{
+  font-size:12px;
+  color:var(--brown);
+}
+
+.total-main{
+  font-size:26px;
+  font-weight:700;
+  color:var(--brown-dark);
+}
+
+.deposit-info{
+  margin-top:9px;
+  font-size:11px;
+  color:var(--brown);
+  line-height:1.7;
+}
+
+.submit-btn{
+  width:100%;
+  margin-top:18px;
+  border:0;
+  border-radius:14px;
+  padding:15px;
+  background:var(--brown-dark);
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  transition:.2s;
+}
+
+.submit-btn:hover{
+  background:#493f39;
+  transform:translateY(-1px);
+}
+
+.submit-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.status-message{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:11px;
+  display:none;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.status-message.show{display:block}
+
+.status-message.success{
+  color:var(--green);
+  background:#edf4ef;
+  border:1px solid #cfded4;
+}
+
+.status-message.error{
+  color:var(--red);
+  background:#faf0f0;
+  border:1px solid #ead1d1;
+}
+
+footer{
+  text-align:center;
+  padding:0 20px 45px;
+  color:var(--brown);
+  font-size:11px;
+}
+
+@media(max-width:700px){
+  .navbar{
+    width:calc(100% - 22px);
+    margin-top:12px;
   }
 
-  .intro{
-    margin-bottom:10px;
+  .hero{margin-top:50px}
+  .hero h1{font-size:42px}
+
+  .card{
+    padding:22px 18px;
+    border-radius:19px;
   }
 
-  .printer-stage{
-    transform:scale(.82);
-    transform-origin:top center;
-    margin-bottom:-80px;
-  }
+  .extra-grid{grid-template-columns:1fr}
+  .color-grid{grid-template-columns:1fr}
 
-  .ready-message{
-    margin-top:-45px;
+  .template-box{align-items:flex-start}
+
+  .coupon-row{flex-direction:column}
+
+  .btn-small{min-height:44px}
+
+  .summary{
+    bottom:8px;
+    padding:18px;
+    border-radius:18px;
   }
 }
 </style>
@@ -809,702 +577,1334 @@ button{
 
 <body>
 
-<main class="page">
+<nav class="navbar">
+  <a href="index.html" class="logo">PINTO LOVE</a>
+  <a href="index.html" class="back-home">← Back to Home</a>
+</nav>
 
-<div class="brand-top">
-  PINTO STUDIO
-</div>
-
-<div class="intro">
-  <div class="intro-kicker">
-    A little moment, freshly made
-  </div>
-
-  <h1>
-    Your order is printing
-  </h1>
-
+<section class="hero">
+  <div class="eyebrow">Create Your Digital Love Story</div>
+  <h1>Order Your Template</h1>
   <p>
-    Please wait a little while your little moment comes to life.
+    Create a little digital moment made especially for someone you love.
+    Fill in your details, choose your extras, and make it yours.
   </p>
+</section>
+
+<main class="container">
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">01</div>
+<div class="section-title">
+<h2>Your Template</h2>
+<p>Choose the template you want to create.</p>
+</div>
 </div>
 
-<div id="app">
-
-<div class="printer-stage">
-
-  <!-- Receipt -->
-  <div class="paper" id="paper">
-
-    <div class="paper-inner">
-
-      <div class="receipt-brand">
-        PINTO LOVE
-      </div>
-
-      <div class="receipt-mini">
-        LITTLE DIGITAL MOMENT
-      </div>
-
-      <div class="receipt-divider"></div>
-
-      <div class="receipt-row">
-        <span class="receipt-label">Customer</span>
-        <span class="receipt-value" id="receiptCustomer">—</span>
-      </div>
-
-      <div class="receipt-row">
-        <span class="receipt-label">LINE ID</span>
-        <span class="receipt-value" id="receiptLine">—</span>
-      </div>
-
-      <div class="receipt-row">
-        <span class="receipt-label">Order No.</span>
-        <span class="receipt-value" id="receiptOrder">—</span>
-      </div>
-
-      <div class="receipt-section-title">
-        ORDER
-      </div>
-
-      <div class="receipt-row">
-        <span class="receipt-label">Template</span>
-        <span class="receipt-value" id="receiptTemplate">—</span>
-      </div>
-
-      <div class="receipt-section-title">
-        EXTRA MENU
-      </div>
-
-      <div id="receiptExtras">
-        <div class="empty-extra">
-          No extra menu
-        </div>
-      </div>
-
-      <div class="money-box">
-
-        <div class="money-row">
-          <span>Template</span>
-          <strong id="receiptTemplatePrice">0.00 THB</strong>
-        </div>
-
-        <div class="money-row">
-          <span>Extra Menu</span>
-          <strong id="receiptExtrasPrice">0.00 THB</strong>
-        </div>
-
-        <div class="money-row">
-          <span>Subtotal</span>
-          <strong id="receiptSubtotal">0.00 THB</strong>
-        </div>
-
-        <div
-          class="money-row discount"
-          id="receiptDiscountRow"
-          style="display:none;"
-        >
-          <span>Discount</span>
-          <strong id="receiptDiscount">-0.00 THB</strong>
-        </div>
-
-        <div class="money-row total-row">
-          <span>TOTAL</span>
-          <strong id="receiptTotal">0.00 THB</strong>
-        </div>
-
-        <div class="money-row">
-          <span>Deposit 30%</span>
-          <strong id="receiptDeposit">0.00 THB</strong>
-        </div>
-
-        <div class="money-row">
-          <span>Remaining 70%</span>
-          <strong id="receiptRemaining">0.00 THB</strong>
-        </div>
-
-      </div>
-
-      <div class="receipt-footer">
-        <p>
-          Payment Status · Pending
-        </p>
-
-        <p>
-          Thank you for choosing PINTO LOVE ♡
-        </p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Printer -->
-  <div class="printer">
-
-    <div class="printer-top">
-
-      <div class="screen">
-
-        <div class="screen-brand">
-          PINTO <span>STUDIO</span>
-        </div>
-
-      </div>
-
-      <div class="status-light" id="statusLight"></div>
-
-    </div>
-
-    <div class="printer-middle">
-
-      <div class="machine-label">
-        PRINTING YOUR LITTLE MOMENT
-      </div>
-
-      <div class="slot" id="printerSlot"></div>
-
-    </div>
-
-    <div class="printer-bottom">
-
-      <div class="bottom-brand">
-        PINTO STUDIO
-      </div>
-
-      <div class="bottom-dot"></div>
-
-    </div>
-
-  </div>
-
-  <div class="particles" id="particles">
-
-    <span class="particle">♡</span>
-    <span class="particle">✦</span>
-    <span class="particle">♡</span>
-    <span class="particle">✧</span>
-
-  </div>
-
+<div class="template-box">
+<div class="template-info">
+<div class="template-icon">💌</div>
+<div>
+<div class="template-name" id="templateName">Anniversary Template 01</div>
+<div class="template-desc" id="templateDesc">
+A little digital love story for your special person.
+</div>
+</div>
 </div>
 
-<div class="loading-message" id="loadingMessage">
-  Preparing your little moment
+<div class="price">
+<span id="templatePrice">129</span> THB
+</div>
+</div>
+</section>
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">02</div>
+<div class="section-title">
+<h2>Your Information</h2>
+<p>Tell us the details we need to create your page.</p>
+</div>
 </div>
 
-<div class="ready-message" id="readyMessage">
+<div class="field">
+<label for="customerName">Your Name <span class="required">*</span></label>
+<input type="text" id="customerName" placeholder="Enter your name" autocomplete="name">
+</div>
 
-  <div class="ready-main">
-    Your little moment is ready ♡
-  </div>
+<div class="field">
+<label for="lineId">LINE ID <span class="required">*</span></label>
+<input type="text" id="lineId" placeholder="Enter your LINE ID" autocomplete="off">
 
-  <div class="ready-sub">
-    PINTO STUDIO · Made with love
-  </div>
+<div class="helper">
+We will use your LINE ID to contact you and verify one-time discount usage.
+</div>
+</div>
+
+<div class="field">
+<label for="message">Message / Notes</label>
+<textarea id="message" placeholder="Tell us anything you'd like us to know about your order..."></textarea>
+</div>
+</section>
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">03</div>
+<div class="section-title">
+<h2>Extra Menu</h2>
+<p>Add more little moments to your template. +29 THB each.</p>
+</div>
+</div>
+
+<div class="extra-grid">
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Music Player" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🎵 Music Player</span>
+<span class="extra-desc">Add your special song</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Photo Gallery" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">📸 Photo Gallery</span>
+<span class="extra-desc">A collection of your memories</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Love Letter" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">💌 Love Letter</span>
+<span class="extra-desc">A private letter from your heart</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Countdown" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">⏳ Countdown</span>
+<span class="extra-desc">Count down to your special day</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Scratch Card" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🎟️ Scratch Card</span>
+<span class="extra-desc">Scratch to reveal a secret</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เกมคำถาม 5 ข้อ" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">💕 เกมคำถาม 5 ข้อ</span>
+<span class="extra-desc">A cute little love quiz</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เมนูใส่รหัส" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🔐 เมนูใส่รหัส</span>
+<span class="extra-desc">Unlock your private message</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="เกมทายใจ" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🔮 เกมทายใจ</span>
+<span class="extra-desc">A playful guessing game</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Puzzle" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🧩 Puzzle</span>
+<span class="extra-desc">Put the pieces of your memory together</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Memory Map" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">📍 Memory Map</span>
+<span class="extra-desc">Mark the places that mean something</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="Polaroid Memory" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">📷 Polaroid Memory</span>
+<span class="extra-desc">Turn your memories into polaroids</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
+
+<label class="extra-item">
+<input type="checkbox" class="extra-checkbox" data-name="ตู้กาชาปอง" data-price="29">
+<span class="extra-check">✓</span>
+<span class="extra-content">
+<span class="extra-name">🎁 ตู้กาชาปอง</span>
+<span class="extra-desc">Little surprises waiting inside</span>
+</span>
+<span class="extra-price">+29 THB</span>
+</label>
 
 </div>
+</section>
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">04</div>
+<div class="section-title">
+<h2>Color Theme</h2>
+<p>Choose the colors you'd like for your digital page.</p>
+</div>
+</div>
+
+<div class="color-grid">
+
+<div class="color-item">
+<label for="primaryColor">Primary Color</label>
+<div class="color-row">
+<input type="color" id="primaryColor" value="#8C7E74">
+<span class="color-code" id="primaryColorCode">#8C7E74</span>
+</div>
+</div>
+
+<div class="color-item">
+<label for="secondaryColor">Secondary Color</label>
+<div class="color-row">
+<input type="color" id="secondaryColor" value="#C8BCB1">
+<span class="color-code" id="secondaryColorCode">#C8BCB1</span>
+</div>
+</div>
+
+<div class="color-item">
+<label for="backgroundColor">Background Color</label>
+<div class="color-row">
+<input type="color" id="backgroundColor" value="#F4EFEA">
+<span class="color-code" id="backgroundColorCode">#F4EFEA</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">05</div>
+<div class="section-title">
+<h2>Referral / Discount Code</h2>
+<p>Have a discount code? Enter it below.</p>
+</div>
+</div>
+
+<div class="coupon-box">
+
+<div class="coupon-row">
+<input type="text" id="couponCode" placeholder="Enter your discount code" autocomplete="off">
+
+<button type="button" class="btn-small" id="applyCouponBtn">
+Apply
+</button>
+</div>
+
+<div class="coupon-message" id="couponMessage"></div>
+
+<div class="helper">
+Each person can use the discount code only once.
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<div class="section-head">
+<div class="section-number">06</div>
+<div class="section-title">
+<h2>Payment</h2>
+<p>Complete the payment and upload your payment slip.</p>
+</div>
+</div>
+
+<div class="payment-box">
+
+<div class="bank-info">
+<p>
+<strong>Bank Transfer</strong><br>
+Bank: Your Bank Name<br>
+Account Name: PINTO LOVE<br>
+Account Number: 000-0-00000-0
+</p>
+</div>
+
+<label class="file-label" for="paymentSlip">
+<input type="file" id="paymentSlip" accept="image/png,image/jpeg,image/webp,application/pdf">
+
+<div class="file-icon">🧾</div>
+<div class="file-title">Click to upload your payment slip</div>
+<div class="file-name" id="fileName">No file selected</div>
+</label>
+
+<div class="helper">
+Accepted: JPG, PNG, WEBP or PDF
+</div>
+
+</div>
+</section>
+
+<div class="summary">
+
+<div class="summary-row">
+<span>Template</span>
+<strong><span id="summaryTemplatePrice">129</span> THB</strong>
+</div>
+
+<div class="summary-row">
+<span>Extra Menu</span>
+<strong><span id="extrasPrice">0</span> THB</strong>
+</div>
+
+<div class="summary-row discount" id="discountRow" style="display:none;">
+<span>Discount (5%)</span>
+<strong>-<span id="discountPrice">0</span> THB</strong>
+</div>
+
+<div class="summary-total">
+<div>
+<div class="total-label">Total</div>
+<div class="deposit-info">
+Deposit 30% · Remaining 70%
+</div>
+</div>
+
+<div class="total-main">
+<span id="totalPrice">129</span> THB
+</div>
+</div>
+
+<div class="summary-row" style="margin-top:14px;">
+<span>Deposit 30%</span>
+<strong><span id="depositPrice">38.70</span> THB</strong>
+</div>
+
+<div class="summary-row">
+<span>Remaining 70%</span>
+<strong><span id="remainingPrice">90.30</span> THB</strong>
+</div>
+
+<button type="button" class="submit-btn" id="submitBtn">
+Place Order
+</button>
+
+<div class="status-message" id="statusMessage"></div>
 
 </div>
 
 </main>
 
+<footer>
+© 2026 PINTO LOVE · Little digital moments, made with love.
+</footer>
+
 <script>
+const SUPABASE_URL = "https://kevbykrpnpgsnyxtpfqj.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+const STORAGE_BUCKET = "payment-slips";
 
-/* =========================================================
-   LOAD REAL ORDER DATA
-========================================================= */
+const BASE_PRICE = 129;
+const DISCOUNT_CODE = "PINT05-STANG";
+const DISCOUNT_PERCENT = 5;
+const DEPOSIT_PERCENT = 30;
 
-function money(value){
-  return Number(value || 0).toFixed(2) + " THB";
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+let couponApplied = false;
+let couponCodeApplied = "";
+let couponLineIdApplied = "";
+let createdOrderNumber = "";
+let uploadedSlipPath = "";
+
+function formatMoney(value){
+  return Number(value).toFixed(2);
 }
 
-function escapeHTML(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function normalizeLineId(value){
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g,"");
 }
 
-function loadOrderData(){
+function showStatus(message,type){
+  const el = document.getElementById("statusMessage");
+  el.textContent = message;
+  el.className = "status-message show " + type;
+}
 
-  const raw =
-    sessionStorage.getItem(
-      "pintoLoveOrderSuccess"
+function hideStatus(){
+  const el = document.getElementById("statusMessage");
+  el.textContent = "";
+  el.className = "status-message";
+}
+
+function setButtonLoading(loading){
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = loading;
+  btn.textContent = loading ? "Submitting..." : "Place Order";
+}
+
+function generateOrderNumber(){
+  const now = new Date();
+
+  const date =
+    now.getFullYear().toString() +
+    String(now.getMonth()+1).padStart(2,"0") +
+    String(now.getDate()).padStart(2,"0");
+
+  const random =
+    Math.random()
+      .toString(36)
+      .substring(2,7)
+      .toUpperCase();
+
+  return "PR-" + date + "-" + random;
+}
+
+function getSelectedExtras(){
+  const selected = [];
+
+  document
+    .querySelectorAll(".extra-checkbox:checked")
+    .forEach(item => {
+      selected.push({
+        name:item.dataset.name,
+        price:Number(item.dataset.price)
+      });
+    });
+
+  return selected;
+}
+
+function calculatePrices(){
+
+  const extras = getSelectedExtras();
+
+  const extrasTotal =
+    extras.reduce(
+      (sum,item) => sum + item.price,
+      0
     );
 
-  if(!raw){
+  const subtotal =
+    BASE_PRICE + extrasTotal;
 
-    document.getElementById("app").innerHTML = `
-      <div class="error-box">
-        <h2>Order not found</h2>
+  const discountAmount =
+    couponApplied
+      ? subtotal * (DISCOUNT_PERCENT / 100)
+      : 0;
 
-        <p>
-          We couldn't find the order information
-          for this printing session.
-        </p>
+  const total =
+    subtotal - discountAmount;
 
-        <a class="back-link" href="order.html">
-          ← Back to Order
-        </a>
-      </div>
-    `;
+  const deposit =
+    total * (DEPOSIT_PERCENT / 100);
 
-    return null;
-  }
+  const remaining =
+    total - deposit;
 
-  let data;
+  document.getElementById("templatePrice").textContent = BASE_PRICE;
+  document.getElementById("summaryTemplatePrice").textContent = BASE_PRICE;
+  document.getElementById("extrasPrice").textContent = extrasTotal;
+  document.getElementById("discountPrice").textContent = formatMoney(discountAmount);
+  document.getElementById("totalPrice").textContent = formatMoney(total);
+  document.getElementById("depositPrice").textContent = formatMoney(deposit);
+  document.getElementById("remainingPrice").textContent = formatMoney(remaining);
 
-  try{
-    data = JSON.parse(raw);
-  }catch(error){
+  document.getElementById("discountRow").style.display =
+    couponApplied ? "flex" : "none";
 
-    document.getElementById("app").innerHTML = `
-      <div class="error-box">
-        <h2>Something went wrong</h2>
-
-        <p>
-          The order information could not be read.
-        </p>
-
-        <a class="back-link" href="order.html">
-          ← Back to Order
-        </a>
-      </div>
-    `;
-
-    return null;
-  }
-
-  document.getElementById("receiptCustomer").textContent =
-    data.customerName || "—";
-
-  document.getElementById("receiptLine").textContent =
-    data.lineId || "—";
-
-  document.getElementById("receiptOrder").textContent =
-    data.orderNumber || "—";
-
-  document.getElementById("receiptTemplate").textContent =
-    data.template || "—";
-
-  document.getElementById("receiptTemplatePrice").textContent =
-    money(data.templatePrice);
-
-  document.getElementById("receiptExtrasPrice").textContent =
-    money(data.extrasTotal);
-
-  document.getElementById("receiptSubtotal").textContent =
-    money(data.subtotal);
-
-  document.getElementById("receiptTotal").textContent =
-    money(data.total);
-
-  document.getElementById("receiptDeposit").textContent =
-    money(data.deposit);
-
-  document.getElementById("receiptRemaining").textContent =
-    money(data.remaining);
-
-  if(Number(data.discountAmount || 0) > 0){
-
-    document.getElementById("receiptDiscountRow").style.display =
-      "flex";
-
-    document.getElementById("receiptDiscount").textContent =
-      "-" + money(data.discountAmount);
-
-  }
-
-  const extrasContainer =
-    document.getElementById("receiptExtras");
-
-  if(
-    Array.isArray(data.extras) &&
-    data.extras.length
-  ){
-
-    extrasContainer.innerHTML =
-      `<ul class="extra-list">` +
-      data.extras
-        .map(item =>
-          `<li>${escapeHTML(item)}</li>`
-        )
-        .join("") +
-      `</ul>`;
-
-  }else{
-
-    extrasContainer.innerHTML =
-      `<div class="empty-extra">No extra menu</div>`;
-  }
-
-  return data;
+  return {
+    extras,
+    templatePrice:BASE_PRICE,
+    extrasTotal,
+    subtotal,
+    discountAmount,
+    total,
+    deposit,
+    remaining
+  };
 }
 
+function updateColorCode(inputId,codeId){
+  document.getElementById(codeId).textContent =
+    document.getElementById(inputId).value.toUpperCase();
+}
 
-/* =========================================================
-   PRINTER SOUND
-========================================================= */
+document.getElementById("primaryColor")
+  .addEventListener("input",() =>
+    updateColorCode("primaryColor","primaryColorCode"));
 
-let audioContext = null;
-let masterGain = null;
+document.getElementById("secondaryColor")
+  .addEventListener("input",() =>
+    updateColorCode("secondaryColor","secondaryColorCode"));
 
-function createAudio(){
+document.getElementById("backgroundColor")
+  .addEventListener("input",() =>
+    updateColorCode("backgroundColor","backgroundColorCode"));
+
+document.querySelectorAll(".extra-checkbox")
+  .forEach(item =>
+    item.addEventListener("change",calculatePrices));
+
+document.getElementById("paymentSlip")
+  .addEventListener("change",function(){
+    document.getElementById("fileName").textContent =
+      this.files && this.files.length
+        ? this.files[0].name
+        : "No file selected";
+  });
+
+/* =========================
+   COUPON CHECK
+========================= */
+
+async function checkCouponAvailability(
+  couponCode,
+  lineId
+){
+
+  const cleanCouponCode =
+    String(couponCode || "")
+      .trim()
+      .toLowerCase();
+
+  const cleanContact =
+    normalizeLineId(lineId);
+
+  if(!cleanCouponCode){
+    throw new Error("Discount code is missing.");
+  }
+
+  if(!cleanContact){
+    throw new Error("LINE ID is required to verify the discount.");
+  }
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "check_coupon",
+      {
+        p_coupon_code:cleanCouponCode,
+        p_contact:cleanContact
+      }
+    );
+
+  console.log(
+    "CHECK COUPON DATA:",
+    data
+  );
+
+  console.log(
+    "CHECK COUPON ERROR:",
+    error
+  );
+
+  if(error){
+    throw new Error(
+      "Unable to verify the discount right now: " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
+    );
+  }
+
+  if(!data){
+    throw new Error(
+      "The coupon verification returned no result."
+    );
+  }
+
+  let result = data;
+
+  if(Array.isArray(data)){
+    result = data[0];
+  }
+
+  if(!result){
+    throw new Error(
+      "The coupon verification returned an empty result."
+    );
+  }
+
+  return result;
+}
+
+/* =========================
+   COUPON APPLY
+========================= */
+
+async function applyCoupon(){
+
+  const input =
+    document.getElementById("couponCode");
+
+  const lineInput =
+    document.getElementById("lineId");
+
+  const message =
+    document.getElementById("couponMessage");
+
+  const button =
+    document.getElementById("applyCouponBtn");
+
+  const code =
+    input.value.trim();
+
+  const lineId =
+    lineInput.value.trim();
+
+  couponApplied = false;
+  couponCodeApplied = "";
+  couponLineIdApplied = "";
+
+  calculatePrices();
+
+  if(!code){
+    message.textContent =
+      "Please enter a discount code.";
+
+    message.className =
+      "coupon-message error";
+
+    return;
+  }
+
+  if(code.toLowerCase() !== DISCOUNT_CODE.toLowerCase()){
+    message.textContent =
+      "Invalid discount code.";
+
+    message.className =
+      "coupon-message error";
+
+    return;
+  }
+
+  if(!lineId){
+    message.textContent =
+      "Please enter your LINE ID before applying the discount.";
+
+    message.className =
+      "coupon-message error";
+
+    lineInput.focus();
+
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Checking...";
+
+  message.textContent =
+    "Checking your discount...";
+
+  message.className =
+    "coupon-message success";
 
   try{
 
-    const AudioCtx =
-      window.AudioContext ||
-      window.webkitAudioContext;
+    const result =
+      await checkCouponAvailability(
+        code,
+        lineId
+      );
 
-    if(!AudioCtx){
-      return null;
+    if(result.success !== true){
+
+      couponApplied = false;
+      couponCodeApplied = "";
+      couponLineIdApplied = "";
+
+      calculatePrices();
+
+      message.textContent =
+        result.message ||
+        "This discount code cannot be used.";
+
+      message.className =
+        "coupon-message error";
+
+      return;
     }
 
-    audioContext =
-      new AudioCtx();
+    couponApplied = true;
+    couponCodeApplied = DISCOUNT_CODE;
+    couponLineIdApplied =
+      normalizeLineId(lineId);
 
-    masterGain =
-      audioContext.createGain();
+    message.textContent =
+      "Discount applied successfully — 5% off your order.";
 
-    masterGain.gain.value = 0.055;
+    message.className =
+      "coupon-message success";
 
-    masterGain.connect(
-      audioContext.destination
-    );
-
-    return audioContext;
+    calculatePrices();
 
   }catch(error){
 
-    console.warn(
-      "Printer audio unavailable:",
+    console.error(
+      "CHECK COUPON ERROR:",
       error
     );
 
-    return null;
+    couponApplied = false;
+    couponCodeApplied = "";
+    couponLineIdApplied = "";
+
+    calculatePrices();
+
+    message.textContent =
+      error && error.message
+        ? error.message
+        : "Unable to verify the discount.";
+
+    message.className =
+      "coupon-message error";
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "Apply";
   }
 }
 
-function tone(
-  frequency,
-  duration,
-  startDelay,
-  volume,
-  type
-){
+document.getElementById("applyCouponBtn")
+  .addEventListener(
+    "click",
+    applyCoupon
+  );
 
-  if(!audioContext || !masterGain){
-    return;
+document.getElementById("lineId")
+  .addEventListener("input",function(){
+
+    const currentLineId =
+      normalizeLineId(this.value);
+
+    if(
+      couponApplied &&
+      currentLineId !== couponLineIdApplied
+    ){
+
+      couponApplied = false;
+      couponCodeApplied = "";
+      couponLineIdApplied = "";
+
+      document.getElementById("couponMessage").textContent =
+        "LINE ID changed. Please apply the discount code again.";
+
+      document.getElementById("couponMessage").className =
+        "coupon-message error";
+
+      calculatePrices();
+    }
+  });
+
+/* =========================
+   STORAGE
+========================= */
+
+async function uploadPaymentSlip(file,orderNumber){
+
+  if(!file){
+    throw new Error("Payment slip is required.");
   }
 
-  const osc =
-    audioContext.createOscillator();
+  const extension =
+    file.name.includes(".")
+      ? file.name.split(".").pop().toLowerCase()
+      : "jpg";
 
-  const gain =
-    audioContext.createGain();
+  const safeExtension =
+    extension.replace(/[^a-z0-9]/gi,"");
 
-  osc.type =
-    type || "sine";
+  const filePath =
+    orderNumber +
+    "/" +
+    Date.now() +
+    "-" +
+    Math.random().toString(36).substring(2,8) +
+    "." +
+    safeExtension;
 
-  osc.frequency.value =
-    frequency;
+  const {data,error} =
+    await supabaseClient
+      .storage
+      .from(STORAGE_BUCKET)
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false,
+          contentType:
+            file.type ||
+            "application/octet-stream"
+        }
+      );
 
-  const start =
-    audioContext.currentTime +
-    startDelay;
+  if(error){
+    throw new Error(
+      "Payment slip upload failed: " +
+      error.message
+    );
+  }
 
-  gain.gain.setValueAtTime(
-    0,
-    start
-  );
+  uploadedSlipPath = data.path;
 
-  gain.gain.linearRampToValueAtTime(
-    volume,
-    start + 0.012
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    start + duration
-  );
-
-  osc.connect(gain);
-  gain.connect(masterGain);
-
-  osc.start(start);
-  osc.stop(start + duration + 0.03);
+  return data.path;
 }
 
-function paperNoise(
-  startDelay,
-  duration
-){
+async function deleteUploadedSlip(){
 
-  if(!audioContext || !masterGain){
+  if(!uploadedSlipPath){
     return;
   }
 
-  const sampleRate =
-    audioContext.sampleRate;
+  const {error} =
+    await supabaseClient
+      .storage
+      .from(STORAGE_BUCKET)
+      .remove([
+        uploadedSlipPath
+      ]);
 
-  const buffer =
-    audioContext.createBuffer(
-      1,
-      sampleRate * duration,
-      sampleRate
+  if(error){
+    console.warn(
+      "Could not delete uploaded slip:",
+      error.message
+    );
+  }
+
+  uploadedSlipPath = "";
+}
+
+/* =========================
+   ORDERS
+========================= */
+
+async function createOrder(order){
+
+  const {error} =
+    await supabaseClient
+      .from("orders")
+      .insert(order);
+
+  if(error){
+    throw new Error(
+      error.message
+    );
+  }
+}
+
+async function deleteCreatedOrder(){
+
+  if(!createdOrderNumber){
+    return;
+  }
+
+  const {error} =
+    await supabaseClient
+      .from("orders")
+      .delete()
+      .eq(
+        "order_number",
+        createdOrderNumber
+      );
+
+  if(error){
+    console.warn(
+      "Could not delete order:",
+      error.message
+    );
+  }
+
+  createdOrderNumber = "";
+}
+
+/* =========================
+   USE COUPON
+========================= */
+
+async function useCouponOnSupabase(
+  couponCode,
+  lineId,
+  orderNumber,
+  customerName
+){
+
+  const cleanCouponCode =
+    String(couponCode || "")
+      .trim()
+      .toLowerCase();
+
+  const cleanContact =
+    normalizeLineId(lineId);
+
+  const cleanOrderNumber =
+    String(orderNumber || "")
+      .trim();
+
+  const cleanCustomerName =
+    String(customerName || "")
+      .trim();
+
+  if(!cleanCouponCode){
+    throw new Error(
+      "Discount code is missing."
+    );
+  }
+
+  if(!cleanContact){
+    throw new Error(
+      "LINE ID is missing."
+    );
+  }
+
+  if(!cleanOrderNumber){
+    throw new Error(
+      "Order number is missing."
+    );
+  }
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "use_coupon",
+      {
+        p_coupon_code:
+          cleanCouponCode,
+
+        p_contact:
+          cleanContact,
+
+        p_order_number:
+          cleanOrderNumber,
+
+        p_customer_name:
+          cleanCustomerName
+      }
     );
 
-  const data =
-    buffer.getChannelData(0);
+  console.log(
+    "USE COUPON RPC DATA:",
+    data
+  );
 
-  for(let i=0;i<data.length;i++){
+  console.log(
+    "USE COUPON RPC ERROR:",
+    error
+  );
 
-    const fade =
-      1 - i / data.length;
-
-    data[i] =
-      (Math.random() * 2 - 1)
-      * fade
-      * 0.45;
+  if(error){
+    throw new Error(
+      "Unable to verify the coupon right now: " +
+      (
+        error.message ||
+        "Supabase RPC error."
+      )
+    );
   }
 
-  const source =
-    audioContext.createBufferSource();
+  if(!data){
+    throw new Error(
+      "The coupon verification returned no result."
+    );
+  }
 
-  const filter =
-    audioContext.createBiquadFilter();
+  let result = data;
 
-  const gain =
-    audioContext.createGain();
+  if(Array.isArray(data)){
+    result = data[0];
+  }
 
-  filter.type =
-    "bandpass";
+  if(!result){
+    throw new Error(
+      "The coupon verification returned an empty result."
+    );
+  }
 
-  filter.frequency.value =
-    1800;
-
-  filter.Q.value =
-    0.7;
-
-  const start =
-    audioContext.currentTime +
-    startDelay;
-
-  gain.gain.setValueAtTime(
-    0.001,
-    start
-  );
-
-  gain.gain.linearRampToValueAtTime(
-    0.035,
-    start + 0.025
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    0.001,
-    start + duration
-  );
-
-  source.buffer = buffer;
-
-  source.connect(filter);
-  filter.connect(gain);
-  gain.connect(masterGain);
-
-  source.start(start);
-  source.stop(start + duration);
+  return result;
 }
 
-function startPrinterSound(){
+/* =========================
+   SUBMIT ORDER
+========================= */
 
-  const ctx =
-    createAudio();
+async function submitOrder(){
 
-  if(!ctx){
+  hideStatus();
+
+  const customerName =
+    document
+      .getElementById("customerName")
+      .value
+      .trim();
+
+  const lineId =
+    document
+      .getElementById("lineId")
+      .value
+      .trim();
+
+  const message =
+    document
+      .getElementById("message")
+      .value
+      .trim();
+
+  const paymentSlip =
+    document
+      .getElementById("paymentSlip")
+      .files[0];
+
+  if(!customerName){
+    showStatus(
+      "Please enter your name.",
+      "error"
+    );
+
+    document
+      .getElementById("customerName")
+      .focus();
+
     return;
   }
 
-  if(ctx.state === "suspended"){
-    ctx.resume().catch(() => {});
+  if(!lineId){
+    showStatus(
+      "Please enter your LINE ID.",
+      "error"
+    );
+
+    document
+      .getElementById("lineId")
+      .focus();
+
+    return;
   }
 
-  /*
-   * Start beep
-   */
-  tone(
-    880,
-    0.09,
-    0,
-    0.5,
-    "sine"
-  );
-
-  tone(
-    1180,
-    0.1,
-    0.13,
-    0.42,
-    "sine"
-  );
-
-  /*
-   * Motor / printer rhythm
-   */
-  const motorStart = 0.28;
-  const motorDuration = 2.55;
-
-  const motor =
-    audioContext.createOscillator();
-
-  const motorGain =
-    audioContext.createGain();
-
-  motor.type =
-    "triangle";
-
-  motor.frequency.value =
-    86;
-
-  motorGain.gain.value =
-    0.13;
-
-  motor.connect(motorGain);
-  motorGain.connect(masterGain);
-
-  motor.start(
-    audioContext.currentTime +
-    motorStart
-  );
-
-  motor.stop(
-    audioContext.currentTime +
-    motorStart +
-    motorDuration
-  );
-
-  /*
-   * Paper movement sounds
-   */
-  for(
-    let i = 0;
-    i < 10;
-    i++
+  if(
+    couponApplied &&
+    normalizeLineId(lineId) !== couponLineIdApplied
   ){
 
-    const delay =
-      0.38 + i * 0.245;
+    couponApplied = false;
+    couponCodeApplied = "";
+    couponLineIdApplied = "";
 
-    paperNoise(
-      delay,
-      0.16
+    calculatePrices();
+
+    showStatus(
+      "LINE ID changed. Please apply the discount code again.",
+      "error"
     );
 
-    tone(
-      145,
-      0.045,
-      delay,
-      0.08,
-      "square"
-    );
+    return;
   }
 
-  /*
-   * Small finishing beep
-   */
-  tone(
-    760,
-    0.08,
-    2.95,
-    0.35,
-    "sine"
-  );
+  if(!paymentSlip){
+    showStatus(
+      "Please upload your payment slip.",
+      "error"
+    );
 
-  tone(
-    1040,
-    0.14,
-    3.08,
-    0.38,
-    "sine"
-  );
+    return;
+  }
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "application/pdf"
+  ];
+
+  if(
+    paymentSlip.type &&
+    !allowedTypes.includes(
+      paymentSlip.type
+    )
+  ){
+
+    showStatus(
+      "Please upload JPG, PNG, WEBP or PDF only.",
+      "error"
+    );
+
+    return;
+  }
+
+  if(
+    paymentSlip.size >
+    10 * 1024 * 1024
+  ){
+
+    showStatus(
+      "Payment slip must be smaller than 10 MB.",
+      "error"
+    );
+
+    return;
+  }
+
+  const prices =
+    calculatePrices();
+
+  createdOrderNumber =
+    generateOrderNumber();
+
+  setButtonLoading(true);
+
+  try{
+
+    showStatus(
+      "Uploading your payment slip...",
+      "success"
+    );
+
+    const slipPath =
+      await uploadPaymentSlip(
+        paymentSlip,
+        createdOrderNumber
+      );
+
+    showStatus(
+      "Creating your order...",
+      "success"
+    );
+
+    const orderData = {
+
+      order_number:
+        createdOrderNumber,
+
+      customer_name:
+        customerName,
+
+      contact:
+        normalizeLineId(lineId),
+
+      template:
+        new URLSearchParams(
+          window.location.search
+        ).get("template") ||
+        "anniversary-01",
+
+      message:
+        message,
+
+      primary_color:
+        document
+          .getElementById("primaryColor")
+          .value
+          .toUpperCase(),
+
+      secondary_color:
+        document
+          .getElementById("secondaryColor")
+          .value
+          .toUpperCase(),
+
+      background_color:
+        document
+          .getElementById("backgroundColor")
+          .value
+          .toUpperCase(),
+
+      extra_functions:
+        prices.extras
+          .map(item => item.name)
+          .join(", "),
+
+      total_price:
+        Number(
+          prices.total.toFixed(2)
+        ),
+
+      deposit_amount:
+        Number(
+          prices.deposit.toFixed(2)
+        ),
+
+      remaining_amount:
+        Number(
+          prices.remaining.toFixed(2)
+        ),
+
+      payment_slip:
+        slipPath,
+
+      payment_status:
+        "pending",
+
+      status:
+        "pending"
+    };
+
+    await createOrder(
+      orderData
+    );
+
+    if(couponApplied){
+
+      showStatus(
+        "Verifying your discount...",
+        "success"
+      );
+
+      const couponResult =
+        await useCouponOnSupabase(
+          couponCodeApplied,
+          lineId,
+          createdOrderNumber,
+          customerName
+        );
+
+      if(
+        couponResult.success !== true
+      ){
+
+        const couponMessage =
+          couponResult.message ||
+          "This discount code cannot be used.";
+
+        await deleteCreatedOrder();
+        await deleteUploadedSlip();
+
+        couponApplied = false;
+        couponCodeApplied = "";
+        couponLineIdApplied = "";
+
+        calculatePrices();
+
+        throw new Error(
+          couponMessage
+        );
+      }
+    }
+
+    /*
+      ================================
+      ORDER SUCCESS
+      ================================
+
+      เมื่อสร้างออเดอร์และตรวจสอบคูปอง
+      สำเร็จแล้ว ให้ไปหน้า
+      order-success.html
+
+      พร้อมส่งเลขออเดอร์ไปด้วย
+      เพื่อให้หน้าตู้พิมพ์เอาไปแสดงบนกระดาษ
+    */
+
+    window.location.href =
+      "order-success.html?order=" +
+      encodeURIComponent(
+        createdOrderNumber
+      );
+
+  }catch(error){
+
+    console.error(
+      "ORDER SUBMIT ERROR:",
+      error
+    );
+
+    if(createdOrderNumber){
+      await deleteCreatedOrder();
+    }
+
+    if(uploadedSlipPath){
+      await deleteUploadedSlip();
+    }
+
+    showStatus(
+      error && error.message
+        ? error.message
+        : "Failed to submit your order.",
+      "error"
+    );
+
+    setButtonLoading(false);
+  }
 }
 
+function loadTemplate(){
 
-/* =========================================================
-   START PRINTING
-========================================================= */
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
-function startPrinting(){
+  const template =
+    params.get("template");
 
-  const paper =
-    document.getElementById("paper");
+  if(template === "anniversary-01"){
 
-  const light =
-    document.getElementById("statusLight");
+    document.getElementById(
+      "templateName"
+    ).textContent =
+      "Anniversary Template 01";
 
-  const slot =
-    document.getElementById("printerSlot");
-
-  const loading =
-    document.getElementById("loadingMessage");
-
-  paper.classList.add("printing");
-
-  light.classList.add("blink");
-
-  slot.classList.add("glow");
-
-  startPrinterSound();
-
-  setTimeout(() => {
-
-    loading.classList.add("hidden");
-
-  },2200);
-
-  paper.addEventListener(
-    "animationend",
-    () => {
-
-      paper.classList.remove("printing");
-      paper.classList.add("finished");
-
-      document
-        .getElementById("particles")
-        .classList.add("show");
-
-      document
-        .getElementById("readyMessage")
-        .classList.add("show");
-
-    },
-    {once:true}
-  );
+    document.getElementById(
+      "templateDesc"
+    ).textContent =
+      "A little digital love story for your special person.";
+  }
 }
 
+document.getElementById(
+  "submitBtn"
+).addEventListener(
+  "click",
+  submitOrder
+);
 
-/* =========================================================
-   INIT
-========================================================= */
-
-const orderData =
-  loadOrderData();
-
-if(orderData){
-
-  /*
-   * หน่วงนิดเดียวเพื่อให้หน้า
-   * เปิดขึ้นมาอย่างนุ่มก่อนเริ่มพิมพ์
-   */
-  setTimeout(
-    startPrinting,
-    500
-  );
-}
-
+loadTemplate();
+calculatePrices();
 </script>
 
 </body>
 </html>
+```
