@@ -578,13 +578,15 @@ footer{
 
 <nav class="navbar">
   <a href="index.html" class="logo">PINTO LOVE</a>
-  <a href="index.html" class="back-home">← Back to Home</a>
+  <a href="index.html" class="back-home" data-i18n="backHome">← Back to Home</a>
 </nav>
 
 <section class="hero">
-  <div class="eyebrow">Create Your Digital Love Story</div>
-  <h1>Order Your Template</h1>
-  <p>
+  <div class="eyebrow" data-i18n="eyebrow">Create Your Digital Love Story</div>
+
+  <h1 data-i18n="heroTitle">Order Your Template</h1>
+
+  <p data-i18n="heroDescription">
     Create a little digital moment made especially for someone you love.
     Fill in your details, choose your extras, and make it yours.
   </p>
@@ -595,399 +597,1472 @@ footer{
 <section class="card">
 <div class="section-head">
 <div class="section-number">01</div>
+
 <div class="section-title">
-<h2>Your Template</h2>
-<p>Choose the template you want to create.</p>
+<h2 data-i18n="templateTitle">Your Template</h2>
+<p data-i18n="templateSubtitle">
+Choose the template you want to create.
+</p>
 </div>
 </div>
 
 <div class="template-box">
 <div class="template-info">
+
 <div class="template-icon">💌</div>
+
 <div>
-<div class="template-name" id="templateName">Anniversary Template 01</div>
+<div class="template-name" id="templateName">
+Anniversary Template 01
+</div>
+
 <div class="template-desc" id="templateDesc">
 A little digital love story for your special person.
 </div>
 </div>
+
 </div>
 
 <div class="price">
 <span id="templatePrice">129</span> THB
 </div>
+
 </div>
 </section>
 
+
 <section class="card">
+
 <div class="section-head">
 <div class="section-number">02</div>
+
 <div class="section-title">
-<h2>Your Information</h2>
-<p>Tell us the details we need to create your page.</p>
+<h2 data-i18n="informationTitle">Your Information</h2>
+
+<p data-i18n="informationSubtitle">
+Tell us the details we need to create your page.
+</p>
 </div>
 </div>
+
 
 <div class="field">
-<label for="customerName">Your Name <span class="required">*</span></label>
-<input type="text" id="customerName" placeholder="Enter your name" autocomplete="name">
+
+<label for="customerName">
+<span data-i18n="yourName">Your Name</span>
+<span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="customerName"
+placeholder="Enter your name"
+data-i18n-placeholder="namePlaceholder"
+autocomplete="name"
+>
+
 </div>
 
-<div class="field">
-<label for="lineId">LINE ID <span class="required">*</span></label>
-<input type="text" id="lineId" placeholder="Enter your LINE ID" autocomplete="off">
 
-<div class="helper">
+<div class="field">
+
+<label for="lineId">
+LINE ID <span class="required">*</span>
+</label>
+
+<input
+type="text"
+id="lineId"
+placeholder="Enter your LINE ID"
+data-i18n-placeholder="linePlaceholder"
+autocomplete="off"
+>
+
+<div class="helper" data-i18n="lineHelper">
 We will use your LINE ID to contact you and verify one-time discount usage.
 </div>
+
 </div>
+
 
 <div class="field">
-<label for="message">Message / Notes</label>
-<textarea id="message" placeholder="Tell us anything you'd like us to know about your order..."></textarea>
+
+<label for="message" data-i18n="messageLabel">
+Message / Notes
+</label>
+
+<textarea
+id="message"
+placeholder="Tell us anything you'd like us to know about your order..."
+data-i18n-placeholder="messagePlaceholder"
+></textarea>
+
 </div>
+
 </section>
 
+
 <section class="card">
+
 <div class="section-head">
+
 <div class="section-number">03</div>
+
 <div class="section-title">
-<h2>Extra Menu</h2>
-<p>Add more little moments to your template. +29 THB each.</p>
+
+<h2 data-i18n="extraTitle">
+Extra Menu
+</h2>
+
+<p data-i18n="extraSubtitle">
+Add more little moments to your template. +29 THB each.
+</p>
+
 </div>
 </div>
+
 
 <div class="extra-grid">
 
+
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Music Player" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🎵 Music Player</span>
-<span class="extra-desc">Add your special song</span>
+<span class="extra-name" data-i18n="musicName">🎵 Music Player</span>
+<span class="extra-desc" data-i18n="musicDesc">Add your special song</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Photo Gallery" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">📸 Photo Gallery</span>
-<span class="extra-desc">A collection of your memories</span>
+<span class="extra-name" data-i18n="photoName">📸 Photo Gallery</span>
+<span class="extra-desc" data-i18n="photoDesc">A collection of your memories</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Love Letter" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">💌 Love Letter</span>
-<span class="extra-desc">A private letter from your heart</span>
+<span class="extra-name" data-i18n="letterName">💌 Love Letter</span>
+<span class="extra-desc" data-i18n="letterDesc">A private letter from your heart</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Countdown" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">⏳ Countdown</span>
-<span class="extra-desc">Count down to your special day</span>
+<span class="extra-name" data-i18n="countdownName">⏳ Countdown</span>
+<span class="extra-desc" data-i18n="countdownDesc">Count down to your special day</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Scratch Card" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🎟️ Scratch Card</span>
-<span class="extra-desc">Scratch to reveal a secret</span>
+<span class="extra-name" data-i18n="scratchName">🎟️ Scratch Card</span>
+<span class="extra-desc" data-i18n="scratchDesc">Scratch to reveal a secret</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="เกมคำถาม 5 ข้อ" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">💕 เกมคำถาม 5 ข้อ</span>
-<span class="extra-desc">A cute little love quiz</span>
+<span class="extra-name" data-i18n="quizName">💕 เกมคำถาม 5 ข้อ</span>
+<span class="extra-desc" data-i18n="quizDesc">A cute little love quiz</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="เมนูใส่รหัส" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🔐 เมนูใส่รหัส</span>
-<span class="extra-desc">Unlock your private message</span>
+<span class="extra-name" data-i18n="passwordName">🔐 เมนูใส่รหัส</span>
+<span class="extra-desc" data-i18n="passwordDesc">Unlock your private message</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="เกมทายใจ" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🔮 เกมทายใจ</span>
-<span class="extra-desc">A playful guessing game</span>
+<span class="extra-name" data-i18n="guessName">🔮 เกมทายใจ</span>
+<span class="extra-desc" data-i18n="guessDesc">A playful guessing game</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Puzzle" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🧩 Puzzle</span>
-<span class="extra-desc">Put the pieces of your memory together</span>
+<span class="extra-name" data-i18n="puzzleName">🧩 Puzzle</span>
+<span class="extra-desc" data-i18n="puzzleDesc">Put the pieces of your memory together</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Memory Map" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">📍 Memory Map</span>
-<span class="extra-desc">Mark the places that mean something</span>
+<span class="extra-name" data-i18n="mapName">📍 Memory Map</span>
+<span class="extra-desc" data-i18n="mapDesc">Mark the places that mean something</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="Polaroid Memory" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">📷 Polaroid Memory</span>
-<span class="extra-desc">Turn your memories into polaroids</span>
+<span class="extra-name" data-i18n="polaroidName">📷 Polaroid Memory</span>
+<span class="extra-desc" data-i18n="polaroidDesc">Turn your memories into polaroids</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
+
 
 <label class="extra-item">
 <input type="checkbox" class="extra-checkbox" data-name="ตู้กาชาปอง" data-price="29">
+
 <span class="extra-check">✓</span>
+
 <span class="extra-content">
-<span class="extra-name">🎁 ตู้กาชาปอง</span>
-<span class="extra-desc">Little surprises waiting inside</span>
+<span class="extra-name" data-i18n="gachaName">🎁 ตู้กาชาปอง</span>
+<span class="extra-desc" data-i18n="gachaDesc">Little surprises waiting inside</span>
 </span>
+
 <span class="extra-price">+29 THB</span>
 </label>
 
+
 </div>
 </section>
 
+
 <section class="card">
+
 <div class="section-head">
+
 <div class="section-number">04</div>
+
 <div class="section-title">
-<h2>Color Theme</h2>
-<p>Choose the colors you'd like for your digital page.</p>
+
+<h2 data-i18n="colorTitle">
+Color Theme
+</h2>
+
+<p data-i18n="colorSubtitle">
+Choose the colors you'd like for your digital page.
+</p>
+
 </div>
 </div>
+
 
 <div class="color-grid">
 
+
 <div class="color-item">
-<label for="primaryColor">Primary Color</label>
+
+<label for="primaryColor" data-i18n="primaryColor">
+Primary Color
+</label>
+
 <div class="color-row">
+
 <input type="color" id="primaryColor" value="#8C7E74">
-<span class="color-code" id="primaryColorCode">#8C7E74</span>
-</div>
+
+<span class="color-code" id="primaryColorCode">
+#8C7E74
+</span>
+
 </div>
 
+</div>
+
+
 <div class="color-item">
-<label for="secondaryColor">Secondary Color</label>
+
+<label for="secondaryColor" data-i18n="secondaryColor">
+Secondary Color
+</label>
+
 <div class="color-row">
+
 <input type="color" id="secondaryColor" value="#C8BCB1">
-<span class="color-code" id="secondaryColorCode">#C8BCB1</span>
-</div>
+
+<span class="color-code" id="secondaryColorCode">
+#C8BCB1
+</span>
+
 </div>
 
+</div>
+
+
 <div class="color-item">
-<label for="backgroundColor">Background Color</label>
+
+<label for="backgroundColor" data-i18n="backgroundColor">
+Background Color
+</label>
+
 <div class="color-row">
+
 <input type="color" id="backgroundColor" value="#F4EFEA">
-<span class="color-code" id="backgroundColorCode">#F4EFEA</span>
+
+<span class="color-code" id="backgroundColorCode">
+#F4EFEA
+</span>
+
 </div>
+
 </div>
+
 
 </div>
 </section>
 
+
 <section class="card">
+
 <div class="section-head">
+
 <div class="section-number">05</div>
+
 <div class="section-title">
-<h2>Referral / Discount Code</h2>
-<p>Have a discount code? Enter it below.</p>
+
+<h2 data-i18n="couponTitle">
+Referral / Discount Code
+</h2>
+
+<p data-i18n="couponSubtitle">
+Have a discount code? Enter it below.
+</p>
+
 </div>
 </div>
+
 
 <div class="coupon-box">
 
 <div class="coupon-row">
-<input type="text" id="couponCode" placeholder="Enter your discount code" autocomplete="off">
 
-<button type="button" class="btn-small" id="applyCouponBtn">
+<input
+type="text"
+id="couponCode"
+placeholder="Enter your discount code"
+data-i18n-placeholder="couponPlaceholder"
+autocomplete="off"
+>
+
+<button
+type="button"
+class="btn-small"
+id="applyCouponBtn"
+data-i18n="applyButton"
+>
 Apply
 </button>
+
 </div>
 
-<div class="coupon-message" id="couponMessage"></div>
 
-<div class="helper">
+<div
+class="coupon-message"
+id="couponMessage">
+</div>
+
+
+<div class="helper" data-i18n="couponHelper">
 Each person can use the discount code only once.
 </div>
 
 </div>
 </section>
 
+
 <section class="card">
+
 <div class="section-head">
+
 <div class="section-number">06</div>
+
 <div class="section-title">
-<h2>Payment</h2>
-<p>Complete the payment and upload your payment slip.</p>
+
+<h2 data-i18n="paymentTitle">
+Payment
+</h2>
+
+<p data-i18n="paymentSubtitle">
+Complete the payment and upload your payment slip.
+</p>
+
 </div>
 </div>
+
 
 <div class="payment-box">
 
 <div class="bank-info">
+
 <p>
-<strong>Bank Transfer</strong><br>
-Bank: Your Bank Name<br>
-Account Name: PINTO LOVE<br>
+
+<strong data-i18n="bankTransfer">
+Bank Transfer
+</strong>
+
+<br>
+
+<span data-i18n="bankName">
+Bank: Your Bank Name
+</span>
+
+<br>
+
+<span data-i18n="accountName">
+Account Name: PINTO LOVE
+</span>
+
+<br>
+
+<span data-i18n="accountNumber">
 Account Number: 000-0-00000-0
+</span>
+
 </p>
+
 </div>
 
+
 <label class="file-label" for="paymentSlip">
-<input type="file" id="paymentSlip" accept="image/png,image/jpeg,image/webp,application/pdf">
+
+<input
+type="file"
+id="paymentSlip"
+accept="image/png,image/jpeg,image/webp,application/pdf"
+>
 
 <div class="file-icon">🧾</div>
-<div class="file-title">Click to upload your payment slip</div>
-<div class="file-name" id="fileName">No file selected</div>
+
+<div
+class="file-title"
+data-i18n="uploadSlip">
+Click to upload your payment slip
+</div>
+
+<div
+class="file-name"
+id="fileName">
+No file selected
+</div>
+
 </label>
 
-<div class="helper">
+
+<div class="helper" data-i18n="acceptedFiles">
 Accepted: JPG, PNG, WEBP or PDF
 </div>
 
 </div>
 </section>
 
+
 <div class="summary">
 
 <div class="summary-row">
-<span>Template</span>
-<strong><span id="summaryTemplatePrice">129</span> THB</strong>
+
+<span data-i18n="summaryTemplate">
+Template
+</span>
+
+<strong>
+<span id="summaryTemplatePrice">129</span> THB
+</strong>
+
 </div>
+
 
 <div class="summary-row">
-<span>Extra Menu</span>
-<strong><span id="extrasPrice">0</span> THB</strong>
+
+<span data-i18n="summaryExtra">
+Extra Menu
+</span>
+
+<strong>
+<span id="extrasPrice">0</span> THB
+</strong>
+
 </div>
 
-<div class="summary-row discount" id="discountRow" style="display:none;">
-<span>Discount (5%)</span>
-<strong>-<span id="discountPrice">0</span> THB</strong>
+
+<div
+class="summary-row discount"
+id="discountRow"
+style="display:none;"
+>
+
+<span data-i18n="summaryDiscount">
+Discount (5%)
+</span>
+
+<strong>
+-<span id="discountPrice">0</span> THB
+</strong>
+
 </div>
+
 
 <div class="summary-total">
+
 <div>
-<div class="total-label">Total</div>
-<div class="deposit-info">
+
+<div
+class="total-label"
+data-i18n="totalLabel">
+Total
+</div>
+
+<div
+class="deposit-info"
+data-i18n="depositInfo">
 Deposit 30% · Remaining 70%
 </div>
+
 </div>
+
 
 <div class="total-main">
+
 <span id="totalPrice">129</span> THB
+
 </div>
+
 </div>
+
 
 <div class="summary-row" style="margin-top:14px;">
-<span>Deposit 30%</span>
-<strong><span id="depositPrice">38.70</span> THB</strong>
+
+<span data-i18n="depositLabel">
+Deposit 30%
+</span>
+
+<strong>
+<span id="depositPrice">38.70</span> THB
+</strong>
+
 </div>
+
 
 <div class="summary-row">
-<span>Remaining 70%</span>
-<strong><span id="remainingPrice">90.30</span> THB</strong>
+
+<span data-i18n="remainingLabel">
+Remaining 70%
+</span>
+
+<strong>
+<span id="remainingPrice">90.30</span> THB
+</strong>
+
 </div>
 
-<button type="button" class="submit-btn" id="submitBtn">
+
+<button
+type="button"
+class="submit-btn"
+id="submitBtn"
+data-i18n="placeOrder">
 Place Order
 </button>
 
-<div class="status-message" id="statusMessage"></div>
+
+<div
+class="status-message"
+id="statusMessage">
+</div>
 
 </div>
 
 </main>
 
-<footer>
+
+<footer data-i18n="footer">
 © 2026 PINTO LOVE · Little digital moments, made with love.
 </footer>
 
+
 <script>
-const SUPABASE_URL = "https://kevbykrpnpgsnyxtpfqj.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
-const STORAGE_BUCKET = "payment-slips";
+
+const SUPABASE_URL =
+"https://kevbykrpnpgsnyxtpfqj.supabase.co";
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_9ayuiAkwsQl10g3CCuWrnQ_JNDqGx3t";
+
+const STORAGE_BUCKET =
+"payment-slips";
 
 const BASE_PRICE = 129;
-const DISCOUNT_CODE = "PINT05-STANG";
+
+const DISCOUNT_CODE =
+"PINT05-STANG";
+
 const DISCOUNT_PERCENT = 5;
+
 const DEPOSIT_PERCENT = 30;
 
+
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
 
 let couponApplied = false;
 let couponCodeApplied = "";
 let createdOrderNumber = "";
 let uploadedSlipPath = "";
 
-function formatMoney(value){
-  return Number(value).toFixed(2);
+
+/* =========================
+   LANGUAGE
+========================= */
+
+const translations = {
+
+  th: {
+
+    backHome:"← กลับหน้าหลัก",
+
+    eyebrow:"สร้างเรื่องราวความรักในรูปแบบดิจิทัล",
+
+    heroTitle:"สั่งซื้อเว็บไซต์ของคุณ",
+
+    heroDescription:
+      "สร้างช่วงเวลาเล็ก ๆ ในรูปแบบดิจิทัลที่ทำขึ้นเพื่อคนพิเศษของคุณโดยเฉพาะ กรอกข้อมูล เลือกเมนูเพิ่มเติม และปรับแต่งให้เป็นแบบของคุณ",
+
+    templateTitle:"เว็บไซต์ที่เลือก",
+
+    templateSubtitle:
+      "เลือกเว็บไซต์ที่คุณต้องการสร้าง",
+
+    informationTitle:"ข้อมูลของคุณ",
+
+    informationSubtitle:
+      "กรอกข้อมูลที่เราต้องใช้สำหรับสร้างเว็บไซต์ของคุณ",
+
+    yourName:"ชื่อของคุณ",
+
+    namePlaceholder:"กรอกชื่อของคุณ",
+
+    linePlaceholder:"กรอก LINE ID",
+
+    lineHelper:
+      "เราจะใช้ LINE ID สำหรับติดต่อคุณและตรวจสอบการใช้โค้ดส่วนลดแบบครั้งเดียว",
+
+    messageLabel:"ข้อความ / หมายเหตุ",
+
+    messagePlaceholder:
+      "บอกเราได้เลยว่ามีอะไรที่อยากให้เราทราบเกี่ยวกับออเดอร์ของคุณ...",
+
+    extraTitle:"เมนูเพิ่มเติม",
+
+    extraSubtitle:
+      "เพิ่มลูกเล่นและช่วงเวลาพิเศษให้เว็บไซต์ของคุณ +29 บาทต่อรายการ",
+
+    musicName:"🎵 เครื่องเล่นเพลง",
+    musicDesc:"เพิ่มเพลงพิเศษของคุณ",
+
+    photoName:"📸 แกลเลอรีรูปภาพ",
+    photoDesc:"รวมความทรงจำของคุณไว้ด้วยกัน",
+
+    letterName:"💌 จดหมายรัก",
+    letterDesc:"จดหมายส่วนตัวจากความรู้สึกของคุณ",
+
+    countdownName:"⏳ นับถอยหลัง",
+    countdownDesc:"นับถอยหลังสู่วันสำคัญของคุณ",
+
+    scratchName:"🎟️ การ์ดขูด",
+    scratchDesc:"ขูดเพื่อเปิดเผยความลับ",
+
+    quizName:"💕 เกมคำถาม 5 ข้อ",
+    quizDesc:"เกมคำถามน่ารัก ๆ สำหรับคนพิเศษ",
+
+    passwordName:"🔐 เมนูใส่รหัส",
+    passwordDesc:"ปลดล็อกข้อความส่วนตัวของคุณ",
+
+    guessName:"🔮 เกมทายใจ",
+    guessDesc:"เกมทายใจสนุก ๆ",
+
+    puzzleName:"🧩 พัซเซิล",
+    puzzleDesc:"นำชิ้นส่วนความทรงจำมาต่อกัน",
+
+    mapName:"📍 แผนที่ความทรงจำ",
+    mapDesc:"ปักหมุดสถานที่ที่มีความหมาย",
+
+    polaroidName:"📷 ความทรงจำโพลารอยด์",
+    polaroidDesc:"เปลี่ยนความทรงจำของคุณให้เป็นโพลารอยด์",
+
+    gachaName:"🎁 ตู้กาชาปอง",
+    gachaDesc:"ของเซอร์ไพรส์เล็ก ๆ ที่รออยู่ข้างใน",
+
+    colorTitle:"โทนสี",
+
+    colorSubtitle:
+      "เลือกสีที่คุณต้องการสำหรับเว็บไซต์ของคุณ",
+
+    primaryColor:"สีหลัก",
+
+    secondaryColor:"สีรอง",
+
+    backgroundColor:"สีพื้นหลัง",
+
+    couponTitle:"โค้ดส่วนลด",
+
+    couponSubtitle:
+      "มีโค้ดส่วนลดใช่ไหม? กรอกด้านล่างได้เลย",
+
+    couponPlaceholder:"กรอกโค้ดส่วนลด",
+
+    applyButton:"ใช้โค้ด",
+
+    couponHelper:
+      "แต่ละคนสามารถใช้โค้ดส่วนลดได้เพียงครั้งเดียว",
+
+    paymentTitle:"การชำระเงิน",
+
+    paymentSubtitle:
+      "ชำระเงินและอัปโหลดสลิปการโอนเงินของคุณ",
+
+    bankTransfer:"โอนเงินผ่านธนาคาร",
+
+    bankName:"ธนาคาร: ชื่อธนาคารของคุณ",
+
+    accountName:"ชื่อบัญชี: PINTO LOVE",
+
+    accountNumber:"เลขที่บัญชี: 000-0-00000-0",
+
+    uploadSlip:"คลิกเพื่ออัปโหลดสลิปการชำระเงิน",
+
+    acceptedFiles:"รองรับ: JPG, PNG, WEBP หรือ PDF",
+
+    summaryTemplate:"เว็บไซต์",
+
+    summaryExtra:"เมนูเพิ่มเติม",
+
+    summaryDiscount:"ส่วนลด (5%)",
+
+    totalLabel:"ยอดรวม",
+
+    depositInfo:"มัดจำ 30% · ชำระส่วนที่เหลือ 70%",
+
+    depositLabel:"มัดจำ 30%",
+
+    remainingLabel:"คงเหลือ 70%",
+
+    placeOrder:"สั่งซื้อ",
+
+    footer:
+      "© 2026 PINTO LOVE · ช่วงเวลาดิจิทัลเล็ก ๆ ที่สร้างขึ้นด้วยความรัก",
+
+    noFile:"ยังไม่ได้เลือกไฟล์",
+
+    invalidCoupon:"โค้ดส่วนลดไม่ถูกต้อง",
+
+    enterCoupon:"กรุณากรอกโค้ดส่วนลด",
+
+    couponSuccess:"ใช้ส่วนลดสำเร็จ — ลด 5% สำหรับออเดอร์ของคุณ",
+
+    enterName:"กรุณากรอกชื่อของคุณ",
+
+    enterLine:"กรุณากรอก LINE ID",
+
+    uploadPayment:"กรุณาอัปโหลดสลิปการชำระเงิน",
+
+    invalidFile:"กรุณาอัปโหลดเฉพาะ JPG, PNG, WEBP หรือ PDF",
+
+    fileTooLarge:"สลิปการชำระเงินต้องมีขนาดไม่เกิน 10 MB",
+
+    uploading:"กำลังอัปโหลดสลิปการชำระเงิน...",
+
+    creating:"กำลังสร้างออเดอร์ของคุณ...",
+
+    verifying:"กำลังตรวจสอบส่วนลด...",
+
+    submitted:"ส่งออเดอร์สำเร็จ เลขที่ออเดอร์ ",
+
+    submitSuccess:
+      "ส่งออเดอร์สำเร็จ!\n\nเลขที่ออเดอร์: ",
+
+    submittedButton:"ส่งออเดอร์แล้ว ✓",
+
+    submitting:"กำลังส่งออเดอร์...",
+
+    paymentRequired:"ต้องมีสลิปการชำระเงิน",
+
+    couponMissing:"ไม่พบโค้ดส่วนลด",
+
+    lineMissing:"ไม่พบ LINE ID",
+
+    orderNumberMissing:"ไม่พบเลขที่ออเดอร์",
+
+    couponVerifyFailed:
+      "ไม่สามารถตรวจสอบโค้ดส่วนลดได้ในขณะนี้",
+
+    couponEmptyResult:
+      "ระบบตรวจสอบโค้ดส่วนลดไม่ส่งผลลัพธ์กลับมา",
+
+    couponCannotUse:
+      "ไม่สามารถใช้โค้ดส่วนลดนี้ได้",
+
+    uploadFailed:"อัปโหลดสลิปการชำระเงินไม่สำเร็จ: ",
+
+    orderFailed:"ส่งออเดอร์ไม่สำเร็จ"
+
+  },
+
+
+  en: {
+
+    backHome:"← Back to Home",
+
+    eyebrow:"Create Your Digital Love Story",
+
+    heroTitle:"Order Your Template",
+
+    heroDescription:
+      "Create a little digital moment made especially for someone you love. Fill in your details, choose your extras, and make it yours.",
+
+    templateTitle:"Your Template",
+
+    templateSubtitle:
+      "Choose the template you want to create.",
+
+    informationTitle:"Your Information",
+
+    informationSubtitle:
+      "Tell us the details we need to create your page.",
+
+    yourName:"Your Name",
+
+    namePlaceholder:"Enter your name",
+
+    linePlaceholder:"Enter your LINE ID",
+
+    lineHelper:
+      "We will use your LINE ID to contact you and verify one-time discount usage.",
+
+    messageLabel:"Message / Notes",
+
+    messagePlaceholder:
+      "Tell us anything you'd like us to know about your order...",
+
+    extraTitle:"Extra Menu",
+
+    extraSubtitle:
+      "Add more little moments to your template. +29 THB each.",
+
+    musicName:"🎵 Music Player",
+    musicDesc:"Add your special song",
+
+    photoName:"📸 Photo Gallery",
+    photoDesc:"A collection of your memories",
+
+    letterName:"💌 Love Letter",
+    letterDesc:"A private letter from your heart",
+
+    countdownName:"⏳ Countdown",
+    countdownDesc:"Count down to your special day",
+
+    scratchName:"🎟️ Scratch Card",
+    scratchDesc:"Scratch to reveal a secret",
+
+    quizName:"💕 เกมคำถาม 5 ข้อ",
+    quizDesc:"A cute little love quiz",
+
+    passwordName:"🔐 เมนูใส่รหัส",
+    passwordDesc:"Unlock your private message",
+
+    guessName:"🔮 เกมทายใจ",
+    guessDesc:"A playful guessing game",
+
+    puzzleName:"🧩 Puzzle",
+    puzzleDesc:"Put the pieces of your memory together",
+
+    mapName:"📍 Memory Map",
+    mapDesc:"Mark the places that mean something",
+
+    polaroidName:"📷 Polaroid Memory",
+    polaroidDesc:"Turn your memories into polaroids",
+
+    gachaName:"🎁 ตู้กาชาปอง",
+    gachaDesc:"Little surprises waiting inside",
+
+    colorTitle:"Color Theme",
+
+    colorSubtitle:
+      "Choose the colors you'd like for your digital page.",
+
+    primaryColor:"Primary Color",
+
+    secondaryColor:"Secondary Color",
+
+    backgroundColor:"Background Color",
+
+    couponTitle:"Referral / Discount Code",
+
+    couponSubtitle:
+      "Have a discount code? Enter it below.",
+
+    couponPlaceholder:"Enter your discount code",
+
+    applyButton:"Apply",
+
+    couponHelper:
+      "Each person can use the discount code only once.",
+
+    paymentTitle:"Payment",
+
+    paymentSubtitle:
+      "Complete the payment and upload your payment slip.",
+
+    bankTransfer:"Bank Transfer",
+
+    bankName:"Bank: Your Bank Name",
+
+    accountName:"Account Name: PINTO LOVE",
+
+    accountNumber:"Account Number: 000-0-00000-0",
+
+    uploadSlip:"Click to upload your payment slip",
+
+    acceptedFiles:"Accepted: JPG, PNG, WEBP or PDF",
+
+    summaryTemplate:"Template",
+
+    summaryExtra:"Extra Menu",
+
+    summaryDiscount:"Discount (5%)",
+
+    totalLabel:"Total",
+
+    depositInfo:"Deposit 30% · Remaining 70%",
+
+    depositLabel:"Deposit 30%",
+
+    remainingLabel:"Remaining 70%",
+
+    placeOrder:"Place Order",
+
+    footer:
+      "© 2026 PINTO LOVE · Little digital moments, made with love.",
+
+    noFile:"No file selected",
+
+    invalidCoupon:"Invalid discount code.",
+
+    enterCoupon:"Please enter a discount code.",
+
+    couponSuccess:
+      "Discount applied successfully — 5% off your order.",
+
+    enterName:"Please enter your name.",
+
+    enterLine:"Please enter your LINE ID.",
+
+    uploadPayment:"Please upload your payment slip.",
+
+    invalidFile:"Please upload JPG, PNG, WEBP or PDF only.",
+
+    fileTooLarge:"Payment slip must be smaller than 10 MB.",
+
+    uploading:"Uploading your payment slip...",
+
+    creating:"Creating your order...",
+
+    verifying:"Verifying your discount...",
+
+    submitted:"Order submitted successfully. Order No. ",
+
+    submitSuccess:
+      "Order submitted successfully!\n\nOrder No.: ",
+
+    submittedButton:"Order Submitted ✓",
+
+    submitting:"Submitting...",
+
+    paymentRequired:"Payment slip is required.",
+
+    couponMissing:"Discount code is missing.",
+
+    lineMissing:"LINE ID is missing.",
+
+    orderNumberMissing:"Order number is missing.",
+
+    couponVerifyFailed:
+      "Unable to verify the coupon right now.",
+
+    couponEmptyResult:
+      "The coupon verification returned no result.",
+
+    couponCannotUse:
+      "This discount code cannot be used.",
+
+    uploadFailed:"Payment slip upload failed: ",
+
+    orderFailed:"Failed to submit your order."
+
+  },
+
+
+  ko: {
+
+    backHome:"← 홈으로 돌아가기",
+
+    eyebrow:"당신만을 위한 디지털 러브 스토리",
+
+    heroTitle:"템플릿 주문하기",
+
+    heroDescription:
+      "소중한 사람을 위해 특별한 디지털 순간을 만들어보세요. 정보를 입력하고 추가 기능을 선택해 나만의 페이지를 완성해보세요.",
+
+    templateTitle:"선택한 템플릿",
+
+    templateSubtitle:
+      "만들고 싶은 템플릿을 선택하세요.",
+
+    informationTitle:"고객 정보",
+
+    informationSubtitle:
+      "페이지 제작에 필요한 정보를 입력해주세요.",
+
+    yourName:"이름",
+
+    namePlaceholder:"이름을 입력하세요",
+
+    linePlaceholder:"LINE ID를 입력하세요",
+
+    lineHelper:
+      "LINE ID는 연락 및 1회성 할인 코드 사용 여부 확인을 위해 사용됩니다.",
+
+    messageLabel:"메시지 / 요청사항",
+
+    messagePlaceholder:
+      "주문과 관련해 알려주고 싶은 내용을 자유롭게 적어주세요...",
+
+    extraTitle:"추가 기능",
+
+    extraSubtitle:
+      "템플릿에 특별한 기능을 추가해보세요. 기능당 +29 THB",
+
+    musicName:"🎵 음악 플레이어",
+    musicDesc:"특별한 노래를 추가하세요",
+
+    photoName:"📸 사진 갤러리",
+    photoDesc:"소중한 추억을 사진으로 담아보세요",
+
+    letterName:"💌 러브레터",
+    letterDesc:"마음을 담은 비밀 편지",
+
+    countdownName:"⏳ 카운트다운",
+    countdownDesc:"특별한 날까지 남은 시간을 보여주세요",
+
+    scratchName:"🎟️ 스크래치 카드",
+    scratchDesc:"긁어서 비밀을 확인해보세요",
+
+    quizName:"💕 5문제 사랑 퀴즈",
+    quizDesc:"귀엽고 재미있는 사랑 퀴즈",
+
+    passwordName:"🔐 비밀번호 메뉴",
+    passwordDesc:"비밀 메시지를 잠금 해제하세요",
+
+    guessName:"🔮 마음 맞히기 게임",
+    guessDesc:"재미있는 추측 게임",
+
+    puzzleName:"🧩 퍼즐",
+    puzzleDesc:"추억의 조각을 하나씩 맞춰보세요",
+
+    mapName:"📍 추억의 지도",
+    mapDesc:"의미 있는 장소를 표시해보세요",
+
+    polaroidName:"📷 폴라로이드 추억",
+    polaroidDesc:"추억을 폴라로이드처럼 담아보세요",
+
+    gachaName:"🎁 가챠 머신",
+    gachaDesc:"안에 작은 깜짝 선물이 기다리고 있어요",
+
+    colorTitle:"색상 테마",
+
+    colorSubtitle:
+      "디지털 페이지에 사용할 색상을 선택하세요.",
+
+    primaryColor:"메인 컬러",
+
+    secondaryColor:"서브 컬러",
+
+    backgroundColor:"배경 색상",
+
+    couponTitle:"추천 / 할인 코드",
+
+    couponSubtitle:
+      "할인 코드가 있다면 아래에 입력해주세요.",
+
+    couponPlaceholder:"할인 코드를 입력하세요",
+
+    applyButton:"적용",
+
+    couponHelper:
+      "할인 코드는 한 사람당 한 번만 사용할 수 있습니다.",
+
+    paymentTitle:"결제",
+
+    paymentSubtitle:
+      "결제를 완료한 후 결제 영수증을 업로드해주세요.",
+
+    bankTransfer:"은행 송금",
+
+    bankName:"은행: Your Bank Name",
+
+    accountName:"예금주: PINTO LOVE",
+
+    accountNumber:"계좌번호: 000-0-00000-0",
+
+    uploadSlip:"결제 영수증을 업로드하려면 클릭하세요",
+
+    acceptedFiles:"지원 형식: JPG, PNG, WEBP 또는 PDF",
+
+    summaryTemplate:"템플릿",
+
+    summaryExtra:"추가 기능",
+
+    summaryDiscount:"할인 (5%)",
+
+    totalLabel:"총 금액",
+
+    depositInfo:"예약금 30% · 잔액 70%",
+
+    depositLabel:"예약금 30%",
+
+    remainingLabel:"잔액 70%",
+
+    placeOrder:"주문하기",
+
+    footer:
+      "© 2026 PINTO LOVE · 사랑으로 만든 작은 디지털 순간",
+
+    noFile:"선택된 파일 없음",
+
+    invalidCoupon:"유효하지 않은 할인 코드입니다.",
+
+    enterCoupon:"할인 코드를 입력해주세요.",
+
+    couponSuccess:
+      "할인이 적용되었습니다 — 주문 금액의 5% 할인",
+
+    enterName:"이름을 입력해주세요.",
+
+    enterLine:"LINE ID를 입력해주세요.",
+
+    uploadPayment:"결제 영수증을 업로드해주세요.",
+
+    invalidFile:"JPG, PNG, WEBP 또는 PDF 파일만 업로드해주세요.",
+
+    fileTooLarge:"결제 영수증은 10MB보다 작아야 합니다.",
+
+    uploading:"결제 영수증을 업로드하는 중...",
+
+    creating:"주문을 생성하는 중...",
+
+    verifying:"할인을 확인하는 중...",
+
+    submitted:"주문이 완료되었습니다. 주문번호 ",
+
+    submitSuccess:
+      "주문이 완료되었습니다!\n\n주문번호: ",
+
+    submittedButton:"주문 완료 ✓",
+
+    submitting:"주문을 보내는 중...",
+
+    paymentRequired:"결제 영수증이 필요합니다.",
+
+    couponMissing:"할인 코드가 없습니다.",
+
+    lineMissing:"LINE ID가 없습니다.",
+
+    orderNumberMissing:"주문번호가 없습니다.",
+
+    couponVerifyFailed:
+      "현재 할인 코드를 확인할 수 없습니다.",
+
+    couponEmptyResult:
+      "할인 코드 확인 결과가 없습니다.",
+
+    couponCannotUse:
+      "이 할인 코드는 사용할 수 없습니다.",
+
+    uploadFailed:"결제 영수증 업로드 실패: ",
+
+    orderFailed:"주문을 제출하지 못했습니다."
+
+  }
+
+};
+
+
+function getCurrentLanguage(){
+
+  const candidates = [
+
+    localStorage.getItem("pintoLanguage"),
+
+    localStorage.getItem("language"),
+
+    localStorage.getItem("lang")
+
+  ];
+
+  for(const value of candidates){
+
+    if(!value) continue;
+
+    const clean =
+      String(value)
+        .trim()
+        .toLowerCase();
+
+    if(clean === "th" ||
+       clean === "thai"){
+      return "th";
+    }
+
+    if(clean === "en" ||
+       clean === "english"){
+      return "en";
+    }
+
+    if(clean === "ko" ||
+       clean === "kr" ||
+       clean === "korean"){
+      return "ko";
+    }
+  }
+
+  return "th";
 }
 
+
+let currentLanguage =
+  getCurrentLanguage();
+
+
+function t(key){
+
+  return (
+    translations[currentLanguage] &&
+    translations[currentLanguage][key]
+  ) ||
+  translations.th[key] ||
+  key;
+}
+
+
+function applyTranslations(){
+
+  document.documentElement.lang =
+    currentLanguage === "th"
+      ? "th"
+      : currentLanguage === "ko"
+        ? "ko"
+        : "en";
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(el => {
+
+      const key =
+        el.getAttribute("data-i18n");
+
+      if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key]
+      ){
+        el.textContent =
+          translations[currentLanguage][key];
+      }
+
+    });
+
+
+  document
+    .querySelectorAll("[data-i18n-placeholder]")
+    .forEach(el => {
+
+      const key =
+        el.getAttribute("data-i18n-placeholder");
+
+      if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key]
+      ){
+        el.placeholder =
+          translations[currentLanguage][key];
+      }
+
+    });
+
+
+  document.title =
+    currentLanguage === "th"
+      ? "สั่งซื้อ | PINTO LOVE"
+      : currentLanguage === "ko"
+        ? "주문 | PINTO LOVE"
+        : "Order | PINTO LOVE";
+
+
+  const file =
+    document.getElementById("paymentSlip");
+
+  const fileName =
+    document.getElementById("fileName");
+
+  if(
+    file &&
+    fileName &&
+    (!file.files || !file.files.length)
+  ){
+    fileName.textContent =
+      t("noFile");
+  }
+}
+
+
+/* =========================
+   BASIC FUNCTIONS
+========================= */
+
+function formatMoney(value){
+
+  return Number(value).toFixed(2);
+
+}
+
+
 function normalizeLineId(value){
+
   return String(value || "")
     .trim()
     .toLowerCase()
     .replace(/\s+/g,"");
+
 }
+
 
 function showStatus(message,type){
-  const el = document.getElementById("statusMessage");
-  el.textContent = message;
-  el.className = "status-message show " + type;
+
+  const el =
+    document.getElementById("statusMessage");
+
+  el.textContent =
+    message;
+
+  el.className =
+    "status-message show " + type;
+
 }
+
 
 function hideStatus(){
-  const el = document.getElementById("statusMessage");
+
+  const el =
+    document.getElementById("statusMessage");
+
   el.textContent = "";
-  el.className = "status-message";
+
+  el.className =
+    "status-message";
+
 }
+
 
 function setButtonLoading(loading){
-  const btn = document.getElementById("submitBtn");
-  btn.disabled = loading;
-  btn.textContent = loading ? "Submitting..." : "Place Order";
+
+  const btn =
+    document.getElementById("submitBtn");
+
+  btn.disabled =
+    loading;
+
+  btn.textContent =
+    loading
+      ? t("submitting")
+      : t("placeOrder");
+
 }
 
+
 function generateOrderNumber(){
-  const now = new Date();
+
+  const now =
+    new Date();
 
   const date =
     now.getFullYear().toString() +
@@ -1000,102 +2075,238 @@ function generateOrderNumber(){
       .substring(2,7)
       .toUpperCase();
 
-  return "PR-" + date + "-" + random;
+  return "PR-" +
+    date +
+    "-" +
+    random;
+
 }
 
+
 function getSelectedExtras(){
+
   const selected = [];
 
   document
     .querySelectorAll(".extra-checkbox:checked")
     .forEach(item => {
+
       selected.push({
+
         name:item.dataset.name,
-        price:Number(item.dataset.price)
+
+        price:Number(
+          item.dataset.price
+        )
+
       });
+
     });
 
   return selected;
+
 }
+
 
 function calculatePrices(){
 
-  const extras = getSelectedExtras();
+  const extras =
+    getSelectedExtras();
 
   const extrasTotal =
     extras.reduce(
-      (sum,item) => sum + item.price,
+      (sum,item) =>
+        sum + item.price,
       0
     );
 
   const subtotal =
-    BASE_PRICE + extrasTotal;
+    BASE_PRICE +
+    extrasTotal;
 
   const discountAmount =
     couponApplied
-      ? subtotal * (DISCOUNT_PERCENT / 100)
+      ? subtotal *
+        (DISCOUNT_PERCENT / 100)
       : 0;
 
   const total =
-    subtotal - discountAmount;
+    subtotal -
+    discountAmount;
 
   const deposit =
-    total * (DEPOSIT_PERCENT / 100);
+    total *
+    (DEPOSIT_PERCENT / 100);
 
   const remaining =
-    total - deposit;
+    total -
+    deposit;
 
-  document.getElementById("templatePrice").textContent = BASE_PRICE;
-  document.getElementById("summaryTemplatePrice").textContent = BASE_PRICE;
-  document.getElementById("extrasPrice").textContent = extrasTotal;
-  document.getElementById("discountPrice").textContent = formatMoney(discountAmount);
-  document.getElementById("totalPrice").textContent = formatMoney(total);
-  document.getElementById("depositPrice").textContent = formatMoney(deposit);
-  document.getElementById("remainingPrice").textContent = formatMoney(remaining);
 
-  document.getElementById("discountRow").style.display =
-    couponApplied ? "flex" : "none";
+  document.getElementById(
+    "templatePrice"
+  ).textContent =
+    BASE_PRICE;
+
+  document.getElementById(
+    "summaryTemplatePrice"
+  ).textContent =
+    BASE_PRICE;
+
+  document.getElementById(
+    "extrasPrice"
+  ).textContent =
+    extrasTotal;
+
+  document.getElementById(
+    "discountPrice"
+  ).textContent =
+    formatMoney(
+      discountAmount
+    );
+
+  document.getElementById(
+    "totalPrice"
+  ).textContent =
+    formatMoney(
+      total
+    );
+
+  document.getElementById(
+    "depositPrice"
+  ).textContent =
+    formatMoney(
+      deposit
+    );
+
+  document.getElementById(
+    "remainingPrice"
+  ).textContent =
+    formatMoney(
+      remaining
+    );
+
+
+  document.getElementById(
+    "discountRow"
+  ).style.display =
+    couponApplied
+      ? "flex"
+      : "none";
+
 
   return {
+
     extras,
-    templatePrice:BASE_PRICE,
+
+    templatePrice:
+      BASE_PRICE,
+
     extrasTotal,
+
     subtotal,
+
     discountAmount,
+
     total,
+
     deposit,
+
     remaining
+
   };
+
 }
 
-function updateColorCode(inputId,codeId){
-  document.getElementById(codeId).textContent =
-    document.getElementById(inputId).value.toUpperCase();
+
+function updateColorCode(
+  inputId,
+  codeId
+){
+
+  document.getElementById(
+    codeId
+  ).textContent =
+    document.getElementById(
+      inputId
+    ).value.toUpperCase();
+
 }
 
-document.getElementById("primaryColor")
-  .addEventListener("input",() =>
-    updateColorCode("primaryColor","primaryColorCode"));
 
-document.getElementById("secondaryColor")
-  .addEventListener("input",() =>
-    updateColorCode("secondaryColor","secondaryColorCode"));
+/* =========================
+   EVENTS
+========================= */
 
-document.getElementById("backgroundColor")
-  .addEventListener("input",() =>
-    updateColorCode("backgroundColor","backgroundColorCode"));
+document.getElementById(
+  "primaryColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "primaryColor",
+      "primaryColorCode"
+    )
+);
 
-document.querySelectorAll(".extra-checkbox")
+
+document.getElementById(
+  "secondaryColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "secondaryColor",
+      "secondaryColorCode"
+    )
+);
+
+
+document.getElementById(
+  "backgroundColor"
+)
+.addEventListener(
+  "input",
+  () =>
+    updateColorCode(
+      "backgroundColor",
+      "backgroundColorCode"
+    )
+);
+
+
+document
+  .querySelectorAll(
+    ".extra-checkbox"
+  )
   .forEach(item =>
-    item.addEventListener("change",calculatePrices));
+    item.addEventListener(
+      "change",
+      calculatePrices
+    )
+  );
 
-document.getElementById("paymentSlip")
-  .addEventListener("change",function(){
-    document.getElementById("fileName").textContent =
-      this.files && this.files.length
+
+document.getElementById(
+  "paymentSlip"
+)
+.addEventListener(
+  "change",
+  function(){
+
+    document.getElementById(
+      "fileName"
+    ).textContent =
+      this.files &&
+      this.files.length
         ? this.files[0].name
-        : "No file selected";
-  });
+        : t("noFile");
+
+  }
+);
+
 
 /* =========================
    COUPON APPLY
@@ -1104,76 +2315,139 @@ document.getElementById("paymentSlip")
 function applyCoupon(){
 
   const input =
-    document.getElementById("couponCode");
+    document.getElementById(
+      "couponCode"
+    );
 
   const message =
-    document.getElementById("couponMessage");
+    document.getElementById(
+      "couponMessage"
+    );
 
   const code =
     input.value.trim();
 
+
   couponApplied = false;
+
   couponCodeApplied = "";
 
+
   if(!code){
-    message.textContent = "Please enter a discount code.";
-    message.className = "coupon-message error";
+
+    message.textContent =
+      t("enterCoupon");
+
+    message.className =
+      "coupon-message error";
+
     calculatePrices();
+
     return;
+
   }
 
-  if(code.toLowerCase() !== DISCOUNT_CODE.toLowerCase()){
-    message.textContent = "Invalid discount code.";
-    message.className = "coupon-message error";
+
+  if(
+    code.toLowerCase() !==
+    DISCOUNT_CODE.toLowerCase()
+  ){
+
+    message.textContent =
+      t("invalidCoupon");
+
+    message.className =
+      "coupon-message error";
+
     calculatePrices();
+
     return;
+
   }
+
 
   couponApplied = true;
-  couponCodeApplied = DISCOUNT_CODE;
+
+  couponCodeApplied =
+    DISCOUNT_CODE;
+
 
   message.textContent =
-    "Discount applied successfully — 5% off your order.";
+    t("couponSuccess");
 
-  message.className = "coupon-message success";
+  message.className =
+    "coupon-message success";
+
 
   calculatePrices();
+
 }
 
-document.getElementById("applyCouponBtn")
-  .addEventListener("click",applyCoupon);
+
+document.getElementById(
+  "applyCouponBtn"
+)
+.addEventListener(
+  "click",
+  applyCoupon
+);
+
 
 /* =========================
    STORAGE
 ========================= */
 
-async function uploadPaymentSlip(file,orderNumber){
+async function uploadPaymentSlip(
+  file,
+  orderNumber
+){
 
   if(!file){
-    throw new Error("Payment slip is required.");
+
+    throw new Error(
+      t("paymentRequired")
+    );
+
   }
+
 
   const extension =
     file.name.includes(".")
-      ? file.name.split(".").pop().toLowerCase()
+      ? file.name
+          .split(".")
+          .pop()
+          .toLowerCase()
       : "jpg";
 
+
   const safeExtension =
-    extension.replace(/[^a-z0-9]/gi,"");
+    extension.replace(
+      /[^a-z0-9]/gi,
+      ""
+    );
+
 
   const filePath =
     orderNumber +
     "/" +
     Date.now() +
     "-" +
-    Math.random().toString(36).substring(2,8) +
+    Math.random()
+      .toString(36)
+      .substring(2,8) +
     "." +
     safeExtension;
 
-  const {data,error} =
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient
       .storage
-      .from(STORAGE_BUCKET)
+      .from(
+        STORAGE_BUCKET
+      )
       .upload(
         filePath,
         file,
@@ -1186,77 +2460,127 @@ async function uploadPaymentSlip(file,orderNumber){
         }
       );
 
+
   if(error){
+
     throw new Error(
-      "Payment slip upload failed: " +
+      t("uploadFailed") +
       error.message
     );
+
   }
 
-  uploadedSlipPath = data.path;
+
+  uploadedSlipPath =
+    data.path;
+
 
   return data.path;
+
 }
+
 
 async function deleteUploadedSlip(){
 
   if(!uploadedSlipPath){
+
     return;
+
   }
 
-  const {error} =
+
+  const {
+    error
+  } =
     await supabaseClient
       .storage
-      .from(STORAGE_BUCKET)
-      .remove([uploadedSlipPath]);
+      .from(
+        STORAGE_BUCKET
+      )
+      .remove([
+        uploadedSlipPath
+      ]);
+
 
   if(error){
+
     console.warn(
       "Could not delete uploaded slip:",
       error.message
     );
+
   }
 
-  uploadedSlipPath = "";
+
+  uploadedSlipPath =
+    "";
+
 }
+
 
 /* =========================
    ORDERS
 ========================= */
 
-async function createOrder(order){
+async function createOrder(
+  order
+){
 
-  const {error} =
+  const {
+    error
+  } =
     await supabaseClient
       .from("orders")
       .insert(order);
 
+
   if(error){
-    throw new Error(error.message);
+
+    throw new Error(
+      error.message
+    );
+
   }
+
 }
+
 
 async function deleteCreatedOrder(){
 
   if(!createdOrderNumber){
+
     return;
+
   }
 
-  const {error} =
+
+  const {
+    error
+  } =
     await supabaseClient
       .from("orders")
       .delete()
-      .eq("order_number",createdOrderNumber);
+      .eq(
+        "order_number",
+        createdOrderNumber
+      );
+
 
   if(error){
+
     console.warn(
       "Could not delete order:",
       error.message
     );
+
   }
 
-  createdOrderNumber = "";
+
+  createdOrderNumber =
+    "";
+
 }
+
 
 /* =========================
    USE COUPON
@@ -1270,52 +2594,107 @@ async function useCouponOnSupabase(
 ){
 
   const cleanCouponCode =
-    String(couponCode || "")
-      .trim()
-      .toLowerCase();
+    String(
+      couponCode || ""
+    )
+    .trim()
+    .toLowerCase();
+
 
   const cleanContact =
-    normalizeLineId(lineId);
+    normalizeLineId(
+      lineId
+    );
+
 
   const cleanOrderNumber =
-    String(orderNumber || "")
-      .trim();
+    String(
+      orderNumber || ""
+    )
+    .trim();
+
 
   const cleanCustomerName =
-    String(customerName || "")
-      .trim();
+    String(
+      customerName || ""
+    )
+    .trim();
+
 
   if(!cleanCouponCode){
-    throw new Error("Discount code is missing.");
+
+    throw new Error(
+      t("couponMissing")
+    );
+
   }
+
 
   if(!cleanContact){
-    throw new Error("LINE ID is missing.");
+
+    throw new Error(
+      t("lineMissing")
+    );
+
   }
+
 
   if(!cleanOrderNumber){
-    throw new Error("Order number is missing.");
+
+    throw new Error(
+      t("orderNumberMissing")
+    );
+
   }
 
-  console.log("VERIFYING COUPON:", {
-    coupon_code: cleanCouponCode,
-    contact: cleanContact,
-    order_number: cleanOrderNumber
-  });
 
-  const {data,error} =
+  console.log(
+    "VERIFYING COUPON:",
+    {
+      coupon_code:
+        cleanCouponCode,
+
+      contact:
+        cleanContact,
+
+      order_number:
+        cleanOrderNumber
+    }
+  );
+
+
+  const {
+    data,
+    error
+  } =
     await supabaseClient.rpc(
       "use_coupon",
       {
-        p_coupon_code: cleanCouponCode,
-        p_contact: cleanContact,
-        p_order_number: cleanOrderNumber,
-        p_customer_name: cleanCustomerName
+        p_coupon_code:
+          cleanCouponCode,
+
+        p_contact:
+          cleanContact,
+
+        p_order_number:
+          cleanOrderNumber,
+
+        p_customer_name:
+          cleanCustomerName
       }
     );
 
-  console.log("USE COUPON RPC DATA:", data);
-  console.log("USE COUPON RPC ERROR:", error);
+
+  console.log(
+    "USE COUPON RPC DATA:",
+    data
+  );
+
+  console.log(
+    "USE COUPON RPC ERROR:",
+    error
+  );
+
 
   if(error){
 
@@ -1325,41 +2704,51 @@ async function useCouponOnSupabase(
     );
 
     throw new Error(
-      "Unable to verify the coupon right now: " +
+      t("couponVerifyFailed") +
+      ": " +
       (
         error.message ||
         "Supabase RPC error."
       )
     );
+
   }
+
 
   if(!data){
 
     throw new Error(
-      "The coupon verification returned no result."
+      t("couponEmptyResult")
     );
+
   }
 
-  /*
-    Supabase can return the JSON result either as an object
-    or as an array depending on the RPC response shape.
-  */
 
-  let result = data;
+  let result =
+    data;
+
 
   if(Array.isArray(data)){
-    result = data[0];
+
+    result =
+      data[0];
+
   }
+
 
   if(!result){
 
     throw new Error(
-      "The coupon verification returned an empty result."
+      t("couponEmptyResult")
     );
+
   }
 
+
   return result;
+
 }
+
 
 /* =========================
    SUBMIT ORDER
@@ -1369,34 +2758,74 @@ async function submitOrder(){
 
   hideStatus();
 
+
   const customerName =
-    document.getElementById("customerName").value.trim();
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
 
   const lineId =
-    document.getElementById("lineId").value.trim();
+    document.getElementById(
+      "lineId"
+    ).value.trim();
+
 
   const message =
-    document.getElementById("message").value.trim();
+    document.getElementById(
+      "message"
+    ).value.trim();
+
 
   const paymentSlip =
-    document.getElementById("paymentSlip").files[0];
+    document.getElementById(
+      "paymentSlip"
+    ).files[0];
+
 
   if(!customerName){
-    showStatus("Please enter your name.","error");
-    document.getElementById("customerName").focus();
+
+    showStatus(
+      t("enterName"),
+      "error"
+    );
+
+    document.getElementById(
+      "customerName"
+    ).focus();
+
     return;
+
   }
+
 
   if(!lineId){
-    showStatus("Please enter your LINE ID.","error");
-    document.getElementById("lineId").focus();
+
+    showStatus(
+      t("enterLine"),
+      "error"
+    );
+
+    document.getElementById(
+      "lineId"
+    ).focus();
+
     return;
+
   }
 
+
   if(!paymentSlip){
-    showStatus("Please upload your payment slip.","error");
+
+    showStatus(
+      t("uploadPayment"),
+      "error"
+    );
+
     return;
+
   }
+
 
   const allowedTypes = [
     "image/jpeg",
@@ -1405,37 +2834,59 @@ async function submitOrder(){
     "application/pdf"
   ];
 
+
   if(
     paymentSlip.type &&
-    !allowedTypes.includes(paymentSlip.type)
+    !allowedTypes.includes(
+      paymentSlip.type
+    )
   ){
+
     showStatus(
-      "Please upload JPG, PNG, WEBP or PDF only.",
+      t("invalidFile"),
       "error"
     );
+
     return;
+
   }
 
-  if(paymentSlip.size > 10 * 1024 * 1024){
+
+  if(
+    paymentSlip.size >
+    10 * 1024 * 1024
+  ){
+
     showStatus(
-      "Payment slip must be smaller than 10 MB.",
+      t("fileTooLarge"),
       "error"
     );
+
     return;
+
   }
 
-  const prices = calculatePrices();
 
-  createdOrderNumber = generateOrderNumber();
+  const prices =
+    calculatePrices();
 
-  setButtonLoading(true);
+
+  createdOrderNumber =
+    generateOrderNumber();
+
+
+  setButtonLoading(
+    true
+  );
+
 
   try{
 
     showStatus(
-      "Uploading your payment slip...",
+      t("uploading"),
       "success"
     );
+
 
     const slipPath =
       await uploadPaymentSlip(
@@ -1443,18 +2894,25 @@ async function submitOrder(){
         createdOrderNumber
       );
 
+
     showStatus(
-      "Creating your order...",
+      t("creating"),
       "success"
     );
 
+
     const orderData = {
 
-      order_number:createdOrderNumber,
+      order_number:
+        createdOrderNumber,
 
-      customer_name:customerName,
+      customer_name:
+        customerName,
 
-      contact:normalizeLineId(lineId),
+      contact:
+        normalizeLineId(
+          lineId
+        ),
 
       template:
         new URLSearchParams(
@@ -1462,62 +2920,83 @@ async function submitOrder(){
         ).get("template") ||
         "anniversary-01",
 
-      message:message,
+      message:
+        message,
 
       primary_color:
         document
-          .getElementById("primaryColor")
+          .getElementById(
+            "primaryColor"
+          )
           .value
           .toUpperCase(),
 
       secondary_color:
         document
-          .getElementById("secondaryColor")
+          .getElementById(
+            "secondaryColor"
+          )
           .value
           .toUpperCase(),
 
       background_color:
         document
-          .getElementById("backgroundColor")
+          .getElementById(
+            "backgroundColor"
+          )
           .value
           .toUpperCase(),
 
       extra_functions:
         prices.extras
-          .map(item => item.name)
+          .map(
+            item =>
+              item.name
+          )
           .join(", "),
 
       total_price:
-        Number(prices.total.toFixed(2)),
+        Number(
+          prices.total
+            .toFixed(2)
+        ),
 
       deposit_amount:
-        Number(prices.deposit.toFixed(2)),
+        Number(
+          prices.deposit
+            .toFixed(2)
+        ),
 
       remaining_amount:
-        Number(prices.remaining.toFixed(2)),
+        Number(
+          prices.remaining
+            .toFixed(2)
+        ),
 
-      payment_slip:slipPath,
+      payment_slip:
+        slipPath,
 
-      payment_status:"pending",
+      payment_status:
+        "pending",
 
-      status:"pending"
+      status:
+        "pending"
+
     };
 
-    await createOrder(orderData);
 
-    /*
-      IMPORTANT:
-      The coupon is consumed only after the order exists.
-      If use_coupon says that this LINE ID has already used
-      the coupon, the temporary order and slip are removed.
-    */
+    await createOrder(
+      orderData
+    );
+
 
     if(couponApplied){
 
       showStatus(
-        "Verifying your discount...",
+        t("verifying"),
         "success"
       );
+
 
       const couponResult =
         await useCouponOnSupabase(
@@ -1527,43 +3006,64 @@ async function submitOrder(){
           customerName
         );
 
+
       if(
         couponResult.success !== true
       ){
 
         const couponMessage =
           couponResult.message ||
-          "This discount code cannot be used.";
+          t("couponCannotUse");
+
 
         await deleteCreatedOrder();
+
         await deleteUploadedSlip();
 
-        couponApplied = false;
-        couponCodeApplied = "";
+
+        couponApplied =
+          false;
+
+        couponCodeApplied =
+          "";
+
 
         calculatePrices();
 
-        throw new Error(couponMessage);
+
+        throw new Error(
+          couponMessage
+        );
+
       }
+
     }
 
+
     showStatus(
-      "Order submitted successfully. Order No. " +
+      t("submitted") +
       createdOrderNumber,
       "success"
     );
 
+
     alert(
-      "Order submitted successfully!\n\n" +
-      "Order No.: " +
+      t("submitSuccess") +
       createdOrderNumber
     );
 
-    document.getElementById("submitBtn").textContent =
-      "Order Submitted ✓";
 
-    document.getElementById("submitBtn").disabled =
+    document.getElementById(
+      "submitBtn"
+    ).textContent =
+      t("submittedButton");
+
+
+    document.getElementById(
+      "submitBtn"
+    ).disabled =
       true;
+
 
   }catch(error){
 
@@ -1572,24 +3072,42 @@ async function submitOrder(){
       error
     );
 
+
     if(createdOrderNumber){
+
       await deleteCreatedOrder();
+
     }
+
 
     if(uploadedSlipPath){
+
       await deleteUploadedSlip();
+
     }
 
+
     showStatus(
-      error && error.message
+      error &&
+      error.message
         ? error.message
-        : "Failed to submit your order.",
+        : t("orderFailed"),
       "error"
     );
 
-    setButtonLoading(false);
+
+    setButtonLoading(
+      false
+    );
+
   }
+
 }
+
+
+/* =========================
+   LOAD TEMPLATE
+========================= */
 
 function loadTemplate(){
 
@@ -1598,24 +3116,50 @@ function loadTemplate(){
       window.location.search
     );
 
+
   const template =
     params.get("template");
 
-  if(template === "anniversary-01"){
 
-    document.getElementById("templateName").textContent =
-      "Anniversary Template 01";
+  if(
+    template ===
+    "anniversary-01"
+  ){
 
-    document.getElementById("templateDesc").textContent =
-      "A little digital love story for your special person.";
+    document.getElementById(
+      "templateName"
+    ).textContent =
+      currentLanguage === "th"
+        ? "เทมเพลตครบรอบ 01"
+        : currentLanguage === "ko"
+          ? "기념일 템플릿 01"
+          : "Anniversary Template 01";
+
+
+    document.getElementById(
+      "templateDesc"
+    ).textContent =
+      currentLanguage === "th"
+        ? "เรื่องราวความรักเล็ก ๆ สำหรับคนพิเศษของคุณ"
+        : currentLanguage === "ko"
+          ? "소중한 사람을 위한 작은 디지털 러브 스토리"
+          : "A little digital love story for your special person.";
+
   }
+
 }
 
-document.getElementById("submitBtn")
-  .addEventListener("click",submitOrder);
+
+/* =========================
+   START
+========================= */
+
+applyTranslations();
 
 loadTemplate();
+
 calculatePrices();
+
 </script>
 
 </body>
