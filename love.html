@@ -87,14 +87,13 @@ img{
 
 /* =========================
    LANGUAGE SWITCHER
-   อยู่บนขวาของ HEADER
-   ขนาดเดียวกับ index.html
+   อยู่มุมขวาบนของ HEADER
 ========================= */
 
 .language-switcher{
-  position:absolute;
-  top:28px;
-  right:55px;
+  position:relative;
+  margin-left:auto;
+  margin-right:0;
   z-index:9999;
 }
 
@@ -562,8 +561,8 @@ img{
   }
 
   .language-switcher{
-    top:23px;
-    right:25px;
+    margin-left:auto;
+    margin-right:0;
   }
 
   .hero{
@@ -646,60 +645,61 @@ img{
     PINTO LOVE
   </a>
 
-  <a href="index.html" class="back-link" data-i18n="backToStudio">
-    BACK TO PINTO STUDIO
-  </a>
+  <div style="display:flex; align-items:center; gap:28px;">
 
-</header>
+    <a href="index.html" class="back-link" data-i18n="backToStudio">
+      BACK TO PINTO STUDIO
+    </a>
 
+    <div class="language-switcher">
 
-<!-- LANGUAGE SWITCHER -->
+      <button
+        class="language-button"
+        id="languageButton"
+        type="button"
+        aria-label="Change language"
+      >
+        ◉ <span id="currentLanguage">TH</span>
+      </button>
 
-<div class="language-switcher">
+      <div class="language-menu" id="languageMenu">
 
-  <button
-    class="language-button"
-    id="languageButton"
-    type="button"
-    aria-label="Change language"
-  >
-    ◉ <span id="currentLanguage">TH</span>
-  </button>
+        <div class="language-menu-title" data-i18n="languageTitle">
+          Language
+        </div>
 
-  <div class="language-menu" id="languageMenu">
+        <div class="language-menu-subtitle" data-i18n="languageSubtitle">
+          Select your preferred language.
+        </div>
 
-    <div class="language-menu-title" data-i18n="languageTitle">
-      Language
+        <button class="language-option" data-lang="th" type="button">
+          ไทย
+        </button>
+
+        <button class="language-option" data-lang="en" type="button">
+          English
+        </button>
+
+        <button class="language-option" data-lang="ko" type="button">
+          한국어
+        </button>
+
+        <button
+          class="language-close"
+          id="languageClose"
+          type="button"
+          data-i18n="closeLanguage"
+        >
+          Close
+        </button>
+
+      </div>
+
     </div>
-
-    <div class="language-menu-subtitle" data-i18n="languageSubtitle">
-      Select your preferred language.
-    </div>
-
-    <button class="language-option" data-lang="th" type="button">
-      ไทย
-    </button>
-
-    <button class="language-option" data-lang="en" type="button">
-      English
-    </button>
-
-    <button class="language-option" data-lang="ko" type="button">
-      한국어
-    </button>
-
-    <button
-      class="language-close"
-      id="languageClose"
-      type="button"
-      data-i18n="closeLanguage"
-    >
-      Close
-    </button>
 
   </div>
 
-</div>
+</header>
 
 
 <!-- =========================
