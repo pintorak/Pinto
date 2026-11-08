@@ -87,11 +87,12 @@ img{
 
 /* =========================
    LANGUAGE SWITCHER
-   เหมือนระบบภาษาใน index.html
+   อยู่บนขวาของ HEADER
+   ขนาดเดียวกับ index.html
 ========================= */
 
 .language-switcher{
-  position:fixed;
+  position:absolute;
   top:28px;
   right:55px;
   z-index:9999;
@@ -639,10 +640,6 @@ img{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="site-header">
 
   <a href="index.html" class="brand">
@@ -656,9 +653,7 @@ img{
 </header>
 
 
-<!-- =========================
-     LANGUAGE SWITCHER
-========================= -->
+<!-- LANGUAGE SWITCHER -->
 
 <div class="language-switcher">
 
@@ -681,27 +676,15 @@ img{
       Select your preferred language.
     </div>
 
-    <button
-      class="language-option"
-      data-lang="th"
-      type="button"
-    >
+    <button class="language-option" data-lang="th" type="button">
       ไทย
     </button>
 
-    <button
-      class="language-option"
-      data-lang="en"
-      type="button"
-    >
+    <button class="language-option" data-lang="en" type="button">
       English
     </button>
 
-    <button
-      class="language-option"
-      data-lang="ko"
-      type="button"
-    >
+    <button class="language-option" data-lang="ko" type="button">
       한국어
     </button>
 
@@ -717,7 +700,6 @@ img{
   </div>
 
 </div>
-
 
 
 <!-- =========================
@@ -742,7 +724,6 @@ img{
   </p>
 
 </section>
-
 
 
 <!-- =========================
@@ -772,41 +753,17 @@ img{
   </div>
 
 
-
   <div class="template-grid">
-
-
-    <!-- TEMPLATE 01 -->
 
     <a href="template-01.html" class="template-card">
 
       <div class="template-image slider">
 
-        <img
-          src="anniversary-01.jpg"
-          class="active"
-          alt="Anniversary Template 01"
-        >
-
-        <img
-          src="anniversary-02.jpg"
-          alt="Anniversary Template 01"
-        >
-
-        <img
-          src="anniversary-03.jpg"
-          alt="Anniversary Template 01"
-        >
-
-        <img
-          src="anniversary-04.jpg"
-          alt="Anniversary Template 01"
-        >
-
-        <img
-          src="anniversary-05.jpg"
-          alt="Anniversary Template 01"
-        >
+        <img src="anniversary-01.jpg" class="active" alt="Anniversary Template 01">
+        <img src="anniversary-02.jpg" alt="Anniversary Template 01">
+        <img src="anniversary-03.jpg" alt="Anniversary Template 01">
+        <img src="anniversary-04.jpg" alt="Anniversary Template 01">
+        <img src="anniversary-05.jpg" alt="Anniversary Template 01">
 
         <div class="template-number">
           01
@@ -846,9 +803,6 @@ img{
 
     </a>
 
-
-
-    <!-- TEMPLATE 02 -->
 
     <a href="template-02.html" class="template-card">
 
@@ -892,9 +846,6 @@ img{
 
     </a>
 
-
-
-    <!-- TEMPLATE 03 -->
 
     <a href="template-03.html" class="template-card">
 
@@ -943,7 +894,6 @@ img{
 </section>
 
 
-
 <!-- =========================
      BIRTHDAY
 ========================= -->
@@ -971,41 +921,17 @@ img{
   </div>
 
 
-
   <div class="template-grid">
-
-
-    <!-- BIRTHDAY TEMPLATE 01 -->
 
     <a href="birthday-template-01.html" class="template-card">
 
       <div class="template-image slider">
 
-        <img
-          src="birthday-01.jpg"
-          class="active"
-          alt="Birthday Template 01"
-        >
-
-        <img
-          src="birthday-02.jpg"
-          alt="Birthday Template 01"
-        >
-
-        <img
-          src="birthday-03.jpg"
-          alt="Birthday Template 01"
-        >
-
-        <img
-          src="birthday-04.jpg"
-          alt="Birthday Template 01"
-        >
-
-        <img
-          src="birthday-05.jpg"
-          alt="Birthday Template 01"
-        >
+        <img src="birthday-01.jpg" class="active" alt="Birthday Template 01">
+        <img src="birthday-02.jpg" alt="Birthday Template 01">
+        <img src="birthday-03.jpg" alt="Birthday Template 01">
+        <img src="birthday-04.jpg" alt="Birthday Template 01">
+        <img src="birthday-05.jpg" alt="Birthday Template 01">
 
         <div class="template-number">
           01
@@ -1045,9 +971,6 @@ img{
 
     </a>
 
-
-
-    <!-- BIRTHDAY TEMPLATE 02 -->
 
     <a href="birthday-template-02.html" class="template-card">
 
@@ -1091,9 +1014,6 @@ img{
 
     </a>
 
-
-
-    <!-- BIRTHDAY TEMPLATE 03 -->
 
     <a href="birthday-template-03.html" class="template-card">
 
@@ -1142,7 +1062,6 @@ img{
 </section>
 
 
-
 <!-- =========================
      MAKE UP
 ========================= -->
@@ -1170,44 +1089,17 @@ img{
   </div>
 
 
-
   <div class="template-grid">
 
-
-    <!-- MAKE UP TEMPLATE 01 -->
-
-    <a
-      href="make-up-template-01.html"
-      class="template-card"
-    >
+    <a href="make-up-template-01.html" class="template-card">
 
       <div class="template-image slider">
 
-        <img
-          src="make-up-01.jpg"
-          class="active"
-          alt="Make Up Template 01"
-        >
-
-        <img
-          src="make-up-02.jpg"
-          alt="Make Up Template 01"
-        >
-
-        <img
-          src="make-up-03.jpg"
-          alt="Make Up Template 01"
-        >
-
-        <img
-          src="make-up-04.jpg"
-          alt="Make Up Template 01"
-        >
-
-        <img
-          src="make-up-05.jpg"
-          alt="Make Up Template 01"
-        >
+        <img src="make-up-01.jpg" class="active" alt="Make Up Template 01">
+        <img src="make-up-02.jpg" alt="Make Up Template 01">
+        <img src="make-up-03.jpg" alt="Make Up Template 01">
+        <img src="make-up-04.jpg" alt="Make Up Template 01">
+        <img src="make-up-05.jpg" alt="Make Up Template 01">
 
         <div class="template-number">
           01
@@ -1218,7 +1110,6 @@ img{
         </div>
 
       </div>
-
 
       <div class="template-info">
 
@@ -1249,13 +1140,7 @@ img{
     </a>
 
 
-
-    <!-- MAKE UP TEMPLATE 02 -->
-
-    <a
-      href="make-up-template-02.html"
-      class="template-card"
-    >
+    <a href="make-up-template-02.html" class="template-card">
 
       <div class="template-image">
 
@@ -1268,7 +1153,6 @@ img{
         </div>
 
       </div>
-
 
       <div class="template-info">
 
@@ -1299,13 +1183,7 @@ img{
     </a>
 
 
-
-    <!-- MAKE UP TEMPLATE 03 -->
-
-    <a
-      href="make-up-template-03.html"
-      class="template-card"
-    >
+    <a href="make-up-template-03.html" class="template-card">
 
       <div class="template-image">
 
@@ -1318,7 +1196,6 @@ img{
         </div>
 
       </div>
-
 
       <div class="template-info">
 
@@ -1353,7 +1230,6 @@ img{
 </section>
 
 
-
 <!-- =========================
      SPECIAL MOMENT
 ========================= -->
@@ -1381,9 +1257,7 @@ img{
   </div>
 
 
-
   <div class="template-grid">
-
 
     <div class="template-card">
 
@@ -1419,7 +1293,6 @@ img{
     </div>
 
 
-
     <div class="template-card">
 
       <div class="template-image">
@@ -1452,7 +1325,6 @@ img{
       </div>
 
     </div>
-
 
 
     <div class="template-card">
@@ -1491,7 +1363,6 @@ img{
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1534,7 +1405,6 @@ img{
 </section>
 
 
-
 <!-- =========================
      FOOTER
 ========================= -->
@@ -1552,105 +1422,64 @@ img{
 </footer>
 
 
-
 <script>
-
-/* ==================================
-   LANGUAGE SYSTEM
-   ใช้ localStorage เดียวกับ index
-================================== */
 
 const translations = {
 
   th: {
 
-    languageTitle:
-      "ภาษา",
+    languageTitle:"ภาษา",
+    languageSubtitle:"เลือกภาษาที่ต้องการใช้",
+    closeLanguage:"ปิด",
 
-    languageSubtitle:
-      "เลือกภาษาที่ต้องการใช้",
+    backToStudio:"BACK TO PINTO STUDIO",
 
-    closeLanguage:
-      "ปิด",
-
-    backToStudio:
-      "BACK TO PINTO STUDIO",
-
-    heroTitle:
-      "Little things,<br>made to remember.",
+    heroTitle:"Little things,<br>made to remember.",
 
     heroText:
       "ประสบการณ์ดิจิทัลที่สร้างขึ้นเพื่อความรัก ความทรงจำ วันพิเศษ และช่วงเวลาเล็ก ๆ ที่ควรค่าแก่การจดจำ",
 
-    anniversary:
-      "วันครบรอบ",
+    anniversary:"วันครบรอบ",
+    birthday:"วันเกิด",
+    makeup:"ขอโทษและคืนดี",
+    specialMomentTitle:"ช่วงเวลาพิเศษ",
 
-    birthday:
-      "วันเกิด",
+    seeAll:"SEE ALL →",
+    viewTemplate:"VIEW TEMPLATE →",
 
-    makeup:
-      "ขอโทษและคืนดี",
-
-    specialMomentTitle:
-      "ช่วงเวลาพิเศษ",
-
-    seeAll:
-      "SEE ALL →",
-
-    viewTemplate:
-      "VIEW TEMPLATE →",
-
-    anniversaryTemplate01:
-      "วันครบรอบแบบที่หนึ่ง",
-
+    anniversaryTemplate01:"วันครบรอบแบบที่หนึ่ง",
     anniversaryDesc01:
       "เว็บไซต์เล็ก ๆ สำหรับเก็บเรื่องราว ความทรงจำ และช่วงเวลาที่มีร่วมกัน ในวันสำคัญของความสัมพันธ์",
 
-    anniversaryTemplate02:
-      "วันครบรอบแบบที่สอง",
-
+    anniversaryTemplate02:"วันครบรอบแบบที่สอง",
     anniversaryDesc02:
       "อีกหนึ่งรูปแบบสำหรับเล่าเรื่องราวของความสัมพันธ์ผ่านข้อความ และช่วงเวลาที่อยากจดจำ",
 
-    anniversaryTemplate03:
-      "วันครบรอบแบบที่สาม",
-
+    anniversaryTemplate03:"วันครบรอบแบบที่สาม",
     anniversaryDesc03:
       "พื้นที่เล็ก ๆ สำหรับบอกความรู้สึก และเก็บเรื่องราวของคนสองคนไว้ในรูปแบบที่ไม่เหมือนใคร",
 
-    birthdayTemplate01:
-      "วันเกิดแบบที่หนึ่ง",
-
+    birthdayTemplate01:"วันเกิดแบบที่หนึ่ง",
     birthdayDesc01:
       "เว็บไซต์เซอร์ไพรส์วันเกิด ที่ค่อย ๆ พาผู้รับเปิดของขวัญ และค้นพบคำอวยพรทีละขั้น",
 
-    birthdayTemplate02:
-      "วันเกิดแบบที่สอง",
-
+    birthdayTemplate02:"วันเกิดแบบที่สอง",
     birthdayDesc02:
       "ดีไซน์อีกหนึ่งรูปแบบ สำหรับเก็บคำอวยพรและความทรงจำ ในวันเกิดของคนสำคัญ",
 
-    birthdayTemplate03:
-      "วันเกิดแบบที่สาม",
-
+    birthdayTemplate03:"วันเกิดแบบที่สาม",
     birthdayDesc03:
       "อีกหนึ่งพื้นที่สำหรับสร้าง เซอร์ไพรส์วันเกิดที่มีเรื่องราว ในแบบของคุณเอง",
 
-    makeupTemplate01:
-      "ขอโทษและคืนดีแบบที่หนึ่ง",
-
+    makeupTemplate01:"ขอโทษและคืนดีแบบที่หนึ่ง",
     makeupDesc01:
       "เว็บไซต์เล็ก ๆ สำหรับคำขอโทษ ความรู้สึกที่อยากพูด และการขอเริ่มต้นกันใหม่อีกครั้ง",
 
-    makeupTemplate02:
-      "ขอโทษและคืนดีแบบที่สอง",
-
+    makeupTemplate02:"ขอโทษและคืนดีแบบที่สอง",
     makeupDesc02:
       "สำหรับคนที่อยากบอกความรู้สึก ผ่านเรื่องราวและความทรงจำ ที่มีร่วมกัน",
 
-    makeupTemplate03:
-      "ขอโทษและคืนดีแบบที่สาม",
-
+    makeupTemplate03:"ขอโทษและคืนดีแบบที่สาม",
     makeupDesc03:
       "พื้นที่เล็ก ๆ สำหรับคำขอโทษ และข้อความที่อยากให้คนสำคัญ ได้อ่านจนจบ",
 
@@ -1663,110 +1492,72 @@ const translations = {
     specialDesc03:
       "บางช่วงเวลาอาจสั้น แต่ก็มีความหมายพอที่จะจดจำ",
 
-    comingSoon:
-      "COMING SOON",
+    comingSoon:"COMING SOON",
 
-    noteTitle:
-      "Made to feel personal.",
+    noteTitle:"Made to feel personal.",
 
     noteText:
       "ทุก Template สามารถปรับเปลี่ยนข้อความในแต่ละหน้าให้เป็นเรื่องราวของคุณเองได้ ไม่ว่าจะเป็นชื่อ ข้อความ คำอวยพร หรือเรื่องราวเฉพาะของคนสองคน<br><br>สามารถปรับโทนและสีของเว็บไซต์ให้เข้ากับความสัมพันธ์และสไตล์ที่ต้องการได้<br><br>หากต้องการฟังก์ชันเพิ่มเติม คิดเพิ่มเพียง +29 THB / function<br><br>ระยะเวลาจัดทำประมาณ 1–2 วัน",
 
-    footerText:
-      "Digital experiences made with intention."
+    footerText:"Digital experiences made with intention."
 
   },
 
 
   en: {
 
-    languageTitle:
-      "Language",
+    languageTitle:"Language",
+    languageSubtitle:"Select your preferred language.",
+    closeLanguage:"Close",
 
-    languageSubtitle:
-      "Select your preferred language.",
+    backToStudio:"BACK TO PINTO STUDIO",
 
-    closeLanguage:
-      "Close",
-
-    backToStudio:
-      "BACK TO PINTO STUDIO",
-
-    heroTitle:
-      "Little things,<br>made to remember.",
+    heroTitle:"Little things,<br>made to remember.",
 
     heroText:
       "Digital experiences made for love, memories, special days and little moments that deserve to be remembered.",
 
-    anniversary:
-      "Anniversary",
+    anniversary:"Anniversary",
+    birthday:"Birthday",
+    makeup:"Apology & Reconciliation",
+    specialMomentTitle:"Special Moment",
 
-    birthday:
-      "Birthday",
+    seeAll:"SEE ALL →",
+    viewTemplate:"VIEW TEMPLATE →",
 
-    makeup:
-      "Apology & Reconciliation",
-
-    specialMomentTitle:
-      "Special Moment",
-
-    seeAll:
-      "SEE ALL →",
-
-    viewTemplate:
-      "VIEW TEMPLATE →",
-
-    anniversaryTemplate01:
-      "Anniversary · Template One",
-
+    anniversaryTemplate01:"Anniversary · Template One",
     anniversaryDesc01:
       "A little website for keeping stories, memories and shared moments from an important day in your relationship.",
 
-    anniversaryTemplate02:
-      "Anniversary · Template Two",
-
+    anniversaryTemplate02:"Anniversary · Template Two",
     anniversaryDesc02:
       "Another way to tell your relationship story through words and moments worth remembering.",
 
-    anniversaryTemplate03:
-      "Anniversary · Template Three",
-
+    anniversaryTemplate03:"Anniversary · Template Three",
     anniversaryDesc03:
       "A little space to express your feelings and keep the story of two people in a unique format.",
 
-    birthdayTemplate01:
-      "Birthday · Template One",
-
+    birthdayTemplate01:"Birthday · Template One",
     birthdayDesc01:
       "A birthday surprise website that slowly guides the recipient through gifts and wishes, one step at a time.",
 
-    birthdayTemplate02:
-      "Birthday · Template Two",
-
+    birthdayTemplate02:"Birthday · Template Two",
     birthdayDesc02:
       "Another design for keeping birthday wishes and memories of someone special.",
 
-    birthdayTemplate03:
-      "Birthday · Template Three",
-
+    birthdayTemplate03:"Birthday · Template Three",
     birthdayDesc03:
       "Another space for creating a birthday surprise with your own story.",
 
-    makeupTemplate01:
-      "Apology & Reconciliation · Template One",
-
+    makeupTemplate01:"Apology & Reconciliation · Template One",
     makeupDesc01:
       "A little website for an apology, feelings you want to express, and asking to begin again.",
 
-    makeupTemplate02:
-      "Apology & Reconciliation · Template Two",
-
+    makeupTemplate02:"Apology & Reconciliation · Template Two",
     makeupDesc02:
       "For those who want to express their feelings through shared stories and memories.",
 
-    makeupTemplate03:
-      "Apology & Reconciliation · Template Three",
-
+    makeupTemplate03:"Apology & Reconciliation · Template Three",
     makeupDesc03:
       "A little space for an apology and words you want someone important to read until the end.",
 
@@ -1779,110 +1570,72 @@ const translations = {
     specialDesc03:
       "Some moments may be short, but they can still be meaningful enough to remember.",
 
-    comingSoon:
-      "COMING SOON",
+    comingSoon:"COMING SOON",
 
-    noteTitle:
-      "Made to feel personal.",
+    noteTitle:"Made to feel personal.",
 
     noteText:
       "Every template can be customized with your own story. Add names, messages, wishes, or details that belong specifically to the two of you.<br><br>You can also adjust the website's tone and colors to match your relationship and preferred style.<br><br>If you want additional functions, they are only +29 THB / function.<br><br>Estimated completion time: 1–2 days.",
 
-    footerText:
-      "Digital experiences made with intention."
+    footerText:"Digital experiences made with intention."
 
   },
 
 
   ko: {
 
-    languageTitle:
-      "언어",
+    languageTitle:"언어",
+    languageSubtitle:"원하는 언어를 선택하세요.",
+    closeLanguage:"닫기",
 
-    languageSubtitle:
-      "원하는 언어를 선택하세요.",
+    backToStudio:"BACK TO PINTO STUDIO",
 
-    closeLanguage:
-      "닫기",
-
-    backToStudio:
-      "BACK TO PINTO STUDIO",
-
-    heroTitle:
-      "기억하고 싶은<br>작은 순간들.",
+    heroTitle:"기억하고 싶은<br>작은 순간들.",
 
     heroText:
       "사랑, 추억, 특별한 날 그리고 오래 기억하고 싶은 소중한 순간을 위한 디지털 경험을 만듭니다.",
 
-    anniversary:
-      "기념일",
+    anniversary:"기념일",
+    birthday:"생일",
+    makeup:"사과와 화해",
+    specialMomentTitle:"특별한 순간",
 
-    birthday:
-      "생일",
+    seeAll:"SEE ALL →",
+    viewTemplate:"VIEW TEMPLATE →",
 
-    makeup:
-      "사과와 화해",
-
-    specialMomentTitle:
-      "특별한 순간",
-
-    seeAll:
-      "SEE ALL →",
-
-    viewTemplate:
-      "VIEW TEMPLATE →",
-
-    anniversaryTemplate01:
-      "기념일 · 첫 번째 템플릿",
-
+    anniversaryTemplate01:"기념일 · 첫 번째 템플릿",
     anniversaryDesc01:
       "관계의 특별한 날에 함께한 이야기와 추억, 소중한 순간을 담아두는 작은 웹사이트입니다.",
 
-    anniversaryTemplate02:
-      "기념일 · 두 번째 템플릿",
-
+    anniversaryTemplate02:"기념일 · 두 번째 템플릿",
     anniversaryDesc02:
       "기억하고 싶은 순간과 이야기를 통해 두 사람의 관계를 담아내는 또 다른 방식입니다.",
 
-    anniversaryTemplate03:
-      "기념일 · 세 번째 템플릿",
-
+    anniversaryTemplate03:"기념일 · 세 번째 템플릿",
     anniversaryDesc03:
       "두 사람의 이야기를 특별한 방식으로 담고 마음을 전할 수 있는 작은 공간입니다.",
 
-    birthdayTemplate01:
-      "생일 · 첫 번째 템플릿",
-
+    birthdayTemplate01:"생일 · 첫 번째 템플릿",
     birthdayDesc01:
       "선물과 축하 메시지를 하나씩 발견해가는 방식으로 구성된 생일 서프라이즈 웹사이트입니다.",
 
-    birthdayTemplate02:
-      "생일 · 두 번째 템플릿",
-
+    birthdayTemplate02:"생일 · 두 번째 템플릿",
     birthdayDesc02:
       "소중한 사람의 생일을 위한 축하 메시지와 추억을 담아둘 수 있는 또 다른 디자인입니다.",
 
-    birthdayTemplate03:
-      "생일 · 세 번째 템플릿",
-
+    birthdayTemplate03:"생일 · 세 번째 템플릿",
     birthdayDesc03:
       "나만의 이야기를 담아 특별한 생일 서프라이즈를 만들 수 있는 또 하나의 공간입니다.",
 
-    makeupTemplate01:
-      "사과와 화해 · 첫 번째 템플릿",
-
+    makeupTemplate01:"사과와 화해 · 첫 번째 템플릿",
     makeupDesc01:
       "미안한 마음과 전하고 싶은 감정, 그리고 다시 시작하고 싶은 마음을 담는 작은 웹사이트입니다.",
 
-    makeupTemplate02:
-      "사과와 화해 · 두 번째 템플릿",
-
+    makeupTemplate02:"사과와 화해 · 두 번째 템플릿",
     makeupDesc02:
       "함께했던 이야기와 추억을 통해 마음을 전하고 싶은 사람을 위한 디자인입니다.",
 
-    makeupTemplate03:
-      "사과와 화해 · 세 번째 템플릿",
-
+    makeupTemplate03:"사과와 화해 · 세 번째 템플릿",
     makeupDesc03:
       "소중한 사람이 끝까지 읽어주었으면 하는 사과와 진심을 담을 수 있는 작은 공간입니다.",
 
@@ -1895,26 +1648,19 @@ const translations = {
     specialDesc03:
       "어떤 순간은 짧지만, 기억할 만큼 충분히 의미가 있습니다.",
 
-    comingSoon:
-      "COMING SOON",
+    comingSoon:"COMING SOON",
 
-    noteTitle:
-      "나만의 이야기처럼 특별하게.",
+    noteTitle:"나만의 이야기처럼 특별하게.",
 
     noteText:
       "모든 템플릿은 여러분의 이야기에 맞게 내용을 변경할 수 있습니다. 이름, 메시지, 축하 문구 또는 두 사람만의 특별한 이야기를 담을 수 있습니다.<br><br>관계와 원하는 스타일에 맞게 웹사이트의 분위기와 색상도 변경할 수 있습니다.<br><br>추가 기능이 필요한 경우 기능당 +29 THB가 추가됩니다.<br><br>제작 기간은 약 1–2일입니다.",
 
-    footerText:
-      "의미를 담아 만든 디지털 경험."
+    footerText:"의미를 담아 만든 디지털 경험."
 
   }
 
 };
 
-
-/* ==================================
-   LANGUAGE FUNCTIONS
-================================== */
 
 function getSavedLanguage(){
 
@@ -1949,10 +1695,7 @@ function setLanguage(lang){
       lang.toUpperCase();
   }
 
-  const elements =
-    document.querySelectorAll("[data-i18n]");
-
-  elements.forEach(function(element){
+  document.querySelectorAll("[data-i18n]").forEach(function(element){
 
     const key = element.dataset.i18n;
 
@@ -1964,22 +1707,17 @@ function setLanguage(lang){
   });
 
 
-  document.querySelectorAll(".language-option")
-    .forEach(function(option){
+  document.querySelectorAll(".language-option").forEach(function(option){
 
-      option.classList.toggle(
-        "active",
-        option.dataset.lang === lang
-      );
+    option.classList.toggle(
+      "active",
+      option.dataset.lang === lang
+    );
 
-    });
+  });
 
 }
 
-
-/* ==================================
-   LANGUAGE MENU
-================================== */
 
 const languageButton =
   document.getElementById("languageButton");
@@ -2000,18 +1738,17 @@ languageButton.addEventListener("click",function(e){
 });
 
 
-document.querySelectorAll(".language-option")
-  .forEach(function(option){
+document.querySelectorAll(".language-option").forEach(function(option){
 
-    option.addEventListener("click",function(){
+  option.addEventListener("click",function(){
 
-      setLanguage(this.dataset.lang);
+    setLanguage(this.dataset.lang);
 
-      languageMenu.classList.remove("show");
-
-    });
+    languageMenu.classList.remove("show");
 
   });
+
+});
 
 
 languageClose.addEventListener("click",function(){
@@ -2030,17 +1767,8 @@ document.addEventListener("click",function(e){
 });
 
 
-/* ==================================
-   LOAD SAVED LANGUAGE
-================================== */
-
 setLanguage(getSavedLanguage());
 
-
-
-/* ==================================
-   ALL SLIDERS
-================================== */
 
 function setupSlider(slider, counterId){
 
@@ -2074,31 +1802,19 @@ function setupSlider(slider, counterId){
 }
 
 
-/* ==================================
-   START SLIDERS
-================================== */
-
 const sliders =
   document.querySelectorAll(".template-image.slider");
 
-
-/* Anniversary */
 
 setupSlider(
   sliders[0],
   "anniversaryCount"
 );
 
-
-/* Birthday */
-
 setupSlider(
   sliders[1],
   "birthdayCount"
 );
-
-
-/* Make Up */
 
 setupSlider(
   sliders[2],
@@ -2109,4 +1825,3 @@ setupSlider(
 
 </body>
 </html>
-```
